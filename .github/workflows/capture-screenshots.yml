@@ -1,4 +1,4 @@
-name: Capture Full Page Screenshots
+name: Capture Responsive Design Screenshots
 
 on:
   workflow_dispatch:
@@ -30,7 +30,7 @@ jobs:
           echo $! > /tmp/ui-ideas-http.pid
           sleep 2
 
-      - name: Capture full-page screenshots
+      - name: Capture responsive full-page screenshots
         run: |
           node <<'EOF'
           const { chromium } = require('playwright');
@@ -39,7 +39,24 @@ jobs:
 
           const root = process.cwd();
           const screenshotsRoot = path.join(root, 'screenshots');
-          const ignoredDirs = new Set(['.git', 'node_modules', 'screenshots']);
+          const ignoredDirs = new Set([
+            '.git',
+            '.github',
+            'node_modules',
+            'screenshots',
+            'screenshot-archives'
+          ]);
+
+          const viewports = [
+            { name: 'desktop-1920', width: 1920, height: 1080 },
+            { name: 'desktop-1440', width: 1440, height: 900 },
+            { name: 'laptop-1366', width: 1366, height: 768 },
+            { name: 'tablet-landscape', width: 1024, height: 768 },
+            { name: 'tablet-portrait', width: 768, height: 1024 },
+            { name: 'mobile-large', width: 430, height: 932, isMobile: true },
+            { name: 'mobile', width: 390, height: 844, isMobile: true },
+            { name: 'mobile-small', width: 360, height: 800, isMobile: true },
+          ];
 
           function findHtmlFiles(dir) {
             const files = [];
@@ -59,8 +76,50 @@ jobs:
             return files;
           }
 
+          async function settlePage(page) {
+            await page.waitForTimeout(1200);
+
+            await page.evaluate(async () => {
+              await new Promise((resolve) => {
+                let lastHeight = 0;
+                let stablePasses = 0;
+
+                const timer = setInterval(() => {
+                  const height = Math.max(
+                    document.body.scrollHeight,
+                    document.documentElement.scrollHeight
+                  );
+
+                  window.scrollBy(0, 700);
+
+                  if (height === lastHeight) stablePasses += 1;
+                  else stablePasses = 0;
+
+                  lastHeight = height;
+
+                  if (
+                    window.scrollY + window.innerHeight >= height ||
+                    stablePasses >= 5
+                  ) {
+                    clearInterval(timer);
+                    window.scrollTo(0, 0);
+                    setTimeout(resolve, 500);
+                  }
+                }, 100);
+              });
+            });
+
+            await page.evaluate(async () => {
+              if (document.fonts && document.fonts.ready) {
+                await document.fonts.ready;
+              }
+            });
+          }
+
           (async () => {
-            const htmlFiles = findHtmlFiles(root).sort();
+            const htmlFiles = findHtmlFiles(root).sort((a, b) =>
+              a.localeCompare(b, undefined, { numeric: true })
+            );
 
             if (!htmlFiles.length) {
               console.log('No HTML files found.');
@@ -68,60 +127,67 @@ jobs:
             }
 
             console.log(`Found ${htmlFiles.length} HTML page(s).`);
+            console.log(`Capturing ${viewports.length} viewport(s) per page.`);
 
             fs.rmSync(screenshotsRoot, { recursive: true, force: true });
             fs.mkdirSync(screenshotsRoot, { recursive: true });
 
             const browser = await chromium.launch({ headless: true });
-            const page = await browser.newPage({
-              viewport: { width: 1440, height: 900 },
-              deviceScaleFactor: 1,
-            });
 
-            for (const htmlFile of htmlFiles) {
-              const relativeHtml = path.relative(root, htmlFile).replace(/\\/g, '/');
-              const encodedUrlPath = relativeHtml
-                .split('/')
-                .map(encodeURIComponent)
-                .join('/');
+            for (const viewport of viewports) {
+              console.log(`\n=== ${viewport.name}: ${viewport.width}x${viewport.height} ===`);
 
-              const outputRelative = relativeHtml.replace(/\.html$/i, '.png');
-              const outputPath = path.join(screenshotsRoot, outputRelative);
-              fs.mkdirSync(path.dirname(outputPath), { recursive: true });
-
-              const url = `http://127.0.0.1:4173/${encodedUrlPath}`;
-              console.log(`Capturing ${relativeHtml} -> screenshots/${outputRelative}`);
-
-              await page.goto(url, {
-                waitUntil: 'networkidle',
-                timeout: 60000,
+              const context = await browser.newContext({
+                viewport: { width: viewport.width, height: viewport.height },
+                deviceScaleFactor: 1,
+                isMobile: Boolean(viewport.isMobile),
+                hasTouch: Boolean(viewport.isMobile),
               });
 
-              // Give fonts, images, animations and lazy-loaded content a moment to settle.
-              await page.waitForTimeout(1500);
+              const page = await context.newPage();
 
-              // Scroll through the page once so common lazy-loaded sections/images are triggered.
-              await page.evaluate(async () => {
-                await new Promise((resolve) => {
-                  let totalHeight = 0;
-                  const distance = 700;
-                  const timer = setInterval(() => {
-                    window.scrollBy(0, distance);
-                    totalHeight += distance;
+              for (const htmlFile of htmlFiles) {
+                const relativeHtml = path.relative(root, htmlFile).replace(/\\/g, '/');
+                const encodedUrlPath = relativeHtml
+                  .split('/')
+                  .map(encodeURIComponent)
+                  .join('/');
 
-                    if (totalHeight >= document.body.scrollHeight) {
-                      clearInterval(timer);
-                      window.scrollTo(0, 0);
-                      setTimeout(resolve, 500);
-                    }
-                  }, 100);
+                const outputRelative = relativeHtml.replace(/\.html$/i, '.png');
+                const outputPath = path.join(
+                  screenshotsRoot,
+                  viewport.name,
+                  outputRelative
+                );
+
+                fs.mkdirSync(path.dirname(outputPath), { recursive: true });
+
+                const url = `http://127.0.0.1:4173/${encodedUrlPath}`;
+                console.log(`Capturing ${relativeHtml} -> screenshots/${viewport.name}/${outputRelative}`);
+
+                try {
+                  await page.goto(url, {
+                    waitUntil: 'networkidle',
+                    timeout: 60000,
+                  });
+                } catch (error) {
+                  console.warn(`networkidle timed out for ${relativeHtml}; continuing after DOM load.`);
+                  await page.goto(url, {
+                    waitUntil: 'domcontentloaded',
+                    timeout: 60000,
+                  });
+                }
+
+                await settlePage(page);
+
+                await page.screenshot({
+                  path: outputPath,
+                  fullPage: true,
+                  animations: 'disabled',
                 });
-              });
+              }
 
-              await page.screenshot({
-                path: outputPath,
-                fullPage: true,
-              });
+              await context.close();
             }
 
             await browser.close();
@@ -131,15 +197,104 @@ jobs:
           });
           EOF
 
-      - name: Commit screenshots
+      - name: Build README design gallery
         run: |
-          if git diff --quiet -- screenshots/ && [ -z "$(git ls-files --others --exclude-standard screenshots/)" ]; then
-            echo "No screenshot changes to commit."
+          node <<'EOF'
+          const fs = require('fs');
+          const path = require('path');
+
+          const root = process.cwd();
+          const readmePath = path.join(root, 'README.md');
+          const startMarker = '<!-- DESIGN_GALLERY_START -->';
+          const endMarker = '<!-- DESIGN_GALLERY_END -->';
+
+          const viewportNames = [
+            'desktop-1920',
+            'desktop-1440',
+            'laptop-1366',
+            'tablet-landscape',
+            'tablet-portrait',
+            'mobile-large',
+            'mobile',
+            'mobile-small',
+          ];
+
+          const topLevelDesigns = fs.readdirSync(root, { withFileTypes: true })
+            .filter((entry) => entry.isFile() && /^\d+\.html$/i.test(entry.name))
+            .map((entry) => entry.name)
+            .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
+
+          const lines = [];
+          lines.push('');
+          lines.push('## Design Gallery');
+          lines.push('');
+          lines.push(`Generated from ${topLevelDesigns.length} top-level design page(s).`);
+          lines.push('');
+
+          for (const file of topLevelDesigns) {
+            const id = file.replace(/\.html$/i, '');
+            const encodedFile = encodeURIComponent(file);
+            const pngName = `${id}.png`;
+
+            lines.push(`### Design ${id}`);
+            lines.push('');
+            lines.push(`[Open HTML design](./${encodedFile})`);
+            lines.push('');
+            lines.push(`[![Design ${id} — 1440px desktop](./screenshots/desktop-1440/${pngName})](./screenshots/desktop-1440/${pngName})`);
+            lines.push('');
+            lines.push('**Responsive captures:** ' + viewportNames.map((name) => `[${name}](./screenshots/${name}/${pngName})`).join(' · '));
+            lines.push('');
+          }
+
+          let readme = fs.existsSync(readmePath)
+            ? fs.readFileSync(readmePath, 'utf8')
+            : `# UI Ideas\n\nA collection of Telikom homepage design explorations and responsive screenshots.\n\nRun **Actions → Capture Responsive Design Screenshots → Run workflow** to regenerate every screenshot, the ZIP archive, and this gallery.\n\n[Download the latest committed screenshot ZIP](./screenshot-archives/ui-ideas-screenshots.zip)\n\n${startMarker}\n${endMarker}\n`;
+
+          const start = readme.indexOf(startMarker);
+          const end = readme.indexOf(endMarker);
+
+          if (start === -1 || end === -1 || end < start) {
+            readme += `\n\n${startMarker}\n${endMarker}\n`;
+          }
+
+          const updatedStart = readme.indexOf(startMarker);
+          const updatedEnd = readme.indexOf(endMarker);
+
+          readme =
+            readme.slice(0, updatedStart + startMarker.length) +
+            '\n' +
+            lines.join('\n') +
+            '\n' +
+            readme.slice(updatedEnd);
+
+          fs.writeFileSync(readmePath, readme);
+          EOF
+
+      - name: Create ZIP archive
+        run: |
+          mkdir -p screenshot-archives
+          rm -f screenshot-archives/ui-ideas-screenshots.zip
+          zip -qr screenshot-archives/ui-ideas-screenshots.zip screenshots
+          ls -lh screenshot-archives/ui-ideas-screenshots.zip
+
+      - name: Upload screenshot ZIP artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ui-ideas-screenshots
+          path: screenshot-archives/ui-ideas-screenshots.zip
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Commit screenshots, ZIP and README
+        run: |
+          if git diff --quiet -- screenshots/ screenshot-archives/ README.md && \
+             [ -z "$(git ls-files --others --exclude-standard screenshots/ screenshot-archives/ README.md)" ]; then
+            echo "No screenshot or gallery changes to commit."
             exit 0
           fi
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add screenshots/
-          git commit -m "chore: update full-page screenshots"
+          git add screenshots/ screenshot-archives/ README.md
+          git commit -m "chore: refresh responsive design gallery"
           git push
