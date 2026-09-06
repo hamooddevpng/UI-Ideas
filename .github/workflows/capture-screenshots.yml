@@ -27,7 +27,6 @@ jobs:
       - name: Start local web server
         run: |
           python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/ui-ideas-http.log 2>&1 &
-          echo $! > /tmp/ui-ideas-http.pid
           sleep 2
 
       - name: Capture responsive full-page screenshots
@@ -39,13 +38,6 @@ jobs:
 
           const root = process.cwd();
           const screenshotsRoot = path.join(root, 'screenshots');
-          const ignoredDirs = new Set([
-            '.git',
-            '.github',
-            'node_modules',
-            'screenshots',
-            'screenshot-archives'
-          ]);
 
           const viewports = [
             { name: 'desktop-1920', width: 1920, height: 1080 },
@@ -58,23 +50,10 @@ jobs:
             { name: 'mobile-small', width: 360, height: 800, isMobile: true },
           ];
 
-          function findHtmlFiles(dir) {
-            const files = [];
-
-            for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
-              if (entry.isDirectory() && ignoredDirs.has(entry.name)) continue;
-
-              const fullPath = path.join(dir, entry.name);
-
-              if (entry.isDirectory()) {
-                files.push(...findHtmlFiles(fullPath));
-              } else if (entry.isFile() && entry.name.toLowerCase().endsWith('.html')) {
-                files.push(fullPath);
-              }
-            }
-
-            return files;
-          }
+          const htmlFiles = fs.readdirSync(root, { withFileTypes: true })
+            .filter((entry) => entry.isFile() && /^\d+\.html$/i.test(entry.name))
+            .map((entry) => path.join(root, entry.name))
+            .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
 
           async function settlePage(page) {
             await page.waitForTimeout(1200);
@@ -83,24 +62,13 @@ jobs:
               await new Promise((resolve) => {
                 let lastHeight = 0;
                 let stablePasses = 0;
-
                 const timer = setInterval(() => {
-                  const height = Math.max(
-                    document.body.scrollHeight,
-                    document.documentElement.scrollHeight
-                  );
-
+                  const height = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
                   window.scrollBy(0, 700);
-
                   if (height === lastHeight) stablePasses += 1;
                   else stablePasses = 0;
-
                   lastHeight = height;
-
-                  if (
-                    window.scrollY + window.innerHeight >= height ||
-                    stablePasses >= 5
-                  ) {
+                  if (window.scrollY + window.innerHeight >= height || stablePasses >= 5) {
                     clearInterval(timer);
                     window.scrollTo(0, 0);
                     setTimeout(resolve, 500);
@@ -110,24 +78,18 @@ jobs:
             });
 
             await page.evaluate(async () => {
-              if (document.fonts && document.fonts.ready) {
-                await document.fonts.ready;
-              }
+              if (document.fonts && document.fonts.ready) await document.fonts.ready;
             });
           }
 
           (async () => {
-            const htmlFiles = findHtmlFiles(root).sort((a, b) =>
-              a.localeCompare(b, undefined, { numeric: true })
-            );
-
             if (!htmlFiles.length) {
-              console.log('No HTML files found.');
+              console.log('No numbered top-level HTML design files found.');
               return;
             }
 
-            console.log(`Found ${htmlFiles.length} HTML page(s).`);
-            console.log(`Capturing ${viewports.length} viewport(s) per page.`);
+            console.log(`Found ${htmlFiles.length} design page(s).`);
+            console.log(`Capturing ${viewports.length} viewport(s) per design.`);
 
             fs.rmSync(screenshotsRoot, { recursive: true, force: true });
             fs.mkdirSync(screenshotsRoot, { recursive: true });
@@ -136,52 +98,36 @@ jobs:
 
             for (const viewport of viewports) {
               console.log(`\n=== ${viewport.name}: ${viewport.width}x${viewport.height} ===`);
-
               const context = await browser.newContext({
                 viewport: { width: viewport.width, height: viewport.height },
                 deviceScaleFactor: 1,
                 isMobile: Boolean(viewport.isMobile),
                 hasTouch: Boolean(viewport.isMobile),
               });
-
               const page = await context.newPage();
 
               for (const htmlFile of htmlFiles) {
-                const relativeHtml = path.relative(root, htmlFile).replace(/\\/g, '/');
-                const encodedUrlPath = relativeHtml
-                  .split('/')
-                  .map(encodeURIComponent)
-                  .join('/');
+                const relativeHtml = path.basename(htmlFile);
+                const id = relativeHtml.replace(/\.html$/i, '');
+                const outputDir = path.join(screenshotsRoot, viewport.name);
+                const outputPath = path.join(outputDir, `${id}.jpg`);
+                fs.mkdirSync(outputDir, { recursive: true });
 
-                const outputRelative = relativeHtml.replace(/\.html$/i, '.png');
-                const outputPath = path.join(
-                  screenshotsRoot,
-                  viewport.name,
-                  outputRelative
-                );
-
-                fs.mkdirSync(path.dirname(outputPath), { recursive: true });
-
-                const url = `http://127.0.0.1:4173/${encodedUrlPath}`;
-                console.log(`Capturing ${relativeHtml} -> screenshots/${viewport.name}/${outputRelative}`);
+                const url = `http://127.0.0.1:4173/${encodeURIComponent(relativeHtml)}`;
+                console.log(`Capturing ${relativeHtml} -> screenshots/${viewport.name}/${id}.jpg`);
 
                 try {
-                  await page.goto(url, {
-                    waitUntil: 'networkidle',
-                    timeout: 60000,
-                  });
+                  await page.goto(url, { waitUntil: 'networkidle', timeout: 60000 });
                 } catch (error) {
-                  console.warn(`networkidle timed out for ${relativeHtml}; continuing after DOM load.`);
-                  await page.goto(url, {
-                    waitUntil: 'domcontentloaded',
-                    timeout: 60000,
-                  });
+                  console.warn(`networkidle timed out for ${relativeHtml}; retrying after DOM load.`);
+                  await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 60000 });
                 }
 
                 await settlePage(page);
-
                 await page.screenshot({
                   path: outputPath,
+                  type: 'jpeg',
+                  quality: 82,
                   fullPage: true,
                   animations: 'disabled',
                 });
@@ -207,66 +153,41 @@ jobs:
           const readmePath = path.join(root, 'README.md');
           const startMarker = '<!-- DESIGN_GALLERY_START -->';
           const endMarker = '<!-- DESIGN_GALLERY_END -->';
-
           const viewportNames = [
-            'desktop-1920',
-            'desktop-1440',
-            'laptop-1366',
-            'tablet-landscape',
-            'tablet-portrait',
-            'mobile-large',
-            'mobile',
-            'mobile-small',
+            'desktop-1920', 'desktop-1440', 'laptop-1366', 'tablet-landscape',
+            'tablet-portrait', 'mobile-large', 'mobile', 'mobile-small'
           ];
 
-          const topLevelDesigns = fs.readdirSync(root, { withFileTypes: true })
+          const designs = fs.readdirSync(root, { withFileTypes: true })
             .filter((entry) => entry.isFile() && /^\d+\.html$/i.test(entry.name))
             .map((entry) => entry.name)
             .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
 
-          const lines = [];
-          lines.push('');
-          lines.push('## Design Gallery');
-          lines.push('');
-          lines.push(`Generated from ${topLevelDesigns.length} top-level design page(s).`);
-          lines.push('');
+          const lines = ['', '## Design Gallery', '', `Generated from ${designs.length} top-level design page(s).`, ''];
 
-          for (const file of topLevelDesigns) {
+          for (const file of designs) {
             const id = file.replace(/\.html$/i, '');
-            const encodedFile = encodeURIComponent(file);
-            const pngName = `${id}.png`;
-
             lines.push(`### Design ${id}`);
             lines.push('');
-            lines.push(`[Open HTML design](./${encodedFile})`);
+            lines.push(`[Open HTML design](./${encodeURIComponent(file)})`);
             lines.push('');
-            lines.push(`[![Design ${id} — 1440px desktop](./screenshots/desktop-1440/${pngName})](./screenshots/desktop-1440/${pngName})`);
+            lines.push(`[![Design ${id} — 1440px desktop](./screenshots/desktop-1440/${id}.jpg)](./screenshots/desktop-1440/${id}.jpg)`);
             lines.push('');
-            lines.push('**Responsive captures:** ' + viewportNames.map((name) => `[${name}](./screenshots/${name}/${pngName})`).join(' · '));
+            lines.push('**Responsive captures:** ' + viewportNames.map((name) => `[${name}](./screenshots/${name}/${id}.jpg)`).join(' · '));
             lines.push('');
           }
 
           let readme = fs.existsSync(readmePath)
             ? fs.readFileSync(readmePath, 'utf8')
-            : `# UI Ideas\n\nA collection of Telikom homepage design explorations and responsive screenshots.\n\nRun **Actions → Capture Responsive Design Screenshots → Run workflow** to regenerate every screenshot, the ZIP archive, and this gallery.\n\n[Download the latest committed screenshot ZIP](./screenshot-archives/ui-ideas-screenshots.zip)\n\n${startMarker}\n${endMarker}\n`;
+            : `# UI Ideas\n\nA collection of Telikom homepage design explorations and responsive screenshots.\n\nRun **Actions → Capture Responsive Design Screenshots → Run workflow** to regenerate every screenshot, ZIP archive, and this gallery.\n\n[Download the latest committed screenshot ZIP](./screenshot-archives/ui-ideas-screenshots.zip)\n\n${startMarker}\n${endMarker}\n`;
 
-          const start = readme.indexOf(startMarker);
-          const end = readme.indexOf(endMarker);
-
-          if (start === -1 || end === -1 || end < start) {
+          if (!readme.includes(startMarker) || !readme.includes(endMarker)) {
             readme += `\n\n${startMarker}\n${endMarker}\n`;
           }
 
-          const updatedStart = readme.indexOf(startMarker);
-          const updatedEnd = readme.indexOf(endMarker);
-
-          readme =
-            readme.slice(0, updatedStart + startMarker.length) +
-            '\n' +
-            lines.join('\n') +
-            '\n' +
-            readme.slice(updatedEnd);
-
+          const start = readme.indexOf(startMarker);
+          const end = readme.indexOf(endMarker);
+          readme = readme.slice(0, start + startMarker.length) + '\n' + lines.join('\n') + '\n' + readme.slice(end);
           fs.writeFileSync(readmePath, readme);
           EOF
 
