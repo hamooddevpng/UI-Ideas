@@ -1,0 +1,145 @@
+name: Capture Full Page Screenshots
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  capture-screenshots:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Playwright
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+
+      - name: Start local web server
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/ui-ideas-http.log 2>&1 &
+          echo $! > /tmp/ui-ideas-http.pid
+          sleep 2
+
+      - name: Capture full-page screenshots
+        run: |
+          node <<'EOF'
+          const { chromium } = require('playwright');
+          const fs = require('fs');
+          const path = require('path');
+
+          const root = process.cwd();
+          const screenshotsRoot = path.join(root, 'screenshots');
+          const ignoredDirs = new Set(['.git', 'node_modules', 'screenshots']);
+
+          function findHtmlFiles(dir) {
+            const files = [];
+
+            for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+              if (entry.isDirectory() && ignoredDirs.has(entry.name)) continue;
+
+              const fullPath = path.join(dir, entry.name);
+
+              if (entry.isDirectory()) {
+                files.push(...findHtmlFiles(fullPath));
+              } else if (entry.isFile() && entry.name.toLowerCase().endsWith('.html')) {
+                files.push(fullPath);
+              }
+            }
+
+            return files;
+          }
+
+          (async () => {
+            const htmlFiles = findHtmlFiles(root).sort();
+
+            if (!htmlFiles.length) {
+              console.log('No HTML files found.');
+              return;
+            }
+
+            console.log(`Found ${htmlFiles.length} HTML page(s).`);
+
+            fs.rmSync(screenshotsRoot, { recursive: true, force: true });
+            fs.mkdirSync(screenshotsRoot, { recursive: true });
+
+            const browser = await chromium.launch({ headless: true });
+            const page = await browser.newPage({
+              viewport: { width: 1440, height: 900 },
+              deviceScaleFactor: 1,
+            });
+
+            for (const htmlFile of htmlFiles) {
+              const relativeHtml = path.relative(root, htmlFile).replace(/\\/g, '/');
+              const encodedUrlPath = relativeHtml
+                .split('/')
+                .map(encodeURIComponent)
+                .join('/');
+
+              const outputRelative = relativeHtml.replace(/\.html$/i, '.png');
+              const outputPath = path.join(screenshotsRoot, outputRelative);
+              fs.mkdirSync(path.dirname(outputPath), { recursive: true });
+
+              const url = `http://127.0.0.1:4173/${encodedUrlPath}`;
+              console.log(`Capturing ${relativeHtml} -> screenshots/${outputRelative}`);
+
+              await page.goto(url, {
+                waitUntil: 'networkidle',
+                timeout: 60000,
+              });
+
+              // Give fonts, images, animations and lazy-loaded content a moment to settle.
+              await page.waitForTimeout(1500);
+
+              // Scroll through the page once so common lazy-loaded sections/images are triggered.
+              await page.evaluate(async () => {
+                await new Promise((resolve) => {
+                  let totalHeight = 0;
+                  const distance = 700;
+                  const timer = setInterval(() => {
+                    window.scrollBy(0, distance);
+                    totalHeight += distance;
+
+                    if (totalHeight >= document.body.scrollHeight) {
+                      clearInterval(timer);
+                      window.scrollTo(0, 0);
+                      setTimeout(resolve, 500);
+                    }
+                  }, 100);
+                });
+              });
+
+              await page.screenshot({
+                path: outputPath,
+                fullPage: true,
+              });
+            }
+
+            await browser.close();
+          })().catch((error) => {
+            console.error(error);
+            process.exit(1);
+          });
+          EOF
+
+      - name: Commit screenshots
+        run: |
+          if git diff --quiet -- screenshots/ && [ -z "$(git ls-files --others --exclude-standard screenshots/)" ]; then
+            echo "No screenshot changes to commit."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add screenshots/
+          git commit -m "chore: update full-page screenshots"
+          git push
