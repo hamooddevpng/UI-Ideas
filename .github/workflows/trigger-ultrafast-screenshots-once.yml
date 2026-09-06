@@ -1,0 +1,27 @@
+name: Trigger ultra-fast screenshots once
+
+on:
+  push:
+    paths:
+      - '.github/workflows/trigger-ultrafast-screenshots-once.yml'
+
+permissions:
+  actions: write
+  contents: write
+
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Dispatch screenshot workflow
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run capture-screenshots.yml --ref main
+      - name: Remove one-time trigger
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/trigger-ultrafast-screenshots-once.yml
+          git commit -m "chore: remove ultra-fast screenshot trigger"
+          git push
