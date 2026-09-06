@@ -13,6 +13,9 @@
       --muted: #6b7280;
       --border: #dfe3e8;
       --accent: #0b63ce;
+      --accent-soft: #eaf3ff;
+      --selected: #0f766e;
+      --selected-soft: #ecfdf5;
     }
 
     * { box-sizing: border-box; }
@@ -23,7 +26,10 @@
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background: var(--bg);
       color: var(--text);
+      padding-bottom: 110px;
     }
+
+    button, a { font: inherit; }
 
     .topbar {
       position: sticky;
@@ -77,9 +83,11 @@
       font-weight: 700;
     }
 
-    .jump a:hover {
-      border-color: var(--accent);
-      color: var(--accent);
+    .jump a:hover,
+    .jump a.selected {
+      border-color: var(--selected);
+      color: var(--selected);
+      background: var(--selected-soft);
     }
 
     main {
@@ -101,6 +109,12 @@
       border: 1px solid var(--border);
       border-radius: 14px;
       box-shadow: 0 6px 20px rgba(17, 24, 39, .05);
+      transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease;
+    }
+
+    .design.selected {
+      border-color: var(--selected);
+      box-shadow: 0 8px 28px rgba(15, 118, 110, .14);
     }
 
     .design-head {
@@ -116,17 +130,48 @@
 
     .actions {
       display: flex;
+      align-items: center;
       gap: 8px;
     }
 
-    .actions a {
-      color: var(--accent);
-      text-decoration: none;
+    .open-link,
+    .pick-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 32px;
+      padding: 0 11px;
+      border-radius: 8px;
       font-size: 12px;
-      font-weight: 700;
+      font-weight: 800;
+      text-decoration: none;
+      cursor: pointer;
     }
 
-    .actions a:hover { text-decoration: underline; }
+    .open-link {
+      border: 1px solid var(--border);
+      color: var(--accent);
+      background: #fff;
+    }
+
+    .open-link:hover { background: var(--accent-soft); }
+
+    .pick-btn {
+      border: 1px solid var(--border);
+      color: var(--text);
+      background: #fff;
+    }
+
+    .pick-btn:hover {
+      border-color: var(--selected);
+      color: var(--selected);
+    }
+
+    .pick-btn.active {
+      border-color: var(--selected);
+      color: #fff;
+      background: var(--selected);
+    }
 
     .screen {
       position: relative;
@@ -146,6 +191,118 @@
       background: white;
     }
 
+    .shortlist-bar {
+      position: fixed;
+      left: 50%;
+      bottom: 16px;
+      z-index: 40;
+      width: min(1120px, calc(100% - 28px));
+      transform: translateX(-50%);
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 14px;
+      border: 1px solid rgba(17,24,39,.12);
+      border-radius: 16px;
+      background: rgba(17,24,39,.94);
+      color: #fff;
+      box-shadow: 0 16px 45px rgba(17,24,39,.28);
+      backdrop-filter: blur(16px);
+    }
+
+    .shortlist-title {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      white-space: nowrap;
+      font-weight: 800;
+      font-size: 14px;
+    }
+
+    .count {
+      display: inline-grid;
+      place-items: center;
+      min-width: 28px;
+      height: 28px;
+      padding: 0 7px;
+      border-radius: 999px;
+      background: #fff;
+      color: #111827;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .shortlist-items {
+      display: flex;
+      gap: 7px;
+      overflow-x: auto;
+      scrollbar-width: thin;
+      padding: 2px;
+    }
+
+    .empty {
+      color: rgba(255,255,255,.62);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      flex: 0 0 auto;
+      min-height: 30px;
+      padding: 0 8px 0 10px;
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 999px;
+      background: rgba(255,255,255,.1);
+      color: #fff;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .chip:hover { background: rgba(255,255,255,.18); }
+
+    .chip-remove {
+      display: inline-grid;
+      place-items: center;
+      width: 20px;
+      height: 20px;
+      border: 0;
+      border-radius: 50%;
+      background: rgba(255,255,255,.14);
+      color: #fff;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .cart-actions {
+      display: flex;
+      gap: 7px;
+    }
+
+    .cart-actions button {
+      min-height: 32px;
+      padding: 0 10px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,.2);
+      background: rgba(255,255,255,.09);
+      color: #fff;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .cart-actions button:hover { background: rgba(255,255,255,.16); }
+
+    .cart-actions button:disabled {
+      opacity: .4;
+      cursor: not-allowed;
+    }
+
     @media (max-width: 980px) {
       .topbar {
         position: static;
@@ -157,11 +314,30 @@
         justify-content: flex-start;
       }
       .grid { grid-template-columns: 1fr; }
+      .shortlist-bar {
+        grid-template-columns: 1fr auto;
+      }
+      .shortlist-items {
+        grid-column: 1 / -1;
+        grid-row: 2;
+      }
     }
 
     @media (max-width: 560px) {
+      body { padding-bottom: 145px; }
       main { padding: 12px; }
       .grid { gap: 14px; }
+      .design-head {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+      .actions { width: 100%; }
+      .open-link, .pick-btn { flex: 1; }
+      .shortlist-bar {
+        bottom: 8px;
+        width: calc(100% - 16px);
+      }
+      .cart-actions button:first-child { display: none; }
     }
   </style>
 </head>
@@ -169,7 +345,7 @@
   <header class="topbar">
     <div class="title-wrap">
       <h1>UI Ideas — All Designs</h1>
-      <p class="subtitle">Live 16:9 landscape previews of designs 34–1 via htmlpreview.github.io</p>
+      <p class="subtitle">Review designs 34–1. Pick your favourites — your shortlist stays saved in this browser.</p>
     </div>
     <nav class="jump" aria-label="Jump to design" id="jump"></nav>
   </header>
@@ -178,23 +354,133 @@
     <div class="grid" id="grid"></div>
   </main>
 
+  <aside class="shortlist-bar" aria-label="Design shortlist">
+    <div class="shortlist-title">♥ Shortlist <span class="count" id="shortlistCount">0</span></div>
+    <div class="shortlist-items" id="shortlistItems"></div>
+    <div class="cart-actions">
+      <button type="button" id="openSelected">Open selected</button>
+      <button type="button" id="clearSelected">Clear</button>
+    </div>
+  </aside>
+
   <script>
     const owner = 'hamooddevpng';
     const repo = 'UI-Ideas';
     const branch = 'main';
     const designs = Array.from({ length: 34 }, (_, i) => 34 - i);
+    const storageKey = 'ui-ideas-shortlist-v1';
 
-    const githubUrl = n => `https://github.com/${owner}/${repo}/blob/${branch}/${n}.html`;
-    const previewUrl = n => `https://htmlpreview.github.io/?${githubUrl(n)}`;
+    const sourceUrl = n => `https://github.com/${owner}/${repo}/blob/${branch}/${n}.html`;
+    const previewUrl = n => `https://htmlpreview.github.io/?${sourceUrl(n)}`;
 
     const jump = document.getElementById('jump');
     const grid = document.getElementById('grid');
+    const shortlistCount = document.getElementById('shortlistCount');
+    const shortlistItems = document.getElementById('shortlistItems');
+    const clearSelected = document.getElementById('clearSelected');
+    const openSelected = document.getElementById('openSelected');
+
+    let selected = loadSelected();
+
+    function loadSelected() {
+      try {
+        const value = JSON.parse(localStorage.getItem(storageKey));
+        if (!Array.isArray(value)) return [];
+        return value
+          .map(Number)
+          .filter(n => Number.isInteger(n) && n >= 1 && n <= 34)
+          .filter((n, i, arr) => arr.indexOf(n) === i);
+      } catch {
+        return [];
+      }
+    }
+
+    function saveSelected() {
+      localStorage.setItem(storageKey, JSON.stringify(selected));
+    }
+
+    function toggleSelected(n) {
+      if (selected.includes(n)) {
+        selected = selected.filter(item => item !== n);
+      } else {
+        selected.push(n);
+      }
+      saveSelected();
+      renderSelectionState();
+    }
+
+    function removeSelected(n) {
+      selected = selected.filter(item => item !== n);
+      saveSelected();
+      renderSelectionState();
+    }
+
+    function jumpTo(n) {
+      document.getElementById(`design-${n}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function renderSelectionState() {
+      const selectedSet = new Set(selected);
+      shortlistCount.textContent = selected.length;
+      clearSelected.disabled = selected.length === 0;
+      openSelected.disabled = selected.length === 0;
+
+      designs.forEach(n => {
+        const isSelected = selectedSet.has(n);
+        const card = document.getElementById(`design-${n}`);
+        const button = document.querySelector(`[data-pick="${n}"]`);
+        const jumpLink = document.querySelector(`[data-jump="${n}"]`);
+
+        card?.classList.toggle('selected', isSelected);
+        jumpLink?.classList.toggle('selected', isSelected);
+
+        if (button) {
+          button.classList.toggle('active', isSelected);
+          button.setAttribute('aria-pressed', String(isSelected));
+          button.textContent = isSelected ? '✓ Shortlisted' : '♡ Shortlist';
+        }
+      });
+
+      shortlistItems.innerHTML = '';
+
+      if (selected.length === 0) {
+        shortlistItems.innerHTML = '<span class="empty">Pick the designs you like most.</span>';
+        return;
+      }
+
+      selected.forEach(n => {
+        const chip = document.createElement('div');
+        chip.className = 'chip';
+
+        const label = document.createElement('button');
+        label.type = 'button';
+        label.className = 'chip';
+        label.style.padding = '0';
+        label.style.border = '0';
+        label.style.background = 'transparent';
+        label.textContent = `Design ${n}`;
+        label.title = `Jump to Design ${n}`;
+        label.addEventListener('click', () => jumpTo(n));
+
+        const remove = document.createElement('button');
+        remove.type = 'button';
+        remove.className = 'chip-remove';
+        remove.textContent = '×';
+        remove.title = `Remove Design ${n}`;
+        remove.setAttribute('aria-label', `Remove Design ${n} from shortlist`);
+        remove.addEventListener('click', () => removeSelected(n));
+
+        chip.append(label, remove);
+        shortlistItems.appendChild(chip);
+      });
+    }
 
     designs.forEach(n => {
       const jumpLink = document.createElement('a');
       jumpLink.href = `#design-${n}`;
       jumpLink.textContent = n;
       jumpLink.title = `Jump to design ${n}`;
+      jumpLink.dataset.jump = n;
       jump.appendChild(jumpLink);
 
       const card = document.createElement('section');
@@ -205,8 +491,8 @@
         <div class="design-head">
           <strong>Design ${n}</strong>
           <div class="actions">
-            <a href="${previewUrl(n)}" target="_blank" rel="noopener noreferrer">Open full design ↗</a>
-            <a href="${githubUrl(n)}" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+            <a class="open-link" href="${previewUrl(n)}" target="_blank" rel="noopener noreferrer">Open full design ↗</a>
+            <button class="pick-btn" type="button" data-pick="${n}" aria-pressed="false">♡ Shortlist</button>
           </div>
         </div>
         <div class="screen">
@@ -220,7 +506,21 @@
       `;
 
       grid.appendChild(card);
+      card.querySelector(`[data-pick="${n}"]`).addEventListener('click', () => toggleSelected(n));
     });
+
+    clearSelected.addEventListener('click', () => {
+      if (!selected.length) return;
+      selected = [];
+      saveSelected();
+      renderSelectionState();
+    });
+
+    openSelected.addEventListener('click', () => {
+      selected.forEach(n => window.open(previewUrl(n), '_blank', 'noopener,noreferrer'));
+    });
+
+    renderSelectionState();
   </script>
 </body>
 </html>
