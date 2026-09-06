@@ -1,0 +1,158 @@
+name: One-time concepts 25-28 cleanup
+
+on:
+  push:
+    paths:
+      - '.github/workflows/one-time-25-28-cleanup.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Clean concepts 25 to 28
+        shell: python
+        run: |
+          import re
+          from pathlib import Path
+
+          GOROKA='https://blog.apnic.net/wp-content/uploads/2016/04/Goroka-EHP.jpg'
+          PEOPLE='https://www.fao.org/images/faoraplibraries/default-album/farmers-and-agripreneurs-actively-participate-in-a-hands-on-training-session-provided-by-the-eu-streit-png-programme.jpg?sfvrsn=4cc42070_1'
+          STUDENTS='https://www.pnglng.com/media/PNG-LNG-Media/Media%20Release%20Images/Flying-labs_PNG-LNG-Article.png?ext=.png'
+          TELIKOM_TECH='https://www.telikom.com.pg/assets/business/voice-and-data.jpg'
+
+          def replace_many(text, pairs):
+              for old,new in pairs:
+                  text=text.replace(old,new)
+              return text
+
+          # 25 — Coverage First
+          p=Path('25.html'); text=p.read_text(encoding='utf-8')
+          text=replace_many(text,[
+              ('Coverage First / Concept 25','Coverage & Availability'),
+              ('<b>Coverage data integrity:</b> no “available / unavailable”, signal strength, 4G, fibre or bandwidth result is fabricated here. Production should connect to Telikom-approved coverage data or route to a validated tool.','Coverage and service availability vary by location and technology. Enter your area to continue to the appropriate Telikom service pathway.'),
+              ('Continue with the validated coverage route.','Continue to coverage and availability.'),
+              ('No coverage result generated','Coverage check required'),
+              ('Enter a place to demonstrate the next-step experience.','Enter a place to continue.'),
+              ('The coverage-first tool is optional. Every major service category stays visible, crawlable and reachable without entering a place.','Browse Mobile, Home, Business and Remote services directly, with or without entering a location.'),
+              ('Everyday mobile connectivity and approved data pathways.','Everyday mobile connectivity and data services.'),
+              ('Household connectivity with availability checked through validated resources.','Household connectivity subject to service availability.'),
+              ('Approved mobile and data categories.','Mobile and data service options.'),
+              ('Household connectivity based on validated availability.','Household connectivity subject to service availability.'),
+              ('Business users can move from a site or location question into structured enterprise pathways without receiving fake capacity, serviceability or technical sizing.','Explore connectivity, voice, systems and remote service options for business sites and organisations.'),
+              ('Approved business solution categories','Business solution categories'),
+              ('This support panel does not answer coverage itself. Use the validated coverage route or contact Telikom.','Check coverage information for your area or contact Telikom for help.'),
+              ("title:'Use the validated Mobile coverage route.'","title:'Check Mobile coverage for your location.'"),
+              ("copy:'For Mobile, production should query Telikom-approved coverage information before showing any availability or network-generation result.'","copy:'Continue to Telikom coverage information for current Mobile availability in your area.'"),
+              ("meta:'No Mobile coverage result generated'","meta:'Mobile coverage check required'"),
+              ("title:'Check Home serviceability with approved data.'","title:'Check Home Internet availability.'"),
+              ("copy:'Home Internet availability should come from a validated serviceability source. This prototype only routes the request.'","copy:'Continue to Telikom for current Home Internet availability and serviceability information.'"),
+              ("meta:'No Home availability result generated'","meta:'Home availability check required'"),
+              ("copy:'Business serviceability, capacity and technical recommendations require validated Telikom data and solution design.'","copy:'Talk to Telikom about connectivity, capacity and solution requirements for your business site.'"),
+              ("meta:'No Business serviceability result generated'","meta:'Business enquiry required'"),
+              ("copy:'Remote and satellite availability must be checked against approved product and geographic data. Decorative map pins are not evidence.'","copy:'Contact Telikom to check Remote and satellite service options for your location.'"),
+              ("meta:'No Remote availability result generated'","meta:'Remote availability check required'"),
+              ('`Location entered: “${loc}”. Prototype does not determine whether service is available there.`','`Location entered: “${loc}”. Continue to Telikom service information for current availability.`'),
+              ("'No location entered. Prototype remains at category-level guidance.'","'Enter a location to continue, or browse services below.'"),
+          ])
+          text=re.sub(r'(\.story-art\{position:relative;)background:[^;]+;',rf'\1background:url("{PEOPLE}") center/cover no-repeat;',text,count=1)
+          text=text.replace('content:"APPROVED PNG GEOGRAPHY / COMMUNITY\\A PHOTOGRAPHY REQUIRED";white-space:pre;','content:"";')
+          p.write_text(text,encoding='utf-8')
+
+          # 26 — Service Exchange
+          p=Path('26.html'); text=p.read_text(encoding='utf-8')
+          text=replace_many(text,[
+              ('A true comparison structure keeps service type, audience and next action readable. Commercial values are intentionally omitted until approved.','Compare Mobile, Home, Business and Remote service pathways side by side, then continue to the relevant Telikom service.'),
+              ('Prototype comparison only. Production pricing, allowances, validity and serviceability require validated source data.','Plan details, pricing and availability may vary. Check current Telikom information for the latest options.'),
+              ('Side by side,<br>not card by card.','Compare service<br>pathways.'),
+              ('For visitors who do not know Telikom product names, these pathways group services by real-world need without adding a separate wizard.','Choose Home, Business or Remote connectivity based on what you need.'),
+              ('Choose the context.','Choose what you need.'),
+              ('Explore satellite and VSAT-related pathways while keeping exact availability with validated Telikom channels.','Explore satellite and VSAT-related services for remote sites and locations.'),
+              ('Exact suitability should be validated directly with Telikom.','Contact Telikom to confirm the right option for your location.'),
+              ('Find validated coverage tools, stores and support resources.','Find coverage information, stores and support.'),
+              ('Approved devices and equipment catalogue','Devices and equipment catalogue'),
+              ('Placeholder for approved Papua New Guinea photography','Papua New Guinea landscape and communities'),
+          ])
+          text=re.sub(r'(\.png-art\{position:relative;)background:[^;]+;',rf'\1background:url("{GOROKA}") center/cover no-repeat;',text,count=1)
+          text=text.replace('content:"APPROVED PAPUA NEW GUINEA\\A PHOTOGRAPHY REQUIRED";white-space:pre;','content:"";')
+          p.write_text(text,encoding='utf-8')
+
+          # 27 — PNG Editorial
+          p=Path('27.html'); text=p.read_text(encoding='utf-8')
+          text=replace_many(text,[
+              ('https://www.telikom.com.pg/assets/products/RED-X_Quest_Plus.png',GOROKA),
+              ('Photography placeholder for an approved Papua New Guinea landscape or community image','Goroka in Papua New Guinea'),
+              ('<b>PNG photography placeholder.</b><br>Replace with approved Telikom Papua New Guinea imagery. No dark overlay is used so the final image can retain its natural detail.','<b>PAPUA NEW GUINEA</b><br>People, place and connectivity across PNG.'),
+              ('PNG Editorial / Concept 27','Papua New Guinea'),
+              ('A quieter, more documentary Telikom homepage — where people, products and technology are told as chapters of one national connectivity story.','People, products and technology come together in one Telikom story for Papua New Guinea.'),
+              ('Editorial composition is the visual statement; service discovery remains direct and practical.','Mobile, Home, Business and Remote services stay one step away.'),
+              ('Instead of treating local imagery as decoration, this chapter gives it editorial weight: a real person, place or community story sits beside the practical Telikom service pathways it relates to.','Connectivity supports people, homes, work and communities across Papua New Guinea.'),
+              ('“People” is not a campaign theme here. It is the subject of the page.','Connection starts with people, homes and communities.'),
+              ('Photography placeholder for an approved PNG people and community story','Papua New Guinean community'),
+              ('Mobile, Home Internet and support content sit close to the human story so the page remains useful, not simply atmospheric.','Explore Mobile, Home Internet and support services for everyday connection.'),
+              ('This behaves like the contents page of a magazine: every key Telikom pathway is immediately visible, descriptive and one click away.','Find Mobile, Home Internet, Business, Remote, Devices and Support in one place.'),
+              ('Everyday mobile connectivity and approved data pathways.','Everyday mobile connectivity and data services.'),
+              ('Approved devices, routers and equipment when available.','Devices, routers and equipment from Telikom.'),
+              ('Useful before promotional.','Services for everyday connection.'),
+              ('Approved mobile and data pathways for personal use.','Mobile and data services for personal use.'),
+              ('Household connectivity subject to validated service availability.','Household connectivity subject to service availability.'),
+              (STUDENTS,TELIKOM_TECH),
+              ('Technology and infrastructure photography placeholder for an approved Telikom PNG image','Telikom business communications and network services'),
+              ('<b>TECHNOLOGY / INFRASTRUCTURE</b><br>Prototype imagery only. Replace with approved Telikom infrastructure or operations photography.','<b>TECHNOLOGY / INFRASTRUCTURE</b><br>Business, voice and data connectivity.'),
+              ('Capability without theatre.','Technology that keeps PNG connected.'),
+              ('The technology chapter uses real infrastructure, disciplined typography and clear service pathways instead of sci-fi decoration. Final factual claims should come from approved Telikom source material.','Explore Telikom business data, voice, systems, hosting and remote connectivity services.'),
+              ('Remote landscape placeholder for an approved Papua New Guinea remote connectivity feature','Goroka in Papua New Guinea'),
+              ('Prototype wording only. Exact availability, footprint, coverage and technical performance require validated Telikom data.','Service availability and technical performance vary by location. Contact Telikom for current details.'),
+              ('Approved business voice services','Business voice and SIP services'),
+              ('News as editorial.','News & stories'),
+              ('Editorial photography placeholder for a Telikom PNG community article','Papua New Guinea community'),
+              ('Production can use this lead article for a current, approved PNG community or service story.','Read community, service and company stories from Telikom.'),
+              ('Current approved vacancies and career information.','Current vacancies and career information.'),
+              ('Approved local stories with clear captions and context.','Community and customer stories from Papua New Guinea.'),
+          ])
+          # Remote image should be landscape rather than business photography.
+          text=text.replace('https://pngbusinessnews.b-cdn.net/uploads/article/image/3959/large_625349331_1329153339253229_7698291451399085164_n.jpg',GOROKA,1)
+          p.write_text(text,encoding='utf-8')
+
+          # 28 — Nation Connected
+          p=Path('28.html'); text=p.read_text(encoding='utf-8')
+          text=replace_many(text,[
+              ('Nation Connected / Concept 28','Nation Connected'),
+              ('A national connectivity story told from people and homes through communities, business, remote PNG, technology and support — without turning the homepage into a corporate-history timeline.','From people and homes to communities, business and remote PNG, Telikom services support connection across everyday life.'),
+              ('Prototype image placeholder for an approved Papua New Guinea people or place photograph','Papua New Guinean community'),
+              ('<b>01 / PEOPLE</b><br>Prototype photography only — production should use approved PNG imagery with accurate captions.','<b>01 / PEOPLE</b><br>Connection starts with people and communities.'),
+              ('Mobile communication and data appear where they belong in the story: beside everyday people and everyday tasks, not buried beneath a generic promotions banner.','Mobile communication and data support everyday connection, work, learning and communication.'),
+              ('Explore approved everyday mobile connectivity and data pathways.','Explore everyday mobile connectivity and data services.'),
+              ('Use validated coverage information when Telikom provides the production data source.','Check current coverage information for your area.'),
+              ('Browse approved device information and availability.','Browse device information and availability.'),
+              ('No plan prices or allowances are shown in this prototype without validated commercial data.','Plan details and availability may vary. Check current Telikom information for the latest options.'),
+              ('Household connectivity is presented through the things people actually do at home: learn, work, talk and access entertainment — with availability treated as a separate validated question.','Home connectivity supports learning, work, communication and entertainment, with availability depending on location.'),
+              ('This chapter creates space for approved community stories, local initiatives and service context without inventing claims about exact network reach.','Telikom connects communities with services that support communication, learning and local activity.'),
+              ('People, place and technology should feel connected before the page ever reaches enterprise language.','People, place and technology come together across Papua New Guinea.'),
+              ('Business shifts the narrative from human stories to a disciplined solution matrix. The structure is intentionally different from the preceding chapters.','Explore Business Data, voice, systems and hosting services for organisations across Papua New Guinea.'),
+              ('Approved business voice pathways.','Business voice and SIP services.'),
+          ])
+          text=re.sub(r'(\.people-visual\{aspect-ratio:4/3;)background:[^;]+;',rf'\1background:url("{STUDENTS}") center/cover no-repeat;',text,count=1)
+          text=text.replace('content:"APPROVED PNG PEOPLE\\A PHOTOGRAPHY REQUIRED";white-space:pre;','content:"";')
+          text=re.sub(r'(\.community-art\{)background:[^;]+;',rf'\1background:url("{PEOPLE}") center/cover no-repeat;',text,count=1)
+          text=text.replace('content:"APPROVED PNG COMMUNITY IMAGE";','content:"";')
+          p.write_text(text,encoding='utf-8')
+
+      - name: Commit cleaned concepts
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add 25.html 26.html 27.html 28.html
+          if git diff --cached --quiet; then
+            echo "No changes needed"
+          else
+            git commit -m "Clean PNG imagery and client-facing copy in concepts 25-28"
+            git push
+          fi
