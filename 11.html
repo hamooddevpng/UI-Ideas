@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#EEF8FD">
+<title>Telikom PNG — Concept 11 / Sticker Signal</title>
+<meta name="description" content="Experimental Telikom PNG homepage concept exploring a youth-first sticker collage interface.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#0875C9;
+  --bright:#2B91D5;
+  --sky:#B9DFF4;
+  --paper:#EEF8FD;
+  --ink:#0D2D42;
+  --white:#FFFFFF;
+  --divider:#C7DCE8;
+  --muted:#5E7889;
+  --shadow:0 18px 45px rgba(13,45,66,.13);
+  --shadow2:0 8px 0 rgba(13,45,66,.09);
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Manrope,Arial,sans-serif;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit}
+img{max-width:100%;display:block}
+::selection{background:var(--ink);color:var(--white)}
+body:before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:200;
+  background-image:radial-gradient(rgba(13,45,66,.08) .75px,transparent .75px);
+  background-size:18px 18px;opacity:.2
+}
+.skip{position:fixed;left:12px;top:-80px;z-index:1000;background:var(--ink);color:#fff;padding:11px 14px;border-radius:8px}.skip:focus{top:12px}
+
+/* NAV */
+.topbar{position:fixed;top:14px;left:16px;right:16px;z-index:100;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:18px;padding:10px 12px 10px 15px;background:rgba(255,255,255,.92);border:1px solid rgba(13,45,66,.12);box-shadow:0 10px 30px rgba(13,45,66,.08);transform:rotate(-.25deg)}
+.brand{display:flex;align-items:center;gap:12px}.brand img{width:154px;height:auto}.brand-copy{font:500 8px/1.3 DM Mono,monospace;letter-spacing:.12em;text-transform:uppercase;color:#6f8796;white-space:nowrap}
+.nav{justify-self:center;display:flex;gap:4px;align-items:center}.nav a{font-size:11px;font-weight:800;padding:9px 10px;border:1px solid transparent;transition:.2s}.nav a:hover,.nav a:focus-visible{border-color:var(--ink);background:var(--paper);transform:rotate(-1deg)}
+.nav .nav-stamp{border:1px dashed var(--blue);color:var(--blue);transform:rotate(1.5deg)}
+.top-actions{display:flex;gap:7px}.top-actions a{font-size:10px;font-weight:800;padding:10px 12px;border:1px solid var(--ink)}.top-actions .solid{background:var(--ink);color:#fff;box-shadow:4px 4px 0 var(--sky)}
+.menu{display:none;border:0;background:transparent;font-size:25px;cursor:pointer}
+
+/* HERO */
+.hero{min-height:100vh;padding:140px 5vw 96px;position:relative;display:grid;grid-template-columns:minmax(0,.9fr) minmax(520px,1.1fr);gap:4vw;align-items:center;overflow:hidden}
+.hero-copy{position:relative;z-index:6;max-width:780px}.eyebrow{display:inline-flex;gap:8px;align-items:center;font:500 10px DM Mono,monospace;letter-spacing:.15em;text-transform:uppercase;color:var(--blue);margin-bottom:18px}.eyebrow:before{content:"";width:38px;height:2px;background:var(--blue)}
+.hero h1{font-family:Space Grotesk,Manrope,sans-serif;font-weight:700;font-size:clamp(74px,9.2vw,148px);line-height:.72;letter-spacing:-.08em;margin:0;text-transform:uppercase}.hero h1 span{display:block}.hero h1 .outline{color:transparent;-webkit-text-stroke:2px var(--ink)}.hero h1 .blue{color:var(--blue)}
+.hero-note{display:grid;grid-template-columns:76px 1fr;gap:16px;align-items:start;margin-top:34px;max-width:590px}.scribble{width:70px;height:70px;border:2px dashed var(--blue);border-radius:50%;display:grid;place-items:center;font:700 11px Space Grotesk,sans-serif;color:var(--blue);transform:rotate(-9deg)}.hero-note p{font-size:15px;line-height:1.7;color:#536f80;margin:0}.hero-note b{color:var(--ink)}
+.hero-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:22px}.hero-actions a{padding:12px 15px;border:1.5px solid var(--ink);font-size:11px;font-weight:800;background:#fff;box-shadow:4px 4px 0 rgba(13,45,66,.12);transition:.25s var(--ease)}.hero-actions a:hover{transform:translate(-2px,-2px) rotate(-1deg);box-shadow:7px 7px 0 rgba(13,45,66,.12)}.hero-actions .primary{background:var(--blue);border-color:var(--blue);color:#fff;box-shadow:5px 5px 0 var(--ink)}
+
+.collage{position:relative;min-height:670px;perspective:1200px}.sticker{position:absolute;background:#fff;border:1.5px solid var(--ink);box-shadow:var(--shadow2),var(--shadow);transition:transform .45s var(--ease),box-shadow .45s var(--ease);will-change:transform}.sticker:hover{z-index:30!important;transform:translateY(-8px) rotate(0deg) scale(1.025)!important;box-shadow:0 14px 0 rgba(13,45,66,.08),0 28px 60px rgba(13,45,66,.18)}
+.photo-main{width:330px;height:430px;right:14%;top:70px;transform:rotate(4deg);clip-path:polygon(6% 0,97% 3%,100% 89%,89% 100%,3% 94%,0 8%);overflow:hidden;border:0;box-shadow:0 24px 60px rgba(13,45,66,.2)}.photo-main img{width:100%;height:100%;object-fit:cover;filter:saturate(.84) contrast(1.03)}.photo-main:after{content:"PNG / PEOPLE";position:absolute;left:14px;bottom:16px;background:#fff;border:1px solid var(--ink);padding:8px 10px;font:600 9px DM Mono,monospace;letter-spacing:.1em;transform:rotate(-2deg)}
+.mobile-sticker{left:0;top:42px;width:230px;padding:24px 20px;transform:rotate(-6deg);background:var(--blue);color:#fff;border-color:var(--blue);border-radius:48% 52% 10% 12%/18% 15% 12% 15%}.mobile-sticker small,.home-sticker small,.business-sticker small{display:block;font:500 8px DM Mono,monospace;letter-spacing:.14em;text-transform:uppercase;opacity:.8}.mobile-sticker strong{display:block;font:700 46px/.86 Space Grotesk,sans-serif;letter-spacing:-.06em;margin:12px 0}.mobile-sticker em{font-style:normal;font-size:12px}.mobile-sticker:after{content:"↗";position:absolute;right:14px;top:12px;font-size:28px}
+.home-sticker{left:25px;bottom:68px;width:250px;padding:20px;transform:rotate(5deg);border-radius:26px 4px 26px 4px;background:var(--white)}.home-sticker strong{font:700 33px/.95 Space Grotesk,sans-serif;display:block;margin-top:9px}.home-sticker .signal{height:28px;margin-top:14px;display:flex;align-items:end;gap:4px}.home-sticker .signal i{display:block;width:14px;background:var(--bright);border:1px solid var(--ink)}.home-sticker .signal i:nth-child(1){height:7px}.home-sticker .signal i:nth-child(2){height:13px}.home-sticker .signal i:nth-child(3){height:20px}.home-sticker .signal i:nth-child(4){height:27px}
+.business-sticker{right:0;top:0;width:212px;padding:18px;transform:rotate(8deg);background:var(--ink);color:#fff;border-radius:50%;aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;text-align:center}.business-sticker strong{font:700 24px/1 Space Grotesk,sans-serif;margin:9px 0}.business-sticker span{font-size:10px;color:#c9dbe5}
+.coverage-stamp{right:1%;bottom:22px;border:3px double var(--blue);color:var(--blue);padding:16px 18px;background:#fff;transform:rotate(-9deg);font:700 13px/1 Space Grotesk,sans-serif;text-align:center;letter-spacing:.06em;border-radius:50%}.coverage-stamp span{display:block;font:500 8px DM Mono,monospace;margin-top:5px;letter-spacing:.11em}.remote-label{right:7%;top:465px;background:var(--sky);border:1.5px solid var(--ink);padding:12px 16px;transform:rotate(4deg);font:800 12px Space Grotesk,sans-serif}.selfcare-tab{left:41%;top:8px;background:#fff;border:1.5px solid var(--ink);padding:10px 12px;transform:rotate(-2deg);font:700 10px DM Mono,monospace;box-shadow:3px 3px 0 var(--bright)}
+.hero-arrow{position:absolute;left:37%;bottom:8px;width:145px;height:120px;transform:rotate(7deg);opacity:.85}.hero-arrow path{fill:none;stroke:var(--blue);stroke-width:4;stroke-linecap:round}.hero-arrow polygon{fill:var(--blue)}
+
+/* UTILITY RAIL */
+.utility-rail{position:relative;z-index:20;margin:-44px auto 0;width:min(1180px,90vw);display:grid;grid-template-columns:repeat(5,1fr);background:var(--ink);color:#fff;border:2px solid var(--ink);box-shadow:8px 8px 0 var(--bright);transform:rotate(.35deg)}.utility-rail a{padding:19px 16px;border-right:1px solid rgba(255,255,255,.2);display:flex;align-items:center;gap:10px;font-size:12px;font-weight:800;transition:.2s}.utility-rail a:last-child{border-right:0}.utility-rail a:hover{background:var(--blue);transform:translateY(-3px)}.utility-rail b{width:27px;height:27px;border:1px solid rgba(255,255,255,.45);display:grid;place-items:center;border-radius:50%;font-size:11px}
+
+/* SHARED */
+.section{padding:130px 5vw}.section-head{display:grid;grid-template-columns:1fr .7fr;gap:50px;align-items:end;margin-bottom:65px}.section-kicker{font:500 9px DM Mono,monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);margin-bottom:15px}.section h2{font:700 clamp(50px,7vw,102px)/.88 Space Grotesk,sans-serif;letter-spacing:-.07em;margin:0}.section-head p{font-size:15px;line-height:1.75;color:#5f7888;margin:0;max-width:530px}.paper-rule{border-top:1px solid var(--ink)}
+
+/* PICK YOUR SIGNAL */
+.signal-wall{display:grid;grid-template-columns:1.1fr .9fr 1fr;grid-auto-rows:230px;gap:15px;align-items:stretch}.signal-card{position:relative;border:1.5px solid var(--ink);background:#fff;padding:22px;overflow:hidden;isolation:isolate;transition:.35s var(--ease);box-shadow:4px 4px 0 rgba(13,45,66,.08)}.signal-card:hover{transform:translateY(-6px) rotate(-.5deg);box-shadow:9px 9px 0 var(--sky)}.signal-card:nth-child(2){transform:rotate(1.4deg)}.signal-card:nth-child(3){transform:rotate(-1deg)}.signal-card:nth-child(4){transform:rotate(.7deg)}.signal-card:nth-child(5){transform:rotate(-1.2deg)}.signal-card:nth-child(6){transform:rotate(1deg)}.signal-card h3{font:700 34px/.95 Space Grotesk,sans-serif;margin:0 0 8px;letter-spacing:-.04em}.signal-card p{font-size:12px;line-height:1.55;color:#5d7686;max-width:280px}.signal-card .index{position:absolute;right:15px;top:14px;font:500 9px DM Mono,monospace;color:#7890a0}.signal-card .go{position:absolute;left:20px;bottom:18px;font:700 10px DM Mono,monospace;color:var(--blue);letter-spacing:.08em}.signal-card .shape{position:absolute;right:-35px;bottom:-40px;width:150px;height:150px;border:1.5px solid var(--blue);border-radius:50%;z-index:-1;background:var(--paper)}.signal-card:nth-child(1){grid-row:span 2;background:var(--blue);color:#fff}.signal-card:nth-child(1) p,.signal-card:nth-child(1) .index,.signal-card:nth-child(1) .go{color:#fff}.signal-card:nth-child(1) h3{font-size:62px;margin-top:70px}.signal-card:nth-child(1) .shape{width:280px;height:280px;border-color:rgba(255,255,255,.45);background:transparent;right:-75px;bottom:-80px}.signal-card:nth-child(5){grid-column:span 2}
+
+/* PLAN TICKETS */
+.plans{background:#fff;position:relative;overflow:hidden}.plans:before{content:"AFFORDABLE / FLEXIBLE / PNG";position:absolute;left:-20px;right:-20px;top:38px;white-space:nowrap;font:700 14px DM Mono,monospace;letter-spacing:.13em;color:var(--blue);opacity:.35;transform:rotate(-1deg)}
+.ticket-stack{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:start}.ticket{position:relative;border:1.5px solid var(--ink);background:var(--paper);padding:24px 24px 28px;min-height:360px;box-shadow:8px 8px 0 rgba(13,45,66,.11);overflow:hidden}.ticket:nth-child(1){transform:rotate(-2deg)}.ticket:nth-child(2){transform:rotate(1.8deg);margin-top:34px;background:#fff}.ticket:nth-child(3){transform:rotate(-.8deg);margin-top:-14px;background:var(--sky)}.ticket:before,.ticket:after{content:"";position:absolute;width:28px;height:28px;border:1.5px solid var(--ink);background:#fff;border-radius:50%;top:92px}.ticket:before{left:-15px}.ticket:after{right:-15px}.ticket .stub{border-bottom:1px dashed var(--ink);padding-bottom:20px;margin-bottom:24px;display:flex;justify-content:space-between;font:500 9px DM Mono,monospace;letter-spacing:.11em}.ticket h3{font:700 48px/.9 Space Grotesk,sans-serif;letter-spacing:-.06em;margin:0 0 14px}.ticket p{font-size:13px;line-height:1.6;color:#536f80}.ticket ul{padding:0;margin:22px 0 0;list-style:none}.ticket li{font-size:11px;font-weight:700;padding:8px 0;border-top:1px solid rgba(13,45,66,.15)}.ticket .ticket-link{position:absolute;right:20px;bottom:18px;font:700 10px DM Mono,monospace;color:var(--blue)}.fineprint{margin-top:30px;font-size:10px;color:#718795;text-align:center}
+
+/* PEOPLE COLLAGE */
+.people-grid{display:grid;grid-template-columns:1fr 1.08fr;gap:26px;align-items:center}.people-visual{position:relative;min-height:690px}.cutout{position:absolute;overflow:hidden;box-shadow:var(--shadow)}.cutout img{width:100%;height:100%;object-fit:cover}.cut-a{width:60%;height:470px;left:0;top:50px;clip-path:polygon(4% 0,92% 4%,100% 88%,80% 100%,0 94%)}.cut-b{width:49%;height:350px;right:0;bottom:25px;clip-path:polygon(12% 0,100% 7%,93% 94%,3% 100%,0 16%)}.photo-caption{position:absolute;background:#fff;border:1.5px solid var(--ink);padding:11px 13px;font:600 9px DM Mono,monospace;letter-spacing:.08em;z-index:4}.cap-a{left:7%;top:12px;transform:rotate(-4deg)}.cap-b{right:4%;bottom:2px;transform:rotate(4deg)}.people-stamp{position:absolute;right:8%;top:60px;width:160px;height:160px;border:2px dashed var(--blue);border-radius:50%;display:grid;place-items:center;text-align:center;color:var(--blue);font:700 15px/1.15 Space Grotesk,sans-serif;transform:rotate(10deg);background:rgba(238,248,253,.85)}
+.story-list{display:flex;flex-direction:column;gap:0}.story{padding:28px 0;border-top:1.5px solid var(--ink);display:grid;grid-template-columns:42px 1fr auto;gap:18px;align-items:start;transition:.25s}.story:hover{padding-left:12px;background:rgba(185,223,244,.16)}.story .num{font:500 9px DM Mono,monospace;color:var(--blue)}.story h3{font:700 26px/1 Space Grotesk,sans-serif;margin:0 0 8px}.story p{font-size:12px;line-height:1.6;color:#617989;margin:0}.story .arrow{font-size:22px;color:var(--blue)}
+
+/* SELF CARE */
+.selfcare{background:var(--blue);color:#fff;overflow:hidden;position:relative}.selfcare .section-kicker{color:#fff}.selfcare .section-head p{color:#d9ecf8}.selfcare-wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:70px;align-items:center}.phone{width:min(390px,90%);margin:auto;background:var(--ink);border:2px solid #fff;border-radius:45px;padding:14px;box-shadow:18px 22px 0 rgba(13,45,66,.25);transform:rotate(-3deg)}.phone-screen{background:var(--paper);color:var(--ink);border-radius:32px;min-height:650px;padding:22px}.phone-notch{width:92px;height:19px;background:var(--ink);border-radius:999px;margin:0 auto 24px}.phone-brand{font:700 10px DM Mono,monospace;color:var(--blue);letter-spacing:.1em}.phone h3{font:700 36px/.95 Space Grotesk,sans-serif;margin:24px 0 18px}.balance{background:#fff;border:1px solid var(--divider);padding:18px;margin-bottom:10px}.balance small{font:500 9px DM Mono,monospace;color:#6c8392}.balance strong{display:block;font-size:30px;margin-top:6px}.phone-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px}.phone-actions a{background:#fff;border:1px solid var(--divider);min-height:94px;padding:13px;font-size:11px;font-weight:800;display:flex;align-items:end}.phone-note{font-size:10px;color:#6d8494;line-height:1.5;margin-top:20px}
+.selfcare-copy h2{font:700 clamp(60px,8vw,120px)/.85 Space Grotesk,sans-serif;letter-spacing:-.07em;margin:0 0 28px}.selfcare-copy p{font-size:16px;line-height:1.75;color:#daedf8;max-width:560px}.selfcare-copy .quick-links{display:flex;flex-wrap:wrap;gap:9px;margin-top:28px}.selfcare-copy .quick-links a{border:1px solid rgba(255,255,255,.65);padding:12px 14px;font-size:11px;font-weight:800;background:rgba(255,255,255,.07)}
+
+/* BUSINESS */
+.business{background:#f8fbfd}.business-shell{border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);padding:70px 0}.business-head{display:grid;grid-template-columns:.78fr 1.22fr;gap:70px;align-items:start}.business-label{font:500 10px DM Mono,monospace;letter-spacing:.14em;color:var(--blue);text-transform:uppercase}.business h2{font:700 clamp(58px,8vw,112px)/.86 Space Grotesk,sans-serif;letter-spacing:-.075em;margin:14px 0 0}.business-copy{font-size:16px;line-height:1.75;color:#5b7485;max-width:650px}.business-services{display:grid;grid-template-columns:repeat(4,1fr);margin-top:60px;border-top:1px solid var(--ink)}.business-services a{padding:24px 15px 24px 0;border-right:1px solid var(--divider);font-size:12px;font-weight:800;min-height:130px;display:flex;flex-direction:column;justify-content:space-between}.business-services a:not(:first-child){padding-left:18px}.business-services a span{font:500 9px DM Mono,monospace;color:#7990a0}.business-services a b{font-size:18px}.business-services a:hover b{color:var(--blue)}
+
+/* REMOTE ROUTE */
+.remote{position:relative;overflow:hidden}.route-map{position:relative;min-height:520px;margin-top:30px;border:1.5px solid var(--ink);background:#fff;overflow:hidden}.route-map:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(13,45,66,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(13,45,66,.045) 1px,transparent 1px);background-size:28px 28px}.route{position:absolute;inset:40px}.route svg{width:100%;height:100%;overflow:visible}.route path{fill:none;stroke:var(--blue);stroke-width:4;stroke-dasharray:10 11;animation:dash 18s linear infinite}.route-stop{position:absolute;background:#fff;border:1.5px solid var(--ink);padding:11px 13px;font:700 10px DM Mono,monospace;box-shadow:4px 4px 0 var(--sky)}.route-stop:before{content:"";position:absolute;width:12px;height:12px;border:3px solid var(--blue);background:#fff;border-radius:50%;left:50%;top:-23px;transform:translateX(-50%)}.rs1{left:8%;top:30%}.rs2{left:34%;top:58%;transform:rotate(-2deg)}.rs3{right:30%;top:24%;transform:rotate(2deg)}.rs4{right:7%;bottom:22%;transform:rotate(-2deg)}.remote-card{position:absolute;right:5%;top:55px;width:310px;background:var(--ink);color:#fff;padding:24px;transform:rotate(3deg);box-shadow:8px 8px 0 var(--bright)}.remote-card small{font:500 9px DM Mono,monospace;color:#a7c2d3;letter-spacing:.12em}.remote-card h3{font:700 38px/.92 Space Grotesk,sans-serif;margin:18px 0 12px}.remote-card p{font-size:12px;line-height:1.6;color:#c5d9e5}.remote-card a{font:700 10px DM Mono,monospace;color:#fff;border-bottom:1px solid #fff;padding-bottom:3px}
+
+/* NEWS */
+.news{background:#fff}.clippings{display:grid;grid-template-columns:1.1fr .9fr .95fr;gap:25px;align-items:start}.clip{border:1.5px solid var(--ink);padding:18px;background:var(--paper);box-shadow:7px 7px 0 rgba(13,45,66,.09);transition:.3s}.clip:nth-child(1){transform:rotate(-1.8deg)}.clip:nth-child(2){transform:rotate(2deg);margin-top:55px;background:#fff}.clip:nth-child(3){transform:rotate(-.8deg);margin-top:12px;background:var(--sky)}.clip:hover{transform:translateY(-8px) rotate(0)}.clip .date{font:500 9px DM Mono,monospace;color:var(--blue);letter-spacing:.1em}.clip h3{font:700 31px/.98 Space Grotesk,sans-serif;margin:20px 0 12px}.clip p{font-size:12px;line-height:1.6;color:#5e7787}.clip a{font:700 10px DM Mono,monospace;color:var(--blue)}.clip-photo{height:180px;overflow:hidden;margin:-5px -5px 18px}.clip-photo img{width:100%;height:100%;object-fit:cover;filter:saturate(.72)}
+
+/* SUPPORT */
+.support{padding:110px 5vw 120px}.support-shell{background:var(--ink);color:#fff;border:2px solid var(--ink);display:grid;grid-template-columns:1.1fr .9fr;min-height:390px;box-shadow:10px 10px 0 var(--bright)}.support-copy{padding:48px}.support-copy small{font:500 9px DM Mono,monospace;letter-spacing:.13em;color:#a9c6d8}.support-copy h2{font:700 clamp(58px,7vw,100px)/.86 Space Grotesk,sans-serif;letter-spacing:-.07em;margin:22px 0}.support-copy p{color:#c9dce7;max-width:520px;font-size:14px;line-height:1.7}.support-actions{display:grid;grid-template-columns:1fr 1fr;border-left:1px solid rgba(255,255,255,.2)}.support-actions a{padding:28px;border-right:1px solid rgba(255,255,255,.18);border-bottom:1px solid rgba(255,255,255,.18);display:flex;flex-direction:column;justify-content:space-between;min-height:195px;transition:.25s}.support-actions a:hover{background:var(--blue)}.support-actions b{font:700 22px Space Grotesk,sans-serif}.support-actions span{font:500 9px DM Mono,monospace;color:#b7cfdd}
+
+/* FOOTER */
+footer{padding:55px 5vw 30px;background:#fff;border-top:1px solid var(--ink)}.footer-top{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:40px}.footer-brand img{width:180px}.footer-brand p{font-size:11px;color:#6d8493;margin-top:12px}.footer-col h4{font:700 10px DM Mono,monospace;letter-spacing:.1em;color:var(--blue);margin:0 0 15px}.footer-col a{display:block;font-size:11px;font-weight:700;padding:5px 0}.footer-bottom{margin-top:45px;padding-top:18px;border-top:1px solid var(--divider);display:flex;justify-content:space-between;gap:20px;font-size:9px;color:#78909f;font-family:DM Mono,monospace}
+
+/* CHATBOT */
+.chat{position:fixed;right:18px;bottom:18px;z-index:150;display:flex;flex-direction:column;align-items:flex-end;gap:8px}.chat-bubble{width:300px;background:#fff;border:1.5px solid var(--ink);box-shadow:7px 7px 0 var(--bright),var(--shadow);padding:16px;display:none;transform:rotate(-1deg)}.chat.open .chat-bubble{display:block}.chat-bubble .chat-title{font:700 15px Space Grotesk,sans-serif;margin-bottom:6px}.chat-bubble p{font-size:11px;line-height:1.5;color:#5d7585;margin:0 0 12px}.chat-links{display:grid;grid-template-columns:1fr 1fr;gap:6px}.chat-links a{padding:9px;border:1px solid var(--divider);font-size:10px;font-weight:800;background:var(--paper)}.chat-toggle{border:1.5px solid var(--ink);background:var(--blue);color:#fff;padding:12px 15px;box-shadow:5px 5px 0 var(--ink);font-weight:800;font-size:11px;cursor:pointer;display:flex;align-items:center;gap:8px}.chat-toggle i{width:9px;height:9px;border-radius:50%;background:#fff;display:block;animation:pulse 1.8s ease-in-out infinite}
+
+/* REVEALS */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .75s var(--ease),transform .75s var(--ease)}.reveal.in{opacity:1;transform:none}.floaty{transition:transform .2s ease-out}
+@keyframes dash{to{stroke-dashoffset:-420}}
+@keyframes pulse{50%{opacity:.35;transform:scale(.78)}}
+
+@media(max-width:1100px){
+  .hero{grid-template-columns:1fr;padding-top:135px}.hero-copy{max-width:950px}.collage{min-height:620px;margin-top:10px}.photo-main{right:15%;width:310px}.mobile-sticker{left:8%}.business-sticker{right:7%}.utility-rail{grid-template-columns:repeat(5,1fr)}
+  .section-head{grid-template-columns:1fr}.signal-wall{grid-template-columns:1fr 1fr}.signal-card:nth-child(1){grid-row:span 1}.signal-card:nth-child(1) h3{font-size:45px;margin-top:25px}.signal-card:nth-child(5){grid-column:auto}.ticket-stack{grid-template-columns:1fr 1fr}.ticket:nth-child(3){margin-top:0}.people-grid{grid-template-columns:1fr}.people-visual{min-height:620px}.selfcare-wrap{grid-template-columns:1fr}.business-head{grid-template-columns:1fr}.clippings{grid-template-columns:1fr 1fr}.support-shell{grid-template-columns:1fr}.support-actions{border-left:0;border-top:1px solid rgba(255,255,255,.2)}
+}
+@media(max-width:780px){
+  body:before{display:none}.topbar{left:8px;right:8px;top:8px;grid-template-columns:1fr auto;transform:none}.brand img{width:130px}.brand-copy,.nav,.top-actions{display:none}.menu{display:block}.topbar.menu-open{display:block}.topbar.menu-open .brand{margin-bottom:12px}.topbar.menu-open .menu{position:absolute;right:12px;top:10px}.topbar.menu-open .nav{display:grid;justify-self:stretch;gap:4px;margin-top:8px}.topbar.menu-open .top-actions{display:flex;margin-top:8px}
+  .hero{padding:120px 18px 60px;min-height:auto;display:block}.hero h1{font-size:clamp(58px,20vw,100px);line-height:.76}.hero-note{grid-template-columns:55px 1fr}.scribble{width:52px;height:52px;font-size:9px}.collage{min-height:auto;margin-top:55px;display:flex;flex-direction:column;gap:14px}.sticker,.photo-main,.mobile-sticker,.home-sticker,.business-sticker,.coverage-stamp,.remote-label,.selfcare-tab{position:relative;inset:auto!important;left:auto!important;right:auto!important;top:auto!important;bottom:auto!important;transform:none!important;width:100%;height:auto}.photo-main{height:420px;clip-path:polygon(4% 0,97% 2%,100% 93%,6% 100%,0 8%)}.mobile-sticker{border-radius:28px 5px 28px 5px}.business-sticker{aspect-ratio:auto;border-radius:26px;text-align:left;align-items:flex-start;padding:26px}.coverage-stamp{width:160px!important;align-self:flex-end;border-radius:50%;padding:20px}.remote-label{width:auto!important;align-self:flex-start}.selfcare-tab{width:auto!important;align-self:center}.hero-arrow{display:none}
+  .utility-rail{position:sticky;bottom:8px;z-index:80;margin:0 8px;width:auto;grid-template-columns:repeat(5,1fr);transform:none;box-shadow:4px 4px 0 var(--bright)}.utility-rail a{padding:11px 5px;display:block;text-align:center;font-size:8px}.utility-rail b{margin:0 auto 4px;width:24px;height:24px}.section{padding:90px 18px}.section h2{font-size:56px}.section-head{gap:20px;margin-bottom:42px}.signal-wall{grid-template-columns:1fr;grid-auto-rows:auto}.signal-card{min-height:210px;transform:none!important}.signal-card:nth-child(1) h3{font-size:46px}.ticket-stack{grid-template-columns:1fr;gap:18px}.ticket,.ticket:nth-child(1),.ticket:nth-child(2),.ticket:nth-child(3){transform:none;margin:0;min-height:330px}.people-visual{min-height:670px}.cut-a{width:82%;height:430px}.cut-b{width:70%;height:300px}.people-stamp{width:120px;height:120px;font-size:12px}.story{grid-template-columns:30px 1fr auto}.phone{width:100%;transform:none}.phone-screen{min-height:600px}.selfcare-copy h2{font-size:64px}.business-services{grid-template-columns:1fr 1fr}.business-services a:nth-child(2){border-right:0}.business-services a:nth-child(3),.business-services a:nth-child(4){border-top:1px solid var(--divider)}.route-map{min-height:640px}.remote-card{position:absolute;top:22px;right:16px;left:16px;width:auto;transform:none}.route{top:190px;left:15px;right:15px;bottom:15px}.rs1{left:8%;top:46%}.rs2{left:24%;top:68%}.rs3{right:24%;top:45%}.rs4{right:8%;bottom:9%}.clippings{grid-template-columns:1fr}.clip,.clip:nth-child(1),.clip:nth-child(2),.clip:nth-child(3){transform:none;margin:0}.support{padding:75px 12px}.support-copy{padding:32px 24px}.support-copy h2{font-size:60px}.support-actions{grid-template-columns:1fr 1fr}.support-actions a{min-height:150px;padding:20px}.footer-top{grid-template-columns:1fr 1fr}.footer-brand{grid-column:1/-1}.footer-bottom{flex-direction:column}.chat{right:10px;bottom:76px}.chat-bubble{width:min(300px,calc(100vw - 20px))}.chat-toggle{padding:11px 13px}.floaty{transform:none!important}
+}
+@media(max-width:480px){.hero h1{font-size:58px}.hero-actions{display:grid;grid-template-columns:1fr 1fr}.hero-actions a{text-align:center}.people-visual{min-height:570px}.cut-a{height:360px}.cut-b{height:260px}.support-actions{grid-template-columns:1fr}.footer-top{grid-template-columns:1fr}.business-services{grid-template-columns:1fr}.business-services a{border-right:0!important;border-top:1px solid var(--divider)}.route-stop{font-size:8px;padding:8px}.brand img{width:120px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}.floaty{transform:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar" id="topbar">
+  <a class="brand" href="#top" aria-label="Telikom homepage concept">
+    <img src="https://www.telikom.com.pg/assets/misc/TPNGLOGO.png" alt="Telikom PNG">
+    <span class="brand-copy">Connecting you<br>anywhere anytime</span>
+  </a>
+  <nav class="nav" aria-label="Primary navigation">
+    <a href="#signals">Mobile</a><a href="#signals">Home</a><a href="#business">Business</a><a href="#remote">Remote</a><a href="#stories">Stories</a><a href="#support">Support</a><a class="nav-stamp" href="#selfcare">Self Care ↗</a>
+  </nav>
+  <div class="top-actions"><a href="#signals">Explore</a><a class="solid" href="#selfcare">Top Up</a></div>
+  <button class="menu" id="menu" aria-expanded="false" aria-controls="topbar" aria-label="Open navigation">☰</button>
+</header>
+
+<main id="main">
+<section class="hero" id="top">
+  <div class="hero-copy reveal">
+    <div class="eyebrow">Concept 11 / Sticker Signal</div>
+    <h1><span>PNG</span><span class="outline">Always</span><span class="blue">Connected.</span></h1>
+    <div class="hero-note"><div class="scribble">HEY<br>PNG!</div><p><b>Your signal, your way.</b> Mobile, home internet, business connectivity, Self Care and support — assembled like the things you actually use, not another corporate homepage.</p></div>
+    <div class="hero-actions"><a class="primary" href="#signals">Pick your signal ↘</a><a href="#selfcare">Open Self Care</a><a href="#remote">See remote connectivity</a></div>
+  </div>
+
+  <div class="collage reveal" aria-label="Telikom services collage">
+    <a class="sticker mobile-sticker floaty" data-depth="1.1" href="#signals"><small>01 / personal</small><strong>Mobile<br>signal.</strong><em>Data · calls · everyday connection</em></a>
+    <figure class="sticker photo-main floaty" data-depth=".5"><img src="https://content.unops.org/photos/_image1920x900/PNG_rural-solar-power.jpg" alt="Community members in rural Papua New Guinea" loading="eager"></figure>
+    <a class="sticker home-sticker floaty" data-depth=".8" href="#signals"><small>02 / home</small><strong>Home<br>internet ↗</strong><div class="signal" aria-hidden="true"><i></i><i></i><i></i><i></i></div></a>
+    <a class="sticker business-sticker floaty" data-depth=".6" href="#business"><small>03 / work</small><strong>BUSINESS</strong><span>Data · systems · voice</span></a>
+    <a class="sticker coverage-stamp floaty" data-depth="1.25" href="#remote">CHECK<br>COVERAGE<span>ANYWHERE / PNG</span></a>
+    <a class="sticker remote-label floaty" data-depth=".9" href="#remote">REMOTE / VSAT →</a>
+    <a class="sticker selfcare-tab floaty" data-depth="1.3" href="#selfcare">SELF CARE // TOP UP // PAY</a>
+    <svg class="hero-arrow" viewBox="0 0 160 120" aria-hidden="true"><path d="M8 16 C52 20, 80 54, 124 88"/><path d="M124 88 C110 87,104 84,98 76"/><polygon points="124,88 108,91 116,103"/></svg>
+  </div>
+</section>
+
+<nav class="utility-rail" aria-label="Quick actions">
+  <a href="#selfcare"><b>+</b>Top Up</a><a href="#selfcare"><b>₭</b>Pay Bill</a><a href="#plans"><b>↓</b>Buy Data</a><a href="#remote"><b>⌁</b>Coverage</a><a href="#support"><b>?</b>Support</a>
+</nav>
+
+<section class="section" id="signals">
+  <header class="section-head reveal"><div><div class="section-kicker">01 / Pick your signal</div><h2>Choose the thing you came for.</h2></div><p>No forced journey through a generic homepage. Start with the service, task or connection you need and move straight into it.</p></header>
+  <div class="signal-wall reveal">
+    <a class="signal-card" href="#plans"><span class="index">01</span><h3>Mobile</h3><p>Everyday data, calls and flexible mobile options.</p><span class="go">EXPLORE MOBILE ↗</span><i class="shape" aria-hidden="true"></i></a>
+    <a class="signal-card" href="#plans"><span class="index">02</span><h3>Home internet</h3><p>Connection for streaming, study, work and family life.</p><span class="go">EXPLORE HOME ↗</span><i class="shape" aria-hidden="true"></i></a>
+    <a class="signal-card" href="#business"><span class="index">03</span><h3>Business</h3><p>Data, voice and digital infrastructure for organisations.</p><span class="go">FOR BUSINESS ↗</span><i class="shape" aria-hidden="true"></i></a>
+    <a class="signal-card" href="#selfcare"><span class="index">04</span><h3>Self Care</h3><p>Top up, manage your account and get things done.</p><span class="go">OPEN SELF CARE ↗</span><i class="shape" aria-hidden="true"></i></a>
+    <a class="signal-card" href="#remote"><span class="index">05</span><h3>Remote PNG</h3><p>Connectivity beyond the city — represented as a route through people, place and infrastructure.</p><span class="go">SEE REMOTE OPTIONS ↗</span><i class="shape" aria-hidden="true"></i></a>
+    <a class="signal-card" href="#support"><span class="index">06</span><h3>Need help?</h3><p>Support, stores and quick answers without searching the whole site.</p><span class="go">GET SUPPORT ↗</span><i class="shape" aria-hidden="true"></i></a>
+  </div>
+</section>
+
+<section class="section plans" id="plans">
+  <header class="section-head reveal"><div><div class="section-kicker">02 / Plan tickets</div><h2>Pick a pass. Stay connected.</h2></div><p>Plans are treated like collectible passes rather than another row of SaaS pricing cards. Exact commercial details remain subject to Telikom approval.</p></header>
+  <div class="ticket-stack reveal">
+    <article class="ticket"><div class="stub"><span>GUTPELA / MOBILE</span><span>PASS 01</span></div><h3>Everyday<br>Data</h3><p>A flexible mobile-data direction for customers who want a simple everyday option.</p><ul><li>Mobile-first experience</li><li>Clear allowance presentation</li><li>Easy Self Care hand-off</li></ul><a class="ticket-link" href="#support">VIEW OPTION ↗</a></article>
+    <article class="ticket"><div class="stub"><span>HOME / INTERNET</span><span>PASS 02</span></div><h3>Home<br>Signal</h3><p>Internet for households, work, study and entertainment with simple eligibility and coverage steps.</p><ul><li>Coverage-first pathway</li><li>Home use-cases, not jargon</li><li>Clear setup journey</li></ul><a class="ticket-link" href="#remote">CHECK HOME ↗</a></article>
+    <article class="ticket"><div class="stub"><span>BUSINESS / CONNECT</span><span>PASS 03</span></div><h3>Work<br>Ready</h3><p>A gateway into Telikom business connectivity without forcing enterprise detail into the consumer journey.</p><ul><li>Business data</li><li>Voice & systems</li><li>Talk to a specialist</li></ul><a class="ticket-link" href="#business">FOR BUSINESS ↗</a></article>
+  </div>
+  <p class="fineprint">Prototype content only — plan names, inclusions, pricing and availability require validation before production.</p>
+</section>
+
+<section class="section" id="stories">
+  <header class="section-head reveal"><div><div class="section-kicker">03 / People × place</div><h2>Connection looks different across PNG.</h2></div><p>The visual system uses real Papua New Guinea context rather than generic telecom stock. People and place are part of the interface, not decoration behind a dark overlay.</p></header>
+  <div class="people-grid reveal">
+    <div class="people-visual">
+      <figure class="cutout cut-a"><img src="https://visitdarlingdowns.com.au/wp-content/uploads/2025/07/image1.png" alt="Aerial view of Port Moresby and its coastline" loading="lazy"></figure>
+      <figure class="cutout cut-b"><img src="https://mb.cision.com/Public/15029/2108514/94c87f17a0ea051a_org.jpg" alt="Telecommunications tower overlooking a coastal community in Papua New Guinea" loading="lazy"></figure>
+      <span class="photo-caption cap-a">PORT MORESBY // CITY SIGNAL</span><span class="photo-caption cap-b">REMOTE // NETWORK INFRASTRUCTURE</span><div class="people-stamp">PEOPLE<br>PLACE<br>TECHNOLOGY</div>
+    </div>
+    <div class="story-list">
+      <a class="story" href="#"><span class="num">01</span><div><h3>City life, always moving.</h3><p>A story slot for customers, creators, businesses and communities using connectivity in everyday urban PNG.</p></div><span class="arrow">↗</span></a>
+      <a class="story" href="#remote"><span class="num">02</span><div><h3>Signal where roads stop.</h3><p>A remote-connectivity story slot for satellite, fixed and infrastructure-led services.</p></div><span class="arrow">↗</span></a>
+      <a class="story" href="#business"><span class="num">03</span><div><h3>Technology behind the work.</h3><p>A business story slot showing how connectivity supports organisations without becoming a product catalogue.</p></div><span class="arrow">↗</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="section selfcare" id="selfcare">
+  <div class="selfcare-wrap reveal">
+    <div class="phone" aria-label="Illustrative Self Care interface">
+      <div class="phone-screen"><div class="phone-notch"></div><div class="phone-brand">TELIKOM // SELF CARE</div><h3>Your Telikom,<br>in your pocket.</h3><div class="balance"><small>ACCOUNT SNAPSHOT</small><strong>Ready.</strong></div><div class="phone-actions"><a href="#">Top Up</a><a href="#">Buy Data</a><a href="#">Pay Bill</a><a href="#">Usage</a><a href="#">Transfer</a><a href="#support">Get Help</a></div><p class="phone-note">Illustrative interface only. Account values and actions would connect to Telikom's approved Self Care services.</p></div>
+    </div>
+    <div class="selfcare-copy"><div class="section-kicker">04 / Self Care</div><h2>Do it now.<br>Don’t hunt for it.</h2><p>High-frequency tasks become a deliberate part of the homepage. The playful visual language stays, but utility remains fast, obvious and touch-friendly.</p><div class="quick-links"><a href="#">Top up</a><a href="#">Pay bill</a><a href="#">Buy data</a><a href="#">Check usage</a><a href="#support">Get support</a></div></div>
+  </div>
+</section>
+
+<section class="section business" id="business">
+  <div class="business-shell reveal">
+    <div class="business-head"><div><div class="business-label">05 / The page calms down here</div><h2>Built for business.</h2></div><div class="business-copy">The youth-facing collage intentionally transitions into a more structured enterprise language. This proves Telikom can be expressive for consumers without weakening confidence for businesses, government or institutional stakeholders.</div></div>
+    <div class="business-services"><a href="#"><span>01</span><b>Business Data ↗</b></a><a href="#"><span>02</span><b>Fixed & Voice ↗</b></a><a href="#"><span>03</span><b>Business Systems ↗</b></a><a href="#support"><span>04</span><b>Talk to Telikom ↗</b></a></div>
+  </div>
+</section>
+
+<section class="section remote" id="remote">
+  <header class="section-head reveal"><div><div class="section-kicker">06 / Remote connectivity</div><h2>One route. Many kinds of signal.</h2></div><p>Remote services are shown as a journey through PNG rather than a generic product tile — connecting place, infrastructure and service pathways.</p></header>
+  <div class="route-map reveal">
+    <div class="route"><svg viewBox="0 0 1000 400" preserveAspectRatio="none" aria-hidden="true"><path d="M20 260 C150 95, 245 340, 370 215 S585 55, 690 205 S835 355, 980 120"/></svg></div>
+    <span class="route-stop rs1">HOME</span><span class="route-stop rs2">COMMUNITY</span><span class="route-stop rs3">BUSINESS</span><span class="route-stop rs4">REMOTE</span>
+    <div class="remote-card"><small>REMOTE / VSAT / CONNECTIVITY</small><h3>Signal beyond the usual map.</h3><p>Use this zone for validated VSAT, satellite and hard-to-reach connectivity information.</p><a href="#support">TALK TO TELIKOM ↗</a></div>
+  </div>
+</section>
+
+<section class="section news" id="news">
+  <header class="section-head reveal"><div><div class="section-kicker">07 / News clippings</div><h2>What’s happening.</h2></div><p>News appears like a living noticeboard rather than another identical card carousel. Production content would be driven by Telikom’s CMS.</p></header>
+  <div class="clippings reveal">
+    <article class="clip"><div class="clip-photo"><img src="https://mb.cision.com/Public/15029/2108514/94c87f17a0ea051a_org.jpg" alt="Telecommunications infrastructure in Papua New Guinea" loading="lazy"></div><span class="date">NETWORK / UPDATE</span><h3>Building connection where it matters.</h3><p>Editorial placeholder for an approved Telikom infrastructure or network story.</p><a href="#">READ STORY ↗</a></article>
+    <article class="clip"><span class="date">CUSTOMERS / GUIDE</span><h3>Three quick ways to manage your account.</h3><p>A practical customer-service story can live beside corporate news without becoming visually buried.</p><a href="#selfcare">OPEN SELF CARE ↗</a></article>
+    <article class="clip"><span class="date">PEOPLE / PNG</span><h3>Connected stories from across the country.</h3><p>A human story slot focused on people, communities and the role of communications in daily life.</p><a href="#stories">SEE STORIES ↗</a></article>
+  </div>
+</section>
+
+<section class="support" id="support">
+  <div class="support-shell reveal"><div class="support-copy"><small>08 / SUPPORT + STORES</small><h2>Need something?</h2><p>Finish with clarity. Find a store, get support, check coverage or jump directly into Self Care.</p></div><div class="support-actions"><a href="#"><span>01 / LOCATION</span><b>Find a store ↗</b></a><a href="#"><span>02 / HELP</span><b>Get support ↗</b></a><a href="#remote"><span>03 / SIGNAL</span><b>Check coverage ↗</b></a><a href="#selfcare"><span>04 / ACCOUNT</span><b>Self Care ↗</b></a></div></div>
+</section>
+</main>
+
+<footer>
+  <div class="footer-top"><div class="footer-brand"><img src="https://www.telikom.com.pg/assets/misc/TPNGLOGO.png" alt="Telikom PNG"><p>Connecting you anywhere anytime</p></div><div class="footer-col"><h4>PERSONAL</h4><a href="#signals">Mobile</a><a href="#signals">Home Internet</a><a href="#plans">Plans</a><a href="#selfcare">Self Care</a></div><div class="footer-col"><h4>BUSINESS</h4><a href="#business">Business Data</a><a href="#business">Fixed & Voice</a><a href="#business">Systems</a><a href="#remote">Remote</a></div><div class="footer-col"><h4>TELIKOM</h4><a href="#stories">Stories</a><a href="#news">News</a><a href="#support">Support</a><a href="#support">Stores</a></div></div>
+  <div class="footer-bottom"><span>CONCEPT 11 / STICKER SIGNAL — DESIGN PROTOTYPE</span><span>Commercial details and imagery subject to Telikom approval.</span></div>
+</footer>
+
+<div class="chat" id="chat">
+  <div class="chat-bubble" id="chatBubble"><div class="chat-title">Hey 👋 What do you want to do?</div><p>Pick a shortcut and jump straight there.</p><div class="chat-links"><a href="#selfcare">Top Up</a><a href="#plans">Plans</a><a href="#remote">Coverage</a><a href="#support">Support</a></div></div>
+  <button class="chat-toggle" id="chatToggle" aria-expanded="false" aria-controls="chatBubble"><i aria-hidden="true"></i><span>Hello, need help?</span></button>
+</div>
+
+<script>
+(()=>{
+  const menu=document.getElementById('menu'),topbar=document.getElementById('topbar');
+  menu?.addEventListener('click',()=>{const open=topbar.classList.toggle('menu-open');menu.setAttribute('aria-expanded',String(open));menu.textContent=open?'×':'☰'});
+  topbar?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{if(innerWidth<781){topbar.classList.remove('menu-open');menu.setAttribute('aria-expanded','false');menu.textContent='☰'}}));
+
+  const chat=document.getElementById('chat'),toggle=document.getElementById('chatToggle');
+  toggle?.addEventListener('click',()=>{const open=chat.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open))});
+
+  const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reveals=document.querySelectorAll('.reveal');
+  if(!reduced && 'IntersectionObserver' in window){
+    const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});reveals.forEach(el=>io.observe(el));
+  }else{reveals.forEach(el=>el.classList.add('in'))}
+
+  if(!reduced && matchMedia('(pointer:fine)').matches){
+    const floaties=[...document.querySelectorAll('.floaty')];
+    window.addEventListener('pointermove',e=>{
+      const x=(e.clientX/innerWidth-.5),y=(e.clientY/innerHeight-.5);
+      floaties.forEach(el=>{const d=Number(el.dataset.depth||1);el.style.translate=`${x*10*d}px ${y*8*d}px`});
+    },{passive:true});
+  }
+})();
+</script>
+</body>
+</html>
