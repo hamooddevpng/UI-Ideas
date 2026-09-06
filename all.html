@@ -3,182 +3,221 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>UI Ideas — All Designs</title>
+  <title>Telikom design ideas shared by Hamood</title>
   <style>
     :root {
       color-scheme: light;
-      --bg: #f4f6f8;
+      --bg: #eef2f7;
       --panel: #ffffff;
       --text: #111827;
-      --muted: #6b7280;
-      --border: #dfe3e8;
-      --accent: #0b63ce;
-      --accent-soft: #eaf3ff;
+      --muted: #667085;
+      --border: #d8dee8;
+      --accent: #0875c9;
+      --accent-soft: #eaf4fb;
       --selected: #0f766e;
       --selected-soft: #ecfdf5;
+      --shadow: 0 24px 70px rgba(15, 23, 42, .14);
     }
 
     * { box-sizing: border-box; }
+
     html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
+      min-height: 100vh;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: var(--bg);
+      background:
+        radial-gradient(circle at 10% 0%, rgba(8,117,201,.09), transparent 28%),
+        radial-gradient(circle at 90% 10%, rgba(15,118,110,.06), transparent 25%),
+        var(--bg);
       color: var(--text);
-      padding-bottom: 110px;
+      padding-bottom: 132px;
     }
 
     button, a { font: inherit; }
 
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 14px 20px;
-      background: rgba(255,255,255,.94);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
+    .page {
+      width: min(1540px, 100%);
+      margin: 0 auto;
+      padding: 28px 22px 36px;
     }
 
-    .title-wrap { min-width: 0; }
+    .hero {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 22px;
+      margin-bottom: 20px;
+    }
 
     h1 {
       margin: 0;
-      font-size: clamp(20px, 2vw, 30px);
-      line-height: 1.1;
+      font-size: clamp(28px, 4vw, 52px);
+      letter-spacing: -.035em;
+      line-height: .98;
     }
 
     .subtitle {
-      margin: 5px 0 0;
+      margin: 12px 0 0;
+      max-width: 760px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .counter-pill {
+      flex: 0 0 auto;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.82);
+      border: 1px solid var(--border);
+      box-shadow: 0 8px 24px rgba(15,23,42,.06);
       color: var(--muted);
       font-size: 13px;
+      font-weight: 800;
     }
 
-    .jump {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-      gap: 5px;
-      max-width: 55vw;
-    }
-
-    .jump a {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 31px;
-      height: 31px;
-      padding: 0 8px;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      background: #fff;
-      color: var(--text);
-      text-decoration: none;
-      font-size: 12px;
-      font-weight: 700;
-    }
-
-    .jump a:hover,
-    .jump a.selected {
-      border-color: var(--selected);
-      color: var(--selected);
-      background: var(--selected-soft);
-    }
-
-    main {
-      width: min(1900px, 100%);
-      margin: 0 auto;
-      padding: 22px;
-    }
-
-    .grid {
+    .controls {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 22px;
-    }
-
-    .design {
-      min-width: 0;
-      overflow: hidden;
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      box-shadow: 0 6px 20px rgba(17, 24, 39, .05);
-      transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease;
-    }
-
-    .design.selected {
-      border-color: var(--selected);
-      box-shadow: 0 8px 28px rgba(15, 118, 110, .14);
-    }
-
-    .design-head {
-      display: flex;
+      grid-template-columns: auto 1fr auto;
       align-items: center;
-      justify-content: space-between;
       gap: 12px;
-      padding: 11px 13px;
-      border-bottom: 1px solid var(--border);
+      margin-bottom: 14px;
+      padding: 12px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.82);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 28px rgba(15,23,42,.06);
     }
 
-    .design-head strong { font-size: 15px; }
-
-    .actions {
+    .control-left,
+    .control-center,
+    .control-right {
       display: flex;
       align-items: center;
       gap: 8px;
+      flex-wrap: wrap;
     }
 
-    .open-link,
-    .pick-btn {
+    .control-center { justify-content: center; }
+    .control-right { justify-content: flex-end; }
+
+    .btn,
+    .open-link {
+      min-height: 40px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 32px;
-      padding: 0 11px;
-      border-radius: 8px;
-      font-size: 12px;
-      font-weight: 800;
-      text-decoration: none;
-      cursor: pointer;
-    }
-
-    .open-link {
+      padding: 0 14px;
       border: 1px solid var(--border);
-      color: var(--accent);
+      border-radius: 10px;
       background: #fff;
-    }
-
-    .open-link:hover { background: var(--accent-soft); }
-
-    .pick-btn {
-      border: 1px solid var(--border);
       color: var(--text);
-      background: #fff;
+      font-size: 13px;
+      font-weight: 800;
+      cursor: pointer;
+      text-decoration: none;
+      transition: .18s ease;
     }
 
-    .pick-btn:hover {
-      border-color: var(--selected);
-      color: var(--selected);
+    .btn:hover,
+    .open-link:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-1px);
     }
 
-    .pick-btn.active {
+    .btn:disabled {
+      opacity: .38;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .shortlist-btn.active {
       border-color: var(--selected);
       color: #fff;
       background: var(--selected);
     }
 
+    .browser {
+      overflow: hidden;
+      border-radius: 22px;
+      border: 1px solid #cfd7e3;
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .browser-chrome {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 14px;
+      background: linear-gradient(180deg, #fbfcfe 0%, #f0f3f7 100%);
+      border-bottom: 1px solid #d7dde6;
+    }
+
+    .browser-dots {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .browser-dots span {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      display: block;
+    }
+
+    .browser-dots span:nth-child(1) { background: #ff5f57; }
+    .browser-dots span:nth-child(2) { background: #febc2e; }
+    .browser-dots span:nth-child(3) { background: #28c840; }
+
+    .address-bar {
+      min-width: 0;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 0 14px;
+      border: 1px solid #d6dce6;
+      border-radius: 999px;
+      background: #fff;
+      color: #737b88;
+      font-size: 12px;
+      font-weight: 650;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    .browser-label {
+      min-width: 88px;
+      text-align: right;
+      color: #475467;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .screen-shell {
+      padding: 16px;
+      background: linear-gradient(180deg, #e8edf4 0%, #f3f6f9 100%);
+    }
+
     .screen {
       position: relative;
-      width: 100%;
+      width: min(100%, 1440px);
+      margin: 0 auto;
       aspect-ratio: 16 / 9;
       overflow: hidden;
-      background: white;
+      background: #fff;
+      border: 1px solid #d8dee8;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(15,23,42,.08);
     }
 
     iframe {
@@ -188,94 +227,179 @@
       width: 100%;
       height: 100%;
       border: 0;
-      background: white;
+      background: #fff;
+    }
+
+    .design-info {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 18px;
+      align-items: start;
+      padding: 20px 22px 22px;
+      border-top: 1px solid var(--border);
+      background: #fff;
+    }
+
+    .design-kicker {
+      margin: 0 0 6px;
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+    }
+
+    .design-title {
+      margin: 0;
+      font-size: clamp(21px, 2.3vw, 31px);
+      line-height: 1.08;
+      letter-spacing: -.02em;
+    }
+
+    .design-description {
+      margin: 9px 0 0;
+      max-width: 920px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .info-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    .jump-strip {
+      display: flex;
+      gap: 7px;
+      overflow-x: auto;
+      margin-top: 14px;
+      padding: 11px;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      background: rgba(255,255,255,.78);
+      scrollbar-width: thin;
+    }
+
+    .jump-btn {
+      flex: 0 0 auto;
+      min-width: 38px;
+      height: 36px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      background: #fff;
+      color: #475467;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .jump-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .jump-btn.current {
+      border-color: var(--accent);
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .jump-btn.selected:not(.current) {
+      border-color: var(--selected);
+      background: var(--selected-soft);
+      color: var(--selected);
     }
 
     .shortlist-bar {
       position: fixed;
       left: 50%;
-      bottom: 16px;
-      z-index: 40;
-      width: min(1120px, calc(100% - 28px));
+      bottom: 14px;
+      z-index: 50;
+      width: min(1180px, calc(100% - 28px));
       transform: translateX(-50%);
       display: grid;
       grid-template-columns: auto minmax(0, 1fr) auto;
       align-items: center;
       gap: 14px;
       padding: 12px 14px;
-      border: 1px solid rgba(17,24,39,.12);
-      border-radius: 16px;
-      background: rgba(17,24,39,.94);
+      border-radius: 17px;
+      background: rgba(17,24,39,.95);
       color: #fff;
-      box-shadow: 0 16px 45px rgba(17,24,39,.28);
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow: 0 20px 50px rgba(15,23,42,.28);
       backdrop-filter: blur(16px);
     }
 
-    .shortlist-title {
+    .shortlist-heading {
       display: flex;
       align-items: center;
-      gap: 9px;
+      gap: 8px;
       white-space: nowrap;
-      font-weight: 800;
-      font-size: 14px;
+      font-size: 13px;
+      font-weight: 900;
     }
 
     .count {
+      min-width: 27px;
+      height: 27px;
       display: inline-grid;
       place-items: center;
-      min-width: 28px;
-      height: 28px;
       padding: 0 7px;
       border-radius: 999px;
       background: #fff;
       color: #111827;
       font-size: 12px;
-      font-weight: 900;
     }
 
     .shortlist-items {
       display: flex;
       gap: 7px;
       overflow-x: auto;
-      scrollbar-width: thin;
       padding: 2px;
+      scrollbar-width: thin;
     }
 
     .empty {
-      color: rgba(255,255,255,.62);
+      color: rgba(255,255,255,.58);
       font-size: 12px;
       white-space: nowrap;
     }
 
     .chip {
+      flex: 0 0 auto;
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      flex: 0 0 auto;
       min-height: 30px;
       padding: 0 8px 0 10px;
-      border: 1px solid rgba(255,255,255,.2);
       border-radius: 999px;
-      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.09);
       color: #fff;
-      cursor: pointer;
       font-size: 12px;
       font-weight: 800;
     }
 
-    .chip:hover { background: rgba(255,255,255,.18); }
+    .chip button {
+      border: 0;
+      background: transparent;
+      color: inherit;
+      cursor: pointer;
+      font: inherit;
+      font-weight: 800;
+      padding: 0;
+    }
 
-    .chip-remove {
+    .chip .remove {
       display: inline-grid;
       place-items: center;
       width: 20px;
       height: 20px;
-      border: 0;
       border-radius: 50%;
-      background: rgba(255,255,255,.14);
-      color: #fff;
-      cursor: pointer;
-      line-height: 1;
+      background: rgba(255,255,255,.13);
     }
 
     .cart-actions {
@@ -287,8 +411,8 @@
       min-height: 32px;
       padding: 0 10px;
       border-radius: 8px;
-      border: 1px solid rgba(255,255,255,.2);
-      background: rgba(255,255,255,.09);
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.08);
       color: #fff;
       cursor: pointer;
       font-size: 12px;
@@ -296,66 +420,87 @@
       white-space: nowrap;
     }
 
-    .cart-actions button:hover { background: rgba(255,255,255,.16); }
+    .cart-actions button:hover { background: rgba(255,255,255,.15); }
+    .cart-actions button:disabled { opacity: .38; cursor: not-allowed; }
 
-    .cart-actions button:disabled {
-      opacity: .4;
-      cursor: not-allowed;
-    }
-
-    @media (max-width: 980px) {
-      .topbar {
-        position: static;
-        align-items: flex-start;
-        flex-direction: column;
-      }
-      .jump {
-        max-width: none;
-        justify-content: flex-start;
-      }
-      .grid { grid-template-columns: 1fr; }
-      .shortlist-bar {
-        grid-template-columns: 1fr auto;
-      }
-      .shortlist-items {
-        grid-column: 1 / -1;
-        grid-row: 2;
-      }
+    @media (max-width: 900px) {
+      .hero { align-items: flex-start; flex-direction: column; }
+      .controls { grid-template-columns: 1fr; }
+      .control-center, .control-right { justify-content: flex-start; }
+      .browser-chrome { grid-template-columns: auto minmax(0, 1fr); }
+      .browser-label { display: none; }
+      .design-info { grid-template-columns: 1fr; }
+      .info-actions { justify-content: flex-start; }
+      .shortlist-bar { grid-template-columns: 1fr auto; }
+      .shortlist-items { grid-column: 1 / -1; grid-row: 2; }
     }
 
     @media (max-width: 560px) {
-      body { padding-bottom: 145px; }
-      main { padding: 12px; }
-      .grid { gap: 14px; }
-      .design-head {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-      .actions { width: 100%; }
-      .open-link, .pick-btn { flex: 1; }
-      .shortlist-bar {
-        bottom: 8px;
-        width: calc(100% - 16px);
-      }
-      .cart-actions button:first-child { display: none; }
+      body { padding-bottom: 150px; }
+      .page { padding: 16px 10px 26px; }
+      .screen-shell { padding: 8px; }
+      .browser { border-radius: 16px; }
+      .screen { border-radius: 8px; }
+      .address-bar { justify-content: flex-start; }
+      .design-info { padding: 16px; }
+      .shortlist-bar { bottom: 8px; width: calc(100% - 16px); }
+      .cart-actions #openSelected { display: none; }
     }
   </style>
 </head>
 <body>
-  <header class="topbar">
-    <div class="title-wrap">
-      <h1>UI Ideas — All Designs</h1>
-      <p class="subtitle">Review designs 34–1. Pick your favourites — your shortlist stays saved in this browser.</p>
-    </div>
-    <nav class="jump" aria-label="Jump to design" id="jump"></nav>
-  </header>
+  <main class="page">
+    <header class="hero">
+      <div>
+        <h1>Telikom design ideas shared by Hamood</h1>
+        <p class="subtitle">Browse one concept at a time in a fixed landscape browser frame. Use the shortlist button to save the ideas you like — your selections stay stored in this browser.</p>
+      </div>
+      <div class="counter-pill" id="positionCounter">1 / 34</div>
+    </header>
 
-  <main>
-    <div class="grid" id="grid"></div>
+    <section class="controls" aria-label="Carousel controls">
+      <div class="control-left">
+        <button class="btn" id="prevBtn" type="button">← Previous</button>
+        <button class="btn" id="nextBtn" type="button">Next →</button>
+      </div>
+      <div class="control-center">
+        <button class="btn shortlist-btn" id="shortlistTop" type="button">♡ Shortlist</button>
+      </div>
+      <div class="control-right">
+        <a class="open-link" id="openFull" href="#" target="_blank" rel="noopener noreferrer">Open full design ↗</a>
+      </div>
+    </section>
+
+    <section class="browser" aria-live="polite">
+      <div class="browser-chrome">
+        <div class="browser-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div class="address-bar"><span>🔒</span><span id="addressText">Telikom concept preview</span></div>
+        <div class="browser-label" id="browserLabel">Design 34</div>
+      </div>
+
+      <div class="screen-shell">
+        <div class="screen">
+          <iframe id="designFrame" title="Telikom design preview" loading="eager" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+
+      <div class="design-info">
+        <div>
+          <p class="design-kicker" id="designKicker">Design 34</p>
+          <h2 class="design-title" id="designTitle">Executive Telikom</h2>
+          <p class="design-description" id="designDescription"></p>
+        </div>
+        <div class="info-actions">
+          <button class="btn shortlist-btn" id="shortlistBottom" type="button">♡ Shortlist</button>
+        </div>
+      </div>
+    </section>
+
+    <nav class="jump-strip" id="jumpStrip" aria-label="Jump to a design"></nav>
   </main>
 
-  <aside class="shortlist-bar" aria-label="Design shortlist">
-    <div class="shortlist-title">♥ Shortlist <span class="count" id="shortlistCount">0</span></div>
+  <aside class="shortlist-bar" aria-label="Shortlisted designs">
+    <div class="shortlist-heading">♥ Shortlist <span class="count" id="shortlistCount">0</span></div>
     <div class="shortlist-items" id="shortlistItems"></div>
     <div class="cart-actions">
       <button type="button" id="openSelected">Open selected</button>
@@ -368,159 +513,206 @@
     const repo = 'UI-Ideas';
     const branch = 'main';
     const designs = Array.from({ length: 34 }, (_, i) => 34 - i);
-    const storageKey = 'ui-ideas-shortlist-v1';
+    const shortlistKey = 'ui-ideas-shortlist-v1';
+    const currentKey = 'ui-ideas-carousel-current-v1';
+
+    const designMeta = {
+      34: { title: 'Executive Telikom', description: 'A restrained, boardroom-grade direction: premium corporate presentation, disciplined typography and whitespace, clear audience pathways, strong service discovery, and almost no trend-led decoration.' },
+      33: { title: 'Infrastructure First', description: 'An architectural, engineering-led concept that presents Telikom first as national telecommunications infrastructure, with enterprise, government, remote connectivity and consumer access organised around the network backbone.' },
+      32: { title: 'Swiss Telikom', description: 'A rigorous International/Swiss-style system built around grid discipline, numbered navigation, strong alignment and typography. It aims for world-class clarity without relying on decorative cards or effects.' },
+      31: { title: 'PNG Modernism', description: 'A distinctly Papua New Guinean modernist visual language using abstract geometry, repetition and rhythm rather than generic telecom gradients — culturally inspired without directly copying traditional motifs.' },
+      30: { title: 'Cardless Corporate', description: 'An ultra-refined corporate homepage that deliberately avoids the usual rounded-card layout. Hierarchy comes from type, whitespace, rules, photography and carefully controlled proportions.' },
+      29: { title: 'Network Observatory', description: 'A premium, information-rich network concept that treats connectivity and infrastructure as something to explore and observe, with a more technical, dynamic and enterprise-oriented visual personality.' },
+      28: { title: 'Nation Connected', description: 'A PNG-first concept centred on Telikom’s national role and the idea of connecting people and places across the country, balancing modern digital presentation with a strong local identity.' },
+      27: { title: 'PNG Editorial', description: 'A publication-inspired direction where strong photography, editorial typography and Papua New Guinean storytelling lead the experience instead of a standard telecom sales-page structure.' },
+      26: { title: 'Service Exchange', description: 'A service-discovery concept focused on very high UX clarity — helping visitors quickly understand, compare and move between Telikom service categories without being overwhelmed by promotional content.' },
+      25: { title: 'Coverage First', description: 'This flips the usual telecom sales funnel: before showing plans, it starts with the practical question of what services are available where the customer is, making location and coverage the main entry point.' },
+      24: { title: 'Guided Connection', description: 'A guided service-selection journey that asks simple human questions about what the visitor needs, then routes them toward relevant Telikom services instead of expecting them to know product names.' },
+      23: { title: 'Telikom OS', description: 'A modern operating-system-inspired concept that makes Telikom feel like a connected digital platform rather than a conventional corporate homepage, while keeping service access highly visible.' },
+      22: { title: 'People × Technology', description: 'A balanced client-facing direction built around People, Products and Technology, visually pairing authentic PNG human stories with Telikom infrastructure and digital capability.' },
+      21: { title: 'PNG Signal Map', description: 'Papua New Guinea becomes the main storytelling and navigation surface, using a stylised map to connect regions, people, services, infrastructure and local connectivity stories.' },
+      20: { title: 'Telikom Command', description: 'A task-first homepage where search and command are central. Instead of beginning with a promotion, it begins with the question: what did the visitor come here to do?' },
+      19: { title: 'Choose Your World', description: 'A distinctive but management-ready concept that asks visitors to choose the Telikom “world” most relevant to them, creating different pathways instead of using one generic hero for everyone.' },
+      18: { title: 'Signal Wave', description: 'A highly visual concept built around a continuous signal line that travels through the page and changes meaning across voice, data, home, enterprise and remote connectivity.' },
+      17: { title: 'Pocket Telikom', description: 'A mobile-minded, youthful concept designed to make Telikom feel quick, personal and close at hand, with a strong emphasis on direct actions and compact digital-service interactions.' },
+      16: { title: 'Telikom Buddy', description: 'A conversational task-chooser approach that starts with what the customer wants to accomplish, rather than making them first understand Telikom’s internal site structure or product organisation.' },
+      15: { title: 'Type Storm', description: 'A typography-led experiment where words, movement and changing type become the interface itself, communicating connectivity without falling back to conventional telecom card collections.' },
+      14: { title: 'Signal Quest', description: 'A gamified exploration concept that treats the homepage like discovering a connected world. It is intentionally playful and experimental rather than a conventional corporate production direction.' },
+      13: { title: 'Telikom Stories', description: 'A highly youthful, story-led direction that puts people, visual narratives and energetic motion ahead of conventional corporate hierarchy, with a strong PNG identity.' },
+      12: { title: 'Neo-Brutal Telikom', description: 'A deliberately bold neo-brutalist direction with strong contrast, hard-edged hierarchy and a highly contemporary youth-oriented personality — intentionally far from traditional telecom corporate styling.' },
+      11: { title: 'Sticker Signal', description: 'The most youth-driven end of the concept range: playful, expressive and motion-heavy, using a sticker-like visual language while still keeping essential Telikom services discoverable.' },
+      10: { title: 'Earlier Exploration 10', description: 'An earlier homepage exploration retained as part of the comparison set. It represents the first phase of visual experimentation before the later concepts were deliberately pushed into more distinct design directions.' },
+      9: { title: 'Earlier Exploration 9', description: 'An earlier Telikom homepage experiment from the first concept group, useful for comparing how the visual language evolved as the later designs became more specialised and differentiated.' },
+      8: { title: 'Earlier Exploration 8', description: 'An earlier alternate homepage direction kept for comparison with the newer portfolio. It belongs to the initial round of concepts before the later design briefs introduced more extreme creative positions.' },
+      7: { title: 'Earlier Exploration 7', description: 'A first-round Telikom homepage exploration that helped broaden the initial visual direction and serves as a useful reference point against the more specialised concepts that followed.' },
+      6: { title: 'Earlier Exploration 6', description: 'One of the original homepage mockups shared in the first round, retained here so the later concepts can be judged against the earlier design language and structure.' },
+      5: { title: 'Self-Service Focus', description: 'An early direction that places practical self-service actions and customer utilities more prominently, helping users get to common Telikom tasks quickly.' },
+      4: { title: 'PNG / Community Focus', description: 'An early concept with a stronger Papua New Guinea and community feel, using local visual context to make Telikom feel closer to the people and places it connects.' },
+      3: { title: 'Balanced Homepage Direction', description: 'An early balanced concept combining a familiar homepage structure with a cleaner modern presentation, service access and room for strong Telikom imagery.' },
+      2: { title: 'Service-Led Exploration', description: 'An early service-oriented homepage direction that keeps Telikom products and customer pathways prominent while experimenting with a refreshed visual treatment.' },
+      1: { title: 'Navigation-First Exploration', description: 'An early concept focused on simple, easy navigation and straightforward access to the main Telikom service areas, providing a clear baseline for the later experiments.' }
+    };
 
     const sourceUrl = n => `https://github.com/${owner}/${repo}/blob/${branch}/${n}.html`;
     const previewUrl = n => `https://htmlpreview.github.io/?${sourceUrl(n)}`;
 
-    const jump = document.getElementById('jump');
-    const grid = document.getElementById('grid');
+    const frame = document.getElementById('designFrame');
+    const positionCounter = document.getElementById('positionCounter');
+    const browserLabel = document.getElementById('browserLabel');
+    const addressText = document.getElementById('addressText');
+    const designKicker = document.getElementById('designKicker');
+    const designTitle = document.getElementById('designTitle');
+    const designDescription = document.getElementById('designDescription');
+    const openFull = document.getElementById('openFull');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const shortlistTop = document.getElementById('shortlistTop');
+    const shortlistBottom = document.getElementById('shortlistBottom');
+    const jumpStrip = document.getElementById('jumpStrip');
     const shortlistCount = document.getElementById('shortlistCount');
     const shortlistItems = document.getElementById('shortlistItems');
-    const clearSelected = document.getElementById('clearSelected');
     const openSelected = document.getElementById('openSelected');
+    const clearSelected = document.getElementById('clearSelected');
 
+    let currentIndex = Math.max(0, Math.min(designs.length - 1, Number(localStorage.getItem(currentKey) || 0)));
     let selected = loadSelected();
 
     function loadSelected() {
       try {
-        const value = JSON.parse(localStorage.getItem(storageKey));
+        const value = JSON.parse(localStorage.getItem(shortlistKey));
         if (!Array.isArray(value)) return [];
-        return value
-          .map(Number)
-          .filter(n => Number.isInteger(n) && n >= 1 && n <= 34)
-          .filter((n, i, arr) => arr.indexOf(n) === i);
+        return value.map(Number).filter(n => designs.includes(n)).filter((n, i, arr) => arr.indexOf(n) === i);
       } catch {
         return [];
       }
     }
 
     function saveSelected() {
-      localStorage.setItem(storageKey, JSON.stringify(selected));
+      localStorage.setItem(shortlistKey, JSON.stringify(selected));
+    }
+
+    function currentDesign() { return designs[currentIndex]; }
+
+    function goToIndex(index) {
+      currentIndex = Math.max(0, Math.min(designs.length - 1, index));
+      localStorage.setItem(currentKey, String(currentIndex));
+      renderCurrent();
+    }
+
+    function goToDesign(n) {
+      const index = designs.indexOf(n);
+      if (index >= 0) goToIndex(index);
     }
 
     function toggleSelected(n) {
-      if (selected.includes(n)) {
-        selected = selected.filter(item => item !== n);
-      } else {
-        selected.push(n);
-      }
+      if (selected.includes(n)) selected = selected.filter(item => item !== n);
+      else selected = [...selected, n].sort((a, b) => b - a);
       saveSelected();
-      renderSelectionState();
+      renderSelection();
     }
 
-    function removeSelected(n) {
-      selected = selected.filter(item => item !== n);
-      saveSelected();
-      renderSelectionState();
+    function renderCurrent() {
+      const n = currentDesign();
+      const meta = designMeta[n];
+      const url = previewUrl(n);
+
+      frame.src = url;
+      frame.title = `Design ${n} — ${meta.title}`;
+      positionCounter.textContent = `${currentIndex + 1} / ${designs.length}`;
+      browserLabel.textContent = `Design ${n}`;
+      addressText.textContent = `Telikom concept ${n} — ${meta.title}`;
+      designKicker.textContent = `Design ${n}`;
+      designTitle.textContent = meta.title;
+      designDescription.textContent = meta.description;
+      openFull.href = url;
+
+      prevBtn.disabled = currentIndex === 0;
+      nextBtn.disabled = currentIndex === designs.length - 1;
+
+      renderSelection();
     }
 
-    function jumpTo(n) {
-      document.getElementById(`design-${n}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+    function renderSelection() {
+      const n = currentDesign();
+      const isPicked = selected.includes(n);
+      [shortlistTop, shortlistBottom].forEach(btn => {
+        btn.classList.toggle('active', isPicked);
+        btn.setAttribute('aria-pressed', String(isPicked));
+        btn.textContent = isPicked ? '✓ Shortlisted' : '♡ Shortlist';
+      });
 
-    function renderSelectionState() {
-      const selectedSet = new Set(selected);
       shortlistCount.textContent = selected.length;
-      clearSelected.disabled = selected.length === 0;
       openSelected.disabled = selected.length === 0;
+      clearSelected.disabled = selected.length === 0;
 
-      designs.forEach(n => {
-        const isSelected = selectedSet.has(n);
-        const card = document.getElementById(`design-${n}`);
-        const button = document.querySelector(`[data-pick="${n}"]`);
-        const jumpLink = document.querySelector(`[data-jump="${n}"]`);
-
-        card?.classList.toggle('selected', isSelected);
-        jumpLink?.classList.toggle('selected', isSelected);
-
-        if (button) {
-          button.classList.toggle('active', isSelected);
-          button.setAttribute('aria-pressed', String(isSelected));
-          button.textContent = isSelected ? '✓ Shortlisted' : '♡ Shortlist';
-        }
+      jumpStrip.querySelectorAll('.jump-btn').forEach(btn => {
+        const design = Number(btn.dataset.design);
+        btn.classList.toggle('current', design === n);
+        btn.classList.toggle('selected', selected.includes(design));
       });
 
       shortlistItems.innerHTML = '';
-
       if (selected.length === 0) {
         shortlistItems.innerHTML = '<span class="empty">Pick the designs you like most.</span>';
         return;
       }
 
-      selected.forEach(n => {
+      selected.forEach(design => {
         const chip = document.createElement('div');
         chip.className = 'chip';
 
-        const label = document.createElement('button');
-        label.type = 'button';
-        label.className = 'chip';
-        label.style.padding = '0';
-        label.style.border = '0';
-        label.style.background = 'transparent';
-        label.textContent = `Design ${n}`;
-        label.title = `Jump to Design ${n}`;
-        label.addEventListener('click', () => jumpTo(n));
+        const view = document.createElement('button');
+        view.type = 'button';
+        view.textContent = `Design ${design}`;
+        view.title = `View Design ${design}`;
+        view.addEventListener('click', () => goToDesign(design));
 
         const remove = document.createElement('button');
         remove.type = 'button';
-        remove.className = 'chip-remove';
+        remove.className = 'remove';
         remove.textContent = '×';
-        remove.title = `Remove Design ${n}`;
-        remove.setAttribute('aria-label', `Remove Design ${n} from shortlist`);
-        remove.addEventListener('click', () => removeSelected(n));
+        remove.title = `Remove Design ${design}`;
+        remove.setAttribute('aria-label', `Remove Design ${design} from shortlist`);
+        remove.addEventListener('click', () => toggleSelected(design));
 
-        chip.append(label, remove);
+        chip.append(view, remove);
         shortlistItems.appendChild(chip);
       });
     }
 
     designs.forEach(n => {
-      const jumpLink = document.createElement('a');
-      jumpLink.href = `#design-${n}`;
-      jumpLink.textContent = n;
-      jumpLink.title = `Jump to design ${n}`;
-      jumpLink.dataset.jump = n;
-      jump.appendChild(jumpLink);
-
-      const card = document.createElement('section');
-      card.className = 'design';
-      card.id = `design-${n}`;
-
-      card.innerHTML = `
-        <div class="design-head">
-          <strong>Design ${n}</strong>
-          <div class="actions">
-            <a class="open-link" href="${previewUrl(n)}" target="_blank" rel="noopener noreferrer">Open full design ↗</a>
-            <button class="pick-btn" type="button" data-pick="${n}" aria-pressed="false">♡ Shortlist</button>
-          </div>
-        </div>
-        <div class="screen">
-          <iframe
-            src="${previewUrl(n)}"
-            title="Design ${n} preview"
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-          ></iframe>
-        </div>
-      `;
-
-      grid.appendChild(card);
-      card.querySelector(`[data-pick="${n}"]`).addEventListener('click', () => toggleSelected(n));
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'jump-btn';
+      btn.dataset.design = String(n);
+      btn.textContent = n;
+      btn.title = `${n} — ${designMeta[n].title}`;
+      btn.addEventListener('click', () => goToDesign(n));
+      jumpStrip.appendChild(btn);
     });
 
+    prevBtn.addEventListener('click', () => goToIndex(currentIndex - 1));
+    nextBtn.addEventListener('click', () => goToIndex(currentIndex + 1));
+    shortlistTop.addEventListener('click', () => toggleSelected(currentDesign()));
+    shortlistBottom.addEventListener('click', () => toggleSelected(currentDesign()));
+
     clearSelected.addEventListener('click', () => {
-      if (!selected.length) return;
       selected = [];
       saveSelected();
-      renderSelectionState();
+      renderSelection();
     });
 
     openSelected.addEventListener('click', () => {
       selected.forEach(n => window.open(previewUrl(n), '_blank', 'noopener,noreferrer'));
     });
 
-    renderSelectionState();
+    document.addEventListener('keydown', event => {
+      if (event.key === 'ArrowLeft') goToIndex(currentIndex - 1);
+      if (event.key === 'ArrowRight') goToIndex(currentIndex + 1);
+      if (event.key.toLowerCase() === 's') toggleSelected(currentDesign());
+    });
+
+    renderCurrent();
   </script>
 </body>
 </html>
