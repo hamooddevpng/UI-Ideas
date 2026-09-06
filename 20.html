@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow">
 <meta name="theme-color" content="#F8FBFD">
-<title>Telikom PNG — Concept 20 / Telikom Command</title>
-<meta name="description" content="Experimental Telikom PNG homepage concept built around a task-first command search interface.">
+<title>Telikom PNG — Homepage Design 20</title>
+<meta name="description" content="Telikom PNG homepage design.">
 <style>
 :root{--blue:#0875C9;--deep:#075E9F;--light:#E5F4FC;--paper:#F8FBFD;--ink:#132F42;--white:#fff;--line:#CBDDE7;--muted:#627C8D;--soft:#EFF7FB;--ease:cubic-bezier(.2,.78,.25,1)}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;overflow-x:hidden}a{color:inherit;text-decoration:none}button,input{font:inherit;color:inherit}button{cursor:pointer}::selection{background:var(--ink);color:#fff}.skip{position:fixed;left:14px;top:-80px;z-index:500;background:var(--ink);color:#fff;padding:11px 14px}.skip:focus{top:14px}
@@ -26,6 +26,14 @@ footer{background:#0B293C;color:#fff;padding:70px 5vw 30px}.footer-grid{display:
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
 </style>
 <script src="assets/telikom-brand.js" defer></script>
+
+<style id="telikom-image-polish">
+        .portrait.one{background-image:url("https://images.unsplash.com/photo-1590364623978-7268baee5715?auto=format&fit=crop&w=1800&q=82")!important;background-size:cover!important;background-position:center!important}
+        .portrait.two{background-image:url("https://images.unsplash.com/photo-1728957526752-b195c3584c37?auto=format&fit=crop&w=1800&q=82")!important;background-size:cover!important;background-position:center!important}
+        .portrait:before{content:""!important;display:none!important}
+        [class*="image-placeholder"],[class*="photo-placeholder"],[class*="placeholder-image"],[class~="placeholder"]{background-image:url("https://images.unsplash.com/photo-1590364623978-7268baee5715?auto=format&fit=crop&w=1800&q=82")!important;background-size:cover!important;background-position:center!important;color:transparent!important}
+        [class*="image-placeholder"]:before,[class*="photo-placeholder"]:before,[class*="placeholder-image"]:before,[class~="placeholder"]:before{content:""!important;display:none!important}
+        </style>
 </head>
 <body>
 <a class="skip" href="#directory">Skip command search and browse services</a>
@@ -39,7 +47,7 @@ footer{background:#0B293C;color:#fff;padding:70px 5vw 30px}.footer-grid{display:
 <section class="command-hero" aria-labelledby="page-title">
   <div class="hero-grid">
     <div><div class="eyebrow">Telikom Command / Concept 20</div><h1 id="page-title">Find it.<br>Do it.</h1></div>
-    <div class="hero-side"><p>Start with the task, not the organisation chart. Search Telikom services, support and everyday actions from one deliberate command surface.</p><div class="quiet-mark"><i aria-hidden="true"></i><span>Local prototype index. No AI claims, no live account data, no fabricated search results.</span></div></div>
+    <div class="hero-side"><p>Start with the task, not the organisation chart. Search Telikom services, support and everyday actions from one deliberate command surface.</p><div class="quiet-mark"><i aria-hidden="true"></i></div></div>
   </div>
   <div class="command-wrap">
     <div class="command-box" role="search">
@@ -54,7 +62,7 @@ footer{background:#0B293C;color:#fff;padding:70px 5vw 30px}.footer-grid{display:
     <div class="common" aria-label="Common searches">
       <button type="button" data-query="top up">Top Up</button><button type="button" data-query="mobile data">Mobile Data</button><button type="button" data-query="home internet">Home Internet</button><button type="button" data-query="pay bill">Pay Bill</button><button type="button" data-query="coverage">Coverage</button><button type="button" data-query="business">Business</button><button type="button" data-query="remote">Remote / VSAT</button><button type="button" data-query="support">Support</button>
     </div>
-    <p class="command-note">Try “data”, “pay”, “remote”, “store”, “devices”, “careers” or “news”. Search is deterministic and maps only to content present in this prototype.</p>
+    
   </div>
 </section>
 <section class="quick" aria-label="Top tasks"><div class="quick-row"><div class="quick-title">Popular tasks</div><a href="#topup"><span>Top Up</span><span>↗</span></a><a href="#paybill"><span>Pay Bill</span><span>↗</span></a><a href="#coverage"><span>Coverage</span><span>↗</span></a><a href="#support"><span>Get Support</span><span>↗</span></a></div></section>
@@ -83,9 +91,9 @@ footer{background:#0B293C;color:#fff;padding:70px 5vw 30px}.footer-grid{display:
   <div class="enterprise-shell"><div class="enterprise-title"><div><div class="eyebrow" style="color:#fff">Business / Enterprise gateway</div><h2>Built for<br>work.</h2></div><p>A dedicated enterprise pathway keeps professional services structured and separate from retail tasks while staying one search away.</p></div><div class="enterprise-list"><a href="#business-services"><small>01</small><strong>Business Data</strong><span>→</span></a><a href="#business-services"><small>02</small><strong>Voice & SIP pathways</strong><span>→</span></a><a href="#business-services"><small>03</small><strong>Business Systems</strong><span>→</span></a><a href="#business-services"><small>04</small><strong>Hosting & infrastructure</strong><span>→</span></a><a href="#remote-connectivity"><small>05</small><strong>Remote / VSAT</strong><span>→</span></a></div></div>
 </section>
 <section class="tools" id="tools"><div class="eyebrow">Self Care / direct action</div><h2>Skip the browsing.</h2><div class="tool-grid"><a id="topup" href="#topup"><small>01 / SELF CARE</small><b>Top Up</b><span>↗</span></a><a id="paybill" href="#paybill"><small>02 / SELF CARE</small><b>Pay Bill</b><span>↗</span></a><a href="#mobile-data"><small>03 / MOBILE</small><b>Buy Data</b><span>↗</span></a><a href="#coverage"><small>04 / SUPPORT</small><b>Coverage</b><span>↗</span></a></div></section>
-<section class="feed" id="feed"><div class="feed-head"><h2>News + company</h2><p>Prototype rows only. Production should pull validated, current Telikom news, notices, careers and device content from the CMS.</p></div><div class="feed-row" id="news"><small>NEWS</small><b>Latest Telikom updates and announcements</b><a href="#news">Browse news →</a></div><div class="feed-row" id="careers"><small>CAREERS</small><b>Opportunities at Telikom PNG</b><a href="#careers">View careers →</a></div><div class="feed-row"><small>DEVICES</small><b>Current approved device catalogue</b><a href="#devices">Browse devices →</a></div></section>
+<section class="feed" id="feed"><div class="feed-head"><h2>News + company</h2></div><div class="feed-row" id="news"><small>NEWS</small><b>Latest Telikom updates and announcements</b><a href="#news">Browse news →</a></div><div class="feed-row" id="careers"><small>CAREERS</small><b>Opportunities at Telikom PNG</b><a href="#careers">View careers →</a></div><div class="feed-row"><small>DEVICES</small><b>Current approved device catalogue</b><a href="#devices">Browse devices →</a></div></section>
 </main>
-<footer><div class="footer-grid"><div><div class="footer-brand"><b>T</b>elikom</div><div class="footer-brand"><p>Connecting you anywhere anytime</p></div></div><div><h3>Services</h3><a href="#mobile-data">Mobile</a><a href="#home-internet">Home Internet</a><a href="#business-services">Business</a><a href="#remote-connectivity">Remote</a></div><div><h3>Do</h3><a href="#topup">Top Up</a><a href="#paybill">Pay Bill</a><a href="#coverage">Coverage</a><a href="#support">Support</a></div><div><h3>Company</h3><a href="#company">About</a><a href="#news">News</a><a href="#careers">Careers</a></div></div><div class="footer-bottom"><span>Concept 20 / Telikom Command</span><span>Prototype — noindex / nofollow</span><span>Local deterministic search index</span></div></footer>
+<footer><div class="footer-grid"><div><div class="footer-brand"><b>T</b>elikom</div><div class="footer-brand"><p>Connecting you anywhere anytime</p></div></div><div><h3>Services</h3><a href="#mobile-data">Mobile</a><a href="#home-internet">Home Internet</a><a href="#business-services">Business</a><a href="#remote-connectivity">Remote</a></div><div><h3>Do</h3><a href="#topup">Top Up</a><a href="#paybill">Pay Bill</a><a href="#coverage">Coverage</a><a href="#support">Support</a></div><div><h3>Company</h3><a href="#company">About</a><a href="#news">News</a><a href="#careers">Careers</a></div></div><div class="footer-bottom"><span>Concept 20 / Telikom Command</span><span>Local deterministic search index</span></div></footer>
 <div class="chat"><div class="chat-panel"><h3>Need help?</h3><p>The command search finds tasks and pages. This support panel stays separate and predictable.</p><a href="#support">Get support</a><a href="#topup">Top Up</a><a href="#coverage">Coverage</a></div><button class="chat-launch" type="button" aria-expanded="false" aria-label="Open support">HELP</button></div>
 <nav class="mobile-taskbar" aria-label="Quick tasks"><a href="#topup">Top Up</a><a href="#paybill">Pay Bill</a><a href="#coverage">Coverage</a><a href="#support">Help</a></nav>
 <script>
@@ -120,3 +128,4 @@ const chat=document.querySelector('.chat'),launch=document.querySelector('.chat-
 </script>
 </body>
 </html>
+<!-- Image sources: Unsplash photographs from Papua New Guinea / Port Moresby. -->

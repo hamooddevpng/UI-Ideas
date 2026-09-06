@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow">
 <meta name="theme-color" content="#EAF4FB">
-<title>Telikom PNG — Concept 12 / Neo-Brutal Telikom</title>
-<meta name="description" content="Experimental Telikom PNG homepage concept built as a bold neo-brutalist editorial grid.">
+<title>Telikom PNG — Homepage Design 12</title>
+<meta name="description" content="Telikom PNG homepage design.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
@@ -38,6 +38,14 @@ footer{background:var(--blue);color:white}.foot-top{display:grid;grid-template-c
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.track{animation:none}}
 </style>
 <script src="assets/telikom-brand.js" defer></script>
+
+<style id="telikom-image-polish">
+        .portrait.one{background-image:url("https://images.unsplash.com/photo-1590364623978-7268baee5715?auto=format&fit=crop&w=1800&q=82")!important;background-size:cover!important;background-position:center!important}
+        .portrait.two{background-image:url("https://images.unsplash.com/photo-1728957526752-b195c3584c37?auto=format&fit=crop&w=1800&q=82")!important;background-size:cover!important;background-position:center!important}
+        .portrait:before{content:""!important;display:none!important}
+        [class*="image-placeholder"],[class*="photo-placeholder"],[class*="placeholder-image"],[class~="placeholder"]{background-image:url("https://images.unsplash.com/photo-1590364623978-7268baee5715?auto=format&fit=crop&w=1800&q=82")!important;background-size:cover!important;background-position:center!important;color:transparent!important}
+        [class*="image-placeholder"]:before,[class*="photo-placeholder"]:before,[class*="placeholder-image"]:before,[class~="placeholder"]:before{content:""!important;display:none!important}
+        </style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -123,7 +131,7 @@ footer{background:var(--blue);color:white}.foot-top{display:grid;grid-template-c
   </div>
 </section>
 <section class="technology" id="technology">
-  <div class="tech-copy"><span class="kicker">05 / TECHNOLOGY</span><h2>One<br>Network.<br>Many<br>Places.</h2><p>Instead of another infrastructure photo carousel, this concept uses a simple network diagram to communicate the relationship between mobile, fixed, enterprise and remote connectivity.</p></div>
+  <div class="tech-copy"><span class="kicker">05 / TECHNOLOGY</span><h2>One<br>Network.<br>Many<br>Places.</h2></div>
   <div class="diagram" aria-label="Illustrative network diagram">
     <svg viewBox="0 0 800 560" preserveAspectRatio="none" aria-hidden="true"><rect width="800" height="560" fill="#EAF4FB"/><g stroke="#0B2535" stroke-width="2" fill="none"><path d="M60 100 L660 180 L240 450 L700 500"/><path d="M120 460 L420 70 L720 280"/><circle cx="60" cy="100" r="8" fill="#0875C9"/><circle cx="660" cy="180" r="8" fill="#0875C9"/><circle cx="240" cy="450" r="8" fill="#0875C9"/><circle cx="700" cy="500" r="8" fill="#0875C9"/><circle cx="420" cy="70" r="8" fill="#0875C9"/><circle cx="720" cy="280" r="8" fill="#0875C9"/></g><g stroke="#0875C9" stroke-width="1" opacity=".45"><path d="M0 140 H800"/><path d="M0 280 H800"/><path d="M0 420 H800"/><path d="M200 0 V560"/><path d="M400 0 V560"/><path d="M600 0 V560"/></g></svg>
     <span class="node a">PORT MORESBY / CORE</span><span class="node b">MOBILE / ACCESS</span><span class="node c">BUSINESS / DATA</span><span class="node d">REMOTE / SATELLITE</span>
@@ -162,3 +170,4 @@ menu?.addEventListener('click',()=>alert('Prototype menu: Services / Plans / Peo
 </script>
 </body>
 </html>
+<!-- Image sources: Unsplash photographs from Papua New Guinea / Port Moresby. -->
