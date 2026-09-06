@@ -1,0 +1,135 @@
+name: One-time final polish 7-34
+
+on:
+  push:
+    paths:
+      - '.github/workflows/one-time-final-polish.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  polish:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Apply final presentation polish
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+
+          def load(n):
+            p=Path(f'{n}.html'); return p,p.read_text(encoding='utf-8')
+          def save(p,t): p.write_text(t,encoding='utf-8')
+          def add_noindex(t):
+            if 'name="robots"' not in t:
+              t=t.replace('<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">','<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">\n<meta name="robots" content="noindex,nofollow">')
+              if 'name="robots"' not in t:
+                t=t.replace('<meta name="viewport" content="width=device-width, initial-scale=1">','<meta name="viewport" content="width=device-width, initial-scale=1">\n<meta name="robots" content="noindex,nofollow">')
+            return t
+
+          # 7 — remove legacy green and unverified commercial figures.
+          p,t=load(7); t=add_noindex(t)
+          t=t.replace('--mint:#edf8f1','--mint:#EDF6FB').replace('--green:#43a047','--green:#3594D1')
+          t=t.replace('<article class="plan-card"><div><small>DAILY</small><strong>1 GB</strong><div class="price">K3</div></div><a href="#">24 hours →</a></article>','<article class="plan-card"><div><small>DAILY</small><strong>Data</strong><div class="price">Flexible</div></div><a href="#">View options →</a></article>')
+          t=t.replace('<article class="plan-card feature"><div><small>POPULAR</small><strong>7.5 GB</strong><div class="price">K15</div></div><a href="#">7 days →</a></article>','<article class="plan-card feature"><div><small>EVERYDAY</small><strong>More Data</strong><div class="price">Flexible</div></div><a href="#">Compare options →</a></article>')
+          t=t.replace('<article class="plan-card"><div><small>MONTHLY</small><strong>40 GB</strong><div class="price">K50</div></div><a href="#">30 days →</a></article>','<article class="plan-card"><div><small>MONTHLY</small><strong>Data</strong><div class="price">Flexible</div></div><a href="#">View options →</a></article>')
+          t=t.replace('<div class="eyebrow">Hot promotion</div>','<div class="eyebrow">Latest offers</div>')
+          t=t.replace('© Telikom PNG — Homepage','© Telikom PNG')
+          save(p,t)
+
+          # 8 — remove design-review language, example balance and unverified claims.
+          p,t=load(8); t=add_noindex(t)
+          t=t.replace('--blue:#008fd3','--blue:#0875C9').replace('--blue-deep:#006ca6','--blue-deep:#075E9F')
+          pairs={
+            'Proudly 100% PNG owned':'Connecting Papua New Guinea',
+            'A Telikom homepage built around people first — simple everyday services, strong national identity, and serious connectivity for homes, businesses, government and remote communities.':'Simple everyday services and serious connectivity for people, homes, businesses, government and remote communities across Papua New Guinea.',
+            'A national brand should feel national.':'Connecting people, places and possibilities across PNG.',
+            'The design gives PNG itself a visible role — people, cities, infrastructure and remote places — while keeping the page clean, light and unmistakably Telikom.':'From people and cities to infrastructure and remote communities, Telikom connects everyday life and essential services across Papua New Guinea.',
+            '<strong>100%</strong><span>PNG owned</span><small>A national telecommunications company with a clear local identity.</small>':'<strong>PNG</strong><span>National focus</span><small>Connectivity shaped around people, places and services across Papua New Guinea.</small>',
+            '<strong>24/7</strong><span>Customer care</span><small>Support access remains highly visible throughout the experience.</small>':'<strong>1555</strong><span>Customer care</span><small>Clear access to help, stores and customer support.</small>',
+            '<strong>K 42.60</strong><small>Example account preview</small>':'<strong>Ready</strong><small>Choose a task to get started</small>',
+            'The homepage treats self-service as a core experience, not a secondary link. Customers can immediately understand where to top up, buy data, pay a bill or get help.':'Top up, buy data, pay a bill and get help quickly from one clear Self Care pathway.',
+            'A dedicated enterprise layer gives Telikom the national and institutional credibility requested in the feedback — without turning the entire homepage into a formal corporate site.':'Business, government and remote connectivity have a dedicated pathway for organisations with more complex service needs.',
+            'The support layer is deliberate: fixed chatbot, clear customer-care details, store access and fault reporting all stay easy to reach from anywhere on the homepage.':'Customer care, store access, fault reporting and Self Care remain easy to reach throughout the experience.',
+            'A proudly 100% PNG owned telecommunications company.':'Connecting people, homes, businesses and communities across Papua New Guinea.',
+            'Prototype assistant — demonstrates the fixed bottom-right placement requested in the feedback.':'Choose a service above to continue.',
+            'Fast access to the services customers use most — without burying them in corporate navigation.':'Fast access to mobile, data, devices and everyday customer services.',
+            'A calmer home-focused journey with clear paths to broadband, packages and support.':'Clear paths to home connectivity, packages and support.',
+            'Professional enough for enterprise, but still direct and easy to navigate.':'Business connectivity, voice and digital services in one clear pathway.',
+            'Institutional credibility gets a dedicated journey instead of forcing every customer into a formal corporate experience.':'Connectivity options for public-sector and institutional service needs.'
+          }
+          for a,b in pairs.items(): t=t.replace(a,b)
+          t=t.replace("image:'https://www.telikom.com.pg/assets/products/RED-X_Quest_Plus.png',alt:'Institutional office buildings'","image:'https://www.telikom.com.pg/assets/business/voice-and-data.jpg',alt:'Business and institutional connectivity'")
+          save(p,t)
+
+          # 9 — clarify that the cinematic journey is not live operational data.
+          p,t=load(9); t=add_noindex(t)
+          t=t.replace('LIVE NETWORK JOURNEY','NETWORK JOURNEY')
+          t=t.replace('effects are built for this Telikom concept.','effects are used in this Telikom experience.')
+          save(p,t)
+
+          # 11 — remove internal design rationale from the Business section.
+          p,t=load(11)
+          t=t.replace('05 / The page calms down here','05 / Business & Enterprise')
+          t=t.replace('The youth-facing collage intentionally transitions into a more structured enterprise language. This proves Telikom can be expressive for consumers without weakening confidence for businesses, government or institutional stakeholders.','Explore business data, fixed and voice services, business systems and support for organisations across Papua New Guinea.')
+          save(p,t)
+
+          # 12 — remove visible concept labels.
+          p,t=load(12)
+          t=t.replace('01 / TELIKOM PAPUA NEW GUINEA HOMEPAGE CONCEPT 12','01 / TELIKOM PAPUA NEW GUINEA')
+          t=t.replace('© 2026 TELIKOM PNG — CONCEPT ONLY','© 2026 TELIKOM PNG')
+          save(p,t)
+
+          # 19 — remove placeholder and homepage-design explanations.
+          p,t=load(19)
+          t=t.replace('A placeholder pathway for approved institutional connectivity content, presented separately from retail services.','Connectivity options for public-sector and institutional needs, presented separately from retail services.')
+          t=t.replace('Three ideas remain visible regardless of which audience pathway is selected. The homepage can reorganise around the visitor without losing Telikom’s broader identity.','Products, People and Technology stay visible across every audience pathway.')
+          save(p,t)
+
+          # 20 — remove visible concept label.
+          p,t=load(20)
+          t=t.replace('Telikom Command / Concept 20','Telikom Command / Search')
+          save(p,t)
+
+          # 24 — remove visible concept label.
+          p,t=load(24)
+          t=t.replace('Guided Connection / Concept 24','Guided Connection / Service guide')
+          save(p,t)
+
+          # 25 — turn the Remote panel into a genuine PNG landscape visual.
+          p,t=load(25)
+          t=re.sub(r'\.remote-art\{position:relative;background:#d7ecf7;overflow:hidden\}\.remote-art:before\{content:"";position:absolute;inset:-20%;background:repeating-radial-gradient\(ellipse at 42% 54%,transparent 0 25px,rgba\(16,110,169,\.16\) 26px 27px\);transform:rotate\(-8deg\)\}\.remote-art:after\{content:"REMOTE PNG";position:absolute;right:-\.03em;bottom:-\.13em;font-size:11vw;font-weight:800;letter-spacing:-\.07em;color:rgba\(16,110,169,\.14\)\}', '.remote-art{position:relative;background:url("https://blog.apnic.net/wp-content/uploads/2016/04/Goroka-EHP.jpg") center/cover no-repeat;overflow:hidden}.remote-art:before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(16,110,169,.08),rgba(16,110,169,.30))}.remote-art:after{content:"";display:none}', t)
+          save(p,t)
+
+          # 26 — customer-facing service-directory opening copy.
+          p,t=load(26)
+          t=t.replace('Telikom services. No promotional banner. No waiting for the homepage to explain itself. Start with what you need, compare clearly, and move directly to the relevant Telikom pathway.','Find Telikom services quickly. Start with what you need, compare clearly and move directly to the relevant service pathway.')
+          save(p,t)
+
+          # 29 — keep accuracy disclaimers but remove internal/AI-style phrasing.
+          p,t=load(29)
+          t=t.replace('Illustrative topology · not a live NOC or coverage map','Service topology · not coverage data')
+          t=t.replace('Node = service concept','Node = service area')
+          t=t.replace('Path = illustrative relationship','Path = service relationship')
+          t=t.replace('Illustrative Telikom service topology','Telikom service topology')
+          t=t.replace('A conceptual diagram connecting people, homes, business sites and remote sites to Mobile, Fixed, Enterprise and Remote service layers. It does not represent live infrastructure, coverage or operational status.','A service view connecting people, homes, business sites and remote sites with Mobile, Fixed, Enterprise and Remote connectivity. This is not a live network or coverage map.')
+          t=t.replace('Illustrative topology · no fake live metrics','Service topology · no live network metrics')
+          save(p,t)
+
+      - name: Commit final polish
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add 7.html 8.html 9.html 11.html 12.html 19.html 20.html 24.html 25.html 26.html 29.html
+          if git diff --cached --quiet; then
+            echo "No changes needed"
+          else
+            git commit -m "Final presentation polish across designs 7-34"
+            git pull --rebase origin main
+            git push
+          fi
