@@ -1,0 +1,144 @@
+name: Customer copy polish once
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/customer-copy-polish-once.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  polish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Remove design-explainer language
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          meta_language = re.compile(
+              r'(presented as|framed around|rather than|without forcing|appears like|production content|'
+              r'content should|should provide|should use|this view|these service routes|the map is optional|'
+              r'is treated as|illustration communicates|emotional counterpoint|illustrative structure|'
+              r'customer-service story|story slot|focused on|driven by .*cms|interface\b|design language|'
+              r'creative direction|design direction|prototype|mock[- ]?up|concept\s*\d+|reference only|'
+              r'not validated coverage|not coverage data|unsupported .*claims|unvalidated .*claims)',
+              re.I,
+          )
+
+          def customer_copy(text):
+              t = text.lower()
+              if any(k in t for k in ['self care', 'top up', 'pay bill', 'account', 'support', 'quick task']):
+                  return 'Top up, manage your account, pay bills and get support quickly.'
+              if any(k in t for k in ['remote', 'satellite', 'vsat', 'geography', 'coverage']):
+                  return 'Explore connectivity options for communities, homes and operations across Papua New Guinea.'
+              if any(k in t for k in ['business', 'enterprise', 'organisation', 'organization']):
+                  return 'Connectivity, voice and digital solutions for businesses of every size.'
+              if any(k in t for k in ['home', 'household', 'study', 'stream']):
+                  return 'Reliable home connectivity for study, streaming, work and staying in touch.'
+              if any(k in t for k in ['mobile', 'calls', 'data']):
+                  return 'Stay connected with mobile services for calls, data and everyday use.'
+              if any(k in t for k in ['news', 'cms', 'corporate', 'careers', 'notice']):
+                  return 'See the latest Telikom news, network updates, careers and company information.'
+              if any(k in t for k in ['people', 'community', 'learning', 'story', 'stories', 'local']):
+                  return 'See how connectivity supports people, communities, learning and business across Papua New Guinea.'
+              if any(k in t for k in ['map', 'service route', 'services', 'pathway', 'list']):
+                  return 'Explore Telikom services and find the right option for your needs.'
+              return ''
+
+          # Leaf paragraphs only: rewrite meta commentary, preserve normal customer copy.
+          p_re = re.compile(r'<p(\s[^>]*)?>\s*([^<>]{1,700})\s*</p>', re.I | re.S)
+          small_re = re.compile(r'<small(\s[^>]*)?>\s*([^<>]{1,280})\s*</small>', re.I | re.S)
+
+          changed = []
+          for p in sorted(Path('.').glob('*.html'), key=lambda x: int(x.stem) if x.stem.isdigit() else 999999):
+              if not p.stem.isdigit():
+                  continue
+              original = p.read_text(encoding='utf-8')
+              s = original
+
+              def rewrite_p(m):
+                  raw = re.sub(r'\s+', ' ', m.group(2)).strip()
+                  if not meta_language.search(raw):
+                      return m.group(0)
+                  replacement = customer_copy(raw)
+                  return f'<p{m.group(1) or ""}>{replacement}</p>' if replacement else ''
+
+              def rewrite_small(m):
+                  raw = re.sub(r'\s+', ' ', m.group(2)).strip()
+                  if not meta_language.search(raw):
+                      return m.group(0)
+                  replacement = customer_copy(raw)
+                  return f'<small{m.group(1) or ""}>{replacement}</small>' if replacement else ''
+
+              s = p_re.sub(rewrite_p, s)
+              s = small_re.sub(rewrite_small, s)
+
+              # Visible section labels: keep the useful subject, remove design commentary.
+              replacements = [
+                  (r'PNG Signal Map\s*/\s*Concept\s*\d+', 'PNG Signal Map'),
+                  (r'Remote PNG\s*/\s*Geography as context', 'Remote PNG'),
+                  (r'Plans\s*/\s*illustrative structure', 'Plans'),
+                  (r'Community reference', 'Community'),
+                  (r'CONCEPT\s*\d+\s*/\s*[^<]{0,80}', 'TELIKOM PNG'),
+                  (r'Concept\s*\d+\s*/\s*[^<]{0,80}', 'Telikom PNG'),
+                  (r'Illustrative map\s*[—-]\s*not validated coverage data', 'Coverage information available through Telikom support'),
+                  (r'Approved plan data', 'Data options'),
+                  (r'Validated pricing', 'View offers'),
+                  (r'Validated offers', 'View offers'),
+                  (r'Solution-led', 'Business solutions'),
+                  (r'Enquiry pathway', 'Talk to sales'),
+                  (r'Explore pathway', 'Explore services'),
+              ]
+              for pattern, repl in replacements:
+                  s = re.sub(pattern, repl, s, flags=re.I)
+
+              # Clean accessibility text that still describes placeholders or prototypes.
+              s = re.sub(
+                  r'aria-label="PNG photography placeholders"',
+                  'aria-label="Papua New Guinea community photography"',
+                  s,
+                  flags=re.I,
+              )
+              s = re.sub(
+                  r'aria-label="Stylized illustrative map of Papua New Guinea\. This is not a coverage map\."',
+                  'aria-label="Papua New Guinea service map"',
+                  s,
+                  flags=re.I,
+              )
+              s = re.sub(
+                  r'aria-label="Illustrative remote PNG topographic graphic"',
+                  'aria-label="Remote Papua New Guinea connectivity graphic"',
+                  s,
+                  flags=re.I,
+              )
+
+              # Generic cleanup for standalone explainer phrases left in simple text nodes.
+              s = re.sub(r'>\s*Production content should[^<]{0,300}<', '><', s, flags=re.I)
+              s = re.sub(r'>\s*Prototype content only[^<]{0,300}<', '><', s, flags=re.I)
+              s = re.sub(r'>\s*Illustrative content reference only[^<]{0,300}<', '><', s, flags=re.I)
+
+              if s != original:
+                  p.write_text(s, encoding='utf-8')
+                  changed.append(p.name)
+
+          print('updated:', ', '.join(changed) if changed else 'none')
+          PY
+
+      - name: Commit customer-facing copy and remove one-time workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          rm -f .github/workflows/customer-copy-polish-once.yml
+          git add -- '*.html' .github/workflows/customer-copy-polish-once.yml
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git commit -m "Polish designs to customer-facing Telikom copy"
+          git push origin main
