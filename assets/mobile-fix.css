@@ -1,0 +1,51 @@
+/* Mobile responsive layer shared by all Telikom homepage concepts */
+html,body{max-width:100%;overflow-x:hidden}img,video,canvas,svg{max-width:100%;height:auto}table{max-width:100%}
+@media (max-width:900px){
+  body{font-size:15px!important}
+  .wrap,.container,.shell,.inner,.glance-wrap,.inst-wrap,.nav-inner,.header-inner,.footer-inner{width:min(100% - 32px,1280px)!important;max-width:100%!important;margin-left:auto!important;margin-right:auto!important;padding-left:0!important;padding-right:0!important}
+  header,.header,.topbar,.navbar,.nav{max-width:100%!important}
+  header nav,.header nav,.top nav,.nav-links,.links{max-width:100%!important;overflow-x:auto!important;overflow-y:hidden!important;white-space:nowrap!important;scrollbar-width:none;-webkit-overflow-scrolling:touch;gap:8px!important;padding-bottom:2px}.nav-links::-webkit-scrollbar,header nav::-webkit-scrollbar,.top nav::-webkit-scrollbar{display:none}
+  header nav a,.header nav a,.top nav a,.nav-links a{flex:0 0 auto!important;min-height:42px!important;display:inline-flex!important;align-items:center!important;padding:8px 10px!important}
+  .hero,.institutional-hero,.hero-wrap,.hero-shell{min-height:0!important;height:auto!important}
+  .hero .wrap,.hero-grid,.hero-inner,.institutional-hero .inst-wrap,.inst-wrap,.split,.layout,.main-grid,.two-col,.columns,.feature-grid,.service-grid,.services-grid,.supportGrid,.support,.bizGrid,.biz-layout,.footer-grid,.cta-grid{grid-template-columns:1fr!important}
+  .hero-copy,.inst-copy,.hero-content{max-width:100%!important;width:100%!important;padding-right:0!important}
+  .hero h1,.institutional-hero h1,.inst-copy h1{font-size:clamp(36px,10vw,52px)!important;line-height:1.02!important;letter-spacing:-1.3px!important;max-width:100%!important}
+  .hero h2,.section-title,.head h2{font-size:clamp(28px,7vw,38px)!important;line-height:1.08!important}
+  .hero p,.inst-copy p{font-size:16px!important;line-height:1.6!important;max-width:100%!important}
+  .hero .btns,.hero-actions,.inst-actions,.actions{display:grid!important;grid-template-columns:1fr!important;gap:10px!important;width:100%!important;max-width:420px!important}
+  .hero .btn,.hero-actions .btn,.inst-actions .btn{width:100%!important;margin:0!important;justify-content:center!important}
+  .heroArt,.hero-media,.hero-image,.inst-media,.hero-visual{width:100%!important;min-width:0!important;height:clamp(230px,62vw,360px)!important;max-height:none!important;order:2!important;margin-top:8px!important}
+  .inst-consumer-promo,.inst-network-console,.inst-corporate-mark,.inst-exec-status,.hero-panel{width:100%!important;max-width:100%!important;justify-self:stretch!important;margin-top:8px!important}
+  .gc-shell,.gn-grid,.gco-grid,.gh-shell,.ge-grid,.cards,.plans,.miniPlans,.catalog,.devices,.biz,.bizSide,.satSide,.quick,.tools,.solutions,.metrics,.stories,.news-grid,.tiles,.audience-grid,.unique-grid{grid-template-columns:1fr 1fr!important}
+  .gc-intro,.gn-main,.gco-intro,.gh-story{grid-column:1/-1!important}
+  .tableWrap,.table-wrap,.comparison,.tabs{max-width:100%!important;overflow-x:auto!important;-webkit-overflow-scrolling:touch}.table{min-width:680px!important}
+  .section,.section-block,section{max-width:100%!important}
+  .sidebar,.side-rail,.rail{position:static!important;width:100%!important;max-width:100%!important}
+  .footer .wrap,footer .wrap,.footer-inner{flex-wrap:wrap!important;gap:16px!important}
+  .floating,.float-card,.decor,.orb{max-width:100%!important}
+}
+@media (max-width:620px){
+  .wrap,.container,.shell,.inner,.glance-wrap,.inst-wrap,.nav-inner,.header-inner,.footer-inner{width:min(100% - 24px,1280px)!important}
+  header .wrap,.header .wrap,.top .wrap,.nav-inner{min-height:66px!important;height:auto!important;padding-top:8px!important;padding-bottom:8px!important;gap:10px!important;flex-wrap:wrap!important}
+  header img,.header img,.top img,.logo img{max-height:40px!important;width:auto!important}
+  header nav,.header nav,.top nav,.nav-links{width:100%!important;order:3!important;border-top:1px solid rgba(100,130,150,.15)!important;padding-top:6px!important}
+  .hero,.institutional-hero{padding-top:34px!important;padding-bottom:38px!important;margin-left:0!important;margin-right:0!important;border-radius:0!important}
+  .hero h1,.institutional-hero h1,.inst-copy h1{font-size:clamp(32px,11vw,44px)!important}
+  .hero p,.inst-copy p{font-size:15px!important}
+  .gc-shell,.gn-grid,.gco-grid,.gh-shell,.ge-grid,.cards,.plans,.miniPlans,.catalog,.devices,.biz,.bizSide,.satSide,.quick,.tools,.solutions,.metrics,.stories,.news-grid,.tiles,.audience-grid,.unique-grid{grid-template-columns:1fr!important}
+  .gc-intro,.gn-main,.gco-intro,.gh-story{grid-column:auto!important}
+  .panel,.box,.supportBox,.plan,.tile,.service,.svc,.device,.story,.metric,.card,.section{padding:18px!important}
+  .section,.section-block{margin-left:0!important;margin-right:0!important}
+  .dock,.action-dock,.quick-dock{position:static!important;display:grid!important;grid-template-columns:1fr 1fr!important;width:100%!important;transform:none!important}
+  .tabs{display:flex!important;overflow-x:auto!important;white-space:nowrap!important}.tabs button{flex:0 0 auto!important}
+  .footer .wrap,footer .wrap,.footer-inner{display:grid!important;grid-template-columns:1fr!important;text-align:left!important}.footer img,footer img{max-height:38px!important;width:auto!important}
+  .heroArt,.hero-media,.hero-image,.inst-media,.hero-visual{height:240px!important;border-radius:14px!important}
+  .national-proof-strip,.glance-consumer,.glance-nation,.glance-corporate,.glance-human,.glance-executive{overflow:hidden!important}
+  .gc-item,.gn-card,.gco-stat,.gco-promise,.gh-impact,.ge-kpi{min-width:0!important}
+}
+@media (max-width:390px){
+  .wrap,.container,.shell,.inner,.glance-wrap,.inst-wrap,.nav-inner,.header-inner,.footer-inner{width:min(100% - 18px,1280px)!important}
+  .hero h1,.institutional-hero h1,.inst-copy h1{font-size:34px!important}
+  .dock,.action-dock,.quick-dock{grid-template-columns:1fr!important}
+  .btn{width:100%!important;justify-content:center!important}
+}
