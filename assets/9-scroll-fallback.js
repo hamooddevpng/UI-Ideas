@@ -19,8 +19,6 @@
   T.warp = document.getElementById('warp');
   T.state = { targetP: 0, p: 0, tmx: 0, tmy: 0, mx: 0, my: 0, activeIndex: -1 };
 
-  // Always preserve a real scrollable document, even if the external stylesheet
-  // is slow or unavailable in a GitHub HTML preview.
   document.documentElement.style.overflowY = 'auto';
   document.body.style.overflowY = 'auto';
   document.body.style.minHeight = '900vh';
@@ -50,7 +48,6 @@
     const p = T.state.p;
     const activeIndex = T.nearestStop(p);
     T.state.activeIndex = activeIndex;
-
     T.timeline.forEach((button, index) => button.classList.toggle('active', index === activeIndex));
 
     T.chapters.forEach((chapter, index) => {
@@ -59,17 +56,13 @@
       const amount = T.smooth(T.clamp(1 - distance / span));
       const direction = p < T.stops[index] ? 1 : -1;
       const mobile = window.innerWidth <= 700;
-
       chapter.style.opacity = amount.toFixed(3);
       chapter.style.filter = T.reduce ? 'none' : `blur(${((1 - amount) * 10).toFixed(2)}px)`;
       chapter.style.pointerEvents = index === activeIndex ? 'auto' : 'none';
       chapter.classList.toggle('active', index === activeIndex);
-
-      if (mobile) {
-        chapter.style.transform = `translate3d(${direction * (1 - amount) * 24}px,${(1 - amount) * 18}px,0) scale(${0.97 + amount * 0.03})`;
-      } else {
-        chapter.style.transform = `translate3d(${direction * (1 - amount) * 42}px,calc(-50% + ${direction * (1 - amount) * 24}px),0) scale(${0.94 + amount * 0.06})`;
-      }
+      chapter.style.transform = mobile
+        ? `translate3d(${direction * (1 - amount) * 24}px,${(1 - amount) * 18}px,0) scale(${0.97 + amount * 0.03})`
+        : `translate3d(${direction * (1 - amount) * 42}px,calc(-50% + ${direction * (1 - amount) * 24}px),0) scale(${0.94 + amount * 0.06})`;
     });
 
     if (T.progressFill) T.progressFill.style.width = `${(p * 100).toFixed(2)}%`;
@@ -104,10 +97,6 @@
     });
   });
 
-  window.addEventListener('scroll', () => {
-    T.state.targetP = T.clamp(window.scrollY / T.maxScroll());
-  }, { passive: true });
-
   window.addEventListener('pointermove', (event) => {
     if (event.pointerType === 'touch') return;
     T.state.tmx = event.clientX / window.innerWidth * 2 - 1;
@@ -119,5 +108,13 @@
   if (chat && chatLaunch) chatLaunch.addEventListener('click', () => chat.classList.toggle('open'));
 
   T.state.p = T.state.targetP = T.clamp(window.scrollY / T.maxScroll());
-  T.updateUI();
+
+  function uiFrame() {
+    T.state.targetP = T.clamp(window.scrollY / T.maxScroll());
+    T.state.p = T.lerp(T.state.p, T.state.targetP, T.reduce ? 1 : 0.09);
+    T.updateUI();
+    window.requestAnimationFrame(uiFrame);
+  }
+
+  uiFrame();
 })();
