@@ -23,92 +23,67 @@ jobs:
         run: |
           npm install --no-save playwright@1.55.0
           npx playwright install --with-deps chromium
-      - name: Run final QA
+      - name: Static scan
+        shell: python
+        run: |
+          from pathlib import Path
+          import json,re
+          OFFICIAL='https://www.telikom.com.pg/assets/misc/TPNGLOGO.png'
+          patterns={
+            'prototype':r'prototype',
+            'placeholder':r'placeholder',
+            'photography-required':r'photography required',
+            'concept-number':r'concept\s+\d+',
+            'validate-before-production':r'validate before production',
+            'approved-imagery':r'approved (?:png )?(?:photo|photography|imagery)',
+            'mockup':r'mockup',
+            'lorem':r'lorem ipsum',
+            'fake-copy':r'fake (?:data|content|input|metric|precision)'
+          }
+          report={'designs':{},'summary':{}}
+          for n in range(7,35):
+            p=Path(f'{n}.html'); html=p.read_text(encoding='utf-8')
+            flags=[]
+            h1=len(re.findall(r'<h1\b',html,re.I))
+            logos=html.count(OFFICIAL)
+            noindex=bool(re.search(r'<meta[^>]+name=["\']robots["\'][^>]+content=["\'][^"\']*noindex[^"\']*nofollow',html,re.I))
+            for name,pat in patterns.items():
+              c=len(re.findall(pat,html,re.I))
+              if c: flags.append({'name':name,'count':c})
+            if h1!=1: flags.append({'name':'h1-count','value':h1})
+            if logos<1: flags.append({'name':'official-logo-missing'})
+            if not noindex: flags.append({'name':'noindex-missing'})
+            if re.search(r'unsplash\.com',html,re.I): flags.append({'name':'unsplash-present'})
+            greens=sorted(set(x.lower() for x in re.findall(r'#(?:43a047|52b848|4caf50|00a651|21a366)|\blime\b|--green\b',html,re.I)))
+            if greens: flags.append({'name':'green-tokens','value':greens})
+            report['designs'][str(n)]={'static':{'h1':h1,'officialLogoOccurrences':logos,'noindex':noindex},'flags':flags}
+          report['summary']['staticFlagged']=[int(k) for k,v in report['designs'].items() if v['flags']]
+          Path('final-qa-report.json').write_text(json.dumps(report,indent=2),encoding='utf-8')
+      - name: Browser load check
         shell: bash
         run: |
           python3 -m http.server 4173 >/tmp/ui-ideas-server.log 2>&1 &
-          cat > /tmp/final-qa.mjs <<'JS'
-          import fs from 'fs';
-          import { chromium } from 'playwright';
-
-          const OFFICIAL='https://www.telikom.com.pg/assets/misc/TPNGLOGO.png';
-          const suspicious=[
-            ['prototype',/prototype/ig],
-            ['placeholder',/placeholder/ig],
-            ['photography-required',/photography required/ig],
-            ['concept-number',/concept\s+\d+/ig],
-            ['validate-before-production',/validate before production/ig],
-            ['approved-imagery',/approved (?:png )?(?:photo|photography|imagery)/ig],
-            ['mockup',/mockup/ig],
-            ['lorem',/lorem ipsum/ig],
-            ['fake-copy',/fake (?:data|content|input|metric|precision)/ig]
-          ];
-          const report={generated:new Date().toISOString(),designs:{},summary:{}};
-          const browser=await chromium.launch({headless:true});
-          for(let n=7;n<=34;n++){
-            const file=`${n}.html`;
-            const html=fs.readFileSync(file,'utf8');
-            const s={file,static:{},desktop:{},mobile:{},flags:[]};
-            s.static.h1=(html.match(/<h1\b/ig)||[]).length;
-            s.static.officialLogoOccurrences=(html.split(OFFICIAL).length-1);
-            s.static.noindex=/name=["']robots["'][^>]*noindex\s*,?\s*nofollow/i.test(html) || /content=["'][^"']*noindex[^"']*nofollow/i.test(html);
-            s.static.unsplash=/unsplash\.com/i.test(html);
-            s.static.greenTokens=[...new Set((html.match(/#(?:43a047|52b848|4caf50|00a651|21a366)|\blime\b|--green\b/ig)||[]).map(x=>x.toLowerCase()))];
-            for(const [name,re] of suspicious){ const m=html.match(re); if(m?.length) s.flags.push({type:'static-wording',name,count:m.length}); }
-            if(s.static.h1!==1) s.flags.push({type:'static',name:'h1-count',value:s.static.h1});
-            if(s.static.officialLogoOccurrences<1) s.flags.push({type:'static',name:'official-logo-missing'});
-            if(!s.static.noindex) s.flags.push({type:'static',name:'noindex-missing'});
-            if(s.static.unsplash) s.flags.push({type:'static',name:'unsplash-present'});
-            if(s.static.greenTokens.length) s.flags.push({type:'static',name:'green-tokens',value:s.static.greenTokens});
-
-            for(const [mode,viewport] of [['desktop',{width:1440,height:1000}],['mobile',{width:390,height:844}]]){
-              const context=await browser.newContext({viewport});
-              const page=await context.newPage();
-              const pageErrors=[]; const consoleErrors=[]; const badResponses=[];
-              page.on('pageerror',e=>pageErrors.push(String(e.message||e)));
-              page.on('console',m=>{if(m.type()==='error') consoleErrors.push(m.text())});
-              page.on('response',r=>{ if(r.status()>=400) badResponses.push({status:r.status(),url:r.url()}); });
-              try{
-                await page.goto(`http://127.0.0.1:4173/${file}`,{waitUntil:'domcontentloaded',timeout:20000});
-                await page.waitForTimeout(1500);
-                const evald=await page.evaluate((official)=>{
-                  const imgs=[...document.images];
-                  const visibleImgs=imgs.filter(i=>{const r=i.getBoundingClientRect();const st=getComputedStyle(i);return r.width>1&&r.height>1&&st.display!=='none'&&st.visibility!=='hidden'});
-                  const broken=visibleImgs.filter(i=>!i.complete||i.naturalWidth===0).map(i=>i.currentSrc||i.src||i.alt);
-                  const logos=imgs.filter(i=>(i.currentSrc||i.src)===official);
-                  const bodyText=document.body.innerText.toLowerCase();
-                  return {
-                    h1:document.querySelectorAll('h1').length,
-                    officialLogos:logos.length,
-                    brokenVisibleImages:broken,
-                    horizontalOverflow:document.documentElement.scrollWidth>window.innerWidth+3,
-                    bodyHasPrototype:bodyText.includes('prototype'),
-                    bodyHasPlaceholder:bodyText.includes('placeholder'),
-                    bodyHasPhotographyRequired:bodyText.includes('photography required'),
-                    title:document.title
-                  };
-                },OFFICIAL);
-                s[mode]={...evald,pageErrors,consoleErrors:consoleErrors.slice(0,12),badResponses:badResponses.slice(0,20)};
-                if(evald.h1!==1) s.flags.push({type:mode,name:'h1-count',value:evald.h1});
-                if(evald.officialLogos<1) s.flags.push({type:mode,name:'official-logo-not-rendered'});
-                if(evald.brokenVisibleImages.length) s.flags.push({type:mode,name:'broken-visible-images',value:evald.brokenVisibleImages});
-                if(evald.horizontalOverflow) s.flags.push({type:mode,name:'horizontal-overflow'});
-                if(pageErrors.length) s.flags.push({type:mode,name:'page-errors',value:pageErrors});
-                if(evald.bodyHasPrototype||evald.bodyHasPlaceholder||evald.bodyHasPhotographyRequired) s.flags.push({type:mode,name:'visible-internal-wording'});
-              }catch(e){
-                s[mode]={error:String(e)};
-                s.flags.push({type:mode,name:'navigation-failure',value:String(e)});
-              }
-              await context.close();
-            }
-            report.designs[n]=s;
-          }
-          await browser.close();
-          report.summary.flaggedDesigns=Object.entries(report.designs).filter(([,v])=>v.flags.length).map(([k,v])=>({design:Number(k),flags:v.flags}));
-          report.summary.totalFlagged=report.summary.flaggedDesigns.length;
-          fs.writeFileSync('final-qa-report.json',JSON.stringify(report,null,2));
-          JS
-          node /tmp/final-qa.mjs
+          sleep 2
+          : > /tmp/browser.tsv
+          for n in $(seq 7 34); do
+            desktop=ok
+            mobile=ok
+            npx playwright screenshot --browser=chromium --viewport-size="1440,1000" --wait-for-timeout=900 --full-page "http://127.0.0.1:4173/${n}.html" "/tmp/${n}-desktop.png" >/tmp/pw-desktop.log 2>&1 || desktop=fail
+            npx playwright screenshot --browser=chromium --device="iPhone 13" --wait-for-timeout=900 --full-page "http://127.0.0.1:4173/${n}.html" "/tmp/${n}-mobile.png" >/tmp/pw-mobile.log 2>&1 || mobile=fail
+            printf '%s\t%s\t%s\n' "$n" "$desktop" "$mobile" >> /tmp/browser.tsv
+          done
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('final-qa-report.json'); report=json.loads(p.read_text())
+          browser_fail=[]
+          for line in Path('/tmp/browser.tsv').read_text().splitlines():
+            n,d,m=line.split('\t')
+            report['designs'][n]['browser']={'desktop':d,'mobile':m}
+            if d!='ok' or m!='ok': browser_fail.append(int(n))
+          report['summary']['browserFailed']=browser_fail
+          p.write_text(json.dumps(report,indent=2))
+          PY
       - name: Commit QA report
         run: |
           git config user.name "github-actions[bot]"
