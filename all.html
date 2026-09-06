@@ -6,21 +6,19 @@
   <title>Telikom design ideas shared by Hamood</title>
   <style>
     :root {
-      color-scheme: light;
-      --bg: #eef2f7;
-      --panel: #ffffff;
-      --text: #111827;
-      --muted: #667085;
-      --border: #d8dee8;
-      --accent: #0875c9;
-      --accent-soft: #eaf4fb;
-      --selected: #0f766e;
-      --selected-soft: #ecfdf5;
-      --shadow: 0 24px 70px rgba(15, 23, 42, .14);
+      color-scheme: dark;
+      --bg: #080b11;
+      --panel: #111722;
+      --panel-2: #171e2a;
+      --text: #f8fafc;
+      --muted: #9aa4b2;
+      --border: #293241;
+      --accent: #26a7e8;
+      --selected: #20b486;
+      --selected-soft: rgba(32,180,134,.14);
     }
 
     * { box-sizing: border-box; }
-
     html { scroll-behavior: smooth; }
 
     body {
@@ -28,146 +26,140 @@
       min-height: 100vh;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background:
-        radial-gradient(circle at 10% 0%, rgba(8,117,201,.09), transparent 28%),
-        radial-gradient(circle at 90% 10%, rgba(15,118,110,.06), transparent 25%),
+        radial-gradient(circle at 12% -10%, rgba(38,167,232,.12), transparent 28%),
+        radial-gradient(circle at 88% 0%, rgba(32,180,134,.07), transparent 24%),
         var(--bg);
       color: var(--text);
-      padding-bottom: 132px;
+      padding-bottom: 102px;
     }
 
     button, a { font: inherit; }
 
     .page {
-      width: min(1540px, 100%);
+      width: 100%;
       margin: 0 auto;
-      padding: 28px 22px 36px;
+      padding: 14px 14px 24px;
     }
 
     .hero {
       display: flex;
-      align-items: flex-end;
+      align-items: center;
       justify-content: space-between;
-      gap: 22px;
-      margin-bottom: 20px;
+      gap: 14px;
+      margin-bottom: 10px;
+    }
+
+    .title-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      flex-wrap: wrap;
     }
 
     h1 {
       margin: 0;
-      font-size: clamp(28px, 4vw, 52px);
-      letter-spacing: -.035em;
-      line-height: .98;
+      font-size: clamp(23px, 3vw, 38px);
+      letter-spacing: -.03em;
+      line-height: 1;
     }
 
-    .subtitle {
-      margin: 12px 0 0;
-      max-width: 760px;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.55;
-    }
-
+    .collection-label,
     .counter-pill {
       flex: 0 0 auto;
-      padding: 10px 14px;
+      padding: 7px 10px;
       border-radius: 999px;
-      background: rgba(255,255,255,.82);
       border: 1px solid var(--border);
-      box-shadow: 0 8px 24px rgba(15,23,42,.06);
+      background: rgba(17,23,34,.86);
       color: var(--muted);
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 800;
+    }
+
+    .collection-label {
+      color: #c8d1dc;
     }
 
     .controls {
-      display: grid;
-      grid-template-columns: auto 1fr auto;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 14px;
-      padding: 12px;
-      border-radius: 16px;
-      background: rgba(255,255,255,.82);
-      border: 1px solid var(--border);
-      backdrop-filter: blur(12px);
-      box-shadow: 0 8px 28px rgba(15,23,42,.06);
-    }
-
-    .control-left,
-    .control-center,
-    .control-right {
       display: flex;
       align-items: center;
+      justify-content: space-between;
       gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .control-group {
+      display: flex;
+      align-items: center;
+      gap: 7px;
       flex-wrap: wrap;
     }
 
-    .control-center { justify-content: center; }
-    .control-right { justify-content: flex-end; }
-
     .btn,
     .open-link {
-      min-height: 40px;
+      min-height: 34px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 0 14px;
+      padding: 0 11px;
       border: 1px solid var(--border);
-      border-radius: 10px;
-      background: #fff;
-      color: var(--text);
-      font-size: 13px;
+      border-radius: 8px;
+      background: var(--panel);
+      color: #dce3ec;
+      font-size: 12px;
       font-weight: 800;
       cursor: pointer;
       text-decoration: none;
-      transition: .18s ease;
+      transition: .16s ease;
     }
 
     .btn:hover,
     .open-link:hover {
       border-color: var(--accent);
-      color: var(--accent);
-      transform: translateY(-1px);
+      color: #fff;
+      background: #142232;
     }
 
     .btn:disabled {
-      opacity: .38;
+      opacity: .34;
       cursor: not-allowed;
-      transform: none;
     }
 
     .shortlist-btn.active {
       border-color: var(--selected);
       color: #fff;
-      background: var(--selected);
+      background: #0f7b60;
     }
 
     .browser {
       overflow: hidden;
-      border-radius: 22px;
-      border: 1px solid #cfd7e3;
+      width: 100%;
+      border-radius: 14px;
+      border: 1px solid #364153;
       background: #fff;
-      box-shadow: var(--shadow);
+      box-shadow: 0 28px 80px rgba(0,0,0,.45);
     }
 
     .browser-chrome {
       display: grid;
-      grid-template-columns: auto minmax(0, 1fr) auto;
+      grid-template-columns: auto minmax(0,1fr) auto;
       align-items: center;
-      gap: 14px;
-      padding: 12px 14px;
-      background: linear-gradient(180deg, #fbfcfe 0%, #f0f3f7 100%);
-      border-bottom: 1px solid #d7dde6;
+      gap: 10px;
+      min-height: 42px;
+      padding: 6px 9px;
+      background: linear-gradient(180deg, #242b36 0%, #1b222c 100%);
+      border-bottom: 1px solid #343d4a;
     }
 
     .browser-dots {
       display: flex;
       align-items: center;
-      gap: 7px;
+      gap: 6px;
     }
 
     .browser-dots span {
-      width: 12px;
-      height: 12px;
+      width: 10px;
+      height: 10px;
       border-radius: 50%;
       display: block;
     }
@@ -178,17 +170,17 @@
 
     .address-bar {
       min-width: 0;
-      height: 38px;
+      height: 29px;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      padding: 0 14px;
-      border: 1px solid #d6dce6;
+      gap: 7px;
+      padding: 0 11px;
+      border: 1px solid #343e4c;
       border-radius: 999px;
-      background: #fff;
-      color: #737b88;
-      font-size: 12px;
+      background: #10151d;
+      color: #9ca7b5;
+      font-size: 11px;
       font-weight: 650;
       overflow: hidden;
       white-space: nowrap;
@@ -196,28 +188,24 @@
     }
 
     .browser-label {
-      min-width: 88px;
+      min-width: 72px;
       text-align: right;
-      color: #475467;
-      font-size: 12px;
+      color: #c6cfda;
+      font-size: 11px;
       font-weight: 900;
     }
 
     .screen-shell {
-      padding: 16px;
-      background: linear-gradient(180deg, #e8edf4 0%, #f3f6f9 100%);
+      padding: 0;
+      background: #000;
     }
 
     .screen {
       position: relative;
-      width: min(100%, 1440px);
-      margin: 0 auto;
+      width: 100%;
       aspect-ratio: 16 / 9;
       overflow: hidden;
       background: #fff;
-      border: 1px solid #d8dee8;
-      border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(15,23,42,.08);
     }
 
     iframe {
@@ -233,138 +221,132 @@
     .design-info {
       display: grid;
       grid-template-columns: minmax(0, 1fr) auto;
-      gap: 18px;
-      align-items: start;
-      padding: 20px 22px 22px;
-      border-top: 1px solid var(--border);
+      gap: 16px;
+      align-items: center;
+      padding: 12px 14px 13px;
+      border-top: 1px solid #e5e7eb;
       background: #fff;
+      color: #111827;
     }
 
     .design-kicker {
-      margin: 0 0 6px;
-      color: var(--accent);
-      font-size: 11px;
+      margin: 0 0 3px;
+      color: #0875c9;
+      font-size: 10px;
       font-weight: 900;
-      letter-spacing: .09em;
+      letter-spacing: .08em;
       text-transform: uppercase;
     }
 
     .design-title {
       margin: 0;
-      font-size: clamp(21px, 2.3vw, 31px);
+      font-size: clamp(18px, 1.8vw, 25px);
       line-height: 1.08;
       letter-spacing: -.02em;
     }
 
     .design-description {
-      margin: 9px 0 0;
-      max-width: 920px;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.6;
-    }
-
-    .info-actions {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-      gap: 8px;
+      margin: 5px 0 0;
+      max-width: 1100px;
+      color: #667085;
+      font-size: 12.5px;
+      line-height: 1.45;
     }
 
     .jump-strip {
       display: flex;
-      gap: 7px;
+      gap: 6px;
       overflow-x: auto;
-      margin-top: 14px;
-      padding: 11px;
+      margin-top: 8px;
+      padding: 7px;
       border: 1px solid var(--border);
-      border-radius: 15px;
-      background: rgba(255,255,255,.78);
+      border-radius: 11px;
+      background: rgba(17,23,34,.9);
       scrollbar-width: thin;
     }
 
     .jump-btn {
       flex: 0 0 auto;
-      min-width: 38px;
-      height: 36px;
-      border: 1px solid var(--border);
-      border-radius: 9px;
-      background: #fff;
-      color: #475467;
+      min-width: 34px;
+      height: 31px;
+      border: 1px solid #344052;
+      border-radius: 7px;
+      background: #151c27;
+      color: #aeb8c5;
       cursor: pointer;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 900;
     }
 
     .jump-btn:hover {
       border-color: var(--accent);
-      color: var(--accent);
+      color: #fff;
     }
 
     .jump-btn.current {
       border-color: var(--accent);
-      background: var(--accent);
+      background: #0875c9;
       color: #fff;
     }
 
     .jump-btn.selected:not(.current) {
       border-color: var(--selected);
       background: var(--selected-soft);
-      color: var(--selected);
+      color: #61d3ae;
     }
 
     .shortlist-bar {
       position: fixed;
       left: 50%;
-      bottom: 14px;
+      bottom: 10px;
       z-index: 50;
-      width: min(1180px, calc(100% - 28px));
+      width: min(1160px, calc(100% - 22px));
       transform: translateX(-50%);
       display: grid;
       grid-template-columns: auto minmax(0, 1fr) auto;
       align-items: center;
-      gap: 14px;
-      padding: 12px 14px;
-      border-radius: 17px;
-      background: rgba(17,24,39,.95);
+      gap: 12px;
+      padding: 9px 11px;
+      border-radius: 13px;
+      background: rgba(14,19,28,.95);
       color: #fff;
-      border: 1px solid rgba(255,255,255,.12);
-      box-shadow: 0 20px 50px rgba(15,23,42,.28);
+      border: 1px solid #333d4d;
+      box-shadow: 0 18px 46px rgba(0,0,0,.36);
       backdrop-filter: blur(16px);
     }
 
     .shortlist-heading {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 7px;
       white-space: nowrap;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 900;
     }
 
     .count {
-      min-width: 27px;
-      height: 27px;
+      min-width: 24px;
+      height: 24px;
       display: inline-grid;
       place-items: center;
-      padding: 0 7px;
+      padding: 0 6px;
       border-radius: 999px;
       background: #fff;
       color: #111827;
-      font-size: 12px;
+      font-size: 11px;
     }
 
     .shortlist-items {
       display: flex;
-      gap: 7px;
+      gap: 6px;
       overflow-x: auto;
-      padding: 2px;
+      padding: 1px;
       scrollbar-width: thin;
     }
 
     .empty {
-      color: rgba(255,255,255,.58);
-      font-size: 12px;
+      color: rgba(255,255,255,.5);
+      font-size: 11px;
       white-space: nowrap;
     }
 
@@ -372,14 +354,14 @@
       flex: 0 0 auto;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      min-height: 30px;
-      padding: 0 8px 0 10px;
+      gap: 5px;
+      min-height: 27px;
+      padding: 0 7px 0 9px;
       border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.18);
-      background: rgba(255,255,255,.09);
+      border: 1px solid rgba(255,255,255,.15);
+      background: rgba(255,255,255,.07);
       color: #fff;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 800;
     }
 
@@ -396,54 +378,54 @@
     .chip .remove {
       display: inline-grid;
       place-items: center;
-      width: 20px;
-      height: 20px;
+      width: 18px;
+      height: 18px;
       border-radius: 50%;
-      background: rgba(255,255,255,.13);
+      background: rgba(255,255,255,.12);
     }
 
     .cart-actions {
       display: flex;
-      gap: 7px;
+      gap: 6px;
     }
 
     .cart-actions button {
-      min-height: 32px;
-      padding: 0 10px;
-      border-radius: 8px;
-      border: 1px solid rgba(255,255,255,.18);
-      background: rgba(255,255,255,.08);
+      min-height: 29px;
+      padding: 0 9px;
+      border-radius: 7px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.07);
       color: #fff;
       cursor: pointer;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 800;
       white-space: nowrap;
     }
 
-    .cart-actions button:hover { background: rgba(255,255,255,.15); }
-    .cart-actions button:disabled { opacity: .38; cursor: not-allowed; }
+    .cart-actions button:hover { background: rgba(255,255,255,.13); }
+    .cart-actions button:disabled { opacity: .34; cursor: not-allowed; }
 
     @media (max-width: 900px) {
-      .hero { align-items: flex-start; flex-direction: column; }
-      .controls { grid-template-columns: 1fr; }
-      .control-center, .control-right { justify-content: flex-start; }
+      .hero { align-items: flex-start; }
+      .collection-label { display: none; }
+      .controls { flex-wrap: wrap; }
       .browser-chrome { grid-template-columns: auto minmax(0, 1fr); }
       .browser-label { display: none; }
       .design-info { grid-template-columns: 1fr; }
-      .info-actions { justify-content: flex-start; }
       .shortlist-bar { grid-template-columns: 1fr auto; }
       .shortlist-items { grid-column: 1 / -1; grid-row: 2; }
     }
 
     @media (max-width: 560px) {
-      body { padding-bottom: 150px; }
-      .page { padding: 16px 10px 26px; }
-      .screen-shell { padding: 8px; }
-      .browser { border-radius: 16px; }
-      .screen { border-radius: 8px; }
+      body { padding-bottom: 132px; }
+      .page { padding: 10px 7px 18px; }
+      .hero { gap: 8px; }
+      h1 { font-size: 22px; }
+      .controls { margin-bottom: 6px; }
+      .browser { border-radius: 10px; }
       .address-bar { justify-content: flex-start; }
-      .design-info { padding: 16px; }
-      .shortlist-bar { bottom: 8px; width: calc(100% - 16px); }
+      .design-info { padding: 10px 11px 11px; }
+      .shortlist-bar { bottom: 6px; width: calc(100% - 12px); }
       .cart-actions #openSelected { display: none; }
     }
   </style>
@@ -451,22 +433,20 @@
 <body>
   <main class="page">
     <header class="hero">
-      <div>
+      <div class="title-group">
         <h1>Telikom design ideas shared by Hamood</h1>
-        <p class="subtitle">Browse one concept at a time in a fixed landscape browser frame. Use the shortlist button to save the ideas you like — your selections stay stored in this browser.</p>
+        <span class="collection-label">34 homepage concepts in one place</span>
       </div>
       <div class="counter-pill" id="positionCounter">1 / 34</div>
     </header>
 
     <section class="controls" aria-label="Carousel controls">
-      <div class="control-left">
+      <div class="control-group">
         <button class="btn" id="prevBtn" type="button">← Previous</button>
         <button class="btn" id="nextBtn" type="button">Next →</button>
       </div>
-      <div class="control-center">
+      <div class="control-group">
         <button class="btn shortlist-btn" id="shortlistTop" type="button">♡ Shortlist</button>
-      </div>
-      <div class="control-right">
         <a class="open-link" id="openFull" href="#" target="_blank" rel="noopener noreferrer">Open full design ↗</a>
       </div>
     </section>
@@ -474,7 +454,7 @@
     <section class="browser" aria-live="polite">
       <div class="browser-chrome">
         <div class="browser-dots" aria-hidden="true"><span></span><span></span><span></span></div>
-        <div class="address-bar"><span>🔒</span><span id="addressText">Telikom concept preview</span></div>
+        <div class="address-bar"><span>●</span><span id="addressText">Telikom concept preview</span></div>
         <div class="browser-label" id="browserLabel">Design 34</div>
       </div>
 
@@ -490,9 +470,7 @@
           <h2 class="design-title" id="designTitle">Executive Telikom</h2>
           <p class="design-description" id="designDescription"></p>
         </div>
-        <div class="info-actions">
-          <button class="btn shortlist-btn" id="shortlistBottom" type="button">♡ Shortlist</button>
-        </div>
+        <button class="btn shortlist-btn" id="shortlistBottom" type="button">♡ Shortlist</button>
       </div>
     </section>
 
@@ -517,40 +495,40 @@
     const currentKey = 'ui-ideas-carousel-current-v1';
 
     const designMeta = {
-      34: { title: 'Executive Telikom', description: 'A restrained, boardroom-grade direction: premium corporate presentation, disciplined typography and whitespace, clear audience pathways, strong service discovery, and almost no trend-led decoration.' },
-      33: { title: 'Infrastructure First', description: 'An architectural, engineering-led concept that presents Telikom first as national telecommunications infrastructure, with enterprise, government, remote connectivity and consumer access organised around the network backbone.' },
-      32: { title: 'Swiss Telikom', description: 'A rigorous International/Swiss-style system built around grid discipline, numbered navigation, strong alignment and typography. It aims for world-class clarity without relying on decorative cards or effects.' },
-      31: { title: 'PNG Modernism', description: 'A distinctly Papua New Guinean modernist visual language using abstract geometry, repetition and rhythm rather than generic telecom gradients — culturally inspired without directly copying traditional motifs.' },
-      30: { title: 'Cardless Corporate', description: 'An ultra-refined corporate homepage that deliberately avoids the usual rounded-card layout. Hierarchy comes from type, whitespace, rules, photography and carefully controlled proportions.' },
-      29: { title: 'Network Observatory', description: 'A premium, information-rich network concept that treats connectivity and infrastructure as something to explore and observe, with a more technical, dynamic and enterprise-oriented visual personality.' },
-      28: { title: 'Nation Connected', description: 'A PNG-first concept centred on Telikom’s national role and the idea of connecting people and places across the country, balancing modern digital presentation with a strong local identity.' },
-      27: { title: 'PNG Editorial', description: 'A publication-inspired direction where strong photography, editorial typography and Papua New Guinean storytelling lead the experience instead of a standard telecom sales-page structure.' },
-      26: { title: 'Service Exchange', description: 'A service-discovery concept focused on very high UX clarity — helping visitors quickly understand, compare and move between Telikom service categories without being overwhelmed by promotional content.' },
-      25: { title: 'Coverage First', description: 'This flips the usual telecom sales funnel: before showing plans, it starts with the practical question of what services are available where the customer is, making location and coverage the main entry point.' },
-      24: { title: 'Guided Connection', description: 'A guided service-selection journey that asks simple human questions about what the visitor needs, then routes them toward relevant Telikom services instead of expecting them to know product names.' },
-      23: { title: 'Telikom OS', description: 'A modern operating-system-inspired concept that makes Telikom feel like a connected digital platform rather than a conventional corporate homepage, while keeping service access highly visible.' },
-      22: { title: 'People × Technology', description: 'A balanced client-facing direction built around People, Products and Technology, visually pairing authentic PNG human stories with Telikom infrastructure and digital capability.' },
-      21: { title: 'PNG Signal Map', description: 'Papua New Guinea becomes the main storytelling and navigation surface, using a stylised map to connect regions, people, services, infrastructure and local connectivity stories.' },
-      20: { title: 'Telikom Command', description: 'A task-first homepage where search and command are central. Instead of beginning with a promotion, it begins with the question: what did the visitor come here to do?' },
-      19: { title: 'Choose Your World', description: 'A distinctive but management-ready concept that asks visitors to choose the Telikom “world” most relevant to them, creating different pathways instead of using one generic hero for everyone.' },
-      18: { title: 'Signal Wave', description: 'A highly visual concept built around a continuous signal line that travels through the page and changes meaning across voice, data, home, enterprise and remote connectivity.' },
-      17: { title: 'Pocket Telikom', description: 'A mobile-minded, youthful concept designed to make Telikom feel quick, personal and close at hand, with a strong emphasis on direct actions and compact digital-service interactions.' },
-      16: { title: 'Telikom Buddy', description: 'A conversational task-chooser approach that starts with what the customer wants to accomplish, rather than making them first understand Telikom’s internal site structure or product organisation.' },
-      15: { title: 'Type Storm', description: 'A typography-led experiment where words, movement and changing type become the interface itself, communicating connectivity without falling back to conventional telecom card collections.' },
-      14: { title: 'Signal Quest', description: 'A gamified exploration concept that treats the homepage like discovering a connected world. It is intentionally playful and experimental rather than a conventional corporate production direction.' },
-      13: { title: 'Telikom Stories', description: 'A highly youthful, story-led direction that puts people, visual narratives and energetic motion ahead of conventional corporate hierarchy, with a strong PNG identity.' },
-      12: { title: 'Neo-Brutal Telikom', description: 'A deliberately bold neo-brutalist direction with strong contrast, hard-edged hierarchy and a highly contemporary youth-oriented personality — intentionally far from traditional telecom corporate styling.' },
-      11: { title: 'Sticker Signal', description: 'The most youth-driven end of the concept range: playful, expressive and motion-heavy, using a sticker-like visual language while still keeping essential Telikom services discoverable.' },
-      10: { title: 'Earlier Exploration 10', description: 'An earlier homepage exploration retained as part of the comparison set. It represents the first phase of visual experimentation before the later concepts were deliberately pushed into more distinct design directions.' },
-      9: { title: 'Earlier Exploration 9', description: 'An earlier Telikom homepage experiment from the first concept group, useful for comparing how the visual language evolved as the later designs became more specialised and differentiated.' },
-      8: { title: 'Earlier Exploration 8', description: 'An earlier alternate homepage direction kept for comparison with the newer portfolio. It belongs to the initial round of concepts before the later design briefs introduced more extreme creative positions.' },
-      7: { title: 'Earlier Exploration 7', description: 'A first-round Telikom homepage exploration that helped broaden the initial visual direction and serves as a useful reference point against the more specialised concepts that followed.' },
-      6: { title: 'Earlier Exploration 6', description: 'One of the original homepage mockups shared in the first round, retained here so the later concepts can be judged against the earlier design language and structure.' },
-      5: { title: 'Self-Service Focus', description: 'An early direction that places practical self-service actions and customer utilities more prominently, helping users get to common Telikom tasks quickly.' },
-      4: { title: 'PNG / Community Focus', description: 'An early concept with a stronger Papua New Guinea and community feel, using local visual context to make Telikom feel closer to the people and places it connects.' },
-      3: { title: 'Balanced Homepage Direction', description: 'An early balanced concept combining a familiar homepage structure with a cleaner modern presentation, service access and room for strong Telikom imagery.' },
-      2: { title: 'Service-Led Exploration', description: 'An early service-oriented homepage direction that keeps Telikom products and customer pathways prominent while experimenting with a refreshed visual treatment.' },
-      1: { title: 'Navigation-First Exploration', description: 'An early concept focused on simple, easy navigation and straightforward access to the main Telikom service areas, providing a clear baseline for the later experiments.' }
+      34: { title: 'Executive Telikom', description: 'A restrained, boardroom-grade direction with disciplined typography, whitespace, clear audience pathways and strong service discovery.' },
+      33: { title: 'Infrastructure First', description: 'An architectural, engineering-led concept that presents Telikom first as national telecommunications infrastructure.' },
+      32: { title: 'Swiss Telikom', description: 'A rigorous International-style system built around grid discipline, numbered navigation, strong alignment and typography.' },
+      31: { title: 'PNG Modernism', description: 'A distinctly Papua New Guinean modernist visual language using abstract geometry, repetition and rhythm.' },
+      30: { title: 'Cardless Corporate', description: 'An ultra-refined corporate homepage that avoids the usual rounded-card layout, using type, whitespace, rules and photography.' },
+      29: { title: 'Network Observatory', description: 'A premium, information-rich network concept with a technical, dynamic and enterprise-oriented personality.' },
+      28: { title: 'Nation Connected', description: 'A PNG-first concept centred on Telikom’s national role and connecting people and places across the country.' },
+      27: { title: 'PNG Editorial', description: 'A publication-inspired direction led by strong photography, editorial typography and Papua New Guinean storytelling.' },
+      26: { title: 'Service Exchange', description: 'A service-discovery concept focused on clarity, helping visitors quickly understand and move between Telikom service categories.' },
+      25: { title: 'Coverage First', description: 'Starts with the practical question of what services are available where the customer is, making coverage the main entry point.' },
+      24: { title: 'Guided Connection', description: 'A guided service-selection journey that asks simple human questions, then routes visitors toward relevant Telikom services.' },
+      23: { title: 'Telikom OS', description: 'An operating-system-inspired concept that makes Telikom feel like a connected digital platform rather than a conventional homepage.' },
+      22: { title: 'People × Technology', description: 'A balanced direction built around People, Products and Technology, pairing PNG human stories with infrastructure and digital capability.' },
+      21: { title: 'PNG Signal Map', description: 'Papua New Guinea becomes the main storytelling and navigation surface, connecting regions, people, services and infrastructure.' },
+      20: { title: 'Telikom Command', description: 'A task-first homepage where search and command are central, beginning with what the visitor came to do.' },
+      19: { title: 'Choose Your World', description: 'Visitors choose the Telikom world most relevant to them, creating distinct pathways instead of one generic hero.' },
+      18: { title: 'Signal Wave', description: 'A highly visual concept built around a continuous signal line that changes meaning across Telikom services.' },
+      17: { title: 'Pocket Telikom', description: 'A mobile-minded, youthful concept focused on direct actions and compact digital-service interactions.' },
+      16: { title: 'Telikom Buddy', description: 'A conversational task-chooser approach that starts with what the customer wants to accomplish.' },
+      15: { title: 'Type Storm', description: 'A typography-led experiment where words, movement and changing type become the interface itself.' },
+      14: { title: 'Signal Quest', description: 'A gamified exploration concept that treats the homepage like discovering a connected world.' },
+      13: { title: 'Telikom Stories', description: 'A highly youthful, story-led direction that puts people, visual narratives and energetic motion first.' },
+      12: { title: 'Neo-Brutal Telikom', description: 'A bold neo-brutalist direction with strong contrast, hard-edged hierarchy and a contemporary youth-oriented personality.' },
+      11: { title: 'Sticker Signal', description: 'A playful, expressive and motion-heavy direction using a sticker-like visual language.' },
+      10: { title: 'Earlier Exploration 10', description: 'An earlier homepage exploration retained as part of the comparison set.' },
+      9: { title: 'Earlier Exploration 9', description: 'An earlier Telikom homepage experiment from the first concept group.' },
+      8: { title: 'Earlier Exploration 8', description: 'An earlier alternate homepage direction kept for comparison with the newer portfolio.' },
+      7: { title: 'Earlier Exploration 7', description: 'A first-round Telikom homepage exploration retained as a reference point.' },
+      6: { title: 'Earlier Exploration 6', description: 'One of the original homepage mockups shared in the first round.' },
+      5: { title: 'Self-Service Focus', description: 'An early direction that places practical self-service actions and customer utilities more prominently.' },
+      4: { title: 'PNG / Community Focus', description: 'An early concept with a stronger Papua New Guinea and community feel.' },
+      3: { title: 'Balanced Homepage Direction', description: 'An early balanced concept combining a familiar homepage structure with a cleaner modern presentation.' },
+      2: { title: 'Service-Led Exploration', description: 'An early service-oriented homepage direction with prominent Telikom products and customer pathways.' },
+      1: { title: 'Navigation-First Exploration', description: 'An early concept focused on simple navigation and straightforward access to Telikom service areas.' }
     };
 
     const sourceUrl = n => `https://github.com/${owner}/${repo}/blob/${branch}/${n}.html`;
@@ -617,10 +595,10 @@
       const url = previewUrl(n);
 
       frame.src = url;
-      frame.title = `Design ${n} — ${meta.title}`;
+      frame.title = `Design ${n}: ${meta.title}`;
       positionCounter.textContent = `${currentIndex + 1} / ${designs.length}`;
       browserLabel.textContent = `Design ${n}`;
-      addressText.textContent = `Telikom concept ${n} — ${meta.title}`;
+      addressText.textContent = `Telikom concept ${n}: ${meta.title}`;
       designKicker.textContent = `Design ${n}`;
       designTitle.textContent = meta.title;
       designDescription.textContent = meta.description;
@@ -635,6 +613,7 @@
     function renderSelection() {
       const n = currentDesign();
       const isPicked = selected.includes(n);
+
       [shortlistTop, shortlistBottom].forEach(btn => {
         btn.classList.toggle('active', isPicked);
         btn.setAttribute('aria-pressed', String(isPicked));
@@ -686,7 +665,7 @@
       btn.className = 'jump-btn';
       btn.dataset.design = String(n);
       btn.textContent = n;
-      btn.title = `${n} — ${designMeta[n].title}`;
+      btn.title = `${n}: ${designMeta[n].title}`;
       btn.addEventListener('click', () => goToDesign(n));
       jumpStrip.appendChild(btn);
     });
