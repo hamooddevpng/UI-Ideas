@@ -1,0 +1,944 @@
+{
+  "7": {
+    "bytes": 31296,
+    "h1": "Connecting Papua New Guinea",
+    "sections": [
+      "services",
+      "plans",
+      "promotions",
+      "devices",
+      "business",
+      "network",
+      "selfcare",
+      "why",
+      "stories",
+      "support"
+    ],
+    "palette": [
+      "#0875C9",
+      "#045F9F",
+      "#EAF6FD",
+      "#F6FBFE",
+      "#EDF6FB",
+      "#163247",
+      "#657986",
+      "#D7E4EC",
+      "#FBFDFE",
+      "#FFF"
+    ],
+    "external_domains": [
+      "fonts.googleapis.com",
+      "fonts.gstatic.com",
+      "www.undp.org",
+      "blog.apnic.net",
+      "pngbusinessnews.b-cdn.net",
+      "www.fao.org",
+      "www.telikom.com.pg"
+    ],
+    "uses_three": false,
+    "uses_webgl": false,
+    "uses_brand_script": false,
+    "image_count": 5,
+    "button_count": 9,
+    "section_count": 10
+  },
+  "8": {
+    "bytes": 39275,
+    "h1": "PNG, connected for what\u2019s next.",
+    "sections": [
+      "services",
+      "png",
+      "enterprise",
+      "support"
+    ],
+    "palette": [
+      "#0875C9",
+      "#006EAA",
+      "#EAF7FD",
+      "#F5FBFE",
+      "#0C2F45",
+      "#60798A",
+      "#D6E6EF",
+      "#FFFFFF"
+    ],
+    "external_domains": [
+      "fonts.googleapis.com",
+      "fonts.gstatic.com",
+      "www.telikom.com.pg",
+      "upload.wikimedia.org",
+      "www.fao.org",
+      "www.pnglng.com",
+      "pngbusinessnews.b-cdn.net",
+      "blog.apnic.net"
+    ],
+    "uses_three": false,
+    "uses_webgl": false,
+    "uses_brand_script": true,
+    "image_count": 8,
+    "button_count": 11,
+    "section_count": 4
+  },
+  "9": {
+    "bytes": 7958,
+    "h1": "Connecting Papua New Guinea",
+    "sections": [
+      "support"
+    ],
+    "palette": [
+      "#DFF5FF"
+    ],
+    "external_domains": [
+      "fonts.googleapis.com",
+      "fonts.gstatic.com",
+      "cdn.jsdelivr.net",
+      "www.telikom.com.pg",
+      "raw.githubusercontent.com"
+    ],
+    "uses_three": true,
+    "uses_webgl": true,
+    "uses_brand_script": false,
+    "image_count": 1,
+    "button_count": 14,
+    "section_count": 1
+  },
+  "10": {
+    "bytes": 43763,
+    "h1": "Make distance disappear.",
+    "sections": [
+      "worlds",
+      "plans",
+      "business",
+      "news",
+      "support"
+    ],
+    "palette": [
+      "#0875C9",
+      "#3594D1",
+      "#082D46",
+      "#F5F8FB",
+      "#FFF",
+      "#668095",
+      "#CDDBE5",
+      "#EAF4FA",
+      "#EAF4FB"
+    ],
+    "external_domains": [
+      "fonts.googleapis.com",
+      "fonts.gstatic.com",
+      "cdn.jsdelivr.net",
+      "unpkg.com",
+      "www.telikom.com.pg"
+    ],
+    "uses_three": true,
+    "uses_webgl": true,
+    "uses_brand_script": true,
+    "image_count": 2,
+    "button_count": 6,
+    "section_count": 5
+  },
+  "11": {
+    "bytes": 44155,
+    "h1": "PNG Always Connected.",
+    "sections": [
+      "top",
+      "signals",
+      "plans",
+      "stories",
+      "selfcare",
+      "business",
+      "remote",
+      "news",
+      "support"
+    ],
+    "palette": [
+      "#0875C9",
+      "#2B91D5",
+      "#B9DFF4",
+      "#EEF8FD",
+      "#0D2D42",
+      "#FFFFFF",
+      "#C7DCE8",
+      "#5E7889"
+    ],
+    "external_domains": [
+      "fonts.googleapis.com",
+      "fonts.gstatic.com",
+      "www.pnglng.com",
+      "pngbusinessnews.b-cdn.net",
+      "blog.apnic.net",
+      "www.telikom.com.pg",
+      "content.unops.org",
+      "visitdarlingdowns.com.au",
+      "mb.cision.com"
+    ],
+    "uses_three": false,
+    "uses_webgl": false,
+    "uses_brand_script": true,
+    "image_count": 6,
+    "button_count": 2,
+    "section_count": 9
+  },
+  "12": {
+    "bytes": 29807,
+    "h1": "CONNECT PNG NOW.",
+    "sections": [
+      "top",
+      "services",
+      "plans",
+      "people",
+      "business",
+      "technology",
+      "selfcare",
+      "support"
+    ],
+    "palette": [
+      "#0875C9",
+      "#064F87",
+      "#FFF",
+      "#EAF4FB",
+      "#0B2535",
+      "#D5E4EE",
+      "#607989"
+    ],
+    "external_domains": [
+      "fonts.googleapis.com",
+      "fonts.gstatic.com",
+      "pngbusinessnews.b-cdn.net",
+      "blog.apnic.net",
+      "www.telikom.com.pg",
+      "www.fao.org"
+    ],
+    "uses_three": false,
+    "uses_webgl": false,
+    "uses_brand_script": true,
+    "image_count": 4,
+    "button_count": 6,
+    "section_count": 8
+  },
+  "13": {
+    "bytes": 15745,
+    "h1": "PNG. CONNECTED.",
+    "sections": [
+      "browse"
+    ],
+    "palette": [
+      "#0875C9",
+      "#3594D1",
+      "#D7EDFA",
+      "#F8FCFE",
+      "#122E3F",
+      "#FFF"
+    ],
+    "external_domains": [
+      "www.telikom.com.pg"
+    ],
+    "uses_three": false,
+    "uses_webgl": false,
+    "uses_brand_script": true,
+    "image_count": 1,
+    "button_count": 44,
+    "section_count": 1
+  },
+  "14": {
+    "bytes": 14061,
+    "h1": "TELIKOM",
+    "sections": [
+      "index"
+    ],
+    "palette": [
+      "#0875C9",
+      "#055D9C",
+      "#CBEAF9",
+      "#071E2D",
+      "#ECF8FE",
+      "#FFF",
+      "#8FC9E8"
+    ],
+    "external_domains": [
+      "www.telikom.com.pg"
+    ],
+    "uses_three": false,
+    "uses_webgl": false,
+    "uses_brand_script": true,
+    "image_count": 1,
+    "button_count": 7,
+    "section_count": 1
+  },
+  "15": {
+    "bytes": 12141,
+    "h1": "Connection starts here.",
+    "sections": [
+      "connect",
+      "move",
+      "home",
+      "build",
+      "reach",
+      "people",
+      "do",
+      "know"
+    ],
+    "palette": [
+      "#0875C9",
+      "#2789CA",
+      "#BFE0F3",
+      "#F7FBFD",
+      "#0A2433",
+      "#FFF",
+      "#BCD5E4"
+    ],
+    "external_domains": [
+      "fonts.googleapis.com",
+      "fonts.gstatic.com",
+      "www.telikom.com.pg"
+    ],
+    "uses_three": false,
+    "uses_webgl": false,
+    "uses_brand_script": true,
+    "image_count": 1,
+    "button_count": 1,
+    "section_count": 8
+  },
+  "16": {
+    "bytes": 16836,
+    "h1": "What do you want to do today?",
+    "sections": [
+      "journey",
+      "location"
+    ],
+    "palette": [
+      "#0875C9",
+      "#267FC0",
+      "#D9EDF8",
+      "#F4FAFD",
+      "#13374D",
+      "#FFF",
+      "#CBDDE8",
+      "#617D8F"
+    ],
+    "external_domains": [
+      "fonts.googleapis.com",
+      "fonts.gstatic.com",
+      "www.fao.org",
+      "www.telikom.com.pg",
+      "www.pnglng.com"
+    ],
+    "uses_three": false,
+    "uses_webgl": false,
+    "uses_brand_script": true,
+    "image_count": 1,
+    "button_count": 13,
+    "section_count": 2
+  },
+  "17": {
+    "bytes": 16125,
+    "h1": "Your Telikom. In your hands.",
+    "sections": [
+      "actions",
+      "business",
+      "stories",
+      "updates"
+    ],
+    "palette": [
+      "#0875C9",
+      "#1D82C7",
+      "#D5EDFA",
+      "#F1F9FD",
+      "#15354A",
+      "#FFF",
+      "#C8DCE8",
+      "#66869A"
+    ],
+    "external_domains": [
+      "fonts.googleapis.com",
+      "fonts.gstatic.com",
+      "www.telikom.com.pg"
+    ],
+    "uses_three": false,
+    "uses_webgl": false,
+    "uses_brand_script": true,
+    "image_count": 1,
+    "button_count": 15,
+    "section_count": 4
+  },
+  "18": {
+    "bytes": 21403,
+    "h1": "ONE SIGNAL. MILLIONS OF MOMENTS.",
+    "sections": [
+      "mobile",
+      "home",
+      "business",
+      "remote",
+      "people",
+      "selfcare",
+      "support"
+    ],
+    "palette": [
+      "#0875C9",
+      "#3A94CF",
+      "#A9D8F1",
+      "#EAF6FC",
+      "#0B293C",
+      "#FFF",
+      "#C8DCE8",
+      "#5E7787"
+    ],
+    "external_domains": [
+      "fonts.googleapis.com",
+      "fonts.gstatic.com",
+      "www.telikom.com.pg"
+    ],
+    "uses_three": false,
+    "uses_webgl": true,
+    "uses_brand_script": true,
+    "image_count": 1,
+    "button_count": 1,
+    "section_count": 7
+  },
+  "19": {
+    "bytes": 34071,
+    "h1": "Where do you want to connect?",
+    "sections": [
+      "worlds",
+      "all-services",
+      "plans",
+      "national",
+      "tasks",
+      "updates"
+    ],
+    "palette": [
+      "#0875C9",
+      "#0867AC",
+      "#D5EDF9",
+      "#F7FBFD",
+      "#102F43",
+      "#FFF",
+      "#C6DBE7",
+      "#668093"
+    ],
+    "external_domains": [
+      "fonts.googleapis.com",
+      "fonts.gstatic.com",
+      "pngbusinessnews.b-cdn.net",
+      "blog.apnic.net",
+      "www.telikom.com.pg"
+    ],
+    "uses_three": false,
+    "uses_webgl": false,
+    "uses_brand_script": true,
+    "image_count": 2,
+    "button_count": 16,
+    "section_count": 6
+  },
+  "20": {
+    "bytes": 32317,
+    "h1": "Find it. Do it.",
+    "sections": [
+      "directory",
+      "story",
+      "enterprise",
+      "tools",
+      "feed"
+    ],
+    "palette": [
+      "#0875C9",
+      "#075E9F",
+      "#E5F4FC",
+      "#F8FBFD",
+      "#132F42",
+      "#FFF",
+      "#CBDDE7",
+      "#627C8D",
+      "#EFF7FB"
+    ],
+    "external_domains": [
+      "blog.apnic.net",
+      "www.telikom.com.pg"
+    ],
+    "uses_three": false,
+    "uses_webgl": false,
+    "uses_brand_script": true,
+    "image_count": 2,
+    "button_count": 17,
+    "section_count": 5
+  },
+  "21": {
+    "bytes": 35762,
+    "h1": "One network. Across PNG.",
+    "sections": [
+      "list-view",
+      "routes",
+      "remote",
+      "people",
+      "plans",
+      "tools",
+      "feed"
+    ],
+    "palette": [
+      "#0875C9",
+      "#126CA8",
+      "#BCDFF2",
+      "#EAF6FC",
+      "#16354A",
+      "#FFF",
+      "#C6DCE8",
+      "#617C8F"
+    ],
+    "external_domains": [
+      "www.fao.org",
+      "www.pnglng.com",
+      "www.telikom.com.pg"
+    ],
+    "uses_three": false,
+    "uses_webgl": false,
+    "uses_brand_script": true,
+    "image_count": 2,
+    "button_count": 20,
+    "section_count": 7
+  },
+  "22": {
+    "bytes": 27952,
+    "h1": "People meet technology.",
+    "sections": [
+      "mobile",
+      "home",
+      "business",
+      "remote",
+      "products",
+      "selfcare",
+      "news"
+    ],
+    "palette": [
+      "#0875C9",
+      "#075B96",
+      "#D8EAF4",
+      "#F5F9FC",
+      "#102C3E",
+      "#FFF",
+      "#C8DAE4",
+      "#5E7788"
+    ],
+    "external_domains": [
+      "blog.apnic.net",
+      "www.telikom.com.pg",
+      "www.fao.org",
+      "www.pnglng.com",
+      "pngbusinessnews.b-cdn.net"
+    ],
+    "uses_three": false,
+    "uses_webgl": false,
+    "uses_brand_script": true,
+    "image_count": 8,
+    "button_count": 2,
+    "section_count": 7
+  },
+  "23": {
+    "bytes": 34516,
+    "h1": "Run your connection.",
+    "sections": [
+      "services",
+      "plans",
+      "people",
+      "business",
+      "remote",
+      "support",
+      "news"
+    ],
+    "palette": [
+      "#0875C9",
+      "#2A87C7",
+      "#DFEFF8",
+      "#F6FAFC",
+      "#17374B",
+      "#FFF",
+      "#CDDDE7",
+      "#607B8D"
+    ],
+    "external_domains": [
+      "www.pnglng.com",
+      "www.fao.org",
+      "www.telikom.com.pg"
+    ],
+    "uses_three": false,
+    "uses_webgl": false,
+    "uses_brand_script": true,
+    "image_count": 2,
+    "button_count": 10,
+    "section_count": 7
+  },
+  "24": {
+    "bytes": 44180,
+    "h1": "What do you need to connect?",
+    "sections": [
+      "guide",
+      "browse",
+      "offers",
+      "business",
+      "remote",
+      "support",
+      "news"
+    ],
+    "palette": [
+      "#0875C9",
+      "#0665A8",
+      "#D8EDF8",
+      "#F4FAFD",
+      "#143349",
+      "#FFF",
+      "#C9DDE8",
+      "#617B8D"
+    ],
+    "external_domains": [
+      "www.fao.org",
+      "www.pnglng.com",
+      "pngbusinessnews.b-cdn.net",
+      "www.telikom.com.pg"
+    ],
+    "uses_three": false,
+    "uses_webgl": false,
+    "uses_brand_script": true,
+    "image_count": 2,
+    "button_count": 10,
+    "section_count": 7
+  },
+  "25": {
+    "bytes": 30385,
+    "h1": "What can I get where I am?",
+    "sections": [
+      "coverage",
+      "services",
+      "offers",
+      "remote",
+      "business",
+      "story",
+      "support",
+      "news"
+    ],
+    "palette": [
+      "#0875C9",
+      "#106EA9",
+      "#D0E7F5",
+      "#EDF7FC",
+      "#16364A",
+      "#FFF",
+      "#C4D9E5",
+      "#607B8C"
+    ],
+    "external_domains": [
+      "blog.apnic.net",
+      "www.fao.org",
+      "www.pnglng.com",
+      "pngbusinessnews.b-cdn.net",
+      "www.telikom.com.pg"
+    ],
+    "uses_three": false,
+    "uses_webgl": false,
+    "uses_brand_script": true,
+    "image_count": 2,
+    "button_count": 7,
+    "section_count": 8
+  },
+  "26": {
+    "bytes": 27011,
+    "h1": "Telikom services.",
+    "sections": [
+      "exchange",
+      "compare",
+      "pathways",
+      "png",
+      "news",
+      "support"
+    ],
+    "palette": [
+      "#0875C9",
+      "#0766A6",
+      "#E2F1F9",
+      "#F9FBFC",
+      "#193A4C",
+      "#FFF",
+      "#D1E0E8",
+      "#627B89"
+    ],
+    "external_domains": [
+      "blog.apnic.net",
+      "pngbusinessnews.b-cdn.net",
+      "www.telikom.com.pg"
+    ],
+    "uses_three": false,
+    "uses_webgl": false,
+    "uses_brand_script": true,
+    "image_count": 2,
+    "button_count": 13,
+    "section_count": 6
+  },
+  "27": {
+    "bytes": 28933,
+    "h1": "A network shaped by Papua New Guinea.",
+    "sections": [
+      "people",
+      "services",
+      "products",
+      "technology",
+      "remote",
+      "enterprise",
+      "media",
+      "support"
+    ],
+    "palette": [
+      "#0875C9",
+      "#185E8D",
+      "#E2EDF3",
+      "#F8FAFB",
+      "#172C38",
+      "#FFF",
+      "#CCD9E0",
+      "#667C89"
+    ],
+    "external_domains": [
+      "blog.apnic.net",
+      "www.telikom.com.pg",
+      "www.fao.org"
+    ],
+    "uses_three": false,
+    "uses_webgl": false,
+    "uses_brand_script": true,
+    "image_count": 7,
+    "button_count": 2,
+    "section_count": 8
+  },
+  "28": {
+    "bytes": 29101,
+    "h1": "Connection moves through everyday life.",
+    "sections": [
+      "people",
+      "homes",
+      "community",
+      "business",
+      "remote",
+      "technology",
+      "support"
+    ],
+    "palette": [
+      "#0875C9",
+      "#0B629E",
+      "#D3E8F4",
+      "#F5F9FC",
+      "#15364A",
+      "#FFF",
+      "#BFD7E5",
+      "#CADDE8",
+      "#627E90"
+    ],
+    "external_domains": [
+      "www.pnglng.com",
+      "www.fao.org",
+      "www.telikom.com.pg"
+    ],
+    "uses_three": false,
+    "uses_webgl": false,
+    "uses_brand_script": true,
+    "image_count": 3,
+    "button_count": 2,
+    "section_count": 7
+  },
+  "29": {
+    "bytes": 36645,
+    "h1": "See the network behind every connection.",
+    "sections": [
+      "services",
+      "enterprise",
+      "products",
+      "technology",
+      "people",
+      "support",
+      "updates"
+    ],
+    "palette": [
+      "#0875C9",
+      "#075D98",
+      "#BFDDED",
+      "#EDF6FA",
+      "#102C3D",
+      "#FFF",
+      "#C5D8E2",
+      "#617B8B",
+      "#F7FBFD"
+    ],
+    "external_domains": [
+      "blog.apnic.net",
+      "www.fao.org",
+      "www.telikom.com.pg"
+    ],
+    "uses_three": false,
+    "uses_webgl": false,
+    "uses_brand_script": true,
+    "image_count": 2,
+    "button_count": 10,
+    "section_count": 7
+  },
+  "30": {
+    "bytes": 30815,
+    "h1": "Connection, with less noise.",
+    "sections": [
+      "services",
+      "compare",
+      "people",
+      "business",
+      "technology",
+      "selfcare",
+      "news",
+      "company"
+    ],
+    "palette": [
+      "#0875C9",
+      "#154B6E",
+      "#DDE8EE",
+      "#F7F9FA",
+      "#142A36",
+      "#FFF",
+      "#CBD8DE",
+      "#667B86"
+    ],
+    "external_domains": [
+      "www.telikom.com.pg",
+      "www.fao.org",
+      "www.pnglng.com",
+      "pngbusinessnews.b-cdn.net",
+      "blog.apnic.net"
+    ],
+    "uses_three": false,
+    "uses_webgl": false,
+    "uses_brand_script": true,
+    "image_count": 6,
+    "button_count": 2,
+    "section_count": 8
+  },
+  "31": {
+    "bytes": 14379,
+    "h1": "Signal. Rhythm. PNG.",
+    "sections": [
+      "services",
+      "business",
+      "remote",
+      "tasks",
+      "news"
+    ],
+    "palette": [
+      "#0875C9",
+      "#286F9E",
+      "#AFCFE1",
+      "#E9F3F8",
+      "#153143",
+      "#FFF",
+      "#C3D8E4",
+      "#637D8D"
+    ],
+    "external_domains": [
+      "www.telikom.com.pg",
+      "www.fao.org",
+      "www.pnglng.com",
+      "pngbusinessnews.b-cdn.net",
+      "blog.apnic.net"
+    ],
+    "uses_three": false,
+    "uses_webgl": false,
+    "uses_brand_script": true,
+    "image_count": 6,
+    "button_count": 2,
+    "section_count": 5
+  },
+  "32": {
+    "bytes": 15161,
+    "h1": "Clear services. Clear choices.",
+    "sections": [
+      "services",
+      "people",
+      "business",
+      "technology",
+      "support"
+    ],
+    "palette": [
+      "#0875C9",
+      "#0E3E5D",
+      "#F5F7F8",
+      "#111F27",
+      "#BFC9CE",
+      "#64717A",
+      "#FFF"
+    ],
+    "external_domains": [
+      "www.telikom.com.pg",
+      "pngbusinessnews.b-cdn.net",
+      "www.pnglng.com"
+    ],
+    "uses_three": false,
+    "uses_webgl": false,
+    "uses_brand_script": true,
+    "image_count": 5,
+    "button_count": 2,
+    "section_count": 5
+  },
+  "33": {
+    "bytes": 13332,
+    "h1": "Built to connect PNG.",
+    "sections": [
+      "backbone",
+      "enterprise",
+      "remote",
+      "consumer",
+      "support"
+    ],
+    "palette": [
+      "#0875C9",
+      "#124869",
+      "#CEDFE8",
+      "#F5F8FA",
+      "#122734",
+      "#AFC3CE",
+      "#617987",
+      "#DDEAF1"
+    ],
+    "external_domains": [
+      "www.telikom.com.pg",
+      "pngbusinessnews.b-cdn.net",
+      "blog.apnic.net",
+      "www.fao.org"
+    ],
+    "uses_three": false,
+    "uses_webgl": false,
+    "uses_brand_script": true,
+    "image_count": 6,
+    "button_count": 2,
+    "section_count": 5
+  },
+  "34": {
+    "bytes": 15605,
+    "h1": "Clear service. Serious capability.",
+    "sections": [
+      "personal",
+      "enterprise",
+      "company",
+      "support"
+    ],
+    "palette": [
+      "#0875C9",
+      "#163747",
+      "#D8E2E7",
+      "#F7F8F9",
+      "#17272F",
+      "#CDD6DB",
+      "#68767D"
+    ],
+    "external_domains": [
+      "www.telikom.com.pg",
+      "blog.apnic.net",
+      "pngbusinessnews.b-cdn.net",
+      "www.fao.org"
+    ],
+    "uses_three": false,
+    "uses_webgl": false,
+    "uses_brand_script": true,
+    "image_count": 5,
+    "button_count": 2,
+    "section_count": 4
+  }
+}
