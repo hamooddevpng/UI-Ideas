@@ -1,0 +1,134 @@
+name: One-time concepts 21-24 cleanup
+
+on:
+  push:
+    paths:
+      - '.github/workflows/one-time-21-24-cleanup.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Clean concepts 21 to 24
+        shell: python
+        run: |
+          import re
+          from pathlib import Path
+
+          GOROKA='https://blog.apnic.net/wp-content/uploads/2016/04/Goroka-EHP.jpg'
+          PEOPLE='https://www.fao.org/images/faoraplibraries/default-album/farmers-and-agripreneurs-actively-participate-in-a-hands-on-training-session-provided-by-the-eu-streit-png-programme.jpg?sfvrsn=4cc42070_1'
+          STUDENTS='https://www.pnglng.com/media/PNG-LNG-Media/Media%20Release%20Images/Flying-labs_PNG-LNG-Article.png?ext=.png'
+          TELIKOM_BIZ='https://www.telikom.com.pg/assets/business/voice-and-data.jpg'
+          TELIKOM_PABX='https://www.telikom.com.pg/assets/misc/pabx-connect.jpg'
+          DEVICE='https://www.telikom.com.pg/assets/products/RED-X_Quest_Plus.png'
+
+          def rep(text, pairs):
+              for old,new in pairs:
+                  text=text.replace(old,new)
+              return text
+
+          # 21 — PNG Signal Map
+          p=Path('21.html'); text=p.read_text(encoding='utf-8')
+          text=rep(text,[
+              ("text:'A task-first service reference for mobile, data, Top Up and account actions. This node is illustrative and does not represent a coverage boundary.'","text:'Mobile, data, Top Up and account actions for customers in and around Port Moresby. Check current Telikom coverage information for your area.'"),
+              ("text:'A gateway to business data, voice, systems and organisation-focused connectivity. The location is editorial context, not proof of service availability.'","text:'Explore business data, voice, systems and organisation-focused connectivity for Lae and surrounding business locations.'"),
+              ("text:'A pathway for VSAT and satellite-related solutions where terrestrial access may be difficult. Actual availability must be confirmed through validated channels.'","text:'Explore VSAT and satellite-related connectivity for remote sites and locations. Contact Telikom to confirm availability.'"),
+              ("text:'A placeholder for approved PNG community, customer or infrastructure storytelling tied to place without converting the map into a coverage claim.'","text:'Stories from communities, customers and infrastructure across New Britain.'"),
+              ("text:'A curated people-and-place story slot. Production content should use approved photography and fact-checked local context.'","text:'People, communities and connectivity stories from New Ireland.'"),
+              ("text:'A regional editorial story slot designed to make PNG geography meaningful while keeping service availability separate and explicit.'","text:'Community, service and connectivity stories from Bougainville.'"),
+          ])
+          # Make the two People portraits genuine PNG/Telikom images in the base source.
+          text=text.replace('.portrait.one{width:38%;height:54%;left:9%;top:9%;transform:rotate(-2deg)}',f'.portrait.one{{width:38%;height:54%;left:9%;top:9%;transform:rotate(-2deg);background:url("{PEOPLE}") center/cover no-repeat}}')
+          text=text.replace('.portrait.two{width:34%;height:42%;right:8%;top:26%;transform:rotate(2deg);background:#D6ECF8}',f'.portrait.two{{width:34%;height:42%;right:8%;top:26%;transform:rotate(2deg);background:url("{STUDENTS}") center/cover no-repeat}}')
+          text=text.replace('.portrait:before{content:"";white-space:pre;position:absolute;inset:0;display:grid;place-items:center;text-align:center;color:var(--map);font-size:9px;font-weight:800;letter-spacing:.12em}', '.portrait:before{content:"";display:none}')
+          p.write_text(text,encoding='utf-8')
+
+          # 22 — People x Technology
+          p=Path('22.html'); text=p.read_text(encoding='utf-8')
+          # Remove visible placeholder badges entirely.
+          text=re.sub(r'<div class="photo-placeholder">.*?</div>','',text)
+          text=rep(text,[
+              ('People × Technology / Concept 22','People × Technology'),
+              ('A Telikom homepage where every service is paired with the human outcome it enables — connecting people, products and technology in one visual language.','Telikom brings people, products and technology together across Mobile, Home, Business and Remote connectivity.'),
+              ('<b>The divider is the signal.</b><small>See how connectivity supports people, communities, learning and business across Papua New Guinea.</small>','<b>Connecting people and technology.</b><small>Services for everyday life, homes, organisations and communities across Papua New Guinea.</small>'),
+              ('Photography placeholder for an approved Papua New Guinea people image','Papua New Guinean students and community members'),
+              ('Photography placeholder for an approved PNG mobile-life story','Papua New Guinea business and community connection'),
+              ('Photography placeholder for an approved PNG household image','Goroka, Papua New Guinea'),
+              ('Photography placeholder for approved PNG business and operations imagery','Telikom business communications'),
+              ('Landscape photography placeholder for an approved Papua New Guinea remote connectivity story','Papua New Guinea remote connectivity'),
+              ('Customer support photography placeholder for an approved Telikom PNG service image','Telikom device and customer service'),
+              ('Everyday mobile tasks sit beside a real person or community story, keeping the service useful without losing the human context.','Mobile connectivity and Self Care services support everyday communication, data and account tasks.'),
+              ('Browse mobile connectivity and approved data pathways.','Browse mobile connectivity and data services.'),
+              ('Use the validated coverage pathway when available.','Check current coverage information for your area.'),
+              ('Technology deliberately takes more space in this chapter.','Connectivity, voice, systems and infrastructure for organisations.'),
+              ('The split shifts toward technology here: structured enterprise pathways, restrained typography and no generic dark corporate slab.','Explore structured Business Data, voice, systems, hosting and remote connectivity pathways.'),
+              ('Remote connectivity is paired directly with Papua New Guinea geography and community context, without turning illustrative geography into a coverage claim.','Explore remote and satellite connectivity for communities, organisations and hard-to-reach locations across Papua New Guinea.'),
+              ('Everyday mobile connectivity and approved data pathways.','Everyday mobile connectivity and data services.'),
+              ('Self Care is paired with a human service story instead of being reduced to a utility dashboard.','Top Up, Pay Bill, Buy Data, Coverage, Stores and Support.'),
+              ('Use an approved PNG household or education image in production.','Home, learning and everyday connection in Papua New Guinea.'),
+              ('Use approved PNG landscape and infrastructure photography.','Remote places, communities and connectivity across Papua New Guinea.'),
+          ])
+          # Make remote photo genuinely place-led instead of a business asset.
+          text=text.replace(TELIKOM_BIZ,GOROKA,1)
+          p.write_text(text,encoding='utf-8')
+
+          # 23 — Telikom OS
+          p=Path('23.html'); text=p.read_text(encoding='utf-8')
+          text=rep(text,[
+              ('A composed digital-service workspace instead of a promotional hero and repeated card grid.','People, products and technology organised around the services customers use most.'),
+              ('Placeholder for approved Papua New Guinea imagery','Papua New Guinea people and communities'),
+              ('The operating-system metaphor stays grounded in Papua New Guinea people, places and everyday outcomes.','Telikom services support people, places and everyday connection across Papua New Guinea.'),
+              ('Prototype · not live operational data','Coverage and service information'),
+              ('Mobile connectivity, approved data pathways and direct account tasks in one focused service workspace.','Mobile connectivity, data services and direct account tasks in one place.'),
+              ('Everyday mobile connectivity and approved data pathways.','Everyday mobile connectivity and data services.'),
+              ('Household connectivity based on validated availability.','Household connectivity subject to service availability.'),
+              ('Placeholder for approved Papua New Guinea people photography','Papua New Guinean people and communities'),
+              ('Approved business voice pathways','Business voice and SIP services'),
+              ('Technology modules can eventually connect to approved CMS content for devices, service information and infrastructure explainers.','Explore devices, service information and Telikom technology resources.'),
+              ('Production can connect validated contact, store and support resources here.','Find current contact, store and support information.'),
+              ("copy:'Mobile connectivity, approved data pathways and direct account tasks in one focused service workspace.'","copy:'Mobile connectivity, data services and direct account tasks in one focused service workspace.'"),
+              ("copy:'Household connectivity, availability and support brought together without forcing customers through unrelated enterprise content.'","copy:'Home Internet, availability and support brought together in one place.'"),
+              ("copy:'Remote connectivity and VSAT-related pathways remain first-class services without decorative interfaces implying precise coverage.'","copy:'Explore Remote connectivity and VSAT-related services, then check availability for your location.'"),
+          ])
+          text=re.sub(r'(\.story-media\{position:relative;)background:[^;]+;',rf'\1background:url("{STUDENTS}") center/cover no-repeat;',text,count=1)
+          text=re.sub(r'(\.people-art\{position:relative;)background:[^;]+;',rf'\1background:url("{PEOPLE}") center/cover no-repeat;',text,count=1)
+          text=text.replace('.story-media:before{content:"";white-space:pre;', '.story-media:before{content:"";')
+          text=text.replace('.people-art:before{content:"";white-space:pre;', '.people-art:before{content:"";')
+          p.write_text(text,encoding='utf-8')
+
+          # 24 — Guided Connection
+          p=Path('24.html'); text=p.read_text(encoding='utf-8')
+          text=rep(text,[
+              ('Placeholder for approved Papua New Guinea photography','Papua New Guinean people and communities'),
+              ('The guide is built around real situations: a phone, a household, a business or a remote location. Approved PNG photography should make those contexts unmistakably local in production.','Choose a phone, home, business or remote connectivity need and follow the most relevant Telikom service path.'),
+              ('Commercial values are deliberately omitted until validated. The guide recommends categories first; plans and offers come afterward.','Compare Mobile, Home, Business and Remote service categories after choosing what you need.'),
+              ('Household connectivity based on validated availability.','Household connectivity subject to service availability.'),
+              ('The Business branch mirrors the guide’s decision logic: start from the requirement, then route toward the relevant approved enterprise service family.','Start with your business requirement, then explore the relevant connectivity, voice, systems or remote service.'),
+              ('SIP / voice pathways where approved','SIP / voice services'),
+              ('Prototype only. Production support, store and contact links should use current validated Telikom destinations.','Find current Telikom support, store and contact information.'),
+              ('The guide helps map a situation to a service category. This support panel stays separate and does not claim AI capabilities.','Choose a service category or go directly to Self Care and Support.'),
+              ('Category guidance only','Services · Support · Self Care'),
+          ])
+          text=re.sub(r'(\.people-art\{position:relative;)background:[^;]+;',rf'\1background:url("{PEOPLE}") center/cover no-repeat;',text,count=1)
+          text=text.replace('content:"APPROVED PNG PEOPLE\\A PHOTOGRAPHY REQUIRED";white-space:pre;','content:"";')
+          p.write_text(text,encoding='utf-8')
+
+      - name: Commit cleaned concepts
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add 21.html 22.html 23.html 24.html
+          if git diff --cached --quiet; then
+            echo "No changes needed"
+          else
+            git commit -m "Clean PNG imagery and client-facing copy in concepts 21-24"
+            git push
+          fi
