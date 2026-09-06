@@ -1,0 +1,118 @@
+name: One-time final QA 7-34
+
+on:
+  push:
+    paths:
+      - '.github/workflows/final-qa-7-34.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  qa:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install browser
+        run: |
+          npm install --no-save playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Run final QA
+        shell: bash
+        run: |
+          python3 -m http.server 4173 >/tmp/ui-ideas-server.log 2>&1 &
+          cat > /tmp/final-qa.mjs <<'JS'
+          import fs from 'fs';
+          import { chromium } from 'playwright';
+
+          const OFFICIAL='https://www.telikom.com.pg/assets/misc/TPNGLOGO.png';
+          const suspicious=[
+            ['prototype',/prototype/ig],
+            ['placeholder',/placeholder/ig],
+            ['photography-required',/photography required/ig],
+            ['concept-number',/concept\s+\d+/ig],
+            ['validate-before-production',/validate before production/ig],
+            ['approved-imagery',/approved (?:png )?(?:photo|photography|imagery)/ig],
+            ['mockup',/mockup/ig],
+            ['lorem',/lorem ipsum/ig],
+            ['fake-copy',/fake (?:data|content|input|metric|precision)/ig]
+          ];
+          const report={generated:new Date().toISOString(),designs:{},summary:{}};
+          const browser=await chromium.launch({headless:true});
+          for(let n=7;n<=34;n++){
+            const file=`${n}.html`;
+            const html=fs.readFileSync(file,'utf8');
+            const s={file,static:{},desktop:{},mobile:{},flags:[]};
+            s.static.h1=(html.match(/<h1\b/ig)||[]).length;
+            s.static.officialLogoOccurrences=(html.split(OFFICIAL).length-1);
+            s.static.noindex=/name=["']robots["'][^>]*noindex\s*,?\s*nofollow/i.test(html) || /content=["'][^"']*noindex[^"']*nofollow/i.test(html);
+            s.static.externalImages=[...html.matchAll(/(?:src|background(?:-image)?\s*:\s*url\()["']?(https?:\/\/[^"')\s>]+)/ig)].map(m=>m[1]);
+            s.static.unsplash=/unsplash\.com/i.test(html);
+            s.static.greenTokens=[...new Set((html.match(/#(?:43a047|52b848|4caf50|00a651|21a366)|\blime\b|--green\b/ig)||[]).map(x=>x.toLowerCase()))];
+            for(const [name,re] of suspicious){ const m=html.match(re); if(m?.length) s.flags.push({type:'static-wording',name,count:m.length}); }
+            if(s.static.h1!==1) s.flags.push({type:'static',name:'h1-count',value:s.static.h1});
+            if(s.static.officialLogoOccurrences<1) s.flags.push({type:'static',name:'official-logo-missing'});
+            if(!s.static.noindex) s.flags.push({type:'static',name:'noindex-missing'});
+            if(s.static.unsplash) s.flags.push({type:'static',name:'unsplash-present'});
+            if(s.static.greenTokens.length) s.flags.push({type:'static',name:'green-tokens',value:s.static.greenTokens});
+
+            for(const [mode,viewport] of [['desktop',{width:1440,height:1000}],['mobile',{width:390,height:844}]]){
+              const page=await browser.newPage({viewport});
+              const pageErrors=[]; const consoleErrors=[]; const badResponses=[];
+              page.on('pageerror',e=>pageErrors.push(String(e.message||e)));
+              page.on('console',m=>{if(m.type()==='error') consoleErrors.push(m.text())});
+              page.on('response',r=>{ if(r.status()>=400) badResponses.push({status:r.status(),url:r.url()}); });
+              try{
+                await page.goto(`http://127.0.0.1:4173/${file}`,{waitUntil:'domcontentloaded',timeout:20000});
+                await page.waitForTimeout(1800);
+                const evald=await page.evaluate((official)=>{
+                  const imgs=[...document.images];
+                  const visibleImgs=imgs.filter(i=>{const r=i.getBoundingClientRect();const st=getComputedStyle(i);return r.width>1&&r.height>1&&st.display!=='none'&&st.visibility!=='hidden'});
+                  const broken=visibleImgs.filter(i=>!i.complete||i.naturalWidth===0).map(i=>i.currentSrc||i.src||i.alt);
+                  const logos=imgs.filter(i=>(i.currentSrc||i.src)===official);
+                  const bodyText=document.body.innerText.toLowerCase();
+                  return {
+                    h1:document.querySelectorAll('h1').length,
+                    officialLogos:logos.length,
+                    brokenVisibleImages:broken,
+                    horizontalOverflow:document.documentElement.scrollWidth>window.innerWidth+3,
+                    bodyHasPrototype:bodyText.includes('prototype'),
+                    bodyHasPlaceholder:bodyText.includes('placeholder'),
+                    bodyHasPhotographyRequired:bodyText.includes('photography required'),
+                    title:document.title
+                  };
+                },OFFICIAL);
+                s[mode]={...evald,pageErrors,consoleErrors:consoleErrors.slice(0,12),badResponses:badResponses.slice(0,20)};
+                if(evald.h1!==1) s.flags.push({type:mode,name:'h1-count',value:evald.h1});
+                if(evald.officialLogos<1) s.flags.push({type:mode,name:'official-logo-not-rendered'});
+                if(evald.brokenVisibleImages.length) s.flags.push({type:mode,name:'broken-visible-images',value:evald.brokenVisibleImages});
+                if(evald.horizontalOverflow) s.flags.push({type:mode,name:'horizontal-overflow'});
+                if(pageErrors.length) s.flags.push({type:mode,name:'page-errors',value:pageErrors});
+                if(evald.bodyHasPrototype||evald.bodyHasPlaceholder||evald.bodyHasPhotographyRequired) s.flags.push({type:mode,name:'visible-internal-wording'});
+              }catch(e){
+                s[mode]={error:String(e)};
+                s.flags.push({type:mode,name:'navigation-failure',value:String(e)});
+              }
+              await page.close();
+            }
+            report.designs[n]=s;
+          }
+          await browser.close();
+          report.summary.flaggedDesigns=Object.entries(report.designs).filter(([,v])=>v.flags.length).map(([k,v])=>({design:Number(k),flags:v.flags}));
+          report.summary.totalFlagged=report.summary.flaggedDesigns.length;
+          fs.writeFileSync('final-qa-report.json',JSON.stringify(report,null,2));
+          JS
+          node /tmp/final-qa.mjs
+      - name: Commit QA report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add final-qa-report.json
+          git commit -m "Add final QA report for designs 7-34"
+          git push
