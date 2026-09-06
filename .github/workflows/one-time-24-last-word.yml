@@ -1,0 +1,41 @@
+name: One-time concept 24 final wording
+
+on:
+  push:
+    paths:
+      - '.github/workflows/one-time-24-last-word.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  polish:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Remove final internal wording
+        shell: python
+        run: |
+          from pathlib import Path
+          p=Path('24.html')
+          t=p.read_text(encoding='utf-8')
+          t=t.replace("i:'This only changes which mobile category is emphasised.'","i:'Choose the option that best matches how you use mobile data.'")
+          t=t.replace("i:'This does not calculate availability.'","i:'Availability depends on your location and service.'")
+          t=t.replace("i:'No technical sizing is calculated here.'","i:'Choose the business situation that best matches your needs.'")
+          t=t.replace("i:'Location is intentionally not collected in this prototype.'","i:'Choose whether you want to browse remote services or check availability.'")
+          t=t.replace("['enquire','Check what may be available','Availability Talk to sales.']","['enquire','Check what may be available','Talk to Telikom about availability.']")
+          p.write_text(t,encoding='utf-8')
+      - name: Commit polish
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add 24.html
+          if git diff --cached --quiet; then
+            echo "No changes needed"
+          else
+            git commit -m "Remove final internal wording from concept 24"
+            git push
+          fi
