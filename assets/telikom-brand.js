@@ -84,8 +84,8 @@
     if (existingImg) {
       const previous = existingImg.getAttribute('src') || '';
       existingImg.classList.add('telikom-official-logo');
-      existingImg.alt = 'Telikom — Connecting you Anywhere Anytime';
-      existingImg.src = OFFICIAL_LOGO;
+      if (existingImg.alt !== 'Telikom — Connecting you Anywhere Anytime') existingImg.alt = 'Telikom — Connecting you Anywhere Anytime';
+      if (existingImg.getAttribute('src') !== OFFICIAL_LOGO) existingImg.src = OFFICIAL_LOGO;
       existingImg.onerror = () => {
         if (previous && previous !== OFFICIAL_LOGO) {
           existingImg.onerror = null;
@@ -144,6 +144,12 @@
     });
   }
 
+  function normalizeFooterLogo(img) {
+    if (!img.classList.contains('telikom-official-logo')) img.classList.add('telikom-official-logo');
+    if (img.alt !== 'Telikom — Connecting you Anywhere Anytime') img.alt = 'Telikom — Connecting you Anywhere Anytime';
+    if (img.getAttribute('src') !== OFFICIAL_LOGO) img.src = OFFICIAL_LOGO;
+  }
+
   function apply() {
     const selectors = [
       'header .brand','header .brandmark','header .logo','.topbar .brand','.top .brand',
@@ -152,12 +158,7 @@
     const target = selectors.map(s => document.querySelector(s)).find(Boolean);
     if (target) installLogo(target);
 
-    document.querySelectorAll('footer .foot-brand img, footer .footer-brand img, footer .brand img').forEach(img => {
-      img.classList.add('telikom-official-logo');
-      img.alt = 'Telikom — Connecting you Anywhere Anytime';
-      img.src = OFFICIAL_LOGO;
-    });
-
+    document.querySelectorAll('footer .foot-brand img, footer .footer-brand img, footer .brand img').forEach(normalizeFooterLogo);
     document.querySelectorAll('img').forEach(replaceImage);
     document.querySelectorAll('body *').forEach(replaceBackground);
     cleanText();
