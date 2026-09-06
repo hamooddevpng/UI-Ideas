@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#EAF4FB">
+<title>Telikom PNG — Concept 12 / Neo-Brutal Telikom</title>
+<meta name="description" content="Experimental Telikom PNG homepage concept built as a bold neo-brutalist editorial grid.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#0875C9;--deep:#064F87;--white:#fff;--pale:#EAF4FB;--ink:#0B2535;--rule:#D5E4EE;--muted:#607989;--max:1500px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--pale);color:var(--ink);font-family:"Space Grotesk",Arial,sans-serif}a{color:inherit;text-decoration:none}img{display:block;max-width:100%}button{font:inherit}.skip{position:fixed;top:-80px;left:10px;background:var(--ink);color:white;padding:10px 14px;z-index:999}.skip:focus{top:10px}
+.wrap{width:min(var(--max),100%);margin:auto;border-left:2px solid var(--ink);border-right:2px solid var(--ink);background:var(--white)}
+header{position:sticky;top:0;z-index:80;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-bottom:2px solid var(--ink)}
+.top{display:grid;grid-template-columns:290px 1fr auto;min-height:82px}.brand{padding:12px 16px;display:flex;align-items:center;gap:12px;border-right:2px solid var(--ink)}.brand img{height:46px;width:auto}.brand-copy small{display:block;font:500 9px "DM Mono",monospace;letter-spacing:.08em;margin-top:2px}.nav{display:flex;align-items:stretch;justify-content:center}.nav a{display:grid;place-items:center;padding:0 20px;border-right:1px solid var(--rule);font-size:13px;font-weight:700;min-width:115px}.nav a:hover,.nav a:focus-visible{background:var(--ink);color:#fff;outline:none}.tasks{display:grid;grid-template-columns:1fr 1fr}.tasks a{display:grid;place-items:center;padding:0 18px;border-left:2px solid var(--ink);font:500 11px "DM Mono",monospace;letter-spacing:.06em}.tasks a.primary{background:var(--blue);color:#fff}.tasks a:hover{background:var(--ink);color:#fff}
+.hero{display:grid;grid-template-columns:minmax(0,1fr) 310px;min-height:calc(100vh - 82px);border-bottom:2px solid var(--ink)}.hero-main{padding:36px 34px 24px;display:flex;flex-direction:column;justify-content:space-between;min-width:0}.kicker{display:flex;justify-content:space-between;gap:20px;font:500 11px "DM Mono",monospace;letter-spacing:.08em}.hero h1{font-size:clamp(82px,11.2vw,180px);line-height:.75;letter-spacing:-.085em;margin:34px 0 26px;text-transform:uppercase;max-width:1100px}.hero h1 .blue{color:var(--blue)}.hero h1 .outline{color:transparent;-webkit-text-stroke:2px var(--ink)}.hero-bottom{display:grid;grid-template-columns:1fr minmax(260px,440px);gap:35px;align-items:end;border-top:2px solid var(--ink);padding-top:18px}.hero-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:2px solid var(--ink);border-left:2px solid var(--ink)}.hero-actions a{min-height:78px;padding:14px;border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);display:flex;justify-content:space-between;align-items:end;font-weight:700}.hero-actions a:hover{background:var(--blue);color:white}.hero-note{font-size:16px;line-height:1.55;color:var(--muted)}
+.hero-side{border-left:2px solid var(--ink);display:grid;grid-template-rows:auto 1fr auto}.service-index{padding:14px 16px;border-bottom:2px solid var(--ink)}.service-index small{font:500 10px "DM Mono",monospace}.service-index a{display:grid;grid-template-columns:44px 1fr auto;align-items:center;padding:13px 0;border-bottom:1px solid var(--rule);font-size:14px;font-weight:700}.service-index a:last-child{border-bottom:0}.service-index a span:first-child{font:500 10px "DM Mono",monospace;color:var(--blue)}.service-index a:hover{padding-left:8px;background:var(--pale)}.photo-strip{overflow:hidden;position:relative;background:var(--ink)}.photo-strip img{width:100%;height:100%;object-fit:cover;filter:grayscale(100%);mix-blend-mode:screen;opacity:.88}.photo-label{position:absolute;left:10px;bottom:10px;background:var(--white);border:2px solid var(--ink);padding:7px 9px;font:500 9px "DM Mono",monospace}.signal{padding:15px;border-top:2px solid var(--ink);font:500 11px "DM Mono",monospace;background:var(--blue);color:white;display:flex;justify-content:space-between}
+.marquee{overflow:hidden;border-bottom:2px solid var(--ink);background:var(--ink);color:#fff}.track{white-space:nowrap;display:inline-flex;gap:36px;padding:12px 0;font:500 11px "DM Mono",monospace;animation:ticker 28s linear infinite}.track b{color:#9fd0f0}@keyframes ticker{to{transform:translateX(-50%)}}
+.section-label{display:grid;grid-template-columns:90px 1fr auto;align-items:center;padding:11px 14px;border-bottom:2px solid var(--ink);font:500 10px "DM Mono",monospace;letter-spacing:.08em;background:var(--pale)}.section-label b{font-weight:500;color:var(--blue)}
+.services{border-bottom:2px solid var(--ink)}.service-row{display:grid;grid-template-columns:86px 1fr 360px 80px;align-items:stretch;min-height:160px;border-bottom:2px solid var(--ink);transition:.2s}.service-row:last-child{border-bottom:0}.service-row:hover{background:var(--blue);color:#fff}.service-row .n{padding:18px;border-right:2px solid var(--ink);font:500 12px "DM Mono",monospace}.service-row h2{font-size:clamp(54px,7vw,110px);line-height:.82;letter-spacing:-.06em;margin:0;padding:20px 24px;text-transform:uppercase}.service-copy{padding:22px;border-left:2px solid var(--ink);font-size:14px;line-height:1.55;display:flex;align-items:flex-end}.arrow{display:grid;place-items:center;border-left:2px solid var(--ink);font-size:30px}.service-row:hover .arrow{transform:translateX(6px)}
+.plans{border-bottom:2px solid var(--ink)}.plans-head{display:grid;grid-template-columns:1fr 380px}.plans-head h2{font-size:clamp(68px,9vw,140px);line-height:.8;letter-spacing:-.075em;margin:0;padding:35px 24px;text-transform:uppercase}.plans-head p{margin:0;padding:32px 24px;border-left:2px solid var(--ink);font-size:16px;line-height:1.6;color:var(--muted);display:flex;align-items:end}.plan-table{border-top:2px solid var(--ink)}.plan-row{display:grid;grid-template-columns:90px 1.1fr .8fr .8fr 190px;min-height:120px;border-bottom:1px solid var(--ink)}.plan-row:last-child{border-bottom:0}.plan-row>*{padding:18px;border-right:1px solid var(--ink);display:flex;align-items:center}.plan-row>*:last-child{border-right:0}.plan-row .pn{font:500 11px "DM Mono",monospace;color:var(--blue)}.plan-row .name{font-size:34px;font-weight:700}.plan-row .data,.plan-row .days{font-size:28px;font-weight:700}.plan-row .data small,.plan-row .days small{font-size:10px;font-family:"DM Mono";margin-left:7px;font-weight:500}.plan-row .action{justify-content:center;background:var(--ink);color:#fff;font:500 11px "DM Mono",monospace}.plan-row:hover{background:var(--pale)}.plan-row:hover .action{background:var(--blue)}
+.people{display:grid;grid-template-columns:1.08fr .92fr;border-bottom:2px solid var(--ink);min-height:720px}.people-photo{position:relative;overflow:hidden}.people-photo img{width:100%;height:100%;object-fit:cover;filter:grayscale(100%)}.people-photo:after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 55%,rgba(11,37,53,.5))}.people-tag{position:absolute;left:20px;bottom:20px;z-index:2;background:var(--white);border:2px solid var(--ink);padding:10px 12px;font:500 10px "DM Mono",monospace}.people-copy{display:grid;grid-template-rows:auto 1fr}.people-copy h2{font-size:clamp(66px,8vw,120px);line-height:.82;letter-spacing:-.07em;margin:0;padding:30px 28px;text-transform:uppercase}.story-list{border-top:2px solid var(--ink)}.story{display:grid;grid-template-columns:80px 1fr;border-bottom:1px solid var(--ink);min-height:125px}.story:last-child{border-bottom:0}.story .idx{padding:18px;border-right:1px solid var(--ink);font:500 10px "DM Mono",monospace;color:var(--blue)}.story .txt{padding:18px 22px}.story h3{margin:0 0 8px;font-size:22px}.story p{margin:0;color:var(--muted);line-height:1.55;font-size:14px}
+.business{background:var(--ink);color:#fff;border-bottom:2px solid var(--ink)}.business .section-label{background:var(--ink);color:#fff;border-color:white}.biz-head{display:grid;grid-template-columns:1fr 420px;border-bottom:1px solid rgba(255,255,255,.5)}.biz-head h2{font-size:clamp(72px,9vw,142px);line-height:.8;letter-spacing:-.075em;margin:0;padding:35px 26px;text-transform:uppercase}.biz-head p{border-left:1px solid rgba(255,255,255,.5);padding:30px 24px;display:flex;align-items:end;margin:0;color:#b8ccd8;line-height:1.6}.matrix{display:grid;grid-template-columns:repeat(4,1fr)}.cell{min-height:220px;padding:18px;border-right:1px solid rgba(255,255,255,.4);display:flex;flex-direction:column;justify-content:space-between}.cell:last-child{border-right:0}.cell small{font:500 9px "DM Mono",monospace;color:#9fb8c8}.cell h3{font-size:28px;margin:0}.cell p{font-size:13px;line-height:1.5;color:#aac0ce}.cell a{font:500 10px "DM Mono",monospace;border-top:1px solid rgba(255,255,255,.3);padding-top:12px}.cell:hover{background:var(--blue)}
+.technology{display:grid;grid-template-columns:1fr 1fr;border-bottom:2px solid var(--ink)}.tech-copy{padding:34px 28px;border-right:2px solid var(--ink)}.tech-copy h2{font-size:clamp(70px,9vw,140px);line-height:.8;letter-spacing:-.075em;margin:10px 0 25px;text-transform:uppercase}.tech-copy p{max-width:620px;font-size:17px;line-height:1.65;color:var(--muted)}.diagram{min-height:560px;position:relative;overflow:hidden;background:var(--pale)}.diagram svg{width:100%;height:100%;position:absolute;inset:0}.node{position:absolute;background:var(--white);border:2px solid var(--ink);padding:8px 10px;font:500 9px "DM Mono",monospace}.node.a{left:8%;top:16%}.node.b{right:10%;top:30%}.node.c{left:28%;bottom:18%}.node.d{right:20%;bottom:8%}
+.selfcare{display:grid;grid-template-columns:420px 1fr;border-bottom:2px solid var(--ink)}.self-title{background:var(--blue);color:#fff;padding:28px;border-right:2px solid var(--ink)}.self-title h2{font-size:64px;line-height:.84;letter-spacing:-.055em;margin:0;text-transform:uppercase}.self-title p{margin-top:24px;line-height:1.6}.task-list a{display:grid;grid-template-columns:75px 1fr auto;align-items:center;min-height:88px;padding:0 20px;border-bottom:1px solid var(--ink);font-size:24px;font-weight:700}.task-list a:last-child{border-bottom:0}.task-list a span:first-child{font:500 10px "DM Mono",monospace;color:var(--blue)}.task-list a:hover{background:var(--ink);color:#fff}.task-list a:hover span:first-child{color:#fff}
+.news{border-bottom:2px solid var(--ink)}.news-title{font-size:clamp(72px,9vw,140px);line-height:.8;letter-spacing:-.075em;margin:0;padding:34px 24px;text-transform:uppercase;border-bottom:2px solid var(--ink)}.news-row{display:grid;grid-template-columns:150px 1fr 240px 80px;min-height:110px;border-bottom:1px solid var(--ink);align-items:center}.news-row:last-child{border-bottom:0}.news-row>*{padding:18px}.date{font:500 10px "DM Mono",monospace}.news-row h3{margin:0;font-size:24px}.cat{border-left:1px solid var(--ink);border-right:1px solid var(--ink);font:500 10px "DM Mono",monospace}.news-row:hover{background:var(--pale)}
+.support{display:grid;grid-template-columns:1fr 1fr;border-bottom:2px solid var(--ink)}.support>div{padding:30px 26px;min-height:260px}.support>div+div{border-left:2px solid var(--ink)}.support h2{font-size:56px;line-height:.9;margin:0 0 20px;text-transform:uppercase}.support p{color:var(--muted);max-width:560px;line-height:1.6}.support a{display:inline-block;margin-top:14px;padding:12px 16px;border:2px solid var(--ink);font:500 11px "DM Mono",monospace}.support a:hover{background:var(--ink);color:#fff}
+footer{background:var(--blue);color:white}.foot-top{display:grid;grid-template-columns:1.4fr repeat(3,1fr)}.foot-top>div{padding:28px;border-right:1px solid rgba(255,255,255,.55);min-height:220px}.foot-top>div:last-child{border-right:0}.foot-brand img{height:58px;background:#fff;padding:4px}.foot-brand p{font:500 11px "DM Mono",monospace;margin-top:14px}.foot-col h4{font:500 9px "DM Mono",monospace;letter-spacing:.08em;margin:0 0 17px}.foot-col a{display:block;margin:9px 0;font-size:14px}.legal{border-top:1px solid rgba(255,255,255,.55);padding:14px 20px;display:flex;justify-content:space-between;gap:20px;font:500 9px "DM Mono",monospace}
+.chat{position:fixed;right:18px;bottom:18px;z-index:100;width:280px;border:2px solid var(--ink);background:var(--white);box-shadow:10px 10px 0 rgba(11,37,53,.2)}.chat-head{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:var(--ink);color:#fff;font:500 10px "DM Mono",monospace}.chat-body{padding:12px}.chat-body p{font:500 11px "DM Mono",monospace;line-height:1.45;margin:0 0 10px}.chat-actions{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--ink);border-left:1px solid var(--ink)}.chat-actions button{border:0;border-right:1px solid var(--ink);border-bottom:1px solid var(--ink);background:white;padding:10px 8px;font:500 9px "DM Mono",monospace;cursor:pointer}.chat-actions button:hover{background:var(--blue);color:#fff}.chat.min .chat-body{display:none}.chat.min{width:180px}
+.menu{display:none;border:0;background:transparent;font-size:23px;padding:12px}
+:focus-visible{outline:3px solid var(--blue);outline-offset:-3px}
+@media(max-width:1100px){.top{grid-template-columns:240px 1fr auto}.nav a{min-width:auto;padding:0 12px}.hero{grid-template-columns:1fr 270px}.service-row{grid-template-columns:70px 1fr 300px 70px}.matrix{grid-template-columns:1fr 1fr}.cell:nth-child(2){border-right:0}.cell:nth-child(-n+2){border-bottom:1px solid rgba(255,255,255,.4)}.selfcare{grid-template-columns:330px 1fr}}
+@media(max-width:820px){.wrap{border:0}.top{grid-template-columns:1fr auto}.brand{border-right:0}.nav,.tasks{display:none}.menu{display:block}.hero{grid-template-columns:1fr;min-height:auto}.hero-side{border-left:0;border-top:2px solid var(--ink);grid-template-columns:1fr;grid-template-rows:auto 340px auto}.hero h1{font-size:clamp(68px,20vw,120px)}.hero-bottom{grid-template-columns:1fr}.service-row{grid-template-columns:55px 1fr 55px;min-height:120px}.service-copy{grid-column:1/-1;border-left:0;border-top:1px solid var(--ink);padding:14px 18px}.service-row h2{font-size:clamp(44px,14vw,78px);padding:16px}.plans-head{grid-template-columns:1fr}.plans-head p{border-left:0;border-top:2px solid var(--ink)}.plan-row{grid-template-columns:60px 1fr 1fr;min-height:auto}.plan-row .days{display:none}.plan-row .action{grid-column:1/-1;min-height:52px}.people{grid-template-columns:1fr}.people-photo{min-height:430px}.biz-head{grid-template-columns:1fr}.biz-head p{border-left:0;border-top:1px solid rgba(255,255,255,.5)}.technology{grid-template-columns:1fr}.tech-copy{border-right:0;border-bottom:2px solid var(--ink)}.diagram{min-height:430px}.selfcare{grid-template-columns:1fr}.self-title{border-right:0;border-bottom:2px solid var(--ink)}.news-row{grid-template-columns:110px 1fr 55px}.cat{display:none}.support{grid-template-columns:1fr}.support>div+div{border-left:0;border-top:2px solid var(--ink)}.foot-top{grid-template-columns:1fr 1fr}.foot-top>div{border-bottom:1px solid rgba(255,255,255,.55)}.chat{width:250px}}
+@media(max-width:560px){.hero-main{padding:24px 14px 18px}.hero h1{margin:26px 0 20px}.hero-actions{grid-template-columns:1fr}.kicker{font-size:9px}.hero-actions a{min-height:60px}.service-row{grid-template-columns:45px 1fr 45px}.service-row h2{font-size:42px}.plans-head h2,.people-copy h2,.biz-head h2,.tech-copy h2,.news-title{font-size:58px}.plan-row{grid-template-columns:48px 1fr}.plan-row .data{border-right:0}.plan-row .days{display:none}.people-photo{min-height:350px}.matrix{grid-template-columns:1fr}.cell{border-right:0;border-bottom:1px solid rgba(255,255,255,.4)}.cell:last-child{border-bottom:0}.task-list a{grid-template-columns:50px 1fr auto;font-size:19px;padding:0 12px}.news-row{grid-template-columns:90px 1fr}.news-row .arrow{display:none}.foot-top{grid-template-columns:1fr}.foot-top>div{border-right:0}.legal{flex-direction:column}.chat{right:10px;bottom:10px;width:230px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.track{animation:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="wrap">
+<header>
+  <div class="top">
+    <a class="brand" href="#top" aria-label="Telikom home">
+      <img src="https://www.telikom.com.pg/assets/misc/TPNGLOGO.png" alt="Telikom PNG">
+      <span class="brand-copy"><small>CONNECTING YOU</small><small>ANYWHERE ANYTIME</small></span>
+    </a>
+    <nav class="nav" aria-label="Primary navigation">
+      <a href="#services">SERVICES</a><a href="#plans">PLANS</a><a href="#people">PEOPLE</a><a href="#business">BUSINESS</a><a href="#support">SUPPORT</a>
+    </nav>
+    <div class="tasks"><a href="#selfcare">SELF CARE</a><a class="primary" href="#plans">TOP UP</a></div>
+    <button class="menu" aria-label="Open navigation">☰</button>
+  </div>
+</header>
+<main id="main">
+<section class="hero" id="top">
+  <div class="hero-main">
+    <div class="kicker"><span>01 / TELIKOM PAPUA NEW GUINEA</span><span>HOMEPAGE CONCEPT 12</span></div>
+    <h1>CONNECT<br><span class="blue">PNG</span><br><span class="outline">NOW.</span></h1>
+    <div class="hero-bottom">
+      <div class="hero-actions">
+        <a href="#plans"><span>BUY DATA</span><span>↗</span></a>
+        <a href="#selfcare"><span>PAY BILL</span><span>↗</span></a>
+        <a href="#technology"><span>CHECK COVERAGE</span><span>↗</span></a>
+        <a href="#support"><span>GET SUPPORT</span><span>↗</span></a>
+      </div>
+      <p class="hero-note">A deliberately bold, stripped-back Telikom interface built around tasks, people and technology — not a conventional telecom hero banner.</p>
+    </div>
+  </div>
+  <aside class="hero-side">
+    <div class="service-index">
+      <small>SERVICE INDEX</small>
+      <a href="#mobile"><span>01</span><span>MOBILE</span><span>→</span></a>
+      <a href="#home"><span>02</span><span>HOME</span><span>→</span></a>
+      <a href="#business"><span>03</span><span>BUSINESS</span><span>→</span></a>
+      <a href="#remote"><span>04</span><span>REMOTE</span><span>→</span></a>
+      <a href="#support"><span>05</span><span>SUPPORT</span><span>→</span></a>
+    </div>
+    <div class="photo-strip">
+      <img src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=900&q=82" alt="Papua New Guinea landscape placeholder for concept review" width="900" height="1200">
+      <span class="photo-label">PEOPLE / PLACE / SIGNAL</span>
+    </div>
+    <div class="signal"><span>NETWORK / PNG</span><span>● ONLINE</span></div>
+  </aside>
+</section>
+<div class="marquee"><div class="track">MOBILE <b>•</b> HOME INTERNET <b>•</b> BUSINESS DATA <b>•</b> SELF CARE <b>•</b> REMOTE CONNECTIVITY <b>•</b> PEOPLE <b>•</b> TECHNOLOGY <b>•</b> MOBILE <b>•</b> HOME INTERNET <b>•</b> BUSINESS DATA <b>•</b> SELF CARE <b>•</b> REMOTE CONNECTIVITY <b>•</b> PEOPLE <b>•</b> TECHNOLOGY <b>•</b></div></div>
+<section class="services" id="services">
+  <div class="section-label"><b>02</b><span>PICK A SERVICE</span><span>DIRECT PATHS / NO DETOURS</span></div>
+  <a class="service-row" id="mobile" href="#plans"><span class="n">01</span><h2>Mobile</h2><span class="service-copy">Data, voice and everyday connectivity designed to be easy to understand and easy to buy.</span><span class="arrow">↗</span></a>
+  <a class="service-row" id="home" href="#plans"><span class="n">02</span><h2>Home</h2><span class="service-copy">Find the right home internet option without navigating through layers of product pages.</span><span class="arrow">↗</span></a>
+  <a class="service-row" href="#business"><span class="n">03</span><h2>Business</h2><span class="service-copy">Connectivity, systems and data services for organisations across Papua New Guinea.</span><span class="arrow">↗</span></a>
+  <a class="service-row" id="remote" href="#technology"><span class="n">04</span><h2>Remote</h2><span class="service-copy">Connectivity pathways for communities and locations beyond conventional fixed networks.</span><span class="arrow">↗</span></a>
+  <a class="service-row" href="#support"><span class="n">05</span><h2>Support</h2><span class="service-copy">Top up, pay, check coverage, find help or manage services without searching around.</span><span class="arrow">↗</span></a>
+</section>
+<section class="plans" id="plans">
+  <div class="section-label"><b>03</b><span>AFFORDABLE PLANS</span><span>ILLUSTRATIVE DATA / VALIDATE BEFORE PRODUCTION</span></div>
+  <div class="plans-head"><h2>Gutpela<br>Plans.</h2><p>Comparison without the card carousel. Clear attributes, direct actions, and enough hierarchy to scan quickly.</p></div>
+  <div class="plan-table" role="table" aria-label="Illustrative plans">
+    <div class="plan-row" role="row"><span class="pn">01</span><span class="name">Starter</span><span class="data">5GB <small>DATA</small></span><span class="days">7 <small>DAYS</small></span><a class="action" href="#support">VIEW PLAN →</a></div>
+    <div class="plan-row" role="row"><span class="pn">02</span><span class="name">Everyday</span><span class="data">15GB <small>DATA</small></span><span class="days">14 <small>DAYS</small></span><a class="action" href="#support">VIEW PLAN →</a></div>
+    <div class="plan-row" role="row"><span class="pn">03</span><span class="name">Big Data</span><span class="data">30GB <small>DATA</small></span><span class="days">30 <small>DAYS</small></span><a class="action" href="#support">VIEW PLAN →</a></div>
+  </div>
+</section>
+<section class="people" id="people">
+  <div class="people-photo"><img loading="lazy" src="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&w=1400&q=82" alt="People and landscape placeholder representing Papua New Guinea stories" width="1400" height="1100"><span class="people-tag">PNG / PEOPLE FIRST</span></div>
+  <div class="people-copy"><h2>People<br>Make The<br>Network.</h2><div class="story-list">
+    <article class="story"><span class="idx">01</span><div class="txt"><h3>Connect family</h3><p>Connectivity is meaningful when it helps people stay close across towns, islands and provinces.</p></div></article>
+    <article class="story"><span class="idx">02</span><div class="txt"><h3>Connect opportunity</h3><p>Reliable access supports study, small business, work and participation in the digital economy.</p></div></article>
+    <article class="story"><span class="idx">03</span><div class="txt"><h3>Connect communities</h3><p>The homepage should make Telikom’s national role visible without turning the experience into a corporate brochure.</p></div></article>
+  </div></div>
+</section>
+<section class="business" id="business">
+  <div class="section-label"><b>04</b><span>BUSINESS / ENTERPRISE</span><span>STRUCTURE OVER DECORATION</span></div>
+  <div class="biz-head"><h2>Built For<br>Business.</h2><p>A calmer, more controlled zone for enterprise users. The visual system stays bold, but service discovery becomes highly structured.</p></div>
+  <div class="matrix">
+    <article class="cell"><small>01 / DATA</small><div><h3>Business Data</h3><p>Connectivity services for distributed teams, offices and operational sites.</p></div><a href="#support">EXPLORE →</a></article>
+    <article class="cell"><small>02 / FIXED</small><div><h3>Fixed Services</h3><p>Voice and fixed connectivity pathways designed around organisational needs.</p></div><a href="#support">EXPLORE →</a></article>
+    <article class="cell"><small>03 / SYSTEMS</small><div><h3>Business Systems</h3><p>Digital communications and business technology presented as clear capability areas.</p></div><a href="#support">EXPLORE →</a></article>
+    <article class="cell"><small>04 / REMOTE</small><div><h3>Remote Sites</h3><p>Options for locations where traditional terrestrial connectivity is not practical.</p></div><a href="#support">EXPLORE →</a></article>
+  </div>
+</section>
+<section class="technology" id="technology">
+  <div class="tech-copy"><span class="kicker">05 / TECHNOLOGY</span><h2>One<br>Network.<br>Many<br>Places.</h2><p>Instead of another infrastructure photo carousel, this concept uses a simple network diagram to communicate the relationship between mobile, fixed, enterprise and remote connectivity.</p></div>
+  <div class="diagram" aria-label="Illustrative network diagram">
+    <svg viewBox="0 0 800 560" preserveAspectRatio="none" aria-hidden="true"><rect width="800" height="560" fill="#EAF4FB"/><g stroke="#0B2535" stroke-width="2" fill="none"><path d="M60 100 L660 180 L240 450 L700 500"/><path d="M120 460 L420 70 L720 280"/><circle cx="60" cy="100" r="8" fill="#0875C9"/><circle cx="660" cy="180" r="8" fill="#0875C9"/><circle cx="240" cy="450" r="8" fill="#0875C9"/><circle cx="700" cy="500" r="8" fill="#0875C9"/><circle cx="420" cy="70" r="8" fill="#0875C9"/><circle cx="720" cy="280" r="8" fill="#0875C9"/></g><g stroke="#0875C9" stroke-width="1" opacity=".45"><path d="M0 140 H800"/><path d="M0 280 H800"/><path d="M0 420 H800"/><path d="M200 0 V560"/><path d="M400 0 V560"/><path d="M600 0 V560"/></g></svg>
+    <span class="node a">PORT MORESBY / CORE</span><span class="node b">MOBILE / ACCESS</span><span class="node c">BUSINESS / DATA</span><span class="node d">REMOTE / SATELLITE</span>
+  </div>
+</section>
+<section class="selfcare" id="selfcare">
+  <div class="self-title"><h2>Do It<br>Now.</h2><p>Self Care is treated as a task system, not another promotional block.</p></div>
+  <div class="task-list"><a href="#"><span>01</span><span>Top up mobile</span><span>↗</span></a><a href="#"><span>02</span><span>Pay a bill</span><span>↗</span></a><a href="#"><span>03</span><span>Buy a data bundle</span><span>↗</span></a><a href="#"><span>04</span><span>Check balance</span><span>↗</span></a><a href="#support"><span>05</span><span>Get help</span><span>↗</span></a></div>
+</section>
+<section class="news">
+  <div class="section-label"><b>06</b><span>LATEST / TELIKOM</span><span>EDITORIAL ROWS</span></div>
+  <h2 class="news-title">News,<br>Not Tiles.</h2>
+  <a class="news-row" href="#"><span class="date">05 SEP 2026</span><h3>Telikom update and customer information</h3><span class="cat">CUSTOMER</span><span class="arrow">↗</span></a>
+  <a class="news-row" href="#"><span class="date">28 AUG 2026</span><h3>Connectivity and network development update</h3><span class="cat">NETWORK</span><span class="arrow">↗</span></a>
+  <a class="news-row" href="#"><span class="date">19 AUG 2026</span><h3>Community and digital inclusion story</h3><span class="cat">PEOPLE</span><span class="arrow">↗</span></a>
+</section>
+<section class="support" id="support">
+  <div><h2>Need Help?</h2><p>Get direct support, service assistance or account guidance without hunting through the site.</p><a href="#">CONTACT SUPPORT →</a></div>
+  <div><h2>Find Telikom.</h2><p>Locate stores, service points and available customer channels.</p><a href="#">FIND A STORE →</a></div>
+</section>
+</main>
+<footer>
+  <div class="foot-top"><div class="foot-brand"><img src="https://www.telikom.com.pg/assets/misc/TPNGLOGO.png" alt="Telikom PNG"><p>CONNECTING YOU ANYWHERE ANYTIME</p></div><div class="foot-col"><h4>PERSONAL</h4><a href="#mobile">Mobile</a><a href="#home">Home Internet</a><a href="#plans">Plans</a><a href="#selfcare">Self Care</a></div><div class="foot-col"><h4>BUSINESS</h4><a href="#business">Business Data</a><a href="#business">Fixed Services</a><a href="#technology">Technology</a><a href="#remote">Remote</a></div><div class="foot-col"><h4>TELIKOM</h4><a href="#people">About</a><a href="#people">Community</a><a href="#support">Support</a><a href="#">Careers</a></div></div>
+  <div class="legal"><span>© 2026 TELIKOM PNG — CONCEPT ONLY</span><span>PRIVACY / TERMS / ACCESSIBILITY</span></div>
+</footer>
+</div>
+<aside class="chat" id="chat" aria-label="Telikom help">
+  <div class="chat-head"><span>TELIKOM HELP / 01</span><button id="chatToggle" aria-label="Minimize help" style="border:0;background:transparent;color:white;cursor:pointer">—</button></div>
+  <div class="chat-body"><p>TELIKOM HELP / WHAT DO YOU NEED?</p><div class="chat-actions"><button>TOP UP</button><button>PLANS</button><button>COVERAGE</button><button>SUPPORT</button></div></div>
+</aside>
+<script>
+const chat=document.getElementById('chat');
+document.getElementById('chatToggle').addEventListener('click',()=>chat.classList.toggle('min'));
+const menu=document.querySelector('.menu');
+menu?.addEventListener('click',()=>alert('Prototype menu: Services / Plans / People / Business / Support'));
+</script>
+</body>
+</html>
