@@ -68,6 +68,7 @@
 
   function clientCopy(el) {
     const t = contextText(el);
+    if (/(support|chat|assistant|help)/.test(t)) return 'Choose a service or support option to get started.';
     if (/(business|enterprise|office|organisation|organization|corporate)/.test(t)) return 'Business connectivity for organisations across Papua New Guinea.';
     if (/(remote|rural|satellite|vsat|island|highland|coverage|geograph|terrain)/.test(t)) return 'Connectivity for remote and regional Papua New Guinea.';
     if (/(tower|network|infrastructure|technology|technical|exchange|facility)/.test(t)) return 'Technology supporting Telikom services across Papua New Guinea.';
@@ -125,8 +126,8 @@
     try { bg = getComputedStyle(el).backgroundImage || ''; } catch (_) { return; }
     if (!BAD_IMAGE.test(bg)) return;
     const replacement = imageFor(el);
-    el.style.backgroundImage = bg.replace(/url\(["']?[^)"']*(?:unsplash|pexels|picsum|placehold|dummyimage|loremflickr)[^)"']*["']?\)/gi, `url("${replacement}")`);
-    if (BAD_IMAGE.test(el.style.backgroundImage)) el.style.backgroundImage = `url("${replacement}")`;
+    const cleaned = bg.replace(/url\(["']?[^)"']*(?:unsplash|pexels|picsum|placehold|dummyimage|loremflickr)[^)"']*["']?\)/gi, `url("${replacement}")`);
+    el.style.setProperty('background-image', BAD_IMAGE.test(cleaned) ? `url("${replacement}")` : cleaned, 'important');
   }
 
   function cleanText() {
@@ -139,8 +140,7 @@
       const raw = node.nodeValue || '';
       const text = raw.trim();
       if (!text || !INTERNAL_COPY.test(text)) return;
-      const replacement = clientCopy(parent);
-      node.nodeValue = raw.replace(text, replacement);
+      node.nodeValue = raw.replace(text, clientCopy(parent));
     });
   }
 
@@ -163,9 +163,22 @@
     cleanText();
   }
 
+  let scheduled = false;
+  function scheduleApply() {
+    if (scheduled) return;
+    scheduled = true;
+    requestAnimationFrame(() => {
+      scheduled = false;
+      apply();
+    });
+  }
+
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', apply, {once:true});
   else apply();
-
-  // Some concepts inject panels or story content after the first paint.
   setTimeout(apply, 180);
+
+  const observer = new MutationObserver(records => {
+    if (records.some(r => r.type === 'childList' || r.type === 'characterData' || (r.type === 'attributes' && /^(src|srcset|style|alt)$/.test(r.attributeName || '')))) scheduleApply();
+  });
+  if (document.documentElement) observer.observe(document.documentElement, {subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:['src','srcset','style','alt']});
 })();
