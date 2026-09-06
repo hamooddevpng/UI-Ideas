@@ -1,0 +1,48 @@
+name: Final copy cleanup once
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/final-copy-fix-once.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fix remaining presentation language
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          replacements = {
+            'Select a map node to open a service or story reference.': 'Select a location to explore services and stories.',
+            'The map helps exploration; support and task pathways remain direct.': 'Find services, coverage information and support quickly.',
+            'Top up, manage your account, pay bills and get support quickly.</p><a href="#tools">Explore remote connectivity': 'Explore connectivity options for remote communities, homes and operations across Papua New Guinea.</p><a href="#tools">Explore remote connectivity',
+            'Everyday mobile services and approved data pathways.': 'Mobile services for calls, data and everyday connectivity.',
+            'Household connectivity, availability and support pathways.': 'Home connectivity for study, work, streaming and staying in touch.',
+            'Business pathways →': 'Explore business →',
+            'Satellite and VSAT-related pathways for difficult-to-reach locations.': 'Satellite and VSAT connectivity options for difficult-to-reach locations.',
+          }
+          changed=[]
+          for p in Path('.').glob('*.html'):
+            if not p.stem.isdigit(): continue
+            s=p.read_text(encoding='utf-8')
+            old=s
+            for a,b in replacements.items(): s=s.replace(a,b)
+            if s!=old:
+              p.write_text(s,encoding='utf-8'); changed.append(p.name)
+          print('updated:', ', '.join(sorted(changed)))
+          PY
+      - name: Commit and remove workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          rm -f .github/workflows/final-copy-fix-once.yml
+          git add -- '*.html' .github/workflows/final-copy-fix-once.yml
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Finish customer-facing design copy cleanup"
+          git push origin main
