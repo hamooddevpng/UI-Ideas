@@ -1,0 +1,80 @@
+name: One-time concepts 23-24 final polish
+
+on:
+  push:
+    paths:
+      - '.github/workflows/one-time-23-24-final-polish.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  polish:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Final polish
+        shell: python
+        run: |
+          from pathlib import Path
+
+          def rep(text,pairs):
+              for a,b in pairs:
+                  text=text.replace(a,b)
+              return text
+
+          p=Path('23.html'); t=p.read_text(encoding='utf-8')
+          t=rep(t,[
+            ('One public website organised like a deliberate service system: act, compare, explore and get support without moving through a conventional marketing funnel.','Manage services, compare options, explore Telikom products and reach support from one place.'),
+            ('Brand system','Telikom'),
+            ('Compare without<br>the card deck.','Compare<br>services.'),
+            ('The system serves people.','Connection for everyday life.'),
+            ('04 / Business operating panel','04 / Business'),
+            ('Work mode.','Business connectivity.'),
+            ('05 / Technology + remote','05 / Technology + Remote'),
+            ('Infrastructure<br>without sci-fi.','Technology for<br>every connection.'),
+            ('Simple diagrams and structured endpoints keep technology credible while remote connectivity stays visible as a major Telikom capability.','Explore Telikom technology and remote connectivity services for homes, organisations and hard-to-reach locations.'),
+            ("copy:'One public website organised like a deliberate service system: act, compare, explore and get support without moving through a conventional marketing funnel.'","copy:'Manage services, compare options, explore Telikom products and reach support from one place.'"),
+            ("copy:'A home-focused workspace brings household connectivity, availability and support forward without hiding every other Telikom service.'","copy:'Explore Home Internet, service availability and support from one place.'"),
+            ("copy:'A business-focused workspace prioritises enterprise connectivity, voice, systems, hosting and remote pathways in a more structured operating view.'","copy:'Explore Business Data, voice, systems, hosting and remote connectivity.'"),
+          ])
+          p.write_text(t,encoding='utf-8')
+
+          p=Path('24.html'); t=p.read_text(encoding='utf-8')
+          t=rep(t,[
+            ('Guided recommendation / prototype','Guided recommendation'),
+            ('No information entered here is submitted. Production mapping should use approved service rules and validated availability data.','No information entered here is submitted. Service availability varies by location and product.'),
+            ('The guide is optional. These service gateways remain normal crawlable links in the page so customers, search engines and assistive technologies never depend on wizard state.','Prefer to browse? Explore all major Telikom service routes directly.'),
+            ('Mobile connectivity and approved data pathways for everyday use.','Mobile connectivity and data services for everyday use.'),
+            ('Business data, voice, systems, hosting and approved enterprise services.','Business data, voice, systems, hosting and enterprise services.'),
+            ("['voice','Home voice','Explore approved household voice pathways.']","['voice','Home voice','Explore household voice services.']"),
+            ("['voice','Voice','Business voice / SIP pathways where approved.']","['voice','Voice','Business voice and SIP services.']"),
+            ("intro:'Remote recommendations remain category-based until validated availability tools are connected.'","intro:'Choose the remote connectivity need that best matches your location or site.'"),
+            ("text:'Start with Mobile & Data, then compare only currently approved offers. '+(d==='heavy'?'Your selection suggests looking at higher-use categories first.':'The guide is not calculating allowance or eligibility.')","text:'Start with Mobile & Data, then compare current Telikom options. '+(d==='heavy'?'You may want to look at higher-use data options first.':'Choose the option that best suits how you use mobile data.')"),
+            ("text:'Explore approved mobile voice and connectivity services.'","text:'Explore mobile voice and connectivity services.'"),
+            ("text:'Explore household connectivity and use the validated availability route before relying on any offer or location claim.'","text:'Explore Home Internet and check current availability for your location.'"),
+            ("text:'Explore approved household voice services alongside Home Internet.'","text:'Explore household voice services alongside Home Internet.'"),
+            ("text:'Start with business connectivity. Final solution design, site count, capacity and availability require Telikom validation.'","text:'Start with Business Data and talk to Telikom about the needs of your site or organisation.'"),
+            ("text:'Explore approved business voice / SIP-related services.'","text:'Explore business voice and SIP-related services.'"),
+            ("text:'Explore approved business systems, hosting and infrastructure categories.'","text:'Explore business systems, hosting and infrastructure services.'"),
+            ("text:'Explore satellite / VSAT-related enterprise connectivity without assuming exact geographic availability.'","text:'Explore satellite and VSAT-related enterprise connectivity, then check availability for your location.'"),
+            ("text:'Explore remote connectivity and VSAT-related categories. Exact location eligibility requires validated Telikom data.'","text:'Explore remote connectivity and VSAT-related services, then check availability for your location.'"),
+            ("text:'Use the enterprise remote pathway for a business site or operation outside standard terrestrial assumptions.'","text:'Explore remote enterprise connectivity for business sites and operations.'"),
+            ("text:'A direct enquiry is the safest next step when availability cannot be determined from validated public data.'","text:'Contact Telikom to discuss connectivity options for your remote location.'"),
+          ])
+          p.write_text(t,encoding='utf-8')
+
+      - name: Commit polish
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add 23.html 24.html
+          if git diff --cached --quiet; then
+            echo "No changes needed"
+          else
+            git commit -m "Finish client-facing polish for concepts 23 and 24"
+            git push
+          fi
