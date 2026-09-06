@@ -8,27 +8,8 @@ permissions:
 
 jobs:
   capture:
-    strategy:
-      fail-fast: false
-      matrix:
-        viewport:
-          - name: desktop-1440
-            width: 1440
-            height: 900
-            mobile: false
-          - name: laptop-1366
-            width: 1366
-            height: 768
-            mobile: false
-          - name: tablet-portrait
-            width: 768
-            height: 1024
-            mobile: false
-          - name: mobile
-            width: 390
-            height: 844
-            mobile: true
     runs-on: ubuntu-latest
+    timeout-minutes: 8
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -42,53 +23,30 @@ jobs:
         run: |
           python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/ui-ideas-http.log 2>&1 &
           sleep 1
-      - name: Capture ${{ matrix.viewport.name }} screenshots
-        env:
-          VP_NAME: ${{ matrix.viewport.name }}
-          VP_WIDTH: ${{ matrix.viewport.width }}
-          VP_HEIGHT: ${{ matrix.viewport.height }}
-          VP_MOBILE: ${{ matrix.viewport.mobile }}
+      - name: Capture desktop gallery
         run: |
           node <<'EOF'
           const { chromium } = require('playwright');
           const fs = require('fs');
           const path = require('path');
           const root = process.cwd();
-          const name = process.env.VP_NAME;
-          const width = Number(process.env.VP_WIDTH);
-          const height = Number(process.env.VP_HEIGHT);
-          const isMobile = process.env.VP_MOBILE === 'true';
-          const outDir = path.join(root, 'screenshots', name);
-          fs.mkdirSync(outDir, { recursive: true });
+          const outDir = path.join(root, 'screenshots', 'desktop-1440');
+          fs.rmSync(path.join(root,'screenshots'), {recursive:true, force:true});
+          fs.mkdirSync(outDir, {recursive:true});
           const files = fs.readdirSync(root).filter(f => /^\d+\.html$/i.test(f)).sort((a,b)=>a.localeCompare(b,undefined,{numeric:true}));
           (async()=>{
             const browser = await chromium.launch({headless:true});
-            const context = await browser.newContext({viewport:{width,height},isMobile,hasTouch:isMobile,deviceScaleFactor:1});
+            const context = await browser.newContext({viewport:{width:1440,height:900},deviceScaleFactor:1});
             for (const file of files) {
-              const id = file.replace(/\.html$/i,'');
               const page = await context.newPage();
+              const id = file.replace(/\.html$/i,'');
               try {
-                await page.route('**/*', route => {
-                  const u = route.request().url();
-                  if (u.startsWith('http://127.0.0.1:4173/') || u.startsWith('data:') || u.startsWith('blob:')) return route.continue();
-                  const type = route.request().resourceType();
-                  if (['image','font','stylesheet'].includes(type)) return route.continue();
-                  return route.continue();
-                });
-                await page.goto(`http://127.0.0.1:4173/${file}`, {waitUntil:'commit', timeout:15000});
-                await page.waitForTimeout(2200);
-                try {
-                  await page.evaluate(async()=>{
-                    const total = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
-                    for (let y=0; y<total; y+=900) { window.scrollTo(0,y); await new Promise(r=>setTimeout(r,60)); }
-                    window.scrollTo(0,0);
-                    if (document.fonts?.ready) await Promise.race([document.fonts.ready,new Promise(r=>setTimeout(r,1500))]);
-                  });
-                } catch {}
-                await page.screenshot({path:path.join(outDir,`${id}.jpg`),type:'jpeg',quality:70,fullPage:true,animations:'disabled',timeout:20000});
-                console.log(`Captured ${file} @ ${name}`);
+                await page.goto(`http://127.0.0.1:4173/${file}`, {waitUntil:'commit', timeout:5000});
+                await page.waitForTimeout(650);
+                await page.screenshot({path:path.join(outDir,`${id}.jpg`),type:'jpeg',quality:68,fullPage:true,animations:'disabled',timeout:10000});
+                console.log(`Captured ${file}`);
               } catch (e) {
-                console.warn(`Skipped ${file} @ ${name}: ${e.message}`);
+                console.warn(`Skipped ${file}: ${e.message}`);
               } finally {
                 await page.close().catch(()=>{});
               }
@@ -96,42 +54,15 @@ jobs:
             await browser.close();
           })().catch(e=>{console.error(e);process.exit(1)});
           EOF
-      - uses: actions/upload-artifact@v4
-        with:
-          name: screenshots-${{ matrix.viewport.name }}
-          path: screenshots/${{ matrix.viewport.name }}
-          retention-days: 1
-
-  package:
-    needs: capture
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/download-artifact@v4
-        with:
-          pattern: screenshots-*
-          path: screenshots
-      - name: Normalize artifact folders
-        run: |
-          mkdir -p .merged
-          for d in screenshots/screenshots-*; do
-            [ -d "$d" ] || continue
-            vp="${d##*screenshots-}"
-            mkdir -p ".merged/$vp"
-            cp -r "$d"/* ".merged/$vp/" || true
-          done
-          rm -rf screenshots
-          mv .merged screenshots
       - name: Build README gallery
         run: |
           node <<'EOF'
           const fs=require('fs');const path=require('path');
           const root=process.cwd(), readmePath=path.join(root,'README.md');
           const start='<!-- DESIGN_GALLERY_START -->', end='<!-- DESIGN_GALLERY_END -->';
-          const vps=['desktop-1440','laptop-1366','tablet-portrait','mobile'];
           const designs=fs.readdirSync(root).filter(f=>/^\d+\.html$/i.test(f)).sort((a,b)=>a.localeCompare(b,undefined,{numeric:true}));
           const lines=['','## Design Gallery','',`Generated from ${designs.length} top-level design page(s).`,''];
-          for(const f of designs){const id=f.replace(/\.html$/i,'');lines.push(`### Design ${id}`,'',`[Open HTML design](./${f})`,'');if(fs.existsSync(path.join(root,'screenshots','desktop-1440',`${id}.jpg`))) lines.push(`[![Design ${id} — desktop](./screenshots/desktop-1440/${id}.jpg)](./screenshots/desktop-1440/${id}.jpg)`,'');const links=vps.filter(v=>fs.existsSync(path.join(root,'screenshots',v,`${id}.jpg`))).map(v=>`[${v}](./screenshots/${v}/${id}.jpg)`);if(links.length) lines.push('**Responsive captures:** '+links.join(' · '),'');}
+          for(const f of designs){const id=f.replace(/\.html$/i,'');lines.push(`### Design ${id}`,'',`[Open HTML design](./${f})`,'');if(fs.existsSync(path.join(root,'screenshots','desktop-1440',`${id}.jpg`))) lines.push(`[![Design ${id} — desktop](./screenshots/desktop-1440/${id}.jpg)](./screenshots/desktop-1440/${id}.jpg)`,'',`[desktop-1440](./screenshots/desktop-1440/${id}.jpg)`,'');}
           let r=fs.existsSync(readmePath)?fs.readFileSync(readmePath,'utf8'):'# UI Ideas\n\n';
           if(!r.includes(start)||!r.includes(end)) r+=`\n${start}\n${end}\n`;
           r=r.slice(0,r.indexOf(start)+start.length)+'\n'+lines.join('\n')+'\n'+r.slice(r.indexOf(end));
@@ -154,6 +85,6 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add screenshots screenshot-archives README.md
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m "chore: refresh responsive design gallery"
+          git commit -m "chore: refresh fast desktop design gallery"
           git pull --rebase origin main
           git push origin main
