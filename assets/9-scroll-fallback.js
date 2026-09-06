@@ -1,70 +1,123 @@
 (() => {
   'use strict';
 
-  const stops = [0, 0.14, 0.28, 0.42, 0.56, 0.70, 0.84, 1];
-  const clamp = (value, min = 0, max = 1) => Math.max(min, Math.min(max, value));
-  const maxScroll = () => Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+  const T = window.TELIKOM_STORY = {};
+  T.clamp = (value, min = 0, max = 1) => Math.max(min, Math.min(max, value));
+  T.lerp = (a, b, amount) => a + (b - a) * amount;
+  T.smooth = (value) => value * value * (3 - 2 * value);
+  T.smoothRange = (start, end, value) => T.smooth(T.clamp((value - start) / (end - start)));
+  T.reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  T.stops = [0, 0.14, 0.28, 0.42, 0.56, 0.70, 0.84, 1];
 
-  // The main story controller normally creates this object. If it loaded,
-  // leave the full experience alone.
-  if (window.TELIKOM_STORY) return;
+  T.chapters = [...document.querySelectorAll('.chapter')];
+  T.timeline = [...document.querySelectorAll('.timeline button')];
+  T.progressFill = document.getElementById('progressFill');
+  T.progressText = document.getElementById('progressText');
+  T.assetState = document.getElementById('assetState');
+  T.newsStack = document.getElementById('newsStack');
+  T.newsCards = [...document.querySelectorAll('.news-card')];
+  T.warp = document.getElementById('warp');
+  T.state = { targetP: 0, p: 0, tmx: 0, tmy: 0, mx: 0, my: 0, activeIndex: -1 };
 
-  const chapters = [...document.querySelectorAll('.chapter')];
-  const timeline = [...document.querySelectorAll('.timeline button')];
-  const progressFill = document.getElementById('progressFill');
-  const progressText = document.getElementById('progressText');
-  const assetState = document.getElementById('assetState');
-
-  // Guarantee a real scrolling document even if the remote stylesheet fails.
+  // Always preserve a real scrollable document, even if the external stylesheet
+  // is slow or unavailable in a GitHub HTML preview.
   document.documentElement.style.overflowY = 'auto';
   document.body.style.overflowY = 'auto';
   document.body.style.minHeight = '900vh';
   const scrollSpace = document.querySelector('.scroll-space');
   if (scrollSpace) scrollSpace.style.height = '900vh';
 
-  const go = (index) => {
-    const i = clamp(Number(index) || 0, 0, stops.length - 1);
-    window.scrollTo({ top: stops[i] * maxScroll(), behavior: 'smooth' });
+  T.maxScroll = () => Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+  T.go = (index) => {
+    const i = T.clamp(Number(index) || 0, 0, T.stops.length - 1);
+    window.scrollTo({ top: T.stops[i] * T.maxScroll(), behavior: T.reduce ? 'auto' : 'smooth' });
+  };
+
+  T.nearestStop = (value) => {
+    let bestIndex = 0;
+    let bestDistance = Infinity;
+    T.stops.forEach((stop, index) => {
+      const distance = Math.abs(value - stop);
+      if (distance < bestDistance) {
+        bestDistance = distance;
+        bestIndex = index;
+      }
+    });
+    return bestIndex;
+  };
+
+  T.updateUI = () => {
+    const p = T.state.p;
+    const activeIndex = T.nearestStop(p);
+    T.state.activeIndex = activeIndex;
+
+    T.timeline.forEach((button, index) => button.classList.toggle('active', index === activeIndex));
+
+    T.chapters.forEach((chapter, index) => {
+      const distance = Math.abs(p - T.stops[index]);
+      const span = (index === 0 || index === T.stops.length - 1) ? 0.15 : 0.115;
+      const amount = T.smooth(T.clamp(1 - distance / span));
+      const direction = p < T.stops[index] ? 1 : -1;
+      const mobile = window.innerWidth <= 700;
+
+      chapter.style.opacity = amount.toFixed(3);
+      chapter.style.filter = T.reduce ? 'none' : `blur(${((1 - amount) * 10).toFixed(2)}px)`;
+      chapter.style.pointerEvents = index === activeIndex ? 'auto' : 'none';
+      chapter.classList.toggle('active', index === activeIndex);
+
+      if (mobile) {
+        chapter.style.transform = `translate3d(${direction * (1 - amount) * 24}px,${(1 - amount) * 18}px,0) scale(${0.97 + amount * 0.03})`;
+      } else {
+        chapter.style.transform = `translate3d(${direction * (1 - amount) * 42}px,calc(-50% + ${direction * (1 - amount) * 24}px),0) scale(${0.94 + amount * 0.06})`;
+      }
+    });
+
+    if (T.progressFill) T.progressFill.style.width = `${(p * 100).toFixed(2)}%`;
+    if (T.progressText) T.progressText.textContent = `${String(Math.round(p * 100)).padStart(2, '0')}%`;
+
+    const newsAmount = T.smoothRange(0.73, 0.88, p) * (1 - T.smoothRange(0.89, 0.98, p));
+    if (T.newsStack) T.newsStack.classList.toggle('show', newsAmount > 0.03);
+    if (newsAmount > 0.02 && T.newsCards.length) {
+      const sub = T.clamp((p - 0.74) / 0.13);
+      const scaled = sub * (T.newsCards.length - 0.001);
+      T.newsCards.forEach((card, index) => {
+        const delta = index - scaled;
+        const distance = Math.abs(delta);
+        const opacity = T.clamp(1 - distance * 1.15);
+        card.style.opacity = opacity.toFixed(3);
+        card.style.transform = `translate3d(${delta * 105}px,${distance * 28}px,0) rotate(${delta * 2.6}deg) scale(${1 - distance * 0.06})`;
+        card.style.filter = T.reduce ? 'none' : `blur(${Math.min(10, distance * 7)}px)`;
+      });
+    }
+
+    if (T.warp) {
+      const spaceAmount = T.smoothRange(0.58, 0.66, p) * (1 - T.smoothRange(0.88, 0.98, p));
+      T.warp.style.opacity = (spaceAmount * 0.36).toFixed(3);
+      T.warp.style.transform = `scale(${1.35 + spaceAmount * 0.4}) rotate(${p * 14}deg)`;
+    }
   };
 
   document.querySelectorAll('[data-go]').forEach((element) => {
     element.addEventListener('click', (event) => {
       event.preventDefault();
-      go(element.dataset.go);
+      T.go(element.dataset.go);
     });
   });
 
-  const update = () => {
-    const p = clamp(window.scrollY / maxScroll());
-    let active = 0;
-    let bestDistance = Infinity;
+  window.addEventListener('scroll', () => {
+    T.state.targetP = T.clamp(window.scrollY / T.maxScroll());
+  }, { passive: true });
 
-    stops.forEach((stop, index) => {
-      const distance = Math.abs(p - stop);
-      if (distance < bestDistance) {
-        bestDistance = distance;
-        active = index;
-      }
-    });
+  window.addEventListener('pointermove', (event) => {
+    if (event.pointerType === 'touch') return;
+    T.state.tmx = event.clientX / window.innerWidth * 2 - 1;
+    T.state.tmy = event.clientY / window.innerHeight * 2 - 1;
+  }, { passive: true });
 
-    chapters.forEach((chapter, index) => {
-      const isActive = index === active;
-      chapter.classList.toggle('active', isActive);
-      chapter.style.opacity = isActive ? '1' : '0';
-      chapter.style.filter = isActive ? 'none' : 'blur(8px)';
-      chapter.style.pointerEvents = isActive ? 'auto' : 'none';
-      chapter.style.transform = isActive
-        ? 'translate3d(0,-50%,0) scale(1)'
-        : 'translate3d(36px,-46%,0) scale(.96)';
-    });
+  const chat = document.getElementById('chat');
+  const chatLaunch = document.getElementById('chatLaunch');
+  if (chat && chatLaunch) chatLaunch.addEventListener('click', () => chat.classList.toggle('open'));
 
-    timeline.forEach((button, index) => button.classList.toggle('active', index === active));
-    if (progressFill) progressFill.style.width = `${(p * 100).toFixed(2)}%`;
-    if (progressText) progressText.textContent = `${String(Math.round(p * 100)).padStart(2, '0')}%`;
-  };
-
-  if (assetState) assetState.textContent = 'Story mode — 3D controller unavailable';
-  window.addEventListener('scroll', update, { passive: true });
-  window.addEventListener('resize', update, { passive: true });
-  update();
+  T.state.p = T.state.targetP = T.clamp(window.scrollY / T.maxScroll());
+  T.updateUI();
 })();
