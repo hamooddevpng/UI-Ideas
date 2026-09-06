@@ -1,0 +1,205 @@
+name: One-time design content polish
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/polish-designs-once.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  polish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install HTML parser
+        run: npm install --no-save cheerio@1.0.0
+
+      - name: Replace placeholders and remove design-note language
+        run: |
+          node <<'EOF'
+          const fs = require('fs');
+          const path = require('path');
+          const { load } = require('cheerio');
+
+          const root = process.cwd();
+          const files = fs.readdirSync(root)
+            .filter(name => /^\d+\.html$/i.test(name))
+            .sort((a,b) => a.localeCompare(b, undefined, { numeric:true }));
+
+          // Real Papua New Guinea imagery from free Unsplash photographs.
+          const images = [
+            'https://images.unsplash.com/photo-1590364623978-7268baee5715?auto=format&fit=crop&w=1800&q=82',
+            'https://images.unsplash.com/photo-1653260194391-3a250b35e703?auto=format&fit=crop&w=1800&q=82',
+            'https://images.unsplash.com/photo-1728957526752-b195c3584c37?auto=format&fit=crop&w=1800&q=82',
+            'https://images.unsplash.com/photo-1728957467648-ad5e95eafa1e?auto=format&fit=crop&w=1800&q=82'
+          ];
+
+          const explainerPatterns = [
+            /\bplaceholder\b/i,
+            /illustrative[^.]{0,100}not coverage data/i,
+            /\bthis (?:section|concept|design|treatment)\b/i,
+            /\b(?:design|creative) direction\b/i,
+            /\bmock[- ]?up\b/i,
+            /\bprototype\b/i,
+            /\bfor (?:demo|demonstration) purposes?\b/i,
+            /\bexperimental (?:homepage )?concept\b/i,
+            /\bthe idea (?:here )?is\b/i,
+            /\bshown here to\b/i,
+            /\bused here to\b/i,
+            /\bdesigned here to\b/i,
+            /\bconcept note\b/i,
+            /\bdesign note\b/i
+          ];
+
+          function matchesExplainer(text) {
+            return explainerPatterns.some(re => re.test(text));
+          }
+
+          function addStyle(existing, extra) {
+            const separator = existing && !existing.trim().endsWith(';') ? ';' : '';
+            return `${existing || ''}${separator}${extra}`;
+          }
+
+          let changedCount = 0;
+          let placeholderCount = 0;
+          let noteCount = 0;
+
+          for (let fileIndex = 0; fileIndex < files.length; fileIndex++) {
+            const file = files[fileIndex];
+            const fullPath = path.join(root, file);
+            const original = fs.readFileSync(fullPath, 'utf8');
+            const hadPlaceholder = /placeholder/i.test(original);
+            const hadIllustrativeNote = /illustrative[^\n]{0,120}not coverage data/i.test(original);
+            const $ = load(original, { decodeEntities: false });
+            let touched = false;
+
+            // Keep browser metadata presentation-ready rather than calling the page experimental/a concept.
+            const designNo = file.replace(/\.html$/i, '');
+            const title = $('title').first();
+            if (title.length) {
+              const current = title.text();
+              const next = current
+                .replace(/Telikom PNG\s*[—-]\s*Concept\s*\d+\s*\/\s*[^<]+/i, `Telikom PNG — Homepage Design ${designNo}`)
+                .replace(/\bExperimental\b/gi, '')
+                .replace(/\s{2,}/g, ' ')
+                .trim();
+              if (next !== current) { title.text(next); touched = true; }
+            }
+
+            $('meta[name="description"]').each((_, el) => {
+              const current = $(el).attr('content') || '';
+              if (/experimental|concept|mock[- ]?up|prototype/i.test(current)) {
+                $(el).attr('content', 'Telikom PNG homepage design.');
+                touched = true;
+              }
+            });
+
+            // Remove short leaf-level annotations that explain the design rather than speak to customers.
+            $('p,small,span,div,aside,label,figcaption').each((_, el) => {
+              const node = $(el);
+              if (node.children().length) return;
+              const text = node.text().replace(/\s+/g, ' ').trim();
+              if (!text || text.length > 280 || !matchesExplainer(text)) return;
+
+              // If it is an image placeholder, turn its parent into the image surface first.
+              if (/placeholder/i.test(text)) {
+                const target = node.parent();
+                if (target.length && !['body','html'].includes((target.get(0).tagName || '').toLowerCase())) {
+                  const image = images[(fileIndex + placeholderCount) % images.length];
+                  target.attr('style', addStyle(target.attr('style'), `background-image:url('${image}');background-size:cover;background-position:center`));
+                  placeholderCount++;
+                }
+              } else {
+                noteCount++;
+              }
+              node.remove();
+              touched = true;
+            });
+
+            // Clean pseudo-element labels embedded inside CSS (e.g. PNG IMAGE PLACEHOLDER).
+            $('style').each((_, el) => {
+              const node = $(el);
+              const css = node.html() || '';
+              let next = css;
+              next = next.replace(/content\s*:\s*(["'])[^"']*PLACEHOLDER[^"']*\1\s*;?/gi, 'content:"";');
+              next = next.replace(/content\s*:\s*(["'])[^"']*ILLUSTRATIVE[^"']*NOT COVERAGE DATA[^"']*\1\s*;?/gi, 'content:"";');
+              next = next.replace(/content\s*:\s*(["'])[^"']*(?:DESIGN NOTE|CONCEPT NOTE)[^"']*\1\s*;?/gi, 'content:"";');
+              if (next !== css) {
+                node.html(next);
+                touched = true;
+              }
+            });
+
+            // If a concept had explicit placeholder imagery, replace the visual surfaces with real PNG photos.
+            if (hadPlaceholder) {
+              const imageA = images[fileIndex % images.length];
+              const imageB = images[(fileIndex + 2) % images.length];
+              const polishCss = `
+<style id="telikom-image-polish">
+/* Real PNG imagery replacing concept placeholders. */
+.portrait.one{background-image:url('${imageA}')!important;background-size:cover!important;background-position:center!important}
+.portrait.two{background-image:url('${imageB}')!important;background-size:cover!important;background-position:center!important}
+.portrait:before{content:""!important;display:none!important}
+[class*="image-placeholder"],[class*="photo-placeholder"],[class*="placeholder-image"],[class~="placeholder"]{background-image:url('${imageA}')!important;background-size:cover!important;background-position:center!important;color:transparent!important}
+[class*="image-placeholder"]:before,[class*="photo-placeholder"]:before,[class*="placeholder-image"]:before,[class~="placeholder"]:before{content:""!important;display:none!important}
+</style>`;
+              $('head').append(polishCss);
+              touched = true;
+            }
+
+            // Remove the remaining map/demo disclaimer if present as a pseudo element or ordinary element.
+            if (hadIllustrativeNote) {
+              $('head').append('<style id="telikom-note-polish">.map-wrap:before{content:""!important;display:none!important}</style>');
+              touched = true;
+            }
+
+            // Runtime safety net for any unusual placeholder class not represented as ordinary text.
+            if (hadPlaceholder) {
+              const imageA = images[fileIndex % images.length];
+              const imageB = images[(fileIndex + 1) % images.length];
+              $('body').append(`<script id="telikom-placeholder-polish">document.addEventListener('DOMContentLoaded',()=>{const imgs=['${imageA}','${imageB}'];let i=0;document.querySelectorAll('[class*="placeholder"]').forEach(el=>{if(el.closest('script,style'))return;el.textContent='';el.style.backgroundImage='url("'+imgs[i++%imgs.length]+'")';el.style.backgroundSize='cover';el.style.backgroundPosition='center';});});<\/script>`);
+              touched = true;
+            }
+
+            if (touched) {
+              // Preserve doctype, which Cheerio otherwise omits in some transformations.
+              let next = $.html();
+              if (/^<!doctype html>/i.test(original) && !/^<!doctype html>/i.test(next)) {
+                next = '<!doctype html>\n' + next;
+              }
+              next += `\n<!-- Image sources: Unsplash photographs from Papua New Guinea / Port Moresby. -->\n`;
+              fs.writeFileSync(fullPath, next);
+              changedCount++;
+              console.log(`Polished ${file}`);
+            }
+          }
+
+          console.log(`Changed ${changedCount} design file(s). Replaced ${placeholderCount} text placeholder(s); removed ${noteCount} design-note element(s).`);
+          EOF
+
+      - name: Remove this one-time workflow
+        run: rm -f .github/workflows/polish-designs-once.yml
+
+      - name: Commit polished designs
+        run: |
+          if git diff --quiet && [ -z "$(git ls-files --others --exclude-standard)" ]; then
+            echo "No changes were needed."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- '*.html' .github/workflows/polish-designs-once.yml
+          git commit -m "fix: replace placeholders and remove design-note copy"
+          git push
