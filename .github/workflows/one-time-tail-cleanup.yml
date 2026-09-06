@@ -1,0 +1,115 @@
+name: One-time tail concept cleanup
+
+on:
+  push:
+    paths:
+      - '.github/workflows/one-time-tail-cleanup.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Clean concepts 29 and 30
+        shell: python
+        run: |
+          import re
+          from pathlib import Path
+
+          # Concept 29: replace internal review/prototype language and real-image placeholders.
+          p = Path('29.html')
+          text = p.read_text(encoding='utf-8')
+          replacements = {
+              'Network Observatory / Concept 29': 'Network Observatory / Telikom PNG',
+              'A light, technical view of Telikom services — showing how Mobile, Fixed, Enterprise and Remote pathways relate without inventing live operational metrics.': 'Explore how Mobile, Fixed, Enterprise and Remote services connect people, homes and organisations across Papua New Guinea.',
+              'approved data pathways': 'mobile data services',
+              'Approved factual data': 'Service information',
+              'Use only where Telikom provides a validated source.': 'Explore current Telikom service information and availability.',
+              'Illustrative diagrams': 'Service pathways',
+              'Prototype demo states': 'Coverage & availability',
+              'Must be visibly labelled so they cannot be mistaken for live operational values.': 'Check service availability for your location or contact Telikom for assistance.',
+              'A structured matrix keeps professional services clear without inventing SLA, capacity or uptime promises.': 'Explore business connectivity, voice, systems, hosting and remote service options for organisations across Papua New Guinea.',
+              'Approved business voice pathways.': 'Business voice and SIP services.',
+              'Discuss requirements without fake auto-sizing.': 'Discuss your organisation’s connectivity requirements with Telikom.',
+              'Compare without fake precision.': 'Compare service pathways.',
+              'Commercial values remain intentionally absent until approved. The comparison structure can later receive validated plans, allowances, devices and availability.': 'Explore Mobile, Home, Business and Remote service categories, then continue to the relevant Telikom pathway for current details.',
+              'Household connectivity subject to validated availability.': 'Household connectivity subject to service availability.',
+              'Layers, not buzzwords.': 'Technology that supports every service.',
+              'Keep the technology story grounded in approved portfolio categories. No invented fibre length, bandwidth capacity, uptime or coverage statistics appear here.': 'Mobile, fixed, voice, systems, hosting and satellite services work together across the Telikom portfolio.',
+              'Approved portfolio': 'Telikom service',
+              'The technical rhythm deliberately breaks here. Telikom should still feel local and human, with approved PNG stories showing how services support households, organisations and communities.': 'Telikom connects households, organisations and communities across Papua New Guinea, supporting work, learning and communication.',
+              'Simple direct tasks replace mock account dashboards. The observatory visual language never gets in the way of basic customer actions.': 'Top Up, Pay Bill, Buy Data, Coverage, Stores and Support stay easy to reach.',
+              'Placeholder for approved Papua New Guinea infrastructure or geography photography': 'Papua New Guinea landscape and infrastructure',
+              'Placeholder for approved Papua New Guinea people or organisation photography': 'Papua New Guinean people and organisations',
+          }
+          for old, new in replacements.items():
+              text = text.replace(old, new)
+
+          text = re.sub(
+              r'(\.infra-visual\{position:relative;)background:[^;]+;',
+              r'\1background:url("https://blog.apnic.net/wp-content/uploads/2016/04/Goroka-EHP.jpg") center/cover no-repeat;',
+              text,
+              count=1,
+          )
+          text = text.replace('content:"APPROVED PNG INFRASTRUCTURE / GEOGRAPHY\\A PHOTOGRAPHY REQUIRED";white-space:pre;', 'content:"";')
+          text = re.sub(
+              r'(\.people-art\{)background:[^;]+;',
+              r'\1background:url("https://www.fao.org/images/faoraplibraries/default-album/farmers-and-agripreneurs-actively-participate-in-a-hands-on-training-session-provided-by-the-eu-streit-png-programme.jpg?sfvrsn=4cc42070_1") center/cover no-repeat;',
+              text,
+              count=1,
+          )
+          text = text.replace('content:"APPROVED PNG PEOPLE / ORGANISATION\\A PHOTOGRAPHY REQUIRED";white-space:pre;', 'content:"";')
+          p.write_text(text, encoding='utf-8')
+
+          # Concept 30: remove internal design-review copy and make captions customer-facing.
+          p = Path('30.html')
+          text = p.read_text(encoding='utf-8')
+          replacements = {
+              'Cardless Corporate / Concept 30': 'Telikom Papua New Guinea',
+              'A disciplined Telikom homepage built from typography, whitespace, rules and a small number of strong images — designed to feel premium without relying on cards, overlays or effects.': 'Mobile, home, business and remote connectivity brought together in a clear Telikom experience for Papua New Guinea.',
+              'Prototype image placeholder for an approved Papua New Guinea people or place photograph': 'Papua New Guinea people and place',
+              'Prototype photography only. Replace with approved Papua New Guinea imagery before stakeholder presentation.': 'People, place and connectivity across Papua New Guinea.',
+              'Services, without the card deck.': 'Services for every connection.',
+              'Primary Telikom pathways remain immediately visible and descriptive. The design uses scale, alignment and rules instead of repeated boxed components.': 'Explore mobile, home, business and remote services with clear pathways to Self Care and Support.',
+              'approved data pathways': 'mobile data services',
+              'Commercial values are intentionally omitted until validated. Production can align price, allowance, validity and eligibility in the same grid without changing the visual system.': 'Explore Telikom service categories and continue to the relevant pathway for current plans, details and availability.',
+              'ALLOWANCE · TBC': 'VIEW · OPTIONS',
+              'VALIDITY · TBC': 'CHECK · DETAILS',
+              'PLAN · TBC': 'VIEW · OPTIONS',
+              'AVAILABILITY · CHECK': 'CHECK · AVAILABILITY',
+              'SOLUTION · ENQUIRY': 'TALK · TO TELIKOM',
+              'SCOPE · VALIDATE': 'EXPLORE · OPTIONS',
+              'Prototype image placeholder for approved Papua New Guinea people photography': 'Papua New Guinean people',
+              'Use one exceptional approved local image here rather than a gallery of generic thumbnails.': 'Connectivity supports people, work and communities across Papua New Guinea.',
+              'The strongest corporate chapter uses precise taxonomy, whitespace and one approved PNG business image. No dark corporate slab is required to signal enterprise credibility.': 'Telikom brings together business data, voice, systems, hosting and remote connectivity for organisations across Papua New Guinea.',
+              'Prototype image placeholder for approved Papua New Guinea business photography': 'Papua New Guinea business connectivity',
+              'Replace with approved local business, infrastructure or operations imagery.': 'Business connectivity for organisations across Papua New Guinea.',
+              'Approved voice service pathways': 'Business voice services',
+              'Prototype image placeholder for approved Papua New Guinea landscape or infrastructure photography': 'Papua New Guinea landscape and telecommunications infrastructure',
+              'Illustrative story image. Do not infer coverage from photography or diagram placement.': 'Remote connectivity options for communities and organisations across Papua New Guinea.',
+              'Illustrative service architecture only. Production diagrams should use approved Telikom portfolio and network information.': 'Service availability varies by location and technology. Check availability for your area or contact Telikom.',
+              'Approved device catalogue': 'Device catalogue',
+              'Corporate information, without burying services.': 'About Telikom.',
+          }
+          for old, new in replacements.items():
+              text = text.replace(old, new)
+          p.write_text(text, encoding='utf-8')
+
+      - name: Commit cleaned concepts
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add 29.html 30.html
+          if git diff --cached --quiet; then
+            echo "No changes needed"
+          else
+            git commit -m "Clean client-facing content in concepts 29 and 30"
+            git push
+          fi
