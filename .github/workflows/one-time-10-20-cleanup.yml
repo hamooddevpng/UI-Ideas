@@ -1,0 +1,188 @@
+name: One-time concepts 10-20 cleanup
+
+on:
+  push:
+    paths:
+      - '.github/workflows/one-time-10-20-cleanup.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Clean concepts 10 to 20
+        shell: python
+        run: |
+          from pathlib import Path
+
+          LOGO='https://www.telikom.com.pg/assets/misc/TPNGLOGO.png'
+          PEOPLE='https://www.fao.org/images/faoraplibraries/default-album/farmers-and-agripreneurs-actively-participate-in-a-hands-on-training-session-provided-by-the-eu-streit-png-programme.jpg?sfvrsn=4cc42070_1'
+          GOROKA='https://blog.apnic.net/wp-content/uploads/2016/04/Goroka-EHP.jpg'
+
+          def rep(text, pairs):
+              for old,new in pairs:
+                  text=text.replace(old,new)
+              return text
+
+          def load(n):
+              p=Path(f'{n}.html')
+              return p, p.read_text(encoding='utf-8')
+
+          # 10 — Signal Objects: brand palette + remove review labels.
+          p,t=load(10)
+          t=rep(t,[
+            ('<meta name="theme-color" content="#f4f8fb">','<meta name="theme-color" content="#F4F8FB">\n<meta name="robots" content="noindex,nofollow">'),
+            ('--blue:#008fd3;--blue2:#35b9ef;--green:#52b848;','--blue:#0875C9;--blue2:#3594D1;--green:#3594D1;'),
+            ('--lime:#dff4d9;','--lime:#EAF4FB;'),
+            ('rgba(82,184,72,.12)','rgba(53,148,209,.12)'),
+            ('rgba(82,184,72,.45)','rgba(53,148,209,.45)'),
+            ('rgba(82,184,72,.8)','rgba(53,148,209,.8)'),
+            ('rgba(82,184,72,.55)','rgba(53,148,209,.55)'),
+            ('#eff8ef','#EEF7FC'),('#eff8ed','#EDF6FB'),
+            ('<small>CONCEPT 10<br>SIGNAL OBJECTS</small>','<small>Connecting you<br>anywhere anytime</small>'),
+            ('<span>TELIKOM PNG / CONCEPT 10</span>','<span>TELIKOM PNG</span>'),
+          ])
+          if 'assets/telikom-brand.js' not in t:
+              t=t.replace('</head>','<script src="assets/telikom-brand.js" defer></script>\n</head>')
+          p.write_text(t,encoding='utf-8')
+
+          # 11 — remove design-review framing while preserving playful direction.
+          p,t=load(11)
+          t=rep(t,[
+            ('aria-label="Telikom homepage concept"','aria-label="Telikom PNG home"'),
+            ('Mobile, home internet, business connectivity, Self Care and support — assembled like the things you actually use, not another corporate homepage.','Mobile, home internet, business connectivity, Self Care and support — together in one place.'),
+            ('No forced journey through a generic homepage. Start with the service, task or connection you need and move straight into it.','Start with the service, task or connection you need and move straight into it.'),
+            ('High-frequency tasks become a deliberate part of the homepage. The playful visual language stays, but utility remains fast, obvious and touch-friendly.','Top up, pay bills, buy data, check usage and get support quickly from Self Care.'),
+          ])
+          p.write_text(t,encoding='utf-8')
+
+          # 12 — remove placeholder/review language and unvalidated sample allowances.
+          p,t=load(12)
+          t=rep(t,[
+            ('src="https://www.telikom.com.pg/assets/business/voice-and-data.jpg" alt="Papua New Guinea landscape placeholder for concept review"',f'src="{GOROKA}" alt="Goroka, Papua New Guinea"'),
+            ('src="https://www.telikom.com.pg/assets/products/RED-X_Quest_Plus.png" alt="People and landscape placeholder representing Papua New Guinea stories"',f'src="{PEOPLE}" alt="Papua New Guinean people and communities"'),
+            ('<span>ILLUSTRATIVE DATA / VALIDATE BEFORE PRODUCTION</span>','<span>MOBILE DATA / FLEXIBLE OPTIONS</span>'),
+            ('Comparison without the card carousel. Clear attributes, direct actions, and enough hierarchy to scan quickly.','Compare mobile data options and choose the service that suits how you connect.'),
+            ('role="table" aria-label="Illustrative plans"','role="table" aria-label="Mobile plan categories"'),
+            ('<span class="data">5GB <small>DATA</small></span><span class="days">7 <small>DAYS</small></span>','<span class="data">DATA <small>OPTIONS</small></span><span class="days">FLEXIBLE <small>USE</small></span>'),
+            ('<span class="data">15GB <small>DATA</small></span><span class="days">14 <small>DAYS</small></span>','<span class="data">EVERYDAY <small>DATA</small></span><span class="days">FLEXIBLE <small>TERM</small></span>'),
+            ('<span class="data">30GB <small>DATA</small></span><span class="days">30 <small>DAYS</small></span>','<span class="data">MORE <small>DATA</small></span><span class="days">FLEXIBLE <small>OPTIONS</small></span>'),
+            ('The homepage should make Telikom’s national role visible without turning the experience into a corporate brochure.','Telikom connects people, communities and opportunities across Papua New Guinea.'),
+            ('<span>STRUCTURE OVER DECORATION</span>','<span>BUSINESS SERVICES</span>'),
+            ('A calmer, more controlled zone for enterprise users. The visual system stays bold, but service discovery becomes highly structured.','Explore connectivity, voice, systems and infrastructure services for organisations.'),
+          ])
+          p.write_text(t,encoding='utf-8')
+
+          # 13 — same official logo in source.
+          p,t=load(13)
+          t=t.replace('<a class="brand" href="#" aria-label="Telikom PNG home">TELIKOM<small>Connecting you anywhere anytime</small></a>',f'<a class="brand" href="#" aria-label="Telikom PNG home"><img src="{LOGO}" alt="Telikom — Connecting you Anywhere Anytime"><small>Connecting you anywhere anytime</small></a>')
+          t=t.replace('.brand small{display:block;',f'.brand img{{width:170px;height:auto;max-height:54px;object-fit:contain}}.brand small{{display:block;')
+          p.write_text(t,encoding='utf-8')
+
+          # 14 — official logo + natural journey copy.
+          p,t=load(14)
+          t=t.replace('<header class="hud"><div class="brand">TELIKOM PNG<small>Connecting you anywhere anytime</small></div>',f'<header class="hud"><div class="brand"><img src="{LOGO}" alt="Telikom — Connecting you Anywhere Anytime"><small>Connecting you anywhere anytime</small></div>')
+          t=t.replace('.brand small{display:block;', '.brand img{width:170px;height:auto;max-height:52px;object-fit:contain}.brand small{display:block;')
+          t=t.replace("body:'Begin with the network itself: Products, People and Technology connected across one illustrative journey.'","body:'Explore Products, People and Technology across the Telikom service journey.'")
+          p.write_text(t,encoding='utf-8')
+
+          # 15 — replace text box logo with official asset.
+          p,t=load(15)
+          t=t.replace('.logoBox{width:118px;height:36px;background:var(--blue);color:#fff;display:grid;place-items:center;font-weight:800;letter-spacing:.03em}', '.logoBox{display:flex;align-items:center}.logoBox img{width:170px;height:auto;max-height:52px;object-fit:contain}')
+          t=t.replace('.logoBox{width:100px;height:32px}', '.logoBox{width:auto;height:auto}.logoBox img{width:144px;max-height:48px}')
+          t=t.replace('<div class="logoBox">TELIKOM</div>',f'<div class="logoBox"><img src="{LOGO}" alt="Telikom — Connecting you Anywhere Anytime"></div>')
+          t=t.replace('\n<!-- Image sources: Unsplash photographs from Papua New Guinea / Port Moresby. -->','')
+          p.write_text(t,encoding='utf-8')
+
+          # 16 — official logo, real PNG imagery, customer-facing service copy.
+          p,t=load(16)
+          t=t.replace('.brand small{display:block;', '.brand img{width:174px;height:auto;max-height:54px;object-fit:contain}.brand small{display:block;')
+          t=t.replace('<header class="top"><a class="brand" href="#">TELIKOM PNG<small>Connecting you anywhere anytime</small></a>',f'<header class="top"><a class="brand" href="#"><img src="{LOGO}" alt="Telikom — Connecting you Anywhere Anytime"><small>Connecting you anywhere anytime</small></a>')
+          t=t.replace('.story .photo{flex:1;margin:18px 0;border-radius:24px;background:linear-gradient(135deg,rgba(255,255,255,.75),rgba(255,255,255,.15));',f'.story .photo{{flex:1;margin:18px 0;border-radius:24px;background:url("{PEOPLE}") center/cover no-repeat;')
+          t=t.replace('.story .photo span{font-size:72px;font-weight:800;color:rgba(19,55,77,.2)}','.story .photo span{display:none}')
+          t=rep(t,[
+            ('I’ll point you toward the right Telikom service without making you browse the whole organisation first.','Choose a task and go straight to the relevant Telikom service.'),
+            ('High-frequency tasks stay one tap away.','Popular customer tasks stay one tap away.'),
+            ('Each route starts with an intent. Commercial details and plan data would be connected to validated CMS content in production.','Choose what you need and follow the relevant Mobile, Home, Business, Remote or Support path.'),
+            ('Move from need → category → validated plan options.','Move from your need to the relevant mobile data options.'),
+            ('Route users toward remote/satellite options without implying coverage.','Explore remote and satellite connectivity, then check availability for your location.'),
+            ('Reserved for validated operational updates.','Check current network and service notices.'),
+            ('Editorial content stays compact and secondary to tasks.','Read the latest Telikom news and announcements.'),
+          ])
+          p.write_text(t,encoding='utf-8')
+
+          # 17 — official logo + remove concept/prototype commentary.
+          p,t=load(17)
+          t=t.replace('.brandmark{font-weight:800;font-size:22px;letter-spacing:-.04em;color:var(--b)}','.brandmark{display:flex;align-items:center}.brandmark img{width:174px;height:auto;max-height:54px;object-fit:contain}')
+          t=t.replace('<span class="brandmark">TELIKOM</span>',f'<span class="brandmark"><img src="{LOGO}" alt="Telikom — Connecting you Anywhere Anytime"></span>')
+          t=rep(t,[
+            ('Pocket Telikom / Concept 17','Pocket Telikom'),
+            ('A public website imagined with the confidence and speed of a mature Telikom digital app — built around what customers want to do.','Your Telikom services, quick actions and support organised around what you want to do.'),
+            ('<small style="font-weight:500;color:var(--muted)">illustrative UI</small>','<small style="font-weight:500;color:var(--muted)">quick actions</small>'),
+            ('<small>Illustrative account overview</small>','<small>Your Telikom</small>'),
+            ('Operate Telikom.<br>Don’t browse it.','Your Telikom.<br>One tap away.'),
+            ('The public website behaves like a service layer: direct actions first, marketing second.','Top Up, Coverage, Home Internet and Support stay close at hand.'),
+            ('Fast access to recharge without navigating through product categories.','Recharge your mobile service quickly.'),
+          ])
+          p.write_text(t,encoding='utf-8')
+
+          # 18 — preserve coverage disclaimer, remove production/design commentary.
+          p,t=load(18)
+          t=t.replace(f'<img src="{LOGO}" alt="Telikom PNG" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'block\'"><span class="brand-fallback" style="display:none">TELIKOM</span>',f'<img src="{LOGO}" alt="Telikom — Connecting you Anywhere Anytime">')
+          t=rep(t,[
+            ('Illustrative option','View options'),
+            ('At home the signal widens: study, work, entertainment and everyday communication sit on the same connection. Coverage and plan details would be validated before production.','Study, work, entertainment and everyday communication come together through your home connection. Check current availability for your location.'),
+            ('Papua New Guinea’s geography becomes part of the visual language. This route is illustrative and deliberately avoids implying exact coverage without validated GIS data.','Explore remote connectivity across Papua New Guinea. The route shown is a visual guide, not a coverage map.'),
+            ('At the end of the journey, the visual system resolves into the things customers actually need to do.','Top Up, Buy Data, Pay Bill, Coverage and Support are always within reach.'),
+          ])
+          p.write_text(t,encoding='utf-8')
+
+          # 19 — official logo and client-facing update copy.
+          p,t=load(19)
+          t=t.replace('.brandmark{font-size:24px;font-weight:800;letter-spacing:-.045em}.brandmark span{color:var(--blue)}','.brandmark{display:flex;align-items:center}.brandmark img{width:174px;height:auto;max-height:54px;object-fit:contain}')
+          t=t.replace('<div class="brandmark">TELIKOM<span>.</span></div>',f'<div class="brandmark"><img src="{LOGO}" alt="Telikom — Connecting you Anywhere Anytime"></div>')
+          t=t.replace('.footer-brand{font-size:44px;font-weight:800;letter-spacing:-.055em}.footer-brand span{color:#3e9bd5}', '.footer-brand img{width:180px;height:auto;max-height:58px;object-fit:contain;background:#fff;padding:4px 6px}')
+          t=t.replace('<div class="footer-brand">TELIKOM<span>.</span></div>',f'<div class="footer-brand"><img src="{LOGO}" alt="Telikom — Connecting you Anywhere Anytime"></div>')
+          t=rep(t,[
+            ('Exploration is optional. High-frequency tasks stay one tap away throughout the experience.','Top Up, Buy Data, Pay Bill, Coverage and Support stay one tap away.'),
+            ('Service updates can appear here without becoming promotional cards.','Current service updates and notices.'),
+            ('Telikom stories and announcements use a quiet editorial list.','Latest Telikom stories and announcements.'),
+            ('Important support information can be elevated contextually.','Important support information and customer help.'),
+          ])
+          p.write_text(t,encoding='utf-8')
+
+          # 20 — official logo + remove implementation/review terminology.
+          p,t=load(20)
+          t=t.replace('.brandmark{font-size:25px;font-weight:800;letter-spacing:-.055em}.brandmark b{color:var(--blue)}','.brandmark{display:flex;align-items:center}.brandmark img{width:174px;height:auto;max-height:54px;object-fit:contain}')
+          t=t.replace('<span class="brandmark"><b>T</b>elikom</span>',f'<span class="brandmark"><img src="{LOGO}" alt="Telikom — Connecting you Anywhere Anytime"></span>')
+          t=t.replace('.footer-brand{font-size:46px;font-weight:800;letter-spacing:-.06em}.footer-brand b{color:#54a7db}.footer-brand p{', '.footer-brand img{width:180px;height:auto;max-height:58px;object-fit:contain;background:#fff;padding:4px 6px}.footer-brand p{')
+          t=t.replace('<div class="footer-brand"><b>T</b>elikom</div>',f'<div class="footer-brand"><img src="{LOGO}" alt="Telikom — Connecting you Anywhere Anytime"></div>')
+          t=rep(t,[
+            ('Everyday mobile connectivity and data pathways, including Gutpela-related services where approved.','Everyday mobile connectivity, data and Gutpela-related services.'),
+            ('Find the appropriate coverage or availability pathway without implying unvalidated geographic data.','Check coverage and service availability for your location.'),
+            ('Browse device and router information when current approved catalogue data is available.','Browse devices, routers and related equipment.'),
+            ('A dedicated enterprise pathway keeps professional services structured and separate from retail tasks while staying one search away.','Explore Business Data, Voice, Systems, Hosting and Remote connectivity.'),
+            ('Current approved device catalogue','Devices and equipment'),
+            ("desc:'Browse approved device information'","desc:'Browse device and router information'"),
+            ('<span>Local deterministic search index</span>','<span>Connecting you anywhere anytime</span>'),
+            ('The command search finds tasks and pages. This support panel stays separate and predictable.','Search for a Telikom service or jump straight to support.'),
+          ])
+          p.write_text(t,encoding='utf-8')
+
+      - name: Commit cleaned concepts
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add 10.html 11.html 12.html 13.html 14.html 15.html 16.html 17.html 18.html 19.html 20.html
+          if git diff --cached --quiet; then
+            echo "No changes needed"
+          else
+            git commit -m "Clean branding imagery and client-facing copy in concepts 10-20"
+            git push
+          fi
