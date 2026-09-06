@@ -16,7 +16,6 @@
     }
 
     * { box-sizing: border-box; }
-
     html { scroll-behavior: smooth; }
 
     body {
@@ -40,9 +39,7 @@
       border-bottom: 1px solid var(--border);
     }
 
-    .title-wrap {
-      min-width: 0;
-    }
+    .title-wrap { min-width: 0; }
 
     h1 {
       margin: 0;
@@ -115,9 +112,7 @@
       border-bottom: 1px solid var(--border);
     }
 
-    .design-head strong {
-      font-size: 15px;
-    }
+    .design-head strong { font-size: 15px; }
 
     .actions {
       display: flex;
@@ -133,10 +128,20 @@
 
     .actions a:hover { text-decoration: underline; }
 
+    .screen {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background: white;
+    }
+
     iframe {
+      position: absolute;
+      inset: 0;
       display: block;
       width: 100%;
-      height: 760px;
+      height: 100%;
       border: 0;
       background: white;
     }
@@ -152,13 +157,11 @@
         justify-content: flex-start;
       }
       .grid { grid-template-columns: 1fr; }
-      iframe { height: 700px; }
     }
 
     @media (max-width: 560px) {
       main { padding: 12px; }
       .grid { gap: 14px; }
-      iframe { height: 620px; }
     }
   </style>
 </head>
@@ -166,7 +169,7 @@
   <header class="topbar">
     <div class="title-wrap">
       <h1>UI Ideas — All Designs</h1>
-      <p class="subtitle">Live previews of designs 1–34 via htmlpreview.github.io</p>
+      <p class="subtitle">Live 16:9 landscape previews of designs 1–34 via htmlpreview.github.io</p>
     </div>
     <nav class="jump" aria-label="Jump to design" id="jump"></nav>
   </header>
@@ -206,12 +209,14 @@
             <a href="${githubUrl(n)}" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
           </div>
         </div>
-        <iframe
-          src="${previewUrl(n)}"
-          title="Design ${n} preview"
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-        ></iframe>
+        <div class="screen">
+          <iframe
+            src="${previewUrl(n)}"
+            title="Design ${n} preview"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
       `;
 
       grid.appendChild(card);
