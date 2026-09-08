@@ -1,0 +1,67 @@
+name: Retry PNG Education Screenshot
+
+on:
+  push:
+    paths:
+      - '.github/workflows/capture-png-education-retry.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: |
+          npm install --no-save playwright
+          npx playwright install chromium
+      - name: Capture Education after extended render
+        run: |
+          node <<'EOF'
+          const { chromium } = require('playwright');
+          const fs=require('fs'), path=require('path');
+          (async()=>{
+            const out=path.join(process.cwd(),'reference-screenshots','png-public-sites-retries','education');
+            fs.rmSync(out,{recursive:true,force:true}); fs.mkdirSync(out,{recursive:true});
+            const browser=await chromium.launch({headless:true});
+            const ctx=await browser.newContext({viewport:{width:1440,height:900},deviceScaleFactor:1,locale:'en-US',userAgent:'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'});
+            const page=await ctx.newPage();
+            let response=null,error=null;
+            try{
+              response=await page.goto('https://education.gov.pg/',{waitUntil:'domcontentloaded',timeout:40000});
+              await page.waitForTimeout(12000);
+              await page.waitForLoadState('networkidle',{timeout:8000}).catch(()=>{});
+              await page.waitForTimeout(3000);
+              await page.evaluate(async()=>{const s=ms=>new Promise(r=>setTimeout(r,ms));let last=0;for(let i=0;i<50;i++){let h=Math.max(document.body?.scrollHeight||0,document.documentElement.scrollHeight);window.scrollTo(0,Math.min((i+1)*700,h));await s(100);if(h===last&&window.scrollY+innerHeight>=h-5)break;last=h}window.scrollTo(0,0);await s(700)}).catch(()=>{});
+            }catch(e){error=String(e.message||e)}
+            const title=await page.title().catch(()=>''), finalUrl=page.url();
+            const text=(await page.locator('body').innerText().catch(()=>'' )).slice(0,1000);
+            await page.screenshot({path:path.join(out,'education.png'),type:'png',fullPage:true,animations:'disabled',timeout:30000});
+            fs.writeFileSync(path.join(out,'result.json'),JSON.stringify({httpStatus:response?response.status():null,title,finalUrl,error,text},null,2));
+            await browser.close();
+          })().catch(e=>{console.error(e);process.exit(1)});
+          EOF
+      - name: Archive
+        run: |
+          mkdir -p screenshot-archives
+          zip -qr -9 screenshot-archives/png-education-retry.zip reference-screenshots/png-public-sites-retries/education
+      - uses: actions/upload-artifact@v4
+        with:
+          name: png-education-retry
+          path: screenshot-archives/png-education-retry.zip
+          retention-days: 30
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reference-screenshots/png-public-sites-retries/education
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "chore: retry PNG Education screenshot"
+          git pull --rebase origin main
+          git push origin main
