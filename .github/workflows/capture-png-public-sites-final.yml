@@ -1,0 +1,121 @@
+name: Capture Curated PNG Public Sites Full Page
+
+on:
+  push:
+    paths:
+      - '.github/workflows/capture-png-public-sites-final.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  capture-full-page:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install Playwright
+        run: |
+          npm install --no-save playwright
+          npx playwright install chromium
+      - name: Capture curated full-page screenshots
+        run: |
+          node <<'EOF'
+          const { chromium } = require('playwright');
+          const fs = require('fs');
+          const path = require('path');
+          const root = process.cwd();
+          const outDir = path.join(root,'reference-screenshots','png-public-sites-curated','full-page-1440');
+          fs.rmSync(outDir,{recursive:true,force:true}); fs.mkdirSync(outDir,{recursive:true});
+          const sites = [
+            ['rpngc-police','Royal Papua New Guinea Constabulary','https://rpngc.gov.pg/'],
+            ['immigration-ica','Immigration & Citizenship Authority','https://ica.gov.pg/'],
+            ['pngcir-nid','PNG Civil & Identity Registry / NID','https://pngcir.gov.pg/'],
+            ['irc-tax','Internal Revenue Commission','https://irc.gov.pg/'],
+            ['ipa-registry','Investment Promotion Authority / Registry Services','https://www.ipa.gov.pg/'],
+            ['education','National Department of Education','https://education.gov.pg/'],
+            ['teaching-service-commission','Teaching Service Commission','https://www.tsc.gov.pg/'],
+            ['dherst','Department of Higher Education Research Science and Technology','https://web.dherst.gov.pg/'],
+            ['dherst-noas','DHERST National Online Application System','https://apply.dherst.gov.pg/Apply/Account/Login'],
+            ['upng','University of Papua New Guinea','https://upng.ac.pg/'],
+            ['pnguot','Papua New Guinea University of Technology','https://www.pnguot.ac.pg/'],
+            ['university-of-goroka','University of Goroka','https://www.unigoroka.ac.pg/'],
+            ['road-traffic-authority','Road Traffic Authority','https://www.rta.gov.pg/'],
+            ['png-power','PNG Power Limited','https://www.pngpower.com.pg/'],
+            ['ncdc','National Capital District Commission','https://ncdc.gov.pg/'],
+            ['health','National Department of Health','https://health.gov.pg/'],
+            ['labour','Department of Labour & Industrial Relations','https://www.labour.gov.pg/'],
+            ['nicta','National ICT Authority','https://www.nicta.gov.pg/'],
+            ['png-judiciary','National & Supreme Courts of Papua New Guinea','https://www.pngjudiciary.gov.pg/'],
+            ['casa-png','Civil Aviation Safety Authority of Papua New Guinea','https://casapng.gov.pg/']
+          ];
+          async function scrollAll(page){
+            await page.evaluate(async()=>{
+              const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+              let last=0;
+              for(let i=0;i<80;i++){
+                const el=document.scrollingElement || document.documentElement;
+                const h=Math.max(el.scrollHeight, document.body?.scrollHeight||0);
+                window.scrollTo(0, Math.min((i+1)*700,h));
+                await sleep(100);
+                if(h===last && window.scrollY + window.innerHeight >= h-5) break;
+                last=h;
+              }
+              window.scrollTo(0,0);
+              await sleep(500);
+            }).catch(()=>{});
+          }
+          async function dismissCookies(page){
+            for(const re of [/accept all/i,/accept cookies/i,/^accept$/i,/allow all/i,/i agree/i]){
+              try{const b=page.getByRole('button',{name:re}).first(); if(await b.isVisible({timeout:300})){await b.click({timeout:1000});break}}catch(_){}
+            }
+          }
+          (async()=>{
+            const browser=await chromium.launch({headless:true});
+            const context=await browser.newContext({viewport:{width:1440,height:900},deviceScaleFactor:1,locale:'en-US'});
+            const results=[];
+            for(const [slug,name,url] of sites){
+              const page=await context.newPage(); let status='ok',error=null,httpStatus=null;
+              try{
+                const r=await page.goto(url,{waitUntil:'domcontentloaded',timeout:35000}); httpStatus=r?r.status():null;
+                await page.waitForTimeout(2200); await dismissCookies(page); await scrollAll(page); await page.waitForTimeout(600);
+                await page.addStyleTag({content:'html,body{overflow-x:hidden!important;}'}).catch(()=>{});
+              }catch(e){status='partial';error=String(e.message||e)}
+              try{
+                await page.screenshot({path:path.join(outDir,`${slug}.png`),type:'png',fullPage:true,animations:'disabled',timeout:30000});
+              }catch(e){status='failed';error=[error,String(e.message||e)].filter(Boolean).join(' | ')}
+              let title='',size=null;
+              try{title=await page.title()}catch(_){}
+              try{size=await page.evaluate(()=>({w:Math.max(document.documentElement.scrollWidth,document.body?.scrollWidth||0),h:Math.max(document.documentElement.scrollHeight,document.body?.scrollHeight||0)}))}catch(_){}
+              results.push({slug,name,requestedUrl:url,finalUrl:page.url(),title,httpStatus,status,error,documentSize:size});
+              console.log(`${status}: ${slug} ${JSON.stringify(size)}`);
+              await page.close().catch(()=>{});
+            }
+            await browser.close();
+            fs.writeFileSync(path.join(outDir,'capture-results.json'),JSON.stringify({capturedAt:new Date().toISOString(),viewport:'1440x900',count:sites.length,results},null,2));
+          })().catch(e=>{console.error(e);process.exit(1)});
+          EOF
+      - name: Create ZIP
+        run: |
+          mkdir -p screenshot-archives
+          rm -f screenshot-archives/png-public-service-sites-full-page-1440.zip
+          zip -qr -9 screenshot-archives/png-public-service-sites-full-page-1440.zip reference-screenshots/png-public-sites-curated/full-page-1440
+          ls -lh screenshot-archives/png-public-service-sites-full-page-1440.zip
+      - uses: actions/upload-artifact@v4
+        with:
+          name: png-public-service-sites-full-page-1440
+          path: screenshot-archives/png-public-service-sites-full-page-1440.zip
+          retention-days: 30
+      - name: Commit curated screenshots
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reference-screenshots/png-public-sites-curated/full-page-1440
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "chore: capture curated PNG public sites full page"
+          git pull --rebase origin main
+          git push origin main
