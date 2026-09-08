@@ -1,0 +1,287 @@
+{
+  "capturedAt": "2026-09-08T21:37:02.797Z",
+  "viewport": "1440x900",
+  "count": 20,
+  "results": [
+    {
+      "slug": "rpngc-police",
+      "name": "Royal Papua New Guinea Constabulary",
+      "requestedUrl": "https://rpngc.gov.pg/",
+      "finalUrl": "https://rpngc.gov.pg/",
+      "title": "Royal Papua New Guinea Constabulary – Partnering with you to build a safer online community for PNG.",
+      "httpStatus": 200,
+      "status": "ok",
+      "error": null,
+      "documentSize": {
+        "w": 1440,
+        "h": 4312
+      }
+    },
+    {
+      "slug": "immigration-ica",
+      "name": "Immigration & Citizenship Authority",
+      "requestedUrl": "https://ica.gov.pg/",
+      "finalUrl": "https://ica.gov.pg/",
+      "title": "Just a moment...",
+      "httpStatus": 403,
+      "status": "ok",
+      "error": null,
+      "documentSize": {
+        "w": 1440,
+        "h": 900
+      }
+    },
+    {
+      "slug": "pngcir-nid",
+      "name": "PNG Civil & Identity Registry / NID",
+      "requestedUrl": "https://pngcir.gov.pg/",
+      "finalUrl": "https://pngcir.gov.pg/",
+      "title": "PAPUA NEW GUINEA CIVIL AND IDENTITY REGISTRY – HAVE YOU REGISTERED?",
+      "httpStatus": 200,
+      "status": "ok",
+      "error": null,
+      "documentSize": {
+        "w": 1440,
+        "h": 3392
+      }
+    },
+    {
+      "slug": "irc-tax",
+      "name": "Internal Revenue Commission",
+      "requestedUrl": "https://irc.gov.pg/",
+      "finalUrl": "https://irc.gov.pg/",
+      "title": "IRC",
+      "httpStatus": 403,
+      "status": "ok",
+      "error": null,
+      "documentSize": {
+        "w": 1440,
+        "h": 1559
+      }
+    },
+    {
+      "slug": "ipa-registry",
+      "name": "Investment Promotion Authority / Registry Services",
+      "requestedUrl": "https://www.ipa.gov.pg/",
+      "finalUrl": "https://www.ipa.gov.pg/",
+      "title": "Papua New Guinea Registry Services",
+      "httpStatus": 200,
+      "status": "ok",
+      "error": null,
+      "documentSize": {
+        "w": 1440,
+        "h": 1553
+      }
+    },
+    {
+      "slug": "education",
+      "name": "National Department of Education",
+      "requestedUrl": "https://education.gov.pg/",
+      "finalUrl": "https://education.gov.pg/",
+      "title": "One moment, please...",
+      "httpStatus": 200,
+      "status": "ok",
+      "error": null,
+      "documentSize": {
+        "w": 1440,
+        "h": 900
+      }
+    },
+    {
+      "slug": "teaching-service-commission",
+      "name": "Teaching Service Commission",
+      "requestedUrl": "https://www.tsc.gov.pg/",
+      "finalUrl": "https://www.tsc.gov.pg/",
+      "title": "Teaching Service Commission |",
+      "httpStatus": 200,
+      "status": "ok",
+      "error": null,
+      "documentSize": {
+        "w": 1440,
+        "h": 4025
+      }
+    },
+    {
+      "slug": "dherst",
+      "name": "Department of Higher Education Research Science and Technology",
+      "requestedUrl": "https://web.dherst.gov.pg/",
+      "finalUrl": "https://web.dherst.gov.pg/.well-known/sgcaptcha/?r=%2F&y=ipr:172.174.198.64:1788903331.332",
+      "title": "Robot Challenge Screen",
+      "httpStatus": 202,
+      "status": "ok",
+      "error": null,
+      "documentSize": {
+        "w": 1440,
+        "h": 900
+      }
+    },
+    {
+      "slug": "dherst-noas",
+      "name": "DHERST National Online Application System",
+      "requestedUrl": "https://apply.dherst.gov.pg/Apply/Account/Login",
+      "finalUrl": "https://apply.dherst.gov.pg/Apply/Account/Login",
+      "title": "",
+      "httpStatus": 200,
+      "status": "ok",
+      "error": null,
+      "documentSize": {
+        "w": 1440,
+        "h": 1273
+      }
+    },
+    {
+      "slug": "upng",
+      "name": "University of Papua New Guinea",
+      "requestedUrl": "https://upng.ac.pg/",
+      "finalUrl": "https://upng.ac.pg/",
+      "title": "One moment, please...",
+      "httpStatus": 200,
+      "status": "ok",
+      "error": null,
+      "documentSize": {
+        "w": 1440,
+        "h": 900
+      }
+    },
+    {
+      "slug": "pnguot",
+      "name": "Papua New Guinea University of Technology",
+      "requestedUrl": "https://www.pnguot.ac.pg/",
+      "finalUrl": "https://www.pnguot.ac.pg/",
+      "title": "PNGUoT – PNG University of Technology -",
+      "httpStatus": 200,
+      "status": "ok",
+      "error": null,
+      "documentSize": {
+        "w": 1440,
+        "h": 5755
+      }
+    },
+    {
+      "slug": "university-of-goroka",
+      "name": "University of Goroka",
+      "requestedUrl": "https://www.unigoroka.ac.pg/",
+      "finalUrl": "https://www.unigoroka.ac.pg/",
+      "title": "Home",
+      "httpStatus": 202,
+      "status": "ok",
+      "error": null,
+      "documentSize": {
+        "w": 1440,
+        "h": 5672
+      }
+    },
+    {
+      "slug": "road-traffic-authority",
+      "name": "Road Traffic Authority",
+      "requestedUrl": "https://www.rta.gov.pg/",
+      "finalUrl": "https://www.rta.gov.pg/",
+      "title": "Road Traffic Authority – Papua New Guinea",
+      "httpStatus": 200,
+      "status": "ok",
+      "error": null,
+      "documentSize": {
+        "w": 1440,
+        "h": 1760
+      }
+    },
+    {
+      "slug": "png-power",
+      "name": "PNG Power Limited",
+      "requestedUrl": "https://www.pngpower.com.pg/",
+      "finalUrl": "https://www.pngpower.com.pg/",
+      "title": "PNG Power Limited | Papua New Guinea's State-Owned Power Authority",
+      "httpStatus": 200,
+      "status": "ok",
+      "error": null,
+      "documentSize": {
+        "w": 1440,
+        "h": 5887
+      }
+    },
+    {
+      "slug": "ncdc",
+      "name": "National Capital District Commission",
+      "requestedUrl": "https://ncdc.gov.pg/",
+      "finalUrl": "https://ncdc.gov.pg/",
+      "title": "NCDC | Port Moresby",
+      "httpStatus": 200,
+      "status": "ok",
+      "error": null,
+      "documentSize": {
+        "w": 1440,
+        "h": 8367
+      }
+    },
+    {
+      "slug": "health",
+      "name": "National Department of Health",
+      "requestedUrl": "https://health.gov.pg/",
+      "finalUrl": "https://health.gov.pg/",
+      "title": "One moment, please...",
+      "httpStatus": 200,
+      "status": "ok",
+      "error": null,
+      "documentSize": {
+        "w": 1440,
+        "h": 900
+      }
+    },
+    {
+      "slug": "labour",
+      "name": "Department of Labour & Industrial Relations",
+      "requestedUrl": "https://www.labour.gov.pg/",
+      "finalUrl": "https://www.labour.gov.pg/",
+      "title": "Department Of Labour & Industrial Relations – \"Taking Our Organization Above Its Peers\"",
+      "httpStatus": 200,
+      "status": "ok",
+      "error": null,
+      "documentSize": {
+        "w": 1440,
+        "h": 900
+      }
+    },
+    {
+      "slug": "nicta",
+      "name": "National ICT Authority",
+      "requestedUrl": "https://www.nicta.gov.pg/",
+      "finalUrl": "https://www.nicta.gov.pg/",
+      "title": "Home | NICTA PNG",
+      "httpStatus": 200,
+      "status": "ok",
+      "error": null,
+      "documentSize": {
+        "w": 1440,
+        "h": 7398
+      }
+    },
+    {
+      "slug": "png-judiciary",
+      "name": "National & Supreme Courts of Papua New Guinea",
+      "requestedUrl": "https://www.pngjudiciary.gov.pg/",
+      "finalUrl": "https://www.pngjudiciary.gov.pg/",
+      "title": "Home",
+      "httpStatus": 200,
+      "status": "ok",
+      "error": null,
+      "documentSize": {
+        "w": 1440,
+        "h": 1271
+      }
+    },
+    {
+      "slug": "casa-png",
+      "name": "Civil Aviation Safety Authority of Papua New Guinea",
+      "requestedUrl": "https://casapng.gov.pg/",
+      "finalUrl": "https://casapng.gov.pg/",
+      "title": "CASA - PNG",
+      "httpStatus": 200,
+      "status": "ok",
+      "error": null,
+      "documentSize": {
+        "w": 1455,
+        "h": 1415
+      }
+    }
+  ]
+}
