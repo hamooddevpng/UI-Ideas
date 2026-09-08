@@ -1,0 +1,36 @@
+{
+  "capturedAt": "2026-09-08T21:32:18.680Z",
+  "viewport": "1440x900",
+  "results": [
+    {
+      "slug": "png-judiciary",
+      "name": "National & Supreme Courts of Papua New Guinea",
+      "requestedUrl": "https://www.pngjudiciary.gov.pg/",
+      "finalUrl": "https://www.pngjudiciary.gov.pg/",
+      "title": "Home",
+      "httpStatus": 200,
+      "status": "ok",
+      "error": null
+    },
+    {
+      "slug": "post-png",
+      "name": "Post PNG",
+      "requestedUrl": "https://www.postpng.com.pg/",
+      "finalUrl": "chrome-error://chromewebdata/",
+      "title": "",
+      "httpStatus": null,
+      "status": "partial",
+      "error": "page.goto: net::ERR_CERT_DATE_INVALID at https://www.postpng.com.pg/\nCall log:\n  - navigating to \"https://www.postpng.com.pg/\", waiting until \"domcontentloaded\"\n"
+    },
+    {
+      "slug": "casa-png",
+      "name": "Civil Aviation Safety Authority of Papua New Guinea",
+      "requestedUrl": "https://casapng.gov.pg/",
+      "finalUrl": "https://casapng.gov.pg/",
+      "title": "CASA - PNG",
+      "httpStatus": 200,
+      "status": "ok",
+      "error": null
+    }
+  ]
+}
