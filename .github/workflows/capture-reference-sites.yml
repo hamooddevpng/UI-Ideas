@@ -1,0 +1,191 @@
+name: Capture Reference Website Screenshots
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/capture-reference-sites.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  capture-reference-sites:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Playwright
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+
+      - name: Capture full-page desktop screenshots
+        run: |
+          node <<'EOF'
+          const { chromium } = require('playwright');
+          const fs = require('fs');
+          const path = require('path');
+
+          const sites = [
+            ['telikom-home-4', 'https://telikom-frontend.vercel.app/home-4'],
+            ['ooredoo-qatar', 'https://www.ooredoo.qa/web/en/'],
+            ['telefonica', 'https://www.telefonica.com/en/'],
+            ['stc-saudi', 'https://www.stc.com.sa/en/personal/home.html'],
+            ['zain', 'https://www.zain.com/en'],
+            ['orange', 'https://www.orange.com/en'],
+            ['vodafone-png', 'https://vodafone.com.pg/'],
+            ['verizon', 'https://www.verizon.com/'],
+            ['att', 'https://www.att.com/']
+          ];
+
+          const root = process.cwd();
+          const outDir = path.join(root, 'reference-screenshots', 'telecom-sites', 'desktop-1440');
+          fs.mkdirSync(outDir, { recursive: true });
+
+          async function dismissCommonOverlays(page) {
+            const patterns = [
+              /^accept all$/i, /^accept$/i, /^agree$/i, /^allow all$/i,
+              /^i agree$/i, /^accept cookies$/i, /^got it$/i,
+              /^continue$/i, /^close$/i, /^dismiss$/i
+            ];
+            for (const pattern of patterns) {
+              try {
+                const button = page.getByRole('button', { name: pattern }).first();
+                if (await button.isVisible({ timeout: 300 })) {
+                  await button.click({ timeout: 1000 });
+                  await page.waitForTimeout(300);
+                  break;
+                }
+              } catch {}
+            }
+          }
+
+          async function lazyLoad(page) {
+            try {
+              await page.evaluate(async () => {
+                await new Promise(resolve => {
+                  let total = 0;
+                  const step = 700;
+                  const timer = setInterval(() => {
+                    window.scrollBy(0, step);
+                    total += step;
+                    const height = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+                    if (total >= height) {
+                      clearInterval(timer);
+                      resolve();
+                    }
+                  }, 80);
+                });
+              });
+              await page.waitForTimeout(800);
+              await page.evaluate(() => window.scrollTo(0, 0));
+              await page.waitForTimeout(500);
+            } catch {}
+          }
+
+          (async () => {
+            const browser = await chromium.launch({
+              headless: true,
+              args: ['--disable-blink-features=AutomationControlled']
+            });
+
+            const context = await browser.newContext({
+              viewport: { width: 1440, height: 900 },
+              deviceScaleFactor: 1,
+              locale: 'en-US',
+              userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36'
+            });
+
+            const results = [];
+
+            for (const [slug, url] of sites) {
+              const page = await context.newPage();
+              const screenshotPath = path.join(outDir, `${slug}.png`);
+              let status = 'ok';
+              let finalUrl = url;
+              let title = '';
+              let error = null;
+
+              try {
+                console.log(`Opening ${url}`);
+                await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 45000 });
+                await page.waitForTimeout(3500);
+                await dismissCommonOverlays(page);
+                await lazyLoad(page);
+                await dismissCommonOverlays(page);
+
+                finalUrl = page.url();
+                title = await page.title().catch(() => '');
+
+                await page.screenshot({
+                  path: screenshotPath,
+                  type: 'png',
+                  fullPage: true,
+                  animations: 'disabled',
+                  timeout: 30000
+                });
+
+                console.log(`Captured ${slug}: ${finalUrl}`);
+              } catch (e) {
+                status = 'error';
+                error = e.message;
+                console.warn(`Failed ${slug}: ${e.message}`);
+                try {
+                  await page.screenshot({
+                    path: screenshotPath,
+                    type: 'png',
+                    fullPage: true,
+                    animations: 'disabled',
+                    timeout: 10000
+                  });
+                  status = 'partial';
+                } catch {}
+              } finally {
+                results.push({ slug, requestedUrl: url, finalUrl, title, status, error });
+                await page.close().catch(() => {});
+              }
+            }
+
+            await browser.close();
+            fs.writeFileSync(
+              path.join(outDir, 'capture-results.json'),
+              JSON.stringify({ capturedAt: new Date().toISOString(), viewport: '1440x900', results }, null, 2)
+            );
+          })().catch(err => {
+            console.error(err);
+            process.exit(1);
+          });
+          EOF
+
+      - name: Create ZIP bundle
+        run: |
+          mkdir -p reference-screenshots/telecom-sites
+          rm -f reference-screenshots/telecom-sites/telecom-reference-sites-desktop-1440.zip
+          cd reference-screenshots/telecom-sites
+          zip -qr -9 telecom-reference-sites-desktop-1440.zip desktop-1440
+          ls -lh telecom-reference-sites-desktop-1440.zip desktop-1440/*.png
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: telecom-reference-sites-desktop-1440
+          path: reference-screenshots/telecom-sites/telecom-reference-sites-desktop-1440.zip
+          retention-days: 30
+
+      - name: Commit screenshots to repository
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reference-screenshots/telecom-sites
+          if git diff --cached --quiet; then
+            echo "No screenshot changes to commit"
+            exit 0
+          fi
+          git commit -m "docs: capture telecom reference website screenshots"
+          git pull --rebase origin main
+          git push origin main
