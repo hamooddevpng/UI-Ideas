@@ -1,0 +1,193 @@
+name: Capture PNG Public Service Website Screenshots
+
+on:
+  push:
+    paths:
+      - '.github/workflows/capture-png-public-sites.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  capture-png-public-sites:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Playwright
+        run: |
+          npm install --no-save playwright
+          npx playwright install chromium
+
+      - name: Capture full-page desktop screenshots
+        run: |
+          node <<'EOF'
+          const { chromium } = require('playwright');
+          const fs = require('fs');
+          const path = require('path');
+
+          const root = process.cwd();
+          const outDir = path.join(root, 'reference-screenshots', 'png-public-sites', 'desktop-1440');
+          fs.rmSync(outDir, { recursive: true, force: true });
+          fs.mkdirSync(outDir, { recursive: true });
+
+          const sites = [
+            ['rpngc-police', 'Royal Papua New Guinea Constabulary', 'https://rpngc.gov.pg/'],
+            ['immigration-ica', 'Immigration & Citizenship Authority', 'https://ica.gov.pg/'],
+            ['pngcir-nid', 'PNG Civil & Identity Registry / NID', 'https://pngcir.gov.pg/'],
+            ['irc-tax', 'Internal Revenue Commission', 'https://irc.gov.pg/'],
+            ['ipa-registry', 'Investment Promotion Authority / Registry Services', 'https://www.ipa.gov.pg/'],
+            ['education', 'National Department of Education', 'https://education.gov.pg/'],
+            ['teaching-service-commission', 'Teaching Service Commission', 'https://www.tsc.gov.pg/'],
+            ['dherst', 'Department of Higher Education, Research, Science and Technology', 'https://web.dherst.gov.pg/'],
+            ['dherst-noas', 'DHERST National Online Application System', 'https://apply.dherst.gov.pg/Apply/Account/Login'],
+            ['upng', 'University of Papua New Guinea', 'https://upng.ac.pg/'],
+            ['pnguot', 'Papua New Guinea University of Technology', 'https://www.pnguot.ac.pg/'],
+            ['university-of-goroka', 'University of Goroka', 'https://www.unigoroka.ac.pg/'],
+            ['road-traffic-authority', 'Road Traffic Authority', 'https://www.rta.gov.pg/'],
+            ['png-power', 'PNG Power Limited', 'https://www.pngpower.com.pg/'],
+            ['ncdc', 'National Capital District Commission', 'https://ncdc.gov.pg/'],
+            ['health', 'National Department of Health', 'https://health.gov.pg/'],
+            ['labour', 'Department of Labour & Industrial Relations', 'https://www.labour.gov.pg/'],
+            ['customs', 'Papua New Guinea Customs Service', 'https://customs.gov.pg/'],
+            ['nicta', 'National ICT Authority', 'https://www.nicta.gov.pg/'],
+            ['iccc', 'Independent Consumer & Competition Commission', 'https://iccc.gov.pg/']
+          ];
+
+          async function autoScroll(page) {
+            await page.evaluate(async () => {
+              await new Promise(resolve => {
+                let y = 0;
+                const step = 700;
+                const timer = setInterval(() => {
+                  const h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+                  window.scrollTo(0, y);
+                  y += step;
+                  if (y >= h) {
+                    clearInterval(timer);
+                    window.scrollTo(0, 0);
+                    setTimeout(resolve, 600);
+                  }
+                }, 120);
+                setTimeout(() => {
+                  clearInterval(timer);
+                  window.scrollTo(0, 0);
+                  resolve();
+                }, 10000);
+              });
+            }).catch(() => {});
+          }
+
+          async function dismissCookies(page) {
+            const patterns = [/accept all/i, /accept cookies/i, /^accept$/i, /allow all/i, /i agree/i];
+            for (const re of patterns) {
+              try {
+                const btn = page.getByRole('button', { name: re }).first();
+                if (await btn.isVisible({ timeout: 400 })) {
+                  await btn.click({ timeout: 1000 });
+                  await page.waitForTimeout(250);
+                  return;
+                }
+              } catch (_) {}
+            }
+          }
+
+          async function contentHeight(page) {
+            return await page.evaluate(() => {
+              const h = Math.max(
+                document.body?.scrollHeight || 0,
+                document.documentElement?.scrollHeight || 0,
+                document.body?.offsetHeight || 0,
+                document.documentElement?.offsetHeight || 0
+              );
+              return Math.max(900, Math.min(h, 18000));
+            }).catch(() => 900);
+          }
+
+          (async () => {
+            const browser = await chromium.launch({ headless: true });
+            const context = await browser.newContext({
+              viewport: { width: 1440, height: 900 },
+              deviceScaleFactor: 1,
+              locale: 'en-US',
+              userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/139 Safari/537.36'
+            });
+
+            const results = [];
+            for (const [slug, name, url] of sites) {
+              const page = await context.newPage();
+              let status = 'ok';
+              let error = null;
+              let httpStatus = null;
+              try {
+                const response = await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 35000 });
+                httpStatus = response ? response.status() : null;
+                await page.waitForTimeout(2200);
+                await dismissCookies(page);
+                await autoScroll(page);
+                await page.waitForTimeout(800);
+              } catch (e) {
+                status = 'partial';
+                error = String(e.message || e);
+              }
+
+              try {
+                const height = await contentHeight(page);
+                await page.screenshot({
+                  path: path.join(outDir, `${slug}.png`),
+                  type: 'png',
+                  clip: { x: 0, y: 0, width: 1440, height },
+                  animations: 'disabled',
+                  timeout: 20000
+                });
+              } catch (e) {
+                status = 'failed';
+                error = [error, String(e.message || e)].filter(Boolean).join(' | ');
+              }
+
+              let title = '';
+              let finalUrl = url;
+              try { title = await page.title(); } catch (_) {}
+              try { finalUrl = page.url(); } catch (_) {}
+              results.push({ slug, name, requestedUrl: url, finalUrl, title, httpStatus, status, error });
+              console.log(`${status.toUpperCase()}: ${name} -> ${finalUrl}`);
+              await page.close().catch(() => {});
+            }
+
+            await browser.close();
+            fs.writeFileSync(path.join(outDir, 'capture-results.json'), JSON.stringify({
+              capturedAt: new Date().toISOString(),
+              viewport: '1440x900',
+              count: sites.length,
+              results
+            }, null, 2));
+          })().catch(e => { console.error(e); process.exit(1); });
+          EOF
+
+      - name: Create ZIP bundle
+        run: |
+          mkdir -p screenshot-archives
+          rm -f screenshot-archives/png-public-service-sites-desktop-1440.zip
+          zip -qr -9 screenshot-archives/png-public-service-sites-desktop-1440.zip reference-screenshots/png-public-sites/desktop-1440
+          ls -lh screenshot-archives/png-public-service-sites-desktop-1440.zip
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: png-public-service-sites-desktop-1440
+          path: screenshot-archives/png-public-service-sites-desktop-1440.zip
+          retention-days: 30
+
+      - name: Commit screenshots to repository
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reference-screenshots/png-public-sites/desktop-1440
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "chore: capture PNG public service website references"
+          git pull --rebase origin main
+          git push origin main
