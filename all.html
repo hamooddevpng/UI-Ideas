@@ -9,7 +9,6 @@
       color-scheme: dark;
       --bg: #080b11;
       --panel: #111722;
-      --panel-2: #171e2a;
       --text: #f8fafc;
       --muted: #9aa4b2;
       --border: #293241;
@@ -76,9 +75,7 @@
       font-weight: 800;
     }
 
-    .collection-label {
-      color: #c8d1dc;
-    }
+    .collection-label { color: #c8d1dc; }
 
     .controls {
       display: flex;
@@ -195,10 +192,7 @@
       font-weight: 900;
     }
 
-    .screen-shell {
-      padding: 0;
-      background: #000;
-    }
+    .screen-shell { background: #000; }
 
     .screen {
       position: relative;
@@ -253,21 +247,60 @@
       line-height: 1.45;
     }
 
-    .jump-strip {
-      display: flex;
-      gap: 6px;
-      overflow-x: auto;
-      margin-top: 8px;
+    .jump-groups {
+      display: grid;
+      gap: 8px;
+      margin-top: 9px;
+    }
+
+    .jump-section {
+      display: grid;
+      grid-template-columns: 118px minmax(0, 1fr);
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
       padding: 7px;
       border: 1px solid var(--border);
       border-radius: 11px;
       background: rgba(17,23,34,.9);
+    }
+
+    .jump-section-label {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      padding-left: 3px;
+      color: #f7f9fc;
+      font-size: 11px;
+      font-weight: 900;
+      line-height: 1.1;
+    }
+
+    .jump-section-label small {
+      color: var(--muted);
+      font-size: 9px;
+      font-weight: 750;
+    }
+
+    .jump-strip {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      min-width: 0;
+      padding: 1px 1px 4px;
       scrollbar-width: thin;
+      scrollbar-color: #465266 transparent;
+    }
+
+    .jump-strip::-webkit-scrollbar { height: 6px; }
+    .jump-strip::-webkit-scrollbar-thumb {
+      border-radius: 999px;
+      background: #465266;
     }
 
     .jump-btn {
       flex: 0 0 auto;
-      min-width: 34px;
+      min-width: 38px;
       height: 31px;
       border: 1px solid #344052;
       border-radius: 7px;
@@ -293,6 +326,16 @@
       border-color: var(--selected);
       background: var(--selected-soft);
       color: #61d3ae;
+    }
+
+    .jump-empty {
+      display: inline-flex;
+      align-items: center;
+      min-height: 31px;
+      color: #748094;
+      font-size: 10px;
+      font-weight: 750;
+      white-space: nowrap;
     }
 
     .shortlist-bar {
@@ -414,6 +457,7 @@
       .design-info { grid-template-columns: 1fr; }
       .shortlist-bar { grid-template-columns: 1fr auto; }
       .shortlist-items { grid-column: 1 / -1; grid-row: 2; }
+      .jump-section { grid-template-columns: 98px minmax(0, 1fr); }
     }
 
     @media (max-width: 560px) {
@@ -427,6 +471,8 @@
       .design-info { padding: 10px 11px 11px; }
       .shortlist-bar { bottom: 6px; width: calc(100% - 12px); }
       .cart-actions #openSelected { display: none; }
+      .jump-section { grid-template-columns: 1fr; gap: 5px; }
+      .jump-section-label { flex-direction: row; align-items: baseline; gap: 6px; }
     }
   </style>
 </head>
@@ -435,7 +481,7 @@
     <header class="hero">
       <div class="title-group">
         <h1>Telikom design ideas shared by Hamood</h1>
-        <span class="collection-label">34 homepage concepts in one place</span>
+        <span class="collection-label" id="collectionLabel">Loading homepage concepts...</span>
       </div>
       <div class="counter-pill" id="positionCounter">1 / 34</div>
     </header>
@@ -474,7 +520,22 @@
       </div>
     </section>
 
-    <nav class="jump-strip" id="jumpStrip" aria-label="Jump to a design"></nav>
+    <section class="jump-groups" aria-label="Jump to a design">
+      <div class="jump-section">
+        <div class="jump-section-label"><span>New designs</span><small>35 and above</small></div>
+        <nav class="jump-strip" id="newDesignsStrip" aria-label="New designs"></nav>
+      </div>
+
+      <div class="jump-section">
+        <div class="jump-section-label"><span>Old designs</span><small>Designs 7 to 34</small></div>
+        <nav class="jump-strip" id="oldDesignsStrip" aria-label="Old designs"></nav>
+      </div>
+
+      <div class="jump-section">
+        <div class="jump-section-label"><span>Initial designs</span><small>Designs 1 to 6</small></div>
+        <nav class="jump-strip" id="initialDesignsStrip" aria-label="Initial designs"></nav>
+      </div>
+    </section>
   </main>
 
   <aside class="shortlist-bar" aria-label="Shortlisted designs">
@@ -490,9 +551,11 @@
     const owner = 'hamooddevpng';
     const repo = 'UI-Ideas';
     const branch = 'main';
-    const designs = Array.from({ length: 34 }, (_, i) => 34 - i);
+    const fallbackDesigns = Array.from({ length: 34 }, (_, i) => 34 - i);
+    let designs = [...fallbackDesigns];
+
     const shortlistKey = 'ui-ideas-shortlist-v1';
-    const currentKey = 'ui-ideas-carousel-current-v1';
+    const currentKey = 'ui-ideas-carousel-current-design-v2';
 
     const designMeta = {
       34: { title: 'Executive Telikom', description: 'A restrained, boardroom-grade direction with disciplined typography, whitespace, clear audience pathways and strong service discovery.' },
@@ -531,10 +594,16 @@
       1: { title: 'Navigation-First Exploration', description: 'An early concept focused on simple navigation and straightforward access to Telikom service areas.' }
     };
 
+    const getMeta = n => designMeta[n] || {
+      title: `New Design ${n}`,
+      description: 'A newer Telikom homepage concept added after the original 34-design exploration set.'
+    };
+
     const sourceUrl = n => `https://github.com/${owner}/${repo}/blob/${branch}/${n}.html`;
     const previewUrl = n => `https://htmlpreview.github.io/?${sourceUrl(n)}`;
 
     const frame = document.getElementById('designFrame');
+    const collectionLabel = document.getElementById('collectionLabel');
     const positionCounter = document.getElementById('positionCounter');
     const browserLabel = document.getElementById('browserLabel');
     const addressText = document.getElementById('addressText');
@@ -546,20 +615,22 @@
     const nextBtn = document.getElementById('nextBtn');
     const shortlistTop = document.getElementById('shortlistTop');
     const shortlistBottom = document.getElementById('shortlistBottom');
-    const jumpStrip = document.getElementById('jumpStrip');
+    const newDesignsStrip = document.getElementById('newDesignsStrip');
+    const oldDesignsStrip = document.getElementById('oldDesignsStrip');
+    const initialDesignsStrip = document.getElementById('initialDesignsStrip');
     const shortlistCount = document.getElementById('shortlistCount');
     const shortlistItems = document.getElementById('shortlistItems');
     const openSelected = document.getElementById('openSelected');
     const clearSelected = document.getElementById('clearSelected');
 
-    let currentIndex = Math.max(0, Math.min(designs.length - 1, Number(localStorage.getItem(currentKey) || 0)));
+    let currentIndex = 0;
     let selected = loadSelected();
 
     function loadSelected() {
       try {
         const value = JSON.parse(localStorage.getItem(shortlistKey));
         if (!Array.isArray(value)) return [];
-        return value.map(Number).filter(n => designs.includes(n)).filter((n, i, arr) => arr.indexOf(n) === i);
+        return value.map(Number).filter(Number.isFinite).filter((n, i, arr) => arr.indexOf(n) === i);
       } catch {
         return [];
       }
@@ -569,11 +640,19 @@
       localStorage.setItem(shortlistKey, JSON.stringify(selected));
     }
 
-    function currentDesign() { return designs[currentIndex]; }
+    function currentDesign() {
+      return designs[currentIndex] || designs[0] || 1;
+    }
+
+    function restoreCurrent() {
+      const savedDesign = Number(localStorage.getItem(currentKey));
+      const index = designs.indexOf(savedDesign);
+      currentIndex = index >= 0 ? index : 0;
+    }
 
     function goToIndex(index) {
       currentIndex = Math.max(0, Math.min(designs.length - 1, index));
-      localStorage.setItem(currentKey, String(currentIndex));
+      localStorage.setItem(currentKey, String(currentDesign()));
       renderCurrent();
     }
 
@@ -589,13 +668,48 @@
       renderSelection();
     }
 
+    function makeJumpButton(n) {
+      const meta = getMeta(n);
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'jump-btn';
+      btn.dataset.design = String(n);
+      btn.textContent = n;
+      btn.title = `${n}: ${meta.title}`;
+      btn.addEventListener('click', () => goToDesign(n));
+      return btn;
+    }
+
+    function renderStrip(strip, values, emptyText = '') {
+      strip.innerHTML = '';
+      if (values.length === 0) {
+        const empty = document.createElement('span');
+        empty.className = 'jump-empty';
+        empty.textContent = emptyText;
+        strip.appendChild(empty);
+        return;
+      }
+      values.forEach(n => strip.appendChild(makeJumpButton(n)));
+    }
+
+    function renderJumpGroups() {
+      const newer = designs.filter(n => n > 34).sort((a, b) => b - a);
+      const older = designs.filter(n => n >= 7 && n <= 34).sort((a, b) => b - a);
+      const initial = designs.filter(n => n >= 1 && n <= 6).sort((a, b) => b - a);
+
+      renderStrip(newDesignsStrip, newer, 'No designs above 34 yet.');
+      renderStrip(oldDesignsStrip, older);
+      renderStrip(initialDesignsStrip, initial);
+    }
+
     function renderCurrent() {
       const n = currentDesign();
-      const meta = designMeta[n];
+      const meta = getMeta(n);
       const url = previewUrl(n);
 
       frame.src = url;
       frame.title = `Design ${n}: ${meta.title}`;
+      collectionLabel.textContent = `${designs.length} homepage concepts in one place`;
       positionCounter.textContent = `${currentIndex + 1} / ${designs.length}`;
       browserLabel.textContent = `Design ${n}`;
       addressText.textContent = `Telikom concept ${n}: ${meta.title}`;
@@ -606,8 +720,11 @@
 
       prevBtn.disabled = currentIndex === 0;
       nextBtn.disabled = currentIndex === designs.length - 1;
-
       renderSelection();
+
+      requestAnimationFrame(() => {
+        document.querySelector('.jump-btn.current')?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      });
     }
 
     function renderSelection() {
@@ -620,11 +737,13 @@
         btn.textContent = isPicked ? '✓ Shortlisted' : '♡ Shortlist';
       });
 
+      selected = selected.filter(design => designs.includes(design));
+      saveSelected();
       shortlistCount.textContent = selected.length;
       openSelected.disabled = selected.length === 0;
       clearSelected.disabled = selected.length === 0;
 
-      jumpStrip.querySelectorAll('.jump-btn').forEach(btn => {
+      document.querySelectorAll('.jump-btn').forEach(btn => {
         const design = Number(btn.dataset.design);
         btn.classList.toggle('current', design === n);
         btn.classList.toggle('selected', selected.includes(design));
@@ -659,16 +778,34 @@
       });
     }
 
-    designs.forEach(n => {
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'jump-btn';
-      btn.dataset.design = String(n);
-      btn.textContent = n;
-      btn.title = `${n}: ${designMeta[n].title}`;
-      btn.addEventListener('click', () => goToDesign(n));
-      jumpStrip.appendChild(btn);
-    });
+    async function discoverDesigns() {
+      try {
+        const response = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents?ref=${branch}`, {
+          headers: { Accept: 'application/vnd.github+json' }
+        });
+
+        if (!response.ok) throw new Error(`GitHub returned ${response.status}`);
+
+        const files = await response.json();
+        const discovered = files
+          .map(item => item.name)
+          .map(name => name.match(/^(\d+)\.html$/))
+          .filter(Boolean)
+          .map(match => Number(match[1]))
+          .filter(Number.isFinite)
+          .sort((a, b) => b - a);
+
+        if (discovered.length) designs = discovered;
+      } catch (error) {
+        console.warn('Could not discover design files. Using the 1 to 34 fallback.', error);
+        designs = [...fallbackDesigns];
+      }
+
+      selected = selected.filter(n => designs.includes(n));
+      restoreCurrent();
+      renderJumpGroups();
+      renderCurrent();
+    }
 
     prevBtn.addEventListener('click', () => goToIndex(currentIndex - 1));
     nextBtn.addEventListener('click', () => goToIndex(currentIndex + 1));
@@ -691,7 +828,9 @@
       if (event.key.toLowerCase() === 's') toggleSelected(currentDesign());
     });
 
+    renderJumpGroups();
     renderCurrent();
+    discoverDesigns();
   </script>
 </body>
 </html>
