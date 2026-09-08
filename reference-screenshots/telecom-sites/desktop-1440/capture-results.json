@@ -1,0 +1,78 @@
+{
+  "capturedAt": "2026-09-08T16:37:18.777Z",
+  "viewport": "1440x900",
+  "results": [
+    {
+      "slug": "telikom-home-4",
+      "requestedUrl": "https://telikom-frontend.vercel.app/home-4",
+      "finalUrl": "https://telikom-frontend.vercel.app/home-4",
+      "title": "Telikom Limited | Mobile, Home & Business Internet Services",
+      "status": "ok",
+      "error": null
+    },
+    {
+      "slug": "ooredoo-qatar",
+      "requestedUrl": "https://www.ooredoo.qa/web/en/",
+      "finalUrl": "https://www.ooredoo.qa/web/en/",
+      "title": "Telecom and ICT Company in Qatar | Ooredoo Qatar",
+      "status": "ok",
+      "error": null
+    },
+    {
+      "slug": "telefonica",
+      "requestedUrl": "https://www.telefonica.com/en/",
+      "finalUrl": "https://www.telefonica.com/en/",
+      "title": "Telefónica: leading telecommunications company",
+      "status": "ok",
+      "error": null
+    },
+    {
+      "slug": "stc-saudi",
+      "requestedUrl": "https://www.stc.com.sa/en/personal/home.html",
+      "finalUrl": "https://www.stc.com.sa/en/personal/home.html",
+      "title": "stc KSA | stc KSA Internet Packages | stc Personal Packages",
+      "status": "ok",
+      "error": null
+    },
+    {
+      "slug": "zain",
+      "requestedUrl": "https://www.zain.com/en",
+      "finalUrl": "https://www.zain.com/en",
+      "title": "Home",
+      "status": "ok",
+      "error": null
+    },
+    {
+      "slug": "orange",
+      "requestedUrl": "https://www.orange.com/en",
+      "finalUrl": "https://www.orange.com/en",
+      "title": "Homepage | Corporate Website of Orange",
+      "status": "ok",
+      "error": null
+    },
+    {
+      "slug": "vodafone-png",
+      "requestedUrl": "https://vodafone.com.pg/",
+      "finalUrl": "https://vodafone.com.pg/",
+      "title": "",
+      "status": "partial",
+      "error": "page.goto: Timeout 45000ms exceeded.\nCall log:\n  - navigating to \"https://vodafone.com.pg/\", waiting until \"domcontentloaded\"\n"
+    },
+    {
+      "slug": "verizon",
+      "requestedUrl": "https://www.verizon.com/",
+      "finalUrl": "https://www.verizon.com/",
+      "title": "Verizon: Wireless, Internet, TV and Phone Services | Official Site",
+      "status": "ok",
+      "error": null
+    },
+    {
+      "slug": "att",
+      "requestedUrl": "https://www.att.com/",
+      "finalUrl": "https://www.att.com/",
+      "title": "AT&T Official Site | Our Best Wireless & Internet Service",
+      "status": "ok",
+      "error": null
+    }
+  ]
+}
