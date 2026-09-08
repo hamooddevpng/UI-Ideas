@@ -1,21 +1,16 @@
 # Telikom Homepage Research Reset - Designs 35 to 38
 
 ## Why this document exists
-The first 34 concepts are no longer the design baseline. This round starts from the review feedback and from current telecom, corporate and Papua New Guinea public-sector patterns.
+The first 34 concepts are no longer the baseline for this round. The new requirement is stricter: the homepage must feel fresh, Gen Z friendly and enterprise-grade, while still behaving like a useful Papua New Guinea telecom / public-service website.
 
-The central review insight is simple: the first viewport must earn the scroll.
+The most important review insight is now clear:
 
-The homepage cannot depend on a visitor scrolling past a weak banner to discover that the rest of the page is useful. The hero, header and immediate action layer must already communicate:
+> **The first viewport must earn the scroll.**
 
-1. This is Telikom.
-2. Telikom is modern, credible and national.
-3. The visitor can immediately do something useful.
-4. There is a clear reason to continue exploring.
-
-The next four concepts therefore treat the first viewport as a complete product experience rather than a decorative banner.
+The user should not have to move past a decorative banner before discovering useful services. The header, hero and immediate utility layer need to communicate the brand, current proposition and key actions together.
 
 ## Reference set
-Primary telecom references supplied for this round:
+Primary telecom references supplied:
 
 - https://telikom-frontend.vercel.app/home-4
 - https://www.ooredoo.qa/web/en/
@@ -27,201 +22,363 @@ Primary telecom references supplied for this round:
 - https://www.verizon.com/
 - https://www.att.com/
 
-PNG public-sector / state-owned references considered:
+PNG government / state-owned patterns considered:
 
 - Kumul Consolidated Holdings
 - NICTA PNG
 - Post PNG
-- PNG government service patterns such as online applications, public notices, publications, consumer information, contact pathways and service utilities
+- PNG online-service and public-information patterns
 
-The supplied `home-4` Vercel page could not be reliably fetched by the research crawler during this pass. Do not invent details from it. It can still be inspected visually during implementation in a normal browser.
+## Visual inspection of the supplied Telikom `home-4` reference
+A screenshot of the supplied `home-4` reference is now available and materially improves the research.
 
-## What the telecom references teach us
+### What is visible in the first screen
+The page uses a very clear three-layer structure before the visitor gets deep into the page.
 
-### 1. Utility belongs near the top
-Ooredoo strongly surfaces actions such as Recharge, Pay Bills and plan purchasing. This is important because returning customers often arrive with a task, not a desire to browse marketing content.
+#### 1. Full navigation and high-priority account actions
+The header includes:
+- Home
+- Personal
+- Business
+- News & Media
+- About Us
+- Store Locator
+- Career
+- Search
+- Self Care
+- Contact Us
+
+The important observation is not the exact navigation labels. It is that **Self Care and Contact Us are treated as primary utilities, not buried in the footer.**
+
+#### 2. A specific commercial hero
+The hero does not use a vague corporate statement. It leads with a concrete campaign:
+
+**Experience Ultra-Fast 4G LTE Across PNG**
+
+It combines:
+- campaign label;
+- large headline;
+- supporting benefits;
+- two CTAs;
+- recognisably PNG-focused imagery;
+- carousel controls.
+
+The visual message is immediately telecom-specific and locally relevant.
+
+#### 3. A quick-action service tray overlapping the hero
+This is probably the most important structural clue in the supplied reference.
+
+A large utility tray sits directly across the lower hero edge with actions such as:
+- Recharge
+- Buy SIM
+- Pay Bill
+- Coverage
+- Support
+- Store Locator
+
+The result is that the banner does not merely advertise. **The first viewport also works as a service portal.**
+
+### What becomes visible immediately after the hero
+Without travelling far down the page, the viewer already sees:
+- Popular Plans
+- Nationwide Coverage
+- Business Solutions
+- a promotional campaign
+- Latest News
+- TCash / mobile-wallet content
+- chatbot access
+
+This creates a dense but understandable telecom dashboard-like homepage.
+
+## What `home-4` gets right
+
+### Action items are above the fold
+This directly supports the observation from the review process. Returning users can act immediately instead of reading marketing copy first.
+
+### The hero is specific
+"4G LTE Across PNG" is easier to understand and evaluate than a generic statement such as "Connecting your world."
+
+### PNG identity is visible
+The main image feels connected to Papua New Guinea rather than using a generic international city or stock-telecom scene.
+
+### Consumer and enterprise content coexist
+Plans, coverage and business solutions all appear near the top. Telikom is presented as both a consumer service provider and a serious national operator.
+
+### Public-service utility is present
+Coverage, support, store location, news and careers are easy to discover. This overlaps with useful patterns seen on government / SOE websites.
+
+## What should NOT be copied from `home-4`
+The supplied design is useful as a structural reference, but it should not become the visual template for designs 35 to 38.
+
+### 1. The hero contains too much text
+There are multiple copy layers competing for attention:
+- campaign tag;
+- very large H1;
+- large bold supporting statement;
+- smaller body copy;
+- two CTAs.
+
+For the new concepts, reduce the hero to:
+- one label if needed;
+- one H1;
+- one short support sentence;
+- one dominant CTA;
+- optional secondary link.
+
+### 2. Text-on-image readability is inconsistent
+Parts of the supporting text cross visually busy image areas. Future concepts should either reserve clean negative space, use an adjacent copy block or use a controlled local gradient only where necessary.
+
+Do not cover the whole image with a heavy Telikom-blue overlay.
+
+### 3. The quick-action tray has six equal choices
+The action tray is useful, but six equal options create weak priority.
+
+The new designs should establish hierarchy, for example:
+- three or four primary actions;
+- secondary support links;
+- a separate Business entry.
+
+### 4. The page becomes card-heavy
+The area below the hero uses many bordered rounded boxes. It is functional, but repeating that pattern across all four new concepts would make them look like variations of the same conventional telecom portal.
+
+At least two of the new concepts should rely on editorial rows, image/type compositions, rails or interactive lists instead of repeated cards.
+
+### 5. Carousel behaviour is not required
+The screenshot shows hero pagination dots. The new round should not depend on an automatic rotating banner.
+
+The reviewer is already highly sensitive to the hero. A single excellent hero is safer and more memorable than several average slides.
+
+Design 37 may change hero content, but only when the visitor explicitly selects a path.
+
+### 6. The header is crowded
+The reference exposes many navigation items at once. The new concepts should preserve the important destinations but simplify the first-level hierarchy.
+
+### 7. The first viewport is visually busy
+The reference succeeds at utility but leaves room for improvement in premium visual hierarchy. The new designs should keep the same usefulness with more breathing space, stronger type hierarchy and fewer competing boxes.
+
+## What the global telecom references teach us
+
+### Utility belongs near the top
+Ooredoo strongly surfaces actions such as Recharge and Pay Bills. Returning customers often come with a task rather than a desire to browse.
 
 Telikom implication:
-- Top Up / Recharge, Self Care, Support and service discovery should be immediately visible.
+- Top Up / Recharge, Self Care and Support should be very easy to reach.
 - Important actions should not be hidden two menus deep.
-- The hero can sell the brand while the action layer handles utility.
+- The hero can sell a campaign while a separate action layer handles utility.
 
-### 2. One campaign message is stronger than a confused hero
-STC and AT&T use large, focused commercial messages with a direct CTA. The user understands the promotion before seeing the rest of the catalogue.
-
-Telikom implication:
-- One H1.
-- One primary proposition.
-- One primary CTA.
-- Supporting actions can exist, but they must not compete with the main message.
-- Avoid hero carousels as the default solution.
-
-### 3. Gen Z does not mean childish
-Large operators increasingly use bold typography, confident cropping, short copy, strong motion cues, clean product cards and highly legible action areas. The visual energy comes from composition, scale and interaction, not from random neon effects.
+### One campaign message is stronger than a confused hero
+STC and AT&T demonstrate the strength of a large focused commercial proposition and direct CTA.
 
 Telikom implication:
-- Fresh typography and art direction.
-- Faster visual rhythm.
-- Shorter copy.
-- Mobile-first interactions.
-- Controlled motion.
-- Strong visual identity without looking like a gaming site or startup landing-page template.
+- one H1;
+- one primary proposition;
+- one main CTA;
+- short supporting copy;
+- no automatic carousel by default.
 
-### 4. Enterprise credibility needs a different layer
-Telefónica, Orange and Zain show that a major telecom also needs corporate stature. They make room for innovation, networks, sustainability, investors, news, governance and national or social impact.
+### Gen Z does not mean childish
+Freshness comes from:
+- typography;
+- confident image crops;
+- short copy;
+- speed;
+- interaction;
+- mobile-native behaviour;
+- strong visual rhythm.
+
+It does not require:
+- emojis;
+- stickers;
+- neon everywhere;
+- slang;
+- gaming aesthetics.
+
+### Enterprise credibility needs its own layer
+Telefónica, Orange and Zain demonstrate that a telecom homepage also needs to accommodate networks, innovation, sustainability, corporate information, news and institutional credibility.
 
 Telikom implication:
-- Consumer tasks can dominate the first interaction.
-- Enterprise, government and corporate credibility must appear immediately after or partially within the first viewport.
-- The site needs to look trustworthy enough for government, enterprise and institutional audiences.
+- consumer tasks can dominate the first interaction;
+- enterprise and national credibility should become visible very quickly;
+- business / government users need a clear dedicated path.
 
-### 5. Local relevance matters more than copying a global telco
-Vodafone PNG has service taxonomy and offer structures that make sense for the PNG market. A Telikom design should not visually pretend it is operating in New York, London or Riyadh.
+### Local relevance matters more than imitation
+Vodafone PNG reinforces the importance of service taxonomy and offers that make sense for the PNG market.
 
 Telikom implication:
-- PNG people, places, businesses and infrastructure should be visible.
-- Product naming and price data must come from approved Telikom content.
-- Use real PNG context instead of generic foreign city imagery.
+- use PNG people, places, businesses and infrastructure;
+- avoid generic international imagery;
+- use only approved product names and claims.
 
-## What PNG government and SOE websites teach us
+## What PNG government / SOE websites teach us
+Government and state-owned websites repeatedly prioritise practical public information.
 
-Government and state-owned sites repeatedly prioritise practical public information and official pathways. Useful patterns include:
-
-- public notices and announcements;
-- service status or urgent alerts;
-- online services and direct utilities;
-- forms and publications;
+Useful component categories include:
+- public notices;
+- service alerts;
+- online services;
+- direct utilities;
 - consumer information;
-- tenders / procurement;
-- careers;
+- publications;
 - news and media;
+- careers;
+- tenders / procurement;
 - office / branch / contact information;
-- stakeholder or audience segmentation;
-- clear institutional purpose and public-service role.
+- stakeholder or audience segmentation.
 
-Examples observed during research:
-- NICTA exposes Licensing, Regulatory, Radio Spectrum, Enforcement & Consumer, Public Notices and reports as clear task categories.
-- Post PNG puts EMS Track + Trace directly into the experience as a useful service utility.
-- KCH combines national purpose, SOE portfolio, impact projects, publications and latest news.
-- PNG Immigration uses a direct online application path for visa services.
+Examples:
+- NICTA exposes Licensing, Regulatory, Radio Spectrum, Enforcement & Consumer and Public Notices as clear task categories.
+- Post PNG makes Track + Trace a direct service utility.
+- KCH combines national purpose, impact projects, publications and news.
 
-Telikom should borrow the principle, not the dated government visual style.
+Telikom should borrow the **information architecture principle**, not dated government visual styling.
 
-## The key synthesis
+## Core synthesis
 The new Telikom homepage should feel like:
 
 **a modern consumer telecom product on the surface + a serious national enterprise underneath.**
 
-Not one or the other.
+The `home-4` screenshot adds one more requirement:
+
+**the surface itself must already contain useful customer actions.**
 
 ## First-viewport acceptance test
-Every concept from 35 to 38 must pass this test at approximately 1440 x 900 desktop and 390 x 844 mobile.
+Every concept from 35 to 38 must pass this test at roughly 1440 x 900 desktop and 390 x 844 mobile.
 
-Without scrolling, a reviewer should be able to identify:
-
+Without meaningful scrolling, the reviewer should be able to identify:
 - Telikom logo and slogan;
-- one clear headline / campaign proposition;
+- one clear campaign / value proposition;
 - one primary CTA;
-- at least three immediately useful customer actions;
+- at least three useful customer actions;
 - main service entry points;
-- a strong PNG-relevant visual or graphic idea;
-- a hint of institutional / national credibility;
-- a visible route to support.
+- strong PNG-relevant visual direction;
+- a visible support route;
+- some signal of Business / Government / national credibility.
 
-If the first viewport only contains a photograph, headline and button, it is incomplete for this round.
+A hero containing only a photograph, headline and CTA is incomplete for this round.
 
 ## Header strategy
-Use a two-level hierarchy only if it remains visually clean.
+Use a simpler hierarchy than `home-4` while preserving its useful direct actions.
 
-### Utility level
-Potential items:
-- Personal / Business switch
-- Support
-- Find a Store / Contact
-- Self Care / Login
-- Search
-
-### Primary navigation
-Potential categories:
+Possible primary navigation:
 - Mobile
 - Internet
 - Business
 - Offers
-- About / Telikom
+- About Telikom
 
-Avoid exposing every sitemap item in the main navigation.
+High-priority utilities:
+- Search
+- Support
+- Self Care
+- Contact / Store
+
+Personal / Business can be handled as an audience switch if needed.
 
 ## Above-the-fold action vocabulary
-Actions should use actual approved Telikom functionality. Prototype labels can reserve space for:
-
+Prototype actions can reserve space for:
 - Top Up / Recharge
 - Self Care
 - Explore Mobile
 - Explore Internet
-- Get Support
+- Coverage
+- Support
 - Business Enquiries
 - Find a Store
 
-Do not fake live account information, coverage, outages or balances.
+Do not fake balances, outages, coverage statistics or live account data.
 
-## Government / SOE content that belongs below the hero
-All four designs should have a structured home for:
-
+## Government / SOE content required somewhere on the homepage
+All four designs should have a clear home for:
 - Service Notices / Important Updates
 - Latest News
-- Tenders / Procurement if required by Telikom
 - Careers
-- Publications / Corporate information if required
+- Tenders / Procurement if required
+- Corporate information / publications if required
 - Enterprise / Government solutions
-- National connectivity / PNG impact story
-- Contact / locations / support
+- national connectivity / PNG impact story
+- contact / location / support pathways
 
-These should not crowd the hero unless there is a genuinely urgent notice.
+These should not overcrowd the hero unless the notice is genuinely urgent.
 
 ## Visual principles for this round
 
 ### Do
-- Use Telikom blue as a recognisable anchor, not as a full-page paint bucket.
-- Allow white, very light neutrals and dark ink to create premium contrast.
-- Use one accent system only when it has a clear role.
-- Make the logo and slogan clearly readable.
-- Keep PNG photography bright and visible.
-- Use confident large type and controlled asymmetry.
-- Use motion to communicate response and hierarchy.
-- Design the mobile first viewport deliberately, not as a collapsed desktop page.
+- Treat above-the-fold utility as mandatory.
+- Use Telikom blue as a recognisable anchor rather than painting the full page blue.
+- Keep PNG imagery bright and visible.
+- Use one strong visual idea per hero.
+- Make the logo and slogan readable.
+- Use larger, shorter typography.
+- Create visible hierarchy among actions.
+- Design mobile as its own first-viewport composition.
+- Keep Business / Government access easy to identify.
 
 ### Do not
-- Start from any of the first 34 layouts and reskin them.
-- Use generic gradient blobs as the central concept.
+- Re-skin `home-4`.
+- Re-skin designs 1 to 34.
+- Repeat the same white six-action tray in every concept.
+- Build every section from rounded cards.
 - Use an automatic hero carousel.
-- Place six equal CTAs in one row.
-- Cover PNG imagery with heavy blue overlays.
-- Make every section a rounded card grid.
-- Use fake metrics or fake network maps.
-- Use cultural motifs as decoration without approval and context.
-- Make Gen Z synonymous with emojis, stickers, slang, neon or excessive animation.
-- Build a beautiful first section that has no practical action.
+- cover images with heavy blue overlays.
+- invent coverage, speed, customer or network metrics.
+- use unapproved cultural motifs as decoration.
+- equate Gen Z with visual noise.
 
-## Four new directions
+## Four new directions after inspecting `home-4`
 
 ### Design 35 - Telikom Pulse
-Action-first, energetic and conversion-led. The first viewport behaves like a modern service console wrapped around one powerful campaign visual.
+**Action-first.**
+
+This is intentionally the closest to the *logic* of `home-4`, but not its composition. Instead of a full-width six-item tray, use a dedicated action console beside the hero. The visitor sees a strong campaign and a clear service panel simultaneously.
+
+Key differentiation from `home-4`:
+- side console rather than overlapping horizontal tray;
+- fewer, prioritised actions;
+- no carousel;
+- much shorter hero copy;
+- less card-heavy below fold.
 
 ### Design 36 - The PNG Connection
-National, premium and human. A large PNG story / image becomes the hero while a compact action rail keeps customer tasks permanently accessible.
+**National / human-first.**
+
+Use exceptional PNG photography as the dominant brand statement with a compact architectural quick-access rail.
+
+Key differentiation from `home-4`:
+- editorial national campaign rather than product-dashboard feel;
+- photographic art direction carries the identity;
+- quick access is integrated vertically;
+- fewer boxes and more full-width storytelling.
 
 ### Design 37 - Pick Your Path
-Audience-first and interactive. The hero changes meaningfully based on Mobile, Home, Business or Support selection, without becoming a carousel.
+**Interaction-first.**
+
+The visitor explicitly selects Mobile, Internet, Business or Help. The hero responds to that selection.
+
+Key differentiation from `home-4`:
+- banner itself becomes service navigation;
+- visitor-controlled state instead of carousel;
+- strongest mobile/app-like behaviour;
+- support treated as a primary audience path.
 
 ### Design 38 - Signal One
-Campaign-grade, highly art-directed and minimal at first glance, but with a disciplined floating utility layer. Designed to prove that enterprise can still feel culturally current and Gen Z friendly.
+**Campaign-first.**
+
+Create the most memorable premium hero in the set using one signature Telikom signal graphic and exceptional imagery.
+
+Key differentiation from `home-4`:
+- campaign-grade minimalism;
+- much less text;
+- utility layer is compact and subordinate to the core visual idea;
+- below-fold architecture uses large editorial service indexing rather than a dashboard of equal cards.
+
+Important implementation note: do **not** make Design 38's utility area look like the same full-width white six-item action tray visible in `home-4`.
 
 ## Portfolio intent
-These are not four skins of the same page.
+These must look like four different answers to the same business problem, not four visual skins.
 
-- 35 tests maximum action density while retaining polish.
-- 36 tests maximum PNG / national identity while remaining youthful.
-- 37 tests maximum interaction and service discovery.
-- 38 tests maximum visual impact and premium campaign quality.
+- **35:** maximum utility / conversion.
+- **36:** maximum PNG identity / human relevance.
+- **37:** maximum interaction / Gen Z behaviour.
+- **38:** maximum premium campaign impact.
 
-All four must still share the same underlying Telikom content model so a selected direction can eventually move into production rather than remaining a mockup-only experiment.
+All four should share the same underlying Telikom content model so the selected direction can evolve into real production code.
