@@ -1,0 +1,77 @@
+name: Capture PNG Public Service Fallback Screenshots
+
+on:
+  push:
+    paths:
+      - '.github/workflows/capture-png-public-sites-fallbacks.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  capture-fallbacks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install Playwright
+        run: |
+          npm install --no-save playwright
+          npx playwright install chromium
+      - name: Capture fallback sites
+        run: |
+          node <<'EOF'
+          const { chromium } = require('playwright');
+          const fs = require('fs');
+          const path = require('path');
+          const root = process.cwd();
+          const outDir = path.join(root, 'reference-screenshots', 'png-public-sites-fallbacks', 'desktop-1440');
+          fs.rmSync(outDir, {recursive:true, force:true});
+          fs.mkdirSync(outDir, {recursive:true});
+          const sites = [
+            ['png-judiciary','National & Supreme Courts of Papua New Guinea','https://www.pngjudiciary.gov.pg/'],
+            ['post-png','Post PNG','https://www.postpng.com.pg/'],
+            ['casa-png','Civil Aviation Safety Authority of Papua New Guinea','https://casapng.gov.pg/']
+          ];
+          async function scroll(page){
+            await page.evaluate(async()=>{await new Promise(resolve=>{let y=0;const timer=setInterval(()=>{const h=Math.max(document.body.scrollHeight,document.documentElement.scrollHeight);window.scrollTo(0,y);y+=700;if(y>=h){clearInterval(timer);window.scrollTo(0,0);setTimeout(resolve,500)}},120);setTimeout(()=>{clearInterval(timer);window.scrollTo(0,0);resolve()},9000)})}).catch(()=>{});
+          }
+          async function height(page){return await page.evaluate(()=>Math.max(900,Math.min(Math.max(document.body?.scrollHeight||0,document.documentElement?.scrollHeight||0),18000))).catch(()=>900)}
+          (async()=>{
+            const browser=await chromium.launch({headless:true});
+            const context=await browser.newContext({viewport:{width:1440,height:900},deviceScaleFactor:1,locale:'en-US'});
+            const results=[];
+            for(const [slug,name,url] of sites){
+              const page=await context.newPage(); let status='ok',error=null,httpStatus=null;
+              try{const r=await page.goto(url,{waitUntil:'domcontentloaded',timeout:35000});httpStatus=r?r.status():null;await page.waitForTimeout(2200);await scroll(page);await page.waitForTimeout(700)}catch(e){status='partial';error=String(e.message||e)}
+              try{await page.screenshot({path:path.join(outDir,`${slug}.png`),type:'png',clip:{x:0,y:0,width:1440,height:await height(page)},animations:'disabled',timeout:20000})}catch(e){status='failed';error=[error,String(e.message||e)].filter(Boolean).join(' | ')}
+              let title=''; try{title=await page.title()}catch(_){}
+              results.push({slug,name,requestedUrl:url,finalUrl:page.url(),title,httpStatus,status,error});
+              await page.close().catch(()=>{});
+            }
+            await browser.close();
+            fs.writeFileSync(path.join(outDir,'capture-results.json'),JSON.stringify({capturedAt:new Date().toISOString(),viewport:'1440x900',results},null,2));
+          })().catch(e=>{console.error(e);process.exit(1)});
+          EOF
+      - name: Create ZIP
+        run: |
+          mkdir -p screenshot-archives
+          zip -qr -9 screenshot-archives/png-public-service-fallbacks.zip reference-screenshots/png-public-sites-fallbacks/desktop-1440
+      - uses: actions/upload-artifact@v4
+        with:
+          name: png-public-service-fallbacks
+          path: screenshot-archives/png-public-service-fallbacks.zip
+          retention-days: 30
+      - name: Commit fallback screenshots
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reference-screenshots/png-public-sites-fallbacks/desktop-1440
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "chore: add PNG public service fallback references"
+          git pull --rebase origin main
+          git push origin main
