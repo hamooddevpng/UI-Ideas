@@ -1,0 +1,88 @@
+name: One-time Design 42 phone pop-out refinement
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/fix-42-phone-pop.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  refine:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Refine phone hover focus state
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('42.html')
+          s = p.read_text(encoding='utf-8')
+
+          replacements = [
+            (
+              ".hero{position:relative;height:min(63svh,610px);min-height:500px;background:var(--navy);color:#fff;overflow:hidden;isolation:isolate}",
+              ".hero{position:relative;height:min(63svh,610px);min-height:500px;background:var(--navy);color:#fff;overflow:hidden;isolation:auto}.hero.phone-peek{overflow:visible}"
+            ),
+            (
+              ".scene-art{position:absolute;z-index:12;right:0;top:0;width:58%;height:100%;pointer-events:none;perspective:1200px}",
+              ".scene-art{position:absolute;z-index:12;right:0;top:0;width:58%;height:100%;pointer-events:none;perspective:1200px}.hero.phone-peek .scene-art[data-art=\"0\"]{z-index:180}"
+            ),
+            (
+              ".phone-launch{position:absolute;width:245px;height:470px;right:20%;top:9%;pointer-events:auto;cursor:pointer;outline:none;transform-style:preserve-3d;transform:rotateY(calc(var(--px)*-7deg)) rotateX(calc(var(--py)*5deg)) translate3d(calc(var(--px)*14px),calc(var(--py)*-7px),0) rotateZ(-4deg);transition:transform .16s linear,filter .3s}.phone-launch:hover{filter:drop-shadow(0 0 20px rgba(78,197,255,.4))}",
+              ".phone-launch{position:absolute;z-index:20;width:245px;height:470px;right:20%;top:9%;pointer-events:auto;cursor:pointer;outline:none;transform-style:preserve-3d;transform-origin:center center;transform:rotateY(calc(var(--px)*-7deg)) rotateX(calc(var(--py)*5deg)) translate3d(calc(var(--px)*14px),calc(var(--py)*-7px),0) rotateZ(-4deg);transition:transform 1s cubic-bezier(.16,1,.3,1),filter 1s cubic-bezier(.16,1,.3,1)}.phone-launch:after{content:\"\";position:absolute;z-index:-1;inset:9% -28%;border-radius:50%;background:radial-gradient(circle,rgba(43,180,255,.42) 0,rgba(24,145,213,.2) 34%,transparent 70%);filter:blur(28px);opacity:.28;transform:scale(.85);transition:opacity 1s cubic-bezier(.16,1,.3,1),transform 1s cubic-bezier(.16,1,.3,1)}.hero.phone-peek .phone-launch{z-index:220;transform:translate3d(-24px,-10px,170px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1.27);filter:drop-shadow(0 38px 58px rgba(0,0,0,.5)) drop-shadow(0 0 32px rgba(69,195,255,.52))}.hero.phone-peek .phone-launch:after{opacity:1;transform:scale(1.5)}"
+            ),
+            (
+              ".phone-shadow{position:absolute;width:235px;height:58px;right:18%;bottom:7%;background:rgba(0,0,0,.36);filter:blur(28px);border-radius:50%}",
+              ".phone-shadow{position:absolute;width:235px;height:58px;right:18%;bottom:7%;background:rgba(0,0,0,.36);filter:blur(28px);border-radius:50%;transition:transform 1s cubic-bezier(.16,1,.3,1),opacity 1s cubic-bezier(.16,1,.3,1),filter 1s cubic-bezier(.16,1,.3,1)}.hero.phone-peek .phone-shadow{transform:translate(-18px,32px) scale(1.38);opacity:.52;filter:blur(38px)}"
+            ),
+            (
+              ".float-pill{position:absolute;padding:10px 12px;border:1px solid rgba(255,255,255,.18);border-radius:15px;background:rgba(10,42,59,.74);backdrop-filter:blur(13px);font-size:8px;font-weight:800;box-shadow:0 20px 45px rgba(0,0,0,.18)}",
+              ".float-pill{position:absolute;padding:10px 12px;border:1px solid rgba(255,255,255,.18);border-radius:15px;background:rgba(10,42,59,.74);backdrop-filter:blur(13px);font-size:8px;font-weight:800;box-shadow:0 20px 45px rgba(0,0,0,.18);transition:transform 1s cubic-bezier(.16,1,.3,1),opacity 1s cubic-bezier(.16,1,.3,1),filter 1s cubic-bezier(.16,1,.3,1)}"
+            ),
+            (
+              ".pill-a{right:5%;top:25%;transform:translate3d(calc(var(--px)*24px),calc(var(--py)*15px),60px)}.pill-b{right:44%;bottom:15%;transform:translate3d(calc(var(--px)*-18px),calc(var(--py)*12px),40px)}",
+              ".pill-a{right:5%;top:25%;transform:translate3d(calc(var(--px)*24px),calc(var(--py)*15px),60px)}.pill-b{right:44%;bottom:15%;transform:translate3d(calc(var(--px)*-18px),calc(var(--py)*12px),40px)}.hero.phone-peek .pill-a{transform:translate3d(125px,-48px,40px) scale(.92);opacity:.72;filter:blur(.15px)}.hero.phone-peek .pill-b{transform:translate3d(-145px,62px,30px) scale(.92);opacity:.72;filter:blur(.15px)}"
+            ),
+            (
+              "phoneLaunch.onclick=e=>{const b=e.target.closest('[data-mini]');openPhone(b?b.dataset.mini:'home')};phoneLaunch.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openPhone('home')}};",
+              "phoneLaunch.addEventListener('pointerenter',()=>hero.classList.add('phone-peek'));phoneLaunch.addEventListener('pointerleave',()=>hero.classList.remove('phone-peek'));phoneLaunch.addEventListener('focusin',()=>hero.classList.add('phone-peek'));phoneLaunch.addEventListener('focusout',()=>hero.classList.remove('phone-peek'));phoneLaunch.onclick=e=>{const b=e.target.closest('[data-mini]');openPhone(b?b.dataset.mini:'home')};phoneLaunch.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openPhone('home')}};"
+            ),
+            (
+              "function openPhone(a='home'){phoneOpen=true;hover=true;clearInterval(timer);overlay.classList.add('open');",
+              "function openPhone(a='home'){phoneOpen=true;hover=true;hero.classList.remove('phone-peek');clearInterval(timer);overlay.classList.add('open');"
+            )
+          ]
+
+          for old, new in replacements:
+            if old not in s:
+              raise SystemExit('Expected fragment not found: ' + old[:120])
+            s = s.replace(old, new, 1)
+
+          p.write_text(s, encoding='utf-8')
+          PY
+
+      - name: Syntax check Design 42 JavaScript
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          s = Path('42.html').read_text(encoding='utf-8')
+          blocks = re.findall(r'<script>(.*?)</script>', s, flags=re.S)
+          if not blocks:
+              raise SystemExit('No script block found')
+          Path('/tmp/design42.js').write_text('\n'.join(blocks), encoding='utf-8')
+          PY
+          node --check /tmp/design42.js
+
+      - name: Commit refined page and remove one-time workflow
+        run: |
+          rm .github/workflows/fix-42-phone-pop.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add 42.html .github/workflows/fix-42-phone-pop.yml
+          git commit -m "Refine Design 42 phone pop-out hover"
+          git push
