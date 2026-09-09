@@ -1,0 +1,49 @@
+name: Rebuild Website Pattern Atlas
+
+on:
+  push:
+    paths:
+      - "research/website-patterns/taxonomy.json"
+      - "research/website-patterns/cohorts/**/cohort.json"
+      - "research/website-patterns/cohorts/**/sites/*.json"
+      - "scripts/render_website_pattern_atlas.py"
+      - "reference-screenshots/**/*.png"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: website-pattern-atlas-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  render:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Pillow
+        run: python -m pip install --disable-pip-version-check Pillow==11.3.0
+
+      - name: Validate JSON and render atlases
+        run: python scripts/render_website_pattern_atlas.py
+
+      - name: Commit generated analysis
+        run: |
+          git add research/website-patterns/generated
+          if git diff --cached --quiet; then
+            echo "No generated changes."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "research: rebuild website pattern atlas"
+          git pull --rebase origin "$GITHUB_REF_NAME"
+          git push origin "HEAD:$GITHUB_REF_NAME"
