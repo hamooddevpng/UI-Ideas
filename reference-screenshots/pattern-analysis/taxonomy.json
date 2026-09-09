@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.1",
+  "taxonomy_version": "web-pattern-v1",
+  "section_types": {
+    "navigation": {"label": "Navigation / Header", "color": "#546E7A"},
+    "promo_banner": {"label": "Promotional Strip / Banner", "color": "#7E57C2"},
+    "hero_cta": {"label": "Hero / Banner + CTA", "color": "#1565C0"},
+    "quick_actions": {"label": "Quick Actions / Self-Service", "color": "#00838F"},
+    "pricing_plans": {"label": "Pricing / Plans", "color": "#2E7D32"},
+    "product_offers": {"label": "Products / Offers", "color": "#388E3C"},
+    "device_shop": {"label": "Devices / Shop", "color": "#689F38"},
+    "bundles": {"label": "Bundles / Packs", "color": "#558B2F"},
+    "services": {"label": "Services / Action Cards", "color": "#00695C"},
+    "benefits_features": {"label": "Benefits / Features", "color": "#6A1B9A"},
+    "app_promo": {"label": "App / Digital Self-Service", "color": "#00897B"},
+    "coverage": {"label": "Coverage / Network", "color": "#0277BD"},
+    "support": {"label": "Support / Help", "color": "#AD1457"},
+    "loyalty": {"label": "Loyalty / Rewards", "color": "#EF6C00"},
+    "explainer": {"label": "Explainer / About", "color": "#8E24AA"},
+    "stats_trust": {"label": "Stats / Trust / Values", "color": "#5D4037"},
+    "news": {"label": "News / Updates", "color": "#C62828"},
+    "projects": {"label": "Projects / Initiatives", "color": "#4527A0"},
+    "guidance": {"label": "Guidance / Safety", "color": "#558B2F"},
+    "online_service": {"label": "Online Service / Portal", "color": "#00695C"},
+    "regulation_info": {"label": "Regulatory Information", "color": "#37474F"},
+    "faq": {"label": "FAQ / Help", "color": "#9E6B00"},
+    "form_contact": {"label": "Form / Contact", "color": "#AD1457"},
+    "notices": {"label": "Notices / Alerts", "color": "#EF6C00"},
+    "footer": {"label": "Footer", "color": "#263238"}
+  }
+}
