@@ -1,0 +1,192 @@
+name: Capture PNG Private Sector Website References
+
+on:
+  push:
+    paths:
+      - '.github/workflows/capture-png-private-sector.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Playwright
+        run: |
+          npm init -y >/dev/null 2>&1
+          npm install playwright@1.55.0
+          npx playwright install --with-deps chromium
+
+      - name: Capture 30 private-sector / consumer websites
+        run: |
+          cat > /tmp/capture-private.js <<'NODE'
+          const { chromium } = require('playwright');
+          const fs = require('fs');
+          const path = require('path');
+
+          const sites = [
+            {slug:'cpl-group', name:'CPL Group', category:'Retail / Pharmacy', url:'https://cpl.com.pg/'},
+            {slug:'city-pharmacy', name:'City Pharmacy', category:'Retail / Pharmacy', url:'https://cpl.com.pg/city-pharmacy/'},
+            {slug:'jacks-png', name:"Jack's of PNG", category:'Retail / Fashion', url:'https://www.jackspng.com/'},
+            {slug:'rh-hypermarket', name:'RH Hypermarket', category:'Supermarket', url:'https://www.rhtradingpng.com/'},
+            {slug:'tininga', name:'Tininga Limited', category:'Supermarket / Retail', url:'https://tininga.com.pg/'},
+            {slug:'brian-bell', name:'Brian Bell Group', category:'Retail / Home', url:'https://www.brianbell.com.pg/'},
+            {slug:'vision-city', name:'Vision City Mega Mall', category:'Shopping Mall', url:'https://www.visioncitypng.com/'},
+            {slug:'big-rooster', name:'Big Rooster', category:'Fast Food', url:'https://www.bigrooster.com.pg/'},
+            {slug:'duffy-cafe', name:'Duffy Cafe', category:'Cafe / Food', url:'https://duffypng.com/'},
+            {slug:'paradise-foods', name:'Paradise Foods', category:'FMCG / Food', url:'https://paradisefoods.com.pg/'},
+            {slug:'lae-biscuit', name:'Lae Biscuit Company', category:'FMCG / Food', url:'https://www.laebiscuit.com/'},
+            {slug:'trukai', name:'Trukai Industries', category:'FMCG / Food', url:'https://www.trukai.com.pg/'},
+            {slug:'bsp', name:'BSP Financial Group', category:'Banking', url:'https://www.bsp.com.pg/'},
+            {slug:'kina-bank', name:'Kina Bank', category:'Banking', url:'https://www.kinabank.com.pg/'},
+            {slug:'mibank', name:'MiBank', category:'Banking', url:'https://www.mibank.com.pg/'},
+            {slug:'credit-bank', name:'CreditBank PNG', category:'Banking', url:'https://www.creditbank.com.pg/'},
+            {slug:'digicel-png', name:'Digicel PNG', category:'Telecommunications', url:'https://www.digicelpacific.com/mobile/pg/'},
+            {slug:'datec', name:'Datec PNG', category:'Technology / Retail', url:'https://www.datec.com.pg/'},
+            {slug:'daltron', name:'Daltron PNG', category:'Technology / Retail', url:'https://www.daltronpng.com/'},
+            {slug:'pngworkforce', name:'PNGworkForce', category:'Jobs / Classifieds', url:'https://www.pngworkforce.com/'},
+            {slug:'hausples', name:'Hausples', category:'Property / Classifieds', url:'https://www.hausples.com.pg/'},
+            {slug:'the-national', name:'The National', category:'Media / News', url:'https://www.thenational.com.pg/'},
+            {slug:'post-courier', name:'Post-Courier', category:'Media / News', url:'https://www.postcourier.com.pg/'},
+            {slug:'png-air', name:'PNG Air', category:'Travel / Airline', url:'https://pngair.com.pg/'},
+            {slug:'airways-hotel', name:'Airways Hotel & Residences', category:'Hotel / Hospitality', url:'https://www.airways.com.pg/'},
+            {slug:'lamana-hotel', name:'Lamana Hotel', category:'Hotel / Hospitality', url:'https://lamanahotel.com.pg/'},
+            {slug:'coral-sea-hotels', name:'Coral Sea Hotels', category:'Hotel / Hospitality', url:'https://coralseahotels.com.pg/'},
+            {slug:'pih', name:'Pacific International Hospital', category:'Private Healthcare', url:'https://www.pihpng.com/'},
+            {slug:'ela-motors', name:'Ela Motors PNG', category:'Automotive', url:'https://www.toyota-png.com/'},
+            {slug:'puma-energy-png', name:'Puma Energy PNG', category:'Fuel / Convenience', url:'https://pumaenergy.com/country/papua-new-guinea/'}
+          ];
+
+          const outDir = 'reference-screenshots/png-private-sector/full-page-1440';
+          const researchDir = 'assets/banners/research';
+          fs.mkdirSync(outDir, {recursive:true});
+          fs.mkdirSync(researchDir, {recursive:true});
+
+          async function dismiss(page) {
+            const selectors = [
+              'button:has-text("Accept")','button:has-text("Accept all")','button:has-text("I agree")',
+              'button:has-text("Agree")','button:has-text("Close")','[aria-label="Close"]',
+              '.cookie-accept','.cky-btn-accept','#onetrust-accept-btn-handler'
+            ];
+            for (const s of selectors) {
+              try { const el = page.locator(s).first(); if (await el.isVisible({timeout:300})) await el.click({timeout:500}); } catch {}
+            }
+          }
+
+          async function autoScroll(page) {
+            try {
+              await page.evaluate(async () => {
+                await new Promise(resolve => {
+                  let total = 0;
+                  const step = Math.max(500, Math.floor(window.innerHeight * 0.8));
+                  const timer = setInterval(() => {
+                    window.scrollBy(0, step);
+                    total += step;
+                    const h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+                    if (total >= h || total > 30000) {
+                      clearInterval(timer);
+                      window.scrollTo(0,0);
+                      resolve();
+                    }
+                  }, 120);
+                });
+              });
+            } catch {}
+          }
+
+          const browser = await chromium.launch({headless:true});
+          const context = await browser.newContext({
+            viewport: {width:1440, height:900},
+            ignoreHTTPSErrors: true,
+            userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/139 Safari/537.36'
+          });
+
+          const results = new Array(sites.length);
+          let next = 0;
+          async function worker() {
+            while (true) {
+              const i = next++;
+              if (i >= sites.length) return;
+              const site = sites[i];
+              const page = await context.newPage();
+              page.setDefaultTimeout(8000);
+              let response = null;
+              let error = null;
+              try {
+                response = await page.goto(site.url, {waitUntil:'domcontentloaded', timeout:45000});
+              } catch (e) { error = String(e); }
+              try { await page.waitForTimeout(1800); } catch {}
+              await dismiss(page);
+              await autoScroll(page);
+              try { await page.waitForTimeout(700); } catch {}
+
+              const file = path.join(outDir, site.slug + '.png');
+              let screenshotStatus = 'ok';
+              try {
+                await page.screenshot({path:file, fullPage:true, animations:'disabled'});
+                fs.copyFileSync(file, path.join(researchDir, 'png-private-' + site.slug + '.png'));
+              } catch (e) {
+                screenshotStatus = 'failed';
+                error = (error ? error + '\n' : '') + String(e);
+              }
+
+              results[i] = {
+                ...site,
+                finalUrl: page.url(),
+                title: await page.title().catch(()=>''),
+                httpStatus: response ? response.status() : null,
+                status: screenshotStatus === 'ok' ? (error ? 'partial' : 'ok') : 'failed',
+                error
+              };
+              console.log(`${i+1}/${sites.length} ${site.slug}: ${results[i].status} ${results[i].httpStatus ?? ''}`);
+              await page.close();
+            }
+          }
+
+          await Promise.all(Array.from({length:5}, () => worker()));
+          await browser.close();
+
+          const manifest = {
+            capturedAt: new Date().toISOString(),
+            viewport: '1440x900',
+            captureKind: 'full_page',
+            count: sites.length,
+            cohort: 'PNG private-sector / consumer familiarity',
+            results
+          };
+          fs.writeFileSync(path.join(outDir, 'capture-results.json'), JSON.stringify(manifest, null, 2));
+          fs.writeFileSync(path.join(researchDir, 'png-private-capture-results.json'), JSON.stringify(manifest, null, 2));
+          NODE
+          node /tmp/capture-private.js
+
+      - name: Create ZIP bundle
+        run: |
+          cd reference-screenshots/png-private-sector
+          zip -qr ../../../png-private-sector-full-page-1440.zip full-page-1440
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: png-private-sector-full-page-1440
+          path: png-private-sector-full-page-1440.zip
+          retention-days: 30
+
+      - name: Commit screenshots and research copies
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reference-screenshots/png-private-sector assets/banners/research/png-private-*.png assets/banners/research/png-private-capture-results.json
+          if git diff --cached --quiet; then
+            echo "No screenshot changes"
+            exit 0
+          fi
+          git commit -m "research: add PNG private-sector website screenshots"
+          git pull --rebase origin main
+          git push origin main
