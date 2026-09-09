@@ -1,0 +1,62 @@
+name: Remove Design 41 Gerehu wide image
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/remove-design41-gerehu-wide.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  remove:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Replace hero image and remove asset
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          p = Path('41.html')
+          s = p.read_text(encoding='utf-8')
+          old = '<img src="assets/design41/gerehu-market-wide.jpg" alt="People at Gerehu Market in Port Moresby, Papua New Guinea">'
+          new = '<img src="assets/design41/telikom-retail-team.jpg" alt="Telikom team in Papua New Guinea">'
+          if s.count(old) != 1:
+              raise SystemExit(f'Expected exactly one Design 41 reference, found {s.count(old)}')
+          s = s.replace(old, new)
+          if 'gerehu-market-wide.jpg' in s:
+              raise SystemExit('Old image reference still remains in 41.html')
+          p.write_text(s, encoding='utf-8')
+
+          src = Path('assets/design41/SOURCES.md')
+          if src.exists():
+              text = src.read_text(encoding='utf-8')
+              block = '- `gerehu-market-wide.jpg`: Wikimedia Commons, Gerehu Markets Port Moresby, Papua New Guinea (10697424025).jpg\n  https://commons.wikimedia.org/wiki/File:Gerehu_Markets_Port_Moresby,_Papua_New_Guinea_(10697424025).jpg\n'
+              text = text.replace(block, '')
+              src.write_text(text, encoding='utf-8')
+          PY
+
+          test -f assets/design41/telikom-retail-team.jpg
+          rm -f assets/design41/gerehu-market-wide.jpg
+          test ! -e assets/design41/gerehu-market-wide.jpg
+          ! grep -R --exclude-dir=.git -n 'gerehu-market-wide.jpg' 41.html assets/design41
+
+      - name: Commit cleanup
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/remove-design41-gerehu-wide.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Remove rejected Design 41 Gerehu image'
+          git fetch origin main
+          git rebase origin/main
+          git push origin HEAD:main
