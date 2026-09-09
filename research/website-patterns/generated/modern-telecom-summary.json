@@ -1,0 +1,175 @@
+{
+  "cohort": "modern-telecom",
+  "site_count": 9,
+  "section_counts": {
+    "navigation": 9,
+    "hero_cta": 9,
+    "product_offers": 6,
+    "pricing_plans": 4,
+    "device_promo": 3,
+    "service_categories": 3,
+    "faq_help": 3,
+    "footer": 8,
+    "quick_actions": 5,
+    "app_promo": 2,
+    "content_feature": 4,
+    "business_section": 3,
+    "trust_stats": 3,
+    "news": 3,
+    "capture_partial": 1
+  },
+  "site_presence": {
+    "hero_cta": 9,
+    "pricing_plans": 4,
+    "product_offers": 6,
+    "footer": 8,
+    "device_promo": 3,
+    "service_categories": 3,
+    "navigation": 9,
+    "faq_help": 3,
+    "app_promo": 2,
+    "quick_actions": 5,
+    "news": 3,
+    "content_feature": 4,
+    "business_section": 3,
+    "trust_stats": 3,
+    "capture_partial": 1
+  },
+  "transitions": [
+    {
+      "from": "navigation",
+      "to": "hero_cta",
+      "count": 9
+    },
+    {
+      "from": "product_offers",
+      "to": "pricing_plans",
+      "count": 4
+    },
+    {
+      "from": "hero_cta",
+      "to": "quick_actions",
+      "count": 4
+    },
+    {
+      "from": "quick_actions",
+      "to": "product_offers",
+      "count": 4
+    },
+    {
+      "from": "pricing_plans",
+      "to": "device_promo",
+      "count": 3
+    },
+    {
+      "from": "faq_help",
+      "to": "footer",
+      "count": 3
+    },
+    {
+      "from": "hero_cta",
+      "to": "content_feature",
+      "count": 3
+    },
+    {
+      "from": "news",
+      "to": "footer",
+      "count": 3
+    },
+    {
+      "from": "hero_cta",
+      "to": "product_offers",
+      "count": 2
+    },
+    {
+      "from": "content_feature",
+      "to": "business_section",
+      "count": 2
+    },
+    {
+      "from": "business_section",
+      "to": "trust_stats",
+      "count": 2
+    },
+    {
+      "from": "trust_stats",
+      "to": "news",
+      "count": 2
+    },
+    {
+      "from": "product_offers",
+      "to": "service_categories",
+      "count": 2
+    },
+    {
+      "from": "device_promo",
+      "to": "service_categories",
+      "count": 1
+    },
+    {
+      "from": "service_categories",
+      "to": "faq_help",
+      "count": 1
+    },
+    {
+      "from": "pricing_plans",
+      "to": "app_promo",
+      "count": 1
+    },
+    {
+      "from": "app_promo",
+      "to": "faq_help",
+      "count": 1
+    },
+    {
+      "from": "device_promo",
+      "to": "app_promo",
+      "count": 1
+    },
+    {
+      "from": "app_promo",
+      "to": "footer",
+      "count": 1
+    },
+    {
+      "from": "service_categories",
+      "to": "content_feature",
+      "count": 1
+    },
+    {
+      "from": "content_feature",
+      "to": "footer",
+      "count": 1
+    },
+    {
+      "from": "device_promo",
+      "to": "quick_actions",
+      "count": 1
+    },
+    {
+      "from": "quick_actions",
+      "to": "faq_help",
+      "count": 1
+    },
+    {
+      "from": "service_categories",
+      "to": "capture_partial",
+      "count": 1
+    },
+    {
+      "from": "content_feature",
+      "to": "trust_stats",
+      "count": 1
+    },
+    {
+      "from": "trust_stats",
+      "to": "business_section",
+      "count": 1
+    },
+    {
+      "from": "business_section",
+      "to": "news",
+      "count": 1
+    }
+  ]
+}
