@@ -1,0 +1,148 @@
+{
+  "cohort": "png-public-services",
+  "name": "PNG Public-Service Familiarity Cohort",
+  "reference_site_count": 20,
+  "analyzed_site_count": 3,
+  "pending_site_count": 17,
+  "section_counts": {
+    "navigation": 3,
+    "hero_cta": 3,
+    "content_feature": 1,
+    "service_categories": 2,
+    "notices": 2,
+    "news": 3,
+    "form_contact": 2,
+    "online_service": 1,
+    "regulation_info": 1,
+    "faq_help": 1,
+    "footer": 3,
+    "quick_actions": 1,
+    "trust_stats": 2,
+    "projects": 1,
+    "guidance": 1
+  },
+  "site_presence": {
+    "navigation": 3,
+    "footer": 3,
+    "regulation_info": 1,
+    "online_service": 1,
+    "notices": 2,
+    "hero_cta": 3,
+    "faq_help": 1,
+    "news": 3,
+    "content_feature": 1,
+    "form_contact": 2,
+    "service_categories": 2,
+    "projects": 1,
+    "quick_actions": 1,
+    "trust_stats": 2,
+    "guidance": 1
+  },
+  "transitions": [
+    {
+      "from": "navigation",
+      "to": "hero_cta",
+      "count": 3
+    },
+    {
+      "from": "trust_stats",
+      "to": "news",
+      "count": 2
+    },
+    {
+      "from": "hero_cta",
+      "to": "content_feature",
+      "count": 1
+    },
+    {
+      "from": "content_feature",
+      "to": "service_categories",
+      "count": 1
+    },
+    {
+      "from": "service_categories",
+      "to": "notices",
+      "count": 1
+    },
+    {
+      "from": "notices",
+      "to": "news",
+      "count": 1
+    },
+    {
+      "from": "news",
+      "to": "form_contact",
+      "count": 1
+    },
+    {
+      "from": "form_contact",
+      "to": "online_service",
+      "count": 1
+    },
+    {
+      "from": "online_service",
+      "to": "regulation_info",
+      "count": 1
+    },
+    {
+      "from": "regulation_info",
+      "to": "faq_help",
+      "count": 1
+    },
+    {
+      "from": "faq_help",
+      "to": "footer",
+      "count": 1
+    },
+    {
+      "from": "hero_cta",
+      "to": "quick_actions",
+      "count": 1
+    },
+    {
+      "from": "quick_actions",
+      "to": "trust_stats",
+      "count": 1
+    },
+    {
+      "from": "news",
+      "to": "projects",
+      "count": 1
+    },
+    {
+      "from": "projects",
+      "to": "guidance",
+      "count": 1
+    },
+    {
+      "from": "guidance",
+      "to": "notices",
+      "count": 1
+    },
+    {
+      "from": "notices",
+      "to": "footer",
+      "count": 1
+    },
+    {
+      "from": "hero_cta",
+      "to": "service_categories",
+      "count": 1
+    },
+    {
+      "from": "service_categories",
+      "to": "form_contact",
+      "count": 1
+    },
+    {
+      "from": "form_contact",
+      "to": "trust_stats",
+      "count": 1
+    },
+    {
+      "from": "news",
+      "to": "footer",
+      "count": 1
+    }
+  ]
+}

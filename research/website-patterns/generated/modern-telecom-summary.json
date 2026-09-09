@@ -1,7 +1,9 @@
 {
   "cohort": "modern-telecom",
   "name": "Modern Telecom Cohort",
-  "site_count": 9,
+  "reference_site_count": 9,
+  "analyzed_site_count": 9,
+  "pending_site_count": 0,
   "section_counts": {
     "navigation": 9,
     "hero_cta": 9,
@@ -20,20 +22,20 @@
     "capture_partial": 1
   },
   "site_presence": {
-    "service_categories": 3,
-    "footer": 8,
-    "pricing_plans": 4,
-    "device_promo": 3,
     "navigation": 9,
+    "service_categories": 3,
     "product_offers": 6,
+    "footer": 8,
+    "device_promo": 3,
     "faq_help": 3,
     "hero_cta": 9,
+    "pricing_plans": 4,
     "quick_actions": 5,
     "app_promo": 2,
     "trust_stats": 3,
     "business_section": 3,
-    "content_feature": 4,
     "news": 3,
+    "content_feature": 4,
     "capture_partial": 1
   },
   "transitions": [

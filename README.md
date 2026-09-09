@@ -4,34 +4,46 @@
 
 ## Website Pattern Research
 
-> Auto-generated from the cohort JSON manifests. Edit the JSON, not this block. GitHub Actions rebuilds the analysis.
+> Auto-generated from screenshot inventory + semantic JSON. Screenshots remain visible even when analysis is pending.
+
+**60 reference screenshots tracked · 12 semantically analyzed · 48 pending**
+
+[Open the all-reference atlas](./research/website-patterns/generated/all-reference-atlas.jpg) · [All cohort summaries](./research/website-patterns/generated/all-cohorts-summary.json)
+
+[![All website research atlas](./research/website-patterns/generated/all-reference-atlas.jpg)](./research/website-patterns/generated/all-reference-atlas.jpg)
+
+### Analysis coverage
+
+| Cohort | References | Analyzed | Pending |
+| --- | ---: | ---: | ---: |
+| Modern Telecom Cohort | 9 | 9 | 0 |
+| PNG Private-Sector Familiarity Cohort | 31 | 0 | 31 |
+| PNG Public-Service Familiarity Cohort | 20 | 3 | 17 |
 
 ### Modern Telecom Cohort
 
-**9 reference sites analyzed**
+**9 screenshots · 9 analyzed · 0 pending**
 
-[Open full atlas](./research/website-patterns/generated/modern-telecom-atlas.png) · [Summary JSON](./research/website-patterns/generated/modern-telecom-summary.json) · [Transitions CSV](./research/website-patterns/generated/modern-telecom-transitions.csv)
+[Open cohort atlas](./research/website-patterns/generated/modern-telecom-atlas.jpg) · [Summary JSON](./research/website-patterns/generated/modern-telecom-summary.json) · [Transitions CSV](./research/website-patterns/generated/modern-telecom-transitions.csv)
 
-[![Modern Telecom Cohort website pattern atlas](./research/website-patterns/generated/modern-telecom-atlas.png)](./research/website-patterns/generated/modern-telecom-atlas.png)
-
-| Pattern | Sites | Coverage |
+| Pattern | Analyzed sites | Coverage of analyzed sites |
 | --- | ---: | ---: |
 | Hero / Banner + CTA | 9/9 | 100% |
 | Navigation / Header | 9/9 | 100% |
 | Footer | 8/9 | 89% |
 | Product / Offer Cards | 6/9 | 67% |
 | Quick Actions / Self-Service | 5/9 | 56% |
-| Editorial / Feature Story | 4/9 | 44% |
+| Editorial / Explainer | 4/9 | 44% |
 | Plans / Pricing | 4/9 | 44% |
 | Business / Enterprise | 3/9 | 33% |
 | Device Promotion | 3/9 | 33% |
 | Help / FAQ / Support | 3/9 | 33% |
 | News / Updates | 3/9 | 33% |
-| Service Categories | 3/9 | 33% |
+| Services / Categories | 3/9 | 33% |
 | Trust / Stats / Proof | 3/9 | 33% |
 | App / Digital Experience | 2/9 | 22% |
 
-**Most common page-flow transitions**
+**Most common page-flow transitions among analyzed sites**
 
 | Transition | Count |
 | --- | ---: |
@@ -41,10 +53,56 @@
 | Quick Actions / Self-Service → Product / Offer Cards | 4 |
 | Plans / Pricing → Device Promotion | 3 |
 | Help / FAQ / Support → Footer | 3 |
-| Hero / Banner + CTA → Editorial / Feature Story | 3 |
+| Hero / Banner + CTA → Editorial / Explainer | 3 |
 | News / Updates → Footer | 3 |
 
+### PNG Private-Sector Familiarity Cohort
+
+**31 screenshots · 0 analyzed · 31 pending**
+
+[Open cohort atlas](./research/website-patterns/generated/png-private-sector-atlas.jpg) · [Summary JSON](./research/website-patterns/generated/png-private-sector-summary.json) · [Transitions CSV](./research/website-patterns/generated/png-private-sector-transitions.csv)
+
+_Semantic crop JSON is pending. The screenshots are already visible in the atlas._
+
+### PNG Public-Service Familiarity Cohort
+
+**20 screenshots · 3 analyzed · 17 pending**
+
+[Open cohort atlas](./research/website-patterns/generated/png-public-services-atlas.jpg) · [Summary JSON](./research/website-patterns/generated/png-public-services-summary.json) · [Transitions CSV](./research/website-patterns/generated/png-public-services-transitions.csv)
+
+| Pattern | Analyzed sites | Coverage of analyzed sites |
+| --- | ---: | ---: |
+| Footer | 3/3 | 100% |
+| Hero / Banner + CTA | 3/3 | 100% |
+| Navigation / Header | 3/3 | 100% |
+| News / Updates | 3/3 | 100% |
+| Form / Contact / Complaint | 2/3 | 67% |
+| Notices / Alerts | 2/3 | 67% |
+| Services / Categories | 2/3 | 67% |
+| Trust / Stats / Proof | 2/3 | 67% |
+| Editorial / Explainer | 1/3 | 33% |
+| Guidance / Safety | 1/3 | 33% |
+| Help / FAQ / Support | 1/3 | 33% |
+| Online Service / Portal | 1/3 | 33% |
+| Projects / Initiatives | 1/3 | 33% |
+| Quick Actions / Self-Service | 1/3 | 33% |
+| Regulatory Information | 1/3 | 33% |
+
+**Most common page-flow transitions among analyzed sites**
+
+| Transition | Count |
+| --- | ---: |
+| Navigation / Header → Hero / Banner + CTA | 3 |
+| Trust / Stats / Proof → News / Updates | 2 |
+| Hero / Banner + CTA → Editorial / Explainer | 1 |
+| Editorial / Explainer → Services / Categories | 1 |
+| Services / Categories → Notices / Alerts | 1 |
+| Notices / Alerts → News / Updates | 1 |
+| News / Updates → Form / Contact / Complaint | 1 |
+| Form / Contact / Complaint → Online Service / Portal | 1 |
+
 <!-- WEBSITE_PATTERN_RESEARCH_END -->
+
 A collection of Telikom homepage design explorations with responsive full-page screenshots.
 
 Run **Actions → Capture Responsive Design Screenshots → Run workflow** whenever you want to refresh the screenshots. The workflow regenerates every viewport, updates this gallery automatically, creates a ZIP, and commits the results back to `main`.
