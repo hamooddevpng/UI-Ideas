@@ -1,0 +1,79 @@
+name: Fix Design 40 broken images
+
+on:
+  push:
+    paths:
+      - '.github/workflows/fix-design40-broken-images.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Patch missing Home Internet image
+        shell: python
+        run: |
+          from pathlib import Path
+
+          p = Path('40.html')
+          text = p.read_text(encoding='utf-8')
+          old = 'https://raw.githubusercontent.com/hamooddevpng/UI-Ideas/main/assets/common/png-people/family-digital.jpg'
+          new = 'https://raw.githubusercontent.com/hamooddevpng/UI-Ideas/main/assets/common/web-sourced/telikom/fixed-broadband.jpg'
+          if old not in text:
+              raise SystemExit('Expected family-digital reference was not found in 40.html')
+          text = text.replace(old, new)
+          p.write_text(text, encoding='utf-8')
+
+      - name: Validate every repo-hosted image used by Design 40
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+          from PIL import Image
+
+          html = Path('40.html').read_text(encoding='utf-8')
+          prefix = 'https://raw.githubusercontent.com/hamooddevpng/UI-Ideas/main/'
+          urls = sorted(set(re.findall(r'https://raw\.githubusercontent\.com/hamooddevpng/UI-Ideas/main/[^\"\'\)<> ]+', html)))
+          if not urls:
+              raise SystemExit('No repo-hosted image URLs found in 40.html')
+
+          failures = []
+          checked = 0
+          for url in urls:
+              rel = url[len(prefix):]
+              path = Path(rel)
+              if not path.exists():
+                  failures.append(f'MISSING: {rel}')
+                  continue
+              if path.suffix.lower() not in {'.jpg', '.jpeg', '.png', '.webp', '.gif'}:
+                  continue
+              try:
+                  with Image.open(path) as im:
+                      im.verify()
+                  checked += 1
+                  print(f'OK {rel}')
+              except Exception as exc:
+                  failures.append(f'INVALID: {rel}: {exc}')
+
+          print(f'Validated {checked} image files referenced by 40.html')
+          if failures:
+              print('\n'.join(failures))
+              raise SystemExit('Design 40 still contains broken repo image references')
+
+      - name: Commit fix and remove one-time workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/fix-design40-broken-images.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add 40.html .github/workflows/fix-design40-broken-images.yml
+          git commit -m 'Fix missing image in Design 40 offers'
+          git pull --rebase origin main
+          git push origin HEAD:main
