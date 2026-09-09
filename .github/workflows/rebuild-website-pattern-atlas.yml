@@ -10,6 +10,7 @@ on:
       - "reference-screenshots/**/*.png"
       - "reference-screenshots/**/capture-results.json"
       - "reference-screenshots/**/curated-results.json"
+      - ".github/workflows/rebuild-website-pattern-atlas.yml"
   workflow_dispatch:
 
 permissions:
@@ -32,7 +33,7 @@ jobs:
       - name: Install Pillow
         run: python -m pip install --disable-pip-version-check Pillow==11.3.0
       - name: Validate inventory and semantic JSON, render atlases, update README
-        run: python scripts/render_website_pattern_atlas.py
+        run: python -c "from PIL import Image; Image.MAX_IMAGE_PIXELS=None; exec(compile(open('scripts/render_website_pattern_atlas.py', encoding='utf-8').read(), 'scripts/render_website_pattern_atlas.py', 'exec'))"
       - name: Commit generated analysis and README
         run: |
           git add research/website-patterns/generated README.md
