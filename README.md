@@ -6,7 +6,7 @@
 
 > Auto-generated from screenshot inventory + semantic JSON. Screenshots remain visible even when analysis is pending.
 
-**60 reference screenshots tracked · 43 semantically analyzed · 17 pending**
+**60 reference screenshots tracked · 60 semantically analyzed · 0 pending**
 
 [Open the all-reference atlas](./research/website-patterns/generated/all-reference-atlas.jpg) · [All cohort summaries](./research/website-patterns/generated/all-cohorts-summary.json)
 
@@ -18,7 +18,7 @@
 | --- | ---: | ---: | ---: |
 | Modern Telecom Cohort | 9 | 9 | 0 |
 | PNG Private-Sector Familiarity Cohort | 31 | 31 | 0 |
-| PNG Public-Service Familiarity Cohort | 20 | 3 | 17 |
+| PNG Public-Service Familiarity Cohort | 20 | 20 | 0 |
 
 ### Modern Telecom Cohort
 
@@ -95,42 +95,43 @@
 
 ### PNG Public-Service Familiarity Cohort
 
-**20 screenshots · 3 analyzed · 17 pending**
+**20 screenshots · 20 analyzed · 0 pending**
 
 [Open cohort atlas](./research/website-patterns/generated/png-public-services-atlas.jpg) · [Summary JSON](./research/website-patterns/generated/png-public-services-summary.json) · [Transitions CSV](./research/website-patterns/generated/png-public-services-transitions.csv)
 
 | Pattern | Analyzed sites | Coverage of analyzed sites |
 | --- | ---: | ---: |
-| Footer | 3/3 | 100% |
-| Hero / Banner + CTA | 3/3 | 100% |
-| Navigation / Header | 3/3 | 100% |
-| News / Updates | 3/3 | 100% |
-| Form / Contact / Complaint | 2/3 | 67% |
-| Notices / Alerts | 2/3 | 67% |
-| Services / Categories | 2/3 | 67% |
-| Trust / Stats / Proof | 2/3 | 67% |
-| Editorial / Explainer | 1/3 | 33% |
-| Guidance / Safety | 1/3 | 33% |
-| Help / FAQ / Support | 1/3 | 33% |
-| Online Service / Portal | 1/3 | 33% |
-| Projects / Initiatives | 1/3 | 33% |
-| Quick Actions / Self-Service | 1/3 | 33% |
-| Regulatory Information | 1/3 | 33% |
+| Navigation / Header | 13/20 | 65% |
+| Hero / Banner + CTA | 11/20 | 55% |
+| Footer | 10/20 | 50% |
+| News / Updates | 6/20 | 30% |
+| Editorial / Explainer | 5/20 | 25% |
+| Services / Categories | 5/20 | 25% |
+| Notices / Alerts | 4/20 | 20% |
+| Quick Actions / Self-Service | 4/20 | 20% |
+| Form / Contact / Complaint | 3/20 | 15% |
+| Projects / Initiatives | 3/20 | 15% |
+| Trust / Stats / Proof | 3/20 | 15% |
+| Online Service / Portal | 2/20 | 10% |
+| Regulatory Information | 2/20 | 10% |
+| Guidance / Safety | 1/20 | 5% |
+| Help / FAQ / Support | 1/20 | 5% |
 
 **Most common page-flow transitions among analyzed sites**
 
 | Transition | Count |
 | --- | ---: |
-| Navigation / Header → Hero / Banner + CTA | 3 |
-| Trust / Stats / Proof → News / Updates | 2 |
-| Hero / Banner + CTA → Editorial / Explainer | 1 |
-| Editorial / Explainer → Services / Categories | 1 |
-| Services / Categories → Notices / Alerts | 1 |
-| Notices / Alerts → News / Updates | 1 |
-| News / Updates → Form / Contact / Complaint | 1 |
-| Form / Contact / Complaint → Online Service / Portal | 1 |
+| Navigation / Header → Hero / Banner + CTA | 11 |
+| Hero / Banner + CTA → Services / Categories | 3 |
+| Hero / Banner + CTA → Editorial / Explainer | 3 |
+| Trust / Stats / Proof → News / Updates | 3 |
+| Editorial / Explainer → Services / Categories | 2 |
+| Hero / Banner + CTA → Quick Actions / Self-Service | 2 |
+| News / Updates → Projects / Initiatives | 2 |
+| Editorial / Explainer → Footer | 2 |
 
 <!-- WEBSITE_PATTERN_RESEARCH_END -->
+
 
 
 A collection of Telikom homepage design explorations with responsive full-page screenshots.

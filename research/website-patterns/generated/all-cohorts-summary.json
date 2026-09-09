@@ -23,19 +23,19 @@
       "capture_partial": 1
     },
     "site_presence": {
-      "device_promo": 3,
+      "product_offers": 6,
+      "pricing_plans": 4,
       "footer": 8,
       "faq_help": 3,
-      "hero_cta": 9,
+      "device_promo": 3,
       "navigation": 9,
       "service_categories": 3,
-      "pricing_plans": 4,
-      "product_offers": 6,
-      "app_promo": 2,
+      "hero_cta": 9,
       "quick_actions": 5,
-      "content_feature": 4,
+      "app_promo": 2,
       "news": 3,
       "business_section": 3,
+      "content_feature": 4,
       "trust_stats": 3,
       "capture_partial": 1
     },
@@ -202,20 +202,20 @@
       "app_promo": 2
     },
     "site_presence": {
-      "capture_partial": 6,
-      "content_feature": 19,
-      "footer": 29,
       "hero_cta": 26,
+      "footer": 29,
+      "capture_partial": 6,
       "navigation": 28,
+      "content_feature": 19,
       "product_offers": 10,
-      "trust_stats": 13,
-      "service_categories": 14,
       "quick_actions": 9,
+      "service_categories": 14,
+      "trust_stats": 13,
       "projects": 5,
       "business_section": 5,
-      "online_service": 3,
-      "news": 10,
       "faq_help": 3,
+      "news": 10,
+      "online_service": 3,
       "form_contact": 6,
       "app_promo": 2
     },
@@ -611,61 +611,128 @@
     "cohort": "png-public-services",
     "name": "PNG Public-Service Familiarity Cohort",
     "reference_site_count": 20,
-    "analyzed_site_count": 3,
-    "pending_site_count": 17,
+    "analyzed_site_count": 20,
+    "pending_site_count": 0,
     "section_counts": {
-      "navigation": 3,
-      "hero_cta": 3,
-      "content_feature": 1,
-      "service_categories": 2,
-      "notices": 2,
-      "news": 3,
-      "form_contact": 2,
-      "online_service": 1,
-      "regulation_info": 1,
+      "navigation": 13,
+      "hero_cta": 11,
+      "service_categories": 5,
+      "online_service": 2,
+      "footer": 10,
+      "capture_partial": 8,
+      "notices": 4,
+      "quick_actions": 4,
+      "regulation_info": 2,
+      "news": 6,
+      "content_feature": 6,
+      "form_contact": 3,
       "faq_help": 1,
-      "footer": 3,
-      "quick_actions": 1,
-      "trust_stats": 2,
-      "projects": 1,
+      "trust_stats": 3,
+      "projects": 3,
       "guidance": 1
     },
     "site_presence": {
-      "online_service": 1,
-      "content_feature": 1,
-      "footer": 3,
-      "news": 3,
+      "service_categories": 5,
+      "navigation": 13,
+      "hero_cta": 11,
+      "online_service": 2,
+      "footer": 10,
+      "capture_partial": 8,
+      "regulation_info": 2,
+      "quick_actions": 4,
+      "notices": 4,
+      "news": 6,
       "faq_help": 1,
-      "hero_cta": 3,
-      "navigation": 3,
-      "form_contact": 2,
-      "service_categories": 2,
-      "notices": 2,
-      "regulation_info": 1,
+      "content_feature": 5,
+      "form_contact": 3,
       "guidance": 1,
-      "projects": 1,
-      "trust_stats": 2,
-      "quick_actions": 1
+      "projects": 3,
+      "trust_stats": 3
     },
     "transitions": [
       {
         "from": "navigation",
         "to": "hero_cta",
+        "count": 11
+      },
+      {
+        "from": "hero_cta",
+        "to": "service_categories",
+        "count": 3
+      },
+      {
+        "from": "hero_cta",
+        "to": "content_feature",
         "count": 3
       },
       {
         "from": "trust_stats",
         "to": "news",
-        "count": 2
-      },
-      {
-        "from": "hero_cta",
-        "to": "content_feature",
-        "count": 1
+        "count": 3
       },
       {
         "from": "content_feature",
         "to": "service_categories",
+        "count": 2
+      },
+      {
+        "from": "hero_cta",
+        "to": "quick_actions",
+        "count": 2
+      },
+      {
+        "from": "news",
+        "to": "projects",
+        "count": 2
+      },
+      {
+        "from": "content_feature",
+        "to": "footer",
+        "count": 2
+      },
+      {
+        "from": "news",
+        "to": "footer",
+        "count": 2
+      },
+      {
+        "from": "navigation",
+        "to": "online_service",
+        "count": 1
+      },
+      {
+        "from": "online_service",
+        "to": "footer",
+        "count": 1
+      },
+      {
+        "from": "hero_cta",
+        "to": "notices",
+        "count": 1
+      },
+      {
+        "from": "notices",
+        "to": "quick_actions",
+        "count": 1
+      },
+      {
+        "from": "quick_actions",
+        "to": "regulation_info",
+        "count": 1
+      },
+      {
+        "from": "regulation_info",
+        "to": "footer",
+        "count": 1
+      },
+      {
+        "from": "hero_cta",
+        "to": "news",
+        "count": 1
+      },
+      {
+        "from": "hero_cta",
+        "to": "capture_partial",
         "count": 1
       },
       {
@@ -704,18 +771,13 @@
         "count": 1
       },
       {
-        "from": "hero_cta",
-        "to": "quick_actions",
+        "from": "quick_actions",
+        "to": "footer",
         "count": 1
       },
       {
         "from": "quick_actions",
         "to": "trust_stats",
-        "count": 1
-      },
-      {
-        "from": "news",
-        "to": "projects",
         "count": 1
       },
       {
@@ -734,8 +796,48 @@
         "count": 1
       },
       {
-        "from": "hero_cta",
-        "to": "service_categories",
+        "from": "service_categories",
+        "to": "content_feature",
+        "count": 1
+      },
+      {
+        "from": "content_feature",
+        "to": "projects",
+        "count": 1
+      },
+      {
+        "from": "projects",
+        "to": "notices",
+        "count": 1
+      },
+      {
+        "from": "notices",
+        "to": "form_contact",
+        "count": 1
+      },
+      {
+        "from": "form_contact",
+        "to": "footer",
+        "count": 1
+      },
+      {
+        "from": "navigation",
+        "to": "quick_actions",
+        "count": 1
+      },
+      {
+        "from": "quick_actions",
+        "to": "content_feature",
+        "count": 1
+      },
+      {
+        "from": "service_categories",
+        "to": "news",
+        "count": 1
+      },
+      {
+        "from": "projects",
+        "to": "content_feature",
         "count": 1
       },
       {
@@ -749,8 +851,8 @@
         "count": 1
       },
       {
-        "from": "news",
-        "to": "footer",
+        "from": "content_feature",
+        "to": "trust_stats",
         "count": 1
       }
     ]
