@@ -1,0 +1,84 @@
+name: Curate Design 41 PNG identity
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/curate-design41-png-identity.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  curate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Download curated PNG-specific images
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p assets/design41
+          dl(){
+            local name="$1"; shift
+            local url="$1"
+            echo "Downloading $name"
+            curl -L --fail --retry 3 --retry-delay 2 -A 'Mozilla/5.0' "$url" -o "assets/design41/$name"
+            test -s "assets/design41/$name"
+            file "assets/design41/$name" | grep -qiE 'JPEG|image data'
+            test "$(wc -c < "assets/design41/$name")" -gt 20000
+          }
+          dl moresby-kastom-dancers-2.jpg 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Moresby-kastom-dancers-2.jpg?width=1600'
+          dl moresby-kastom-dancers-13.jpg 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Moresby-kastom-dancers-13.jpg?width=1600'
+          dl mount-hagen-sing-sing-2019.jpg 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Mount%20Hagen%20Sing%20Sing%202019%20%2849059928568%29.jpg?width=1600'
+          dl mount-hagen-sing-sing-portrait.jpg 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Mount%20Hagen%20Sing%20Sing%202019%20%2849060446801%29.jpg?width=1200'
+          dl kopar-village-child.jpg 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Kopar%20Village%20Child.jpg?width=1200'
+          dl asaro-goroka-performers.jpg 'https://commons.wikimedia.org/wiki/Special:Redirect/file/%28Asaro%20tribe%27s%20Holosa%20performers%20in%20front%20of%20a%20crowd%20in%20Goroka%2C%20Papua%20New%20Guinea%29%20-%20DPLA%20-%2079504f62140a72cc67da936dbd885d4b.jpg?width=1600'
+          dl village-men-festival-day.jpg 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Village%20Men%2C%20festival%20day.%20%2848646582447%29.jpg?width=1600'
+          dl telikom-retail-team.jpg 'https://www.telikom.com.pg/assets/news/308723936_1146629262939133_7327105151876426519_n.jpg'
+
+      - name: Patch Design 41
+        run: python3 scripts/curate_design41_png_photos.py
+
+      - name: Remove risky old imagery from curated set
+        shell: bash
+        run: |
+          rm -f assets/design41/village-people.jpg \
+                assets/design41/education-png.jpg \
+                assets/design41/png-electricians.jpg \
+                assets/design41/aptc-graduates.jpg \
+                assets/design41/png-locals-meeting.jpg
+
+      - name: Install browser validator
+        run: |
+          npm install --no-save playwright >/dev/null 2>&1
+          npx playwright install chromium >/dev/null 2>&1
+
+      - name: Validate Design 41
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/d41-png.log 2>&1 &
+          sleep 1
+          node scripts/test_design41_png_identity.js
+
+      - name: Commit and clean helpers
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/curate-design41-png-identity.yml scripts/curate_design41_png_photos.py scripts/test_design41_png_identity.js
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add 41.html assets/design41 .github/workflows/curate-design41-png-identity.yml scripts/curate_design41_png_photos.py scripts/test_design41_png_identity.js
+          git commit -m 'Curate Design 41 with PNG-specific photography'
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            if git rebase origin/main && git push origin HEAD:main; then exit 0; fi
+            git rebase --abort 2>/dev/null || true
+            sleep 2
+          done
+          exit 1
