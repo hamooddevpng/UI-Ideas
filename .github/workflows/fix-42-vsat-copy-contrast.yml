@@ -1,0 +1,60 @@
+name: One-time Design 42 VSAT copy contrast fix
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/fix-42-vsat-copy-contrast.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Improve VSAT slide text contrast
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('42.html')
+          s = p.read_text(encoding='utf-8')
+
+          old = '.scene-remote{background:linear-gradient(180deg,#203f53 0,#6094a8 43%,#e5ca91 100%)}'
+          new = '.scene-remote{background:linear-gradient(180deg,#203f53 0,#6094a8 43%,#e5ca91 100%)}.scene-remote:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(4,28,40,.58) 0%,rgba(4,28,40,.38) 28%,rgba(4,28,40,.16) 48%,transparent 68%)}'
+          if old not in s:
+              raise SystemExit('Remote scene style anchor not found')
+          s = s.replace(old, new, 1)
+
+          old = '.hero[data-scene-index="1"] .hero-copy p{max-width:545px;line-height:1.55}'
+          new = '.hero[data-scene-index="1"] .hero-copy p{max-width:545px;line-height:1.55;color:#e7f3f8;font-weight:500;text-shadow:0 2px 16px rgba(1,18,27,.42)}.hero[data-scene-index="1"] .hero-copy h1{text-shadow:0 3px 24px rgba(1,18,27,.28)}.hero[data-scene-index="1"] .eyebrow{color:#c2edff;text-shadow:0 1px 10px rgba(1,18,27,.35)}'
+          if old not in s:
+              raise SystemExit('VSAT copy style anchor not found')
+          s = s.replace(old, new, 1)
+
+          p.write_text(s, encoding='utf-8')
+          PY
+
+      - name: Syntax check Design 42 JavaScript
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          s = Path('42.html').read_text(encoding='utf-8')
+          blocks = re.findall(r'<script>(.*?)</script>', s, flags=re.S)
+          if not blocks:
+              raise SystemExit('No script block found')
+          Path('/tmp/design42.js').write_text('\n'.join(blocks), encoding='utf-8')
+          PY
+          node --check /tmp/design42.js
+
+      - name: Commit fix and remove one-time workflow
+        run: |
+          rm .github/workflows/fix-42-vsat-copy-contrast.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add 42.html .github/workflows/fix-42-vsat-copy-contrast.yml
+          git commit -m "Improve Design 42 VSAT slide text contrast"
+          git push
