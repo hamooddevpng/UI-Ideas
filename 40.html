@@ -26,6 +26,37 @@ footer{background:#102b3c;color:#fff;padding:64px 0 28px}.footer-top{display:gri
 @media(max-width:660px){.utility{display:none}.wrap{width:min(var(--max),calc(100% - 28px))}.header-row{height:68px;gap:12px}.brand{min-width:0}.brand small{display:none}.wordmark{font-size:25px}.header-actions .search-btn{display:none}.self-care{padding:0 12px}.hero-copy{padding:42px 18px 84px}h1{font-size:clamp(48px,15vw,70px)}.hero-media{min-height:320px}.hero-caption{right:12px;bottom:12px}.hero-controls{left:18px;bottom:25px}.hero-arrow{width:38px;height:38px}.hero-dots{height:38px}.quick-shell{margin-top:0}.quick-actions{grid-template-columns:1fr 1fr}.quick-action{min-height:92px;padding:16px;grid-template-columns:auto 1fr}.quick-action>span:last-child{display:none}.icon-wrap{width:36px;height:36px}.secondary-actions{justify-content:flex-start;gap:16px;padding-top:14px}section.content{padding:70px 0}.section-head{display:block}.view-link{display:inline-block;margin-top:16px}.offer-main{min-height:430px}.offer-copy{padding:24px}.service-row{grid-template-columns:42px 1fr;gap:10px;padding:20px 0}.service-row p,.service-row a{grid-column:2}.service-row a{justify-self:start}.business-copy{padding:58px 22px}.business-media{min-height:340px}.story-media{height:360px}.news-grid{grid-template-columns:1fr}.support-side{padding:26px}.footer-top{grid-template-columns:1fr 1fr}.footer-brand{grid-column:1/-1;grid-row:auto}.footer-bottom{display:block}.footer-bottom span{display:block;margin-top:7px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.hero-track,.hero-dot{transition:none!important}}
 </style>
+<style>
+/* Above-the-fold fit: keep banner + primary quick actions inside the first viewport on desktop/tablet. */
+@media(min-width:661px){
+  .utility{height:30px}
+  .header-row{height:72px}
+  .hero-grid{height:min(620px,calc(100svh - 204px));min-height:360px;grid-template-columns:43% 57%}
+  .hero-copy{padding:38px clamp(28px,4.2vw,64px) 66px max(24px,calc((100vw - var(--max))/2 + 24px))}
+  h1{margin:14px 0 14px;font-size:clamp(44px,4.7vw,76px)}
+  .hero-copy p{font-size:14px;line-height:1.6}
+  .hero-cta{margin-top:20px}
+  .btn-primary,.btn-link{min-height:44px}
+  .hero-controls{bottom:16px}
+  .hero-arrow{width:36px;height:36px}
+  .hero-dots{height:36px}
+  .quick-shell{margin-top:-30px}
+  .quick-action{min-height:86px;gap:12px;padding:14px 18px}
+  .icon-wrap{width:38px;height:38px}
+  .quick-action strong{font-size:13px;margin-bottom:3px}
+  .quick-action small{font-size:10px}
+  .secondary-actions{padding:10px 0 0}
+}
+@media(min-width:661px) and (max-width:1040px){
+  .hero-grid{grid-template-columns:43% 57%;height:min(600px,calc(100svh - 196px));min-height:360px}
+  .hero-copy{padding:32px 22px 64px}
+  .hero-media{min-height:0}
+  .hero-controls{left:24px;bottom:14px}
+}
+@media(max-width:660px){
+  .hero-grid{height:auto;min-height:0;grid-template-columns:1fr}
+}
+</style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to main content</a>
