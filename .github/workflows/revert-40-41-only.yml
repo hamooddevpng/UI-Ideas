@@ -1,0 +1,46 @@
+name: One-time revert Design 40 and 41 only
+on:
+  push:
+    paths:
+      - '.github/workflows/revert-40-41-only.yml'
+permissions:
+  contents: write
+jobs:
+  revert-and-verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Restore Design 40 and 41
+        run: |
+          git show 656830b8c623d6a28b24721804c16c2be6372d67:40.html > 40.html
+          git show 656830b8c623d6a28b24721804c16c2be6372d67:41.html > 41.html
+      - name: Verify rollback scope
+        run: |
+          git diff --exit-code -- 42.html
+          grep -q 'D40-D41 CRAZY ENHANCEMENTS' 40.html && exit 1 || true
+          grep -q 'D40-D41 CRAZY ENHANCEMENTS' 41.html && exit 1 || true
+      - name: Syntax check restored pages
+        run: |
+          python3 - <<'PY'
+          import re, pathlib
+          for f in ('40.html','41.html'):
+              s=pathlib.Path(f).read_text()
+              pathlib.Path('/tmp/'+f+'.js').write_text('\n'.join(re.findall(r'<script>(.*?)</script>',s,re.S)))
+          PY
+          node --check /tmp/40.html.js
+          node --check /tmp/41.html.js
+      - name: Commit rollback
+        run: |
+          rm -f .github/workflows/revert-40-41-only.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add 40.html 41.html .github/workflows/revert-40-41-only.yml
+          git commit -m 'Revert accidental Design 40 and 41 interaction pass'
+          for try in 1 2 3; do
+            if git push origin HEAD:main; then exit 0; fi
+            git fetch origin main
+            git rebase origin/main
+          done
+          exit 1
