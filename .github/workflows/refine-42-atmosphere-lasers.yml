@@ -1,0 +1,125 @@
+name: One-time Design 42 atmosphere and laser verification
+on:
+  push:
+    paths:
+      - '.github/workflows/refine-42-atmosphere-lasers.yml'
+permissions:
+  contents: write
+jobs:
+  refine-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add subtle PNG imagery and repair visible heartbeat bolts
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p assets/design42
+          curl -fsSL --retry 3 -A 'Mozilla/5.0' 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Happy_people_in_PNG_%286357491621%29.jpg?width=1600' -o assets/design42/png-people.jpg
+          curl -fsSL --retry 3 -A 'Mozilla/5.0' 'https://commons.wikimedia.org/wiki/Special:Redirect/file/%28Aerial_view_of_Port_Moresby_Beach%2C_Papua_New_Guinea%29_-_DPLA_-_bb136ce654c8a039f34e6ae4fa5bf64e.jpg?width=1600' -o assets/design42/png-remote-coast.jpg
+          curl -fsSL --retry 3 -A 'Mozilla/5.0' 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Papua_New_Guinea_location_map.svg' -o assets/design42/png-map.svg
+          file assets/design42/png-people.jpg assets/design42/png-remote-coast.jpg assets/design42/png-map.svg
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          p=Path('42.html')
+          s=p.read_text()
+
+          anchor='.scene-enterprise{background:radial-gradient(circle at 76% 50%,rgba(33,160,243,.18),transparent 25%),linear-gradient(120deg,#03151e,#072535 65%,#0a3347)}'
+          assert anchor in s, 'scene CSS anchor missing'
+          atmosphere=r'''.hero-atmos{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;user-select:none}.hero-people{object-fit:cover;object-position:77% 46%;opacity:.105;filter:saturate(.62) contrast(1.08) brightness(.7);transform:scale(1.035);-webkit-mask-image:linear-gradient(90deg,transparent 18%,rgba(0,0,0,.28) 43%,#000 67%);mask-image:linear-gradient(90deg,transparent 18%,rgba(0,0,0,.28) 43%,#000 67%)}.scene-phone:after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(6,25,37,.56) 0%,rgba(6,25,37,.26) 45%,rgba(6,25,37,.05) 72%,transparent 100%)}.hero-island{object-fit:cover;object-position:center 53%;opacity:.19;filter:saturate(.72) contrast(1.02) brightness(.72);transform:scale(1.025)}.scene-remote .remote-sky{z-index:1}.scene-remote:after{z-index:3}.hero-map{inset:4% 1% 2% auto;width:72%;height:94%;object-fit:contain;object-position:80% 50%;opacity:.095;filter:grayscale(1) saturate(0) brightness(1.42) contrast(1.12);mix-blend-mode:screen;transform:scale(.94) rotate(-1deg);-webkit-mask-image:radial-gradient(ellipse at 68% 50%,#000 20%,rgba(0,0,0,.8) 48%,transparent 78%);mask-image:radial-gradient(ellipse at 68% 50%,#000 20%,rgba(0,0,0,.8) 48%,transparent 78%)}@media(max-width:820px){.hero-people{opacity:.075;object-position:70% 45%}.hero-island{opacity:.14;object-position:64% 50%}.hero-map{width:92%;right:-18%;opacity:.075}}'''
+          s=s.replace(anchor,anchor+atmosphere,1)
+
+          old='<div class="scene scene-phone active"></div><div class="scene scene-remote"><div class="remote-sky">'
+          new='<div class="scene scene-phone active"><img class="hero-atmos hero-people" src="assets/design42/png-people.jpg" alt="" aria-hidden="true"></div><div class="scene scene-remote"><img class="hero-atmos hero-island" src="assets/design42/png-remote-coast.jpg" alt="" aria-hidden="true"><div class="remote-sky">'
+          assert old in s, 'phone/remote scene markup anchor missing'
+          s=s.replace(old,new,1)
+          old='<div class="scene scene-enterprise"></div><div class="hero-grid">'
+          new='<div class="scene scene-enterprise"><img class="hero-atmos hero-map" src="assets/design42/png-map.svg" alt="" aria-hidden="true"></div><div class="hero-grid">'
+          assert old in s, 'enterprise scene markup anchor missing'
+          s=s.replace(old,new,1)
+
+          old='.tower-pulse-track.p2{top:20px;transform:rotate(calc(var(--pulse-angle,0deg) + .8deg))}'
+          new='.tower-pulse-track.p1{--pulse-travel:var(--pulse-travel-1,60px)}.tower-pulse-track.p2{--pulse-travel:var(--pulse-travel-2,60px);top:20px;transform:rotate(calc(var(--pulse-angle,0deg) + .8deg))}'
+          assert old in s, 'pulse track CSS anchor missing'
+          s=s.replace(old,new,1)
+          old='width:74px;height:2px;border-radius:999px;background:linear-gradient(90deg,rgba(184,241,255,0),rgba(170,236,255,.98) 38%,#fff 64%,rgba(89,198,247,0));box-shadow:0 0 7px rgba(105,211,255,.78),0 0 16px rgba(67,173,231,.36)'
+          new='width:74px;height:2.35px;border-radius:999px;background:linear-gradient(90deg,rgba(184,241,255,0),rgba(170,236,255,.98) 34%,#fff 61%,rgba(89,198,247,0));box-shadow:0 0 8px rgba(105,211,255,.88),0 0 20px rgba(67,173,231,.46)'
+          assert old in s, 'bolt visibility CSS anchor missing'
+          s=s.replace(old,new,1)
+          old='translateX(max(0px,calc(var(--pulse-length,140px) - 74px))) scaleX(.82)'
+          new='translateX(var(--pulse-travel,60px)) scaleX(.82)'
+          assert old in s, 'unsupported bolt travel expression missing'
+          s=s.replace(old,new,1)
+
+          old="tower.style.setProperty('--pulse-length',len.toFixed(1)+'px');tower.style.setProperty('--pulse-angle',ang.toFixed(2)+'deg');tower.classList.remove('firing');"
+          new="tower.style.setProperty('--pulse-length',len.toFixed(1)+'px');tower.style.setProperty('--pulse-angle',ang.toFixed(2)+'deg');tower.style.setProperty('--pulse-travel-1',Math.max(0,len-74).toFixed(1)+'px');tower.style.setProperty('--pulse-travel-2',Math.max(0,len-52).toFixed(1)+'px');tower.classList.remove('firing');"
+          assert old in s, 'pulse JS anchor missing'
+          s=s.replace(old,new,1)
+          p.write_text(s)
+
+          Path('assets/design42/ATTRIBUTION.md').write_text('''# Design 42 banner image sources\n\n- `png-people.jpg`: **Happy people in PNG (6357491621).jpg**, eGuide Travel, Wikimedia Commons, CC BY 2.0. Source: https://commons.wikimedia.org/wiki/File:Happy_people_in_PNG_(6357491621).jpg\n- `png-remote-coast.jpg`: **Aerial view of Port Moresby Beach, Papua New Guinea**, Sherwin John Carlquist / Botanical Research Institute of Texas via DPLA and Wikimedia Commons, CC BY 4.0. Source: https://commons.wikimedia.org/wiki/File:(Aerial_view_of_Port_Moresby_Beach,_Papua_New_Guinea)_-_DPLA_-_bb136ce654c8a039f34e6ae4fa5bf64e.jpg\n- `png-map.svg`: **Papua New Guinea location map.svg**, NordNordWest, Wikimedia Commons, CC BY-SA 3.0 / GFDL. Source: https://commons.wikimedia.org/wiki/File:Papua_New_Guinea_location_map.svg\n''')
+          PY
+      - name: Syntax check JavaScript
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import re, pathlib
+          s=pathlib.Path('42.html').read_text()
+          scripts=re.findall(r'<script>(.*?)</script>',s,re.S)
+          pathlib.Path('/tmp/42.js').write_text('\n'.join(scripts))
+          PY
+          node --check /tmp/42.js
+      - name: Browser verification
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm install --no-save playwright-core@1.55.0 >/dev/null 2>&1
+          python3 -m http.server 8000 >/tmp/42-http.log 2>&1 &
+          cat > /tmp/verify42.js <<'NODE'
+          const { chromium } = require(process.cwd() + '/node_modules/playwright-core');
+          (async()=>{
+            const browser=await chromium.launch({headless:true,executablePath:'/usr/bin/google-chrome',args:['--no-sandbox']});
+            const page=await browser.newPage({viewport:{width:1440,height:900}});
+            const errors=[]; page.on('pageerror',e=>errors.push(String(e)));
+            await page.goto('http://127.0.0.1:8000/42.html',{waitUntil:'networkidle'});
+            const imgs=await page.evaluate(()=>[...document.querySelectorAll('.hero-atmos')].map(i=>({src:i.getAttribute('src'),w:i.naturalWidth,h:i.naturalHeight,opacity:parseFloat(getComputedStyle(i).opacity)})));
+            if(imgs.length!==3||imgs.some(i=>i.w<250||i.h<200||!(i.opacity>0&&i.opacity<.25))) throw new Error('Atmosphere images invalid: '+JSON.stringify(imgs));
+
+            await page.click('.scene-tab[data-scene="1"]'); await page.waitForTimeout(760);
+            await page.mouse.move(1110,170); await page.waitForTimeout(350);
+            const a=await page.evaluate(()=>({sat:getComputedStyle(document.querySelector('.satellite')).transform,dish:getComputedStyle(document.querySelector('.dish-head-svg')).transform}));
+            await page.mouse.move(760,430); await page.waitForTimeout(350);
+            const b=await page.evaluate(()=>({sat:getComputedStyle(document.querySelector('.satellite')).transform,dish:getComputedStyle(document.querySelector('.dish-head-svg')).transform}));
+            if(a.sat===b.sat||a.dish===b.dish) throw new Error('Satellite/dish regression: '+JSON.stringify({a,b}));
+
+            await page.click('.scene-tab[data-scene="2"]'); await page.waitForTimeout(760); await page.mouse.move(430,250);
+            let sawVisible=false, transforms=new Set(), pulseCount=0;
+            const deadline=Date.now()+2800;
+            while(Date.now()<deadline){
+              const v=await page.evaluate(()=>{const t=document.querySelector('.tower'),bolt=document.querySelector('.tower-pulse-track.p1 i'),cs=getComputedStyle(bolt);return {count:Number(t.dataset.pulseCount||0),firing:t.classList.contains('firing'),opacity:parseFloat(cs.opacity),transform:cs.transform}});
+              pulseCount=Math.max(pulseCount,v.count); if(v.firing&&v.opacity>.08)sawVisible=true; if(v.firing)transforms.add(v.transform); await page.waitForTimeout(35);
+            }
+            if(pulseCount<1||!sawVisible||transforms.size<2) throw new Error('Visible heartbeat bolt failed: '+JSON.stringify({pulseCount,sawVisible,transforms:[...transforms]}));
+            const before=await page.evaluate(()=>Number(document.querySelector('.tower').dataset.pulseCount||0));
+            await page.evaluate(()=>scrollTo(0,900)); await page.waitForTimeout(2200);
+            const after=await page.evaluate(()=>Number(document.querySelector('.tower').dataset.pulseCount||0));
+            if(after!==before) throw new Error('Pulse continued offscreen: '+JSON.stringify({before,after}));
+            if(errors.length) throw new Error('Page errors: '+errors.join(' | '));
+            console.log('Atmosphere images',imgs); console.log('Satellite/dish tracking',a,b); console.log('Visible heartbeat verified', {pulseCount,sawVisible,transformSamples:transforms.size}); console.log('Offscreen pulse stable',before,after);
+            await browser.close();
+          })().catch(e=>{console.error(e);process.exit(1)});
+          NODE
+          node /tmp/verify42.js
+      - name: Commit safely on latest main
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm .github/workflows/refine-42-atmosphere-lasers.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add 42.html assets/design42 .github/workflows/refine-42-atmosphere-lasers.yml
+          git commit -m 'Add subtle PNG hero imagery and repair heartbeat lasers'
+          git fetch origin main
+          git rebase origin/main
+          git push origin main
