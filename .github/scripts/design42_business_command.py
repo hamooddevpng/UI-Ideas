@@ -1,0 +1,115 @@
+from pathlib import Path
+import re
+
+p = Path('42.html')
+s = p.read_text()
+
+match = re.search(r'<section class="business" id="business">.*?</section>\s*<section class="png-story"', s, re.S)
+if not match:
+    raise SystemExit('business section not found or already changed')
+
+new = '''<section class="business business-command" id="business">
+<div class="shell business-command-grid">
+  <div class="business-command-copy reveal">
+    <div class="kicker">Business and Government</div>
+    <h2 class="title">Enterprise<br>routes across PNG.</h2>
+    <p class="lead">Explore Telikom business connectivity as an interactive network. Move across a service to preview how that service reaches people, offices and remote sites.</p>
+    <div class="business-route-list" role="tablist" aria-label="Business services">
+      <button class="business-route active" type="button" role="tab" aria-selected="true" data-business-route="0"><span class="business-route-no">01</span><span><b>Business Data</b><small>Dedicated business connectivity</small></span><i>↗</i></button>
+      <button class="business-route" type="button" role="tab" aria-selected="false" data-business-route="1"><span class="business-route-no">02</span><span><b>VSAT Services</b><small>Remote sites and communities</small></span><i>↗</i></button>
+      <button class="business-route" type="button" role="tab" aria-selected="false" data-business-route="2"><span class="business-route-no">03</span><span><b>Fixed Voice</b><small>Business voice services</small></span><i>↗</i></button>
+      <button class="business-route" type="button" role="tab" aria-selected="false" data-business-route="3"><span class="business-route-no">04</span><span><b>Web & Hosting</b><small>Digital services and hosting</small></span><i>↗</i></button>
+    </div>
+  </div>
+  <div class="business-console reveal" id="businessConsole" data-route="0">
+    <div class="business-console-top"><div><span class="console-dot"></span><b>NETWORK COMMAND</b></div><small id="businessRouteStatus">ROUTE PREVIEW · BUSINESS DATA</small></div>
+    <div class="business-map-stage" id="businessMapStage">
+      <div class="business-grid-plane"></div>
+      <img class="business-png-map" src="assets/design42/png-admin1-simplemaps.svg" alt="" aria-hidden="true">
+      <svg class="business-route-svg" viewBox="0 0 700 440" role="img" aria-label="Illustrative Papua New Guinea enterprise service routes">
+        <defs><filter id="routeGlow"><feGaussianBlur stdDeviation="4" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+        <g class="business-route-g" data-route="0"><path id="bizRoute0" class="business-route-line" d="M185 330 C255 314 308 287 352 250 S430 237 505 278"/><circle class="route-packet" r="5"><animateMotion dur="2.7s" repeatCount="indefinite"><mpath href="#bizRoute0"/></animateMotion></circle><circle class="route-packet secondary" r="3"><animateMotion begin=".8s" dur="2.7s" repeatCount="indefinite"><mpath href="#bizRoute0"/></animateMotion></circle></g>
+        <g class="business-route-g" data-route="1"><path id="bizRoute1" class="business-route-line" d="M185 330 C250 230 365 160 553 122"/><circle class="route-packet" r="5"><animateMotion dur="3.1s" repeatCount="indefinite"><mpath href="#bizRoute1"/></animateMotion></circle><circle class="route-packet secondary" r="3"><animateMotion begin="1s" dur="3.1s" repeatCount="indefinite"><mpath href="#bizRoute1"/></animateMotion></circle></g>
+        <g class="business-route-g" data-route="2"><path id="bizRoute2" class="business-route-line" d="M185 330 C255 360 350 344 412 292 S498 235 548 215"/><circle class="route-packet" r="5"><animateMotion dur="2.5s" repeatCount="indefinite"><mpath href="#bizRoute2"/></animateMotion></circle><circle class="route-packet secondary" r="3"><animateMotion begin=".72s" dur="2.5s" repeatCount="indefinite"><mpath href="#bizRoute2"/></animateMotion></circle></g>
+        <g class="business-route-g" data-route="3"><path id="bizRoute3" class="business-route-line" d="M185 330 C215 275 242 250 292 226 S373 203 425 178"/><circle class="route-packet" r="5"><animateMotion dur="2.2s" repeatCount="indefinite"><mpath href="#bizRoute3"/></animateMotion></circle><circle class="route-packet secondary" r="3"><animateMotion begin=".62s" dur="2.2s" repeatCount="indefinite"><mpath href="#bizRoute3"/></animateMotion></circle></g>
+      </svg>
+      <div class="business-endpoint active" data-routes="0 1 2 3" style="--ex:24%;--ey:72%"><span></span><b>PORT MORESBY</b></div>
+      <div class="business-endpoint active" data-routes="0 2" style="--ex:57%;--ey:53%"><span></span><b>LAE</b></div>
+      <div class="business-endpoint active" data-routes="0" style="--ex:46%;--ey:42%"><span></span><b>HIGHLANDS</b></div>
+      <div class="business-endpoint" data-routes="1" style="--ex:79%;--ey:25%"><span></span><b>REMOTE SITE</b></div>
+      <div class="business-endpoint" data-routes="2" style="--ex:78%;--ey:46%"><span></span><b>VOICE NODE</b></div>
+      <div class="business-endpoint" data-routes="3" style="--ex:61%;--ey:37%"><span></span><b>DATA CENTRE</b></div>
+      <div class="business-console-meta"><span>ILLUSTRATIVE SERVICE PATH</span><b id="businessRouteName">Business Data</b></div>
+    </div>
+  </div>
+</div>
+</section>
+<section class="png-story"'''
+
+s = s[:match.start()] + new + s[match.end():]
+
+css = r'''
+/* Design 42: PNG enterprise network command */
+.business-command{position:relative;padding:58px 0 62px!important;background:#061925;color:#fff;overflow:hidden;isolation:isolate}
+.business-command:before{content:"";position:absolute;inset:-20% -10%;z-index:-1;background:radial-gradient(circle at 76% 42%,rgba(28,160,232,.13),transparent 28%),radial-gradient(circle at 22% 82%,rgba(32,169,87,.06),transparent 24%)}
+.business-command-grid{display:grid;grid-template-columns:.78fr 1.22fr;gap:48px;align-items:center}
+.business-command-copy .title{font-size:clamp(44px,5.1vw,72px);line-height:.89;margin-top:12px}
+.business-command .kicker{color:#8cd9ff}.business-command .lead{color:#94adba;max-width:500px;margin:18px 0 0;font-size:12px;line-height:1.65}
+.business-route-list{margin-top:23px;border-top:1px solid rgba(255,255,255,.12)}
+.business-route{width:100%;min-height:66px;padding:0 3px;border:0;border-bottom:1px solid rgba(255,255,255,.11);background:transparent;color:#d6e4ea;display:grid;grid-template-columns:32px 1fr auto;align-items:center;gap:13px;text-align:left;cursor:pointer;position:relative;transition:padding .28s var(--spring),background .28s,color .28s}
+.business-route:before{content:"";position:absolute;inset:8px 0;border-radius:14px;background:linear-gradient(90deg,rgba(28,160,232,.14),rgba(28,160,232,.035));opacity:0;transform:scaleX(.96);transition:.28s var(--spring)}
+.business-route>*{position:relative;z-index:1}.business-route-no{font-size:7px;letter-spacing:.13em;color:#668593;font-weight:800}.business-route b{display:block;font-size:12px}.business-route small{display:block;color:#728f9d;font-size:7.5px;margin-top:3px}.business-route i{font-style:normal;color:#6bcdf5;opacity:.45;transition:.28s}
+.business-route:hover,.business-route:focus-visible,.business-route.active{padding-left:11px;color:#fff;outline:none}.business-route:hover:before,.business-route:focus-visible:before,.business-route.active:before{opacity:1;transform:scaleX(1)}.business-route.active .business-route-no{color:#8edbff}.business-route.active i{opacity:1;transform:translate(2px,-2px)}
+.business-console{--business-x:0;--business-y:0;min-height:520px;border:1px solid rgba(153,222,255,.15);border-radius:32px;background:linear-gradient(145deg,rgba(10,42,59,.96),rgba(4,22,32,.98));box-shadow:0 30px 75px rgba(0,0,0,.27),inset 0 1px rgba(255,255,255,.04);overflow:hidden;transform-style:preserve-3d;transform:perspective(1050px) rotateX(calc(var(--business-y)*-2.2deg)) rotateY(calc(var(--business-x)*3deg));transition:transform .2s ease-out,border-color .35s,box-shadow .35s}
+.business-console.route-locked{border-color:rgba(142,219,255,.48);box-shadow:0 34px 90px rgba(0,0,0,.34),0 0 45px rgba(28,160,232,.1),inset 0 1px rgba(255,255,255,.07)}
+.business-console-top{height:54px;padding:0 19px;border-bottom:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:space-between;gap:20px;color:#c4d8e1}.business-console-top>div{display:flex;align-items:center;gap:9px}.business-console-top b,.business-console-top small{font-size:7px;letter-spacing:.14em}.business-console-top small{color:#7395a5;font-weight:700}.console-dot{width:7px;height:7px;border-radius:50%;background:#5fd2ff;box-shadow:0 0 0 5px rgba(95,210,255,.08),0 0 15px rgba(95,210,255,.55)}
+.business-map-stage{position:relative;height:466px;overflow:hidden;transform:translate3d(calc(var(--business-x)*5px),calc(var(--business-y)*4px),0);transition:transform .2s ease-out}
+.business-grid-plane{position:absolute;inset:0;background-image:linear-gradient(rgba(93,193,239,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(93,193,239,.055) 1px,transparent 1px);background-size:38px 38px;mask-image:linear-gradient(#000,transparent 94%)}
+.business-png-map{position:absolute;width:78%;height:76%;object-fit:contain;left:12%;top:9%;opacity:.18;filter:brightness(1.35) saturate(.8) drop-shadow(0 0 22px rgba(48,177,233,.1));mix-blend-mode:screen}
+.business-route-svg{position:absolute;inset:7% 4% 9% 4%;width:92%;height:84%;overflow:visible}.business-route-g{opacity:.1;transition:opacity .32s}.business-route-line{fill:none;stroke:rgba(126,218,255,.55);stroke-width:2;stroke-linecap:round;stroke-dasharray:8 10;vector-effect:non-scaling-stroke}.business-command.business-live .business-route-line{animation:bizRouteFlow 1.4s linear infinite}.business-console[data-route="0"] .business-route-g[data-route="0"],.business-console[data-route="1"] .business-route-g[data-route="1"],.business-console[data-route="2"] .business-route-g[data-route="2"],.business-console[data-route="3"] .business-route-g[data-route="3"]{opacity:1}.business-console[data-route="0"] .business-route-g[data-route="0"] .business-route-line,.business-console[data-route="1"] .business-route-g[data-route="1"] .business-route-line,.business-console[data-route="2"] .business-route-g[data-route="2"] .business-route-line,.business-console[data-route="3"] .business-route-g[data-route="3"] .business-route-line{stroke:#74d9ff;stroke-width:2.5;filter:url(#routeGlow)}
+@keyframes bizRouteFlow{to{stroke-dashoffset:-36}}
+.route-packet{fill:#e7f9ff;filter:drop-shadow(0 0 8px #60d2ff);opacity:0}.route-packet.secondary{fill:#49c4f4}.business-console[data-route="0"] .business-route-g[data-route="0"] .route-packet,.business-console[data-route="1"] .business-route-g[data-route="1"] .route-packet,.business-console[data-route="2"] .business-route-g[data-route="2"] .route-packet,.business-console[data-route="3"] .business-route-g[data-route="3"] .route-packet{opacity:1}
+.business-endpoint{position:absolute;left:var(--ex);top:var(--ey);display:flex;align-items:center;gap:7px;transform:translate(-50%,-50%);opacity:.32;transition:.3s;white-space:nowrap}.business-endpoint span{width:8px;height:8px;border:1px solid #71d6ff;border-radius:50%;background:#0b3143;transition:.3s}.business-endpoint b{font-size:6px;letter-spacing:.12em;color:#92aeba}.business-endpoint.active{opacity:1}.business-endpoint.active span{background:#b9efff;border-color:#dff9ff;box-shadow:0 0 0 7px rgba(97,207,250,.08),0 0 18px rgba(97,207,250,.85);animation:bizEndpoint 1.55s ease-in-out infinite alternate}.business-endpoint.active b{color:#cbeefb}@keyframes bizEndpoint{to{transform:scale(1.35);box-shadow:0 0 0 12px rgba(97,207,250,0),0 0 24px rgba(97,207,250,.95)}}
+.business-console-meta{position:absolute;left:20px;right:20px;bottom:17px;display:flex;align-items:center;justify-content:space-between;gap:15px;padding-top:11px;border-top:1px solid rgba(255,255,255,.09)}.business-console-meta span{font-size:6.5px;color:#668897;letter-spacing:.12em}.business-console-meta b{font-size:10px;color:#d9f3fd}.route-locked .business-console-meta b{color:#8edbff}
+@media(min-width:821px){.business-command{max-height:90vh}.business-command-grid{min-height:0}}
+@media(max-width:1050px){.business-command-grid{grid-template-columns:.88fr 1.12fr;gap:30px}.business-console{min-height:480px}.business-map-stage{height:426px}.business-command-copy .title{font-size:clamp(42px,5vw,62px)}}
+@media(max-width:820px){.business-command{padding:66px 0!important;max-height:none}.business-command-grid{grid-template-columns:1fr;gap:28px}.business-console{min-height:400px;border-radius:25px;transform:none!important}.business-map-stage{height:346px}.business-console-top small{display:none}.business-command-copy .title{font-size:clamp(44px,11vw,62px)}.business-route{min-height:62px}.business-png-map{width:92%;left:4%;opacity:.16}.business-route-svg{inset:6% 0 10%;width:100%;height:84%}.business-endpoint b{font-size:5.5px}.business-console-meta{bottom:12px}}
+@media(prefers-reduced-motion:reduce){.business-route-line,.business-endpoint.active span{animation:none!important}.business-console{transform:none!important}}
+'''
+
+if '/* Design 42: PNG enterprise network command */' not in s:
+    s = s.replace('</style>', css + '</style>', 1)
+
+js = r'''
+// Design 42: PNG enterprise network command
+(()=>{
+  const section=document.getElementById('business'),consoleEl=document.getElementById('businessConsole');
+  if(!section||!consoleEl)return;
+  const rows=[...section.querySelectorAll('[data-business-route]')],endpoints=[...section.querySelectorAll('.business-endpoint')],nameEl=document.getElementById('businessRouteName'),statusEl=document.getElementById('businessRouteStatus');
+  const names=['Business Data','VSAT Services','Fixed Voice','Web & Hosting'];
+  let locked=false,lockTimer=null;
+  const setRoute=(i,doLock=false)=>{
+    i=Number(i)||0;
+    if(locked&&!doLock)return;
+    consoleEl.dataset.route=String(i);
+    rows.forEach((r,n)=>{r.classList.toggle('active',n===i);r.setAttribute('aria-selected',n===i?'true':'false')});
+    endpoints.forEach(ep=>ep.classList.toggle('active',(ep.dataset.routes||'').split(' ').includes(String(i))));
+    if(nameEl)nameEl.textContent=names[i];
+    if(statusEl)statusEl.textContent=(doLock?'ROUTE LOCKED · ':'ROUTE PREVIEW · ')+names[i].toUpperCase();
+    if(doLock){locked=true;consoleEl.classList.add('route-locked');clearTimeout(lockTimer);lockTimer=setTimeout(()=>{locked=false;consoleEl.classList.remove('route-locked');if(statusEl)statusEl.textContent='ROUTE PREVIEW · '+names[i].toUpperCase()},1200)}
+  };
+  rows.forEach((row,i)=>{row.addEventListener('pointerenter',()=>{if(!locked)setRoute(i)});row.addEventListener('focus',()=>{if(!locked)setRoute(i)});row.addEventListener('click',()=>setRoute(i,true))});
+  section.addEventListener('pointermove',e=>{if(e.pointerType==='touch')return;const r=consoleEl.getBoundingClientRect();const x=Math.max(-1,Math.min(1,((e.clientX-r.left)/Math.max(1,r.width)-.5)*2));const y=Math.max(-1,Math.min(1,((e.clientY-r.top)/Math.max(1,r.height)-.5)*2));consoleEl.style.setProperty('--business-x',x.toFixed(3));consoleEl.style.setProperty('--business-y',y.toFixed(3))});
+  section.addEventListener('pointerleave',()=>{consoleEl.style.setProperty('--business-x','0');consoleEl.style.setProperty('--business-y','0')});
+  const io=new IntersectionObserver(([entry])=>section.classList.toggle('business-live',entry.isIntersecting),{threshold:.12});io.observe(section);
+  setRoute(0);
+})();
+'''
+
+idx = s.rfind('</script>')
+if idx < 0:
+    raise SystemExit('script tag not found')
+if '// Design 42: PNG enterprise network command' not in s:
+    s = s[:idx] + js + s[idx:]
+
+p.write_text(s)
