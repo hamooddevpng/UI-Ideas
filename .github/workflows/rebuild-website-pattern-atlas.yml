@@ -32,18 +32,18 @@ jobs:
       - name: Install Pillow
         run: python -m pip install --disable-pip-version-check Pillow==11.3.0
 
-      - name: Validate JSON and render atlases
+      - name: Validate JSON, render atlases and update README
         run: python scripts/render_website_pattern_atlas.py
 
-      - name: Commit generated analysis
+      - name: Commit generated analysis and README
         run: |
-          git add research/website-patterns/generated
+          git add research/website-patterns/generated README.md
           if git diff --cached --quiet; then
             echo "No generated changes."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -m "research: rebuild website pattern atlas"
+          git commit -m "research: rebuild website pattern atlas and README"
           git pull --rebase origin "$GITHUB_REF_NAME"
           git push origin "HEAD:$GITHUB_REF_NAME"
