@@ -1,0 +1,74 @@
+name: Patch Design 40 logo and first view
+
+on:
+  push:
+    paths:
+      - '.github/workflows/patch-design40-logo-fold.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Patch Design 40
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('40.html')
+          html = path.read_text(encoding='utf-8')
+
+          old_header = '<a class="brand" href="#top"><span class="wordmark">teli<em>kom</em></span><small>Connecting you<br>anywhere anytime</small></a>'
+          new_header = '<a class="brand" href="#top" aria-label="Telikom home"><img class="brand-logo" src="assets/brand/telikom-logo.png" alt="Telikom - Connecting you Anywhere Anytime"></a>'
+          if old_header in html:
+              html = html.replace(old_header, new_header, 1)
+          elif 'class="brand-logo"' not in html:
+              raise SystemExit('Expected Design 40 header brand markup not found')
+
+          old_footer = '<div class="footer-brand"><div class="wordmark">teli<em>kom</em></div><p>A clean, service-first homepage concept for Telikom PNG. Design 40 establishes the shared structure for Designs 41 and 42.</p></div>'
+          new_footer = '<div class="footer-brand"><div class="footer-logo-frame"><img class="footer-logo" src="assets/brand/telikom-logo.png" alt="Telikom - Connecting you Anywhere Anytime"></div><p>A clean, service-first homepage concept for Telikom PNG. Design 40 establishes the shared structure for Designs 41 and 42.</p></div>'
+          if old_footer in html:
+              html = html.replace(old_footer, new_footer, 1)
+          elif 'class="footer-logo"' not in html:
+              raise SystemExit('Expected Design 40 footer brand markup not found')
+
+          old_secondary = '<nav class="secondary-actions"><a href="#">Find a Store</a><a href="#">Buy SIM</a><a href="#">Pay Bill</a><a href="#business">Business Enquiries</a></nav>'
+          new_secondary = '<nav class="secondary-actions" aria-label="More quick actions"><a href="#">Find a Store</a><a href="#">Buy SIM</a><a href="#">Pay Bill</a><a href="#services">Internet Plans</a><a href="#updates">Service Updates</a><a href="#business">Business Enquiries</a></nav>'
+          if old_secondary in html:
+              html = html.replace(old_secondary, new_secondary, 1)
+
+          marker = '/* Design 40 official-brand + first-view refinement */'
+          if marker not in html:
+              overrides = '''\n<style>\n/* Design 40 official-brand + first-view refinement */\n.brand{min-width:220px;display:flex;align-items:center}\n.brand .brand-logo{display:block;width:208px;height:auto;max-height:58px;object-fit:contain}\n.footer-logo-frame{display:inline-flex;align-items:center;background:#fff;border-radius:10px;padding:9px 11px;margin-bottom:12px}\n.footer-logo-frame .footer-logo{display:block;width:235px;height:auto;object-fit:contain}\n.secondary-actions{gap:8px 18px;padding-top:8px}\n.secondary-actions a{white-space:nowrap}\n@media(min-width:661px){\n  .hero-grid{height:clamp(300px,calc(100svh - 220px),620px);min-height:300px}\n  .hero-copy{padding-top:30px;padding-bottom:58px}\n  h1{font-size:clamp(40px,4.25vw,70px);margin:12px 0}\n  .hero-copy p{font-size:13px;line-height:1.55}\n  .hero-cta{margin-top:16px}\n  .quick-shell{margin-top:-28px}\n  .quick-action{min-height:82px;padding:12px 17px}\n  .secondary-actions{font-size:10px;line-height:1.2}\n}\n@media(min-width:661px) and (max-width:1040px){\n  .hero-grid{grid-template-columns:43% 57%;height:clamp(300px,calc(100svh - 214px),560px);min-height:300px}\n  .brand .brand-logo{width:185px}\n}\n@media(max-width:660px){\n  .brand .brand-logo{width:150px;max-height:48px}\n  .footer-logo-frame .footer-logo{width:205px}\n  .secondary-actions{gap:9px 14px}\n}\n</style>\n'''
+              html = html.replace('</head>', overrides + '</head>', 1)
+
+          path.write_text(html, encoding='utf-8')
+          PY
+
+      - name: Commit with retry
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add 40.html
+          if git diff --cached --quiet; then
+            echo 'Design 40 already patched.'
+            exit 0
+          fi
+          git commit -m 'Use official Telikom logo and keep actions above fold'
+          for attempt in 1 2 3 4 5 6 7 8; do
+            git fetch origin main
+            git rebase origin/main
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            sleep 2
+          done
+          exit 1
