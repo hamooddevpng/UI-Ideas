@@ -10,12 +10,7 @@ const { chromium } = require('playwright-core');
     if(body.includes(phrase))throw new Error('Tutorial copy remains: '+phrase);
   }
 
-  const story=page.locator('#png-story .png-story-photo');
-  const storySrc=await story.getAttribute('src');
-  if(storySrc!=='assets/design42/louisiade-archipelago-nasa.jpg')throw new Error('PNG island aerial not applied: '+storySrc);
-  await page.waitForFunction(()=>{const i=document.querySelector('#png-story .png-story-photo');return i&&i.complete&&i.naturalWidth>1000},{timeout:10000});
-
-  // Observe the Offers reveal before scrolling so the particle burst cannot be missed.
+  // Observe Offers before any programmatic scrolling so its one-shot reveal cannot be missed.
   await page.evaluate(()=>{
     window.__offerParticles=0;
     const layer=document.getElementById('offerPopLayer');
@@ -29,6 +24,13 @@ const { chromium } = require('playwright-core');
   if(!offer.live)throw new Error('offer pop animation did not run');
   if(offer.particles<40)throw new Error('offer burst too weak: '+offer.particles);
   if(offer.cards.some(v=>v<.9))throw new Error('offer cards did not settle');
+
+  // The PNG Story image is lazy-loaded, so bring it into view before checking the local asset.
+  const story=page.locator('#png-story .png-story-photo');
+  const storySrc=await story.getAttribute('src');
+  if(storySrc!=='assets/design42/louisiade-archipelago-nasa.jpg')throw new Error('PNG island aerial not applied: '+storySrc);
+  await story.scrollIntoViewIfNeeded();
+  await page.waitForFunction(()=>{const i=document.querySelector('#png-story .png-story-photo');return i&&i.complete&&i.naturalWidth>1000},{timeout:10000});
 
   await page.locator('#business').scrollIntoViewIfNeeded();await page.waitForTimeout(700);
   if(await page.locator('#businessConsole').count())throw new Error('old network command console still exists');
@@ -58,7 +60,6 @@ const { chromium } = require('playwright-core');
   await page.locator('[data-portfolio="3"]').hover();await page.waitForTimeout(160);
   if(await page.locator('#business').getAttribute('data-focus')!=='government')throw new Error('Co-Location did not shift emphasis to government/public side');
 
-  // Hero regression after the large section replacement.
   await page.locator('[data-scene="1"]').click();
   await page.mouse.move(1110,180);await page.waitForTimeout(300);
   const a=await page.evaluate(()=>({sat:getComputedStyle(document.querySelector('.satellite')).transform,dish:getComputedStyle(document.querySelector('.dish-head-svg')).transform}));
