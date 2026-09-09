@@ -1,0 +1,245 @@
+name: Apply Design 40 full SEO
+
+on:
+  push:
+    paths:
+      - '.github/workflows/apply-design40-full-seo.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  seo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Sync latest main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git pull --rebase origin main
+
+      - name: Apply comprehensive SEO metadata
+        shell: python
+        run: |
+          from pathlib import Path
+          import json
+
+          path = Path('40.html')
+          text = path.read_text(encoding='utf-8')
+
+          old = '''<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#ffffff">
+<title>Telikom PNG - Design 40 / Essential Portal</title>'''
+
+          new = '''<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Telikom PNG | Mobile, Internet, Business & Government Connectivity</title>
+<meta name="description" content="Telikom PNG connects people, homes, businesses and government across Papua New Guinea with mobile, internet, broadband, regional connectivity and customer support services.">
+<meta name="keywords" content="Telikom PNG, Papua New Guinea telecom, PNG mobile, PNG internet, home internet PNG, broadband PNG, business internet PNG, government connectivity PNG, mobile data PNG, prepaid PNG, Telikom Self Care, regional connectivity Papua New Guinea">
+<meta name="author" content="Telikom PNG">
+<meta name="publisher" content="Telikom PNG">
+<meta name="copyright" content="Telikom PNG">
+<meta name="application-name" content="Telikom PNG">
+<meta name="generator" content="Telikom PNG Digital Experience">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<meta name="googlebot" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<meta name="bingbot" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="format-detection" content="telephone=yes,email=yes,address=yes">
+<meta name="theme-color" content="#0875c9">
+<meta name="color-scheme" content="light">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Telikom PNG">
+<meta name="geo.region" content="PG">
+<meta name="geo.placename" content="Papua New Guinea">
+<meta name="language" content="English">
+<meta http-equiv="content-language" content="en-PG">
+
+<link rel="canonical" href="https://www.telikom.com.pg/">
+<link rel="alternate" hreflang="en-PG" href="https://www.telikom.com.pg/">
+<link rel="alternate" hreflang="tpi-PG" href="https://www.telikom.com.pg/">
+<link rel="alternate" hreflang="x-default" href="https://www.telikom.com.pg/">
+<link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
+<link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin>
+<link rel="dns-prefetch" href="//raw.githubusercontent.com">
+<link rel="preload" as="image" href="https://raw.githubusercontent.com/hamooddevpng/UI-Ideas/main/assets/design40/hero/telikom-new-year-2026.jpg" fetchpriority="high">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Telikom PNG">
+<meta property="og:title" content="Telikom PNG | Connecting Papua New Guinea">
+<meta property="og:description" content="Mobile, internet, broadband, business and government connectivity for people and organisations across Papua New Guinea.">
+<meta property="og:url" content="https://www.telikom.com.pg/">
+<meta property="og:locale" content="en_PG">
+<meta property="og:locale:alternate" content="tpi_PG">
+<meta property="og:image" content="https://raw.githubusercontent.com/hamooddevpng/UI-Ideas/main/assets/design40/hero/telikom-new-year-2026.jpg">
+<meta property="og:image:secure_url" content="https://raw.githubusercontent.com/hamooddevpng/UI-Ideas/main/assets/design40/hero/telikom-new-year-2026.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:alt" content="Telikom PNG campaign connecting people across Papua New Guinea">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Telikom PNG | Connecting Papua New Guinea">
+<meta name="twitter:description" content="Mobile, internet, broadband, business and government connectivity across Papua New Guinea.">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/hamooddevpng/UI-Ideas/main/assets/design40/hero/telikom-new-year-2026.jpg">
+<meta name="twitter:image:alt" content="Telikom PNG campaign connecting people across Papua New Guinea">
+
+<meta name="DC.title" content="Telikom PNG | Mobile, Internet, Business & Government Connectivity">
+<meta name="DC.description" content="Connectivity services for people, communities, businesses and government across Papua New Guinea.">
+<meta name="DC.subject" content="Telecommunications; Mobile; Internet; Broadband; Business Connectivity; Papua New Guinea">
+<meta name="DC.language" content="en-PG">
+<meta name="DC.coverage" content="Papua New Guinea">'''
+
+          if old not in text:
+              raise SystemExit('Expected original SEO head block not found')
+          text = text.replace(old, new, 1)
+
+          schema = {
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "Organization",
+                "@id": "https://www.telikom.com.pg/#organization",
+                "name": "Telikom PNG",
+                "url": "https://www.telikom.com.pg/",
+                "description": "Telecommunications provider serving people, businesses and government across Papua New Guinea.",
+                "areaServed": {"@type": "Country", "name": "Papua New Guinea"},
+                "knowsLanguage": ["en-PG", "tpi-PG"],
+                "contactPoint": {
+                  "@type": "ContactPoint",
+                  "contactType": "customer support",
+                  "availableLanguage": ["English", "Tok Pisin"],
+                  "areaServed": "PG"
+                }
+              },
+              {
+                "@type": "WebSite",
+                "@id": "https://www.telikom.com.pg/#website",
+                "url": "https://www.telikom.com.pg/",
+                "name": "Telikom PNG",
+                "publisher": {"@id": "https://www.telikom.com.pg/#organization"},
+                "inLanguage": ["en-PG", "tpi-PG"]
+              },
+              {
+                "@type": "WebPage",
+                "@id": "https://www.telikom.com.pg/#webpage",
+                "url": "https://www.telikom.com.pg/",
+                "name": "Telikom PNG | Mobile, Internet, Business & Government Connectivity",
+                "description": "Telikom PNG connects people, homes, businesses and government across Papua New Guinea with mobile, internet, broadband, regional connectivity and customer support services.",
+                "isPartOf": {"@id": "https://www.telikom.com.pg/#website"},
+                "about": {"@id": "https://www.telikom.com.pg/#organization"},
+                "inLanguage": "en-PG",
+                "primaryImageOfPage": {
+                  "@type": "ImageObject",
+                  "url": "https://raw.githubusercontent.com/hamooddevpng/UI-Ideas/main/assets/design40/hero/telikom-new-year-2026.jpg"
+                }
+              },
+              {
+                "@type": "ItemList",
+                "@id": "https://www.telikom.com.pg/#services",
+                "name": "Telikom PNG Services",
+                "itemListElement": [
+                  {"@type": "ListItem", "position": 1, "name": "Mobile Services", "url": "https://www.telikom.com.pg/#services"},
+                  {"@type": "ListItem", "position": 2, "name": "Home Internet", "url": "https://www.telikom.com.pg/#offers"},
+                  {"@type": "ListItem", "position": 3, "name": "Business Connectivity", "url": "https://www.telikom.com.pg/#business"},
+                  {"@type": "ListItem", "position": 4, "name": "Government Connectivity", "url": "https://www.telikom.com.pg/#business"},
+                  {"@type": "ListItem", "position": 5, "name": "Customer Support", "url": "https://www.telikom.com.pg/#support"}
+                ]
+              },
+              {
+                "@type": "OfferCatalog",
+                "@id": "https://www.telikom.com.pg/#catalog",
+                "name": "Telikom PNG Connectivity Services",
+                "itemListElement": [
+                  {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Mobile Connectivity", "areaServed": "Papua New Guinea"}},
+                  {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Home Internet", "areaServed": "Papua New Guinea"}},
+                  {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Business Internet and Managed Connectivity", "areaServed": "Papua New Guinea"}},
+                  {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Government Connectivity", "areaServed": "Papua New Guinea"}},
+                  {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Regional and Remote Connectivity", "areaServed": "Papua New Guinea"}}
+                ]
+              }
+            ]
+          }
+          schema_json = json.dumps(schema, ensure_ascii=False, separators=(',', ':'))
+          schema_block = f'\n<script type="application/ld+json">{schema_json}</script>\n'
+          if 'application/ld+json' in text:
+              raise SystemExit('JSON-LD already exists, refusing to duplicate it')
+          text = text.replace('<style>', schema_block + '<style>', 1)
+
+          if '.sr-only{' not in text:
+              text = text.replace('<style>', '<style>\n.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}', 1)
+
+          if '<h1' not in text:
+              text = text.replace('<body>', '<body>\n<h1 class="sr-only">Telikom PNG mobile, internet, business and government connectivity across Papua New Guinea</h1>', 1)
+
+          path.write_text(text, encoding='utf-8')
+
+      - name: Add crawler files
+        shell: bash
+        run: |
+          cat > robots.txt <<'EOF'
+          User-agent: *
+          Allow: /
+
+          Sitemap: https://www.telikom.com.pg/sitemap.xml
+          Host: https://www.telikom.com.pg
+          EOF
+
+          cat > sitemap.xml <<'EOF'
+          <?xml version="1.0" encoding="UTF-8"?>
+          <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+                  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+            <url>
+              <loc>https://www.telikom.com.pg/</loc>
+              <changefreq>weekly</changefreq>
+              <priority>1.0</priority>
+              <image:image>
+                <image:loc>https://raw.githubusercontent.com/hamooddevpng/UI-Ideas/main/assets/design40/hero/telikom-new-year-2026.jpg</image:loc>
+                <image:title>Telikom PNG connectivity campaign</image:title>
+              </image:image>
+            </url>
+          </urlset>
+          EOF
+
+      - name: Validate SEO package
+        shell: python
+        run: |
+          from pathlib import Path
+          import json, re, xml.etree.ElementTree as ET
+
+          html = Path('40.html').read_text(encoding='utf-8')
+          required = [
+              '<meta name="description"', '<meta name="robots" content="index,follow',
+              '<link rel="canonical"', 'property="og:title"', 'name="twitter:card"',
+              'application/ld+json', '<h1 class="sr-only">', 'hreflang="en-PG"',
+              'hreflang="tpi-PG"', 'meta name="googlebot"', 'meta name="bingbot"'
+          ]
+          missing = [x for x in required if x not in html]
+          if missing:
+              raise SystemExit('Missing SEO elements: ' + ', '.join(missing))
+          if 'noindex' in html.lower():
+              raise SystemExit('noindex still present')
+
+          blocks = re.findall(r'<script type="application/ld\+json">(.*?)</script>', html, re.S)
+          if len(blocks) != 1:
+              raise SystemExit(f'Expected exactly one JSON-LD block, found {len(blocks)}')
+          json.loads(blocks[0])
+          ET.parse('sitemap.xml')
+          assert 'Sitemap:' in Path('robots.txt').read_text(encoding='utf-8')
+          print('SEO package validation passed')
+
+      - name: Commit SEO package and clean helper workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/apply-design40-full-seo.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add 40.html robots.txt sitemap.xml .github/workflows/apply-design40-full-seo.yml
+          git commit -m 'Add comprehensive SEO metadata to Design 40'
+          git pull --rebase origin main
+          git push origin HEAD:main
