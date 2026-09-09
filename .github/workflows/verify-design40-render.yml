@@ -53,8 +53,16 @@ jobs:
             await browser.close();
           })().catch(e=>{console.error(e);process.exit(1)});
           EOF
+      - name: Stage visual evidence
+        run: |
+          mkdir -p design40-evidence
+          cp design40-verified.png design40-evidence/
+          cp assets/banners/research/stay-connected-from-png-to-the-world.webp design40-evidence/banner-one.webp
+          cp assets/banners/research/festive-png-telecom-deals.webp design40-evidence/banner-two.webp
+          cp assets/brand/telikom-logo.png design40-evidence/telikom-logo.png
+          file design40-evidence/*
       - uses: actions/upload-artifact@v4
         with:
-          name: design40-verified-render
-          path: design40-verified.png
+          name: design40-visual-evidence
+          path: design40-evidence
           retention-days: 1
