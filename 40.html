@@ -7,377 +7,41 @@
 <meta name="theme-color" content="#ffffff">
 <title>Telikom PNG - Design 40 / Telikom Essential</title>
 <style>
-:root{
-  --blue:#0875c9;
-  --blue-dark:#075f9f;
-  --ink:#102b3c;
-  --muted:#667d89;
-  --sky:#eaf6fc;
-  --soft:#f6fafc;
-  --warm:#fcfdfe;
-  --line:#d9e5ec;
-  --white:#fff;
-  --max:1440px;
-  --shadow:0 18px 45px rgba(16,43,60,.09)
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;font-family:Inter,Arial,sans-serif;color:var(--ink);background:var(--white);-webkit-font-smoothing:antialiased}
-a{text-decoration:none;color:inherit}
-button{font:inherit;color:inherit}
-img{display:block;width:100%;height:100%;object-fit:cover}
-a:focus-visible,button:focus-visible{outline:3px solid #f4b63f;outline-offset:4px}
-.skip{position:fixed;left:16px;top:-80px;z-index:1000;background:#fff;padding:12px 15px;border-radius:8px;box-shadow:var(--shadow)}
-.skip:focus{top:16px}
-.wrap{width:min(var(--max),calc(100% - 48px));margin:auto}
-.icon{width:22px;height:22px;display:block;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-
-/* header */
-.utility{height:34px;background:var(--ink);color:#dbe8ee;font-size:11px}
-.utility .wrap{height:100%;display:flex;align-items:center;justify-content:space-between;gap:20px}
-.utility-links,.utility-right{display:flex;align-items:center;gap:18px}
-.utility a:hover{color:#fff}
-.utility .active{color:#fff;font-weight:800}
-header{position:sticky;top:0;z-index:80;background:rgba(255,255,255,.97);border-bottom:1px solid var(--line)}
-.header-row{height:78px;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:36px}
-.brand{display:flex;align-items:center;gap:12px;min-width:210px}
-.brand img{width:166px;height:auto}
-.brand small{font-size:8px;line-height:1.25;letter-spacing:.09em;text-transform:uppercase;color:#718894}
-.nav{display:flex;justify-content:center;align-items:center;gap:30px;font-size:13px;font-weight:700}
-.nav a{position:relative;padding:29px 0 26px}
-.nav a:after{content:"";position:absolute;left:0;right:100%;bottom:18px;height:2px;background:var(--blue);transition:right .18s ease}
-.nav a:hover{color:var(--blue)}
-.nav a:hover:after{right:0}
-.header-actions{display:flex;align-items:center;gap:10px}
-.header-actions a,.search-btn{min-height:42px;display:inline-flex;align-items:center;justify-content:center;border-radius:8px;font-size:12px;font-weight:800}
-.search-btn{width:42px;border:1px solid var(--line);background:#fff;cursor:pointer}
-.search-btn .icon{width:17px;height:17px}
-.header-actions .support-link{padding:0 14px;border:1px solid var(--line)}
-.header-actions .self-care{padding:0 17px;background:var(--blue);color:#fff}
-.header-actions .self-care:hover{background:var(--blue-dark)}
-.menu-btn{display:none;width:42px;height:42px;border:1px solid var(--line);background:#fff;border-radius:8px;cursor:pointer}
-.mobile-nav{display:none;border-top:1px solid var(--line);padding:8px 0 16px}
-.mobile-nav.open{display:grid}
-.mobile-nav a{padding:13px 4px;border-bottom:1px solid #edf2f5;font-size:14px;font-weight:700}
-
-/* hero */
-.hero{background:var(--warm);border-bottom:1px solid var(--line)}
-.hero-grid{min-height:590px;display:grid;grid-template-columns:43% 57%;align-items:stretch}
-.hero-copy{display:flex;flex-direction:column;justify-content:center;padding:66px clamp(32px,5vw,78px) 92px max(24px,calc((100vw - var(--max))/2 + 24px))}
-.eyebrow{display:flex;align-items:center;gap:10px;color:var(--blue);font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.12em}
-.eyebrow:before{content:"";width:28px;height:2px;background:var(--blue)}
-h1{margin:20px 0 18px;max-width:650px;font-size:clamp(54px,5.6vw,86px);line-height:.94;letter-spacing:-.055em;font-weight:800}
-.hero-copy p{margin:0;max-width:570px;font-size:16px;line-height:1.7;color:var(--muted)}
-.hero-cta{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:30px}
-.btn-primary,.btn-link{display:inline-flex;align-items:center;gap:10px;min-height:48px;font-size:12px;font-weight:850}
-.btn-primary{padding:0 19px;border-radius:8px;background:var(--blue);color:#fff}
-.btn-primary:hover{background:var(--blue-dark)}
-.btn-link{color:var(--ink)}
-.btn-link span{font-size:18px;line-height:1}
-.hero-media{position:relative;min-width:0;overflow:hidden;background:#d5eaf4}
-.hero-media img{position:absolute;inset:0;object-position:center}
-.hero-media:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(252,253,254,.28),transparent 24%)}
-.hero-caption{position:absolute;z-index:2;right:24px;bottom:24px;padding:11px 13px;background:rgba(255,255,255,.94);border:1px solid rgba(255,255,255,.75);font-size:10px;font-weight:800;color:#45606d}
-
-/* quick actions */
-.quick-shell{position:relative;z-index:5;margin-top:-38px}
-.quick-actions{background:#fff;border:1px solid var(--line);box-shadow:var(--shadow);display:grid;grid-template-columns:repeat(4,1fr)}
-.quick-action{min-height:102px;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:15px;padding:22px 24px;border-right:1px solid var(--line);transition:background .16s ease,color .16s ease}
-.quick-action:last-child{border-right:0}
-.quick-action:hover{background:var(--sky);color:var(--blue)}
-.quick-action .icon-wrap{width:42px;height:42px;border-radius:50%;background:var(--sky);color:var(--blue);display:grid;place-items:center}
-.quick-action:hover .icon-wrap{background:#fff}
-.quick-action strong{display:block;font-size:14px;margin-bottom:5px}
-.quick-action small{display:block;font-size:11px;color:var(--muted);line-height:1.4}
-.quick-action .arrow{font-size:19px}
-.secondary-actions{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;padding:17px 0 0;color:#59717e;font-size:11px;font-weight:800}
-.secondary-actions a:hover{color:var(--blue)}
-
-/* shared section */
-section.content{padding:96px 0}
-.section-head{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:42px}
-.section-copy{max-width:720px}
-.kicker{display:block;color:var(--blue);font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.13em;margin-bottom:12px}
-h2{margin:0;font-size:clamp(40px,4.5vw,66px);line-height:.98;letter-spacing:-.045em}
-.section-head p,.section-copy>p{margin:14px 0 0;max-width:660px;color:var(--muted);font-size:14px;line-height:1.7}
-.view-link{flex:0 0 auto;display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:850;color:var(--blue)}
-.view-link:hover{text-decoration:underline}
-
-/* offers */
-.offers{padding-top:84px!important}
-.offer-grid{display:grid;grid-template-columns:1.35fr .65fr;grid-template-rows:1fr 1fr;gap:18px;min-height:570px}
-.offer{position:relative;overflow:hidden;border:1px solid var(--line);background:var(--soft)}
-.offer-main{grid-row:1/3;display:flex;align-items:end;min-height:570px;background:#e7f4fb}
-.offer-main img{position:absolute;inset:0}
-.offer-main:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(9,38,54,.80),rgba(9,38,54,.12) 56%,transparent 76%)}
-.offer-copy{position:relative;z-index:2;padding:34px;color:#fff;max-width:650px}
-.offer-copy .tag,.mini-offer .tag{display:block;font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:.12em;margin-bottom:10px}
-.offer-copy h3{font-size:clamp(34px,4vw,54px);line-height:1;letter-spacing:-.04em;margin:0 0 11px}
-.offer-copy p{margin:0 0 20px;max-width:520px;color:rgba(255,255,255,.84);font-size:13px;line-height:1.6}
-.offer-copy a{display:inline-flex;align-items:center;min-height:42px;padding:0 14px;background:#fff;color:var(--ink);font-size:11px;font-weight:850;border-radius:7px}
-.mini-offer{padding:30px;display:flex;flex-direction:column;justify-content:space-between}
-.mini-offer:first-of-type{background:#f4f9fc}
-.mini-offer:last-child{background:var(--ink);color:#fff;border-color:var(--ink)}
-.mini-offer .tag{color:var(--blue)}
-.mini-offer:last-child .tag{color:#83cff3}
-.mini-offer h3{margin:0;font-size:clamp(28px,2.8vw,40px);line-height:1;letter-spacing:-.035em}
-.mini-offer p{margin:13px 0;color:var(--muted);font-size:12px;line-height:1.6;max-width:410px}
-.mini-offer:last-child p{color:#bed0d9}
-.mini-offer a{width:max-content;font-size:11px;font-weight:850;color:var(--blue)}
-.mini-offer:last-child a{color:#fff}
-
-/* service categories */
-.services{background:#fbfdfe;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.service-index{border-top:1px solid var(--line)}
-.service-row{display:grid;grid-template-columns:90px 1fr minmax(280px,470px) 130px;gap:24px;align-items:center;padding:26px 0;border-bottom:1px solid var(--line);min-height:112px;transition:padding .16s ease,background .16s ease}
-.service-row:hover{padding-left:10px;padding-right:10px;background:#fff}
-.service-num{font-size:11px;font-weight:850;color:#8ca1ac}
-.service-row h3{margin:0;font-size:clamp(25px,2.6vw,38px);letter-spacing:-.035em}
-.service-row p{margin:0;color:var(--muted);font-size:12px;line-height:1.6}
-.service-row a{justify-self:end;font-size:11px;font-weight:850;color:var(--blue)}
-
-/* business */
-.business{padding:0!important}
-.business-grid{display:grid;grid-template-columns:1fr 1fr;min-height:610px}
-.business-copy{background:var(--ink);color:#fff;padding:74px max(32px,calc((100vw - var(--max))/2 + 24px)) 74px clamp(40px,6vw,90px);display:flex;flex-direction:column;justify-content:center}
-.business-copy .kicker{color:#75cbf2}
-.business-copy p{max-width:600px;margin:18px 0 28px;color:#c2d2da;font-size:14px;line-height:1.7}
-.solution-links{border-top:1px solid rgba(255,255,255,.18);max-width:660px}
-.solution-links a{display:flex;justify-content:space-between;align-items:center;padding:15px 0;border-bottom:1px solid rgba(255,255,255,.18);font-size:12px;font-weight:750}
-.solution-links a:hover{color:#75cbf2}
-.business-cta{margin-top:28px;display:inline-flex;width:max-content;min-height:44px;align-items:center;padding:0 15px;background:#fff;color:var(--ink);border-radius:7px;font-size:11px;font-weight:900}
-.business-media{position:relative;overflow:hidden;background:#b7d2df}
-.business-media img{position:absolute;inset:0;filter:saturate(.85)}
-.business-media:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(16,43,60,.22),transparent 34%)}
-.business-label{position:absolute;left:26px;bottom:26px;z-index:2;background:#fff;padding:12px 14px;font-size:10px;font-weight:850;color:#45606d}
-
-/* PNG story */
-.png-story{padding:108px 0!important}
-.story-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:72px;align-items:center}
-.story-media{height:620px;position:relative;overflow:hidden;background:#dcebf1}
-.story-media img{position:absolute;inset:0}
-.story-badge{position:absolute;left:22px;bottom:22px;background:#fff;padding:12px 14px;font-size:10px;font-weight:850;color:var(--blue)}
-.story-copy .kicker{margin-bottom:14px}
-.story-copy h2{max-width:680px}
-.story-copy p{margin:20px 0 0;max-width:590px;color:var(--muted);font-size:15px;line-height:1.75}
-.story-links{display:flex;gap:22px;flex-wrap:wrap;margin-top:28px}
-.story-links a{font-size:11px;font-weight:850;color:var(--blue)}
-
-/* notices/news */
-.updates{background:var(--soft);border-top:1px solid var(--line)}
-.update-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:60px}
-.update-column h3{font-size:24px;letter-spacing:-.025em;margin:0 0 20px}
-.prototype-note{display:inline-flex;align-items:center;gap:7px;margin-bottom:20px;padding:7px 9px;border:1px solid var(--line);background:#fff;color:#748893;font-size:9px;font-weight:850;text-transform:uppercase;letter-spacing:.09em}
-.notice-list{border-top:1px solid var(--line)}
-.notice{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:start;padding:20px 0;border-bottom:1px solid var(--line)}
-.notice-dot{width:9px;height:9px;border-radius:50%;background:var(--blue);margin-top:5px}
-.notice strong{display:block;font-size:13px;margin-bottom:5px}
-.notice p{margin:0;color:var(--muted);font-size:11px;line-height:1.55}
-.notice a{font-size:10px;font-weight:850;color:var(--blue)}
-.news-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.news-card{background:#fff;border:1px solid var(--line);min-height:250px;padding:26px;display:flex;flex-direction:column;justify-content:space-between}
-.news-card small{font-size:9px;color:var(--blue);font-weight:900;text-transform:uppercase;letter-spacing:.1em}
-.news-card h4{font-size:23px;line-height:1.13;letter-spacing:-.03em;margin:18px 0 14px}
-.news-card p{margin:0;color:var(--muted);font-size:11px;line-height:1.55}
-.news-card a{margin-top:22px;font-size:10px;font-weight:850;color:var(--blue)}
-
-/* support */
-.support{background:#eaf6fc;padding:84px 0!important}
-.support-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:60px;align-items:start}
-.support-copy h2{font-size:clamp(40px,4vw,60px)}
-.support-copy p{max-width:480px;color:var(--muted);font-size:13px;line-height:1.65}
-.support-list{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid #c9dfe9;border-left:1px solid #c9dfe9}
-.support-item{min-height:132px;padding:24px;border-right:1px solid #c9dfe9;border-bottom:1px solid #c9dfe9;background:rgba(255,255,255,.28);display:flex;flex-direction:column;justify-content:space-between;transition:background .15s ease}
-.support-item:hover{background:#fff}
-.support-item .icon{color:var(--blue)}
-.support-item strong{font-size:15px}
-.support-item small{color:var(--muted);font-size:10px;line-height:1.45}
-
-/* footer */
-footer{background:#fff;border-top:1px solid var(--line);padding:62px 0 28px}
-.footer-top{display:grid;grid-template-columns:1.15fr repeat(4,1fr);gap:44px;padding-bottom:48px}
-.footer-brand img{width:174px;height:auto;margin-bottom:18px}
-.footer-brand p{max-width:310px;margin:0;color:var(--muted);font-size:11px;line-height:1.65}
-.footer-col h5{margin:0 0 16px;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#3f5966}
-.footer-col a{display:block;width:max-content;max-width:100%;padding:5px 0;color:#687f8a;font-size:11px}
-.footer-col a:hover{color:var(--blue)}
-.footer-bottom{border-top:1px solid var(--line);padding-top:20px;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;color:#82949d;font-size:10px}
-.footer-bottom nav{display:flex;gap:18px;flex-wrap:wrap}
-.chat{position:fixed;right:22px;bottom:22px;z-index:70;width:50px;height:50px;border:0;border-radius:50%;background:var(--blue);color:#fff;box-shadow:0 14px 34px rgba(8,117,201,.3);display:grid;place-items:center;cursor:pointer}
-.chat .icon{width:21px;height:21px}
-
-@media(max-width:1100px){
-  .nav{gap:18px}.brand small{display:none}.brand{min-width:auto}.header-actions .support-link{display:none}
-  .hero-grid{grid-template-columns:1fr 1fr}.hero-copy{padding-left:36px}.hero-copy h1{font-size:64px}
-  .quick-action{padding:20px 16px}.quick-action small{display:none}
-  .service-row{grid-template-columns:60px 1fr 330px 100px}
-  .footer-top{grid-template-columns:1.4fr repeat(2,1fr)}
-}
-@media(max-width:860px){
-  .wrap{width:min(var(--max),calc(100% - 30px))}.utility{display:none}.nav{display:none}.menu-btn{display:grid;place-items:center}.header-row{height:68px;grid-template-columns:auto 1fr auto;gap:12px}.header-actions{justify-self:end}.header-actions .search-btn{display:none}
-  .hero-grid{grid-template-columns:1fr;min-height:auto}.hero-copy{padding:58px 22px 50px}.hero-copy h1{font-size:clamp(50px,10vw,72px)}.hero-media{height:460px}
-  .quick-shell{margin-top:-28px}.quick-actions{grid-template-columns:1fr 1fr}.quick-action:nth-child(2){border-right:0}.quick-action:nth-child(-n+2){border-bottom:1px solid var(--line)}
-  .offer-grid{grid-template-columns:1fr;grid-template-rows:auto}.offer-main{grid-row:auto;min-height:500px}.mini-offer{min-height:260px}
-  .service-row{grid-template-columns:55px 1fr auto}.service-row p{grid-column:2/4}.service-row a{grid-column:3}
-  .business-grid{grid-template-columns:1fr}.business-copy{padding:66px 26px}.business-media{height:500px}
-  .story-grid{grid-template-columns:1fr;gap:44px}.story-media{height:520px}.story-copy{order:-1}
-  .update-grid{grid-template-columns:1fr;gap:50px}.support-grid{grid-template-columns:1fr}.footer-top{grid-template-columns:1.4fr 1fr 1fr}
-}
-@media(max-width:560px){
-  .brand img{width:145px}.header-actions .self-care{display:none}.hero-copy{padding-top:44px}.hero-copy p{font-size:14px}.hero-media{height:350px}.hero-caption{left:12px;right:auto;bottom:12px}
-  .quick-actions{grid-template-columns:1fr 1fr}.quick-action{min-height:108px;grid-template-columns:1fr;gap:8px}.quick-action .arrow{display:none}.quick-action .icon-wrap{width:36px;height:36px}.secondary-actions{justify-content:flex-start;gap:12px 18px}
-  section.content{padding:72px 0}.section-head{display:block}.view-link{margin-top:18px}
-  .offer-main{min-height:440px}.offer-copy{padding:24px}.mini-offer{padding:24px}
-  .service-row{grid-template-columns:38px 1fr;padding:22px 0}.service-row p,.service-row a{grid-column:2}.service-row a{justify-self:start;margin-top:3px}
-  .business-media{height:360px}.story-media{height:390px}.news-grid{grid-template-columns:1fr}.support-list{grid-template-columns:1fr}.footer-top{grid-template-columns:1fr 1fr;gap:34px}.footer-brand{grid-column:1/-1}.chat{right:14px;bottom:14px}
-}
+:root{--blue:#0875c9;--blue-dark:#075f9f;--ink:#102b3c;--muted:#667d89;--sky:#eaf6fc;--soft:#f6fafc;--line:#d9e5ec;--white:#fff;--max:1440px;--shadow:0 18px 45px rgba(16,43,60,.09)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,Arial,sans-serif;color:var(--ink);background:#fff;-webkit-font-smoothing:antialiased}a{text-decoration:none;color:inherit}button{font:inherit;color:inherit}img{display:block;width:100%;height:100%;object-fit:cover}a:focus-visible,button:focus-visible{outline:3px solid #f4b63f;outline-offset:4px}.skip{position:fixed;left:16px;top:-80px;z-index:1000;background:#fff;padding:12px 15px;border-radius:8px;box-shadow:var(--shadow)}.skip:focus{top:16px}.wrap{width:min(var(--max),calc(100% - 48px));margin:auto}.icon{width:22px;height:22px;display:block;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.utility{height:34px;background:var(--ink);color:#dbe8ee;font-size:11px}.utility .wrap{height:100%;display:flex;align-items:center;justify-content:space-between}.utility-links,.utility-right{display:flex;gap:18px}.utility a:hover{color:#fff}.utility .active{color:#fff;font-weight:800}
+header{position:sticky;top:0;z-index:80;background:rgba(255,255,255,.98);border-bottom:1px solid var(--line)}.header-row{height:78px;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:36px}.brand{display:flex;align-items:center;gap:12px;min-width:210px}.wordmark{font-size:27px;line-height:1;font-weight:900;letter-spacing:-.065em;color:var(--blue);text-transform:lowercase}.wordmark em{font-style:normal;color:#52bde9}.brand small{font-size:8px;line-height:1.25;letter-spacing:.09em;text-transform:uppercase;color:#718894}.nav{display:flex;justify-content:center;gap:30px;font-size:13px;font-weight:700}.nav a{padding:29px 0 26px}.nav a:hover{color:var(--blue)}.header-actions{display:flex;align-items:center;gap:10px}.header-actions a,.search-btn{min-height:42px;display:inline-flex;align-items:center;justify-content:center;border-radius:8px;font-size:12px;font-weight:800}.search-btn{width:42px;border:1px solid var(--line);background:#fff;cursor:pointer}.search-btn .icon{width:17px;height:17px}.support-link{padding:0 14px;border:1px solid var(--line)}.self-care{padding:0 17px;background:var(--blue);color:#fff}.menu-btn{display:none;width:42px;height:42px;border:1px solid var(--line);background:#fff;border-radius:8px}.mobile-nav{display:none;border-top:1px solid var(--line);padding:8px 0 16px}.mobile-nav.open{display:grid}.mobile-nav a{padding:13px 4px;border-bottom:1px solid #edf2f5;font-size:14px;font-weight:700}
+.hero{background:#fcfdfe;border-bottom:1px solid var(--line)}.hero-grid{min-height:590px;display:grid;grid-template-columns:43% 57%}.hero-copy{display:flex;flex-direction:column;justify-content:center;padding:66px clamp(32px,5vw,78px) 92px max(24px,calc((100vw - var(--max))/2 + 24px))}.eyebrow{display:flex;align-items:center;gap:10px;color:var(--blue);font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.12em}.eyebrow:before{content:"";width:28px;height:2px;background:var(--blue)}h1{margin:20px 0 18px;max-width:650px;font-size:clamp(54px,5.6vw,86px);line-height:.94;letter-spacing:-.055em}.hero-copy p{margin:0;max-width:570px;font-size:16px;line-height:1.7;color:var(--muted)}.hero-cta{display:flex;gap:16px;flex-wrap:wrap;margin-top:30px}.btn-primary,.btn-link{display:inline-flex;align-items:center;gap:10px;min-height:48px;font-size:12px;font-weight:850}.btn-primary{padding:0 19px;border-radius:8px;background:var(--blue);color:#fff}.hero-media{position:relative;overflow:hidden;background:#d5eaf4}.hero-media img{position:absolute;inset:0;object-position:center}.hero-media:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(252,253,254,.26),transparent 25%)}.hero-caption{position:absolute;z-index:2;right:24px;bottom:24px;padding:11px 13px;background:rgba(255,255,255,.94);font-size:10px;font-weight:800;color:#45606d}
+.quick-shell{position:relative;z-index:5;margin-top:-38px}.quick-actions{background:#fff;border:1px solid var(--line);box-shadow:var(--shadow);display:grid;grid-template-columns:repeat(4,1fr)}.quick-action{min-height:102px;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:15px;padding:22px 24px;border-right:1px solid var(--line)}.quick-action:last-child{border-right:0}.quick-action:hover{background:var(--sky);color:var(--blue)}.icon-wrap{width:42px;height:42px;border-radius:50%;background:var(--sky);color:var(--blue);display:grid;place-items:center}.quick-action strong{display:block;font-size:14px;margin-bottom:5px}.quick-action small{display:block;font-size:11px;color:var(--muted);line-height:1.4}.secondary-actions{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;padding:17px 0 0;color:#59717e;font-size:11px;font-weight:800}
+section.content{padding:96px 0}.section-head{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:42px}.section-copy{max-width:720px}.kicker{display:block;color:var(--blue);font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.13em;margin-bottom:12px}h2{margin:0;font-size:clamp(40px,4.5vw,66px);line-height:.98;letter-spacing:-.045em}.section-head p,.section-copy>p{margin:14px 0 0;max-width:660px;color:var(--muted);font-size:14px;line-height:1.7}.view-link{font-size:12px;font-weight:850;color:var(--blue)}
+.offers{padding-top:84px!important}.offer-grid{display:grid;grid-template-columns:1.35fr .65fr;grid-template-rows:1fr 1fr;gap:18px;min-height:570px}.offer{position:relative;overflow:hidden;border:1px solid var(--line);background:var(--soft)}.offer-main{grid-row:1/3;display:flex;align-items:end;min-height:570px}.offer-main img{position:absolute;inset:0}.offer-main:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(9,38,54,.8),rgba(9,38,54,.12) 56%,transparent 76%)}.offer-copy{position:relative;z-index:2;padding:34px;color:#fff;max-width:650px}.tag{display:block;font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:.12em;margin-bottom:10px}.offer-copy h3{font-size:clamp(34px,4vw,54px);line-height:1;letter-spacing:-.04em;margin:0 0 11px}.offer-copy p{margin:0 0 20px;max-width:520px;color:rgba(255,255,255,.84);font-size:13px;line-height:1.6}.offer-copy a{display:inline-flex;align-items:center;min-height:42px;padding:0 14px;background:#fff;color:var(--ink);font-size:11px;font-weight:850;border-radius:7px}.mini-offer{padding:30px;display:flex;flex-direction:column;justify-content:space-between}.mini-offer:first-of-type{background:#f4f9fc}.mini-offer:last-child{background:var(--ink);color:#fff;border-color:var(--ink)}.mini-offer .tag{color:var(--blue)}.mini-offer:last-child .tag{color:#83cff3}.mini-offer h3{margin:0;font-size:clamp(28px,2.8vw,40px);line-height:1;letter-spacing:-.035em}.mini-offer p{margin:13px 0;color:var(--muted);font-size:12px;line-height:1.6}.mini-offer:last-child p{color:#bed0d9}.mini-offer a{font-size:11px;font-weight:850;color:var(--blue)}.mini-offer:last-child a{color:#fff}
+.services{background:#fbfdfe;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.service-index{border-top:1px solid var(--line)}.service-row{display:grid;grid-template-columns:90px 1fr minmax(280px,470px) 130px;gap:24px;align-items:center;padding:26px 0;border-bottom:1px solid var(--line);min-height:112px}.service-num{font-size:11px;font-weight:850;color:#8ca1ac}.service-row h3{margin:0;font-size:clamp(25px,2.6vw,38px);letter-spacing:-.035em}.service-row p{margin:0;color:var(--muted);font-size:12px;line-height:1.6}.service-row a{justify-self:end;font-size:11px;font-weight:850;color:var(--blue)}
+.business{padding:0!important}.business-grid{display:grid;grid-template-columns:1fr 1fr;min-height:610px}.business-copy{background:var(--ink);color:#fff;padding:74px max(32px,calc((100vw - var(--max))/2 + 24px)) 74px clamp(40px,6vw,90px);display:flex;flex-direction:column;justify-content:center}.business-copy .kicker{color:#75cbf2}.business-copy p{max-width:600px;margin:18px 0 28px;color:#c2d2da;font-size:14px;line-height:1.7}.solution-links{border-top:1px solid rgba(255,255,255,.18);max-width:660px}.solution-links a{display:flex;justify-content:space-between;padding:15px 0;border-bottom:1px solid rgba(255,255,255,.18);font-size:12px;font-weight:750}.business-cta{margin-top:28px;display:inline-flex;width:max-content;min-height:44px;align-items:center;padding:0 15px;background:#fff;color:var(--ink);border-radius:7px;font-size:11px;font-weight:900}.business-media{position:relative;overflow:hidden;background:#b7d2df}.business-media img{position:absolute;inset:0;filter:saturate(.9);object-position:65% center}.business-label{position:absolute;left:26px;bottom:26px;z-index:2;background:#fff;padding:12px 14px;font-size:10px;font-weight:850;color:#45606d}
+.png-story{padding:108px 0!important}.story-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:72px;align-items:center}.story-media{height:620px;position:relative;overflow:hidden;background:#dcebf1}.story-media img{position:absolute;inset:0;object-position:center}.story-badge{position:absolute;left:22px;bottom:22px;background:#fff;padding:12px 14px;font-size:10px;font-weight:850;color:var(--blue)}.story-copy p{margin:20px 0 0;max-width:590px;color:var(--muted);font-size:15px;line-height:1.75}.story-links{display:flex;gap:22px;flex-wrap:wrap;margin-top:28px}.story-links a{font-size:11px;font-weight:850;color:var(--blue)}
+.updates{background:var(--soft);border-top:1px solid var(--line)}.update-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:60px}.update-column h3{font-size:24px;margin:0 0 20px}.prototype-note{display:inline-flex;margin-bottom:20px;padding:7px 9px;border:1px solid var(--line);background:#fff;color:#748893;font-size:9px;font-weight:850;text-transform:uppercase;letter-spacing:.09em}.notice-list{border-top:1px solid var(--line)}.notice{display:grid;grid-template-columns:auto 1fr auto;gap:14px;padding:20px 0;border-bottom:1px solid var(--line)}.notice-dot{width:9px;height:9px;border-radius:50%;background:var(--blue);margin-top:5px}.notice strong{display:block;font-size:13px;margin-bottom:5px}.notice p{margin:0;color:var(--muted);font-size:11px;line-height:1.55}.notice a{font-size:10px;font-weight:850;color:var(--blue)}.news-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.news-card{background:#fff;border:1px solid var(--line);min-height:250px;padding:26px;display:flex;flex-direction:column;justify-content:space-between}.news-card small{font-size:9px;color:var(--blue);font-weight:900;text-transform:uppercase;letter-spacing:.1em}.news-card h4{margin:12px 0;font-size:22px;line-height:1.15;letter-spacing:-.025em}.news-card p{margin:0;color:var(--muted);font-size:11px;line-height:1.55}.news-card a{margin-top:18px;font-size:10px;font-weight:850;color:var(--blue)}
+.support{border-top:1px solid var(--line)}.support-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:start}.support-links{border-top:1px solid var(--line)}.support-links a{display:flex;justify-content:space-between;padding:20px 0;border-bottom:1px solid var(--line);font-size:14px;font-weight:800}.support-side{background:var(--sky);padding:34px}.support-side h3{margin:0 0 12px;font-size:30px}.support-side p{margin:0 0 24px;color:var(--muted);font-size:13px;line-height:1.65}.support-side a{display:inline-flex;padding:13px 15px;background:var(--blue);color:#fff;border-radius:7px;font-size:11px;font-weight:850}.chat{position:fixed;right:20px;bottom:20px;z-index:60;width:54px;height:54px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;box-shadow:0 12px 30px rgba(8,117,201,.28)}
+footer{background:#102b3c;color:#fff;padding:64px 0 28px}.footer-top{display:grid;grid-template-columns:1.4fr repeat(4,1fr);gap:46px}.footer-brand .wordmark{color:#fff;font-size:30px}.footer-brand .wordmark em{color:#75cbf2}.footer-brand p{max-width:320px;color:#aebfc8;font-size:11px;line-height:1.65}.footer-col{display:grid;align-content:start;gap:10px}.footer-col h5{margin:0 0 8px;font-size:12px}.footer-col a{font-size:11px;color:#b9c8cf}.footer-bottom{display:flex;justify-content:space-between;gap:20px;margin-top:48px;padding-top:22px;border-top:1px solid rgba(255,255,255,.15);font-size:10px;color:#91a6b0}
+@media(max-width:1040px){.nav{display:none}.menu-btn{display:block}.header-actions .support-link{display:none}.hero-grid{grid-template-columns:1fr}.hero-copy{padding:58px 32px}.hero-media{min-height:480px}.quick-actions{grid-template-columns:1fr 1fr}.quick-action:nth-child(2){border-right:0}.offer-grid{grid-template-columns:1fr}.offer-main{grid-row:auto;min-height:520px}.business-grid,.story-grid,.update-grid,.support-grid{grid-template-columns:1fr}.business-media{min-height:500px}.footer-top{grid-template-columns:1.4fr 1fr 1fr}}
+@media(max-width:650px){.wrap{width:min(100% - 28px,var(--max))}.utility{display:none}.header-row{height:68px;gap:10px}.brand{min-width:0}.brand small{display:none}.wordmark{font-size:24px}.header-actions .search-btn{display:none}.hero-copy{padding:42px 18px 66px}.hero-media{min-height:360px}h1{font-size:50px}.quick-shell{margin-top:-24px}.quick-actions{grid-template-columns:1fr}.quick-action{border-right:0;border-bottom:1px solid var(--line)}.offer-main{min-height:440px}.service-row{grid-template-columns:42px 1fr;gap:12px}.service-row p,.service-row a{grid-column:2}.service-row a{justify-self:start}.business-copy{padding:54px 24px}.business-media{min-height:380px}.story-media{height:430px}.news-grid{grid-template-columns:1fr}.footer-top{grid-template-columns:1fr 1fr}.footer-brand{grid-column:1/-1}.footer-bottom{flex-direction:column}.chat{right:14px;bottom:14px}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 </style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to main content</a>
-<div class="utility">
-  <div class="wrap">
-    <nav class="utility-links" aria-label="Audience"><a class="active" href="#">Personal</a><a href="#business">Business</a><a href="#business">Government</a></nav>
-    <div class="utility-right"><a href="#updates">Service updates</a><a href="#support">Contact</a></div>
-  </div>
-</div>
-<header>
-  <div class="wrap header-row">
-    <a class="brand" href="#top"><img src="https://www.telikom.com.pg/assets/misc/TPNGLOGO.png" alt="Telikom PNG"><small>Connecting you<br>anywhere anytime</small></a>
-    <nav class="nav" aria-label="Primary"><a href="#services">Mobile</a><a href="#services">Internet</a><a href="#offers">Offers</a><a href="#business">Business</a><a href="#story">About</a></nav>
-    <div class="header-actions">
-      <button class="search-btn" aria-label="Search"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg></button>
-      <a class="support-link" href="#support">Support</a>
-      <a class="self-care" href="#quick">Self Care</a>
-      <button class="menu-btn" aria-label="Open menu" aria-expanded="false"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></button>
-    </div>
-  </div>
-  <nav class="wrap mobile-nav" aria-label="Mobile navigation"><a href="#services">Mobile</a><a href="#services">Internet</a><a href="#offers">Offers</a><a href="#business">Business & Government</a><a href="#support">Support</a><a href="#story">About Telikom</a></nav>
-</header>
+<div class="utility"><div class="wrap"><div class="utility-links"><a class="active" href="#">Personal</a><a href="#business">Business</a><a href="#business">Government</a></div><div class="utility-right"><a href="#updates">Service updates</a><a href="#support">Contact</a></div></div></div>
+<header><div class="wrap header-row"><a class="brand" href="#top"><span class="wordmark">teli<em>kom</em></span><small>Connecting you<br>anywhere anytime</small></a><nav class="nav" aria-label="Primary"><a href="#services">Mobile</a><a href="#services">Internet</a><a href="#offers">Offers</a><a href="#business">Business</a><a href="#story">About</a></nav><div class="header-actions"><button class="search-btn" aria-label="Search"><svg class="icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg></button><a class="support-link" href="#support">Support</a><a class="self-care" href="#quick">Self Care</a><button class="menu-btn" aria-label="Open menu" aria-expanded="false">☰</button></div></div><nav class="wrap mobile-nav"><a href="#services">Mobile</a><a href="#services">Internet</a><a href="#offers">Offers</a><a href="#business">Business</a><a href="#support">Support</a></nav></header>
 <main id="main">
-  <section class="hero" id="top">
-    <div class="hero-grid">
-      <div class="hero-copy">
-        <span class="eyebrow">Telikom PNG</span>
-        <h1>Stay connected to what matters.</h1>
-        <p>Mobile, internet and business connectivity with direct access to the everyday things you need most.</p>
-        <div class="hero-cta"><a class="btn-primary" href="#offers">Explore services <span>→</span></a><a class="btn-link" href="#quick">Quick actions <span>↓</span></a></div>
-      </div>
-      <div class="hero-media">
-        <img src="https://raw.githubusercontent.com/hamooddevpng/UI-Ideas/main/assets/banners/research/stay-connected-from-png-to-the-world.webp" alt="Telikom connectivity campaign in Papua New Guinea">
-        <div class="hero-caption">Mobile · Internet · Business</div>
-      </div>
-    </div>
-  </section>
-
-  <div class="quick-shell" id="quick">
-    <div class="wrap">
-      <nav class="quick-actions" aria-label="Quick customer actions">
-        <a class="quick-action" href="#"><span class="icon-wrap"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M7 7.5c0-1.9 1.8-3 5-3s5 1.1 5 3-1.8 3-5 3-5 1.1-5 3 1.8 3 5 3 5-1.1 5-3"></path></svg></span><span><strong>Recharge</strong><small>Top up your mobile</small></span><span class="arrow">→</span></a>
-        <a class="quick-action" href="#"><span class="icon-wrap"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c.8-4.2 3.5-6 8-6s7.2 1.8 8 6"></path></svg></span><span><strong>Self Care</strong><small>Manage your services</small></span><span class="arrow">→</span></a>
-        <a class="quick-action" href="#"><span class="icon-wrap"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6-5.5 6-11a6 6 0 1 0-12 0c0 5.5 6 11 6 11Z"></path><circle cx="12" cy="10" r="2"></circle></svg></span><span><strong>Coverage</strong><small>Check availability</small></span><span class="arrow">→</span></a>
-        <a class="quick-action" href="#support"><span class="icon-wrap"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13a8 8 0 0 1 16 0v5a2 2 0 0 1-2 2h-3v-6h5M4 14h5v6H6a2 2 0 0 1-2-2v-5"></path></svg></span><span><strong>Support</strong><small>Get help quickly</small></span><span class="arrow">→</span></a>
-      </nav>
-      <nav class="secondary-actions" aria-label="More actions"><a href="#">Find a Store</a><a href="#">Buy SIM</a><a href="#">Pay Bill</a><a href="#business">Business Enquiries</a></nav>
-    </div>
-  </div>
-
-  <section class="content offers" id="offers">
-    <div class="wrap">
-      <div class="section-head"><div class="section-copy"><span class="kicker">Offers & plans</span><h2>Choose how you want to connect.</h2><p>A small set of clear entry points keeps the homepage useful without turning every service into another card.</p></div><a class="view-link" href="#">View all offers →</a></div>
-      <div class="offer-grid">
-        <article class="offer offer-main">
-          <img loading="lazy" src="https://raw.githubusercontent.com/hamooddevpng/UI-Ideas/main/assets/banners/research/festive-png-telecom-deals.webp" alt="Telikom PNG mobile campaign">
-          <div class="offer-copy"><span class="tag">Featured connection</span><h3>Mobile that keeps everyday life moving.</h3><p>Explore prepaid, postpaid, data and SIM options through one clear mobile pathway.</p><a href="#">Explore mobile</a></div>
-        </article>
-        <article class="offer mini-offer"><div><span class="tag">Home internet</span><h3>Start with availability.</h3><p>Check your area first, then explore the internet options that fit your home.</p></div><a href="#">Explore home internet →</a></article>
-        <article class="offer mini-offer"><div><span class="tag">Remote connectivity</span><h3>Connection beyond the usual reach.</h3><p>Discover Telikom pathways for regional and remote connectivity enquiries.</p></div><a href="#">Explore connectivity →</a></article>
-      </div>
-    </div>
-  </section>
-
-  <section class="content services" id="services">
-    <div class="wrap">
-      <div class="section-head"><div class="section-copy"><span class="kicker">Explore Telikom</span><h2>Services, without the maze.</h2><p>Each category leads directly into plans, availability, products and support.</p></div></div>
-      <div class="service-index">
-        <article class="service-row"><span class="service-num">01</span><h3>Mobile</h3><p>Prepaid, postpaid, data, SIMs and everyday mobile services.</p><a href="#">Explore →</a></article>
-        <article class="service-row"><span class="service-num">02</span><h3>Home Internet</h3><p>Home connectivity, availability checks, plans and installation support.</p><a href="#">Explore →</a></article>
-        <article class="service-row"><span class="service-num">03</span><h3>Devices & Routers</h3><p>Find the equipment that supports your Telikom connection.</p><a href="#">Explore →</a></article>
-        <article class="service-row"><span class="service-num">04</span><h3>Enterprise Connectivity</h3><p>Connectivity pathways for businesses, institutions and government teams.</p><a href="#business">Explore →</a></article>
-        <article class="service-row"><span class="service-num">05</span><h3>Support Services</h3><p>Troubleshooting, contact options, account help and service information.</p><a href="#support">Get help →</a></article>
-      </div>
-    </div>
-  </section>
-
-  <section class="content business" id="business">
-    <div class="business-grid">
-      <div class="business-copy"><span class="kicker">Business & Government</span><h2>Connectivity built around bigger needs.</h2><p>Give organisations a direct route into business internet, managed connectivity, voice, remote solutions and specialist enquiries.</p><div class="solution-links"><a href="#"><span>Business Internet</span><span>→</span></a><a href="#"><span>Managed Connectivity</span><span>→</span></a><a href="#"><span>Remote & Regional Solutions</span><span>→</span></a><a href="#"><span>Government Connectivity</span><span>→</span></a></div><a class="business-cta" href="#">Talk to Telikom</a></div>
-      <div class="business-media"><img loading="lazy" src="https://raw.githubusercontent.com/hamooddevpng/UI-Ideas/main/assets/banners/research/stay-connected-from-png-to-the-world.webp" alt="Telikom business and government connectivity"><div class="business-label">Business · Government · Regional</div></div>
-    </div>
-  </section>
-
-  <section class="content png-story" id="story">
-    <div class="wrap story-grid">
-      <div class="story-media"><img loading="lazy" src="https://raw.githubusercontent.com/hamooddevpng/UI-Ideas/main/assets/banners/research/festive-png-telecom-deals.webp" alt="Papua New Guinea Telikom community connection"><div class="story-badge">Papua New Guinea</div></div>
-      <div class="story-copy"><span class="kicker">Connected across PNG</span><h2>Technology matters most when it brings people closer.</h2><p>Telikom's homepage should feel national as well as commercial. This space gives communities, businesses and regional connection a calm editorial moment without relying on invented statistics.</p><div class="story-links"><a href="#">About Telikom →</a><a href="#">Our network →</a><a href="#">Community →</a></div></div>
-    </div>
-  </section>
-
-  <section class="content updates" id="updates">
-    <div class="wrap">
-      <div class="section-head"><div class="section-copy"><span class="kicker">Information</span><h2>Updates that are easy to find.</h2><p>Operational notices and company news sit together, but remain visually distinct.</p></div></div>
-      <div class="update-grid">
-        <div class="update-column"><h3>Service notices</h3><span class="prototype-note">Prototype content</span><div class="notice-list">
-          <article class="notice"><span class="notice-dot"></span><div><strong>Planned service notices</strong><p>Current maintenance and network information can be published here from the live service feed.</p></div><a href="#">View</a></article>
-          <article class="notice"><span class="notice-dot"></span><div><strong>Customer service updates</strong><p>Important customer-facing service information can appear here without interrupting the campaign hero.</p></div><a href="#">View</a></article>
-          <article class="notice"><span class="notice-dot"></span><div><strong>Coverage information</strong><p>Direct customers to the latest availability and coverage resources.</p></div><a href="#">Check</a></article>
-        </div></div>
-        <div class="update-column"><h3>Latest news</h3><span class="prototype-note">Sample editorial slots</span><div class="news-grid">
-          <article class="news-card"><div><small>Telikom news</small><h4>Company updates can breathe instead of competing with offers.</h4><p>Use this area for real newsroom and corporate content once connected to the CMS.</p></div><a href="#">Read story →</a></article>
-          <article class="news-card"><div><small>Community</small><h4>A clear home for national and community stories.</h4><p>Editorial content supports the public-service role of the site without dominating the customer journey.</p></div><a href="#">Read story →</a></article>
-        </div></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="content support" id="support">
-    <div class="wrap support-grid">
-      <div class="support-copy"><span class="kicker">Help & support</span><h2>Get answers. Get connected.</h2><p>Keep practical resolution routes visible before the footer, with large touch targets and simple labels.</p></div>
-      <nav class="support-list" aria-label="Support links">
-        <a class="support-item" href="#"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13a8 8 0 0 1 16 0v5a2 2 0 0 1-2 2h-3v-6h5M4 14h5v6H6a2 2 0 0 1-2-2v-5"></path></svg><span><strong>Get Support</strong><small>Troubleshooting and contact options</small></span></a>
-        <a class="support-item" href="#"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10h18M5 10v9h14v-9M4 10l2-5h12l2 5M9 14h6"></path></svg><span><strong>Find a Store</strong><small>Locate a Telikom service point</small></span></a>
-        <a class="support-item" href="#"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h4l2 5-3 2c1.6 3.1 3.9 5.4 7 7l2-3 5 2v4c0 1.1-.9 2-2 2C10.5 22 2 13.5 2 3c0-1.1.9-2 2-2h2"></path></svg><span><strong>Contact Telikom</strong><small>Reach the right team directly</small></span></a>
-        <a class="support-item" href="#"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M9.8 9a2.4 2.4 0 1 1 3.6 2.1c-.9.5-1.4 1-1.4 2.2M12 17h.01"></path></svg><span><strong>FAQs</strong><small>Common questions and service help</small></span></a>
-      </nav>
-    </div>
-  </section>
+<section class="hero" id="top"><div class="hero-grid"><div class="hero-copy"><span class="eyebrow">Telikom Papua New Guinea</span><h1>Stay connected to what matters.</h1><p>Mobile, internet and business connectivity with direct access to the everyday things you need most.</p><div class="hero-cta"><a class="btn-primary" href="#offers">Explore services →</a><a class="btn-link" href="#quick">Quick actions ↓</a></div></div><div class="hero-media"><img src="https://cdn.jsdelivr.net/gh/hamooddevpng/UI-Ideas@main/assets/banners/research/stay-connected-from-png-to-the-world.webp" alt="Telikom connectivity campaign in Papua New Guinea" fetchpriority="high" decoding="async"><div class="hero-caption">Mobile · Internet · Business</div></div></div></section>
+<div class="quick-shell" id="quick"><div class="wrap"><nav class="quick-actions" aria-label="Quick actions"><a class="quick-action" href="#"><span class="icon-wrap">↻</span><span><strong>Recharge</strong><small>Top up mobile credit</small></span><span>→</span></a><a class="quick-action" href="#"><span class="icon-wrap">◎</span><span><strong>Self Care</strong><small>Manage your services</small></span><span>→</span></a><a class="quick-action" href="#"><span class="icon-wrap">⌖</span><span><strong>Coverage</strong><small>Check availability</small></span><span>→</span></a><a class="quick-action" href="#support"><span class="icon-wrap">?</span><span><strong>Support</strong><small>Get help quickly</small></span><span>→</span></a></nav><nav class="secondary-actions"><a href="#">Find a Store</a><a href="#">Buy SIM</a><a href="#">Pay Bill</a><a href="#business">Business Enquiries</a></nav></div></div>
+<section class="content offers" id="offers"><div class="wrap"><div class="section-head"><div class="section-copy"><span class="kicker">Offers & plans</span><h2>Choose how you want to connect.</h2><p>A small set of clear entry points keeps the homepage useful without turning every service into another card.</p></div><a class="view-link" href="#">View all offers →</a></div><div class="offer-grid"><article class="offer offer-main"><img loading="lazy" decoding="async" src="https://cdn.jsdelivr.net/gh/hamooddevpng/UI-Ideas@main/assets/banners/research/festive-png-telecom-deals.webp" alt="Telikom PNG mobile campaign"><div class="offer-copy"><span class="tag">Featured connection</span><h3>Mobile that keeps everyday life moving.</h3><p>Explore prepaid, postpaid, data and SIM options through one clear mobile pathway.</p><a href="#">Explore mobile</a></div></article><article class="offer mini-offer"><div><span class="tag">Home internet</span><h3>Start with availability.</h3><p>Check your area first, then explore the internet options that fit your home.</p></div><a href="#">Explore home internet →</a></article><article class="offer mini-offer"><div><span class="tag">Remote connectivity</span><h3>Connection beyond the usual reach.</h3><p>Discover Telikom pathways for regional and remote connectivity enquiries.</p></div><a href="#">Explore connectivity →</a></article></div></div></section>
+<section class="content services" id="services"><div class="wrap"><div class="section-head"><div class="section-copy"><span class="kicker">Telikom services</span><h2>Everything in a clear place.</h2><p>Service categories behave like a simple directory instead of another wall of cards.</p></div></div><div class="service-index"><div class="service-row"><span class="service-num">01</span><h3>Mobile</h3><p>Prepaid, postpaid, data, SIMs and everyday mobile services.</p><a href="#">Explore →</a></div><div class="service-row"><span class="service-num">02</span><h3>Home Internet</h3><p>Availability, plans, installation pathways and support.</p><a href="#">Explore →</a></div><div class="service-row"><span class="service-num">03</span><h3>Devices & Routers</h3><p>Find devices and equipment that support your connection.</p><a href="#">Explore →</a></div><div class="service-row"><span class="service-num">04</span><h3>Enterprise Connectivity</h3><p>Business, government and regional connectivity pathways.</p><a href="#business">Explore →</a></div><div class="service-row"><span class="service-num">05</span><h3>Support Services</h3><p>Troubleshooting, contact, locations and self-service tools.</p><a href="#support">Get help →</a></div></div></div></section>
+<section class="content business" id="business"><div class="business-grid"><div class="business-copy"><span class="kicker">Business & Government</span><h2>Connectivity built around bigger needs.</h2><p>Give organisations a direct route into business internet, managed connectivity, voice, remote solutions and specialist enquiries.</p><div class="solution-links"><a href="#"><span>Business Internet</span><span>→</span></a><a href="#"><span>Managed Connectivity</span><span>→</span></a><a href="#"><span>Remote & Regional Solutions</span><span>→</span></a><a href="#"><span>Government Connectivity</span><span>→</span></a></div><a class="business-cta" href="#">Talk to Telikom</a></div><div class="business-media"><img loading="lazy" decoding="async" src="https://cdn.jsdelivr.net/gh/hamooddevpng/UI-Ideas@main/assets/banners/research/stay-connected-from-png-to-the-world.webp" alt="Telikom business and government connectivity"><div class="business-label">Business · Government · Regional</div></div></div></section>
+<section class="content png-story" id="story"><div class="wrap story-grid"><div class="story-media"><img loading="lazy" decoding="async" src="https://cdn.jsdelivr.net/gh/hamooddevpng/UI-Ideas@main/assets/banners/research/festive-png-telecom-deals.webp" alt="Papua New Guinea Telikom community connection"><div class="story-badge">Papua New Guinea</div></div><div class="story-copy"><span class="kicker">Connected across PNG</span><h2>Technology matters most when it brings people closer.</h2><p>Telikom's homepage should feel national as well as commercial. This space gives communities, businesses and regional connection a calm editorial moment without relying on invented statistics.</p><div class="story-links"><a href="#">About Telikom →</a><a href="#">Our network →</a><a href="#">Community →</a></div></div></div></section>
+<section class="content updates" id="updates"><div class="wrap"><div class="section-head"><div class="section-copy"><span class="kicker">Updates</span><h2>Useful information, easy to scan.</h2><p>Notices stay practical while news gets a little more editorial space.</p></div></div><div class="update-grid"><div class="update-column"><h3>Service notices</h3><span class="prototype-note">Prototype content</span><div class="notice-list"><div class="notice"><span class="notice-dot"></span><div><strong>Network and service information</strong><p>Use this area for verified service advisories and planned maintenance notices.</p></div><a href="#">Details</a></div><div class="notice"><span class="notice-dot"></span><div><strong>Customer service updates</strong><p>Publish practical updates that affect customers and service access.</p></div><a href="#">Details</a></div><div class="notice"><span class="notice-dot"></span><div><strong>Important announcements</strong><p>Keep critical information visible without overwhelming the homepage.</p></div><a href="#">Details</a></div></div></div><div class="update-column"><h3>Latest news</h3><div class="news-grid"><article class="news-card"><div><small>Telikom news</small><h4>Stories from across the network.</h4><p>A clean editorial card for real Telikom news supplied by the CMS.</p></div><a href="#">Read story →</a></article><article class="news-card"><div><small>Community</small><h4>Connecting people and places.</h4><p>Use this space for verified community, infrastructure and company updates.</p></div><a href="#">Read story →</a></article></div></div></div></div></section>
+<section class="content support" id="support"><div class="wrap support-grid"><div><span class="kicker">Help & support</span><h2>Get help without hunting for it.</h2><div class="support-links"><a href="#"><span>Get Support</span><span>→</span></a><a href="#"><span>Find a Store</span><span>→</span></a><a href="#"><span>Contact Telikom</span><span>→</span></a><a href="#"><span>FAQs</span><span>→</span></a></div></div><aside class="support-side"><h3>Need to manage your account?</h3><p>Recharge, check balances and manage Telikom services through Self Care.</p><a href="#">Open Self Care</a></aside></div></section>
 </main>
-
-<footer>
-  <div class="wrap">
-    <div class="footer-top">
-      <div class="footer-brand"><img src="https://www.telikom.com.pg/assets/misc/TPNGLOGO.png" alt="Telikom PNG"><p>A clean, service-first homepage concept for Telikom PNG. Design 40 establishes the shared structure for Designs 41 and 42.</p></div>
-      <nav class="footer-col"><h5>Personal</h5><a href="#">Mobile</a><a href="#">Home Internet</a><a href="#">Devices</a><a href="#">Offers</a><a href="#">Coverage</a></nav>
-      <nav class="footer-col"><h5>Business</h5><a href="#">Business Internet</a><a href="#">Managed Connectivity</a><a href="#">Government</a><a href="#">Enquiries</a></nav>
-      <nav class="footer-col"><h5>Support</h5><a href="#">Help Centre</a><a href="#">Self Care</a><a href="#">Find a Store</a><a href="#">Contact</a><a href="#">Service Updates</a></nav>
-      <nav class="footer-col"><h5>Telikom</h5><a href="#">About</a><a href="#">News & Media</a><a href="#">Careers</a><a href="#">Tenders</a><a href="#">Procurement</a></nav>
-    </div>
-    <div class="footer-bottom"><span>© Telikom PNG · Design concept 40</span><nav><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Accessibility</a><a href="#">Sitemap</a></nav></div>
-  </div>
-</footer>
-<button class="chat" aria-label="Open chat support"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4V5Z"></path></svg></button>
-<script>
-const menuButton=document.querySelector('.menu-btn');
-const mobileNav=document.querySelector('.mobile-nav');
-menuButton.addEventListener('click',()=>{
-  const open=mobileNav.classList.toggle('open');
-  menuButton.setAttribute('aria-expanded',String(open));
-});
-mobileNav.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{
-  mobileNav.classList.remove('open');
-  menuButton.setAttribute('aria-expanded','false');
-}));
-</script>
+<a class="chat" href="#support" aria-label="Chat or support">?</a>
+<footer><div class="wrap"><div class="footer-top"><div class="footer-brand"><div class="wordmark">teli<em>kom</em></div><p>A clean, service-first homepage concept for Telikom PNG. Design 40 establishes the shared structure for Designs 41 and 42.</p></div><nav class="footer-col"><h5>Personal</h5><a href="#">Mobile</a><a href="#">Home Internet</a><a href="#">Devices</a><a href="#">Offers</a><a href="#">Coverage</a></nav><nav class="footer-col"><h5>Business</h5><a href="#">Business Internet</a><a href="#">Managed Connectivity</a><a href="#">Government</a><a href="#">Enquiries</a></nav><nav class="footer-col"><h5>Support</h5><a href="#">Help Centre</a><a href="#">Self Care</a><a href="#">Find a Store</a><a href="#">Contact</a><a href="#">Service Updates</a></nav><nav class="footer-col"><h5>Telikom</h5><a href="#">About</a><a href="#">News & Media</a><a href="#">Careers</a><a href="#">Tenders</a><a href="#">Procurement</a></nav></div><div class="footer-bottom"><span>Telikom PNG · Design concept 40</span><span>Privacy · Terms · Sitemap</span></div></div></footer>
+<script>const btn=document.querySelector('.menu-btn'),nav=document.querySelector('.mobile-nav');btn?.addEventListener('click',()=>{const open=nav.classList.toggle('open');btn.setAttribute('aria-expanded',String(open));btn.textContent=open?'×':'☰'});</script>
 </body>
 </html>
