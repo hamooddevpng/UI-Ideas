@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "section_types": {
+    "navigation": {"label": "Navigation / Header", "color": "#546E7A"},
+    "hero_cta": {"label": "Hero / Banner + CTA", "color": "#1565C0"},
+    "quick_actions": {"label": "Quick Actions / Self-Service", "color": "#00838F"},
+    "product_offers": {"label": "Product / Offer Cards", "color": "#2E7D32"},
+    "pricing_plans": {"label": "Plans / Pricing", "color": "#388E3C"},
+    "device_promo": {"label": "Device Promotion", "color": "#7CB342"},
+    "service_categories": {"label": "Service Categories", "color": "#6A1B9A"},
+    "trust_stats": {"label": "Trust / Stats / Proof", "color": "#5D4037"},
+    "content_feature": {"label": "Editorial / Feature Story", "color": "#8E24AA"},
+    "business_section": {"label": "Business / Enterprise", "color": "#3949AB"},
+    "app_promo": {"label": "App / Digital Experience", "color": "#00897B"},
+    "news": {"label": "News / Updates", "color": "#C62828"},
+    "faq_help": {"label": "Help / FAQ / Support", "color": "#EF6C00"},
+    "footer": {"label": "Footer", "color": "#263238"},
+    "capture_partial": {"label": "Partial / Capture Limitation", "color": "#9E9E9E"}
+  }
+}
