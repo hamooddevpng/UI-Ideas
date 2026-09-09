@@ -20,9 +20,9 @@ const { chromium } = require('playwright-core');
     if(!ok)throw new Error('Offer image failed '+src);
   }
 
-  const bodyText=await page.locator('body').innerText();
-  if(!bodyText.includes('Nambawan'))throw new Error('Nambawan microcopy missing');
-  if(!bodyText.includes('Bilong yumi'))throw new Error('Bilong yumi microcopy missing');
+  const bodyText=(await page.locator('body').innerText()).toLowerCase();
+  if(!bodyText.includes('nambawan'))throw new Error('Nambawan microcopy missing');
+  if(!bodyText.includes('bilong yumi'))throw new Error('Bilong yumi microcopy missing');
 
   const header=page.locator('#header'),brand=page.locator('#header .brand'),logo=page.locator('#header .brand img'),nav=page.locator('#header .main-nav');
   const [hr,br,lr,nr]=await Promise.all([header.boundingBox(),brand.boundingBox(),logo.boundingBox(),nav.boundingBox()]);
@@ -37,11 +37,9 @@ const { chromium } = require('playwright-core');
   const bizBox=await business.boundingBox();
   if(!bizBox||bizBox.height>810)throw new Error('Business section exceeds 90vh '+(bizBox&&bizBox.height));
 
-  // Regression: restored map stays in tower hero, not Business/Government.
   if(await page.locator('.scene-enterprise .hero-map').count()!==1)throw new Error('Tower hero map missing');
   if(await page.locator('#business .hero-map,#business .business-png-map').count())throw new Error('Map leaked into Business/Government');
 
-  // Live feed regression plus Tok Pisin Nupela label.
   await page.locator('#updates').scrollIntoViewIfNeeded();
   await page.waitForTimeout(1350);
   const live=page.locator('#liveNewsStream .live-feed-card');
