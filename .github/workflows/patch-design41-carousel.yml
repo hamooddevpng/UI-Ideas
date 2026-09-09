@@ -34,4 +34,5 @@ jobs:
           rm .github/scripts/patch_design41.py
           git add 41.html .github/workflows/patch-design41-carousel.yml .github/scripts/patch_design41.py
           git commit -m "Make Design 41 hero a moving carousel"
-          git push
+          git pull --rebase origin main
+          git push origin main
