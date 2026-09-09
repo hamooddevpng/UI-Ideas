@@ -1,0 +1,133 @@
+name: One-time Design 42 map and dish refinement
+on:
+  push:
+    paths:
+      - '.github/workflows/refine-42-map-dish.yml'
+permissions:
+  contents: write
+jobs:
+  refine-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add province map and ground the VSAT dish
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p assets/design42
+          curl -fsSL --retry 3 -A 'Mozilla/5.0' 'https://simplemaps.com/static/svg/country/pg/admin1/pg.svg' -o assets/design42/png-admin1-simplemaps.svg
+          python3 - <<'PY'
+          from pathlib import Path
+
+          svg_path=Path('assets/design42/png-admin1-simplemaps.svg')
+          svg=svg_path.read_text()
+          assert '<svg' in svg and svg.count('<path') >= 10, 'Simplemaps PNG province SVG did not download as expected'
+          if 'id="telikom-map-theme"' not in svg:
+              i=svg.find('<svg')
+              j=svg.find('>', i)
+              theme='''<style id="telikom-map-theme">path,polygon{fill:#0b6388!important;stroke:#8edbff!important;stroke-width:.72!important;stroke-linejoin:round!important;vector-effect:non-scaling-stroke}</style>'''
+              svg=svg[:j+1]+theme+svg[j+1:]
+          svg_path.write_text(svg)
+
+          p=Path('42.html')
+          s=p.read_text()
+
+          old='assets/design42/png-map.svg'
+          new='assets/design42/png-admin1-simplemaps.svg'
+          assert old in s, 'old PNG map source missing'
+          s=s.replace(old,new,1)
+
+          old_css='.hero-map{inset:4% 1% 2% auto;width:72%;height:94%;object-fit:contain;object-position:80% 50%;opacity:.14;filter:grayscale(1) saturate(0) brightness(1.42) contrast(1.12);mix-blend-mode:screen;transform:scale(.94) rotate(-1deg);-webkit-mask-image:radial-gradient(ellipse at 68% 50%,#000 20%,rgba(0,0,0,.8) 48%,transparent 78%);mask-image:radial-gradient(ellipse at 68% 50%,#000 20%,rgba(0,0,0,.8) 48%,transparent 78%)}'
+          new_css='.hero-map{inset:2% -1% 1% auto;width:78%;height:96%;object-fit:contain;object-position:80% 50%;opacity:.20;filter:drop-shadow(0 0 18px rgba(33,160,243,.14));mix-blend-mode:screen;transform:scale(.96) rotate(-1deg);-webkit-mask-image:radial-gradient(ellipse at 68% 50%,#000 28%,rgba(0,0,0,.9) 58%,transparent 88%);mask-image:radial-gradient(ellipse at 68% 50%,#000 28%,rgba(0,0,0,.9) 58%,transparent 88%)}'
+          assert old_css in s, 'hero map CSS anchor missing'
+          s=s.replace(old_css,new_css,1)
+
+          old_mobile='.hero-map{width:92%;right:-18%;opacity:.105}'
+          new_mobile='.hero-map{width:100%;right:-24%;opacity:.14}'
+          assert old_mobile in s, 'mobile map CSS anchor missing'
+          s=s.replace(old_mobile,new_mobile,1)
+
+          sun_css='.sun{position:absolute;width:235px;height:235px;border-radius:50%;right:12%;top:8%;background:radial-gradient(circle,#fff8db 0 20%,rgba(255,239,177,.62) 38%,transparent 70%);transform:translate(calc(var(--px)*-10px),calc(var(--py)*-7px))}'
+          assert sun_css in s, 'sun CSS anchor missing'
+          s=s.replace(sun_css,'',1)
+          assert '<div class="sun"></div>' in s, 'sun markup anchor missing'
+          s=s.replace('<div class="sun"></div>','',1)
+
+          old_dish='.dish-rig{position:absolute;width:350px;height:405px;right:12%;top:14%;transform:translate3d(calc(var(--sat-x,0)*11px),calc(var(--sat-y,0)*7px),0);transition:transform .24s ease-out;filter:drop-shadow(0 28px 34px rgba(0,0,0,.22))}'
+          new_dish='.dish-rig{position:absolute;width:350px;height:405px;right:10%;bottom:-3%;transform:translate3d(calc(var(--sat-x,0)*11px),calc(var(--sat-y,0)*7px),0);transition:transform .24s ease-out;filter:drop-shadow(0 28px 34px rgba(0,0,0,.22))}'
+          assert old_dish in s, 'desktop dish anchor missing'
+          s=s.replace(old_dish,new_dish,1)
+
+          old_mobile_dish='.dish-rig{scale:.62;right:-14%;top:-8%;transform-origin:top right}'
+          new_mobile_dish='.dish-rig{scale:.62;right:-14%;top:auto;bottom:-24%;transform-origin:bottom right}'
+          assert old_mobile_dish in s, 'mobile dish anchor missing'
+          s=s.replace(old_mobile_dish,new_mobile_dish,1)
+
+          p.write_text(s)
+
+          attr=Path('assets/design42/ATTRIBUTION.md')
+          txt=attr.read_text() if attr.exists() else '# Design 42 banner image sources\n'
+          line='- `png-admin1-simplemaps.svg`: Papua New Guinea province-level SVG map, Simplemaps.com free SVG map library. Source: https://simplemaps.com/static/svg/country/pg/admin1/pg.svg. License: https://simplemaps.com/resources/svg-license\n'
+          if 'png-admin1-simplemaps.svg' not in txt:
+              if not txt.endswith('\n'): txt+='\n'
+              txt+=line
+          attr.write_text(txt)
+          PY
+      - name: Syntax check JavaScript
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import re, pathlib
+          s=pathlib.Path('42.html').read_text()
+          pathlib.Path('/tmp/42.js').write_text('\n'.join(re.findall(r'<script>(.*?)</script>',s,re.S)))
+          PY
+          node --check /tmp/42.js
+      - name: Browser verification
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm install --no-save playwright-core@1.55.0 >/dev/null 2>&1
+          python3 -m http.server 8000 >/tmp/42-http.log 2>&1 &
+          cat > /tmp/verify42.js <<'NODE'
+          const { chromium } = require(process.cwd() + '/node_modules/playwright-core');
+          (async()=>{
+            const browser=await chromium.launch({headless:true,executablePath:'/usr/bin/google-chrome',args:['--no-sandbox']});
+            const page=await browser.newPage({viewport:{width:1440,height:900}});
+            const errors=[]; page.on('pageerror',e=>errors.push(String(e)));
+            await page.goto('http://127.0.0.1:8000/42.html',{waitUntil:'networkidle'});
+
+            const map=await page.evaluate(()=>{const m=document.querySelector('.hero-map');return {src:m.getAttribute('src'),w:m.naturalWidth,h:m.naturalHeight,opacity:parseFloat(getComputedStyle(m).opacity)}});
+            if(!map.src.includes('png-admin1-simplemaps.svg')||map.w<500||map.h<300||map.opacity<.18) throw new Error('Province map failed '+JSON.stringify(map));
+
+            await page.click('.scene-tab[data-scene="1"]');
+            await page.waitForTimeout(760);
+            const remote=await page.evaluate(()=>{const h=document.querySelector('.hero').getBoundingClientRect(),base=document.querySelector('.dish-svg-base').getBoundingClientRect();return {sun:!!document.querySelector('.scene-remote .sun'),heroBottom:h.bottom,baseBottom:base.bottom,gap:h.bottom-base.bottom}});
+            if(remote.sun||remote.gap>45||remote.gap<-20) throw new Error('Dish grounding failed '+JSON.stringify(remote));
+            await page.mouse.move(1080,180); await page.waitForTimeout(320);
+            const a=await page.evaluate(()=>({sat:getComputedStyle(document.querySelector('.satellite')).transform,dish:getComputedStyle(document.querySelector('.dish-head-svg')).transform}));
+            await page.mouse.move(760,430); await page.waitForTimeout(320);
+            const b=await page.evaluate(()=>({sat:getComputedStyle(document.querySelector('.satellite')).transform,dish:getComputedStyle(document.querySelector('.dish-head-svg')).transform}));
+            if(a.sat===b.sat||a.dish===b.dish) throw new Error('Satellite/dish tracking regressed');
+
+            await page.click('.scene-tab[data-scene="2"]'); await page.waitForTimeout(720); await page.mouse.move(430,250);
+            let pulseCount=0,maxOpacity=0;const deadline=Date.now()+2600;
+            while(Date.now()<deadline){const v=await page.evaluate(()=>{const t=document.querySelector('.tower'),bolt=document.querySelector('.tower-pulse-track.p1 i');return {count:Number(t.dataset.pulseCount||0),opacity:parseFloat(getComputedStyle(bolt).opacity)}});pulseCount=Math.max(pulseCount,v.count);maxOpacity=Math.max(maxOpacity,v.opacity||0);await page.waitForTimeout(30)}
+            if(pulseCount<1||maxOpacity<.7) throw new Error('Heartbeat laser regression '+JSON.stringify({pulseCount,maxOpacity}));
+            if(errors.length) throw new Error('Page errors: '+errors.join(' | '));
+            console.log('Province map OK',map);console.log('Dish grounded',remote);console.log('Satellite/dish tracking OK');console.log('Heartbeat laser OK',{pulseCount,maxOpacity});
+            await browser.close();
+          })().catch(e=>{console.error(e);process.exit(1)});
+          NODE
+          node /tmp/verify42.js
+      - name: Commit safely on latest main
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm .github/workflows/refine-42-map-dish.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add 42.html assets/design42/png-admin1-simplemaps.svg assets/design42/ATTRIBUTION.md .github/workflows/refine-42-map-dish.yml
+          git commit -m 'Refine Design 42 PNG map and ground VSAT dish'
+          git fetch origin main
+          git rebase origin/main
+          git push origin main
