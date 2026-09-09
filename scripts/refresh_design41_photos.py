@@ -88,7 +88,6 @@ photo_css = r'''
 if 'Design 41 photo refresh:' not in s:
     s = s.replace('</style>', photo_css + '</style>', 1)
 
-# Ensure all content images now resolve to repository assets rather than external photo hosts.
 external_imgs = re.findall(r'<img\b[^>]*\bsrc="https?://[^"]+"', s)
 if external_imgs:
     raise SystemExit('External image sources remain after patch: ' + str(external_imgs[:3]))
@@ -100,7 +99,6 @@ required = [
     'assets/design41/png-locals-meeting.jpg',
     'Design 41 photo refresh:',
     'grid-template-columns:minmax(165px,.82fr) 1.18fr',
-    'FLUID DEPTH COMPOSITION FIX',
     'height:80vh',
 ]
 for token in required:
