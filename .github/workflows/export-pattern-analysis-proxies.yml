@@ -1,62 +1,14 @@
 name: Export Pattern Analysis Proxies
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - '.github/workflows/export-pattern-analysis-proxies.yml'
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
-  export:
+  disabled:
+    if: ${{ false }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-      - run: pip install Pillow
-      - name: Build lightweight vision proxies
-        run: |
-          python - <<'PY'
-          from PIL import Image
-          from pathlib import Path
-          import base64, hashlib, io, json
-
-          src = Path('reference-screenshots/telecom-sites/desktop-1440')
-          out = Path('reference-screenshots/pattern-analysis/_vision-proxies/modern-telecom')
-          out.mkdir(parents=True, exist_ok=True)
-          for old in out.glob('*.jpg.b64'):
-              old.unlink()
-          meta = {}
-          for p in sorted(src.glob('*.png')):
-              im = Image.open(p).convert('RGB')
-              w, h = im.size
-              proxy_w = 160
-              proxy_h = max(1, round(h * proxy_w / w))
-              proxy = im.resize((proxy_w, proxy_h), Image.Resampling.LANCZOS)
-              buf = io.BytesIO()
-              proxy.save(buf, format='JPEG', quality=28, optimize=True)
-              encoded = base64.b64encode(buf.getvalue()).decode('ascii')
-              (out / f'{p.stem}.jpg.b64').write_text(encoded)
-              meta[p.stem] = {
-                  'source_path': str(p),
-                  'width': w,
-                  'height': h,
-                  'sha256': hashlib.sha256(p.read_bytes()).hexdigest(),
-                  'proxy_width': proxy_w,
-                  'proxy_height': proxy_h
-              }
-          (out / 'metadata.json').write_text(json.dumps(meta, indent=2))
-          PY
-      - name: Commit proxies
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add reference-screenshots/pattern-analysis/_vision-proxies/modern-telecom
-          git diff --cached --quiet && exit 0
-          git commit -m 'chore: refresh telecom analysis proxies'
-          git push
+      - run: echo "Temporary helper disabled; pattern analysis now uses committed JSON manifests."
