@@ -1,0 +1,26 @@
+name: Apply Design 40 sharp hero banners
+on:
+  push:
+    paths:
+      - '.github/workflows/apply-design40-sharp-hero.yml'
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Patch Design 40 hero
+        run: python .github/scripts/design40_hero_banner_refresh.py
+      - name: Commit Design 40 and clean one-time helpers
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          rm .github/scripts/design40_hero_banner_refresh.py
+          rm .github/workflows/apply-design40-sharp-hero.yml
+          git add 40.html .github/scripts/design40_hero_banner_refresh.py .github/workflows/apply-design40-sharp-hero.yml
+          git commit -m "Use sharp original banners in Design 40 carousel"
+          git pull --rebase origin main
+          git push origin main
