@@ -1,0 +1,114 @@
+{
+  "schema_version": "1.0",
+  "cohort": "png-private-sector",
+  "site": {
+    "slug": "png-air",
+    "name": "PNG Air",
+    "url": "https://pngair.com.pg/",
+    "source_repo_path": "reference-screenshots/png-private-sector/full-page-1440/png-air.png",
+    "capture_status": "ok",
+    "coordinate_mode": "normalized",
+    "analysis_method": "AI vision on downscaled proxy of repository screenshot; normalized boundaries mapped to original image",
+    "sections": [
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 1.0,
+          "height": 0.05
+        },
+        "type": "navigation",
+        "label": "PNG Air navigation",
+        "confidence": 0.97
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.05,
+          "width": 1.0,
+          "height": 0.13
+        },
+        "type": "hero_cta",
+        "label": "National celebration / travel hero",
+        "confidence": 0.96
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.18,
+          "width": 1.0,
+          "height": 0.12
+        },
+        "type": "online_service",
+        "label": "Flight booking form",
+        "confidence": 0.98
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.3,
+          "width": 1.0,
+          "height": 0.07
+        },
+        "type": "product_offers",
+        "label": "Special fares promotional banner",
+        "confidence": 0.91
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.37,
+          "width": 1.0,
+          "height": 0.09
+        },
+        "type": "content_feature",
+        "label": "Airline story / celebration feature",
+        "confidence": 0.88
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.46,
+          "width": 1.0,
+          "height": 0.12
+        },
+        "type": "service_categories",
+        "label": "Charter, freight and operations services",
+        "confidence": 0.94
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.58,
+          "width": 1.0,
+          "height": 0.18
+        },
+        "type": "product_offers",
+        "label": "Destination discovery cards",
+        "confidence": 0.95
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.76,
+          "width": 1.0,
+          "height": 0.12
+        },
+        "type": "form_contact",
+        "label": "Newsletter signup",
+        "confidence": 0.93
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.88,
+          "width": 1.0,
+          "height": 0.12
+        },
+        "type": "footer",
+        "label": "PNG Air footer",
+        "confidence": 0.98
+      }
+    ]
+  }
+}

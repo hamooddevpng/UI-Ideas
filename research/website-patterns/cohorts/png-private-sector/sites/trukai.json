@@ -1,0 +1,125 @@
+{
+  "schema_version": "1.0",
+  "cohort": "png-private-sector",
+  "site": {
+    "slug": "trukai",
+    "name": "Trukai Industries",
+    "url": "https://www.trukai.com.pg/",
+    "source_repo_path": "reference-screenshots/png-private-sector/full-page-1440/trukai.png",
+    "capture_status": "ok",
+    "coordinate_mode": "normalized",
+    "analysis_method": "AI vision on downscaled proxy of repository screenshot; normalized boundaries mapped to original image",
+    "sections": [
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 1.0,
+          "height": 0.04
+        },
+        "type": "navigation",
+        "label": "Trukai navigation",
+        "confidence": 0.97
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.04,
+          "width": 1.0,
+          "height": 0.16
+        },
+        "type": "hero_cta",
+        "label": "Nutritional Rice, Good For Health hero",
+        "confidence": 0.97
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.2,
+          "width": 1.0,
+          "height": 0.14
+        },
+        "type": "content_feature",
+        "label": "Quality and taste / company positioning",
+        "confidence": 0.94
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.34,
+          "width": 1.0,
+          "height": 0.1
+        },
+        "type": "projects",
+        "label": "Community and agriculture initiatives",
+        "confidence": 0.91
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.44,
+          "width": 1.0,
+          "height": 0.08
+        },
+        "type": "faq_help",
+        "label": "Common questions / FAQ CTA",
+        "confidence": 0.93
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.52,
+          "width": 1.0,
+          "height": 0.13
+        },
+        "type": "trust_stats",
+        "label": "Farm video and company impact metrics",
+        "confidence": 0.94
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.65,
+          "width": 1.0,
+          "height": 0.13
+        },
+        "type": "trust_stats",
+        "label": "Staff testimonials",
+        "confidence": 0.91
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.78,
+          "width": 1.0,
+          "height": 0.08
+        },
+        "type": "news",
+        "label": "News Room",
+        "confidence": 0.94
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.86,
+          "width": 1.0,
+          "height": 0.06
+        },
+        "type": "form_contact",
+        "label": "Newsletter subscription",
+        "confidence": 0.94
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.92,
+          "width": 1.0,
+          "height": 0.08
+        },
+        "type": "footer",
+        "label": "Trukai footer",
+        "confidence": 0.98
+      }
+    ]
+  }
+}

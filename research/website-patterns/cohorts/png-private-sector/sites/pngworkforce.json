@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0",
+  "cohort": "png-private-sector",
+  "site": {
+    "slug": "pngworkforce",
+    "name": "PNGworkForce",
+    "url": "https://www.pngworkforce.com/",
+    "source_repo_path": "reference-screenshots/png-private-sector/full-page-1440/pngworkforce.png",
+    "capture_status": "partial",
+    "coordinate_mode": "normalized",
+    "analysis_method": "AI vision on downscaled proxy of repository screenshot; normalized boundaries mapped to original image",
+    "sections": [
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 1.0,
+          "height": 0.29
+        },
+        "type": "capture_partial",
+        "label": "Newsletter / opportunity modal obscuring top-of-page capture",
+        "confidence": 0.99
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.29,
+          "width": 1.0,
+          "height": 0.37
+        },
+        "type": "product_offers",
+        "label": "Job vacancy listings",
+        "confidence": 0.95
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.66,
+          "width": 1.0,
+          "height": 0.25
+        },
+        "type": "service_categories",
+        "label": "Browse popular job categories",
+        "confidence": 0.94
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.91,
+          "width": 1.0,
+          "height": 0.09
+        },
+        "type": "footer",
+        "label": "Jobs portal footer",
+        "confidence": 0.96
+      }
+    ]
+  }
+}

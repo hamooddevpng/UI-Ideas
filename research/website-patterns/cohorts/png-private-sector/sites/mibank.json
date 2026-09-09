@@ -1,0 +1,92 @@
+{
+  "schema_version": "1.0",
+  "cohort": "png-private-sector",
+  "site": {
+    "slug": "mibank",
+    "name": "MiBank",
+    "url": "https://www.mibank.com.pg/",
+    "source_repo_path": "reference-screenshots/png-private-sector/full-page-1440/mibank.png",
+    "capture_status": "ok",
+    "coordinate_mode": "normalized",
+    "analysis_method": "AI vision on downscaled proxy of repository screenshot; normalized boundaries mapped to original image",
+    "sections": [
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 1.0,
+          "height": 0.08
+        },
+        "type": "navigation",
+        "label": "MiBank navigation",
+        "confidence": 0.95
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.08,
+          "width": 1.0,
+          "height": 0.24
+        },
+        "type": "hero_cta",
+        "label": "Mobile banking / SME app campaign banners",
+        "confidence": 0.95
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.32,
+          "width": 1.0,
+          "height": 0.08
+        },
+        "type": "trust_stats",
+        "label": "Banking reach / call-back proof strip",
+        "confidence": 0.84
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.4,
+          "width": 1.0,
+          "height": 0.16
+        },
+        "type": "news",
+        "label": "Latest News",
+        "confidence": 0.94
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.56,
+          "width": 1.0,
+          "height": 0.16
+        },
+        "type": "content_feature",
+        "label": "MiBank feature videos",
+        "confidence": 0.92
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.72,
+          "width": 1.0,
+          "height": 0.09
+        },
+        "type": "content_feature",
+        "label": "Simple hassle-free banking statement",
+        "confidence": 0.88
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.81,
+          "width": 1.0,
+          "height": 0.19
+        },
+        "type": "footer",
+        "label": "MiBank footer",
+        "confidence": 0.98
+      }
+    ]
+  }
+}

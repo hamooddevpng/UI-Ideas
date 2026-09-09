@@ -1,0 +1,92 @@
+{
+  "schema_version": "1.0",
+  "cohort": "png-private-sector",
+  "site": {
+    "slug": "jacks-png",
+    "name": "Jack's of PNG",
+    "url": "https://www.jackspng.com/",
+    "source_repo_path": "reference-screenshots/png-private-sector/full-page-1440/jacks-png.png",
+    "capture_status": "ok",
+    "coordinate_mode": "normalized",
+    "analysis_method": "AI vision on downscaled proxy of repository screenshot; normalized boundaries mapped to original image",
+    "sections": [
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 1.0,
+          "height": 0.06
+        },
+        "type": "navigation",
+        "label": "E-commerce navigation and search",
+        "confidence": 0.98
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.06,
+          "width": 1.0,
+          "height": 0.16
+        },
+        "type": "hero_cta",
+        "label": "Local identity campaign hero",
+        "confidence": 0.96
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.22,
+          "width": 1.0,
+          "height": 0.29
+        },
+        "type": "product_offers",
+        "label": "Jack's Original fashion categories",
+        "confidence": 0.97
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.51,
+          "width": 1.0,
+          "height": 0.16
+        },
+        "type": "product_offers",
+        "label": "Pacific Wear collections",
+        "confidence": 0.96
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.67,
+          "width": 1.0,
+          "height": 0.15
+        },
+        "type": "product_offers",
+        "label": "International brands",
+        "confidence": 0.96
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.82,
+          "width": 1.0,
+          "height": 0.12
+        },
+        "type": "footer",
+        "label": "Commerce, support and payment footer",
+        "confidence": 0.98
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.94,
+          "width": 1.0,
+          "height": 0.06
+        },
+        "type": "trust_stats",
+        "label": "Brand logo strip",
+        "confidence": 0.86
+      }
+    ]
+  }
+}

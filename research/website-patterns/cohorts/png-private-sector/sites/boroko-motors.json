@@ -1,0 +1,114 @@
+{
+  "schema_version": "1.0",
+  "cohort": "png-private-sector",
+  "site": {
+    "slug": "boroko-motors",
+    "name": "Boroko Motors",
+    "url": "https://borokomotors.com/",
+    "source_repo_path": "reference-screenshots/png-private-sector/full-page-1440/boroko-motors.png",
+    "capture_status": "ok",
+    "coordinate_mode": "normalized",
+    "analysis_method": "AI vision on downscaled proxy of repository screenshot; normalized boundaries mapped to original image",
+    "sections": [
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 1.0,
+          "height": 0.055
+        },
+        "type": "navigation",
+        "label": "Automotive header, brand navigation and utility links",
+        "confidence": 0.95
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.055,
+          "width": 1.0,
+          "height": 0.055
+        },
+        "type": "hero_cta",
+        "label": "Promotional hero / campaign banner",
+        "confidence": 0.9
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.11,
+          "width": 1.0,
+          "height": 0.06
+        },
+        "type": "quick_actions",
+        "label": "Vehicle type finder",
+        "confidence": 0.92
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.17,
+          "width": 1.0,
+          "height": 0.2
+        },
+        "type": "product_offers",
+        "label": "Featured SUV inventory",
+        "confidence": 0.96
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.37,
+          "width": 1.0,
+          "height": 0.17
+        },
+        "type": "product_offers",
+        "label": "Featured truck inventory",
+        "confidence": 0.96
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.54,
+          "width": 1.0,
+          "height": 0.22
+        },
+        "type": "product_offers",
+        "label": "Featured pickup / additional inventory cards",
+        "confidence": 0.88
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.76,
+          "width": 1.0,
+          "height": 0.08
+        },
+        "type": "service_categories",
+        "label": "Servicing and genuine-parts services",
+        "confidence": 0.92
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.84,
+          "width": 1.0,
+          "height": 0.08
+        },
+        "type": "trust_stats",
+        "label": "Automotive brand / partner strip",
+        "confidence": 0.89
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.92,
+          "width": 1.0,
+          "height": 0.08
+        },
+        "type": "footer",
+        "label": "Boroko Motors footer",
+        "confidence": 0.97
+      }
+    ]
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "schema_version": "1.0",
+  "cohort": "png-private-sector",
+  "site": {
+    "slug": "city-pharmacy",
+    "name": "City Pharmacy",
+    "url": "https://cpl.com.pg/city-pharmacy/",
+    "source_repo_path": "reference-screenshots/png-private-sector/full-page-1440/city-pharmacy.png",
+    "capture_status": "ok",
+    "coordinate_mode": "normalized",
+    "analysis_method": "AI vision on downscaled proxy of repository screenshot; normalized boundaries mapped to original image",
+    "sections": [
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 1.0,
+          "height": 0.07
+        },
+        "type": "navigation",
+        "label": "CPL / City Pharmacy navigation",
+        "confidence": 0.97
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.07,
+          "width": 1.0,
+          "height": 0.13
+        },
+        "type": "hero_cta",
+        "label": "City Pharmacy brand banner",
+        "confidence": 0.93
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.2,
+          "width": 1.0,
+          "height": 0.14
+        },
+        "type": "content_feature",
+        "label": "Pharmacy overview",
+        "confidence": 0.91
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.34,
+          "width": 1.0,
+          "height": 0.16
+        },
+        "type": "service_categories",
+        "label": "What We Offer pharmacy services",
+        "confidence": 0.96
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.5,
+          "width": 1.0,
+          "height": 0.12
+        },
+        "type": "projects",
+        "label": "Community impact",
+        "confidence": 0.9
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.62,
+          "width": 1.0,
+          "height": 0.24
+        },
+        "type": "form_contact",
+        "label": "Store-location / branch map",
+        "confidence": 0.91
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.86,
+          "width": 1.0,
+          "height": 0.14
+        },
+        "type": "footer",
+        "label": "CPL group footer",
+        "confidence": 0.98
+      }
+    ]
+  }
+}

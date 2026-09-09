@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0",
+  "cohort": "png-private-sector",
+  "site": {
+    "slug": "daltron",
+    "name": "Daltron PNG",
+    "url": "https://www.daltronpng.com/",
+    "source_repo_path": "reference-screenshots/png-private-sector/full-page-1440/daltron.png",
+    "capture_status": "partial",
+    "coordinate_mode": "normalized",
+    "analysis_method": "AI vision on downscaled proxy of repository screenshot; normalized boundaries mapped to original image",
+    "sections": [
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 1.0,
+          "height": 1.0
+        },
+        "type": "capture_partial",
+        "label": "Pathological full-page capture with extreme vertical overflow; layout cannot be reliably segmented",
+        "confidence": 0.99
+      }
+    ]
+  }
+}

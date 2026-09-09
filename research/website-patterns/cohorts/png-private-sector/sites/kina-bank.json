@@ -1,0 +1,103 @@
+{
+  "schema_version": "1.0",
+  "cohort": "png-private-sector",
+  "site": {
+    "slug": "kina-bank",
+    "name": "Kina Bank",
+    "url": "https://www.kinabank.com.pg/",
+    "source_repo_path": "reference-screenshots/png-private-sector/full-page-1440/kina-bank.png",
+    "capture_status": "ok",
+    "coordinate_mode": "normalized",
+    "analysis_method": "AI vision on downscaled proxy of repository screenshot; normalized boundaries mapped to original image",
+    "sections": [
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 1.0,
+          "height": 0.06
+        },
+        "type": "navigation",
+        "label": "Kina Bank utility and main navigation",
+        "confidence": 0.98
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.06,
+          "width": 1.0,
+          "height": 0.16
+        },
+        "type": "hero_cta",
+        "label": "Personal banking campaign hero",
+        "confidence": 0.96
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.22,
+          "width": 1.0,
+          "height": 0.14
+        },
+        "type": "quick_actions",
+        "label": "We're here to help shortcut cards",
+        "confidence": 0.95
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.36,
+          "width": 1.0,
+          "height": 0.11
+        },
+        "type": "service_categories",
+        "label": "Banking product shortcut row",
+        "confidence": 0.95
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.47,
+          "width": 1.0,
+          "height": 0.13
+        },
+        "type": "online_service",
+        "label": "Kina Digital Banking promotion",
+        "confidence": 0.96
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.6,
+          "width": 1.0,
+          "height": 0.11
+        },
+        "type": "news",
+        "label": "More from Kina Bank",
+        "confidence": 0.94
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.71,
+          "width": 1.0,
+          "height": 0.15
+        },
+        "type": "faq_help",
+        "label": "Tools, calculators, support and contact",
+        "confidence": 0.96
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.86,
+          "width": 1.0,
+          "height": 0.14
+        },
+        "type": "footer",
+        "label": "Kina Bank footer",
+        "confidence": 0.98
+      }
+    ]
+  }
+}

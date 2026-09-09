@@ -1,0 +1,103 @@
+{
+  "schema_version": "1.0",
+  "cohort": "png-private-sector",
+  "site": {
+    "slug": "post-courier",
+    "name": "Post-Courier",
+    "url": "https://www.postcourier.com.pg/",
+    "source_repo_path": "reference-screenshots/png-private-sector/full-page-1440/post-courier.png",
+    "capture_status": "ok",
+    "coordinate_mode": "normalized",
+    "analysis_method": "AI vision on downscaled proxy of repository screenshot; normalized boundaries mapped to original image",
+    "sections": [
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 1.0,
+          "height": 0.055
+        },
+        "type": "navigation",
+        "label": "Post-Courier navigation",
+        "confidence": 0.97
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.055,
+          "width": 1.0,
+          "height": 0.125
+        },
+        "type": "news",
+        "label": "Top stories / latest news cards",
+        "confidence": 0.97
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.18,
+          "width": 1.0,
+          "height": 0.19
+        },
+        "type": "content_feature",
+        "label": "Front and back page edition feature",
+        "confidence": 0.95
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.37,
+          "width": 1.0,
+          "height": 0.19
+        },
+        "type": "news",
+        "label": "Top news / national news grid",
+        "confidence": 0.97
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.56,
+          "width": 1.0,
+          "height": 0.12
+        },
+        "type": "news",
+        "label": "Business stories",
+        "confidence": 0.95
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.68,
+          "width": 1.0,
+          "height": 0.12
+        },
+        "type": "news",
+        "label": "Regional / community stories",
+        "confidence": 0.95
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.8,
+          "width": 1.0,
+          "height": 0.08
+        },
+        "type": "news",
+        "label": "Sports stories",
+        "confidence": 0.94
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.88,
+          "width": 1.0,
+          "height": 0.12
+        },
+        "type": "footer",
+        "label": "Post-Courier contact and newsletter footer",
+        "confidence": 0.98
+      }
+    ]
+  }
+}

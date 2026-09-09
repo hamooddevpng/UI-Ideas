@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0",
+  "cohort": "png-private-sector",
+  "site": {
+    "slug": "datec",
+    "name": "Datec PNG",
+    "url": "https://www.datec.com.pg/",
+    "source_repo_path": "reference-screenshots/png-private-sector/full-page-1440/datec.png",
+    "capture_status": "ok",
+    "coordinate_mode": "normalized",
+    "analysis_method": "AI vision on downscaled proxy of repository screenshot; normalized boundaries mapped to original image",
+    "sections": [
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 1.0,
+          "height": 0.08
+        },
+        "type": "navigation",
+        "label": "Datec navigation",
+        "confidence": 0.96
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.08,
+          "width": 1.0,
+          "height": 0.32
+        },
+        "type": "hero_cta",
+        "label": "Technology solutions hero",
+        "confidence": 0.95
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.4,
+          "width": 1.0,
+          "height": 0.18
+        },
+        "type": "trust_stats",
+        "label": "Company experience / capability proof",
+        "confidence": 0.91
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.58,
+          "width": 1.0,
+          "height": 0.2
+        },
+        "type": "news",
+        "label": "Featured solutions / company updates",
+        "confidence": 0.91
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.78,
+          "width": 1.0,
+          "height": 0.22
+        },
+        "type": "footer",
+        "label": "Datec services and contact footer",
+        "confidence": 0.97
+      }
+    ]
+  }
+}

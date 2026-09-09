@@ -1,0 +1,136 @@
+{
+  "schema_version": "1.0",
+  "cohort": "png-private-sector",
+  "site": {
+    "slug": "coral-sea-hotels",
+    "name": "Coral Sea Hotels",
+    "url": "https://coralseahotels.com.pg/",
+    "source_repo_path": "reference-screenshots/png-private-sector/full-page-1440/coral-sea-hotels.png",
+    "capture_status": "ok",
+    "coordinate_mode": "normalized",
+    "analysis_method": "AI vision on downscaled proxy of repository screenshot; normalized boundaries mapped to original image",
+    "sections": [
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 1.0,
+          "height": 0.035
+        },
+        "type": "navigation",
+        "label": "Hotel group navigation",
+        "confidence": 0.96
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.035,
+          "width": 1.0,
+          "height": 0.07
+        },
+        "type": "hero_cta",
+        "label": "Corporate / business / leisure hero",
+        "confidence": 0.95
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.105,
+          "width": 1.0,
+          "height": 0.05
+        },
+        "type": "quick_actions",
+        "label": "Stay / booking controls",
+        "confidence": 0.94
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.155,
+          "width": 1.0,
+          "height": 0.05
+        },
+        "type": "service_categories",
+        "label": "Hotel amenities icon row",
+        "confidence": 0.91
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.205,
+          "width": 1.0,
+          "height": 0.175
+        },
+        "type": "product_offers",
+        "label": "Discover PNG hotel properties",
+        "confidence": 0.96
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.38,
+          "width": 1.0,
+          "height": 0.1
+        },
+        "type": "product_offers",
+        "label": "More Coral Sea Hotels gallery",
+        "confidence": 0.92
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.48,
+          "width": 1.0,
+          "height": 0.23
+        },
+        "type": "news",
+        "label": "News and specials cards",
+        "confidence": 0.96
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.71,
+          "width": 1.0,
+          "height": 0.09
+        },
+        "type": "trust_stats",
+        "label": "Customer reviews",
+        "confidence": 0.9
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.8,
+          "width": 1.0,
+          "height": 0.07
+        },
+        "type": "content_feature",
+        "label": "About Coral Sea Hotels",
+        "confidence": 0.91
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.87,
+          "width": 1.0,
+          "height": 0.06
+        },
+        "type": "trust_stats",
+        "label": "Awards / industry recognition",
+        "confidence": 0.88
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.93,
+          "width": 1.0,
+          "height": 0.07
+        },
+        "type": "footer",
+        "label": "GDS codes, contact and footer",
+        "confidence": 0.96
+      }
+    ]
+  }
+}

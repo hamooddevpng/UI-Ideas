@@ -1,0 +1,103 @@
+{
+  "schema_version": "1.0",
+  "cohort": "png-private-sector",
+  "site": {
+    "slug": "brian-bell",
+    "name": "Brian Bell Group",
+    "url": "https://www.brianbell.com.pg/",
+    "source_repo_path": "reference-screenshots/png-private-sector/full-page-1440/brian-bell.png",
+    "capture_status": "ok",
+    "coordinate_mode": "normalized",
+    "analysis_method": "AI vision on downscaled proxy of repository screenshot; normalized boundaries mapped to original image",
+    "sections": [
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 1.0,
+          "height": 0.045
+        },
+        "type": "navigation",
+        "label": "Corporate navigation",
+        "confidence": 0.95
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.045,
+          "width": 1.0,
+          "height": 0.135
+        },
+        "type": "hero_cta",
+        "label": "Partners in PNG's Future hero",
+        "confidence": 0.96
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.18,
+          "width": 1.0,
+          "height": 0.13
+        },
+        "type": "content_feature",
+        "label": "Brian Bell story / company profile",
+        "confidence": 0.94
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.31,
+          "width": 1.0,
+          "height": 0.12
+        },
+        "type": "business_section",
+        "label": "Portfolio / operating businesses",
+        "confidence": 0.94
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.43,
+          "width": 1.0,
+          "height": 0.12
+        },
+        "type": "service_categories",
+        "label": "Group divisions",
+        "confidence": 0.94
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.55,
+          "width": 1.0,
+          "height": 0.18
+        },
+        "type": "projects",
+        "label": "Community, foundation and initiatives cards",
+        "confidence": 0.91
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.73,
+          "width": 1.0,
+          "height": 0.09
+        },
+        "type": "trust_stats",
+        "label": "Group brand / partner logos",
+        "confidence": 0.9
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.82,
+          "width": 1.0,
+          "height": 0.18
+        },
+        "type": "footer",
+        "label": "Corporate footer",
+        "confidence": 0.98
+      }
+    ]
+  }
+}

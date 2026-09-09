@@ -1,0 +1,114 @@
+{
+  "schema_version": "1.0",
+  "cohort": "png-private-sector",
+  "site": {
+    "slug": "duffy-cafe",
+    "name": "Duffy Cafe",
+    "url": "https://duffypng.com/",
+    "source_repo_path": "reference-screenshots/png-private-sector/full-page-1440/duffy-cafe.png",
+    "capture_status": "ok",
+    "coordinate_mode": "normalized",
+    "analysis_method": "AI vision on downscaled proxy of repository screenshot; normalized boundaries mapped to original image",
+    "sections": [
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 1.0,
+          "height": 0.045
+        },
+        "type": "navigation",
+        "label": "Duffy Cafe navigation",
+        "confidence": 0.95
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.045,
+          "width": 1.0,
+          "height": 0.135
+        },
+        "type": "hero_cta",
+        "label": "Coffee product hero",
+        "confidence": 0.96
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.18,
+          "width": 1.0,
+          "height": 0.12
+        },
+        "type": "content_feature",
+        "label": "Welcome to Duffy Cafe",
+        "confidence": 0.92
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.3,
+          "width": 1.0,
+          "height": 0.17
+        },
+        "type": "product_offers",
+        "label": "Duffy Roastery",
+        "confidence": 0.95
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.47,
+          "width": 1.0,
+          "height": 0.15
+        },
+        "type": "product_offers",
+        "label": "Duffy Bakery",
+        "confidence": 0.94
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.62,
+          "width": 1.0,
+          "height": 0.11
+        },
+        "type": "quick_actions",
+        "label": "The Grind order / shop CTA",
+        "confidence": 0.92
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.73,
+          "width": 1.0,
+          "height": 0.13
+        },
+        "type": "content_feature",
+        "label": "Instagram / social content",
+        "confidence": 0.82
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.86,
+          "width": 1.0,
+          "height": 0.1
+        },
+        "type": "form_contact",
+        "label": "Contact Us form",
+        "confidence": 0.96
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.96,
+          "width": 1.0,
+          "height": 0.04
+        },
+        "type": "footer",
+        "label": "Duffy Cafe footer",
+        "confidence": 0.98
+      }
+    ]
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "schema_version": "1.0",
+  "cohort": "png-private-sector",
+  "site": {
+    "slug": "hausples",
+    "name": "Hausples",
+    "url": "https://www.hausples.com.pg/",
+    "source_repo_path": "reference-screenshots/png-private-sector/full-page-1440/hausples.png",
+    "capture_status": "ok",
+    "coordinate_mode": "normalized",
+    "analysis_method": "AI vision on downscaled proxy of repository screenshot; normalized boundaries mapped to original image",
+    "sections": [
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 1.0,
+          "height": 0.055
+        },
+        "type": "navigation",
+        "label": "Property marketplace navigation",
+        "confidence": 0.97
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.055,
+          "width": 1.0,
+          "height": 0.175
+        },
+        "type": "hero_cta",
+        "label": "Property search hero",
+        "confidence": 0.96
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.23,
+          "width": 1.0,
+          "height": 0.18
+        },
+        "type": "product_offers",
+        "label": "Rental accommodation listings",
+        "confidence": 0.96
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.41,
+          "width": 1.0,
+          "height": 0.16
+        },
+        "type": "product_offers",
+        "label": "Just launched property listings",
+        "confidence": 0.96
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.57,
+          "width": 1.0,
+          "height": 0.14
+        },
+        "type": "product_offers",
+        "label": "Sale / home listing collections",
+        "confidence": 0.96
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.71,
+          "width": 1.0,
+          "height": 0.11
+        },
+        "type": "content_feature",
+        "label": "Property market research and articles",
+        "confidence": 0.92
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.82,
+          "width": 1.0,
+          "height": 0.08
+        },
+        "type": "quick_actions",
+        "label": "Real-estate search CTA",
+        "confidence": 0.92
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.9,
+          "width": 1.0,
+          "height": 0.1
+        },
+        "type": "footer",
+        "label": "Hausples footer",
+        "confidence": 0.98
+      }
+    ]
+  }
+}

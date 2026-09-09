@@ -1,0 +1,92 @@
+{
+  "schema_version": "1.0",
+  "cohort": "png-private-sector",
+  "site": {
+    "slug": "paradise-foods",
+    "name": "Paradise Foods",
+    "url": "https://paradisefoods.com.pg/",
+    "source_repo_path": "reference-screenshots/png-private-sector/full-page-1440/paradise-foods.png",
+    "capture_status": "ok",
+    "coordinate_mode": "normalized",
+    "analysis_method": "AI vision on downscaled proxy of repository screenshot; normalized boundaries mapped to original image",
+    "sections": [
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 1.0,
+          "height": 0.045
+        },
+        "type": "navigation",
+        "label": "Paradise Foods navigation",
+        "confidence": 0.96
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.045,
+          "width": 1.0,
+          "height": 0.295
+        },
+        "type": "hero_cta",
+        "label": "Multi-brand food product hero",
+        "confidence": 0.96
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.34,
+          "width": 1.0,
+          "height": 0.26
+        },
+        "type": "service_categories",
+        "label": "Food and beverage product categories",
+        "confidence": 0.97
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.6,
+          "width": 1.0,
+          "height": 0.08
+        },
+        "type": "content_feature",
+        "label": "Brand video / visual feature",
+        "confidence": 0.85
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.68,
+          "width": 1.0,
+          "height": 0.16
+        },
+        "type": "business_section",
+        "label": "Our Companies / brand portfolio",
+        "confidence": 0.94
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.84,
+          "width": 1.0,
+          "height": 0.1
+        },
+        "type": "form_contact",
+        "label": "Product enquiry / contact CTA",
+        "confidence": 0.92
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.94,
+          "width": 1.0,
+          "height": 0.06
+        },
+        "type": "footer",
+        "label": "Paradise Foods footer",
+        "confidence": 0.98
+      }
+    ]
+  }
+}

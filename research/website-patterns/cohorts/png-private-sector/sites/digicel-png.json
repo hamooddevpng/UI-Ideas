@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0",
+  "cohort": "png-private-sector",
+  "site": {
+    "slug": "digicel-png",
+    "name": "Digicel PNG",
+    "url": "https://www.digicelpacific.com/mobile/pg/",
+    "source_repo_path": "reference-screenshots/png-private-sector/full-page-1440/digicel-png.png",
+    "capture_status": "ok",
+    "coordinate_mode": "normalized",
+    "analysis_method": "AI vision on downscaled proxy of repository screenshot; normalized boundaries mapped to original image",
+    "sections": [
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 1.0,
+          "height": 0.06
+        },
+        "type": "navigation",
+        "label": "Digicel utility and primary navigation",
+        "confidence": 0.97
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.06,
+          "width": 1.0,
+          "height": 0.24
+        },
+        "type": "hero_cta",
+        "label": "Prepaid / promotion banner carousel",
+        "confidence": 0.96
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.3,
+          "width": 1.0,
+          "height": 0.28
+        },
+        "type": "service_categories",
+        "label": "Mobile, data and digital service choices",
+        "confidence": 0.95
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.58,
+          "width": 1.0,
+          "height": 0.14
+        },
+        "type": "app_promo",
+        "label": "MyDigicel / digital experience promotion",
+        "confidence": 0.93
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.72,
+          "width": 1.0,
+          "height": 0.11
+        },
+        "type": "hero_cta",
+        "label": "Recharge / conversion CTA band",
+        "confidence": 0.9
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.83,
+          "width": 1.0,
+          "height": 0.17
+        },
+        "type": "footer",
+        "label": "Digicel footer",
+        "confidence": 0.98
+      }
+    ]
+  }
+}

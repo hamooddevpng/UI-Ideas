@@ -1,0 +1,103 @@
+{
+  "schema_version": "1.0",
+  "cohort": "png-private-sector",
+  "site": {
+    "slug": "puma-energy-png",
+    "name": "Puma Energy PNG",
+    "url": "https://pumaenergy.com/country/papua-new-guinea/",
+    "source_repo_path": "reference-screenshots/png-private-sector/full-page-1440/puma-energy-png.png",
+    "capture_status": "ok",
+    "coordinate_mode": "normalized",
+    "analysis_method": "AI vision on downscaled proxy of repository screenshot; normalized boundaries mapped to original image",
+    "sections": [
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 1.0,
+          "height": 0.05
+        },
+        "type": "navigation",
+        "label": "Puma Energy country navigation",
+        "confidence": 0.96
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.05,
+          "width": 1.0,
+          "height": 0.12
+        },
+        "type": "hero_cta",
+        "label": "Papua New Guinea market hero",
+        "confidence": 0.95
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.17,
+          "width": 1.0,
+          "height": 0.07
+        },
+        "type": "service_categories",
+        "label": "Solutions and services overview",
+        "confidence": 0.93
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.24,
+          "width": 1.0,
+          "height": 0.23
+        },
+        "type": "business_section",
+        "label": "Retail fuels / station network",
+        "confidence": 0.95
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.47,
+          "width": 1.0,
+          "height": 0.14
+        },
+        "type": "product_offers",
+        "label": "Retail convenience offer",
+        "confidence": 0.92
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.61,
+          "width": 1.0,
+          "height": 0.12
+        },
+        "type": "product_offers",
+        "label": "Reliable fuels and quality services",
+        "confidence": 0.94
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.73,
+          "width": 1.0,
+          "height": 0.11
+        },
+        "type": "product_offers",
+        "label": "High-quality lubricants promotion",
+        "confidence": 0.94
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.84,
+          "width": 1.0,
+          "height": 0.16
+        },
+        "type": "footer",
+        "label": "Puma Energy footer",
+        "confidence": 0.98
+      }
+    ]
+  }
+}

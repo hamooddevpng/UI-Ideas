@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0",
+  "cohort": "png-private-sector",
+  "site": {
+    "slug": "tininga",
+    "name": "Tininga Limited",
+    "url": "https://tininga.com.pg/",
+    "source_repo_path": "reference-screenshots/png-private-sector/full-page-1440/tininga.png",
+    "capture_status": "ok",
+    "coordinate_mode": "normalized",
+    "analysis_method": "AI vision on downscaled proxy of repository screenshot; normalized boundaries mapped to original image",
+    "sections": [
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 1.0,
+          "height": 0.05
+        },
+        "type": "navigation",
+        "label": "Tininga navigation",
+        "confidence": 0.96
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.05,
+          "width": 1.0,
+          "height": 0.25
+        },
+        "type": "hero_cta",
+        "label": "Supermarket welcome hero",
+        "confidence": 0.97
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.3,
+          "width": 1.0,
+          "height": 0.22
+        },
+        "type": "content_feature",
+        "label": "About Tininga",
+        "confidence": 0.94
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.52,
+          "width": 1.0,
+          "height": 0.2
+        },
+        "type": "business_section",
+        "label": "Our Brands portfolio",
+        "confidence": 0.95
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.72,
+          "width": 1.0,
+          "height": 0.11
+        },
+        "type": "quick_actions",
+        "label": "Store finder, newsletter and latest-news shortcuts",
+        "confidence": 0.94
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.83,
+          "width": 1.0,
+          "height": 0.17
+        },
+        "type": "footer",
+        "label": "Tininga company footer",
+        "confidence": 0.98
+      }
+    ]
+  }
+}
