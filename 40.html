@@ -143,8 +143,9 @@ const carousel=document.querySelector('[data-carousel]');
 if(carousel){
   const track=carousel.querySelector('.campaign-track'),slides=[...carousel.querySelectorAll('.campaign-slide')],dots=[...carousel.querySelectorAll('.campaign-dot')],prev=carousel.querySelector('[data-prev]'),next=carousel.querySelector('[data-next]');
   const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;let index=0,timer,startX=0;
+  if(reduced)track.style.transition='none';
   const show=n=>{index=(n+slides.length)%slides.length;track.style.transform=`translateX(-${index*100}%)`;slides.forEach((s,i)=>s.setAttribute('aria-hidden',i===index?'false':'true'));dots.forEach((d,i)=>d.setAttribute('aria-current',i===index?'true':'false'))};
-  const stop=()=>{clearInterval(timer);timer=null};const start=()=>{if(!reduced&&!document.hidden){stop();timer=setInterval(()=>show(index+1),5200)}};
+  const stop=()=>{clearInterval(timer);timer=null};const start=()=>{if(!document.hidden){stop();timer=setInterval(()=>show(index+1),4500)}};
   prev.addEventListener('click',()=>{show(index-1);start()});next.addEventListener('click',()=>{show(index+1);start()});dots.forEach((d,i)=>d.addEventListener('click',()=>{show(i);start()}));
   carousel.addEventListener('mouseenter',stop);carousel.addEventListener('mouseleave',start);carousel.addEventListener('focusin',stop);carousel.addEventListener('focusout',e=>{if(!carousel.contains(e.relatedTarget))start()});
   carousel.addEventListener('touchstart',e=>startX=e.touches[0].clientX,{passive:true});carousel.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-startX;if(Math.abs(dx)>45){show(index+(dx<0?1:-1));start()}},{passive:true});document.addEventListener('visibilitychange',()=>document.hidden?stop():start());show(0);start();
