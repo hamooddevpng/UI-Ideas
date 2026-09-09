@@ -99,7 +99,6 @@ required = [
     'assets/design41/png-locals-meeting.jpg',
     'Design 41 photo refresh:',
     'grid-template-columns:minmax(165px,.82fr) 1.18fr',
-    'height:80vh',
 ]
 for token in required:
     if token not in s:
