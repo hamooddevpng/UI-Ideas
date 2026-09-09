@@ -1,0 +1,50 @@
+name: One-time Design 42 Business and Government rebuild
+on:
+  push:
+    paths:
+      - '.github/workflows/design42-business-dual.yml'
+permissions:
+  contents: write
+jobs:
+  rebuild-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download verified PNG island aerial
+        run: |
+          mkdir -p assets/design42
+          curl -L --fail --retry 3 --retry-delay 2 'https://upload.wikimedia.org/wikipedia/commons/8/8f/Louisiade_archipelago.jpg' -o assets/design42/louisiade-archipelago-nasa.jpg
+          test -s assets/design42/louisiade-archipelago-nasa.jpg
+      - name: Rebuild Business and Government section
+        run: python3 .github/scripts/design42_business_dual.py
+      - name: JavaScript syntax check
+        run: |
+          python3 - <<'PY'
+          import re,pathlib
+          s=pathlib.Path('42.html').read_text()
+          pathlib.Path('/tmp/42.js').write_text('\n'.join(re.findall(r'<script>(.*?)</script>',s,re.S)))
+          PY
+          node --check /tmp/42.js
+      - name: Browser interaction test
+        run: |
+          npm install --no-save playwright-core@1.55.0 >/dev/null 2>&1
+          python3 -m http.server 8000 >/tmp/42-http.log 2>&1 &
+          node .github/scripts/verify42_business_dual.js
+      - name: Commit verified redesign and clean temporary workflows
+        run: |
+          rm -f .github/workflows/design42-business-dual.yml \
+                .github/scripts/design42_business_dual.py \
+                .github/scripts/verify42_business_dual.js \
+                .github/workflows/design42-clean-copy-particles.yml \
+                .github/scripts/design42_clean_copy_particles.py \
+                .github/scripts/verify42_clean_copy_particles.js
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Rebuild Design 42 Business and Government experience'
+          for try in 1 2 3; do
+            if git push origin HEAD:main; then exit 0; fi
+            git fetch origin main
+            git rebase origin/main
+          done
+          exit 1
