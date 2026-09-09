@@ -34,13 +34,16 @@ jobs:
           for x in required:
               assert x.lower() in s.lower(), x
           assert s.count('lang="tpi"') == 8, s.count('lang="tpi"')
-          assert 'new Lenis({duration:1.18' in s
+          assert 'new Lenis({duration:1.05' in s
+          assert 'Design 10 proximity field, rewritten for Design 41' in s
           assert 'const motionFrame=()=>{' in s
           assert 'new THREE.TorusKnotGeometry' in s
+          assert s.count('data-depth=') >= 50
           assert 'gerehu-market-wide.jpg' not in s
           scripts=re.findall(r'<script>(.*?)</script>',s,re.S)
           Path('/tmp/41.js').write_text(scripts[-1])
           print('Tok Pisin accents:', s.count('lang="tpi"'))
+          print('Depth layers:', s.count('data-depth='))
           PY
           node --check /tmp/41.js
 
