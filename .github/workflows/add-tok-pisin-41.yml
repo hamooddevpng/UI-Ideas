@@ -1,0 +1,62 @@
+name: Add Tok Pisin accents to Design 41
+
+on:
+  push:
+    paths:
+      - '.github/workflows/add-tok-pisin-41.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Apply Tok Pisin accents
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 .github/scripts/add_tok_pisin_41.py
+
+      - name: Validate page
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          s=Path('41.html').read_text()
+          required=['Gude','GUTPELA','WANTOK','WOK','TOKAUT','HELPIM','TENKYU','lang="tpi"']
+          for x in required:
+              assert x.lower() in s.lower(), x
+          assert s.count('lang="tpi"') == 8, s.count('lang="tpi"')
+          assert 'new Lenis({duration:1.18' in s
+          assert 'const motionFrame=()=>{' in s
+          assert 'new THREE.TorusKnotGeometry' in s
+          assert 'gerehu-market-wide.jpg' not in s
+          scripts=re.findall(r'<script>(.*?)</script>',s,re.S)
+          Path('/tmp/41.js').write_text(scripts[-1])
+          print('Tok Pisin accents:', s.count('lang="tpi"'))
+          PY
+          node --check /tmp/41.js
+
+      - name: Commit and clean helper files
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          rm -f .github/workflows/add-tok-pisin-41.yml .github/scripts/add_tok_pisin_41.py
+          git add 41.html .github/workflows/add-tok-pisin-41.yml .github/scripts/add_tok_pisin_41.py
+          git commit -m 'Add subtle Tok Pisin accents to Design 41'
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            if git rebase origin/main && git push origin HEAD:main; then exit 0; fi
+            git rebase --abort 2>/dev/null || true
+            sleep 2
+          done
+          exit 1
