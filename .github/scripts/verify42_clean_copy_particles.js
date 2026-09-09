@@ -3,7 +3,7 @@ const { chromium } = require('playwright-core');
   const browser=await chromium.launch({headless:true,executablePath:'/usr/bin/google-chrome',args:['--no-sandbox']});
   const page=await browser.newPage({viewport:{width:1440,height:900}});
   page.on('pageerror',e=>{throw e});
-  await page.goto('http://127.0.0.1:8000/42.html',{waitUntil:'networkidle',timeout:45000});
+  await page.goto('http://127.0.0.1:8000/42.html',{waitUntil:'domcontentloaded',timeout:45000});
 
   const body=await page.locator('body').innerText();
   const banned=[
@@ -16,8 +16,8 @@ const { chromium } = require('playwright-core');
 
   const story=page.locator('#png-story .png-story-photo');
   const src=await story.getAttribute('src');
-  if(!src||!src.includes('ISS034-E-5507'))throw new Error('PNG aerial image not applied: '+src);
-  await story.evaluate(img=>img.complete&&img.naturalWidth>0?true:new Promise((res,rej)=>{img.addEventListener('load',()=>res(true),{once:true});img.addEventListener('error',()=>rej(new Error('PNG aerial failed to load')),{once:true});setTimeout(()=>rej(new Error('PNG aerial timeout')),15000)}));
+  if(!src||!src.includes('louisiade_tmo_2002254_lrg.jpg'))throw new Error('PNG aerial image not applied: '+src);
+  await page.waitForFunction(()=>{const img=document.querySelector('#png-story .png-story-photo');return img&&img.complete&&img.naturalWidth>0},{timeout:20000});
 
   await page.evaluate(()=>{
     window.__offerParticleCount=0;
@@ -34,7 +34,6 @@ const { chromium } = require('playwright-core');
   if(offerState.cards.length!==3)throw new Error('Offer cards missing');
   if(offerState.cards.some(c=>parseFloat(c.opacity)<.9))throw new Error('Offer cards did not settle visibly');
 
-  // Hero regression: satellite/dish interaction still responds.
   await page.locator('[data-scene="1"]').click();
   await page.mouse.move(1110,180);await page.waitForTimeout(280);
   const a=await page.evaluate(()=>({sat:getComputedStyle(document.querySelector('.satellite')).transform,dish:getComputedStyle(document.querySelector('.dish-head-svg')).transform}));
