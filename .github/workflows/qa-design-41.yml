@@ -32,6 +32,17 @@ jobs:
           node <<'EOF'
           const { chromium } = require('playwright');
           const assert = (ok,msg) => { if(!ok) throw new Error(msg); };
+          const loadLazyImages = async page => {
+            await page.evaluate(async()=>{
+              const step=Math.max(500,Math.floor(innerHeight*.7));
+              for(let y=0;y<document.documentElement.scrollHeight;y+=step){
+                scrollTo(0,y);
+                await new Promise(r=>setTimeout(r,90));
+              }
+              scrollTo(0,0);
+            });
+            await page.waitForTimeout(500);
+          };
           (async()=>{
             const browser=await chromium.launch({headless:true});
             const context=await browser.newContext({viewport:{width:1440,height:900},deviceScaleFactor:1});
@@ -45,6 +56,7 @@ jobs:
             assert(await page.locator('section.hero').count()===1,'Hero missing');
             for(const id of ['mobile','offers','services','business','story','updates','support']) assert(await page.locator('#'+id).count()===1,`Missing section #${id}`);
 
+            await loadLazyImages(page);
             const imgs=page.locator('img');
             for(let i=0;i<await imgs.count();i++){
               const ok=await imgs.nth(i).evaluate(el=>el.complete && el.naturalWidth>0);
