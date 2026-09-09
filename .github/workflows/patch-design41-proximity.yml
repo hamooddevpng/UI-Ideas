@@ -18,148 +18,17 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Add Design 10 style proximity field to Design 41
+      - name: Patch and validate Design 41
+        run: python3 scripts/patch_design41_proximity.py
+
+      - name: Commit safely and remove one-time helpers
         shell: bash
         run: |
           set -euo pipefail
-          python3 <<'PY'
-          from pathlib import Path
-
-          p = Path('41.html')
-          s = p.read_text(encoding='utf-8')
-
-          old_css = '[data-react]{--rx:0px;--ry:0px;translate:var(--rx) var(--ry);will-change:translate}'
-          new_css = '[data-react],.proximity-float{--rx:0px;--ry:0px;--px:0px;--py:0px;translate:calc(var(--rx) + var(--px)) calc(var(--ry) + var(--py));will-change:translate}'
-          if old_css not in s:
-              raise SystemExit('Expected Design 41 data-react CSS marker was not found. Refusing to patch.')
-          s = s.replace(old_css, new_css, 1)
-
-          motion_css = '''
-/* Design 10 inspired ambient proximity field. This composes with data-react instead of replacing it. */
-@media(hover:none),(pointer:coarse){.proximity-float{--px:0px!important;--py:0px!important}}
-@media(prefers-reduced-motion:reduce){.proximity-float{--px:0px!important;--py:0px!important}}
-'''
-          if 'Design 10 inspired ambient proximity field' not in s:
-              if '</style>' not in s:
-                  raise SystemExit('Closing style tag not found.')
-              s = s.replace('</style>', motion_css + '</style>', 1)
-
-          marker = "const slides=[...document.querySelectorAll('.hero-slide')]"
-          if marker not in s:
-              raise SystemExit('Carousel JS marker not found. Refusing to patch.')
-
-          proximity_js = r'''
-// Design 10 style global depth field: nearby UI gently drifts with the pointer.
-// It writes only --px/--py, so the existing hover interpolation keeps ownership of --rx/--ry.
-if(fine&&!reduce){
-  const proximityGroups=[
-    ['.brand',-5],
-    ['.nav a',4],
-    ['.header-actions button,.header-actions a',-4],
-    ['.hero-arrow,.hero-dot',4],
-    ['.quick-action',6],
-    ['.offer-feature',-5],
-    ['.offer-card',5],
-    ['.service-row',4],
-    ['.service-photo',-5],
-    ['.segment-tab',4],
-    ['.enterprise-links button',-4],
-    ['.story-main,.story-small',-5],
-    ['.story-step',5],
-    ['.notice-head',3],
-    ['.news-card',-4],
-    ['.command',4],
-    ['.support-panel',-4],
-    ['.footer-col button,.logo-plate',3],
-    ['.help-fab',5]
-  ];
-  const proximityItems=[];
-  proximityGroups.forEach(([selector,baseDepth])=>{
-    document.querySelectorAll(selector).forEach((el,i)=>{
-      if(el.closest('.drawer,.search-overlay'))return;
-      el.classList.add('proximity-float');
-      const depth=baseDepth*(i%2?-.82:1);
-      proximityItems.push({el,depth,phase:(proximityItems.length%9)*.53,x:0,y:0,tx:0,ty:0});
-    });
-  });
-  let proximityTick=0;
-  const proximityFrame=()=>{
-    proximityTick+=.016;
-    const vw=Math.max(1,innerWidth),vh=Math.max(1,innerHeight);
-    proximityItems.forEach(o=>{
-      const r=o.el.getBoundingClientRect();
-      if(r.bottom<-140||r.top>vh+140||r.right<-140||r.left>vw+140){
-        o.tx=0;o.ty=0;
-      }else{
-        const ex=r.left+r.width/2,ey=r.top+r.height/2;
-        const dx=mouseX-ex,dy=mouseY-ey;
-        const radius=Math.max(240,Math.min(430,Math.max(r.width,r.height)*1.25+180));
-        const dist=Math.hypot(dx,dy);
-        const near=Math.max(0,1-dist/radius);
-        const nx=Math.max(-1,Math.min(1,dx/radius));
-        const ny=Math.max(-1,Math.min(1,dy/radius));
-        const d=o.depth;
-        const globalX=((mouseX/vw)-.5)*2*d*.34;
-        const globalY=((mouseY/vh)-.5)*2*d*.24;
-        const localX=nx*Math.abs(d)*.78*near;
-        const localY=ny*Math.abs(d)*.56*near;
-        const direction=d<0?-1:1;
-        const idle=Math.sin(proximityTick*.55+o.phase)*Math.min(.9,Math.abs(d)*.12);
-        o.tx=globalX+localX*direction+idle;
-        o.ty=globalY+localY*direction-idle*.35;
-      }
-      o.x+=(o.tx-o.x)*.045;
-      o.y+=(o.ty-o.y)*.045;
-      o.el.style.setProperty('--px',o.x.toFixed(2)+'px');
-      o.el.style.setProperty('--py',o.y.toFixed(2)+'px');
-    });
-    requestAnimationFrame(proximityFrame);
-  };
-  proximityFrame();
-}
-'''
-          if 'Design 10 style global depth field' in s:
-              raise SystemExit('Proximity field already exists. Refusing duplicate patch.')
-          s = s.replace(marker, proximity_js + marker, 1)
-
-          p.write_text(s, encoding='utf-8')
-          print('Patched 41.html:', p.stat().st_size, 'bytes')
-          PY
-
-      - name: Static validation
-        shell: bash
-        run: |
-          set -euo pipefail
-          grep -q 'Design 10 style global depth field' 41.html
-          grep -q 'proximity-float' 41.html
-          grep -q -- '--px' 41.html
-          grep -q -- '--py' 41.html
-          grep -q "const slides=\[...document.querySelectorAll('.hero-slide')\]" 41.html
-          grep -q 'data-action="recharge"' 41.html
-          grep -q 'data-segment="government"' 41.html
-          grep -q 'data-search-open' 41.html
-          grep -q 'assets/brand/telikom-logo.png' 41.html
-          test "$(grep -o '<script>' 41.html | wc -l)" -eq "$(grep -o '</script>' 41.html | wc -l)"
-          test "$(grep -o '<style>' 41.html | wc -l)" -eq "$(grep -o '</style>' 41.html | wc -l)"
-          python3 - <<'PY'
-          from pathlib import Path
-          import re
-          s=Path('41.html').read_text(encoding='utf-8')
-          scripts=re.findall(r'<script>(.*?)</script>',s,re.S)
-          if not scripts: raise SystemExit('No inline script found')
-          Path('/tmp/design41.js').write_text('\n'.join(scripts),encoding='utf-8')
-          PY
-          node --check /tmp/design41.js
-          echo 'Design 41 proximity patch validation passed.'
-
-      - name: Commit safely and remove one-time workflow
-        shell: bash
-        run: |
-          set -euo pipefail
-          rm -f .github/workflows/patch-design41-proximity.yml
+          rm -f .github/workflows/patch-design41-proximity.yml scripts/patch_design41_proximity.py
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add 41.html .github/workflows/patch-design41-proximity.yml
+          git add 41.html .github/workflows/patch-design41-proximity.yml scripts/patch_design41_proximity.py
           git commit -m 'Add ambient proximity motion to Design 41'
           for attempt in 1 2 3 4 5; do
             git fetch origin main
