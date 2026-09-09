@@ -1,0 +1,28 @@
+name: One-time cleanup accidental test dependencies
+on:
+  push:
+    paths:
+      - '.github/workflows/cleanup-accidental-node-modules.yml'
+permissions:
+  contents: write
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Remove accidental test dependencies
+        run: |
+          git rm -r --ignore-unmatch node_modules
+          rm -f .github/workflows/cleanup-accidental-node-modules.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .github/workflows/cleanup-accidental-node-modules.yml
+          git commit -m 'Remove accidental Playwright dependencies'
+          for try in 1 2 3; do
+            if git push origin HEAD:main; then exit 0; fi
+            git fetch origin main
+            git rebase origin/main
+          done
+          exit 1
