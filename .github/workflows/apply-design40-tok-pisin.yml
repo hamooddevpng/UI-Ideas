@@ -1,0 +1,52 @@
+name: Apply Design 40 Tok Pisin accents
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/apply-design40-tok-pisin.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add subtle Tok Pisin accents
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('40.html')
+          s = p.read_text(encoding='utf-8')
+
+          replacements = {
+            '<nav><a class="active" href="#">Personal</a>': '<nav><span class="tok-greeting">Gude, yu stap</span><a class="active" href="#">Personal</a>',
+            '<span class="kicker">Offers & plans</span>': '<span class="kicker">Offers & plans <b class="tok-accent">· Namba wan</b></span>',
+            '<span class="kicker">PNG / National story</span>': '<span class="kicker">PNG / National story <b class="tok-accent">· Ples bilong yumi</b></span>',
+            '<span class="kicker">Help, support & stores</span>': '<span class="kicker">Helpim · Help, support & stores</span>',
+            '<span>Telikom PNG · Design 40</span>': '<span>Telikom PNG · Design 40 · Lukim yu behain</span>',
+          }
+
+          for old, new in replacements.items():
+              if old not in s:
+                  raise SystemExit(f'Missing expected text: {old}')
+              s = s.replace(old, new, 1)
+
+          style = '''\n/* Subtle Tok Pisin accents, intentionally secondary to the primary English UI. */\n.tok-greeting{font-size:9px;font-weight:800;letter-spacing:.04em;color:#0875c9;white-space:nowrap;margin-right:8px}\n.tok-accent{font:inherit;color:#5f7c8b}\n@media(max-width:600px){.tok-greeting{display:none}}\n'''
+          marker = '</style>'
+          if marker not in s:
+              raise SystemExit('Missing </style>')
+          s = s.replace(marker, style + marker, 1)
+
+          p.write_text(s, encoding='utf-8')
+          PY
+      - name: Commit Design 40 and remove one-time workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          rm .github/workflows/apply-design40-tok-pisin.yml
+          git add -A
+          git commit -m "Add subtle Tok Pisin accents to Design 40"
+          git push
