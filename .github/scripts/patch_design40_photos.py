@@ -1,0 +1,56 @@
+from pathlib import Path
+import re
+
+p = Path("40.html")
+s = p.read_text(encoding="utf-8")
+base = "https://raw.githubusercontent.com/hamooddevpng/UI-Ideas/main/assets/common/png-people/"
+
+css = r'''
+/* Design 40 people-photo refresh: simple, static, human and PNG-led. */
+.plan-grid{gap:20px}.plan-card{padding:0;overflow:hidden;border-radius:14px;min-height:0}.plan-card.featured{border-top:1px solid var(--line)}.plan-photo{display:block;width:100%;height:176px;object-fit:cover}.plan-body{padding:22px 24px 24px;display:flex;flex-direction:column;flex:1}.plan-body .plan-type{margin-bottom:14px}.plan-body ul{margin:auto 0 18px}
+.service-grid{display:grid;grid-template-columns:1.35fr 1fr 1fr;gap:14px;border:0}.service-card{border:1px solid var(--line);border-radius:12px;min-height:150px}.service-feature{grid-row:span 2;min-height:314px;position:relative;overflow:hidden;border-radius:14px;background-size:cover;background-position:center;display:flex;align-items:flex-end;padding:26px;color:#fff}.service-feature:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(8,36,52,.82) 100%)}.service-feature>div{position:relative;z-index:1;max-width:430px}.service-feature small{font-size:9px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#ccecff}.service-feature h3{font-size:27px;line-height:1.05;margin:8px 0}.service-feature p{font-size:11px;line-height:1.55;margin:0 0 14px;color:#e6f2f6}.service-feature a{font-size:10px;font-weight:800;color:#fff;border-bottom:1px solid rgba(255,255,255,.7)}
+.business-pair{gap:20px}.business-card{position:relative;overflow:hidden;border-radius:14px;background-size:cover!important;background-position:center!important;min-height:355px}.business-card:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,32,47,.15),rgba(8,32,47,.88) 78%)}.business-card.government:before{background:linear-gradient(180deg,rgba(0,61,108,.12),rgba(0,61,108,.9) 78%)}.business-card>div{position:relative;z-index:1}.business-card.business{background-image:url("https://raw.githubusercontent.com/hamooddevpng/UI-Ideas/main/assets/common/png-people/young-professionals.jpg")}.business-card.government{background-image:url("https://raw.githubusercontent.com/hamooddevpng/UI-Ideas/main/assets/common/png-people/market-connectivity.jpg")}
+.png-panel{min-height:330px;gap:28px;align-items:stretch}.png-copy{padding:46px 20px 46px 0}.png-art{min-height:330px;background:#dcecf3;border-radius:14px}.png-story-photo{display:block;width:100%;height:100%;min-height:330px;object-fit:cover}.signal{display:none!important}.png-art:before,.png-art:after{display:none!important}
+@media(max-width:900px){.service-grid{grid-template-columns:1fr 1fr}.service-feature{grid-column:1/-1;grid-row:auto;min-height:280px}.business-card{min-height:320px}.png-panel{gap:0}.png-art,.png-story-photo{min-height:280px}}
+@media(max-width:600px){.plan-photo{height:190px}.service-grid{grid-template-columns:1fr}.service-feature{grid-column:auto;min-height:250px}.business-card{min-height:290px}.png-copy{padding:38px 0 28px}.png-art,.png-story-photo{min-height:230px}}
+'''
+
+if "/* Design 40 people-photo refresh:" not in s:
+    s = s.replace("</style>", css + "\n</style>", 1)
+
+offers = f'''<section class="section" id="offers"><div class="wrap"><div class="section-head"><div class="copy"><span class="kicker">Offers & plans</span><h2>Choose the service you need.</h2><p>Simple pathways, grounded in the people and places Telikom connects every day.</p></div><a class="text-link" href="#">View all offers →</a></div><div class="plan-grid">
+  <article class="plan-card featured"><img class="plan-photo" src="{base}young-professionals.jpg" alt="Young people in Papua New Guinea using connected devices" loading="lazy" decoding="async"><div class="plan-body"><div class="plan-type">M</div><h3>Mobile</h3><p>Prepaid, postpaid, data and SIM options for everyday connection.</p><ul><li>Prepaid & postpaid</li><li>Data options</li><li>SIM services</li></ul><a href="#">Explore mobile →</a></div></article>
+  <article class="plan-card"><img class="plan-photo" src="{base}family-digital.jpg" alt="A Papua New Guinea family enjoying digital connectivity at home" loading="lazy" decoding="async"><div class="plan-body"><div class="plan-type">H</div><h3>Home Internet</h3><p>Start with availability, then find the internet pathway for your home.</p><ul><li>Check availability</li><li>Internet options</li><li>Installation support</li></ul><a href="#">Explore internet →</a></div></article>
+  <article class="plan-card"><img class="plan-photo" src="{base}market-connectivity.jpg" alt="People using mobile connectivity at a Papua New Guinea market" loading="lazy" decoding="async"><div class="plan-body"><div class="plan-type">R</div><h3>Regional & Remote</h3><p>Connectivity pathways for communities and businesses beyond the usual reach.</p><ul><li>Regional enquiries</li><li>Remote connectivity</li><li>Specialist support</li></ul><a href="#">Explore connectivity →</a></div></article>
+</div></div></section>'''
+
+services = f'''<section class="section soft" id="services"><div class="wrap"><div class="section-head"><div class="copy"><span class="kicker">Service categories</span><h2>Everything in one place.</h2><p>A familiar directory, with a little more life and a clearer sense of who the network is for.</p></div></div><div class="service-grid">
+  <article class="service-feature" style="background-image:url('{base}community-harbour.jpg')"><div><small>Connected life in PNG</small><h3>One network, many everyday moments.</h3><p>From staying in touch to working, learning and running a business, connectivity supports daily life across Papua New Guinea.</p><a href="#story">Our PNG story →</a></div></article>
+  <article class="service-card"><div class="service-icon">●</div><h3>Mobile</h3><p>Prepaid, postpaid, data and SIM services.</p><a href="#">Explore →</a></article>
+  <article class="service-card"><div class="service-icon">⌂</div><h3>Home Internet</h3><p>Plans, availability, installation and support.</p><a href="#">Explore →</a></article>
+  <article class="service-card"><div class="service-icon">▣</div><h3>Devices & Routers</h3><p>Equipment that supports your connection.</p><a href="#">Explore →</a></article>
+  <article class="service-card"><div class="service-icon">↔</div><h3>Enterprise Connectivity</h3><p>Connectivity pathways for larger organisations.</p><a href="#business">Explore →</a></article>
+  <article class="service-card"><div class="service-icon">⌖</div><h3>Coverage & Stores</h3><p>Check service access and find Telikom locations.</p><a href="#">Explore →</a></article>
+  <article class="service-card"><div class="service-icon">?</div><h3>Support Services</h3><p>Help, troubleshooting, contact and self service.</p><a href="#support">Get help →</a></article>
+</div></div></section>'''
+
+business = '''<section class="business-section" id="business"><div class="wrap"><div class="section-head"><div class="copy"><span class="kicker">Business & Government</span><h2>Direct pathways for organisations.</h2></div></div><div class="business-pair">
+  <article class="business-card business"><div><small>For business</small><h2>Connect your organisation.</h2><p>Business internet, managed connectivity, voice and regional solutions through one clear entry point.</p></div><div class="business-links"><a href="#">Business Internet</a><a href="#">Managed Connectivity</a><a href="#">Talk to Telikom</a></div></article>
+  <article class="business-card government"><div><small>For government</small><h2>National services need reliable connection.</h2><p>A dedicated route for government connectivity, regional services and specialist enquiries.</p></div><div class="business-links"><a href="#">Government Solutions</a><a href="#">Regional Services</a><a href="#">Make an Enquiry</a></div></article>
+</div></div></section>'''
+
+story = f'''<section class="png-strip" id="story"><div class="wrap png-panel"><div class="png-copy"><span class="kicker">PNG / National story</span><h2>Connecting people and places across Papua New Guinea.</h2><p>Telikom is part of everyday life across PNG, helping families, communities, young people and organisations stay connected wherever they are.</p><div class="png-links"><a href="#">About Telikom →</a><a href="#">Our Network →</a><a href="#">Community →</a></div></div><div class="png-art"><img class="png-story-photo" src="{base}community-harbour.jpg" alt="People in Papua New Guinea staying connected in an urban waterfront setting" loading="lazy" decoding="async"></div></div></section>'''
+
+s, n1 = re.subn(r'<section class="section" id="offers">.*?</section>\n<section class="section soft" id="services">', offers + '\n<section class="section soft" id="services">', s, count=1, flags=re.S)
+s, n2 = re.subn(r'<section class="section soft" id="services">.*?</section>\n<section class="business-section" id="business">', services + '\n<section class="business-section" id="business">', s, count=1, flags=re.S)
+s, n3 = re.subn(r'<section class="business-section" id="business">.*?</section>\n<section class="png-strip" id="story">', business + '\n<section class="png-strip" id="story">', s, count=1, flags=re.S)
+s, n4 = re.subn(r'<section class="png-strip" id="story">.*?</section>\n<section class="section" id="updates">', story + '\n<section class="section" id="updates">', s, count=1, flags=re.S)
+
+if (n1, n2, n3, n4) != (1, 1, 1, 1):
+    raise SystemExit(f"Section replacement counts were {(n1, n2, n3, n4)}")
+
+for name in ("community-harbour.jpg", "family-digital.jpg", "market-connectivity.jpg", "young-professionals.jpg"):
+    if name not in s:
+        raise SystemExit(f"Missing image reference: {name}")
+
+p.write_text(s, encoding="utf-8")
