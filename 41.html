@@ -158,6 +158,24 @@ footer{background:var(--ink);color:white;padding:75px 0 28px;overflow:hidden}.fo
 .offer-card[data-plan="remote"] .thumb img{object-position:center 32%}
 .enterprise-media img{object-position:center 36%}
 .story-main img{object-position:center 42%}
+
+/* D40-D41 CRAZY ENHANCEMENTS */
+
+/* D40-D41 CRAZY ENHANCEMENTS */
+#offers .offer-deck{perspective:1200px;transform-style:preserve-3d}
+#offers .offer-feature,#offers .offer-card{transform-style:preserve-3d;will-change:transform;transform:perspective(950px) rotateX(var(--offer-rx,0deg)) rotateY(var(--offer-ry,0deg)) translate3d(var(--offer-tx,0px),var(--offer-ty,0px),var(--offer-z,0px));transition:transform .24s ease-out,box-shadow .55s var(--ease),filter .55s,opacity .55s}
+#offers .offer-deck.offer-focus .offer-feature:not(.offer-active),#offers .offer-deck.offer-focus .offer-card:not(.offer-active){filter:saturate(.72) brightness(.95);opacity:.72}
+#offers .offer-feature.offer-active,#offers .offer-card.offer-active{--offer-z:34px;box-shadow:0 35px 80px rgba(8,45,70,.18)}
+.service-photo{position:relative;overflow:hidden;transform-style:preserve-3d;transform:perspective(950px) rotateX(var(--service-rx,0deg)) rotateY(var(--service-ry,0deg));transition:transform .22s ease-out,box-shadow .55s var(--ease);box-shadow:0 24px 55px rgba(8,45,70,.1)}
+.service-photo:after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(210px circle at var(--service-x,50%) var(--service-y,50%),rgba(156,232,255,.28),transparent 65%);mix-blend-mode:screen;opacity:.25;transition:opacity .3s}.service-photo:hover:after{opacity:.72}.service-photo img{transform:scale(1.03) translate3d(var(--service-img-x,0px),var(--service-img-y,0px),0);transition:transform .25s ease-out,filter 1.2s var(--ease)}
+.signal .data-packet{fill:#fff;filter:drop-shadow(0 0 8px #77d9ff);opacity:.96}.signal .data-packet.green{fill:#baf2cd;filter:drop-shadow(0 0 8px #75d09a)}
+.story-main,.story-small,.story-badge{will-change:transform;transition:transform .28s ease-out,filter .55s var(--ease)}
+.story-collage.story-shuffle .story-main{animation:d41MainShuffle .72s cubic-bezier(.16,1,.3,1)}.story-collage.story-shuffle .story-small{animation:d41SmallShuffle .72s .05s cubic-bezier(.16,1,.3,1)}.story-collage.story-shuffle .story-badge{animation:d41BadgeShuffle .72s .08s cubic-bezier(.16,1,.3,1)}
+@keyframes d41MainShuffle{0%{transform:translate3d(var(--story-main-x,0px),var(--story-main-y,0px),0) rotate(0)}42%{transform:translate3d(calc(var(--story-main-x,0px) - 26px),calc(var(--story-main-y,0px) + 12px),0) rotate(-2.2deg) scale(.975)}100%{transform:translate3d(var(--story-main-x,0px),var(--story-main-y,0px),0) rotate(0)}}
+@keyframes d41SmallShuffle{0%{transform:translate3d(var(--story-small-x,0px),var(--story-small-y,0px),0) rotate(0)}45%{transform:translate3d(calc(var(--story-small-x,0px) + 28px),calc(var(--story-small-y,0px) - 16px),0) rotate(3.1deg) scale(1.035)}100%{transform:translate3d(var(--story-small-x,0px),var(--story-small-y,0px),0) rotate(0)}}
+@keyframes d41BadgeShuffle{50%{transform:translate3d(calc(var(--story-badge-x,0px) - 10px),calc(var(--story-badge-y,0px) - 18px),0) rotate(-8deg) scale(1.08)}}
+@media(prefers-reduced-motion:reduce){#offers .offer-feature,#offers .offer-card,.service-photo,.story-main,.story-small,.story-badge{transform:none!important}.story-collage.story-shuffle>*{animation:none!important}}
+
 </style>
 </head>
 <body>
@@ -293,6 +311,41 @@ const story=[["Telikom's story is people, communities, cities, coastlines and hi
 const news={community:['NEWS / COMMUNITY','Connection is about people first.'],reach:['NEWS / NATIONAL REACH','Across PNG\'s changing landscape.']};qa('[data-news]').forEach(b=>b.onclick=()=>{const n=news[b.dataset.news];openDrawer('support');kicker.textContent=n[0];content.innerHTML='<h3>'+n[1]+'</h3><p>Prototype editorial detail opens without leaving the homepage flow.</p>'});qa('[data-target]').forEach(b=>b.onclick=()=>q('#'+b.dataset.target)?.scrollIntoView({behavior:reduce?'auto':'smooth'}));
 const overlay=q('.search-overlay'),input=q('#siteSearch'),results=q('#searchResults'),items=[['Recharge','Top up mobile','recharge'],['Self Care','Manage account','selfcare'],['Coverage','Check service area','coverage'],['Home Internet','Availability and setup','internet'],['Business','Organisation connectivity','business'],['Support','Technical help','support'],['Find a Store','Locate Telikom','store']];const render=v=>{results.innerHTML=items.filter(x=>(x[0]+' '+x[1]).toLowerCase().includes(v.toLowerCase())).map((x,i)=>'<button class="search-result" data-key="'+x[2]+'"><strong>'+x[0]+'</strong><small>'+x[1]+'</small></button>').join('');qa('.search-result').forEach(b=>b.onclick=()=>{closeSearch();openDrawer(b.dataset.key)})};const openSearch=()=>{overlay.classList.add('open');scrim.classList.add('open');render('');setTimeout(()=>input.focus(),80)};function closeSearch(){overlay.classList.remove('open');if(!drawer.classList.contains('open'))scrim.classList.remove('open')}qa('[data-search-open]').forEach(b=>b.onclick=openSearch);q('[data-search-close]').onclick=closeSearch;input.oninput=()=>render(input.value);addEventListener('keydown',e=>{if(e.key==='Escape'){close();closeSearch()}if(e.key==='/'&&!['INPUT','SELECT','TEXTAREA'].includes(document.activeElement.tagName)){e.preventDefault();openSearch()}});
 })();
+
+
+(()=>{
+  const fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const deck=document.querySelector('#offers .offer-deck');
+  if(deck&&fine){
+    const cards=[...deck.querySelectorAll('.offer-feature,.offer-card')];
+    cards.forEach(card=>{
+      card.addEventListener('pointerenter',()=>{deck.classList.add('offer-focus');cards.forEach(x=>x.classList.toggle('offer-active',x===card));});
+      card.addEventListener('pointermove',e=>{const r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;card.style.setProperty('--offer-rx',((.5-y)*5).toFixed(2)+'deg');card.style.setProperty('--offer-ry',((x-.5)*6).toFixed(2)+'deg');card.style.setProperty('--offer-tx',((x-.5)*7).toFixed(2)+'px');card.style.setProperty('--offer-ty',((y-.5)*5).toFixed(2)+'px');});
+      card.addEventListener('pointerleave',()=>{card.style.setProperty('--offer-rx','0deg');card.style.setProperty('--offer-ry','0deg');card.style.setProperty('--offer-tx','0px');card.style.setProperty('--offer-ty','0px');});
+    });
+    deck.addEventListener('pointerleave',()=>{deck.classList.remove('offer-focus');cards.forEach(x=>x.classList.remove('offer-active'));});
+  }
+  const servicePhoto=document.querySelector('.service-photo');
+  if(servicePhoto&&fine){
+    servicePhoto.addEventListener('pointermove',e=>{const r=servicePhoto.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;servicePhoto.style.setProperty('--service-x',(x*100).toFixed(1)+'%');servicePhoto.style.setProperty('--service-y',(y*100).toFixed(1)+'%');servicePhoto.style.setProperty('--service-rx',((.5-y)*5).toFixed(2)+'deg');servicePhoto.style.setProperty('--service-ry',((x-.5)*6).toFixed(2)+'deg');servicePhoto.style.setProperty('--service-img-x',((x-.5)*-9).toFixed(2)+'px');servicePhoto.style.setProperty('--service-img-y',((y-.5)*-7).toFixed(2)+'px');});
+    servicePhoto.addEventListener('pointerleave',()=>['--service-rx','--service-ry'].forEach(v=>servicePhoto.style.setProperty(v,'0deg')));
+  }
+  const signal=document.querySelector('.enterprise-media .signal svg');
+  if(signal&&!reduce){
+    const paths=[...signal.querySelectorAll('path')];
+    const NS='http://www.w3.org/2000/svg';
+    paths.forEach((path,pi)=>{
+      [0,.48].forEach((offset,oi)=>{const c=document.createElementNS(NS,'circle');c.setAttribute('r',oi?'3.2':'4.6');c.setAttribute('class','data-packet'+(pi===1?' green':''));signal.appendChild(c);const len=path.getTotalLength(),speed=pi===0?6800:7600,start=performance.now()+offset*speed;const tick=now=>{const t=((now-start)%speed+speed)%speed/speed,p=path.getPointAtLength(t*len);c.setAttribute('cx',p.x);c.setAttribute('cy',p.y);requestAnimationFrame(tick)};requestAnimationFrame(tick);});
+    });
+  }
+  const collage=document.querySelector('.story-collage');
+  if(collage){
+    if(fine)collage.addEventListener('pointermove',e=>{const r=collage.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;collage.style.setProperty('--story-main-x',(x*12).toFixed(2)+'px');collage.style.setProperty('--story-main-y',(y*9).toFixed(2)+'px');collage.style.setProperty('--story-small-x',(x*-18).toFixed(2)+'px');collage.style.setProperty('--story-small-y',(y*-13).toFixed(2)+'px');collage.style.setProperty('--story-badge-x',(x*22).toFixed(2)+'px');collage.style.setProperty('--story-badge-y',(y*18).toFixed(2)+'px');const main=collage.querySelector('.story-main'),small=collage.querySelector('.story-small'),badge=collage.querySelector('.story-badge');if(main)main.style.transform=`translate3d(${(x*12).toFixed(2)}px,${(y*9).toFixed(2)}px,0)`;if(small)small.style.transform=`translate3d(${(x*-18).toFixed(2)}px,${(y*-13).toFixed(2)}px,0)`;if(badge)badge.style.transform=`translate3d(${(x*22).toFixed(2)}px,${(y*18).toFixed(2)}px,0) rotate(${(x*3).toFixed(2)}deg)`;});
+    document.querySelectorAll('.story-step').forEach(btn=>btn.addEventListener('click',()=>{collage.classList.remove('story-shuffle');void collage.offsetWidth;collage.classList.add('story-shuffle');setTimeout(()=>collage.classList.remove('story-shuffle'),820);}));
+  }
+})();
+
 </script>
 </body>
 </html>
