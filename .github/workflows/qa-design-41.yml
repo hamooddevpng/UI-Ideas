@@ -1,0 +1,123 @@
+name: QA Design 41
+
+on:
+  push:
+    paths:
+      - '41.html'
+      - 'design_41.md'
+      - '.github/workflows/qa-design-41.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install Playwright
+        run: |
+          npm install --no-save playwright
+          npx playwright install chromium
+      - name: Start server
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/design41-http.log 2>&1 &
+          sleep 1
+      - name: Browser QA
+        run: |
+          node <<'EOF'
+          const { chromium } = require('playwright');
+          const assert = (ok,msg) => { if(!ok) throw new Error(msg); };
+          (async()=>{
+            const browser=await chromium.launch({headless:true});
+            const context=await browser.newContext({viewport:{width:1440,height:900},deviceScaleFactor:1});
+            const page=await context.newPage();
+            const errors=[];
+            page.on('pageerror',e=>errors.push(e.message));
+            await page.goto('http://127.0.0.1:4173/41.html',{waitUntil:'networkidle',timeout:30000});
+            await page.waitForTimeout(1000);
+
+            assert((await page.title()).includes('Design 41'),'Wrong page title');
+            assert(await page.locator('section.hero').count()===1,'Hero missing');
+            for(const id of ['mobile','offers','services','business','story','updates','support']) assert(await page.locator('#'+id).count()===1,`Missing section #${id}`);
+
+            const imgs=page.locator('img');
+            for(let i=0;i<await imgs.count();i++){
+              const ok=await imgs.nth(i).evaluate(el=>el.complete && el.naturalWidth>0);
+              assert(ok,`Broken image at index ${i}: ${await imgs.nth(i).getAttribute('src')}`);
+            }
+
+            const beforeA=await page.locator('.hero-copy').boundingBox();
+            const beforeB=await page.locator('.hero-stage').boundingBox();
+            await page.mouse.move(90,450); await page.waitForTimeout(450);
+            const leftA=await page.locator('.hero-copy').boundingBox();
+            const leftB=await page.locator('.hero-stage').boundingBox();
+            await page.mouse.move(1350,450); await page.waitForTimeout(700);
+            const rightA=await page.locator('.hero-copy').boundingBox();
+            const rightB=await page.locator('.hero-stage').boundingBox();
+            assert(Math.abs(rightA.x-leftA.x)>2,'Hero copy depth movement not visibly changing position');
+            assert(Math.abs(rightB.x-leftB.x)>2,'Hero stage depth movement not visibly changing position');
+            assert(Math.sign(rightA.x-leftA.x)!==Math.sign(rightB.x-leftB.x),'Hero layers are not separating at different depths');
+
+            await page.locator('#searchOpen').click();
+            assert(await page.locator('#searchOverlay').evaluate(el=>el.classList.contains('open')),'Search did not open');
+            await page.keyboard.press('Escape');
+            assert(!(await page.locator('#searchOverlay').evaluate(el=>el.classList.contains('open'))),'Escape did not close search');
+
+            await page.getByRole('button',{name:'Recharge',exact:true}).first().click();
+            assert(await page.locator('#actionOverlay').evaluate(el=>el.classList.contains('open')),'Quick Action did not open');
+            await page.keyboard.press('Escape');
+
+            await page.locator('.service-tab[data-service="home"]').click();
+            assert((await page.locator('#serviceTitle').textContent()).includes('Home internet'),'Service switching failed');
+
+            await page.locator('[data-mode="government"]').click();
+            assert((await page.locator('#enterpriseTitle').textContent()).includes('public services'),'Business/Government switching failed');
+
+            await page.locator('.notice-btn').first().click();
+            assert(await page.locator('.notice-item').first().evaluate(el=>el.classList.contains('open')),'Notice accordion failed');
+
+            const overflow=await page.evaluate(()=>document.documentElement.scrollWidth-window.innerWidth);
+            assert(overflow<=2,`Desktop horizontal overflow: ${overflow}px`);
+            assert(errors.length===0,'Page JS errors: '+errors.join(' | '));
+            await page.close();
+
+            const page2=await context.newPage();
+            await page2.setViewportSize({width:1366,height:768});
+            const errors2=[]; page2.on('pageerror',e=>errors2.push(e.message));
+            await page2.goto('http://127.0.0.1:4173/41.html',{waitUntil:'networkidle',timeout:30000});
+            await page2.waitForTimeout(700);
+            const overflow2=await page2.evaluate(()=>document.documentElement.scrollWidth-window.innerWidth);
+            assert(overflow2<=2,`1366 horizontal overflow: ${overflow2}px`);
+            assert(errors2.length===0,'1366 JS errors: '+errors2.join(' | '));
+            await page2.close();
+
+            const mobile=await browser.newPage({viewport:{width:390,height:844}});
+            const mobileErrors=[]; mobile.on('pageerror',e=>mobileErrors.push(e.message));
+            await mobile.goto('http://127.0.0.1:4173/41.html',{waitUntil:'networkidle',timeout:30000});
+            await mobile.waitForTimeout(700);
+            await mobile.locator('#menuOpen').click();
+            assert(await mobile.locator('#mobileNav').evaluate(el=>el.classList.contains('open')),'Mobile menu did not open');
+            await mobile.keyboard.press('Escape');
+            assert(!(await mobile.locator('#mobileNav').evaluate(el=>el.classList.contains('open'))),'Escape did not close mobile menu');
+            const mobileOverflow=await mobile.evaluate(()=>document.documentElement.scrollWidth-window.innerWidth);
+            assert(mobileOverflow<=2,`Mobile horizontal overflow: ${mobileOverflow}px`);
+            assert(mobileErrors.length===0,'Mobile JS errors: '+mobileErrors.join(' | '));
+            await mobile.close();
+
+            const reduced=await browser.newContext({viewport:{width:1440,height:900},reducedMotion:'reduce'});
+            const reducedPage=await reduced.newPage();
+            await reducedPage.goto('http://127.0.0.1:4173/41.html',{waitUntil:'networkidle',timeout:30000});
+            const revealOpacity=await reducedPage.locator('.reveal').first().evaluate(el=>getComputedStyle(el).opacity);
+            assert(revealOpacity==='1','Reduced motion leaves content hidden');
+            await reduced.close();
+
+            await context.close();
+            await browser.close();
+            console.log('Design 41 browser QA passed');
+          })().catch(e=>{console.error(e);process.exit(1)});
+          EOF
