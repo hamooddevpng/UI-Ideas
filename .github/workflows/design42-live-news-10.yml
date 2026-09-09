@@ -40,3 +40,4 @@ jobs:
             git rebase origin/main
           done
           exit 1
+# retry after verification text fix
