@@ -1,0 +1,119 @@
+name: One-time Design 42 map-free cleanup
+on:
+  push:
+    paths:
+      - '.github/workflows/design42-map-free.yml'
+permissions:
+  contents: write
+jobs:
+  update-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Remove map visuals and refresh Self Care background
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          p=Path('42.html')
+          s=p.read_text()
+
+          old='''<div class="scene scene-phone active"><img class="hero-atmos hero-people" src="assets/design42/png-people.jpg" alt="" aria-hidden="true"></div>'''
+          new='''<div class="scene scene-phone active"><img class="hero-atmos hero-people" src="https://images.unsplash.com/photo-1728957467648-ad5e95eafa1e?auto=format&fit=crop&w=1900&q=84" alt="" aria-hidden="true"></div>'''
+          if old not in s: raise SystemExit('Self Care hero image target missing')
+          s=s.replace(old,new,1)
+
+          old='''<div class="scene scene-enterprise"><img class="hero-atmos hero-map" src="assets/design42/png-admin1-simplemaps.svg" alt="" aria-hidden="true"></div>'''
+          new='''<div class="scene scene-enterprise"><div class="enterprise-atmos" aria-hidden="true"></div></div>'''
+          if old not in s: raise SystemExit('hero map target missing')
+          s=s.replace(old,new,1)
+
+          old='''<img class="business-png-map" src="assets/design42/png-admin1-simplemaps.svg" alt="" aria-hidden="true">'''
+          if old not in s: raise SystemExit('business map target missing')
+          s=s.replace(old,'',1)
+
+          s=s.replace('aria-label="Illustrative Papua New Guinea enterprise service routes"','aria-label="Illustrative enterprise service routes"',1)
+          s=s.replace('<h2 class="title">Enterprise<br>routes across PNG.</h2>','<h2 class="title">Enterprise<br>connectivity for PNG.</h2>',1)
+
+          replacements={
+            '<b>PORT MORESBY</b>':'<b>CORE HUB</b>',
+            '<b>LAE</b>':'<b>BUSINESS SITE</b>',
+            '<b>HIGHLANDS</b>':'<b>SERVICE EDGE</b>',
+            '<b>VOICE NODE</b>':'<b>VOICE SERVICE</b>',
+            '<div class="png-beacon pb1" style="--bx:55%;--by:75%;--bd:.05s"><i></i><span>PORT MORESBY</span><small>MOBILE</small></div>':'<div class="png-beacon pb1" style="--bx:55%;--by:75%;--bd:.05s"><i></i><span>MOBILE NETWORK</span><small>EVERYDAY CONNECTIVITY</small></div>',
+            '<div class="png-beacon pb2" style="--bx:69%;--by:61%;--bd:.22s"><i></i><span>LAE</span><small>FIXED</small></div>':'<div class="png-beacon pb2" style="--bx:69%;--by:61%;--bd:.22s"><i></i><span>FIXED BROADBAND</span><small>HOMES &amp; OFFICES</small></div>',
+            '<div class="png-beacon pb3" style="--bx:82%;--by:44%;--bd:.39s"><i></i><span>HIGHLANDS</span><small>BUSINESS</small></div>':'<div class="png-beacon pb3" style="--bx:82%;--by:44%;--bd:.39s"><i></i><span>BUSINESS SERVICES</span><small>ENTERPRISE</small></div>',
+            '<div class="png-beacon pb4" style="--bx:91%;--by:27%;--bd:.56s"><i></i><span>REMOTE SITE</span><small>VSAT</small></div>':'<div class="png-beacon pb4" style="--bx:91%;--by:27%;--bd:.56s"><i></i><span>REMOTE CONNECTIVITY</span><small>VSAT</small></div>',
+          }
+          for old,new in replacements.items():
+            if old not in s: raise SystemExit('label target missing: '+old[:70])
+            s=s.replace(old,new,1)
+
+          # Any remaining Design 42 map image references become safe non-map imagery.
+          s=s.replace('assets/design42/png-admin1-simplemaps.svg','assets/common/web-sourced/telikom/business-data.jpg')
+          s=s.replace('assets/design42/png-map.svg','assets/common/web-sourced/telikom/business-data.jpg')
+          s=s.replace("media:'map'","media:'business'")
+
+          css='''\n/* Design 42: map-free visual pass */\n.scene-phone .hero-people{opacity:.23;object-position:72% 46%;filter:saturate(.78) contrast(1.08) brightness(.68)}\n.enterprise-atmos{position:absolute;inset:0;overflow:hidden;opacity:.72;background:radial-gradient(circle at 78% 46%,rgba(99,211,255,.2) 0 2px,transparent 3px),radial-gradient(circle at 66% 30%,rgba(99,211,255,.12) 0 3px,transparent 4px),radial-gradient(circle at 88% 68%,rgba(99,211,255,.16) 0 3px,transparent 4px),linear-gradient(90deg,transparent 48%,rgba(56,166,216,.035) 49%,rgba(56,166,216,.035) 50%,transparent 51%),linear-gradient(0deg,transparent 48%,rgba(56,166,216,.035) 49%,rgba(56,166,216,.035) 50%,transparent 51%);background-size:auto,auto,auto,54px 54px,54px 54px;mask-image:linear-gradient(90deg,transparent 25%,#000 58%,#000 100%)}\n.enterprise-atmos:before,.enterprise-atmos:after{content:"";position:absolute;border:1px solid rgba(103,210,255,.13);border-radius:50%;right:7%;top:14%;width:430px;height:430px;box-shadow:0 0 0 74px rgba(93,196,239,.025),0 0 0 148px rgba(93,196,239,.018)}\n.enterprise-atmos:after{right:20%;top:31%;width:170px;height:170px;border-style:dashed;box-shadow:none;animation:spin 28s linear infinite}\n.business-map-stage{background:radial-gradient(circle at 64% 42%,rgba(61,184,235,.09),transparent 25%),linear-gradient(145deg,rgba(6,31,44,.28),rgba(2,18,27,.05))}\n.business-map-stage:after{content:"";position:absolute;right:-95px;top:-145px;width:410px;height:410px;border:1px solid rgba(104,208,250,.08);border-radius:50%;box-shadow:0 0 0 70px rgba(104,208,250,.025),0 0 0 140px rgba(104,208,250,.018);pointer-events:none}\n.business-route-svg{z-index:2}.business-endpoint{z-index:3}.business-grid-plane{opacity:.9}\n@media(max-width:820px){.scene-phone .hero-people{opacity:.18;object-position:64% 44%}.enterprise-atmos:before{right:-26%;top:21%;width:330px;height:330px}.business-map-stage:after{opacity:.55}}\n'''
+          if '/* Design 42: map-free visual pass */' in s: raise SystemExit('map-free pass already present')
+          s=s.replace('</style>',css+'</style>',1)
+
+          # Guardrail: no map asset references or geographic map UI should remain.
+          forbidden=['png-admin1-simplemaps.svg','png-map.svg','class="business-png-map"','class="hero-atmos hero-map"']
+          for token in forbidden:
+            if token in s: raise SystemExit('forbidden map reference remains: '+token)
+
+          p.write_text(s)
+          PY
+      - name: JavaScript syntax check
+        run: |
+          python3 - <<'PY'
+          import re,pathlib
+          s=pathlib.Path('42.html').read_text()
+          pathlib.Path('/tmp/42.js').write_text('\n'.join(re.findall(r'<script>(.*?)</script>',s,re.S)))
+          PY
+          node --check /tmp/42.js
+      - name: Browser smoke test
+        run: |
+          npm install --no-save playwright-core@1.55.0 >/dev/null 2>&1
+          python3 -m http.server 8000 >/tmp/42-mapfree-http.log 2>&1 &
+          node - <<'JS'
+          const {chromium}=require('playwright-core');
+          (async()=>{
+            const browser=await chromium.launch({headless:true,executablePath:'/usr/bin/google-chrome',args:['--no-sandbox']});
+            const page=await browser.newPage({viewport:{width:1440,height:900}});
+            const errors=[]; page.on('pageerror',e=>errors.push(String(e)));
+            await page.goto('http://127.0.0.1:8000/42.html',{waitUntil:'domcontentloaded'});
+            await page.waitForTimeout(700);
+            const heroSrc=await page.locator('.scene-phone .hero-people').getAttribute('src');
+            if(!heroSrc||!heroSrc.includes('photo-1728957467648')) throw new Error('Self Care background was not updated: '+heroSrc);
+            if(await page.locator('img[src*="simplemaps"],img[src*="png-map.svg"],.business-png-map,.hero-map').count()) throw new Error('Map visual still present in DOM');
+            const businessText=await page.locator('#business').innerText();
+            for(const place of ['PORT MORESBY','LAE','HIGHLANDS']) if(businessText.includes(place)) throw new Error('Geographic endpoint remains: '+place);
+            await page.locator('#business').scrollIntoViewIfNeeded();
+            await page.locator('[data-business-route="3"]').click();
+            await page.waitForTimeout(300);
+            const route=await page.locator('#businessConsole').getAttribute('data-route');
+            if(route!=='3') throw new Error('Business topology interaction regression: '+route);
+            const storyText=await page.locator('#png-story').innerText();
+            if(storyText.includes('PORT MORESBY')||storyText.includes('LAE')) throw new Error('Geographic story labels remain');
+            if(errors.length) throw new Error('Page errors: '+errors.join(' | '));
+            console.log('Map-free Design 42 smoke test passed');
+            console.log('Self Care background:',heroSrc);
+            console.log('Business route:',route);
+            await browser.close();
+          })().catch(e=>{console.error(e);process.exit(1)});
+          JS
+      - name: Commit verified cleanup
+        run: |
+          rm -f .github/workflows/design42-map-free.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add 42.html .github/workflows/design42-map-free.yml
+          git commit -m 'Remove map visuals from Design 42 and refresh Self Care hero'
+          for try in 1 2 3; do
+            if git push origin HEAD:main; then exit 0; fi
+            git fetch origin main
+            git rebase origin/main
+          done
+          exit 1
