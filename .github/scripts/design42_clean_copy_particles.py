@@ -18,7 +18,7 @@ for old,new in repls.items():
     s=s.replace(old,new,1)
 
 old_img='src="assets/common/web-sourced/telikom/mt-kegum.jpg" alt="Papua New Guinea landscape"'
-new_img='src="https://commons.wikimedia.org/wiki/Special:Redirect/file/ISS034-E-5507_-_View_of_Papua_New_Guinea.jpg?width=2400" alt="Aerial view of the Louisiade Archipelago and coral reefs in Papua New Guinea"'
+new_img='src="https://assets.science.nasa.gov/dynamicimage/assets/science/esd/eo/images/imagerecords/3000/3073/louisiade_tmo_2002254_lrg.jpg?crop=faces%2Cfocalpoint&amp;fit=clip&amp;h=1500&amp;w=2000" alt="Aerial view of the Louisiade Archipelago and coral reefs in Papua New Guinea"'
 if old_img not in s:
     raise SystemExit('PNG story image target missing')
 s=s.replace(old_img,new_img,1)
