@@ -1,0 +1,46 @@
+name: One-time Design 42 remaining section interactions
+on:
+  push:
+    paths:
+      - '.github/workflows/design42-pending-crazy.yml'
+permissions:
+  contents: write
+jobs:
+  refine-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply Design 42 pending section enhancements
+        run: |
+          python3 .github/scripts/design42_pending_sections.py
+          python3 .github/scripts/design42_pending_unitfix.py
+      - name: Verify Designs 40 and 41 stay reverted
+        run: |
+          if grep -q 'D40-D41 CRAZY ENHANCEMENTS' 40.html; then exit 1; fi
+          if grep -q 'D40-D41 CRAZY ENHANCEMENTS' 41.html; then exit 1; fi
+      - name: Syntax check JavaScript
+        run: |
+          python3 - <<'PY'
+          import re,pathlib
+          s=pathlib.Path('42.html').read_text()
+          pathlib.Path('/tmp/42.js').write_text('\n'.join(re.findall(r'<script>(.*?)</script>',s,re.S)))
+          PY
+          node --check /tmp/42.js
+      - name: Browser verification
+        run: |
+          npm install --no-save playwright-core@1.55.0 >/dev/null 2>&1
+          python3 -m http.server 8000 >/tmp/42-http.log 2>&1 &
+          node .github/scripts/verify42_pending_sections.js
+      - name: Commit verified Design 42 changes
+        run: |
+          rm -f .github/workflows/design42-pending-crazy.yml .github/scripts/design42_pending_sections.py .github/scripts/design42_pending_unitfix.py .github/scripts/verify42_pending_sections.js
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add 42.html .github/workflows/design42-pending-crazy.yml .github/scripts/design42_pending_sections.py .github/scripts/design42_pending_unitfix.py .github/scripts/verify42_pending_sections.js
+          git commit -m 'Animate remaining Design 42 PNG updates and support sections'
+          for try in 1 2 3; do
+            if git push origin HEAD:main; then exit 0; fi
+            git fetch origin main
+            git rebase origin/main
+          done
+          exit 1
