@@ -1,0 +1,42 @@
+name: One-time Design 40 and 41 interaction enhancement
+on:
+  push:
+    paths:
+      - '.github/workflows/enhance-design40-41.yml'
+permissions:
+  contents: write
+jobs:
+  enhance-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply enhancements
+        run: python3 .github/scripts/enhance40_41.py
+      - name: Syntax check JavaScript
+        run: |
+          python3 - <<'PY'
+          import re,pathlib
+          for f in ['40.html','41.html']:
+              s=pathlib.Path(f).read_text()
+              pathlib.Path('/tmp/'+f+'.js').write_text('\n'.join(re.findall(r'<script>(.*?)</script>',s,re.S)))
+          PY
+          node --check /tmp/40.html.js
+          node --check /tmp/41.html.js
+      - name: Browser verification
+        run: |
+          npm install --no-save playwright-core@1.55.0 >/dev/null 2>&1
+          python3 -m http.server 8000 >/tmp/ui-http.log 2>&1 &
+          node .github/scripts/verify40_41_enhancements.js
+      - name: Commit verified enhancements
+        run: |
+          rm -f .github/workflows/enhance-design40-41.yml .github/scripts/enhance40_41.py .github/scripts/verify40_41_enhancements.js
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add 40.html 41.html .github/workflows/enhance-design40-41.yml .github/scripts/enhance40_41.py .github/scripts/verify40_41_enhancements.js
+          git commit -m 'Add cinematic interactions to Designs 40 and 41'
+          for try in 1 2 3; do
+            if git push origin HEAD:main; then exit 0; fi
+            git fetch origin main
+            git rebase origin/main
+          done
+          exit 1
