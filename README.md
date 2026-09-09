@@ -4,34 +4,30 @@
 
 ## Website Pattern Research
 
-> Auto-generated from clean screenshot inventory + semantic JSON. Failed, partial, blocked and unreliable captures are excluded from the atlas, statistics and recommendations.
+> Auto-generated from clean screenshot inventory + semantic JSON. Failed, partial, blocked and unreliable captures are excluded from the atlas and research statistics.
 
 **45 clean reference screenshots tracked · 45 semantically analyzed · 15 captures excluded**
 
-[Open the all-reference atlas](./research/website-patterns/generated/all-reference-atlas.jpg) · [Final structure recommendation](./research/website-patterns/generated/final-structure-recommendation.json) · [All cohort summaries](./research/website-patterns/generated/all-cohorts-summary.json)
+[Open the all-reference atlas](./research/website-patterns/generated/all-reference-atlas.jpg) · [Final decided structure](./research/website-patterns/generated/final-structure-recommendation.json) · [All cohort summaries](./research/website-patterns/generated/all-cohorts-summary.json)
 
 [![All website research atlas](./research/website-patterns/generated/all-reference-atlas.jpg)](./research/website-patterns/generated/all-reference-atlas.jpg)
 
-### Recommended final page structure
+### Final decided page structure
 
-This is a cohort-balanced consensus, so the much larger PNG private-sector cohort does not drown out the telecom or public-service cohorts.
+This is the project-approved homepage information architecture. It is shown without research-derived percentages.
 
-| Order | Section | Cohort-balanced support | Raw site support |
-| ---: | --- | ---: | ---: |
-| 1 | Navigation / Header | 100% | 100% |
-| 2 | Hero / Banner + CTA | 92% | 91% |
-| 3 | Editorial / Explainer | 34% | 33% |
-| 4 | News / Updates | 22% | 18% |
-| 5 | Footer | 25% | 20% |
-
-**Optional / secondary sections seen often enough to consider**
-
-| Section | Cohort-balanced presence |
-| --- | ---: |
-| Services / Categories | 38% |
-| Quick Actions / Self-Service | 38% |
-| Trust / Stats / Proof | 37% |
-| Product / Offer Cards | 32% |
+| Order | Section |
+| ---: | --- |
+| 1 | Header |
+| 2 | Hero |
+| 3 | Quick Actions |
+| 4 | Offers / Plans |
+| 5 | Service Categories |
+| 6 | Business & Government |
+| 7 | PNG / National Story |
+| 8 | Notices & News |
+| 9 | Help / Support / Stores |
+| 10 | Footer |
 
 ### Analysis coverage
 
@@ -45,11 +41,11 @@ This is a cohort-balanced consensus, so the much larger PNG private-sector cohor
 
 **8 clean screenshots · 8 analyzed · 1 excluded · 0 pending**
 
-[Open cohort atlas](./research/website-patterns/generated/modern-telecom-atlas.jpg) · [Summary JSON](./research/website-patterns/generated/modern-telecom-summary.json) · [Recommended structure CSV](./research/website-patterns/generated/modern-telecom-recommended-structure.csv) · [Transitions CSV](./research/website-patterns/generated/modern-telecom-transitions.csv)
+[Open cohort atlas](./research/website-patterns/generated/modern-telecom-atlas.jpg) · [Summary JSON](./research/website-patterns/generated/modern-telecom-summary.json) · [Observed structure CSV](./research/website-patterns/generated/modern-telecom-recommended-structure.csv) · [Transitions CSV](./research/website-patterns/generated/modern-telecom-transitions.csv)
 
-**Most common section at each page position**
+**Observed section pattern at each page position**
 
-| Position | Suggested section | Sites at this exact position |
+| Position | Most common observed section | Sites at this exact position |
 | ---: | --- | ---: |
 | 1 | Navigation / Header | 8/8 (100%) |
 | 2 | Hero / Banner + CTA | 8/8 (100%) |
@@ -102,11 +98,11 @@ This is a cohort-balanced consensus, so the much larger PNG private-sector cohor
 
 **25 clean screenshots · 25 analyzed · 6 excluded · 0 pending**
 
-[Open cohort atlas](./research/website-patterns/generated/png-private-sector-atlas.jpg) · [Summary JSON](./research/website-patterns/generated/png-private-sector-summary.json) · [Recommended structure CSV](./research/website-patterns/generated/png-private-sector-recommended-structure.csv) · [Transitions CSV](./research/website-patterns/generated/png-private-sector-transitions.csv)
+[Open cohort atlas](./research/website-patterns/generated/png-private-sector-atlas.jpg) · [Summary JSON](./research/website-patterns/generated/png-private-sector-summary.json) · [Observed structure CSV](./research/website-patterns/generated/png-private-sector-recommended-structure.csv) · [Transitions CSV](./research/website-patterns/generated/png-private-sector-transitions.csv)
 
-**Most common section at each page position**
+**Observed section pattern at each page position**
 
-| Position | Suggested section | Sites at this exact position |
+| Position | Most common observed section | Sites at this exact position |
 | ---: | --- | ---: |
 | 1 | Navigation / Header | 25/25 (100%) |
 | 2 | Hero / Banner + CTA | 23/25 (92%) |
@@ -167,11 +163,11 @@ This is a cohort-balanced consensus, so the much larger PNG private-sector cohor
 
 **12 clean screenshots · 12 analyzed · 8 excluded · 0 pending**
 
-[Open cohort atlas](./research/website-patterns/generated/png-public-services-atlas.jpg) · [Summary JSON](./research/website-patterns/generated/png-public-services-summary.json) · [Recommended structure CSV](./research/website-patterns/generated/png-public-services-recommended-structure.csv) · [Transitions CSV](./research/website-patterns/generated/png-public-services-transitions.csv)
+[Open cohort atlas](./research/website-patterns/generated/png-public-services-atlas.jpg) · [Summary JSON](./research/website-patterns/generated/png-public-services-summary.json) · [Observed structure CSV](./research/website-patterns/generated/png-public-services-recommended-structure.csv) · [Transitions CSV](./research/website-patterns/generated/png-public-services-transitions.csv)
 
-**Most common section at each page position**
+**Observed section pattern at each page position**
 
-| Position | Suggested section | Sites at this exact position |
+| Position | Most common observed section | Sites at this exact position |
 | ---: | --- | ---: |
 | 1 | Navigation / Header | 12/12 (100%) |
 | 2 | Hero / Banner + CTA | 10/12 (83%) |
@@ -232,6 +228,7 @@ This is a cohort-balanced consensus, so the much larger PNG private-sector cohor
 | University of Papua New Guinea | Semantic capture status: partial |
 
 <!-- WEBSITE_PATTERN_RESEARCH_END -->
+
 
 
 

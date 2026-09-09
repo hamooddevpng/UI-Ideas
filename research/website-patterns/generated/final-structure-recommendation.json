@@ -1,75 +1,67 @@
 {
-  "method": "Equal-weight each cohort, then choose the most common section at each ordinal page position. Only clean, successful captures are eligible.",
-  "eligible_analyzed_sites": 45,
-  "excluded_capture_sites": 15,
-  "cohort_count": 3,
+  "status": "decided",
+  "title": "Final Decided Structure",
+  "basis": "Project-approved homepage information architecture. Research statistics are kept separately and are not used as percentages for this final structure.",
   "final_structure": [
     {
       "position": 1,
       "type": "navigation",
-      "label": "Navigation / Header",
-      "balanced_cohort_support_pct": 100,
-      "raw_site_support_pct": 100,
-      "supporting_sites_at_position": 45,
-      "eligible_analyzed_sites": 45
+      "label": "Header",
+      "color": "#546E7A"
     },
     {
       "position": 2,
       "type": "hero_cta",
-      "label": "Hero / Banner + CTA",
-      "balanced_cohort_support_pct": 92,
-      "raw_site_support_pct": 91,
-      "supporting_sites_at_position": 41,
-      "eligible_analyzed_sites": 45
+      "label": "Hero",
+      "color": "#1565C0"
     },
     {
       "position": 3,
-      "type": "content_feature",
-      "label": "Editorial / Explainer",
-      "balanced_cohort_support_pct": 34,
-      "raw_site_support_pct": 33,
-      "supporting_sites_at_position": 15,
-      "eligible_analyzed_sites": 45
+      "type": "quick_actions",
+      "label": "Quick Actions",
+      "color": "#00838F"
     },
     {
       "position": 4,
-      "type": "news",
-      "label": "News / Updates",
-      "balanced_cohort_support_pct": 22,
-      "raw_site_support_pct": 18,
-      "supporting_sites_at_position": 8,
-      "eligible_analyzed_sites": 45
+      "type": "product_offers",
+      "label": "Offers / Plans",
+      "color": "#2E7D32"
     },
     {
       "position": 5,
+      "type": "service_categories",
+      "label": "Service Categories",
+      "color": "#6A1B9A"
+    },
+    {
+      "position": 6,
+      "type": "business_section",
+      "label": "Business & Government",
+      "color": "#3949AB"
+    },
+    {
+      "position": 7,
+      "type": "content_feature",
+      "label": "PNG / National Story",
+      "color": "#8E24AA"
+    },
+    {
+      "position": 8,
+      "type": "news",
+      "label": "Notices & News",
+      "color": "#C62828"
+    },
+    {
+      "position": 9,
+      "type": "faq_help",
+      "label": "Help / Support / Stores",
+      "color": "#9E6B00"
+    },
+    {
+      "position": 10,
       "type": "footer",
       "label": "Footer",
-      "balanced_cohort_support_pct": 25,
-      "raw_site_support_pct": 20,
-      "supporting_sites_at_position": 9,
-      "eligible_analyzed_sites": 45
-    }
-  ],
-  "optional_sections": [
-    {
-      "type": "service_categories",
-      "label": "Services / Categories",
-      "balanced_cohort_presence_pct": 38
-    },
-    {
-      "type": "quick_actions",
-      "label": "Quick Actions / Self-Service",
-      "balanced_cohort_presence_pct": 38
-    },
-    {
-      "type": "trust_stats",
-      "label": "Trust / Stats / Proof",
-      "balanced_cohort_presence_pct": 37
-    },
-    {
-      "type": "product_offers",
-      "label": "Product / Offer Cards",
-      "balanced_cohort_presence_pct": 32
+      "color": "#263238"
     }
   ]
 }
