@@ -22,20 +22,20 @@
     "capture_partial": 1
   },
   "site_presence": {
-    "navigation": 9,
-    "service_categories": 3,
-    "product_offers": 6,
-    "footer": 8,
     "device_promo": 3,
+    "footer": 8,
     "faq_help": 3,
     "hero_cta": 9,
+    "navigation": 9,
+    "service_categories": 3,
     "pricing_plans": 4,
-    "quick_actions": 5,
+    "product_offers": 6,
     "app_promo": 2,
-    "trust_stats": 3,
-    "business_section": 3,
-    "news": 3,
+    "quick_actions": 5,
     "content_feature": 4,
+    "news": 3,
+    "business_section": 3,
+    "trust_stats": 3,
     "capture_partial": 1
   },
   "transitions": [

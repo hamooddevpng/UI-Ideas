@@ -6,7 +6,7 @@
 
 > Auto-generated from screenshot inventory + semantic JSON. Screenshots remain visible even when analysis is pending.
 
-**60 reference screenshots tracked · 12 semantically analyzed · 48 pending**
+**60 reference screenshots tracked · 43 semantically analyzed · 17 pending**
 
 [Open the all-reference atlas](./research/website-patterns/generated/all-reference-atlas.jpg) · [All cohort summaries](./research/website-patterns/generated/all-cohorts-summary.json)
 
@@ -17,7 +17,7 @@
 | Cohort | References | Analyzed | Pending |
 | --- | ---: | ---: | ---: |
 | Modern Telecom Cohort | 9 | 9 | 0 |
-| PNG Private-Sector Familiarity Cohort | 31 | 0 | 31 |
+| PNG Private-Sector Familiarity Cohort | 31 | 31 | 0 |
 | PNG Public-Service Familiarity Cohort | 20 | 3 | 17 |
 
 ### Modern Telecom Cohort
@@ -58,11 +58,40 @@
 
 ### PNG Private-Sector Familiarity Cohort
 
-**31 screenshots · 0 analyzed · 31 pending**
+**31 screenshots · 31 analyzed · 0 pending**
 
 [Open cohort atlas](./research/website-patterns/generated/png-private-sector-atlas.jpg) · [Summary JSON](./research/website-patterns/generated/png-private-sector-summary.json) · [Transitions CSV](./research/website-patterns/generated/png-private-sector-transitions.csv)
 
-_Semantic crop JSON is pending. The screenshots are already visible in the atlas._
+| Pattern | Analyzed sites | Coverage of analyzed sites |
+| --- | ---: | ---: |
+| Footer | 29/31 | 94% |
+| Navigation / Header | 28/31 | 90% |
+| Hero / Banner + CTA | 26/31 | 84% |
+| Editorial / Explainer | 19/31 | 61% |
+| Services / Categories | 14/31 | 45% |
+| Trust / Stats / Proof | 13/31 | 42% |
+| News / Updates | 10/31 | 32% |
+| Product / Offer Cards | 10/31 | 32% |
+| Quick Actions / Self-Service | 9/31 | 29% |
+| Form / Contact / Complaint | 6/31 | 19% |
+| Business / Enterprise | 5/31 | 16% |
+| Projects / Initiatives | 5/31 | 16% |
+| Help / FAQ / Support | 3/31 | 10% |
+| Online Service / Portal | 3/31 | 10% |
+| App / Digital Experience | 2/31 | 6% |
+
+**Most common page-flow transitions among analyzed sites**
+
+| Transition | Count |
+| --- | ---: |
+| Navigation / Header → Hero / Banner + CTA | 26 |
+| Product / Offer Cards → Product / Offer Cards | 10 |
+| Hero / Banner + CTA → Editorial / Explainer | 7 |
+| Form / Contact / Complaint → Footer | 6 |
+| Hero / Banner + CTA → Quick Actions / Self-Service | 5 |
+| Hero / Banner + CTA → Trust / Stats / Proof | 5 |
+| News / Updates → News / Updates | 5 |
+| Trust / Stats / Proof → Footer | 4 |
 
 ### PNG Public-Service Familiarity Cohort
 
@@ -102,6 +131,7 @@ _Semantic crop JSON is pending. The screenshots are already visible in the atlas
 | Form / Contact / Complaint → Online Service / Portal | 1 |
 
 <!-- WEBSITE_PATTERN_RESEARCH_END -->
+
 
 A collection of Telikom homepage design explorations with responsive full-page screenshots.
 

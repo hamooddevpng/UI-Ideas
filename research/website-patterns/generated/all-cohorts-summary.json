@@ -23,20 +23,20 @@
       "capture_partial": 1
     },
     "site_presence": {
-      "navigation": 9,
-      "service_categories": 3,
-      "product_offers": 6,
-      "footer": 8,
       "device_promo": 3,
+      "footer": 8,
       "faq_help": 3,
       "hero_cta": 9,
+      "navigation": 9,
+      "service_categories": 3,
       "pricing_plans": 4,
-      "quick_actions": 5,
+      "product_offers": 6,
       "app_promo": 2,
-      "trust_stats": 3,
-      "business_section": 3,
-      "news": 3,
+      "quick_actions": 5,
       "content_feature": 4,
+      "news": 3,
+      "business_section": 3,
+      "trust_stats": 3,
       "capture_partial": 1
     },
     "transitions": [
@@ -181,11 +181,431 @@
     "cohort": "png-private-sector",
     "name": "PNG Private-Sector Familiarity Cohort",
     "reference_site_count": 31,
-    "analyzed_site_count": 0,
-    "pending_site_count": 31,
-    "section_counts": {},
-    "site_presence": {},
-    "transitions": []
+    "analyzed_site_count": 31,
+    "pending_site_count": 0,
+    "section_counts": {
+      "navigation": 28,
+      "hero_cta": 27,
+      "content_feature": 24,
+      "capture_partial": 7,
+      "footer": 29,
+      "product_offers": 22,
+      "quick_actions": 9,
+      "service_categories": 14,
+      "trust_stats": 16,
+      "business_section": 5,
+      "projects": 5,
+      "online_service": 3,
+      "news": 17,
+      "faq_help": 3,
+      "form_contact": 6,
+      "app_promo": 2
+    },
+    "site_presence": {
+      "capture_partial": 6,
+      "content_feature": 19,
+      "footer": 29,
+      "hero_cta": 26,
+      "navigation": 28,
+      "product_offers": 10,
+      "trust_stats": 13,
+      "service_categories": 14,
+      "quick_actions": 9,
+      "projects": 5,
+      "business_section": 5,
+      "online_service": 3,
+      "news": 10,
+      "faq_help": 3,
+      "form_contact": 6,
+      "app_promo": 2
+    },
+    "transitions": [
+      {
+        "from": "navigation",
+        "to": "hero_cta",
+        "count": 26
+      },
+      {
+        "from": "product_offers",
+        "to": "product_offers",
+        "count": 10
+      },
+      {
+        "from": "hero_cta",
+        "to": "content_feature",
+        "count": 7
+      },
+      {
+        "from": "form_contact",
+        "to": "footer",
+        "count": 6
+      },
+      {
+        "from": "hero_cta",
+        "to": "quick_actions",
+        "count": 5
+      },
+      {
+        "from": "hero_cta",
+        "to": "trust_stats",
+        "count": 5
+      },
+      {
+        "from": "news",
+        "to": "news",
+        "count": 5
+      },
+      {
+        "from": "trust_stats",
+        "to": "footer",
+        "count": 4
+      },
+      {
+        "from": "trust_stats",
+        "to": "content_feature",
+        "count": 4
+      },
+      {
+        "from": "content_feature",
+        "to": "trust_stats",
+        "count": 4
+      },
+      {
+        "from": "hero_cta",
+        "to": "service_categories",
+        "count": 4
+      },
+      {
+        "from": "hero_cta",
+        "to": "product_offers",
+        "count": 3
+      },
+      {
+        "from": "product_offers",
+        "to": "footer",
+        "count": 3
+      },
+      {
+        "from": "content_feature",
+        "to": "business_section",
+        "count": 3
+      },
+      {
+        "from": "quick_actions",
+        "to": "content_feature",
+        "count": 3
+      },
+      {
+        "from": "content_feature",
+        "to": "service_categories",
+        "count": 3
+      },
+      {
+        "from": "quick_actions",
+        "to": "service_categories",
+        "count": 3
+      },
+      {
+        "from": "service_categories",
+        "to": "product_offers",
+        "count": 3
+      },
+      {
+        "from": "content_feature",
+        "to": "footer",
+        "count": 3
+      },
+      {
+        "from": "trust_stats",
+        "to": "news",
+        "count": 3
+      },
+      {
+        "from": "news",
+        "to": "footer",
+        "count": 3
+      },
+      {
+        "from": "service_categories",
+        "to": "content_feature",
+        "count": 3
+      },
+      {
+        "from": "news",
+        "to": "content_feature",
+        "count": 3
+      },
+      {
+        "from": "content_feature",
+        "to": "capture_partial",
+        "count": 2
+      },
+      {
+        "from": "capture_partial",
+        "to": "footer",
+        "count": 2
+      },
+      {
+        "from": "product_offers",
+        "to": "service_categories",
+        "count": 2
+      },
+      {
+        "from": "service_categories",
+        "to": "projects",
+        "count": 2
+      },
+      {
+        "from": "online_service",
+        "to": "news",
+        "count": 2
+      },
+      {
+        "from": "news",
+        "to": "faq_help",
+        "count": 2
+      },
+      {
+        "from": "faq_help",
+        "to": "footer",
+        "count": 2
+      },
+      {
+        "from": "product_offers",
+        "to": "news",
+        "count": 2
+      },
+      {
+        "from": "news",
+        "to": "trust_stats",
+        "count": 2
+      },
+      {
+        "from": "service_categories",
+        "to": "app_promo",
+        "count": 2
+      },
+      {
+        "from": "content_feature",
+        "to": "projects",
+        "count": 2
+      },
+      {
+        "from": "projects",
+        "to": "footer",
+        "count": 2
+      },
+      {
+        "from": "product_offers",
+        "to": "content_feature",
+        "count": 2
+      },
+      {
+        "from": "quick_actions",
+        "to": "footer",
+        "count": 2
+      },
+      {
+        "from": "navigation",
+        "to": "news",
+        "count": 2
+      },
+      {
+        "from": "content_feature",
+        "to": "news",
+        "count": 2
+      },
+      {
+        "from": "capture_partial",
+        "to": "content_feature",
+        "count": 1
+      },
+      {
+        "from": "quick_actions",
+        "to": "product_offers",
+        "count": 1
+      },
+      {
+        "from": "service_categories",
+        "to": "trust_stats",
+        "count": 1
+      },
+      {
+        "from": "business_section",
+        "to": "service_categories",
+        "count": 1
+      },
+      {
+        "from": "projects",
+        "to": "trust_stats",
+        "count": 1
+      },
+      {
+        "from": "content_feature",
+        "to": "online_service",
+        "count": 1
+      },
+      {
+        "from": "projects",
+        "to": "form_contact",
+        "count": 1
+      },
+      {
+        "from": "hero_cta",
+        "to": "business_section",
+        "count": 1
+      },
+      {
+        "from": "business_section",
+        "to": "news",
+        "count": 1
+      },
+      {
+        "from": "news",
+        "to": "capture_partial",
+        "count": 1
+      },
+      {
+        "from": "trust_stats",
+        "to": "service_categories",
+        "count": 1
+      },
+      {
+        "from": "app_promo",
+        "to": "quick_actions",
+        "count": 1
+      },
+      {
+        "from": "app_promo",
+        "to": "hero_cta",
+        "count": 1
+      },
+      {
+        "from": "hero_cta",
+        "to": "footer",
+        "count": 1
+      },
+      {
+        "from": "content_feature",
+        "to": "product_offers",
+        "count": 1
+      },
+      {
+        "from": "product_offers",
+        "to": "quick_actions",
+        "count": 1
+      },
+      {
+        "from": "content_feature",
+        "to": "form_contact",
+        "count": 1
+      },
+      {
+        "from": "content_feature",
+        "to": "quick_actions",
+        "count": 1
+      },
+      {
+        "from": "footer",
+        "to": "trust_stats",
+        "count": 1
+      },
+      {
+        "from": "service_categories",
+        "to": "online_service",
+        "count": 1
+      },
+      {
+        "from": "trust_stats",
+        "to": "projects",
+        "count": 1
+      },
+      {
+        "from": "content_feature",
+        "to": "content_feature",
+        "count": 1
+      },
+      {
+        "from": "business_section",
+        "to": "form_contact",
+        "count": 1
+      },
+      {
+        "from": "hero_cta",
+        "to": "online_service",
+        "count": 1
+      },
+      {
+        "from": "online_service",
+        "to": "product_offers",
+        "count": 1
+      },
+      {
+        "from": "product_offers",
+        "to": "form_contact",
+        "count": 1
+      },
+      {
+        "from": "capture_partial",
+        "to": "product_offers",
+        "count": 1
+      },
+      {
+        "from": "service_categories",
+        "to": "footer",
+        "count": 1
+      },
+      {
+        "from": "service_categories",
+        "to": "business_section",
+        "count": 1
+      },
+      {
+        "from": "business_section",
+        "to": "product_offers",
+        "count": 1
+      },
+      {
+        "from": "business_section",
+        "to": "quick_actions",
+        "count": 1
+      },
+      {
+        "from": "projects",
+        "to": "faq_help",
+        "count": 1
+      },
+      {
+        "from": "faq_help",
+        "to": "trust_stats",
+        "count": 1
+      },
+      {
+        "from": "trust_stats",
+        "to": "trust_stats",
+        "count": 1
+      },
+      {
+        "from": "news",
+        "to": "form_contact",
+        "count": 1
+      },
+      {
+        "from": "trust_stats",
+        "to": "product_offers",
+        "count": 1
+      },
+      {
+        "from": "product_offers",
+        "to": "capture_partial",
+        "count": 1
+      },
+      {
+        "from": "capture_partial",
+        "to": "form_contact",
+        "count": 1
+      }
+    ]
   },
   {
     "cohort": "png-public-services",
@@ -211,21 +631,21 @@
       "guidance": 1
     },
     "site_presence": {
-      "navigation": 3,
-      "footer": 3,
-      "regulation_info": 1,
       "online_service": 1,
-      "notices": 2,
-      "hero_cta": 3,
-      "faq_help": 1,
-      "news": 3,
       "content_feature": 1,
+      "footer": 3,
+      "news": 3,
+      "faq_help": 1,
+      "hero_cta": 3,
+      "navigation": 3,
       "form_contact": 2,
       "service_categories": 2,
+      "notices": 2,
+      "regulation_info": 1,
+      "guidance": 1,
       "projects": 1,
-      "quick_actions": 1,
       "trust_stats": 2,
-      "guidance": 1
+      "quick_actions": 1
     },
     "transitions": [
       {
