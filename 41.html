@@ -223,7 +223,7 @@ footer{background:var(--ink);color:#fff;padding:78px 0 30px;overflow:hidden}.foo
             <p>Discover Telikom deals built for streaming, sharing, work and the moments that matter every day.</p>
             <div class="hero-actions">
               <a class="btn fill magnetic" href="#offers"><span>See latest deals</span><span class="arrow">→</span></a>
-              <a class="btn magnetic" href="#quick-actions"><span>Quick actions</span><span class="arrow">→</span></a>
+              <a class="btn magnetic" href="#quick"><span>Quick actions</span><span class="arrow">→</span></a>
             </div>
           </div>
         </div>
@@ -417,8 +417,6 @@ footer{background:var(--ink);color:#fff;padding:78px 0 30px;overflow:hidden}.foo
   prev?.addEventListener('click',()=>move(-1));
   next?.addEventListener('click',()=>move(1));
   dots.forEach(dot=>dot.addEventListener('click',()=>{render(Number(dot.dataset.heroDot),true);start()}));
-  hero.addEventListener('mouseenter',()=>{paused=true;stop();progress?.classList.remove('running')});
-  hero.addEventListener('mouseleave',()=>{paused=false;start()});
   hero.addEventListener('focusin',()=>{paused=true;stop();progress?.classList.remove('running')});
   hero.addEventListener('focusout',e=>{if(!hero.contains(e.relatedTarget)){paused=false;start()}});
   hero.addEventListener('keydown',e=>{if(e.key==='ArrowLeft'){e.preventDefault();move(-1)}if(e.key==='ArrowRight'){e.preventDefault();move(1)}});
