@@ -1,4 +1,4 @@
-# retry after support orbit hover stabilization
+# retry after support proximity route hold
 name: One-time Design 42 remaining section interactions
 on:
   push:
@@ -15,6 +15,7 @@ jobs:
         run: |
           python3 .github/scripts/design42_pending_sections.py
           python3 .github/scripts/design42_pending_unitfix.py
+          python3 .github/scripts/design42_support_routehold.py
       - name: Verify Designs 40 and 41 stay reverted
         run: |
           if grep -q 'D40-D41 CRAZY ENHANCEMENTS' 40.html; then exit 1; fi
@@ -34,10 +35,10 @@ jobs:
           node .github/scripts/verify42_pending_sections.js
       - name: Commit verified Design 42 changes
         run: |
-          rm -f .github/workflows/design42-pending-crazy.yml .github/scripts/design42_pending_sections.py .github/scripts/design42_pending_unitfix.py .github/scripts/verify42_pending_sections.js
+          rm -f .github/workflows/design42-pending-crazy.yml .github/scripts/design42_pending_sections.py .github/scripts/design42_pending_unitfix.py .github/scripts/design42_support_routehold.py .github/scripts/verify42_pending_sections.js
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add 42.html .github/workflows/design42-pending-crazy.yml .github/scripts/design42_pending_sections.py .github/scripts/design42_pending_unitfix.py .github/scripts/verify42_pending_sections.js
+          git add 42.html .github/workflows/design42-pending-crazy.yml .github/scripts/design42_pending_sections.py .github/scripts/design42_pending_unitfix.py .github/scripts/design42_support_routehold.py .github/scripts/verify42_pending_sections.js
           git commit -m 'Animate remaining Design 42 PNG updates and support sections'
           for try in 1 2 3; do
             if git push origin HEAD:main; then exit 0; fi
