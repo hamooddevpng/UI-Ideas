@@ -7,6 +7,20 @@ This is the medium-complexity member of the Design 40 to 42 family.
 
 It must use the exact same high-level homepage structure and content priorities as Design 40. The difference is that every interaction should feel more polished, responsive and alive.
 
+
+## Implementation overrides, current
+
+These rules supersede older wording below where there is a conflict.
+
+- `41.html` now starts from the exact Design 10 visual and motion foundation, then applies the locked Design 41 information architecture.
+- Motion must be interpolated and smooth, never bouncy or rubber-band-like.
+- The key Design 10 behavior is proximity response: nearby components shift subtly before direct hover, then settle slowly back to zero.
+- Pointer-linked depth is desktop-only and disabled under reduced motion.
+- The hero remains one primary campaign, not an automatic carousel.
+- The locked section order remains Header → Hero → Quick Actions → Offers/Plans → Service Categories → Business & Government → PNG/National Story → Notices & News → Help/Support/Stores → Footer.
+- Design 41 may preserve the single inherited Design 10 abstract hero WebGL sculpture, but no additional WebGL scenes or Design 42-style 3D showcase systems should be added.
+- Important interactions must work with hover, focus and tap, and important content cannot be hover-only.
+
 ## Difficulty level
 **Medium**
 
