@@ -20,7 +20,11 @@ jobs:
           fetch-depth: 0
 
       - name: Patch page
-        run: python3 .github/scripts/patch_design41.py
+        run: |
+          sed -i 's/id="home"/id="top"/g' .github/scripts/patch_design41.py
+          sed -i 's/telikom-stay-connected-from-png-to-the-world.webp/stay-connected-from-png-to-the-world.webp/g' .github/scripts/patch_design41.py
+          sed -i 's/telikom-festive-png-telecom-deals.webp/festive-png-telecom-deals.webp/g' .github/scripts/patch_design41.py
+          python3 .github/scripts/patch_design41.py
 
       - name: Commit page update
         run: |
