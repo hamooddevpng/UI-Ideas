@@ -2,8 +2,6 @@
 
 These images were downloaded into the repository for the Design 41 prototype so the page does not depend on third-party hotlinks. Check each linked source page for the exact attribution and license terms.
 
-- `gerehu-market-wide.jpg`: Wikimedia Commons, Gerehu Markets Port Moresby, Papua New Guinea (10697424025).jpg
-  https://commons.wikimedia.org/wiki/File:Gerehu_Markets_Port_Moresby,_Papua_New_Guinea_(10697424025).jpg
 - `gerehu-market-2.jpg`: Wikimedia Commons, Gerehu Markets Port Moresby, Papua New Guinea (10697555344).jpg
   https://commons.wikimedia.org/wiki/File:Gerehu_Markets_Port_Moresby,_Papua_New_Guinea_(10697555344).jpg
 - `gerehu-market-portrait.jpg`: Wikimedia Commons, Gerehu Markets Port Moresby, Papua New Guinea (10697727534).jpg
