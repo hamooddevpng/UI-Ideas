@@ -1,0 +1,70 @@
+name: Package Curated PNG Private Sector Research Set
+
+on:
+  push:
+    paths:
+      - '.github/workflows/package-png-private-sector-curated.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build curated 30-site manifest
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const basePath = 'reference-screenshots/png-private-sector/full-page-1440/capture-results.json';
+          const fixPath = 'reference-screenshots/png-private-sector/full-page-1440/fix-results.json';
+          const base = JSON.parse(fs.readFileSync(basePath, 'utf8'));
+          const fixes = JSON.parse(fs.readFileSync(fixPath, 'utf8'));
+          const fixMap = Object.fromEntries(fixes.results.map(x => [x.slug, x]));
+          let results = base.results.filter(x => x.slug !== 'rh-hypermarket' && x.slug !== 'daltron');
+          results.push(fixMap['daltron']);
+          results.push(fixMap['boroko-motors']);
+          results = results.map(x => ({...x, researchFilename: `png-private-${x.slug}.png`}));
+          if (results.length !== 30) throw new Error(`Expected 30 curated sites, got ${results.length}`);
+          const curated = {
+            curatedAt: new Date().toISOString(),
+            cohort: 'PNG private-sector / consumer familiarity',
+            viewport: '1440x900',
+            captureKind: 'full_page',
+            count: results.length,
+            excluded: [{slug:'rh-hypermarket', reason:'Cloudflare 403 block during automated capture'}],
+            results
+          };
+          const text = JSON.stringify(curated, null, 2);
+          fs.writeFileSync('reference-screenshots/png-private-sector/full-page-1440/curated-results.json', text);
+          fs.writeFileSync('assets/banners/research/png-private-curated-results.json', text);
+          NODE
+
+      - name: Validate and package research PNGs
+        run: |
+          mkdir -p /tmp/png-private-curated
+          count=$(find assets/banners/research -maxdepth 1 -type f -name 'png-private-*.png' | wc -l)
+          echo "Curated PNG count: $count"
+          test "$count" -eq 30
+          cp assets/banners/research/png-private-*.png /tmp/png-private-curated/
+          cp assets/banners/research/png-private-curated-results.json /tmp/png-private-curated/
+          cd /tmp
+          zip -qr "$GITHUB_WORKSPACE/png-private-sector-curated-30.zip" png-private-curated
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: png-private-sector-curated-30
+          path: png-private-sector-curated-30.zip
+          retention-days: 30
+
+      - name: Commit curated manifest
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reference-screenshots/png-private-sector/full-page-1440/curated-results.json assets/banners/research/png-private-curated-results.json
+          git commit -m "research: add curated PNG private-sector manifest" || exit 0
+          git pull --rebase origin main
+          git push origin main
