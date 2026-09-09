@@ -1,0 +1,65 @@
+name: Apply Design 41 rules
+
+on:
+  push:
+    paths:
+      - '.github/workflows/apply-design41-rules.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Apply Design 41 rules
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 .github/scripts/apply_design41_rules.py
+      - name: Validate Design 41 structure and JS
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          s=Path('41.html').read_text()
+          required=[
+            'id="siteHeader"','id="searchOverlay"','id="actionDrawer"',
+            'Recharge','Self Care','Coverage','Support',
+            '01 / OFFERS + PLANS','02 / SERVICE CATEGORIES','03 / BUSINESS + GOVERNMENT',
+            '04 / PNG + NATIONAL STORY','05 / NOTICES + NEWS','06 / HELP + SUPPORT + STORES',
+            'data-service="mobile"','data-service="internet"','data-segment="government"',
+            'Design 10 proximity field','prefers-reduced-motion:reduce'
+          ]
+          for x in required: assert x in s, x
+          order=['<header class="topbar"','<section class="hero"','<section class="quick-zone"','<section class="plans"','<section class="worlds"','<section class="business"','<section class="png-story"','<section class="news"','<section class="support-hub"','<footer>']
+          pos=[s.index(x) for x in order]
+          assert pos==sorted(pos)
+          assert '<div class="ticker"<div class="ticker"' not in s
+          assert 'automatic carousel' not in s.lower()
+          scripts=re.findall(r'<script>(.*?)</script>',s,re.S)
+          Path('/tmp/41.js').write_text(scripts[-1])
+          print('depth',s.count('data-depth='),'actions',s.count('data-action='),'images',s.count('<img '))
+          PY
+          node --check /tmp/41.js
+      - name: Commit Design 41 rules pass
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          rm -f .github/workflows/apply-design41-rules.yml .github/scripts/apply_design41_rules.py
+          git add 41.html design_41.md .github/workflows/apply-design41-rules.yml .github/scripts/apply_design41_rules.py
+          git commit -m 'Apply full Design 41 interaction and structure rules'
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            if git rebase origin/main && git push origin HEAD:main; then exit 0; fi
+            git rebase --abort 2>/dev/null || true
+            sleep 2
+          done
+          exit 1
