@@ -1,0 +1,144 @@
+name: Seed Private-Sector Semantic Analysis
+
+on:
+  push:
+    paths:
+      - ".github/workflows/seed-private-semantic-analysis.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  seed:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate semantic JSON from reviewed vision boundaries
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          root = Path("reference-screenshots/png-private-sector/full-page-1440")
+          out = Path("research/website-patterns/cohorts/png-private-sector/sites")
+          out.mkdir(parents=True, exist_ok=True)
+          meta_doc = json.loads((root / "curated-results.json").read_text(encoding="utf-8"))
+          meta = {x["slug"]: x for x in meta_doc.get("results", [])}
+          meta["rh-hypermarket"] = {"name":"RH Hypermarket / RH Trading PNG","url":"https://www.rhtradingpng.com/"}
+
+          # Each item: section type, human label, normalized END y, confidence.
+          D = {
+            "airways-hotel":[
+              ("navigation","Minimal hotel navigation / booking access",.035,.86),("hero_cta","Full-bleed luxury stay hero",.20,.94),("content_feature","Port Moresby dining / hospitality feature",.39,.88),("capture_partial","Large unloaded / whitespace interval in capture",.63,.99),("content_feature","Facilities / recreation visual feature",.79,.84),("capture_partial","Additional unloaded whitespace before footer",.94,.99),("footer","Dark hotel footer",1,.92)],
+            "big-rooster":[
+              ("navigation","Brand header and primary navigation",.11,.93),("hero_cta","Promotional banner carousel",.45,.96),("product_offers","Menu / food category highlights",.82,.94),("footer","Contact / company footer",1,.86)],
+            "boroko-motors":[
+              ("navigation","Automotive header, brand navigation and utility links",.055,.95),("hero_cta","Promotional hero / campaign banner",.11,.90),("quick_actions","Vehicle type finder",.17,.92),("product_offers","Featured SUV inventory",.37,.96),("product_offers","Featured truck inventory",.54,.96),("product_offers","Featured pickup / additional inventory cards",.76,.88),("service_categories","Servicing and genuine-parts services",.84,.92),("trust_stats","Automotive brand / partner strip",.92,.89),("footer","Boroko Motors footer",1,.97)],
+            "brian-bell":[
+              ("navigation","Corporate navigation",.045,.95),("hero_cta","Partners in PNG's Future hero",.18,.96),("content_feature","Brian Bell story / company profile",.31,.94),("business_section","Portfolio / operating businesses",.43,.94),("service_categories","Group divisions",.55,.94),("projects","Community, foundation and initiatives cards",.73,.91),("trust_stats","Group brand / partner logos",.82,.90),("footer","Corporate footer",1,.98)],
+            "bsp":[
+              ("navigation","Banking navigation and sign-in controls",.045,.98),("hero_cta","Customer campaign hero carousel",.19,.97),("quick_actions","Everyday banking shortcut strip",.26,.95),("content_feature","Customer stories and banking guidance",.49,.92),("online_service","Mobile / digital banking promotion",.68,.95),("news","Latest BSP news",.86,.96),("faq_help","Help and service shortcut row",.92,.92),("footer","BSP footer",1,.98)],
+            "city-pharmacy":[
+              ("navigation","CPL / City Pharmacy navigation",.07,.97),("hero_cta","City Pharmacy brand banner",.20,.93),("content_feature","Pharmacy overview",.34,.91),("service_categories","What We Offer pharmacy services",.50,.96),("projects","Community impact",.62,.90),("form_contact","Store-location / branch map",.86,.91),("footer","CPL group footer",1,.98)],
+            "coral-sea-hotels":[
+              ("navigation","Hotel group navigation",.035,.96),("hero_cta","Corporate / business / leisure hero",.105,.95),("quick_actions","Stay / booking controls",.155,.94),("service_categories","Hotel amenities icon row",.205,.91),("product_offers","Discover PNG hotel properties",.38,.96),("product_offers","More Coral Sea Hotels gallery",.48,.92),("news","News and specials cards",.71,.96),("trust_stats","Customer reviews",.80,.90),("content_feature","About Coral Sea Hotels",.87,.91),("trust_stats","Awards / industry recognition",.93,.88),("footer","GDS codes, contact and footer",1,.96)],
+            "cpl-group":[
+              ("navigation","CPL Group navigation",.06,.97),("hero_cta","PNG retail and healthcare group hero",.25,.96),("business_section","Our Brands portfolio",.42,.96),("news","Latest news and updates",.64,.95),("capture_partial","Patterned whitespace / sparse capture interval",.86,.91),("footer","CPL Group footer",1,.98)],
+            "credit-bank":[
+              ("navigation","CreditBank navigation",.05,.95),("hero_cta","Personal banking campaign hero",.17,.95),("trust_stats","Ambition / rates / proof metrics",.27,.88),("service_categories","Banking products and services cards",.58,.96),("app_promo","CreditBank mobile app promotion",.71,.94),("quick_actions","Simple banking service shortcuts",.82,.91),("content_feature","Bank CTA / support statement",.91,.87),("footer","CreditBank footer",1,.97)],
+            "daltron":[("capture_partial","Pathological full-page capture with extreme vertical overflow; layout cannot be reliably segmented",1,.99)],
+            "datec":[
+              ("navigation","Datec navigation",.08,.96),("hero_cta","Technology solutions hero",.40,.95),("trust_stats","Company experience / capability proof",.58,.91),("news","Featured solutions / company updates",.78,.91),("footer","Datec services and contact footer",1,.97)],
+            "digicel-png":[
+              ("navigation","Digicel utility and primary navigation",.06,.97),("hero_cta","Prepaid / promotion banner carousel",.30,.96),("service_categories","Mobile, data and digital service choices",.58,.95),("app_promo","MyDigicel / digital experience promotion",.72,.93),("hero_cta","Recharge / conversion CTA band",.83,.90),("footer","Digicel footer",1,.98)],
+            "duffy-cafe":[
+              ("navigation","Duffy Cafe navigation",.045,.95),("hero_cta","Coffee product hero",.18,.96),("content_feature","Welcome to Duffy Cafe",.30,.92),("product_offers","Duffy Roastery",.47,.95),("product_offers","Duffy Bakery",.62,.94),("quick_actions","The Grind order / shop CTA",.73,.92),("content_feature","Instagram / social content",.86,.82),("form_contact","Contact Us form",.96,.96),("footer","Duffy Cafe footer",1,.98)],
+            "ela-motors":[
+              ("navigation","Ela Motors / Toyota navigation",.06,.97),("hero_cta","Vehicle campaign hero",.29,.96),("trust_stats","Automotive brand portfolio",.39,.94),("content_feature","Authorised dealer / service positioning",.56,.92),("projects","Company / branch update cards",.72,.88),("footer","Ela Motors corporate footer",1,.98)],
+            "hausples":[
+              ("navigation","Property marketplace navigation",.055,.97),("hero_cta","Property search hero",.23,.96),("product_offers","Rental accommodation listings",.41,.96),("product_offers","Just launched property listings",.57,.96),("product_offers","Sale / home listing collections",.71,.96),("content_feature","Property market research and articles",.82,.92),("quick_actions","Real-estate search CTA",.90,.92),("footer","Hausples footer",1,.98)],
+            "jacks-png":[
+              ("navigation","E-commerce navigation and search",.06,.98),("hero_cta","Local identity campaign hero",.22,.96),("product_offers","Jack's Original fashion categories",.51,.97),("product_offers","Pacific Wear collections",.67,.96),("product_offers","International brands",.82,.96),("footer","Commerce, support and payment footer",.94,.98),("trust_stats","Brand logo strip",1,.86)],
+            "kina-bank":[
+              ("navigation","Kina Bank utility and main navigation",.06,.98),("hero_cta","Personal banking campaign hero",.22,.96),("quick_actions","We're here to help shortcut cards",.36,.95),("service_categories","Banking product shortcut row",.47,.95),("online_service","Kina Digital Banking promotion",.60,.96),("news","More from Kina Bank",.71,.94),("faq_help","Tools, calculators, support and contact",.86,.96),("footer","Kina Bank footer",1,.98)],
+            "lae-biscuit":[
+              ("navigation","Lae Biscuit navigation",.035,.95),("hero_cta","Snack Like a Legend product hero",.49,.98),("trust_stats","Product / brand logo strip",.56,.92),("content_feature","Company vision and mission",.70,.94),("trust_stats","Company values",.81,.92),("content_feature","National reach / company proposition",.89,.88),("footer","Lae Biscuit footer and contact",1,.98)],
+            "lamana-hotel":[
+              ("navigation","Lamana Hotel navigation",.045,.96),("hero_cta","Hotel arrival / hospitality hero",.20,.95),("content_feature","Restaurant / destination introduction",.35,.93),("service_categories","Hotel amenities and experiences",.57,.94),("content_feature","Rooms and accommodation",.69,.92),("trust_stats","Guest testimonial",.80,.90),("projects","Events and conference offering",.91,.91),("footer","Contact, newsletter and hotel footer",1,.97)],
+            "mibank":[
+              ("navigation","MiBank navigation",.08,.95),("hero_cta","Mobile banking / SME app campaign banners",.32,.95),("trust_stats","Banking reach / call-back proof strip",.40,.84),("news","Latest News",.56,.94),("content_feature","MiBank feature videos",.72,.92),("content_feature","Simple hassle-free banking statement",.81,.88),("footer","MiBank footer",1,.98)],
+            "paradise-foods":[
+              ("navigation","Paradise Foods navigation",.045,.96),("hero_cta","Multi-brand food product hero",.34,.96),("service_categories","Food and beverage product categories",.60,.97),("content_feature","Brand video / visual feature",.68,.85),("business_section","Our Companies / brand portfolio",.84,.94),("form_contact","Product enquiry / contact CTA",.94,.92),("footer","Paradise Foods footer",1,.98)],
+            "pih":[
+              ("navigation","Hospital utility and main navigation",.06,.97),("hero_cta","Joint replacement programme campaign",.31,.96),("service_categories","Hospital services carousel",.44,.96),("content_feature","Hospital mission / About Us",.60,.92),("trust_stats","Patient story and testimonial",.84,.91),("footer","Contact, reach-us and social footer",1,.98)],
+            "png-air":[
+              ("navigation","PNG Air navigation",.05,.97),("hero_cta","National celebration / travel hero",.18,.96),("online_service","Flight booking form",.30,.98),("product_offers","Special fares promotional banner",.37,.91),("content_feature","Airline story / celebration feature",.46,.88),("service_categories","Charter, freight and operations services",.58,.94),("product_offers","Destination discovery cards",.76,.95),("form_contact","Newsletter signup",.88,.93),("footer","PNG Air footer",1,.98)],
+            "pngworkforce":[
+              ("capture_partial","Newsletter / opportunity modal obscuring top-of-page capture",.29,.99),("product_offers","Job vacancy listings",.66,.95),("service_categories","Browse popular job categories",.91,.94),("footer","Jobs portal footer",1,.96)],
+            "post-courier":[
+              ("navigation","Post-Courier navigation",.055,.97),("news","Top stories / latest news cards",.18,.97),("content_feature","Front and back page edition feature",.37,.95),("news","Top news / national news grid",.56,.97),("news","Business stories",.68,.95),("news","Regional / community stories",.80,.95),("news","Sports stories",.88,.94),("footer","Post-Courier contact and newsletter footer",1,.98)],
+            "puma-energy-png":[
+              ("navigation","Puma Energy country navigation",.05,.96),("hero_cta","Papua New Guinea market hero",.17,.95),("service_categories","Solutions and services overview",.24,.93),("business_section","Retail fuels / station network",.47,.95),("product_offers","Retail convenience offer",.61,.92),("product_offers","Reliable fuels and quality services",.73,.94),("product_offers","High-quality lubricants promotion",.84,.94),("footer","Puma Energy footer",1,.98)],
+            "rh-hypermarket":[("capture_partial","Cloudflare / bot protection challenge; real homepage was not captured",1,.99)],
+            "the-national":[
+              ("navigation","The National masthead and section navigation",.045,.98),("news","Lead story, latest news and today's edition",.21,.97),("news","Nation, Business and Sports story grids",.38,.97),("content_feature","Features and Editorial sections",.51,.95),("news","Weeklies and special-interest stories",.68,.96),("news","Weekender, latest articles and letters",.88,.96),("footer","About, archives, contact and policy footer",1,.98)],
+            "tininga":[
+              ("navigation","Tininga navigation",.05,.96),("hero_cta","Supermarket welcome hero",.30,.97),("content_feature","About Tininga",.52,.94),("business_section","Our Brands portfolio",.72,.95),("quick_actions","Store finder, newsletter and latest-news shortcuts",.83,.94),("footer","Tininga company footer",1,.98)],
+            "trukai":[
+              ("navigation","Trukai navigation",.04,.97),("hero_cta","Nutritional Rice, Good For Health hero",.20,.97),("content_feature","Quality and taste / company positioning",.34,.94),("projects","Community and agriculture initiatives",.44,.91),("faq_help","Common questions / FAQ CTA",.52,.93),("trust_stats","Farm video and company impact metrics",.65,.94),("trust_stats","Staff testimonials",.78,.91),("news","News Room",.86,.94),("form_contact","Newsletter subscription",.92,.94),("footer","Trukai footer",1,.98)],
+            "vision-city":[
+              ("navigation","Vision City navigation",.045,.96),("hero_cta","Mall event / promotion hero",.18,.95),("quick_actions","Shopping, cinema, dining and services tile grid",.29,.96),("service_categories","Lifestyle, fashion and food zones",.44,.94),("product_offers","Event / promotion feature",.56,.93),("news","Events and promotions",.68,.95),("trust_stats","Partners and tenants",.76,.91),("product_offers","Vision City gift card CTA",.82,.91),("capture_partial","Sparse / unloaded carousel area",.91,.90),("form_contact","Newsletter subscription",.96,.93),("footer","Mall contact / recommendation footer",1,.98)]
+          }
+
+          expected = {p.stem for p in root.glob("*.png")}
+          if set(D) != expected:
+              raise SystemExit(f"Semantic inventory mismatch. Missing={sorted(expected-set(D))}; extra={sorted(set(D)-expected)}")
+
+          for slug, items in D.items():
+              m = meta.get(slug, {})
+              y = 0.0
+              sections = []
+              for typ, label, end, confidence in items:
+                  end = float(end)
+                  if not (y < end <= 1.000001):
+                      raise SystemExit(f"{slug}: bad semantic boundary {y} -> {end}")
+                  sections.append({
+                      "bounds_normalized":{"x":0.0,"y":round(y,6),"width":1.0,"height":round(end-y,6)},
+                      "type":typ,
+                      "label":label,
+                      "confidence":confidence
+                  })
+                  y = end
+
+              status = "blocked" if slug == "rh-hypermarket" else ("partial" if any(s["type"] == "capture_partial" for s in sections) else "ok")
+              doc = {
+                  "schema_version":"1.0",
+                  "cohort":"png-private-sector",
+                  "site":{
+                      "slug":slug,
+                      "name":m.get("name") or slug.replace("-"," ").title(),
+                      "url":m.get("url") or m.get("finalUrl") or "",
+                      "source_repo_path":f"reference-screenshots/png-private-sector/full-page-1440/{slug}.png",
+                      "capture_status":status,
+                      "coordinate_mode":"normalized",
+                      "analysis_method":"AI vision on downscaled proxy of repository screenshot; normalized boundaries mapped to original image",
+                      "sections":sections
+                  }
+              }
+              (out / f"{slug}.json").write_text(json.dumps(doc, indent=2), encoding="utf-8")
+
+          print(f"Generated {len(D)} reviewed semantic manifests")
+          PY
+
+      - name: Commit all semantic manifests once
+        shell: bash
+        run: |
+          git add research/website-patterns/cohorts/png-private-sector/sites
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "research: add PNG private-sector semantic analysis"
+          git pull --rebase origin "$GITHUB_REF_NAME"
+          git push origin "HEAD:$GITHUB_REF_NAME"
