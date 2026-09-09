@@ -34,8 +34,7 @@ jobs:
         shell: python
         run: |
           from pathlib import Path
-          import re
-          from PIL import Image
+          import re, subprocess
 
           html = Path('40.html').read_text(encoding='utf-8')
           prefix = 'https://raw.githubusercontent.com/hamooddevpng/UI-Ideas/main/'
@@ -53,13 +52,12 @@ jobs:
                   continue
               if path.suffix.lower() not in {'.jpg', '.jpeg', '.png', '.webp', '.gif'}:
                   continue
-              try:
-                  with Image.open(path) as im:
-                      im.verify()
-                  checked += 1
-                  print(f'OK {rel}')
-              except Exception as exc:
-                  failures.append(f'INVALID: {rel}: {exc}')
+              mime = subprocess.check_output(['file','--brief','--mime-type',str(path)], text=True).strip()
+              if mime not in {'image/jpeg','image/png','image/webp','image/gif'}:
+                  failures.append(f'INVALID: {rel}: {mime}')
+                  continue
+              checked += 1
+              print(f'OK {rel} [{mime}]')
 
           print(f'Validated {checked} image files referenced by 40.html')
           if failures:
