@@ -1,5 +1,50 @@
 # UI Ideas
 
+<!-- WEBSITE_PATTERN_RESEARCH_START -->
+
+## Website Pattern Research
+
+> Auto-generated from the cohort JSON manifests. Edit the JSON, not this block. GitHub Actions rebuilds the analysis.
+
+### Modern Telecom Cohort
+
+**9 reference sites analyzed**
+
+[Open full atlas](./research/website-patterns/generated/modern-telecom-atlas.png) · [Summary JSON](./research/website-patterns/generated/modern-telecom-summary.json) · [Transitions CSV](./research/website-patterns/generated/modern-telecom-transitions.csv)
+
+[![Modern Telecom Cohort website pattern atlas](./research/website-patterns/generated/modern-telecom-atlas.png)](./research/website-patterns/generated/modern-telecom-atlas.png)
+
+| Pattern | Sites | Coverage |
+| --- | ---: | ---: |
+| Hero / Banner + CTA | 9/9 | 100% |
+| Navigation / Header | 9/9 | 100% |
+| Footer | 8/9 | 89% |
+| Product / Offer Cards | 6/9 | 67% |
+| Quick Actions / Self-Service | 5/9 | 56% |
+| Editorial / Feature Story | 4/9 | 44% |
+| Plans / Pricing | 4/9 | 44% |
+| Business / Enterprise | 3/9 | 33% |
+| Device Promotion | 3/9 | 33% |
+| Help / FAQ / Support | 3/9 | 33% |
+| News / Updates | 3/9 | 33% |
+| Service Categories | 3/9 | 33% |
+| Trust / Stats / Proof | 3/9 | 33% |
+| App / Digital Experience | 2/9 | 22% |
+
+**Most common page-flow transitions**
+
+| Transition | Count |
+| --- | ---: |
+| Navigation / Header → Hero / Banner + CTA | 9 |
+| Product / Offer Cards → Plans / Pricing | 4 |
+| Hero / Banner + CTA → Quick Actions / Self-Service | 4 |
+| Quick Actions / Self-Service → Product / Offer Cards | 4 |
+| Plans / Pricing → Device Promotion | 3 |
+| Help / FAQ / Support → Footer | 3 |
+| Hero / Banner + CTA → Editorial / Feature Story | 3 |
+| News / Updates → Footer | 3 |
+
+<!-- WEBSITE_PATTERN_RESEARCH_END -->
 A collection of Telikom homepage design explorations with responsive full-page screenshots.
 
 Run **Actions → Capture Responsive Design Screenshots → Run workflow** whenever you want to refresh the screenshots. The workflow regenerates every viewport, updates this gallery automatically, creates a ZIP, and commits the results back to `main`.
