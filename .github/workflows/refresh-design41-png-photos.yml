@@ -1,5 +1,6 @@
 name: Refresh Design 41 PNG photos
 
+# retry after safety-marker update
 on:
   push:
     branches: [main]
