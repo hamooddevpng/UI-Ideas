@@ -1,4 +1,5 @@
 name: One-time Design 42 Business and Government rebuild
+# retry after lazy-image test fix
 on:
   push:
     paths:
