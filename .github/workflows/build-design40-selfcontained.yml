@@ -1,0 +1,78 @@
+name: Build self-contained Design 40
+
+on:
+  push:
+    paths:
+      - '.github/workflows/build-design40-selfcontained.yml'
+      - '40-selfcontained-template.html'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Build Design 40 with embedded assets
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import base64
+
+          template = Path('40-selfcontained-template.html').read_text(encoding='utf-8')
+          assets = {
+              '__TELIKOM_LOGO__': ('assets/brand/telikom-logo.png', 'image/png'),
+              '__BANNER_ONE__': ('assets/banners/research/stay-connected-from-png-to-the-world.webp', 'image/webp'),
+              '__BANNER_TWO__': ('assets/banners/research/festive-png-telecom-deals.webp', 'image/webp'),
+          }
+          for marker, (file_path, mime) in assets.items():
+              raw = Path(file_path).read_bytes()
+              if not raw:
+                  raise SystemExit(f'Asset is empty: {file_path}')
+              uri = f'data:{mime};base64,' + base64.b64encode(raw).decode('ascii')
+              template = template.replace(marker, uri)
+              print(f'embedded {file_path}: {len(raw)} bytes')
+
+          if '__TELIKOM_LOGO__' in template or '__BANNER_' in template:
+              raise SystemExit('One or more image placeholders were not replaced')
+          if 'cdn.jsdelivr.net' in template or 'raw.githubusercontent.com' in template or 'assets/brand/telikom-logo.png' in template:
+              raise SystemExit('External image dependency remains in Design 40')
+
+          Path('40.html').write_text(template, encoding='utf-8')
+          print('40.html bytes:', Path('40.html').stat().st_size)
+          PY
+
+      - name: Verify embedded image signatures
+        run: |
+          set -euo pipefail
+          grep -q 'data:image/png;base64,' 40.html
+          test "$(grep -o 'data:image/webp;base64,' 40.html | wc -l)" -eq 2
+          grep -q 'Design 40 is deliberately a conventional full-width telecom campaign carousel' 40.html
+          echo 'Design 40 embedded-image verification passed.'
+
+      - name: Commit Design 40
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add 40.html
+          if git diff --cached --quiet; then
+            echo 'Design 40 already current.'
+            exit 0
+          fi
+          git commit -m 'Rebuild Design 40 as distinct self-contained portal'
+          for attempt in 1 2 3 4 5 6 7 8; do
+            git fetch origin main
+            git rebase origin/main
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            sleep 2
+          done
+          exit 1
