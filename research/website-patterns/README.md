@@ -1,13 +1,14 @@
 # Website Pattern Research
 
-Semantic website analysis is stored in JSON. Python only validates, crops, counts and composes.
+The screenshot inventory is the source of truth for what appears in the atlas. Semantic JSON enriches screenshots with crop boundaries, labels, confidence and structure, but a screenshot is never omitted just because its JSON is pending.
 
-- `taxonomy.json`: global section labels and colors.
-- `cohorts/<cohort>/cohort.json`: cohort metadata.
-- `cohorts/<cohort>/sites/*.json`: one AI/vision analysis per screenshot.
-- `generated/`: deterministic atlas and statistics outputs.
-- `scripts/render_website_pattern_atlas.py`: renderer.
+- `taxonomy.json`: shared semantic section names and colors.
+- `cohorts/<cohort>/cohort.json`: cohort source folder and metadata.
+- `cohorts/<cohort>/sites/*.json`: AI/vision decisions for analyzed screenshots.
+- `generated/all-reference-atlas.jpg`: every tracked reference screenshot across all cohorts.
+- `generated/<cohort>-atlas.jpg`: cohort-specific atlas, including pending screenshots.
+- `scripts/render_website_pattern_atlas.py`: deterministic renderer and statistics generator.
 
-Crop coordinates are normalized from 0 to 1, so manifests survive different screenshot heights and later recaptures.
+GitHub Actions rebuilds atlases, summaries, transition CSVs and the generated README block whenever the research JSON, renderer or source screenshots change.
 
-Adding or changing a site JSON triggers the `Rebuild Website Pattern Atlas` GitHub Action. It validates the JSON, resolves crops against the source screenshot, renders the atlas, calculates section prevalence and section-to-section transitions, writes JSON/CSV summaries, and commits the generated outputs back to the repository.
+Pattern percentages use semantically analyzed sites as their denominator. Inventory coverage and semantic-analysis coverage are reported separately.

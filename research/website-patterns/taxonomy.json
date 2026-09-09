@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "section_types": {
     "navigation": {"label": "Navigation / Header", "color": "#546E7A"},
     "hero_cta": {"label": "Hero / Banner + CTA", "color": "#1565C0"},
@@ -7,13 +7,19 @@
     "product_offers": {"label": "Product / Offer Cards", "color": "#2E7D32"},
     "pricing_plans": {"label": "Plans / Pricing", "color": "#388E3C"},
     "device_promo": {"label": "Device Promotion", "color": "#7CB342"},
-    "service_categories": {"label": "Service Categories", "color": "#6A1B9A"},
+    "service_categories": {"label": "Services / Categories", "color": "#6A1B9A"},
     "trust_stats": {"label": "Trust / Stats / Proof", "color": "#5D4037"},
-    "content_feature": {"label": "Editorial / Feature Story", "color": "#8E24AA"},
+    "content_feature": {"label": "Editorial / Explainer", "color": "#8E24AA"},
     "business_section": {"label": "Business / Enterprise", "color": "#3949AB"},
     "app_promo": {"label": "App / Digital Experience", "color": "#00897B"},
+    "notices": {"label": "Notices / Alerts", "color": "#EF6C00"},
+    "form_contact": {"label": "Form / Contact / Complaint", "color": "#AD1457"},
+    "projects": {"label": "Projects / Initiatives", "color": "#4527A0"},
+    "guidance": {"label": "Guidance / Safety", "color": "#558B2F"},
+    "online_service": {"label": "Online Service / Portal", "color": "#00695C"},
+    "regulation_info": {"label": "Regulatory Information", "color": "#37474F"},
     "news": {"label": "News / Updates", "color": "#C62828"},
-    "faq_help": {"label": "Help / FAQ / Support", "color": "#EF6C00"},
+    "faq_help": {"label": "Help / FAQ / Support", "color": "#9E6B00"},
     "footer": {"label": "Footer", "color": "#263238"},
     "capture_partial": {"label": "Partial / Capture Limitation", "color": "#9E9E9E"}
   }

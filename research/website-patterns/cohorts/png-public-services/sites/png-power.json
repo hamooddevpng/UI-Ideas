@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "cohort": "png-public-services",
+  "site": {
+    "slug": "png-power",
+    "name": "PNG Power Limited",
+    "url": "https://www.pngpower.com.pg/",
+    "source_repo_path": "reference-screenshots/png-public-sites-curated/full-page-1440/png-power.png",
+    "capture_status": "ok",
+    "coordinate_mode": "normalized",
+    "sections": [
+      {"bounds_normalized":{"x":0.0,"y":0.0,"width":1.0,"height":0.02548},"type":"navigation","label":"Compact navigation","confidence":0.95},
+      {"bounds_normalized":{"x":0.0,"y":0.02548,"width":1.0,"height":0.11381},"type":"hero_cta","label":"Hero statement + visual + CTAs","confidence":0.95},
+      {"bounds_normalized":{"x":0.0,"y":0.13929,"width":1.0,"height":0.033973},"type":"quick_actions","label":"Outage map, reconnection, tenders, careers","confidence":0.94},
+      {"bounds_normalized":{"x":0.0,"y":0.173263,"width":1.0,"height":0.146085},"type":"trust_stats","label":"Company/value proposition + operational stats","confidence":0.90},
+      {"bounds_normalized":{"x":0.0,"y":0.319348,"width":1.0,"height":0.13929},"type":"news","label":"What's Happening","confidence":0.95},
+      {"bounds_normalized":{"x":0.0,"y":0.458638,"width":1.0,"height":0.132495},"type":"projects","label":"Projects / energy transformation","confidence":0.94},
+      {"bounds_normalized":{"x":0.0,"y":0.591133,"width":1.0,"height":0.129098},"type":"guidance","label":"Power Safety Tips","confidence":0.97},
+      {"bounds_normalized":{"x":0.0,"y":0.720231,"width":1.0,"height":0.20214},"type":"notices","label":"Operational updates and public notices","confidence":0.95},
+      {"bounds_normalized":{"x":0.0,"y":0.922371,"width":1.0,"height":0.077629},"type":"footer","label":"Corporate footer","confidence":0.98}
+    ]
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "cohort": "png-public-services",
+  "site": {
+    "slug": "nicta",
+    "name": "National ICT Authority",
+    "url": "https://www.nicta.gov.pg/",
+    "source_repo_path": "reference-screenshots/png-public-sites-curated/full-page-1440/nicta.png",
+    "capture_status": "ok",
+    "coordinate_mode": "normalized",
+    "sections": [
+      {"bounds_normalized":{"x":0.0,"y":0.0,"width":1.0,"height":0.017572},"type":"navigation","label":"Government/NICTA header + navigation","confidence":0.95},
+      {"bounds_normalized":{"x":0.0,"y":0.017572,"width":1.0,"height":0.109489},"type":"hero_cta","label":"Banner carousel / campaign hero with CTAs","confidence":0.92},
+      {"bounds_normalized":{"x":0.0,"y":0.127061,"width":1.0,"height":0.079075},"type":"content_feature","label":"Why ICT regulation matters","confidence":0.92},
+      {"bounds_normalized":{"x":0.0,"y":0.206136,"width":1.0,"height":0.094215},"type":"service_categories","label":"What we do: licensing, regulatory, spectrum, enforcement","confidence":0.97},
+      {"bounds_normalized":{"x":0.0,"y":0.300351,"width":1.0,"height":0.097729},"type":"notices","label":"Public notices + featured content","confidence":0.95},
+      {"bounds_normalized":{"x":0.0,"y":0.398081,"width":1.0,"height":0.11787},"type":"news","label":"News grid","confidence":0.96},
+      {"bounds_normalized":{"x":0.0,"y":0.51595,"width":1.0,"height":0.092187},"type":"form_contact","label":"Consultations & inquiries","confidence":0.92},
+      {"bounds_normalized":{"x":0.0,"y":0.608137,"width":1.0,"height":0.097324},"type":"online_service","label":"Type Approval online service","confidence":0.97},
+      {"bounds_normalized":{"x":0.0,"y":0.705461,"width":1.0,"height":0.089889},"type":"regulation_info","label":"Universal Access & Service information","confidence":0.91},
+      {"bounds_normalized":{"x":0.0,"y":0.79535,"width":1.0,"height":0.134496},"type":"faq_help","label":"Frequently Asked Questions","confidence":0.98},
+      {"bounds_normalized":{"x":0.0,"y":0.929846,"width":1.0,"height":0.070154},"type":"footer","label":"Footer and contact information","confidence":0.98}
+    ]
+  }
+}

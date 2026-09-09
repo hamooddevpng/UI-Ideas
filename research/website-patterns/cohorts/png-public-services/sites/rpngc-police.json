@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0",
+  "cohort": "png-public-services",
+  "site": {
+    "slug": "rpngc-police",
+    "name": "Royal Papua New Guinea Constabulary",
+    "url": "https://rpngc.gov.pg/",
+    "source_repo_path": "reference-screenshots/png-public-sites-curated/full-page-1440/rpngc-police.png",
+    "capture_status": "ok",
+    "coordinate_mode": "normalized",
+    "sections": [
+      {"bounds_normalized":{"x":0.0,"y":0.0,"width":1.0,"height":0.049861},"type":"navigation","label":"Contact strip + main navigation","confidence":0.95},
+      {"bounds_normalized":{"x":0.0,"y":0.049861,"width":1.0,"height":0.085111},"type":"hero_cta","label":"Hero banner with two primary CTAs","confidence":0.96},
+      {"bounds_normalized":{"x":0.0,"y":0.134972,"width":1.0,"height":0.147727},"type":"service_categories","label":"Advice & Services cards","confidence":0.95},
+      {"bounds_normalized":{"x":0.0,"y":0.282699,"width":1.0,"height":0.099954},"type":"form_contact","label":"Report police misconduct / complaint guidance","confidence":0.88},
+      {"bounds_normalized":{"x":0.0,"y":0.382653,"width":1.0,"height":0.226345},"type":"trust_stats","label":"Vision, mission and organisational values","confidence":0.90},
+      {"bounds_normalized":{"x":0.0,"y":0.608998,"width":1.0,"height":0.232839},"type":"news","label":"News + More News","confidence":0.96},
+      {"bounds_normalized":{"x":0.0,"y":0.841837,"width":1.0,"height":0.158163},"type":"footer","label":"Resource links + institutional footer","confidence":0.98}
+    ]
+  }
+}
