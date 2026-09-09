@@ -29,15 +29,17 @@ jobs:
           src = Path('reference-screenshots/telecom-sites/desktop-1440')
           out = Path('reference-screenshots/pattern-analysis/_vision-proxies/modern-telecom')
           out.mkdir(parents=True, exist_ok=True)
+          for old in out.glob('*.jpg.b64'):
+              old.unlink()
           meta = {}
           for p in sorted(src.glob('*.png')):
               im = Image.open(p).convert('RGB')
               w, h = im.size
-              proxy_w = 420
+              proxy_w = 160
               proxy_h = max(1, round(h * proxy_w / w))
               proxy = im.resize((proxy_w, proxy_h), Image.Resampling.LANCZOS)
               buf = io.BytesIO()
-              proxy.save(buf, format='JPEG', quality=58, optimize=True)
+              proxy.save(buf, format='JPEG', quality=28, optimize=True)
               encoded = base64.b64encode(buf.getvalue()).decode('ascii')
               (out / f'{p.stem}.jpg.b64').write_text(encoded)
               meta[p.stem] = {
@@ -56,5 +58,5 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add reference-screenshots/pattern-analysis/_vision-proxies/modern-telecom
           git diff --cached --quiet && exit 0
-          git commit -m 'chore: export telecom analysis proxies'
+          git commit -m 'chore: refresh telecom analysis proxies'
           git push
