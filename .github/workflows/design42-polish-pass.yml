@@ -46,3 +46,4 @@ jobs:
             git rebase origin/main
           done
           exit 1
+# retry after case-insensitive text verification
