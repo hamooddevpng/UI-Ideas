@@ -27,7 +27,7 @@ jobs:
 
       - name: Capture 30 private-sector / consumer websites
         run: |
-          cat > /tmp/capture-private.cjs <<'NODE'
+          cat > capture-private.cjs <<'NODE'
           const { chromium } = require('playwright');
           const fs = require('fs');
           const path = require('path');
@@ -102,70 +102,75 @@ jobs:
             } catch {}
           }
 
-          const browser = await chromium.launch({headless:true});
-          const context = await browser.newContext({
-            viewport: {width:1440, height:900},
-            ignoreHTTPSErrors: true,
-            userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/139 Safari/537.36'
-          });
+          (async () => {
+            const browser = await chromium.launch({headless:true});
+            const context = await browser.newContext({
+              viewport: {width:1440, height:900},
+              ignoreHTTPSErrors: true,
+              userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/139 Safari/537.36'
+            });
 
-          const results = new Array(sites.length);
-          let next = 0;
-          async function worker() {
-            while (true) {
-              const i = next++;
-              if (i >= sites.length) return;
-              const site = sites[i];
-              const page = await context.newPage();
-              page.setDefaultTimeout(8000);
-              let response = null;
-              let error = null;
-              try {
-                response = await page.goto(site.url, {waitUntil:'domcontentloaded', timeout:45000});
-              } catch (e) { error = String(e); }
-              try { await page.waitForTimeout(1800); } catch {}
-              await dismiss(page);
-              await autoScroll(page);
-              try { await page.waitForTimeout(700); } catch {}
+            const results = new Array(sites.length);
+            let next = 0;
+            async function worker() {
+              while (true) {
+                const i = next++;
+                if (i >= sites.length) return;
+                const site = sites[i];
+                const page = await context.newPage();
+                page.setDefaultTimeout(8000);
+                let response = null;
+                let error = null;
+                try {
+                  response = await page.goto(site.url, {waitUntil:'domcontentloaded', timeout:45000});
+                } catch (e) { error = String(e); }
+                try { await page.waitForTimeout(1800); } catch {}
+                await dismiss(page);
+                await autoScroll(page);
+                try { await page.waitForTimeout(700); } catch {}
 
-              const file = path.join(outDir, site.slug + '.png');
-              let screenshotStatus = 'ok';
-              try {
-                await page.screenshot({path:file, fullPage:true, animations:'disabled'});
-                fs.copyFileSync(file, path.join(researchDir, 'png-private-' + site.slug + '.png'));
-              } catch (e) {
-                screenshotStatus = 'failed';
-                error = (error ? error + '\n' : '') + String(e);
+                const file = path.join(outDir, site.slug + '.png');
+                let screenshotStatus = 'ok';
+                try {
+                  await page.screenshot({path:file, fullPage:true, animations:'disabled'});
+                  fs.copyFileSync(file, path.join(researchDir, 'png-private-' + site.slug + '.png'));
+                } catch (e) {
+                  screenshotStatus = 'failed';
+                  error = (error ? error + '\n' : '') + String(e);
+                }
+
+                results[i] = {
+                  ...site,
+                  finalUrl: page.url(),
+                  title: await page.title().catch(()=>''),
+                  httpStatus: response ? response.status() : null,
+                  status: screenshotStatus === 'ok' ? (error ? 'partial' : 'ok') : 'failed',
+                  error
+                };
+                console.log(`${i+1}/${sites.length} ${site.slug}: ${results[i].status} ${results[i].httpStatus ?? ''}`);
+                await page.close();
               }
-
-              results[i] = {
-                ...site,
-                finalUrl: page.url(),
-                title: await page.title().catch(()=>''),
-                httpStatus: response ? response.status() : null,
-                status: screenshotStatus === 'ok' ? (error ? 'partial' : 'ok') : 'failed',
-                error
-              };
-              console.log(`${i+1}/${sites.length} ${site.slug}: ${results[i].status} ${results[i].httpStatus ?? ''}`);
-              await page.close();
             }
-          }
 
-          await Promise.all(Array.from({length:5}, () => worker()));
-          await browser.close();
+            await Promise.all(Array.from({length:5}, () => worker()));
+            await browser.close();
 
-          const manifest = {
-            capturedAt: new Date().toISOString(),
-            viewport: '1440x900',
-            captureKind: 'full_page',
-            count: sites.length,
-            cohort: 'PNG private-sector / consumer familiarity',
-            results
-          };
-          fs.writeFileSync(path.join(outDir, 'capture-results.json'), JSON.stringify(manifest, null, 2));
-          fs.writeFileSync(path.join(researchDir, 'png-private-capture-results.json'), JSON.stringify(manifest, null, 2));
+            const manifest = {
+              capturedAt: new Date().toISOString(),
+              viewport: '1440x900',
+              captureKind: 'full_page',
+              count: sites.length,
+              cohort: 'PNG private-sector / consumer familiarity',
+              results
+            };
+            fs.writeFileSync(path.join(outDir, 'capture-results.json'), JSON.stringify(manifest, null, 2));
+            fs.writeFileSync(path.join(researchDir, 'png-private-capture-results.json'), JSON.stringify(manifest, null, 2));
+          })().catch(err => {
+            console.error(err);
+            process.exit(1);
+          });
           NODE
-          node /tmp/capture-private.cjs
+          node capture-private.cjs
 
       - name: Create ZIP bundle
         run: |
