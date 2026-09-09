@@ -3,7 +3,7 @@ p=Path('42.html')
 s=p.read_text()
 
 old_img='''<img class="png-story-photo" src="assets/design42/louisiade-archipelago-nasa.jpg" alt="Aerial view of the Louisiade Archipelago and coral reefs in Papua New Guinea" loading="lazy" decoding="async">'''
-new_img='''<img class="png-story-photo" src="assets/design42/milne-bay-aerial.jpg" alt="Aerial view of islands and coral reefs in Milne Bay, Papua New Guinea" loading="lazy" decoding="async">'''
+new_img='''<img class="png-story-photo" src="assets/design42/milne-bay-aerial.jpg" alt="Aerial view of Tawali Resort coastline and coral reefs in Milne Bay, Papua New Guinea" loading="lazy" decoding="async">'''
 if old_img not in s:
     raise SystemExit('PNG story image target missing')
 s=s.replace(old_img,new_img,1)
@@ -78,6 +78,6 @@ p.write_text(s)
 
 attr=Path('assets/design42/ATTRIBUTION.md')
 existing=attr.read_text() if attr.exists() else '# Design 42 image sources\n'
-entry='''\n## Milne Bay aerial background\n- Used in: PNG / National Story section\n- Source page: https://www.pagahill.com/2019/03/29/the-islands-of-milne-bay/\n- Image source: https://www.pagahill.com/wp-content/uploads/2019/03/paga-hill-blog-milne-bay-gummi-gudmundur-fridriksson-papua-new-guineajpg.jpg\n- Subject: Milne Bay, Papua New Guinea\n- Note: mirrored locally for the design prototype.\n'''
+entry='''\n## Milne Bay aerial background\n- Used in: PNG / National Story section\n- Source page: https://www.tripspoint.com/papua-new-guinea/gurney/tour/multi-day-tours-cruises/tawali-resort-stay-7-pay-5-diving-package/6967\n- Image source: https://cdn.tripspoint.com/uploads/photos/6967/tawali-resort-stay-7-pay-5-diving-package_QnCtx.jpeg\n- Subject: Tawali Resort, Milne Bay Province, Papua New Guinea\n- Note: mirrored locally for the design prototype.\n'''
 if '## Milne Bay aerial background' not in existing:
     attr.write_text(existing.rstrip()+entry+'\n')
