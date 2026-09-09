@@ -1,62 +1,272 @@
 {
   "cohort": "modern-telecom",
   "name": "Modern Telecom Cohort",
-  "reference_site_count": 9,
-  "analyzed_site_count": 9,
+  "candidate_site_count": 9,
+  "reference_site_count": 8,
+  "excluded_site_count": 1,
+  "excluded_sites": [
+    {
+      "slug": "vodafone-png",
+      "name": "Vodafone Papua New Guinea",
+      "url": "https://vodafone.com.pg/",
+      "reason": "Capture metadata status: partial"
+    }
+  ],
+  "analyzed_site_count": 8,
   "pending_site_count": 0,
   "section_counts": {
-    "navigation": 9,
-    "hero_cta": 9,
-    "product_offers": 6,
+    "navigation": 8,
+    "hero_cta": 8,
+    "product_offers": 5,
     "pricing_plans": 4,
     "device_promo": 3,
-    "service_categories": 3,
+    "service_categories": 2,
     "faq_help": 3,
     "footer": 8,
-    "quick_actions": 5,
+    "quick_actions": 4,
     "app_promo": 2,
     "content_feature": 4,
     "business_section": 3,
     "trust_stats": 3,
-    "news": 3,
-    "capture_partial": 1
+    "news": 3
   },
   "site_presence": {
-    "product_offers": 6,
     "pricing_plans": 4,
-    "footer": 8,
-    "faq_help": 3,
     "device_promo": 3,
-    "navigation": 9,
-    "service_categories": 3,
-    "hero_cta": 9,
-    "quick_actions": 5,
+    "navigation": 8,
+    "service_categories": 2,
+    "hero_cta": 8,
+    "product_offers": 5,
+    "faq_help": 3,
+    "footer": 8,
     "app_promo": 2,
-    "news": 3,
+    "quick_actions": 4,
     "business_section": 3,
     "content_feature": 4,
-    "trust_stats": 3,
-    "capture_partial": 1
+    "news": 3,
+    "trust_stats": 3
   },
+  "position_patterns": [
+    {
+      "position": 1,
+      "candidates": [
+        {
+          "type": "navigation",
+          "count": 8,
+          "coverage_pct": 100
+        }
+      ]
+    },
+    {
+      "position": 2,
+      "candidates": [
+        {
+          "type": "hero_cta",
+          "count": 8,
+          "coverage_pct": 100
+        }
+      ]
+    },
+    {
+      "position": 3,
+      "candidates": [
+        {
+          "type": "quick_actions",
+          "count": 3,
+          "coverage_pct": 38
+        },
+        {
+          "type": "content_feature",
+          "count": 3,
+          "coverage_pct": 38
+        },
+        {
+          "type": "product_offers",
+          "count": 2,
+          "coverage_pct": 25
+        }
+      ]
+    },
+    {
+      "position": 4,
+      "candidates": [
+        {
+          "type": "product_offers",
+          "count": 3,
+          "coverage_pct": 38
+        },
+        {
+          "type": "pricing_plans",
+          "count": 2,
+          "coverage_pct": 25
+        },
+        {
+          "type": "business_section",
+          "count": 2,
+          "coverage_pct": 25
+        },
+        {
+          "type": "trust_stats",
+          "count": 1,
+          "coverage_pct": 12
+        }
+      ]
+    },
+    {
+      "position": 5,
+      "candidates": [
+        {
+          "type": "device_promo",
+          "count": 2,
+          "coverage_pct": 25
+        },
+        {
+          "type": "pricing_plans",
+          "count": 2,
+          "coverage_pct": 25
+        },
+        {
+          "type": "trust_stats",
+          "count": 2,
+          "coverage_pct": 25
+        },
+        {
+          "type": "service_categories",
+          "count": 1,
+          "coverage_pct": 12
+        },
+        {
+          "type": "business_section",
+          "count": 1,
+          "coverage_pct": 12
+        }
+      ]
+    },
+    {
+      "position": 6,
+      "candidates": [
+        {
+          "type": "news",
+          "count": 3,
+          "coverage_pct": 38
+        },
+        {
+          "type": "service_categories",
+          "count": 1,
+          "coverage_pct": 12
+        },
+        {
+          "type": "app_promo",
+          "count": 1,
+          "coverage_pct": 12
+        },
+        {
+          "type": "device_promo",
+          "count": 1,
+          "coverage_pct": 12
+        },
+        {
+          "type": "content_feature",
+          "count": 1,
+          "coverage_pct": 12
+        },
+        {
+          "type": "quick_actions",
+          "count": 1,
+          "coverage_pct": 12
+        }
+      ]
+    },
+    {
+      "position": 7,
+      "candidates": [
+        {
+          "type": "footer",
+          "count": 4,
+          "coverage_pct": 50
+        },
+        {
+          "type": "faq_help",
+          "count": 3,
+          "coverage_pct": 38
+        },
+        {
+          "type": "app_promo",
+          "count": 1,
+          "coverage_pct": 12
+        }
+      ]
+    },
+    {
+      "position": 8,
+      "candidates": [
+        {
+          "type": "footer",
+          "count": 4,
+          "coverage_pct": 50
+        }
+      ]
+    }
+  ],
+  "recommended_structure": [
+    {
+      "position": 1,
+      "type": "navigation",
+      "count": 8,
+      "coverage_pct": 100
+    },
+    {
+      "position": 2,
+      "type": "hero_cta",
+      "count": 8,
+      "coverage_pct": 100
+    },
+    {
+      "position": 3,
+      "type": "quick_actions",
+      "count": 3,
+      "coverage_pct": 38
+    },
+    {
+      "position": 4,
+      "type": "product_offers",
+      "count": 3,
+      "coverage_pct": 38
+    },
+    {
+      "position": 5,
+      "type": "device_promo",
+      "count": 2,
+      "coverage_pct": 25
+    },
+    {
+      "position": 6,
+      "type": "news",
+      "count": 3,
+      "coverage_pct": 38
+    },
+    {
+      "position": 7,
+      "type": "footer",
+      "count": 4,
+      "coverage_pct": 50
+    },
+    {
+      "position": 8,
+      "type": "footer",
+      "count": 4,
+      "coverage_pct": 50
+    }
+  ],
   "transitions": [
     {
       "from": "navigation",
       "to": "hero_cta",
-      "count": 9
+      "count": 8
     },
     {
       "from": "product_offers",
       "to": "pricing_plans",
-      "count": 4
-    },
-    {
-      "from": "hero_cta",
-      "to": "quick_actions",
-      "count": 4
-    },
-    {
-      "from": "quick_actions",
-      "to": "product_offers",
       "count": 4
     },
     {
@@ -67,6 +277,16 @@
     {
       "from": "faq_help",
       "to": "footer",
+      "count": 3
+    },
+    {
+      "from": "hero_cta",
+      "to": "quick_actions",
+      "count": 3
+    },
+    {
+      "from": "quick_actions",
+      "to": "product_offers",
       "count": 3
     },
     {
@@ -100,11 +320,6 @@
       "count": 2
     },
     {
-      "from": "product_offers",
-      "to": "service_categories",
-      "count": 2
-    },
-    {
       "from": "device_promo",
       "to": "service_categories",
       "count": 1
@@ -135,6 +350,11 @@
       "count": 1
     },
     {
+      "from": "product_offers",
+      "to": "service_categories",
+      "count": 1
+    },
+    {
       "from": "service_categories",
       "to": "content_feature",
       "count": 1
@@ -152,11 +372,6 @@
     {
       "from": "quick_actions",
       "to": "faq_help",
-      "count": 1
-    },
-    {
-      "from": "service_categories",
-      "to": "capture_partial",
       "count": 1
     },
     {

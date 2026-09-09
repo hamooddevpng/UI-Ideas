@@ -4,124 +4,212 @@
 
 ## Website Pattern Research
 
-> Auto-generated from screenshot inventory + semantic JSON. Screenshots remain visible even when analysis is pending.
+> Auto-generated from clean screenshot inventory + semantic JSON. Failed, partial, blocked and unreliable captures are excluded from the atlas, statistics and recommendations.
 
-**60 reference screenshots tracked · 60 semantically analyzed · 0 pending**
+**45 clean reference screenshots tracked · 45 semantically analyzed · 15 captures excluded**
 
-[Open the all-reference atlas](./research/website-patterns/generated/all-reference-atlas.jpg) · [All cohort summaries](./research/website-patterns/generated/all-cohorts-summary.json)
+[Open the all-reference atlas](./research/website-patterns/generated/all-reference-atlas.jpg) · [Final structure recommendation](./research/website-patterns/generated/final-structure-recommendation.json) · [All cohort summaries](./research/website-patterns/generated/all-cohorts-summary.json)
 
 [![All website research atlas](./research/website-patterns/generated/all-reference-atlas.jpg)](./research/website-patterns/generated/all-reference-atlas.jpg)
 
+### Recommended final page structure
+
+This is a cohort-balanced consensus, so the much larger PNG private-sector cohort does not drown out the telecom or public-service cohorts.
+
+| Order | Section | Cohort-balanced support | Raw site support |
+| ---: | --- | ---: | ---: |
+| 1 | Navigation / Header | 100% | 100% |
+| 2 | Hero / Banner + CTA | 92% | 91% |
+| 3 | Editorial / Explainer | 34% | 33% |
+| 4 | News / Updates | 22% | 18% |
+| 5 | Footer | 25% | 20% |
+
+**Optional / secondary sections seen often enough to consider**
+
+| Section | Cohort-balanced presence |
+| --- | ---: |
+| Services / Categories | 38% |
+| Quick Actions / Self-Service | 38% |
+| Trust / Stats / Proof | 37% |
+| Product / Offer Cards | 32% |
+
 ### Analysis coverage
 
-| Cohort | References | Analyzed | Pending |
-| --- | ---: | ---: | ---: |
-| Modern Telecom Cohort | 9 | 9 | 0 |
-| PNG Private-Sector Familiarity Cohort | 31 | 31 | 0 |
-| PNG Public-Service Familiarity Cohort | 20 | 20 | 0 |
+| Cohort | Candidates | Included clean captures | Excluded captures | Analyzed | Pending |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Modern Telecom Cohort | 9 | 8 | 1 | 8 | 0 |
+| PNG Private-Sector Familiarity Cohort | 31 | 25 | 6 | 25 | 0 |
+| PNG Public-Service Familiarity Cohort | 20 | 12 | 8 | 12 | 0 |
 
 ### Modern Telecom Cohort
 
-**9 screenshots · 9 analyzed · 0 pending**
+**8 clean screenshots · 8 analyzed · 1 excluded · 0 pending**
 
-[Open cohort atlas](./research/website-patterns/generated/modern-telecom-atlas.jpg) · [Summary JSON](./research/website-patterns/generated/modern-telecom-summary.json) · [Transitions CSV](./research/website-patterns/generated/modern-telecom-transitions.csv)
+[Open cohort atlas](./research/website-patterns/generated/modern-telecom-atlas.jpg) · [Summary JSON](./research/website-patterns/generated/modern-telecom-summary.json) · [Recommended structure CSV](./research/website-patterns/generated/modern-telecom-recommended-structure.csv) · [Transitions CSV](./research/website-patterns/generated/modern-telecom-transitions.csv)
 
-| Pattern | Analyzed sites | Coverage of analyzed sites |
+**Most common section at each page position**
+
+| Position | Suggested section | Sites at this exact position |
+| ---: | --- | ---: |
+| 1 | Navigation / Header | 8/8 (100%) |
+| 2 | Hero / Banner + CTA | 8/8 (100%) |
+| 3 | Quick Actions / Self-Service | 3/8 (38%) |
+| 4 | Product / Offer Cards | 3/8 (38%) |
+| 5 | Device Promotion | 2/8 (25%) |
+| 6 | News / Updates | 3/8 (38%) |
+| 7 | Footer | 4/8 (50%) |
+| 8 | Footer | 4/8 (50%) |
+
+**Section presence across clean analyzed sites**
+
+| Pattern | Analyzed sites | Coverage |
 | --- | ---: | ---: |
-| Hero / Banner + CTA | 9/9 | 100% |
-| Navigation / Header | 9/9 | 100% |
-| Footer | 8/9 | 89% |
-| Product / Offer Cards | 6/9 | 67% |
-| Quick Actions / Self-Service | 5/9 | 56% |
-| Editorial / Explainer | 4/9 | 44% |
-| Plans / Pricing | 4/9 | 44% |
-| Business / Enterprise | 3/9 | 33% |
-| Device Promotion | 3/9 | 33% |
-| Help / FAQ / Support | 3/9 | 33% |
-| News / Updates | 3/9 | 33% |
-| Services / Categories | 3/9 | 33% |
-| Trust / Stats / Proof | 3/9 | 33% |
-| App / Digital Experience | 2/9 | 22% |
+| Footer | 8/8 | 100% |
+| Hero / Banner + CTA | 8/8 | 100% |
+| Navigation / Header | 8/8 | 100% |
+| Product / Offer Cards | 5/8 | 62% |
+| Editorial / Explainer | 4/8 | 50% |
+| Plans / Pricing | 4/8 | 50% |
+| Quick Actions / Self-Service | 4/8 | 50% |
+| Business / Enterprise | 3/8 | 38% |
+| Device Promotion | 3/8 | 38% |
+| Help / FAQ / Support | 3/8 | 38% |
+| News / Updates | 3/8 | 38% |
+| Trust / Stats / Proof | 3/8 | 38% |
+| App / Digital Experience | 2/8 | 25% |
+| Services / Categories | 2/8 | 25% |
 
-**Most common page-flow transitions among analyzed sites**
+**Most common page-flow transitions**
 
 | Transition | Count |
 | --- | ---: |
-| Navigation / Header → Hero / Banner + CTA | 9 |
+| Navigation / Header → Hero / Banner + CTA | 8 |
 | Product / Offer Cards → Plans / Pricing | 4 |
-| Hero / Banner + CTA → Quick Actions / Self-Service | 4 |
-| Quick Actions / Self-Service → Product / Offer Cards | 4 |
 | Plans / Pricing → Device Promotion | 3 |
 | Help / FAQ / Support → Footer | 3 |
+| Hero / Banner + CTA → Quick Actions / Self-Service | 3 |
+| Quick Actions / Self-Service → Product / Offer Cards | 3 |
 | Hero / Banner + CTA → Editorial / Explainer | 3 |
 | News / Updates → Footer | 3 |
 
+**Excluded capture attempts**
+
+| Site | Reason |
+| --- | --- |
+| Vodafone Papua New Guinea | Capture metadata status: partial |
+
 ### PNG Private-Sector Familiarity Cohort
 
-**31 screenshots · 31 analyzed · 0 pending**
+**25 clean screenshots · 25 analyzed · 6 excluded · 0 pending**
 
-[Open cohort atlas](./research/website-patterns/generated/png-private-sector-atlas.jpg) · [Summary JSON](./research/website-patterns/generated/png-private-sector-summary.json) · [Transitions CSV](./research/website-patterns/generated/png-private-sector-transitions.csv)
+[Open cohort atlas](./research/website-patterns/generated/png-private-sector-atlas.jpg) · [Summary JSON](./research/website-patterns/generated/png-private-sector-summary.json) · [Recommended structure CSV](./research/website-patterns/generated/png-private-sector-recommended-structure.csv) · [Transitions CSV](./research/website-patterns/generated/png-private-sector-transitions.csv)
 
-| Pattern | Analyzed sites | Coverage of analyzed sites |
+**Most common section at each page position**
+
+| Position | Suggested section | Sites at this exact position |
+| ---: | --- | ---: |
+| 1 | Navigation / Header | 25/25 (100%) |
+| 2 | Hero / Banner + CTA | 23/25 (92%) |
+| 3 | Editorial / Explainer | 8/25 (32%) |
+| 4 | Editorial / Explainer | 6/25 (24%) |
+| 5 | Footer | 3/25 (12%) |
+| 6 | Footer | 7/25 (28%) |
+| 7 | Footer | 4/25 (16%) |
+| 8 | Footer | 6/25 (24%) |
+| 9 | Footer | 2/25 (8%) |
+| 10 | Footer | 1/25 (4%) |
+
+**Section presence across clean analyzed sites**
+
+| Pattern | Analyzed sites | Coverage |
 | --- | ---: | ---: |
-| Footer | 29/31 | 94% |
-| Navigation / Header | 28/31 | 90% |
-| Hero / Banner + CTA | 26/31 | 84% |
-| Editorial / Explainer | 19/31 | 61% |
-| Services / Categories | 14/31 | 45% |
-| Trust / Stats / Proof | 13/31 | 42% |
-| News / Updates | 10/31 | 32% |
-| Product / Offer Cards | 10/31 | 32% |
-| Quick Actions / Self-Service | 9/31 | 29% |
-| Form / Contact / Complaint | 6/31 | 19% |
-| Business / Enterprise | 5/31 | 16% |
-| Projects / Initiatives | 5/31 | 16% |
-| Help / FAQ / Support | 3/31 | 10% |
-| Online Service / Portal | 3/31 | 10% |
-| App / Digital Experience | 2/31 | 6% |
+| Footer | 25/25 | 100% |
+| Navigation / Header | 25/25 | 100% |
+| Hero / Banner + CTA | 23/25 | 92% |
+| Editorial / Explainer | 18/25 | 72% |
+| Services / Categories | 12/25 | 48% |
+| Trust / Stats / Proof | 12/25 | 48% |
+| News / Updates | 8/25 | 32% |
+| Product / Offer Cards | 8/25 | 32% |
+| Quick Actions / Self-Service | 8/25 | 32% |
+| Form / Contact / Complaint | 5/25 | 20% |
+| Projects / Initiatives | 5/25 | 20% |
+| Business / Enterprise | 4/25 | 16% |
+| Help / FAQ / Support | 3/25 | 12% |
+| Online Service / Portal | 3/25 | 12% |
+| App / Digital Experience | 2/25 | 8% |
 
-**Most common page-flow transitions among analyzed sites**
+**Most common page-flow transitions**
 
 | Transition | Count |
 | --- | ---: |
-| Navigation / Header → Hero / Banner + CTA | 26 |
-| Product / Offer Cards → Product / Offer Cards | 10 |
-| Hero / Banner + CTA → Editorial / Explainer | 7 |
-| Form / Contact / Complaint → Footer | 6 |
-| Hero / Banner + CTA → Quick Actions / Self-Service | 5 |
+| Navigation / Header → Hero / Banner + CTA | 23 |
+| Hero / Banner + CTA → Editorial / Explainer | 6 |
+| Form / Contact / Complaint → Footer | 5 |
 | Hero / Banner + CTA → Trust / Stats / Proof | 5 |
-| News / Updates → News / Updates | 5 |
+| Hero / Banner + CTA → Quick Actions / Self-Service | 4 |
 | Trust / Stats / Proof → Footer | 4 |
+| Trust / Stats / Proof → Editorial / Explainer | 4 |
+| Editorial / Explainer → Trust / Stats / Proof | 4 |
+
+**Excluded capture attempts**
+
+| Site | Reason |
+| --- | --- |
+| Airways Hotel & Residences | Semantic capture status: partial |
+| CPL Group | Semantic capture status: partial |
+| Daltron PNG | Semantic capture status: partial |
+| PNGworkForce | Semantic capture status: partial |
+| RH Hypermarket / RH Trading PNG | Cloudflare 403 block during automated capture |
+| Vision City Mega Mall | Semantic capture status: partial |
 
 ### PNG Public-Service Familiarity Cohort
 
-**20 screenshots · 20 analyzed · 0 pending**
+**12 clean screenshots · 12 analyzed · 8 excluded · 0 pending**
 
-[Open cohort atlas](./research/website-patterns/generated/png-public-services-atlas.jpg) · [Summary JSON](./research/website-patterns/generated/png-public-services-summary.json) · [Transitions CSV](./research/website-patterns/generated/png-public-services-transitions.csv)
+[Open cohort atlas](./research/website-patterns/generated/png-public-services-atlas.jpg) · [Summary JSON](./research/website-patterns/generated/png-public-services-summary.json) · [Recommended structure CSV](./research/website-patterns/generated/png-public-services-recommended-structure.csv) · [Transitions CSV](./research/website-patterns/generated/png-public-services-transitions.csv)
 
-| Pattern | Analyzed sites | Coverage of analyzed sites |
+**Most common section at each page position**
+
+| Position | Suggested section | Sites at this exact position |
+| ---: | --- | ---: |
+| 1 | Navigation / Header | 12/12 (100%) |
+| 2 | Hero / Banner + CTA | 10/12 (83%) |
+| 3 | Editorial / Explainer | 4/12 (33%) |
+| 4 | Services / Categories | 2/12 (17%) |
+| 5 | News / Updates | 3/12 (25%) |
+| 6 | Footer | 2/12 (17%) |
+| 7 | Form / Contact / Complaint | 2/12 (17%) |
+| 8 | Footer | 2/12 (17%) |
+| 9 | Regulatory Information | 1/12 (8%) |
+| 10 | Help / FAQ / Support | 1/12 (8%) |
+| 11 | Footer | 1/12 (8%) |
+
+**Section presence across clean analyzed sites**
+
+| Pattern | Analyzed sites | Coverage |
 | --- | ---: | ---: |
-| Navigation / Header | 13/20 | 65% |
-| Hero / Banner + CTA | 11/20 | 55% |
-| Footer | 10/20 | 50% |
-| News / Updates | 6/20 | 30% |
-| Editorial / Explainer | 5/20 | 25% |
-| Services / Categories | 5/20 | 25% |
-| Notices / Alerts | 4/20 | 20% |
-| Quick Actions / Self-Service | 4/20 | 20% |
-| Form / Contact / Complaint | 3/20 | 15% |
-| Projects / Initiatives | 3/20 | 15% |
-| Trust / Stats / Proof | 3/20 | 15% |
-| Online Service / Portal | 2/20 | 10% |
-| Regulatory Information | 2/20 | 10% |
-| Guidance / Safety | 1/20 | 5% |
-| Help / FAQ / Support | 1/20 | 5% |
+| Navigation / Header | 12/12 | 100% |
+| Footer | 10/12 | 83% |
+| Hero / Banner + CTA | 10/12 | 83% |
+| News / Updates | 6/12 | 50% |
+| Editorial / Explainer | 5/12 | 42% |
+| Services / Categories | 5/12 | 42% |
+| Notices / Alerts | 4/12 | 33% |
+| Quick Actions / Self-Service | 4/12 | 33% |
+| Form / Contact / Complaint | 3/12 | 25% |
+| Projects / Initiatives | 3/12 | 25% |
+| Trust / Stats / Proof | 3/12 | 25% |
+| Online Service / Portal | 2/12 | 17% |
+| Regulatory Information | 2/12 | 17% |
+| Guidance / Safety | 1/12 | 8% |
+| Help / FAQ / Support | 1/12 | 8% |
 
-**Most common page-flow transitions among analyzed sites**
+**Most common page-flow transitions**
 
 | Transition | Count |
 | --- | ---: |
-| Navigation / Header → Hero / Banner + CTA | 11 |
+| Navigation / Header → Hero / Banner + CTA | 10 |
 | Hero / Banner + CTA → Services / Categories | 3 |
 | Hero / Banner + CTA → Editorial / Explainer | 3 |
 | Trust / Stats / Proof → News / Updates | 3 |
@@ -130,7 +218,21 @@
 | News / Updates → Projects / Initiatives | 2 |
 | Editorial / Explainer → Footer | 2 |
 
+**Excluded capture attempts**
+
+| Site | Reason |
+| --- | --- |
+| Department of Higher Education Research Science and Technology | Semantic capture status: partial |
+| National Department of Education | Semantic capture status: partial |
+| National Department of Health | Semantic capture status: partial |
+| Immigration & Citizenship Authority | Semantic capture status: partial |
+| Internal Revenue Commission | Semantic capture status: partial |
+| National Capital District Commission | Semantic capture status: partial |
+| University of Goroka | Semantic capture status: partial |
+| University of Papua New Guinea | Semantic capture status: partial |
+
 <!-- WEBSITE_PATTERN_RESEARCH_END -->
+
 
 
 

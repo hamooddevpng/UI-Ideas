@@ -2,62 +2,272 @@
   {
     "cohort": "modern-telecom",
     "name": "Modern Telecom Cohort",
-    "reference_site_count": 9,
-    "analyzed_site_count": 9,
+    "candidate_site_count": 9,
+    "reference_site_count": 8,
+    "excluded_site_count": 1,
+    "excluded_sites": [
+      {
+        "slug": "vodafone-png",
+        "name": "Vodafone Papua New Guinea",
+        "url": "https://vodafone.com.pg/",
+        "reason": "Capture metadata status: partial"
+      }
+    ],
+    "analyzed_site_count": 8,
     "pending_site_count": 0,
     "section_counts": {
-      "navigation": 9,
-      "hero_cta": 9,
-      "product_offers": 6,
+      "navigation": 8,
+      "hero_cta": 8,
+      "product_offers": 5,
       "pricing_plans": 4,
       "device_promo": 3,
-      "service_categories": 3,
+      "service_categories": 2,
       "faq_help": 3,
       "footer": 8,
-      "quick_actions": 5,
+      "quick_actions": 4,
       "app_promo": 2,
       "content_feature": 4,
       "business_section": 3,
       "trust_stats": 3,
-      "news": 3,
-      "capture_partial": 1
+      "news": 3
     },
     "site_presence": {
-      "product_offers": 6,
       "pricing_plans": 4,
-      "footer": 8,
-      "faq_help": 3,
       "device_promo": 3,
-      "navigation": 9,
-      "service_categories": 3,
-      "hero_cta": 9,
-      "quick_actions": 5,
+      "navigation": 8,
+      "service_categories": 2,
+      "hero_cta": 8,
+      "product_offers": 5,
+      "faq_help": 3,
+      "footer": 8,
       "app_promo": 2,
-      "news": 3,
+      "quick_actions": 4,
       "business_section": 3,
       "content_feature": 4,
-      "trust_stats": 3,
-      "capture_partial": 1
+      "news": 3,
+      "trust_stats": 3
     },
+    "position_patterns": [
+      {
+        "position": 1,
+        "candidates": [
+          {
+            "type": "navigation",
+            "count": 8,
+            "coverage_pct": 100
+          }
+        ]
+      },
+      {
+        "position": 2,
+        "candidates": [
+          {
+            "type": "hero_cta",
+            "count": 8,
+            "coverage_pct": 100
+          }
+        ]
+      },
+      {
+        "position": 3,
+        "candidates": [
+          {
+            "type": "quick_actions",
+            "count": 3,
+            "coverage_pct": 38
+          },
+          {
+            "type": "content_feature",
+            "count": 3,
+            "coverage_pct": 38
+          },
+          {
+            "type": "product_offers",
+            "count": 2,
+            "coverage_pct": 25
+          }
+        ]
+      },
+      {
+        "position": 4,
+        "candidates": [
+          {
+            "type": "product_offers",
+            "count": 3,
+            "coverage_pct": 38
+          },
+          {
+            "type": "pricing_plans",
+            "count": 2,
+            "coverage_pct": 25
+          },
+          {
+            "type": "business_section",
+            "count": 2,
+            "coverage_pct": 25
+          },
+          {
+            "type": "trust_stats",
+            "count": 1,
+            "coverage_pct": 12
+          }
+        ]
+      },
+      {
+        "position": 5,
+        "candidates": [
+          {
+            "type": "device_promo",
+            "count": 2,
+            "coverage_pct": 25
+          },
+          {
+            "type": "pricing_plans",
+            "count": 2,
+            "coverage_pct": 25
+          },
+          {
+            "type": "trust_stats",
+            "count": 2,
+            "coverage_pct": 25
+          },
+          {
+            "type": "service_categories",
+            "count": 1,
+            "coverage_pct": 12
+          },
+          {
+            "type": "business_section",
+            "count": 1,
+            "coverage_pct": 12
+          }
+        ]
+      },
+      {
+        "position": 6,
+        "candidates": [
+          {
+            "type": "news",
+            "count": 3,
+            "coverage_pct": 38
+          },
+          {
+            "type": "service_categories",
+            "count": 1,
+            "coverage_pct": 12
+          },
+          {
+            "type": "app_promo",
+            "count": 1,
+            "coverage_pct": 12
+          },
+          {
+            "type": "device_promo",
+            "count": 1,
+            "coverage_pct": 12
+          },
+          {
+            "type": "content_feature",
+            "count": 1,
+            "coverage_pct": 12
+          },
+          {
+            "type": "quick_actions",
+            "count": 1,
+            "coverage_pct": 12
+          }
+        ]
+      },
+      {
+        "position": 7,
+        "candidates": [
+          {
+            "type": "footer",
+            "count": 4,
+            "coverage_pct": 50
+          },
+          {
+            "type": "faq_help",
+            "count": 3,
+            "coverage_pct": 38
+          },
+          {
+            "type": "app_promo",
+            "count": 1,
+            "coverage_pct": 12
+          }
+        ]
+      },
+      {
+        "position": 8,
+        "candidates": [
+          {
+            "type": "footer",
+            "count": 4,
+            "coverage_pct": 50
+          }
+        ]
+      }
+    ],
+    "recommended_structure": [
+      {
+        "position": 1,
+        "type": "navigation",
+        "count": 8,
+        "coverage_pct": 100
+      },
+      {
+        "position": 2,
+        "type": "hero_cta",
+        "count": 8,
+        "coverage_pct": 100
+      },
+      {
+        "position": 3,
+        "type": "quick_actions",
+        "count": 3,
+        "coverage_pct": 38
+      },
+      {
+        "position": 4,
+        "type": "product_offers",
+        "count": 3,
+        "coverage_pct": 38
+      },
+      {
+        "position": 5,
+        "type": "device_promo",
+        "count": 2,
+        "coverage_pct": 25
+      },
+      {
+        "position": 6,
+        "type": "news",
+        "count": 3,
+        "coverage_pct": 38
+      },
+      {
+        "position": 7,
+        "type": "footer",
+        "count": 4,
+        "coverage_pct": 50
+      },
+      {
+        "position": 8,
+        "type": "footer",
+        "count": 4,
+        "coverage_pct": 50
+      }
+    ],
     "transitions": [
       {
         "from": "navigation",
         "to": "hero_cta",
-        "count": 9
+        "count": 8
       },
       {
         "from": "product_offers",
         "to": "pricing_plans",
-        "count": 4
-      },
-      {
-        "from": "hero_cta",
-        "to": "quick_actions",
-        "count": 4
-      },
-      {
-        "from": "quick_actions",
-        "to": "product_offers",
         "count": 4
       },
       {
@@ -68,6 +278,16 @@
       {
         "from": "faq_help",
         "to": "footer",
+        "count": 3
+      },
+      {
+        "from": "hero_cta",
+        "to": "quick_actions",
+        "count": 3
+      },
+      {
+        "from": "quick_actions",
+        "to": "product_offers",
         "count": 3
       },
       {
@@ -101,11 +321,6 @@
         "count": 2
       },
       {
-        "from": "product_offers",
-        "to": "service_categories",
-        "count": 2
-      },
-      {
         "from": "device_promo",
         "to": "service_categories",
         "count": 1
@@ -136,6 +351,11 @@
         "count": 1
       },
       {
+        "from": "product_offers",
+        "to": "service_categories",
+        "count": 1
+      },
+      {
         "from": "service_categories",
         "to": "content_feature",
         "count": 1
@@ -153,11 +373,6 @@
       {
         "from": "quick_actions",
         "to": "faq_help",
-        "count": 1
-      },
-      {
-        "from": "service_categories",
-        "to": "capture_partial",
         "count": 1
       },
       {
@@ -180,69 +395,466 @@
   {
     "cohort": "png-private-sector",
     "name": "PNG Private-Sector Familiarity Cohort",
-    "reference_site_count": 31,
-    "analyzed_site_count": 31,
+    "candidate_site_count": 31,
+    "reference_site_count": 25,
+    "excluded_site_count": 6,
+    "excluded_sites": [
+      {
+        "slug": "airways-hotel",
+        "name": "Airways Hotel & Residences",
+        "url": "https://www.airways.com.pg/",
+        "reason": "Semantic capture status: partial"
+      },
+      {
+        "slug": "cpl-group",
+        "name": "CPL Group",
+        "url": "https://cpl.com.pg/",
+        "reason": "Semantic capture status: partial"
+      },
+      {
+        "slug": "daltron",
+        "name": "Daltron PNG",
+        "url": "https://www.daltronpng.com/",
+        "reason": "Semantic capture status: partial"
+      },
+      {
+        "slug": "pngworkforce",
+        "name": "PNGworkForce",
+        "url": "https://www.pngworkforce.com/",
+        "reason": "Semantic capture status: partial"
+      },
+      {
+        "slug": "rh-hypermarket",
+        "name": "RH Hypermarket / RH Trading PNG",
+        "url": "https://www.rhtradingpng.com/",
+        "reason": "Cloudflare 403 block during automated capture"
+      },
+      {
+        "slug": "vision-city",
+        "name": "Vision City Mega Mall",
+        "url": "https://www.visioncitypng.com/",
+        "reason": "Semantic capture status: partial"
+      }
+    ],
+    "analyzed_site_count": 25,
     "pending_site_count": 0,
     "section_counts": {
-      "navigation": 28,
-      "hero_cta": 27,
-      "content_feature": 24,
-      "capture_partial": 7,
-      "footer": 29,
-      "product_offers": 22,
-      "quick_actions": 9,
-      "service_categories": 14,
-      "trust_stats": 16,
-      "business_section": 5,
+      "navigation": 25,
+      "hero_cta": 24,
+      "product_offers": 9,
+      "footer": 25,
+      "quick_actions": 8,
+      "service_categories": 12,
+      "trust_stats": 14,
+      "content_feature": 21,
+      "business_section": 4,
       "projects": 5,
       "online_service": 3,
-      "news": 17,
+      "news": 10,
       "faq_help": 3,
-      "form_contact": 6,
+      "form_contact": 5,
       "app_promo": 2
     },
     "site_presence": {
-      "hero_cta": 26,
-      "footer": 29,
-      "capture_partial": 6,
-      "navigation": 28,
-      "content_feature": 19,
-      "product_offers": 10,
-      "quick_actions": 9,
-      "service_categories": 14,
-      "trust_stats": 13,
+      "product_offers": 8,
+      "navigation": 25,
+      "footer": 25,
+      "hero_cta": 23,
+      "service_categories": 12,
+      "quick_actions": 8,
+      "trust_stats": 12,
       "projects": 5,
-      "business_section": 5,
-      "faq_help": 3,
-      "news": 10,
+      "business_section": 4,
+      "content_feature": 18,
       "online_service": 3,
-      "form_contact": 6,
+      "faq_help": 3,
+      "news": 8,
+      "form_contact": 5,
       "app_promo": 2
     },
+    "position_patterns": [
+      {
+        "position": 1,
+        "candidates": [
+          {
+            "type": "navigation",
+            "count": 25,
+            "coverage_pct": 100
+          }
+        ]
+      },
+      {
+        "position": 2,
+        "candidates": [
+          {
+            "type": "hero_cta",
+            "count": 23,
+            "coverage_pct": 92
+          },
+          {
+            "type": "news",
+            "count": 2,
+            "coverage_pct": 8
+          }
+        ]
+      },
+      {
+        "position": 3,
+        "candidates": [
+          {
+            "type": "content_feature",
+            "count": 8,
+            "coverage_pct": 32
+          },
+          {
+            "type": "trust_stats",
+            "count": 5,
+            "coverage_pct": 20
+          },
+          {
+            "type": "quick_actions",
+            "count": 4,
+            "coverage_pct": 16
+          },
+          {
+            "type": "service_categories",
+            "count": 4,
+            "coverage_pct": 16
+          },
+          {
+            "type": "product_offers",
+            "count": 3,
+            "coverage_pct": 12
+          },
+          {
+            "type": "online_service",
+            "count": 1,
+            "coverage_pct": 4
+          }
+        ]
+      },
+      {
+        "position": 4,
+        "candidates": [
+          {
+            "type": "content_feature",
+            "count": 6,
+            "coverage_pct": 24
+          },
+          {
+            "type": "service_categories",
+            "count": 5,
+            "coverage_pct": 20
+          },
+          {
+            "type": "news",
+            "count": 4,
+            "coverage_pct": 16
+          },
+          {
+            "type": "product_offers",
+            "count": 3,
+            "coverage_pct": 12
+          },
+          {
+            "type": "business_section",
+            "count": 3,
+            "coverage_pct": 12
+          },
+          {
+            "type": "footer",
+            "count": 2,
+            "coverage_pct": 8
+          },
+          {
+            "type": "app_promo",
+            "count": 1,
+            "coverage_pct": 4
+          },
+          {
+            "type": "projects",
+            "count": 1,
+            "coverage_pct": 4
+          }
+        ]
+      },
+      {
+        "position": 5,
+        "candidates": [
+          {
+            "type": "footer",
+            "count": 3,
+            "coverage_pct": 12
+          },
+          {
+            "type": "quick_actions",
+            "count": 3,
+            "coverage_pct": 12
+          },
+          {
+            "type": "trust_stats",
+            "count": 3,
+            "coverage_pct": 12
+          },
+          {
+            "type": "content_feature",
+            "count": 3,
+            "coverage_pct": 12
+          },
+          {
+            "type": "service_categories",
+            "count": 2,
+            "coverage_pct": 8
+          },
+          {
+            "type": "online_service",
+            "count": 2,
+            "coverage_pct": 8
+          },
+          {
+            "type": "projects",
+            "count": 2,
+            "coverage_pct": 8
+          },
+          {
+            "type": "product_offers",
+            "count": 2,
+            "coverage_pct": 8
+          },
+          {
+            "type": "app_promo",
+            "count": 1,
+            "coverage_pct": 4
+          },
+          {
+            "type": "hero_cta",
+            "count": 1,
+            "coverage_pct": 4
+          },
+          {
+            "type": "business_section",
+            "count": 1,
+            "coverage_pct": 4
+          },
+          {
+            "type": "faq_help",
+            "count": 1,
+            "coverage_pct": 4
+          }
+        ]
+      },
+      {
+        "position": 6,
+        "candidates": [
+          {
+            "type": "footer",
+            "count": 7,
+            "coverage_pct": 28
+          },
+          {
+            "type": "trust_stats",
+            "count": 3,
+            "coverage_pct": 12
+          },
+          {
+            "type": "news",
+            "count": 3,
+            "coverage_pct": 12
+          },
+          {
+            "type": "form_contact",
+            "count": 2,
+            "coverage_pct": 8
+          },
+          {
+            "type": "content_feature",
+            "count": 2,
+            "coverage_pct": 8
+          },
+          {
+            "type": "projects",
+            "count": 1,
+            "coverage_pct": 4
+          },
+          {
+            "type": "quick_actions",
+            "count": 1,
+            "coverage_pct": 4
+          },
+          {
+            "type": "service_categories",
+            "count": 1,
+            "coverage_pct": 4
+          }
+        ]
+      },
+      {
+        "position": 7,
+        "candidates": [
+          {
+            "type": "footer",
+            "count": 4,
+            "coverage_pct": 16
+          },
+          {
+            "type": "trust_stats",
+            "count": 2,
+            "coverage_pct": 8
+          },
+          {
+            "type": "faq_help",
+            "count": 2,
+            "coverage_pct": 8
+          },
+          {
+            "type": "content_feature",
+            "count": 1,
+            "coverage_pct": 4
+          },
+          {
+            "type": "form_contact",
+            "count": 1,
+            "coverage_pct": 4
+          },
+          {
+            "type": "projects",
+            "count": 1,
+            "coverage_pct": 4
+          },
+          {
+            "type": "product_offers",
+            "count": 1,
+            "coverage_pct": 4
+          },
+          {
+            "type": "news",
+            "count": 1,
+            "coverage_pct": 4
+          }
+        ]
+      },
+      {
+        "position": 8,
+        "candidates": [
+          {
+            "type": "footer",
+            "count": 6,
+            "coverage_pct": 24
+          },
+          {
+            "type": "form_contact",
+            "count": 2,
+            "coverage_pct": 8
+          },
+          {
+            "type": "content_feature",
+            "count": 1,
+            "coverage_pct": 4
+          }
+        ]
+      },
+      {
+        "position": 9,
+        "candidates": [
+          {
+            "type": "footer",
+            "count": 2,
+            "coverage_pct": 8
+          },
+          {
+            "type": "trust_stats",
+            "count": 1,
+            "coverage_pct": 4
+          }
+        ]
+      },
+      {
+        "position": 10,
+        "candidates": [
+          {
+            "type": "footer",
+            "count": 1,
+            "coverage_pct": 4
+          }
+        ]
+      }
+    ],
+    "recommended_structure": [
+      {
+        "position": 1,
+        "type": "navigation",
+        "count": 25,
+        "coverage_pct": 100
+      },
+      {
+        "position": 2,
+        "type": "hero_cta",
+        "count": 23,
+        "coverage_pct": 92
+      },
+      {
+        "position": 3,
+        "type": "content_feature",
+        "count": 8,
+        "coverage_pct": 32
+      },
+      {
+        "position": 4,
+        "type": "content_feature",
+        "count": 6,
+        "coverage_pct": 24
+      },
+      {
+        "position": 5,
+        "type": "footer",
+        "count": 3,
+        "coverage_pct": 12
+      },
+      {
+        "position": 6,
+        "type": "footer",
+        "count": 7,
+        "coverage_pct": 28
+      },
+      {
+        "position": 7,
+        "type": "footer",
+        "count": 4,
+        "coverage_pct": 16
+      },
+      {
+        "position": 8,
+        "type": "footer",
+        "count": 6,
+        "coverage_pct": 24
+      },
+      {
+        "position": 9,
+        "type": "footer",
+        "count": 2,
+        "coverage_pct": 8
+      },
+      {
+        "position": 10,
+        "type": "footer",
+        "count": 1,
+        "coverage_pct": 4
+      }
+    ],
     "transitions": [
       {
         "from": "navigation",
         "to": "hero_cta",
-        "count": 26
-      },
-      {
-        "from": "product_offers",
-        "to": "product_offers",
-        "count": 10
+        "count": 23
       },
       {
         "from": "hero_cta",
         "to": "content_feature",
-        "count": 7
+        "count": 6
       },
       {
         "from": "form_contact",
         "to": "footer",
-        "count": 6
-      },
-      {
-        "from": "hero_cta",
-        "to": "quick_actions",
         "count": 5
       },
       {
@@ -251,9 +863,9 @@
         "count": 5
       },
       {
-        "from": "news",
-        "to": "news",
-        "count": 5
+        "from": "hero_cta",
+        "to": "quick_actions",
+        "count": 4
       },
       {
         "from": "trust_stats",
@@ -301,16 +913,6 @@
         "count": 3
       },
       {
-        "from": "quick_actions",
-        "to": "service_categories",
-        "count": 3
-      },
-      {
-        "from": "service_categories",
-        "to": "product_offers",
-        "count": 3
-      },
-      {
         "from": "content_feature",
         "to": "footer",
         "count": 3
@@ -336,21 +938,6 @@
         "count": 3
       },
       {
-        "from": "content_feature",
-        "to": "capture_partial",
-        "count": 2
-      },
-      {
-        "from": "capture_partial",
-        "to": "footer",
-        "count": 2
-      },
-      {
-        "from": "product_offers",
-        "to": "service_categories",
-        "count": 2
-      },
-      {
         "from": "service_categories",
         "to": "projects",
         "count": 2
@@ -371,13 +958,13 @@
         "count": 2
       },
       {
-        "from": "product_offers",
-        "to": "news",
+        "from": "quick_actions",
+        "to": "service_categories",
         "count": 2
       },
       {
-        "from": "news",
-        "to": "trust_stats",
+        "from": "service_categories",
+        "to": "product_offers",
         "count": 2
       },
       {
@@ -416,13 +1003,13 @@
         "count": 2
       },
       {
-        "from": "capture_partial",
-        "to": "content_feature",
+        "from": "quick_actions",
+        "to": "product_offers",
         "count": 1
       },
       {
-        "from": "quick_actions",
-        "to": "product_offers",
+        "from": "product_offers",
+        "to": "service_categories",
         "count": 1
       },
       {
@@ -451,18 +1038,13 @@
         "count": 1
       },
       {
-        "from": "hero_cta",
-        "to": "business_section",
-        "count": 1
-      },
-      {
-        "from": "business_section",
+        "from": "product_offers",
         "to": "news",
         "count": 1
       },
       {
         "from": "news",
-        "to": "capture_partial",
+        "to": "trust_stats",
         "count": 1
       },
       {
@@ -521,11 +1103,6 @@
         "count": 1
       },
       {
-        "from": "content_feature",
-        "to": "content_feature",
-        "count": 1
-      },
-      {
         "from": "business_section",
         "to": "form_contact",
         "count": 1
@@ -543,16 +1120,6 @@
       {
         "from": "product_offers",
         "to": "form_contact",
-        "count": 1
-      },
-      {
-        "from": "capture_partial",
-        "to": "product_offers",
-        "count": 1
-      },
-      {
-        "from": "service_categories",
-        "to": "footer",
         "count": 1
       },
       {
@@ -581,27 +1148,7 @@
         "count": 1
       },
       {
-        "from": "trust_stats",
-        "to": "trust_stats",
-        "count": 1
-      },
-      {
         "from": "news",
-        "to": "form_contact",
-        "count": 1
-      },
-      {
-        "from": "trust_stats",
-        "to": "product_offers",
-        "count": 1
-      },
-      {
-        "from": "product_offers",
-        "to": "capture_partial",
-        "count": 1
-      },
-      {
-        "from": "capture_partial",
         "to": "form_contact",
         "count": 1
       }
@@ -610,16 +1157,67 @@
   {
     "cohort": "png-public-services",
     "name": "PNG Public-Service Familiarity Cohort",
-    "reference_site_count": 20,
-    "analyzed_site_count": 20,
+    "candidate_site_count": 20,
+    "reference_site_count": 12,
+    "excluded_site_count": 8,
+    "excluded_sites": [
+      {
+        "slug": "dherst",
+        "name": "Department of Higher Education Research Science and Technology",
+        "url": "https://web.dherst.gov.pg/",
+        "reason": "Semantic capture status: partial"
+      },
+      {
+        "slug": "education",
+        "name": "National Department of Education",
+        "url": "https://education.gov.pg/",
+        "reason": "Semantic capture status: partial"
+      },
+      {
+        "slug": "health",
+        "name": "National Department of Health",
+        "url": "https://health.gov.pg/",
+        "reason": "Semantic capture status: partial"
+      },
+      {
+        "slug": "immigration-ica",
+        "name": "Immigration & Citizenship Authority",
+        "url": "https://ica.gov.pg/",
+        "reason": "Semantic capture status: partial"
+      },
+      {
+        "slug": "irc-tax",
+        "name": "Internal Revenue Commission",
+        "url": "https://irc.gov.pg/",
+        "reason": "Semantic capture status: partial"
+      },
+      {
+        "slug": "ncdc",
+        "name": "National Capital District Commission",
+        "url": "https://ncdc.gov.pg/",
+        "reason": "Semantic capture status: partial"
+      },
+      {
+        "slug": "university-of-goroka",
+        "name": "University of Goroka",
+        "url": "https://www.unigoroka.ac.pg/",
+        "reason": "Semantic capture status: partial"
+      },
+      {
+        "slug": "upng",
+        "name": "University of Papua New Guinea",
+        "url": "https://upng.ac.pg/",
+        "reason": "Semantic capture status: partial"
+      }
+    ],
+    "analyzed_site_count": 12,
     "pending_site_count": 0,
     "section_counts": {
-      "navigation": 13,
-      "hero_cta": 11,
+      "navigation": 12,
+      "hero_cta": 10,
       "service_categories": 5,
       "online_service": 2,
       "footer": 10,
-      "capture_partial": 8,
       "notices": 4,
       "quick_actions": 4,
       "regulation_info": 2,
@@ -632,28 +1230,332 @@
       "guidance": 1
     },
     "site_presence": {
+      "navigation": 12,
       "service_categories": 5,
-      "navigation": 13,
-      "hero_cta": 11,
+      "hero_cta": 10,
       "online_service": 2,
       "footer": 10,
-      "capture_partial": 8,
       "regulation_info": 2,
-      "quick_actions": 4,
       "notices": 4,
+      "quick_actions": 4,
       "news": 6,
-      "faq_help": 1,
       "content_feature": 5,
+      "faq_help": 1,
       "form_contact": 3,
-      "guidance": 1,
       "projects": 3,
+      "guidance": 1,
       "trust_stats": 3
     },
+    "position_patterns": [
+      {
+        "position": 1,
+        "candidates": [
+          {
+            "type": "navigation",
+            "count": 12,
+            "coverage_pct": 100
+          }
+        ]
+      },
+      {
+        "position": 2,
+        "candidates": [
+          {
+            "type": "hero_cta",
+            "count": 10,
+            "coverage_pct": 83
+          },
+          {
+            "type": "online_service",
+            "count": 1,
+            "coverage_pct": 8
+          },
+          {
+            "type": "quick_actions",
+            "count": 1,
+            "coverage_pct": 8
+          }
+        ]
+      },
+      {
+        "position": 3,
+        "candidates": [
+          {
+            "type": "content_feature",
+            "count": 4,
+            "coverage_pct": 33
+          },
+          {
+            "type": "service_categories",
+            "count": 3,
+            "coverage_pct": 25
+          },
+          {
+            "type": "quick_actions",
+            "count": 2,
+            "coverage_pct": 17
+          },
+          {
+            "type": "footer",
+            "count": 1,
+            "coverage_pct": 8
+          },
+          {
+            "type": "notices",
+            "count": 1,
+            "coverage_pct": 8
+          },
+          {
+            "type": "news",
+            "count": 1,
+            "coverage_pct": 8
+          }
+        ]
+      },
+      {
+        "position": 4,
+        "candidates": [
+          {
+            "type": "service_categories",
+            "count": 2,
+            "coverage_pct": 17
+          },
+          {
+            "type": "footer",
+            "count": 2,
+            "coverage_pct": 17
+          },
+          {
+            "type": "trust_stats",
+            "count": 2,
+            "coverage_pct": 17
+          },
+          {
+            "type": "quick_actions",
+            "count": 1,
+            "coverage_pct": 8
+          },
+          {
+            "type": "content_feature",
+            "count": 1,
+            "coverage_pct": 8
+          },
+          {
+            "type": "form_contact",
+            "count": 1,
+            "coverage_pct": 8
+          }
+        ]
+      },
+      {
+        "position": 5,
+        "candidates": [
+          {
+            "type": "news",
+            "count": 3,
+            "coverage_pct": 25
+          },
+          {
+            "type": "regulation_info",
+            "count": 1,
+            "coverage_pct": 8
+          },
+          {
+            "type": "notices",
+            "count": 1,
+            "coverage_pct": 8
+          },
+          {
+            "type": "projects",
+            "count": 1,
+            "coverage_pct": 8
+          },
+          {
+            "type": "trust_stats",
+            "count": 1,
+            "coverage_pct": 8
+          }
+        ]
+      },
+      {
+        "position": 6,
+        "candidates": [
+          {
+            "type": "footer",
+            "count": 2,
+            "coverage_pct": 17
+          },
+          {
+            "type": "news",
+            "count": 2,
+            "coverage_pct": 17
+          },
+          {
+            "type": "projects",
+            "count": 2,
+            "coverage_pct": 17
+          },
+          {
+            "type": "notices",
+            "count": 1,
+            "coverage_pct": 8
+          }
+        ]
+      },
+      {
+        "position": 7,
+        "candidates": [
+          {
+            "type": "form_contact",
+            "count": 2,
+            "coverage_pct": 17
+          },
+          {
+            "type": "guidance",
+            "count": 1,
+            "coverage_pct": 8
+          },
+          {
+            "type": "content_feature",
+            "count": 1,
+            "coverage_pct": 8
+          },
+          {
+            "type": "footer",
+            "count": 1,
+            "coverage_pct": 8
+          }
+        ]
+      },
+      {
+        "position": 8,
+        "candidates": [
+          {
+            "type": "footer",
+            "count": 2,
+            "coverage_pct": 17
+          },
+          {
+            "type": "online_service",
+            "count": 1,
+            "coverage_pct": 8
+          },
+          {
+            "type": "notices",
+            "count": 1,
+            "coverage_pct": 8
+          }
+        ]
+      },
+      {
+        "position": 9,
+        "candidates": [
+          {
+            "type": "regulation_info",
+            "count": 1,
+            "coverage_pct": 8
+          },
+          {
+            "type": "footer",
+            "count": 1,
+            "coverage_pct": 8
+          }
+        ]
+      },
+      {
+        "position": 10,
+        "candidates": [
+          {
+            "type": "faq_help",
+            "count": 1,
+            "coverage_pct": 8
+          }
+        ]
+      },
+      {
+        "position": 11,
+        "candidates": [
+          {
+            "type": "footer",
+            "count": 1,
+            "coverage_pct": 8
+          }
+        ]
+      }
+    ],
+    "recommended_structure": [
+      {
+        "position": 1,
+        "type": "navigation",
+        "count": 12,
+        "coverage_pct": 100
+      },
+      {
+        "position": 2,
+        "type": "hero_cta",
+        "count": 10,
+        "coverage_pct": 83
+      },
+      {
+        "position": 3,
+        "type": "content_feature",
+        "count": 4,
+        "coverage_pct": 33
+      },
+      {
+        "position": 4,
+        "type": "service_categories",
+        "count": 2,
+        "coverage_pct": 17
+      },
+      {
+        "position": 5,
+        "type": "news",
+        "count": 3,
+        "coverage_pct": 25
+      },
+      {
+        "position": 6,
+        "type": "footer",
+        "count": 2,
+        "coverage_pct": 17
+      },
+      {
+        "position": 7,
+        "type": "form_contact",
+        "count": 2,
+        "coverage_pct": 17
+      },
+      {
+        "position": 8,
+        "type": "footer",
+        "count": 2,
+        "coverage_pct": 17
+      },
+      {
+        "position": 9,
+        "type": "regulation_info",
+        "count": 1,
+        "coverage_pct": 8
+      },
+      {
+        "position": 10,
+        "type": "faq_help",
+        "count": 1,
+        "coverage_pct": 8
+      },
+      {
+        "position": 11,
+        "type": "footer",
+        "count": 1,
+        "coverage_pct": 8
+      }
+    ],
     "transitions": [
       {
         "from": "navigation",
         "to": "hero_cta",
-        "count": 11
+        "count": 10
       },
       {
         "from": "hero_cta",
@@ -728,11 +1630,6 @@
       {
         "from": "hero_cta",
         "to": "news",
-        "count": 1
-      },
-      {
-        "from": "hero_cta",
-        "to": "capture_partial",
         "count": 1
       },
       {

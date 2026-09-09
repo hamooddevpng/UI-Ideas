@@ -1,16 +1,67 @@
 {
   "cohort": "png-public-services",
   "name": "PNG Public-Service Familiarity Cohort",
-  "reference_site_count": 20,
-  "analyzed_site_count": 20,
+  "candidate_site_count": 20,
+  "reference_site_count": 12,
+  "excluded_site_count": 8,
+  "excluded_sites": [
+    {
+      "slug": "dherst",
+      "name": "Department of Higher Education Research Science and Technology",
+      "url": "https://web.dherst.gov.pg/",
+      "reason": "Semantic capture status: partial"
+    },
+    {
+      "slug": "education",
+      "name": "National Department of Education",
+      "url": "https://education.gov.pg/",
+      "reason": "Semantic capture status: partial"
+    },
+    {
+      "slug": "health",
+      "name": "National Department of Health",
+      "url": "https://health.gov.pg/",
+      "reason": "Semantic capture status: partial"
+    },
+    {
+      "slug": "immigration-ica",
+      "name": "Immigration & Citizenship Authority",
+      "url": "https://ica.gov.pg/",
+      "reason": "Semantic capture status: partial"
+    },
+    {
+      "slug": "irc-tax",
+      "name": "Internal Revenue Commission",
+      "url": "https://irc.gov.pg/",
+      "reason": "Semantic capture status: partial"
+    },
+    {
+      "slug": "ncdc",
+      "name": "National Capital District Commission",
+      "url": "https://ncdc.gov.pg/",
+      "reason": "Semantic capture status: partial"
+    },
+    {
+      "slug": "university-of-goroka",
+      "name": "University of Goroka",
+      "url": "https://www.unigoroka.ac.pg/",
+      "reason": "Semantic capture status: partial"
+    },
+    {
+      "slug": "upng",
+      "name": "University of Papua New Guinea",
+      "url": "https://upng.ac.pg/",
+      "reason": "Semantic capture status: partial"
+    }
+  ],
+  "analyzed_site_count": 12,
   "pending_site_count": 0,
   "section_counts": {
-    "navigation": 13,
-    "hero_cta": 11,
+    "navigation": 12,
+    "hero_cta": 10,
     "service_categories": 5,
     "online_service": 2,
     "footer": 10,
-    "capture_partial": 8,
     "notices": 4,
     "quick_actions": 4,
     "regulation_info": 2,
@@ -23,28 +74,332 @@
     "guidance": 1
   },
   "site_presence": {
+    "navigation": 12,
     "service_categories": 5,
-    "navigation": 13,
-    "hero_cta": 11,
+    "hero_cta": 10,
     "online_service": 2,
     "footer": 10,
-    "capture_partial": 8,
     "regulation_info": 2,
-    "quick_actions": 4,
     "notices": 4,
+    "quick_actions": 4,
     "news": 6,
-    "faq_help": 1,
     "content_feature": 5,
+    "faq_help": 1,
     "form_contact": 3,
-    "guidance": 1,
     "projects": 3,
+    "guidance": 1,
     "trust_stats": 3
   },
+  "position_patterns": [
+    {
+      "position": 1,
+      "candidates": [
+        {
+          "type": "navigation",
+          "count": 12,
+          "coverage_pct": 100
+        }
+      ]
+    },
+    {
+      "position": 2,
+      "candidates": [
+        {
+          "type": "hero_cta",
+          "count": 10,
+          "coverage_pct": 83
+        },
+        {
+          "type": "online_service",
+          "count": 1,
+          "coverage_pct": 8
+        },
+        {
+          "type": "quick_actions",
+          "count": 1,
+          "coverage_pct": 8
+        }
+      ]
+    },
+    {
+      "position": 3,
+      "candidates": [
+        {
+          "type": "content_feature",
+          "count": 4,
+          "coverage_pct": 33
+        },
+        {
+          "type": "service_categories",
+          "count": 3,
+          "coverage_pct": 25
+        },
+        {
+          "type": "quick_actions",
+          "count": 2,
+          "coverage_pct": 17
+        },
+        {
+          "type": "footer",
+          "count": 1,
+          "coverage_pct": 8
+        },
+        {
+          "type": "notices",
+          "count": 1,
+          "coverage_pct": 8
+        },
+        {
+          "type": "news",
+          "count": 1,
+          "coverage_pct": 8
+        }
+      ]
+    },
+    {
+      "position": 4,
+      "candidates": [
+        {
+          "type": "service_categories",
+          "count": 2,
+          "coverage_pct": 17
+        },
+        {
+          "type": "footer",
+          "count": 2,
+          "coverage_pct": 17
+        },
+        {
+          "type": "trust_stats",
+          "count": 2,
+          "coverage_pct": 17
+        },
+        {
+          "type": "quick_actions",
+          "count": 1,
+          "coverage_pct": 8
+        },
+        {
+          "type": "content_feature",
+          "count": 1,
+          "coverage_pct": 8
+        },
+        {
+          "type": "form_contact",
+          "count": 1,
+          "coverage_pct": 8
+        }
+      ]
+    },
+    {
+      "position": 5,
+      "candidates": [
+        {
+          "type": "news",
+          "count": 3,
+          "coverage_pct": 25
+        },
+        {
+          "type": "regulation_info",
+          "count": 1,
+          "coverage_pct": 8
+        },
+        {
+          "type": "notices",
+          "count": 1,
+          "coverage_pct": 8
+        },
+        {
+          "type": "projects",
+          "count": 1,
+          "coverage_pct": 8
+        },
+        {
+          "type": "trust_stats",
+          "count": 1,
+          "coverage_pct": 8
+        }
+      ]
+    },
+    {
+      "position": 6,
+      "candidates": [
+        {
+          "type": "footer",
+          "count": 2,
+          "coverage_pct": 17
+        },
+        {
+          "type": "news",
+          "count": 2,
+          "coverage_pct": 17
+        },
+        {
+          "type": "projects",
+          "count": 2,
+          "coverage_pct": 17
+        },
+        {
+          "type": "notices",
+          "count": 1,
+          "coverage_pct": 8
+        }
+      ]
+    },
+    {
+      "position": 7,
+      "candidates": [
+        {
+          "type": "form_contact",
+          "count": 2,
+          "coverage_pct": 17
+        },
+        {
+          "type": "guidance",
+          "count": 1,
+          "coverage_pct": 8
+        },
+        {
+          "type": "content_feature",
+          "count": 1,
+          "coverage_pct": 8
+        },
+        {
+          "type": "footer",
+          "count": 1,
+          "coverage_pct": 8
+        }
+      ]
+    },
+    {
+      "position": 8,
+      "candidates": [
+        {
+          "type": "footer",
+          "count": 2,
+          "coverage_pct": 17
+        },
+        {
+          "type": "online_service",
+          "count": 1,
+          "coverage_pct": 8
+        },
+        {
+          "type": "notices",
+          "count": 1,
+          "coverage_pct": 8
+        }
+      ]
+    },
+    {
+      "position": 9,
+      "candidates": [
+        {
+          "type": "regulation_info",
+          "count": 1,
+          "coverage_pct": 8
+        },
+        {
+          "type": "footer",
+          "count": 1,
+          "coverage_pct": 8
+        }
+      ]
+    },
+    {
+      "position": 10,
+      "candidates": [
+        {
+          "type": "faq_help",
+          "count": 1,
+          "coverage_pct": 8
+        }
+      ]
+    },
+    {
+      "position": 11,
+      "candidates": [
+        {
+          "type": "footer",
+          "count": 1,
+          "coverage_pct": 8
+        }
+      ]
+    }
+  ],
+  "recommended_structure": [
+    {
+      "position": 1,
+      "type": "navigation",
+      "count": 12,
+      "coverage_pct": 100
+    },
+    {
+      "position": 2,
+      "type": "hero_cta",
+      "count": 10,
+      "coverage_pct": 83
+    },
+    {
+      "position": 3,
+      "type": "content_feature",
+      "count": 4,
+      "coverage_pct": 33
+    },
+    {
+      "position": 4,
+      "type": "service_categories",
+      "count": 2,
+      "coverage_pct": 17
+    },
+    {
+      "position": 5,
+      "type": "news",
+      "count": 3,
+      "coverage_pct": 25
+    },
+    {
+      "position": 6,
+      "type": "footer",
+      "count": 2,
+      "coverage_pct": 17
+    },
+    {
+      "position": 7,
+      "type": "form_contact",
+      "count": 2,
+      "coverage_pct": 17
+    },
+    {
+      "position": 8,
+      "type": "footer",
+      "count": 2,
+      "coverage_pct": 17
+    },
+    {
+      "position": 9,
+      "type": "regulation_info",
+      "count": 1,
+      "coverage_pct": 8
+    },
+    {
+      "position": 10,
+      "type": "faq_help",
+      "count": 1,
+      "coverage_pct": 8
+    },
+    {
+      "position": 11,
+      "type": "footer",
+      "count": 1,
+      "coverage_pct": 8
+    }
+  ],
   "transitions": [
     {
       "from": "navigation",
       "to": "hero_cta",
-      "count": 11
+      "count": 10
     },
     {
       "from": "hero_cta",
@@ -119,11 +474,6 @@
     {
       "from": "hero_cta",
       "to": "news",
-      "count": 1
-    },
-    {
-      "from": "hero_cta",
-      "to": "capture_partial",
       "count": 1
     },
     {
