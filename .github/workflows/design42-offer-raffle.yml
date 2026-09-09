@@ -1,0 +1,94 @@
+name: One-time Design 42 offer raffle refinement
+on:
+  push:
+    paths:
+      - '.github/workflows/design42-offer-raffle.yml'
+permissions:
+  contents: write
+jobs:
+  refine-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build personalized offer raffle
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          p=Path('42.html')
+          s=p.read_text()
+
+          # Replace only the existing Offers section. Keep the rest of Design 42 intact.
+          offer_section='''<section class="offers raffle-offers" id="offers"><div class="shell"><div class="head-row reveal offer-head"><div><div class="kicker">Picked for you</div><h2 class="title">Offers for you.</h2></div><p class="lead">A few Telikom service ideas, shuffled each visit so there is always something useful to explore.</p></div><div class="offer-raffle-stage reveal" id="offerRaffleStage"><div class="raffle-machine" id="offerRaffle" aria-hidden="true"><div class="raffle-machine-top"><span>TELIKOM PICKS</span><small>FINDING 3 MATCHES</small></div><div class="raffle-window"><div class="raffle-reel"><span>DATA</span><span>HOME</span><span>TOP UP</span><span>REMOTE</span><span>MOBILE</span><span>SUPPORT</span><span>DATA</span><span>HOME</span></div></div><div class="raffle-hub"><i></i><i></i><i></i></div><div class="raffle-mouth"><span></span></div><div class="raffle-foot"></div></div><div class="offer-card-grid" id="personalOfferGrid"><article class="personal-offer" style="--throw-x:112%;--throw-r:-11deg;--delay:0ms"><div class="personal-offer-top"><span class="personal-offer-tag">Mobile</span><span class="personal-offer-index">01</span></div><div class="personal-offer-icon">⌁</div><h3>Finding an offer…</h3><p>Looking through Telikom services.</p><a href="#services">Explore ↗</a></article><article class="personal-offer" style="--throw-x:0%;--throw-r:4deg;--delay:95ms"><div class="personal-offer-top"><span class="personal-offer-tag">Home</span><span class="personal-offer-index">02</span></div><div class="personal-offer-icon">＋</div><h3>Finding an offer…</h3><p>Looking through Telikom services.</p><a href="#services">Explore ↗</a></article><article class="personal-offer" style="--throw-x:-112%;--throw-r:10deg;--delay:185ms"><div class="personal-offer-top"><span class="personal-offer-tag">Connect</span><span class="personal-offer-index">03</span></div><div class="personal-offer-icon">◉</div><h3>Finding an offer…</h3><p>Looking through Telikom services.</p><a href="#services">Explore ↗</a></article></div><div class="offer-personal-note"><span></span> Suggestions reshuffle on your next visit.</div></div></div></section>'''
+          pat=r'<section class="offers" id="offers">.*?</section>\s*<section class="services"'
+          m=re.search(pat,s,re.S)
+          assert m, 'Offers section anchor missing'
+          s=s[:m.start()]+offer_section+'\n<section class="services"'+s[m.end():]
+
+          # Add isolated raffle styles just before the Services styles.
+          css='''.raffle-offers{position:relative;overflow:hidden;background:#fff}.offer-head{position:relative;z-index:5}.offer-raffle-stage{position:relative;min-height:510px;padding-top:230px;transition:padding-top 1s .9s var(--spring)}.raffle-machine{position:absolute;z-index:4;left:50%;top:0;width:270px;height:218px;transform:translateX(-50%);border:1px solid rgba(16,43,60,.11);border-radius:40px 40px 28px 28px;background:linear-gradient(145deg,#f8fdff,#e5f5fc 58%,#d7edf7);box-shadow:0 30px 75px rgba(6,45,67,.16),inset 0 0 0 1px rgba(255,255,255,.9);overflow:hidden;transition:opacity .75s .85s var(--ease),transform .85s .85s var(--spring),filter .75s .85s var(--ease)}.raffle-machine:before{content:"";position:absolute;inset:-30% 28% 42%;border-radius:50%;background:radial-gradient(circle,rgba(33,160,243,.24),transparent 68%);filter:blur(10px)}.raffle-machine-top{height:44px;padding:0 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(16,43,60,.08);position:relative;z-index:2}.raffle-machine-top span{font-size:8px;font-weight:800;letter-spacing:.14em}.raffle-machine-top small{font-size:6px;color:#6e8793;font-weight:800}.raffle-window{position:absolute;left:24px;right:24px;top:60px;height:88px;border-radius:22px;background:#061925;overflow:hidden;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08),0 12px 24px rgba(6,25,37,.12)}.raffle-window:before,.raffle-window:after{content:"";position:absolute;z-index:3;left:0;right:0;height:22px;pointer-events:none}.raffle-window:before{top:0;background:linear-gradient(#061925,transparent)}.raffle-window:after{bottom:0;background:linear-gradient(transparent,#061925)}.raffle-reel{position:absolute;left:0;right:0;top:-12px;display:grid;gap:0}.raffle-reel span{height:31px;display:flex;align-items:center;justify-content:center;color:#c8efff;font-family:"Space Grotesk";font-size:15px;font-weight:700;letter-spacing:.16em}.raffle-running .raffle-reel{animation:raffleSpin .92s cubic-bezier(.22,.68,.19,1) both}.raffle-running .raffle-machine{animation:raffleKick .92s ease-in-out both}@keyframes raffleSpin{0%{transform:translateY(0)}18%{transform:translateY(-40px)}58%{transform:translateY(-150px)}84%{transform:translateY(-92px)}100%{transform:translateY(-124px)}}@keyframes raffleKick{0%,100%{rotate:0deg}18%{rotate:-1.2deg}32%{rotate:1deg}47%{rotate:-.7deg}68%{rotate:.45deg}}.raffle-hub{position:absolute;left:50%;bottom:35px;transform:translateX(-50%);display:flex;gap:5px}.raffle-hub i{width:6px;height:6px;border-radius:50%;background:#8bd9ff;box-shadow:0 0 0 0 rgba(33,160,243,.35)}.raffle-running .raffle-hub i{animation:raffleLamp .5s ease-in-out infinite alternate}.raffle-running .raffle-hub i:nth-child(2){animation-delay:.12s}.raffle-running .raffle-hub i:nth-child(3){animation-delay:.24s}@keyframes raffleLamp{to{background:#fff;box-shadow:0 0 0 7px rgba(33,160,243,0)}}.raffle-mouth{position:absolute;left:50%;bottom:-1px;width:90px;height:24px;transform:translateX(-50%);border-radius:18px 18px 0 0;background:#082333;overflow:hidden}.raffle-mouth span{position:absolute;left:14px;right:14px;top:9px;height:3px;border-radius:99px;background:#55c8fb;box-shadow:0 0 11px rgba(85,200,251,.7);opacity:.45}.raffle-running .raffle-mouth span{animation:raffleMouth .7s .35s ease-out both}@keyframes raffleMouth{0%{opacity:.2;transform:scaleX(.2)}45%{opacity:1;transform:scaleX(1.15)}100%{opacity:.45;transform:scaleX(1)}}.raffle-foot{position:absolute;left:28px;right:28px;bottom:12px;height:1px;background:linear-gradient(90deg,transparent,rgba(16,43,60,.12),transparent)}.offer-card-grid{position:relative;z-index:5;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.personal-offer{min-height:318px;padding:26px;border-radius:28px;border:1px solid rgba(16,43,60,.1);background:linear-gradient(155deg,#fff 0 58%,#eff9fd 100%);box-shadow:0 18px 45px rgba(17,64,88,.08);display:flex;flex-direction:column;opacity:0;transform:translate3d(var(--throw-x),-220px,0) rotate(var(--throw-r)) scale(.46);filter:blur(4px);transform-origin:50% 0;transition:transform 1.12s calc(var(--delay) + .88s) cubic-bezier(.12,.84,.2,1.08),opacity .42s calc(var(--delay) + .92s) ease,filter .6s calc(var(--delay) + .92s) ease,box-shadow .3s ease,border-color .3s ease}.offers-loaded .personal-offer{opacity:1;transform:none;filter:none}.personal-offer:hover{transform:translateY(-7px)!important;border-color:rgba(8,117,201,.25);box-shadow:0 26px 60px rgba(17,64,88,.13)}.personal-offer-top{display:flex;align-items:center;justify-content:space-between}.personal-offer-tag,.personal-offer-index{font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:.12em}.personal-offer-tag{color:var(--blue)}.personal-offer-index{color:#91a5af}.personal-offer-icon{width:52px;height:52px;margin:35px 0 25px;border-radius:17px;display:grid;place-items:center;background:var(--navy);color:#8edbff;font-size:21px;box-shadow:0 14px 30px rgba(6,25,37,.12)}.personal-offer h3{font-family:"Space Grotesk";font-size:31px;line-height:.96;letter-spacing:-.05em;margin:0 0 12px}.personal-offer p{font-size:10px;line-height:1.65;color:var(--muted);margin:0 0 24px;max-width:320px}.personal-offer a{margin-top:auto;align-self:flex-start;font-size:9px;font-weight:800;color:var(--blue)}.offer-personal-note{position:relative;z-index:5;margin-top:18px;display:flex;align-items:center;gap:8px;color:#7d949f;font-size:8px;font-weight:700;opacity:0;transform:translateY(8px);transition:.5s 1.75s}.offer-personal-note span{width:6px;height:6px;border-radius:50%;background:#20a957;box-shadow:0 0 0 4px rgba(32,169,87,.1)}.offers-loaded .offer-personal-note{opacity:1;transform:none}.offers-loaded .raffle-machine{opacity:.04;transform:translateX(-50%) translateY(55px) scale(.72);filter:blur(5px)}.offers-loaded .offer-raffle-stage{padding-top:28px}@media(max-width:820px){.offer-raffle-stage{min-height:720px;padding-top:205px}.raffle-machine{width:230px;height:190px;border-radius:32px}.raffle-window{top:55px;height:76px}.offer-card-grid{grid-template-columns:1fr;gap:10px}.personal-offer{min-height:220px;transform:translate3d(0,-150px,0) rotate(var(--throw-r)) scale(.55)}.personal-offer-icon{margin:20px 0 16px}.offers-loaded .offer-raffle-stage{padding-top:12px}}'''
+          anchor='.services{background:var(--ice)}'
+          assert anchor in s, 'Services CSS anchor missing'
+          s=s.replace(anchor,css+anchor,1)
+
+          # Add behavior before the old static offer handlers. The old handlers become inert because their old buttons no longer exist.
+          js='''const personalizedOfferPool=[{tag:'Mobile',icon:'⌁',title:'More data for today.',body:'Explore Telikom mobile data options and choose the bundle that fits what you are doing.',cta:'See mobile options ↗',href:'#services'},{tag:'Self Care',icon:'＋',title:'Top up in a few taps.',body:'Open Self Care to recharge, check your balance or manage voice and data bundles.',cta:'Open Self Care ↗',href:'#top',selfcare:true},{tag:'Home Internet',icon:'⌂',title:'Bring more home online.',body:'Explore fixed broadband and home internet options for everyday browsing and streaming.',cta:'Explore home internet ↗',href:'#services'},{tag:'Remote',icon:'◌',title:'Connect beyond the network edge.',body:'Explore VSAT and remote connectivity options for business and communities across PNG.',cta:'Explore remote connectivity ↗',href:'#business'},{tag:'Business',icon:'↗',title:'Keep business connected.',body:'Explore Telikom connectivity, fixed voice, hosting and business data services.',cta:'Explore business services ↗',href:'#business'},{tag:'Support',icon:'?',title:'Need a hand?',body:'Customer Care is available on 1555 when you need help with your Telikom service.',cta:'Get support ↗',href:'#support'}];const offersSection=document.getElementById('offers'),personalOfferCards=[...document.querySelectorAll('.personal-offer')];function shuffleOffers(){const pool=[...personalizedOfferPool];for(let i=pool.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[pool[i],pool[j]]=[pool[j],pool[i]]}pool.slice(0,3).forEach((o,i)=>{const card=personalOfferCards[i];card.querySelector('.personal-offer-tag').textContent=o.tag;card.querySelector('.personal-offer-icon').textContent=o.icon;card.querySelector('h3').textContent=o.title;card.querySelector('p').textContent=o.body;const a=card.querySelector('a');a.textContent=o.cta;a.href=o.href;if(o.selfcare){a.onclick=e=>{e.preventDefault();openPhone('home')}}else a.onclick=null})}shuffleOffers();if(offersSection){let raffleDone=false;const runOfferRaffle=()=>{if(raffleDone)return;raffleDone=true;if(reduce){offersSection.classList.add('offers-loaded');return}offersSection.classList.add('raffle-running');setTimeout(()=>offersSection.classList.add('offers-loaded'),760)};const offerObserver=new IntersectionObserver(([entry])=>{if(entry.isIntersecting){runOfferRaffle();offerObserver.disconnect()}},{threshold:.22,rootMargin:'0px 0px -7% 0px'});offerObserver.observe(offersSection)};'''
+          anchor='const offerData='
+          assert anchor in s, 'offerData JS anchor missing'
+          s=s.replace(anchor,js+anchor,1)
+
+          p.write_text(s)
+          PY
+      - name: Syntax check JavaScript
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import re, pathlib
+          s=pathlib.Path('42.html').read_text()
+          pathlib.Path('/tmp/42.js').write_text('\n'.join(re.findall(r'<script>(.*?)</script>',s,re.S)))
+          PY
+          node --check /tmp/42.js
+      - name: Browser verification
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm install --no-save playwright-core@1.55.0 >/dev/null 2>&1
+          python3 -m http.server 8000 >/tmp/42-http.log 2>&1 &
+          cat > /tmp/verify42.js <<'NODE'
+          const { chromium } = require(process.cwd() + '/node_modules/playwright-core');
+          (async()=>{
+            const browser=await chromium.launch({headless:true,executablePath:'/usr/bin/google-chrome',args:['--no-sandbox']});
+            const page=await browser.newPage({viewport:{width:1440,height:900}});
+            const errors=[];page.on('pageerror',e=>errors.push(String(e)));
+            await page.goto('http://127.0.0.1:8000/42.html',{waitUntil:'networkidle'});
+            const before=await page.evaluate(()=>({title:document.querySelector('#offers .title')?.textContent.trim(),cards:document.querySelectorAll('.personal-offer').length,loaded:document.getElementById('offers').classList.contains('offers-loaded')}));
+            if(before.title!=='Offers for you.'||before.cards!==3||before.loaded)throw new Error('Offer raffle initial state failed '+JSON.stringify(before));
+            await page.evaluate(()=>document.getElementById('offers').scrollIntoView({block:'center'}));
+            await page.waitForTimeout(2300);
+            const after=await page.evaluate(()=>{const s=document.getElementById('offers'),machine=document.getElementById('offerRaffle'),cards=[...document.querySelectorAll('.personal-offer')];return {loaded:s.classList.contains('offers-loaded'),machineOpacity:parseFloat(getComputedStyle(machine).opacity),cards:cards.map(c=>({opacity:parseFloat(getComputedStyle(c).opacity),title:c.querySelector('h3').textContent.trim(),transform:getComputedStyle(c).transform}))}});
+            if(!after.loaded||after.machineOpacity>.12||after.cards.some(c=>c.opacity<.98||!c.title||c.title.includes('Finding')))throw new Error('Offer raffle reveal failed '+JSON.stringify(after));
+            // Hero regression checks: satellite/dish and heartbeat laser should still work.
+            await page.evaluate(()=>scrollTo(0,0));await page.waitForTimeout(250);
+            await page.click('.scene-tab[data-scene="1"]');await page.waitForTimeout(760);await page.mouse.move(1080,180);await page.waitForTimeout(300);const a=await page.evaluate(()=>({sat:getComputedStyle(document.querySelector('.satellite')).transform,dish:getComputedStyle(document.querySelector('.dish-head-svg')).transform}));await page.mouse.move(760,430);await page.waitForTimeout(300);const b=await page.evaluate(()=>({sat:getComputedStyle(document.querySelector('.satellite')).transform,dish:getComputedStyle(document.querySelector('.dish-head-svg')).transform}));if(a.sat===b.sat||a.dish===b.dish)throw new Error('Satellite/dish regression');
+            await page.click('.scene-tab[data-scene="2"]');await page.waitForTimeout(720);await page.mouse.move(430,250);let pulse=0,maxOpacity=0;const until=Date.now()+2400;while(Date.now()<until){const v=await page.evaluate(()=>({count:Number(document.querySelector('.tower').dataset.pulseCount||0),opacity:parseFloat(getComputedStyle(document.querySelector('.tower-pulse-track.p1 i')).opacity)}));pulse=Math.max(pulse,v.count);maxOpacity=Math.max(maxOpacity,v.opacity||0);await page.waitForTimeout(30)}if(pulse<1||maxOpacity<.7)throw new Error('Heartbeat laser regression '+JSON.stringify({pulse,maxOpacity}));
+            if(errors.length)throw new Error(errors.join(' | '));
+            console.log('Offer raffle OK',after);console.log('Hero interactions OK',{pulse,maxOpacity});
+            await browser.close();
+          })().catch(e=>{console.error(e);process.exit(1)});
+          NODE
+          node /tmp/verify42.js
+      - name: Commit safely on latest main
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm .github/workflows/design42-offer-raffle.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add 42.html .github/workflows/design42-offer-raffle.yml
+          git commit -m 'Turn Design 42 offers into personalized raffle reveal'
+          git fetch origin main
+          git rebase origin/main
+          git push origin main
