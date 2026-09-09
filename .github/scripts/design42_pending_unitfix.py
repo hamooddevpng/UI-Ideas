@@ -21,4 +21,17 @@ for old,new in repls.items():
     if old not in s:
         raise SystemExit('unit fix target missing: '+old[:90])
     s=s.replace(old,new,1)
+
+css_anchor='.support-orbit .support-link:hover{background:#fff;color:var(--navy);border-color:#fff;box-shadow:0 18px 42px rgba(0,0,0,.22)}'
+css_fix='.support-orbit .support-link:hover,.support-orbit .support-link:focus-visible{--node-x:0px!important;--node-y:0px!important}.support-orbit .support-link:hover{background:#fff;color:var(--navy);border-color:#fff;box-shadow:0 18px 42px rgba(0,0,0,.22)}'
+if css_anchor not in s: raise SystemExit('support hover css anchor missing')
+s=s.replace(css_anchor,css_fix,1)
+
+js_anchor="    if(query){const syncSearch=()=>{const on=query.value.trim().length>0;"
+js_fix="""    const setSupportRoute=(n)=>{if(n){stage.classList.add('node-hot');if(!query?.value){coreMode.textContent='ROUTE';coreValue.textContent=n.dataset.label||'HELP';hint.textContent='This route is ready.'}}else{stage.classList.remove('node-hot');if(!query?.value){coreMode.textContent='CALL';coreValue.textContent='1555';hint.textContent='Move around the hub or search for what you need.'}}};
+    stage.addEventListener('pointermove',e=>{if(e.pointerType==='touch')return;requestAnimationFrame(()=>{const hit=document.elementFromPoint(e.clientX,e.clientY)?.closest?.('[data-support-node]')||null;if(hit){hit.style.setProperty('--node-x','0px');hit.style.setProperty('--node-y','0px')}setSupportRoute(hit)})},{passive:true});
+    stage.addEventListener('pointerover',e=>{const hit=e.target.closest?.('[data-support-node]');if(hit){hit.style.setProperty('--node-x','0px');hit.style.setProperty('--node-y','0px');setSupportRoute(hit)}});
+"""+js_anchor
+if js_anchor not in s: raise SystemExit('support route js anchor missing')
+s=s.replace(js_anchor,js_fix,1)
 p.write_text(s)
