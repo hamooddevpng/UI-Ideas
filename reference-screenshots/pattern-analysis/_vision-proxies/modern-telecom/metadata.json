@@ -1,0 +1,74 @@
+{
+  "att": {
+    "source_path": "reference-screenshots/telecom-sites/desktop-1440/att.png",
+    "width": 1440,
+    "height": 7523,
+    "sha256": "fa4c97198d8f2873cf10f75dc6d8b0ecab8f3b021a5763045b54524e3508e391",
+    "proxy_width": 420,
+    "proxy_height": 2194
+  },
+  "ooredoo-qatar": {
+    "source_path": "reference-screenshots/telecom-sites/desktop-1440/ooredoo-qatar.png",
+    "width": 1440,
+    "height": 6233,
+    "sha256": "1588272a9a250f7d3bb175316c3f9d46546d02007562c139961aa00564faa161",
+    "proxy_width": 420,
+    "proxy_height": 1818
+  },
+  "orange": {
+    "source_path": "reference-screenshots/telecom-sites/desktop-1440/orange.png",
+    "width": 1440,
+    "height": 8460,
+    "sha256": "e19474dc5b31418e59439e2041c27b16cdae176dadce9ae4b7604f4b734a2cae",
+    "proxy_width": 420,
+    "proxy_height": 2468
+  },
+  "stc-saudi": {
+    "source_path": "reference-screenshots/telecom-sites/desktop-1440/stc-saudi.png",
+    "width": 4035,
+    "height": 4417,
+    "sha256": "e34396f8514cf1214e3a31d01c9bfe0755a6263d76084242e6ca54867d303d33",
+    "proxy_width": 420,
+    "proxy_height": 460
+  },
+  "telefonica": {
+    "source_path": "reference-screenshots/telecom-sites/desktop-1440/telefonica.png",
+    "width": 1440,
+    "height": 4963,
+    "sha256": "3abc01c8a20425a9cd7546e2a670b852cf9076802e10dbd420764e1052d0b1fa",
+    "proxy_width": 420,
+    "proxy_height": 1448
+  },
+  "telikom-home-4": {
+    "source_path": "reference-screenshots/telecom-sites/desktop-1440/telikom-home-4.png",
+    "width": 1440,
+    "height": 2171,
+    "sha256": "99b4bbfb0ec4c7affc9da28cbed816e0caf79bcf54b6cde67e7062f1dbd634e8",
+    "proxy_width": 420,
+    "proxy_height": 633
+  },
+  "verizon": {
+    "source_path": "reference-screenshots/telecom-sites/desktop-1440/verizon.png",
+    "width": 1440,
+    "height": 4501,
+    "sha256": "3a027c0df567827bda74b65dbec2c3448c441a78485ae0315bd8756f690247aa",
+    "proxy_width": 420,
+    "proxy_height": 1313
+  },
+  "vodafone-png": {
+    "source_path": "reference-screenshots/telecom-sites/desktop-1440/vodafone-png.png",
+    "width": 1440,
+    "height": 1349,
+    "sha256": "6551603a13a81af25b8e64bd868b143f26696d4b1bb5a3ec8ce535a4c1018a85",
+    "proxy_width": 420,
+    "proxy_height": 393
+  },
+  "zain": {
+    "source_path": "reference-screenshots/telecom-sites/desktop-1440/zain.png",
+    "width": 1440,
+    "height": 3476,
+    "sha256": "b392eab99b756944c55617b3c951210c54c1e733b075ccffa16829e4cf71dee9",
+    "proxy_width": 420,
+    "proxy_height": 1014
+  }
+}
