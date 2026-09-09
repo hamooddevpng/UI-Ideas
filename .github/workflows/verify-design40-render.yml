@@ -1,0 +1,60 @@
+name: Verify Design 40 render
+
+on:
+  push:
+    paths:
+      - '.github/workflows/verify-design40-render.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install Playwright
+        run: |
+          npm install --no-save playwright
+          npx playwright install chromium
+      - name: Start local server
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/design40-http.log 2>&1 &
+          sleep 1
+      - name: Render and validate Design 40
+        run: |
+          node <<'EOF'
+          const { chromium } = require('playwright');
+          (async()=>{
+            const browser=await chromium.launch({headless:true});
+            const page=await browser.newPage({viewport:{width:1440,height:900},deviceScaleFactor:1});
+            const errors=[];
+            page.on('pageerror',e=>errors.push(String(e)));
+            page.on('requestfailed',r=>errors.push(`request failed: ${r.url()} ${r.failure()?.errorText||''}`));
+            await page.goto('http://127.0.0.1:4173/40.html',{waitUntil:'load',timeout:15000});
+            await page.waitForTimeout(1200);
+            const state=await page.evaluate(()=>({
+              logo:getComputedStyle(document.querySelector('.brand')).backgroundImage.startsWith('url("data:image/png;base64,'),
+              banner1:getComputedStyle(document.querySelector('.campaign-slide.one')).backgroundImage.startsWith('url("data:image/webp;base64,'),
+              banner2:getComputedStyle(document.querySelector('.campaign-slide.two')).backgroundImage.startsWith('url("data:image/webp;base64,'),
+              foldBottom:document.querySelector('.quick-more').getBoundingClientRect().bottom,
+              viewport:innerHeight,
+              title:document.title
+            }));
+            console.log(JSON.stringify(state,null,2));
+            if(!state.logo||!state.banner1||!state.banner2) throw new Error('Embedded image CSS did not resolve');
+            if(state.foldBottom>state.viewport) throw new Error(`Quick actions fall below first viewport: ${state.foldBottom} > ${state.viewport}`);
+            if(errors.length) throw new Error(errors.join('\n'));
+            await page.screenshot({path:'design40-verified.png',fullPage:true});
+            await browser.close();
+          })().catch(e=>{console.error(e);process.exit(1)});
+          EOF
+      - uses: actions/upload-artifact@v4
+        with:
+          name: design40-verified-render
+          path: design40-verified.png
+          retention-days: 1
