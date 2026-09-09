@@ -3,618 +3,208 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#F4F8FB">
 <meta name="robots" content="noindex,nofollow">
-<meta name="theme-color" content="#f4f8fb">
-<title>Telikom PNG - Design 41 / Alive Rebuilt</title>
+<title>Telikom PNG — Homepage Design 10</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
 <style>
-:root{
-  --blue:#0875c9;--cyan:#19a3dc;--green:#24a65a;--ink:#082d46;--paper:#f4f8fb;
-  --white:#fff;--muted:#678295;--line:#d6e2e9;--soft:#eaf6fb;--dark:#06263b;
-  --ease:cubic-bezier(.22,.72,.24,1);--slow:cubic-bezier(.25,.1,.25,1);--max:1480px;
-  --mx:50%;--my:30%;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--paper);color:var(--ink);font-family:Manrope,Arial,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
-body:before{content:"";position:fixed;inset:0;z-index:100;pointer-events:none;background-image:linear-gradient(rgba(8,45,70,.026) 1px,transparent 1px),linear-gradient(90deg,rgba(8,45,70,.026) 1px,transparent 1px);background-size:28px 28px;mask-image:linear-gradient(#000 0 72%,transparent 96%)}
-body:after{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(480px circle at var(--mx) var(--my),rgba(25,163,220,.13),transparent 72%)}
-main,footer{position:relative;z-index:1}
-button,input{font:inherit}button{color:inherit}button,a{touch-action:manipulation}a{color:inherit;text-decoration:none}
-img{display:block;width:100%;height:100%;object-fit:cover}
-button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #f2b73c;outline-offset:3px}
-::selection{background:var(--ink);color:#fff}
-.wrap{width:min(var(--max),calc(100% - 64px));margin:auto}
-.mono{font:500 9px/1.25 "DM Mono",monospace;letter-spacing:.14em;text-transform:uppercase}
-.blue{color:var(--blue)}
-.depth{--fx:0px;--fy:0px;transform:translate3d(var(--fx),var(--fy),0);will-change:transform}
-.reveal{opacity:0;translate:0 24px;transition:opacity .9s var(--ease),translate .9s var(--ease)}
-.reveal.in{opacity:1;translate:0 0}
-.photo{overflow:hidden;background:linear-gradient(135deg,#d6eef7,#f8fcfe)}
-.photo img{transition:scale 2.8s var(--ease),filter 1.2s var(--ease),opacity .45s var(--ease)}
-.photo:hover img{scale:1.025}
-.cursor{position:fixed;left:0;top:0;width:24px;height:24px;border:1px solid rgba(8,117,201,.45);border-radius:50%;z-index:400;pointer-events:none;translate:-50% -50%;opacity:0;transition:width .35s var(--ease),height .35s var(--ease),background .35s,border-color .35s}
-.cursor.on{opacity:1}.cursor.hot{width:54px;height:54px;background:rgba(8,117,201,.07);border-color:rgba(8,117,201,.18)}
-.skip{position:fixed;left:16px;top:-70px;z-index:1000;background:#fff;padding:11px 14px;border-radius:10px}.skip:focus{top:14px}
-
-/* Header */
-.topbar{position:fixed;z-index:170;left:22px;right:22px;top:18px;height:64px;display:grid;grid-template-columns:210px 1fr auto;align-items:center;gap:20px;padding:0 12px;border:1px solid rgba(8,45,70,.12);border-radius:18px;background:rgba(255,255,255,.82);backdrop-filter:blur(20px);box-shadow:0 18px 56px rgba(24,76,105,.08);transition:top .55s var(--ease),height .55s var(--ease),background .55s var(--ease),border-radius .55s var(--ease)}
-.topbar.compact{top:8px;height:56px;background:rgba(255,255,255,.96);border-radius:14px}
-.brand{display:flex;align-items:center;height:100%}.brand img{width:auto;height:46px;max-width:200px;object-fit:contain;filter:none!important}
-.nav{justify-self:center;display:flex;gap:2px}.nav a{padding:10px 12px;border-radius:10px;font-size:10px;font-weight:800;transition:background .45s var(--ease),color .45s var(--ease),translate .45s var(--ease)}.nav a:hover,.nav a.active{background:var(--soft);color:var(--blue);translate:0 -2px}
-.header-actions{display:flex;align-items:center;gap:7px}.icon-btn,.pill-btn{height:40px;border-radius:11px;border:1px solid var(--line);background:#fff;cursor:pointer;font-size:10px;font-weight:800}.icon-btn{width:40px}.pill-btn{padding:0 15px}.pill-btn.dark{background:var(--ink);border-color:var(--ink);color:#fff}.menu-btn{display:none}
-.mobile-nav{display:none}
-
-/* Shared screen rhythm */
-.screen{position:relative;overflow:hidden}
-.section-kicker{display:flex;align-items:center;gap:10px;color:var(--blue);margin-bottom:13px}.section-kicker:before{content:"";width:34px;height:1px;background:currentColor}
-.big-title{font-size:clamp(52px,6.3vw,98px);line-height:.84;letter-spacing:-.07em;margin:0;font-weight:800}
-.copy{font-size:13px;line-height:1.7;color:var(--muted);max-width:520px}
-
-/* Hero */
-.hero{height:80svh;min-height:640px;padding:96px 28px 12px}
-.hero-shell{height:calc(100% - 112px);position:relative;border:1px solid rgba(8,45,70,.12);border-radius:30px;background:#eaf3f7;overflow:hidden;box-shadow:0 28px 75px rgba(24,76,105,.08)}
-.hero-slide{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity 1.05s var(--slow),visibility 1.05s}.hero-slide.active{opacity:1;visibility:visible}
-.hero-media{position:absolute;right:0;top:0;bottom:0;width:59%;overflow:hidden;clip-path:polygon(10% 0,100% 0,100% 100%,0 100%)}
-.hero-media img{position:absolute;inset:-2%;width:104%;height:104%;scale:1.035;transition:scale 8s linear,filter 1s var(--ease);filter:saturate(.96) contrast(1.02)}.hero-slide.active .hero-media img{scale:1}
-.hero-slide:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(244,248,251,.99) 0%,rgba(244,248,251,.98) 33%,rgba(244,248,251,.74) 44%,rgba(244,248,251,.02) 68%);pointer-events:none}
-.hero-copy{position:absolute;z-index:4;left:5vw;top:50%;translate:0 -50%;width:min(620px,43vw)}
-.hero-index{display:flex;align-items:center;gap:10px;color:var(--blue);margin-bottom:16px;opacity:0;translate:0 12px;transition:opacity .75s var(--ease),translate .75s var(--ease)}.hero-index:before{content:"";width:36px;height:1px;background:currentColor}
-.hero-title{font-size:clamp(54px,6.9vw,110px);line-height:.80;letter-spacing:-.075em;margin:0;font-weight:800}
-.hero-title span{display:block;opacity:0;translate:0 28px;transition:opacity .9s var(--ease),translate .9s var(--ease)}.hero-title .outline{color:transparent;-webkit-text-stroke:1.5px var(--ink)}.hero-title .blue{color:var(--blue)}
-.hero-copy p{max-width:470px;margin:20px 0 0;font-size:13px;line-height:1.65;color:#58778b;opacity:0;translate:0 14px;transition:opacity .8s var(--ease),translate .8s var(--ease)}
-.hero-actions{display:flex;gap:8px;margin-top:18px;opacity:0;translate:0 12px;transition:opacity .8s var(--ease),translate .8s var(--ease)}
-.hero-slide.active .hero-index,.hero-slide.active .hero-title span,.hero-slide.active .hero-copy p,.hero-slide.active .hero-actions{opacity:1;translate:0 0}
-.hero-slide.active .hero-title span:nth-child(2){transition-delay:.08s}.hero-slide.active .hero-title span:nth-child(3){transition-delay:.16s}.hero-slide.active .hero-copy p{transition-delay:.22s}.hero-slide.active .hero-actions{transition-delay:.28s}
-.btn{min-height:43px;border:1px solid var(--ink);border-radius:999px;background:transparent;padding:0 16px;display:inline-flex;align-items:center;gap:10px;font-size:10px;font-weight:800;cursor:pointer;transition:background .45s var(--ease),color .45s var(--ease),box-shadow .45s var(--ease),translate .45s var(--ease)}
-.btn.fill{background:var(--ink);color:#fff}.btn:hover{translate:0 -2px;box-shadow:0 12px 30px rgba(8,45,70,.12)}.arr{font-size:16px}
-.hero-note{position:absolute;z-index:5;right:22px;top:22px;padding:10px 12px;border:1px solid rgba(255,255,255,.46);border-radius:12px;background:rgba(255,255,255,.76);backdrop-filter:blur(12px)}
-.hero-orbit{position:absolute;z-index:3;right:6%;top:7%;width:min(37vw,530px);aspect-ratio:1;border:1px solid rgba(255,255,255,.4);border-radius:50%;pointer-events:none;animation:orbit 34s linear infinite}.hero-orbit:after{content:"";position:absolute;left:15%;top:19%;width:9px;height:9px;background:#fff;border-radius:50%;box-shadow:0 0 0 7px rgba(255,255,255,.15)}
-.hero-controls{position:absolute;z-index:8;left:5vw;right:24px;bottom:20px;display:flex;align-items:center;justify-content:space-between}.hero-dots{display:flex;gap:6px}.hero-dot{width:34px;height:4px;border:0;padding:0;border-radius:99px;background:rgba(8,45,70,.18);cursor:pointer;overflow:hidden}.hero-dot:after{content:"";display:block;height:100%;width:0;background:var(--blue);transition:width .55s var(--ease)}.hero-dot.active:after{width:100%}.hero-arrows{display:flex;gap:7px}.hero-arrow{width:42px;height:42px;border:1px solid rgba(8,45,70,.17);border-radius:50%;background:rgba(255,255,255,.84);backdrop-filter:blur(10px);cursor:pointer;font-size:16px}
-.hero-progress{position:absolute;left:0;right:0;bottom:0;height:2px;background:rgba(8,45,70,.08);z-index:10}.hero-progress i{display:block;height:100%;width:0;background:var(--blue)}.hero-progress.run i{animation:progress 7s linear forwards}
-.quick-rail{height:100px;max-width:1440px;margin:10px auto 0;display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-.quick{border:1px solid rgba(8,45,70,.12);border-radius:17px;background:rgba(255,255,255,.94);display:grid;grid-template-columns:40px 1fr auto;align-items:center;gap:11px;padding:12px 14px;cursor:pointer;text-align:left;transition:border-color .5s var(--ease),background .5s var(--ease),box-shadow .5s var(--ease),translate .5s var(--ease)}.quick:hover{background:#fff;border-color:rgba(8,117,201,.3);box-shadow:0 16px 44px rgba(24,76,105,.08);translate:0 -3px}.quick-ico{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--soft);color:var(--blue);font-size:17px}.quick strong{display:block;font-size:11px}.quick small{display:block;margin-top:3px;color:#7a94a4;font:500 8px "DM Mono",monospace;letter-spacing:.06em}.quick .go{color:var(--blue);font-size:16px}
-
-/* Offers */
-.offers{background:var(--paper)}
-.offers .wrap{height:100%;display:grid;grid-template-rows:auto 1fr;gap:22px;padding:54px 0}
-.offers-head{display:grid;grid-template-columns:1fr .55fr;align-items:end;gap:60px}.offers-head .big-title{font-size:clamp(48px,5.8vw,88px)}
-.offer-grid{min-height:0;display:grid;grid-template-columns:1.15fr .85fr;gap:12px}
-.offer-main{position:relative;border-radius:28px;overflow:hidden;background:var(--dark);color:#fff}.offer-main .photo{position:absolute;inset:0}.offer-main:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,38,59,.06),rgba(6,38,59,.86) 88%)}.offer-main-copy{position:absolute;z-index:3;left:30px;right:30px;bottom:28px}.offer-main h3{font-size:clamp(36px,4.5vw,64px);line-height:.9;letter-spacing:-.06em;margin:8px 0 10px}.offer-main p{font-size:12px;line-height:1.6;color:#d3e1e8;max-width:520px}.offer-main .btn{border-color:#fff;color:#fff}
-.offer-side{display:grid;grid-template-rows:1fr 1fr;gap:12px}.offer-card{border:1px solid rgba(8,45,70,.12);border-radius:25px;background:#fff;overflow:hidden;display:grid;grid-template-columns:42% 58%;min-height:0;cursor:pointer;text-align:left;padding:0;transition:border-color .5s var(--ease),box-shadow .5s var(--ease),translate .5s var(--ease)}.offer-card:hover{border-color:rgba(8,117,201,.3);box-shadow:0 20px 55px rgba(8,45,70,.08);translate:0 -3px}.offer-card .thumb{min-height:0}.offer-card-copy{padding:22px;display:flex;flex-direction:column;justify-content:center}.offer-card h3{font-size:clamp(24px,2.6vw,38px);line-height:.95;letter-spacing:-.05em;margin:7px 0}.offer-card p{font-size:10.5px;line-height:1.55;color:var(--muted);margin:0}.linkline{display:flex;justify-content:space-between;align-items:center;margin-top:12px;padding-top:11px;border-top:1px solid var(--line);font-size:9px;font-weight:800}
-
-/* Services */
-.services{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.services .wrap{height:100%;display:grid;grid-template-columns:1.02fr .72fr;gap:58px;align-items:center;padding:44px 0}
-.service-list{border-top:1px solid var(--line)}.service-row{width:100%;border:0;border-bottom:1px solid var(--line);background:transparent;display:grid;grid-template-columns:42px 1fr auto;align-items:center;gap:12px;padding:15px 0;cursor:pointer;text-align:left;transition:padding .45s var(--ease),color .45s var(--ease),background .45s var(--ease),translate .45s var(--ease)}.service-row:hover,.service-row.active{color:var(--blue);padding-left:10px}.service-row .num{font:500 8px "DM Mono",monospace;color:#8299a8}.service-row h3{margin:0;font-size:clamp(30px,3.7vw,56px);line-height:.9;letter-spacing:-.055em}.service-row .plus{font-size:20px;transition:rotate .45s var(--ease)}.service-row.active .plus{rotate:45deg}
-.service-stage{align-self:center;min-height:0}.service-photo{height:min(46vh,420px);border-radius:28px}.service-meta{display:grid;grid-template-columns:40px 1fr;gap:14px;padding:18px 3px 0}.service-meta h4{font-size:29px;letter-spacing:-.04em;margin:0 0 5px}.service-meta p{font-size:11px;line-height:1.55;color:var(--muted);margin:0}
-
-/* Enterprise */
-.enterprise{background:var(--dark);color:#fff}
-.enterprise-grid{height:100%;display:grid;grid-template-columns:.82fr 1.18fr}
-.enterprise-copy{padding:56px 6vw;align-self:center}.enterprise h2{font-size:clamp(54px,6.8vw,100px);line-height:.82;letter-spacing:-.07em;margin:0}.enterprise-copy p{max-width:500px;font-size:12px;line-height:1.65;color:#b9ced9}
-.segment-tabs{display:flex;gap:7px;margin:22px 0}.segment-tab{border:1px solid rgba(255,255,255,.22);background:transparent;color:#d8e5eb;border-radius:999px;padding:9px 14px;cursor:pointer;font-size:9px;font-weight:800;transition:background .45s var(--ease),color .45s var(--ease),translate .45s var(--ease)}.segment-tab.active,.segment-tab:hover{background:#fff;color:var(--ink);translate:0 -2px}
-.enterprise-links{display:grid;border-top:1px solid rgba(255,255,255,.16)}.enterprise-links button{display:flex;align-items:center;justify-content:space-between;padding:13px 0;border:0;border-bottom:1px solid rgba(255,255,255,.16);background:transparent;color:#fff;cursor:pointer;text-align:left;font-size:11px}
-.enterprise-media{position:relative;overflow:hidden}.enterprise-media .photo{position:absolute;inset:0}.enterprise-media:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(6,38,59,.56),transparent 38%)}
-.signal{position:absolute;inset:0;z-index:3;pointer-events:none}.signal svg{width:100%;height:100%}.signal path{fill:none;stroke:#87ddff;stroke-width:1.2;stroke-dasharray:8 12;animation:dash 20s linear infinite}.signal path:nth-child(2){stroke:#75d09a;animation-direction:reverse}.signal circle{fill:#fff}
-
-/* PNG story */
-.story{background:var(--paper)}
-.story .wrap{height:100%;display:grid;grid-template-columns:1.08fr .92fr;gap:60px;align-items:center;padding:42px 0}
-.story-collage{height:min(61vh,560px);position:relative}.story-main{position:absolute;left:0;top:0;width:78%;height:88%;border-radius:30px}.story-small{position:absolute;right:0;bottom:0;width:37%;height:46%;border:8px solid var(--paper);border-radius:25px}.story-badge{position:absolute;right:6%;top:6%;width:112px;height:112px;border-radius:50%;display:grid;place-items:center;text-align:center;background:var(--blue);color:#fff;box-shadow:0 18px 45px rgba(8,117,201,.24);animation:badgeFloat 8s ease-in-out infinite alternate}
-.story-copy h2{font-size:clamp(52px,6.3vw,94px);line-height:.84;letter-spacing:-.07em;margin:0}.story-copy>p{font-size:12px;line-height:1.65;color:var(--muted);max-width:500px}
-.story-steps{margin-top:22px;border-top:1px solid var(--line)}.story-step{width:100%;border:0;border-bottom:1px solid var(--line);background:transparent;display:grid;grid-template-columns:34px 1fr auto;align-items:center;gap:10px;padding:13px 0;cursor:pointer;text-align:left}.story-step strong{font-size:12px}.story-step .dot{width:8px;height:8px;border:1px solid var(--blue);border-radius:50%;transition:background .4s}.story-step.active .dot{background:var(--blue)}
-
-/* Updates */
-.updates{background:#fff;border-top:1px solid var(--line)}
-.ticker{height:48px;overflow:hidden;border-bottom:1px solid var(--line);display:flex;align-items:center}.ticker-track{display:flex;align-items:center;gap:22px;white-space:nowrap;font:500 9px "DM Mono",monospace;letter-spacing:.15em;color:#6d8798;animation:ticker 34s linear infinite}
-.updates .wrap{height:calc(100% - 48px);display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:center;padding:28px 0 38px}.updates h3{font-size:clamp(30px,3.3vw,48px);line-height:.95;letter-spacing:-.045em;margin:0 0 16px}
-.notice-list{border-top:1px solid var(--line)}.notice{border-bottom:1px solid var(--line)}.notice-head{width:100%;display:grid;grid-template-columns:10px 1fr auto;gap:11px;align-items:center;border:0;background:transparent;padding:13px 0;text-align:left;cursor:pointer}.notice-dot{width:7px;height:7px;border-radius:50%;background:var(--green)}.notice-head strong{font-size:10.5px}.notice-head small{display:block;margin-top:3px;font:500 7px "DM Mono",monospace;color:#8197a5}.notice-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .55s var(--ease)}.notice-body>div{overflow:hidden}.notice-body p{margin:0 0 12px 21px;font-size:10px;line-height:1.5;color:var(--muted)}.notice.open .notice-body{grid-template-rows:1fr}
-.news-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}.news-card{border:1px solid var(--line);border-radius:23px;background:#fff;overflow:hidden;padding:0;text-align:left;cursor:pointer;min-height:0;transition:translate .45s var(--ease),box-shadow .45s var(--ease)}.news-card:hover{translate:0 -3px;box-shadow:0 18px 50px rgba(8,45,70,.08)}.news-card .photo{height:min(28vh,250px)}.news-copy{padding:17px}.news-copy h4{font-size:19px;line-height:1.05;letter-spacing:-.035em;margin:6px 0}.news-copy p{font-size:9.5px;line-height:1.5;color:var(--muted);margin:0}
-
-/* Support */
-.support{background:linear-gradient(135deg,#eaf6fb 0%,#f7fbfd 60%,#fff 100%)}
-.support .wrap{height:100%;display:grid;grid-template-columns:1.08fr .72fr;gap:60px;align-items:center;padding:42px 0}.support h2{font-size:clamp(52px,6.2vw,92px);line-height:.83;letter-spacing:-.07em;margin:0}.support .copy{margin:12px 0 20px}
-.command-list{border-top:1px solid var(--line)}.command{width:100%;display:grid;grid-template-columns:36px 1fr auto;gap:12px;align-items:center;border:0;border-bottom:1px solid var(--line);background:transparent;padding:13px 0;cursor:pointer;text-align:left;transition:padding .45s var(--ease),color .45s var(--ease)}.command:hover{padding-left:9px;color:var(--blue)}.command span:first-child{font:500 8px "DM Mono",monospace;color:#8498a5}.command strong{font-size:12px}
-.support-panel{min-height:390px;border-radius:30px;background:var(--dark);color:#fff;padding:32px;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end}.support-panel:before,.support-panel:after{content:"";position:absolute;border:1px solid rgba(135,221,255,.2);border-radius:50%;width:320px;height:320px;right:-110px;top:-110px}.support-panel:after{width:190px;height:190px;right:-45px;top:-45px}.support-panel h3{font-size:clamp(34px,3.7vw,54px);line-height:.9;letter-spacing:-.055em;margin:10px 0}.support-panel p{font-size:11px;line-height:1.6;color:#bfd1da;max-width:390px}.support-panel .btn{border-color:#fff;color:#fff;width:max-content}
-
-/* Footer */
-footer{min-height:56svh;background:#061f31;color:#fff;overflow:hidden}.footer-inner{width:min(var(--max),calc(100% - 64px));margin:auto;padding:54px 0 24px;position:relative}.footer-grid{display:grid;grid-template-columns:1.6fr repeat(4,1fr);gap:42px;position:relative;z-index:2}.footer-logo{width:max-content;padding:10px 12px;border-radius:13px;background:#fff}.footer-logo img{width:auto;height:52px;max-width:220px;object-fit:contain;filter:none!important}.footer-brand p{max-width:350px;font-size:10.5px;line-height:1.6;color:#9db6c4}.footer-col h5{font:500 8px "DM Mono",monospace;letter-spacing:.14em;text-transform:uppercase;color:#7fa4b9;margin:0 0 13px}.footer-col button{display:block;border:0;background:transparent;color:#d6e3e9;padding:5px 0;cursor:pointer;text-align:left;font-size:10px}.footer-word{font-size:clamp(80px,15vw,220px);font-weight:800;letter-spacing:-.09em;line-height:.7;color:rgba(255,255,255,.035);white-space:nowrap;margin-top:40px;pointer-events:none}.footer-bottom{display:flex;justify-content:space-between;border-top:1px solid rgba(255,255,255,.12);padding-top:16px;color:#7899ab;font:500 8px "DM Mono",monospace;letter-spacing:.08em;text-transform:uppercase}
-
-/* Drawer / search */
-.scrim{position:fixed;inset:0;z-index:250;background:rgba(2,21,33,.42);backdrop-filter:blur(5px);opacity:0;visibility:hidden;transition:opacity .45s var(--ease),visibility .45s}.scrim.open{opacity:1;visibility:visible}
-.drawer{position:fixed;z-index:270;top:14px;bottom:14px;right:14px;width:min(470px,calc(100% - 28px));background:#fff;border-radius:25px;box-shadow:0 25px 90px rgba(4,30,47,.25);padding:26px;translate:110% 0;transition:translate .55s var(--ease);overflow:auto}.drawer.open{translate:0 0}.drawer-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:32px}.drawer-close{width:40px;height:40px;border:1px solid var(--line);border-radius:50%;background:#fff;cursor:pointer;font-size:19px}.drawer h3{font-size:38px;line-height:.95;letter-spacing:-.05em;margin:0 0 12px}.drawer p{font-size:11px;line-height:1.6;color:var(--muted)}.drawer .field{display:grid;gap:6px;margin:14px 0}.drawer label{font:500 8px "DM Mono",monospace;letter-spacing:.08em;text-transform:uppercase}.drawer input{height:46px;border:1px solid var(--line);border-radius:12px;padding:0 13px;background:#f8fbfc}.drawer .btn{margin-top:8px}
-.search-overlay{position:fixed;inset:0;z-index:300;background:rgba(244,248,251,.97);backdrop-filter:blur(18px);opacity:0;visibility:hidden;transition:opacity .4s,visibility .4s;padding:12vh 7vw}.search-overlay.open{opacity:1;visibility:visible}.search-box{display:grid;grid-template-columns:1fr 48px;gap:8px}.search-box input{height:66px;border:0;border-bottom:2px solid var(--ink);background:transparent;font-size:clamp(26px,4vw,54px);letter-spacing:-.04em;outline:none}.search-box button{border:1px solid var(--line);border-radius:50%;background:#fff;cursor:pointer}.search-results{display:grid;gap:8px;margin-top:25px;max-width:720px}.search-result{border:1px solid var(--line);border-radius:14px;background:#fff;padding:14px;cursor:pointer;text-align:left}.search-result strong{display:block}.search-result small{color:var(--muted)}
-.help-fab{position:fixed;right:20px;bottom:20px;z-index:160;width:64px;height:64px;border:0;border-radius:50%;background:var(--blue);color:#fff;box-shadow:0 15px 42px rgba(8,117,201,.28);cursor:pointer;font:700 10px "DM Mono",monospace;letter-spacing:.08em}
-
-@keyframes orbit{to{rotate:360deg}}@keyframes progress{from{width:0}to{width:100%}}@keyframes dash{to{stroke-dashoffset:-250}}@keyframes ticker{to{translate:-50% 0}}@keyframes badgeFloat{from{translate:0 0;rotate:-2deg}to{translate:8px -7px;rotate:2deg}}
-
-@media(min-width:901px){
-  main>.screen{height:80svh;max-height:80svh;min-height:0!important}
-}
-@media(max-width:1100px){
-  .nav{display:none}.menu-btn{display:inline-block}
-  .mobile-nav{position:fixed;z-index:165;left:22px;right:22px;top:86px;background:rgba(255,255,255,.98);border:1px solid var(--line);border-radius:16px;padding:9px;box-shadow:0 20px 60px rgba(8,45,70,.14)}.mobile-nav.open{display:grid}.mobile-nav a{padding:12px;border-bottom:1px solid #edf2f5;font-size:12px;font-weight:800}
-  main>.screen{height:auto;max-height:none;min-height:0}
-  .hero{height:auto;min-height:0}.hero-shell{height:680px}.quick-rail{height:auto;grid-template-columns:1fr 1fr}.quick{min-height:90px}
-  .offers .wrap,.services .wrap,.story .wrap,.updates .wrap,.support .wrap{height:auto;padding:75px 0}
-  .offer-grid{min-height:650px}.services .wrap,.story .wrap,.support .wrap{grid-template-columns:1fr;gap:34px}.service-photo{height:480px}.enterprise-grid{height:auto;grid-template-columns:1fr}.enterprise-media{height:560px}.story-collage{height:590px}.updates .wrap{grid-template-columns:1fr;gap:42px}.footer-grid{grid-template-columns:1.4fr 1fr 1fr}.footer-brand{grid-column:1/-1}
-}
-@media(max-width:700px){
-  .wrap,.footer-inner{width:calc(100% - 28px)}.topbar{left:9px;right:9px;top:9px;height:58px;grid-template-columns:1fr auto;padding:0 9px}.brand img{height:39px;max-width:155px}.header-actions .pill-btn,.icon-btn{display:none}.header-actions .menu-btn{display:block}.mobile-nav{left:9px;right:9px;top:73px}
-  .hero{padding:78px 9px 18px}.hero-shell{height:640px;border-radius:23px}.hero-media{width:100%;clip-path:none}.hero-slide:after{background:linear-gradient(180deg,rgba(244,248,251,.08),rgba(244,248,251,.92) 54%,rgba(244,248,251,.99) 100%)}.hero-copy{left:20px;right:20px;top:auto;bottom:55px;width:auto;translate:0 0}.hero-title{font-size:clamp(48px,15vw,74px)}.hero-copy p{font-size:11px;line-height:1.5}.hero-note,.hero-orbit{display:none}.hero-controls{left:20px;right:16px;bottom:14px}.quick-rail{grid-template-columns:1fr}
-  .offers-head{grid-template-columns:1fr;gap:16px}.offer-grid{grid-template-columns:1fr;min-height:0}.offer-main{min-height:500px}.offer-side{grid-template-rows:auto}.offer-card{grid-template-columns:1fr}.offer-card .thumb{height:210px}.offer-card-copy{padding:20px}
-  .service-row h3{font-size:32px}.service-photo{height:390px}.enterprise-copy{padding:78px 18px}.enterprise h2{font-size:56px}.enterprise-media{height:430px}.story-collage{height:470px}.story-badge{width:92px;height:92px}.news-grid{grid-template-columns:1fr}.news-card .photo{height:240px}.support-panel{min-height:360px}.footer-grid{grid-template-columns:1fr 1fr;gap:30px 18px}.footer-brand{grid-column:1/-1}.footer-bottom{flex-direction:column;gap:8px}.help-fab{width:56px;height:56px;right:12px;bottom:12px}
-}
-@media(hover:none),(pointer:coarse){.cursor{display:none}.depth{--fx:0px!important;--fy:0px!important}.photo:hover img{scale:1}}
-@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}.reveal{opacity:1;translate:0 0}.depth{--fx:0px!important;--fy:0px!important}.cursor{display:none}}
+:root{--blue:#0875C9;--blue2:#3594D1;--green:#3594D1;--ink:#082d46;--paper:#f5f8fb;--white:#fff;--muted:#668095;--line:#cddbe5;--soft:#eaf4fa;--lime:#EAF4FB;--ease:cubic-bezier(.22,.61,.36,1);--scroll:0;--mx:0;--my:0;--cx:50%;--cy:50%}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:Manrope,Arial,sans-serif;overflow-x:hidden}a{color:inherit;text-decoration:none}button{font:inherit}::selection{background:var(--ink);color:#fff}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:200;background-image:linear-gradient(rgba(8,45,70,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(8,45,70,.025) 1px,transparent 1px);background-size:28px 28px;mask-image:linear-gradient(to bottom,rgba(0,0,0,.45),transparent 78%)}
+body:after{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(360px circle at var(--cx) var(--cy),rgba(53,185,239,.085),rgba(53,185,239,0) 72%);mix-blend-mode:multiply;opacity:.75}
+main,footer{position:relative;z-index:1}.motion{will-change:translate,rotate}.cursor{position:fixed;left:0;top:0;width:24px;height:24px;border:1px solid rgba(0,143,211,.55);border-radius:50%;pointer-events:none;z-index:500;transform:translate(-50%,-50%);transition:width .25s,height .25s,background .25s,border-color .25s;mix-blend-mode:multiply}.cursor:after{content:"";position:absolute;inset:7px;border-radius:50%;background:var(--blue);opacity:.13}.cursor.hot{width:52px;height:52px;background:rgba(0,143,211,.08);border-color:rgba(0,143,211,.18)}
+.topbar{position:fixed;left:22px;right:22px;top:18px;z-index:90;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:24px;padding:12px 14px 12px 18px;border:1px solid rgba(8,45,70,.11);background:rgba(255,255,255,.72);backdrop-filter:blur(16px);border-radius:16px;box-shadow:0 12px 38px rgba(32,81,111,.07);will-change:translate}.brand{display:flex;align-items:center;gap:11px}.brand img{height:42px;width:auto;max-width:170px;object-fit:contain}.brand small{display:block;font:500 9px DM Mono,monospace;letter-spacing:.13em;color:#7790a1}.nav{justify-self:center;display:flex;gap:4px}.nav a{padding:10px 13px;border-radius:10px;font-size:11px;font-weight:800;letter-spacing:.02em;transition:.25s}.nav a:hover{background:var(--soft);transform:translateY(-1px)}.utility{display:flex;align-items:center;gap:7px}.utility a{padding:10px 12px;border-radius:10px;font-size:10px;font-weight:800}.utility .primary{background:var(--ink);color:#fff}.menu{display:none;border:0;background:transparent;font-size:22px;color:var(--ink)}
+.hero{min-height:100vh;position:relative;overflow:hidden;padding:148px 5vw 80px;display:grid;grid-template-columns:minmax(0,1fr) minmax(380px,.92fr);align-items:center;gap:30px}.hero-copy{position:relative;z-index:5;will-change:translate}.hero-index{font:500 10px DM Mono,monospace;letter-spacing:.16em;color:var(--blue);margin-bottom:22px;display:flex;align-items:center;gap:12px}.hero-index:before{content:"";width:42px;height:1px;background:var(--blue)}.hero h1{font-size:clamp(76px,10.4vw,168px);line-height:.76;letter-spacing:-.085em;margin:0;max-width:1040px;font-weight:800;text-wrap:balance}.hero h1>span{display:block;will-change:translate}.hero h1 .outline{color:transparent;-webkit-text-stroke:2px var(--ink)}.hero h1 .blue{color:var(--blue)}.hero-sub{display:grid;grid-template-columns:auto minmax(0,430px);gap:20px;align-items:start;margin-top:38px}.hero-number{width:52px;height:52px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;font:500 10px DM Mono,monospace;color:var(--blue)}.hero-sub p{font-size:16px;line-height:1.75;color:#557489;margin:0}.hero-actions{display:flex;gap:10px;margin-top:24px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 17px;border:1px solid var(--ink);border-radius:999px;font-size:11px;font-weight:800;transition:.3s var(--ease);background:transparent;position:relative;overflow:hidden}.btn:before{content:"";position:absolute;inset:-70%;background:radial-gradient(circle,rgba(53,185,239,.22),transparent 45%);transform:translate(var(--hx,0),var(--hy,0));opacity:0;transition:.25s}.btn:hover:before{opacity:1}.btn:hover{box-shadow:0 12px 24px rgba(8,45,70,.1)}.btn.fill{background:var(--ink);color:#fff}.btn i{font-style:normal;font-size:16px}.hero-stage{position:relative;min-height:650px;display:grid;place-items:center;perspective:1200px;will-change:translate}.stage-shell{position:relative;width:min(620px,44vw);aspect-ratio:1;border-radius:38% 62% 54% 46% / 43% 40% 60% 57%;background:radial-gradient(circle at 48% 42%,rgba(255,255,255,.95),rgba(227,244,252,.77) 48%,rgba(208,236,248,.55) 70%,rgba(255,255,255,.1));border:1px solid rgba(0,143,211,.24);box-shadow:inset 0 0 90px rgba(0,143,211,.07),0 45px 90px rgba(50,120,160,.1);transition:border-radius 1.2s var(--ease);overflow:hidden;will-change:translate,rotate}.stage-shell:hover{border-radius:55% 45% 36% 64% / 58% 57% 43% 42%}.stage-shell canvas{position:absolute;inset:0;width:100%!important;height:100%!important;display:block}.fallback-object{position:absolute;inset:20%;border-radius:46% 54% 41% 59% / 57% 37% 63% 43%;border:1px solid rgba(0,143,211,.25);background:radial-gradient(circle at 35% 30%,#fff,rgba(53,185,239,.23));animation:morph 8s ease-in-out infinite alternate}.three-ready .fallback-object{opacity:0}.float-tag{position:absolute;z-index:3;padding:13px 15px;border-radius:14px;border:1px solid rgba(8,45,70,.12);background:rgba(255,255,255,.78);backdrop-filter:blur(10px);box-shadow:0 18px 45px rgba(31,96,132,.1);min-width:130px;will-change:translate}.float-tag small{display:block;font:500 8px DM Mono,monospace;letter-spacing:.12em;color:#7895a7;margin-bottom:5px}.float-tag b{font-size:14px}.tag-a{left:-5%;top:22%;rotate:-5deg}.tag-b{right:-5%;top:52%;rotate:6deg}.tag-c{left:9%;bottom:4%;rotate:2deg}.hero-orbit{position:absolute;border:1px solid rgba(8,45,70,.14);border-radius:50%;pointer-events:none;will-change:translate,rotate}.hero-orbit.o1{width:88%;height:36%;rotate:-12deg}.hero-orbit.o2{width:72%;height:72%;rotate:54deg}.hero-orbit:after{content:"";position:absolute;width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 0 7px rgba(53,148,209,.12),0 0 30px rgba(53,148,209,.45);left:12%;top:20%}.scroll-signal{position:absolute;left:5vw;bottom:24px;font:500 9px DM Mono,monospace;letter-spacing:.12em;color:#7390a4;display:flex;align-items:center;gap:12px;will-change:translate}.scroll-signal span{display:block;width:90px;height:1px;background:var(--line);overflow:hidden}.scroll-signal span:after{content:"";display:block;height:100%;width:45%;background:var(--blue);animation:scan 1.6s ease-in-out infinite}
+.ticker{overflow:hidden;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);background:#fff;transform:rotate(-1.1deg) scale(1.02);position:relative;z-index:8}.ticker-track{white-space:nowrap;display:inline-flex;gap:34px;padding:16px 0;font:800 13px DM Mono,monospace;letter-spacing:.07em;animation:ticker 24s linear infinite}.ticker-track b{color:var(--blue)}
+.statement{min-height:100vh;padding:140px 5vw 120px;position:relative;display:grid;grid-template-columns:1fr .78fr;gap:70px;align-items:center}.statement .massive{font-size:clamp(76px,10.8vw,170px);line-height:.83;letter-spacing:-.08em;margin:0;font-weight:800;will-change:translate}.massive .slash{color:var(--blue)}.statement-side{align-self:end;padding-bottom:18px;will-change:translate}.statement-side p{font-size:18px;line-height:1.7;color:#557589;max-width:510px}.mini-rule{width:100%;height:1px;background:var(--line);margin:28px 0}.micro{font:500 9px DM Mono,monospace;letter-spacing:.13em;color:#69869a}.rolling-word{position:absolute;right:-.03em;top:50%;font-size:17vw;font-weight:800;letter-spacing:-.08em;color:rgba(0,143,211,.04);transform:translateY(-50%) rotate(90deg);transform-origin:center;pointer-events:none;will-change:translate}
+.worlds{padding:70px 3vw 150px}.worlds-head{display:flex;align-items:flex-end;justify-content:space-between;padding:0 2vw 38px;will-change:translate}.worlds-head h2{font-size:clamp(44px,6vw,88px);line-height:.95;letter-spacing:-.055em;margin:0}.worlds-head p{width:min(390px,40vw);font-size:14px;line-height:1.6;color:#638095}.world-grid{display:grid;grid-template-columns:1.12fr .88fr;grid-template-rows:430px 360px;gap:12px}.world-card{position:relative;overflow:hidden;border:1px solid rgba(8,45,70,.12);background:#fff;border-radius:28px;padding:30px;display:flex;flex-direction:column;justify-content:space-between;isolation:isolate;transition:box-shadow .45s var(--ease),border-color .45s var(--ease);min-width:0;will-change:translate}.world-card:hover{box-shadow:0 28px 55px rgba(28,88,123,.09);border-color:rgba(0,143,211,.28)}.world-card:nth-child(3){grid-column:1 / -1}.world-card .num{font:500 9px DM Mono,monospace;color:#7291a5;letter-spacing:.14em}.world-card h3{font-size:clamp(42px,5vw,78px);line-height:.92;letter-spacing:-.06em;margin:0;max-width:500px}.world-card p{max-width:440px;color:#5d7b8f;line-height:1.6;font-size:13px}.world-card .shape{position:absolute;z-index:-1;border-radius:50%;border:1px solid rgba(0,143,211,.25);transition:border-radius .7s;will-change:translate}.w1 .shape{width:410px;height:410px;right:-70px;top:-80px;background:radial-gradient(circle at 30% 30%,#fff,rgba(53,185,239,.25))}.w1:hover .shape{border-radius:32% 68% 62% 38% / 58% 37% 63% 42%}.w2{background:var(--ink);color:#fff}.w2 p,.w2 .num{color:#aac4d4}.w2 .shape{width:240px;height:240px;right:30px;top:26px;border:1px solid rgba(255,255,255,.2);box-shadow:inset 0 0 0 22px rgba(255,255,255,.025),inset 0 0 0 44px rgba(255,255,255,.025)}.w2 .shape:after{content:"";position:absolute;width:17px;height:17px;border-radius:50%;background:var(--green);top:25%;left:10%;box-shadow:0 0 28px rgba(53,148,209,.8)}.w3{background:linear-gradient(120deg,#eef8fc,#fff 58%,#EEF7FC);display:grid;grid-template-columns:1fr 1fr;align-items:center}.w3 h3{max-width:600px}.signal-river{position:absolute;left:0;right:0;top:50%;height:120px;transform:translateY(-50%);opacity:.55;will-change:translate}.signal-river svg{width:100%;height:100%;overflow:visible}.signal-river path{fill:none;stroke:var(--blue);stroke-width:1;stroke-dasharray:7 9;animation:dash 12s linear infinite}.signal-river path:nth-child(2){stroke:var(--green);animation-direction:reverse;opacity:.55}
+.plans{padding:120px 5vw 180px;position:relative}.plans-intro{display:grid;grid-template-columns:1fr .75fr;gap:60px;align-items:end;margin-bottom:60px;will-change:translate}.plans h2{font-size:clamp(58px,8vw,116px);line-height:.87;letter-spacing:-.07em;margin:0}.plans-intro p{font-size:15px;line-height:1.7;color:#607d90}.ticket-stage{position:relative;height:620px;display:grid;place-items:center}.ticket{position:absolute;width:min(600px,74vw);min-height:260px;padding:26px 30px;border-radius:24px;background:#fff;border:1px solid rgba(8,45,70,.15);box-shadow:0 35px 80px rgba(37,92,124,.12);display:grid;grid-template-columns:1fr auto;gap:20px;overflow:hidden;transition:filter .35s,opacity .35s;will-change:translate,rotate}.ticket:before{content:"";position:absolute;left:32px;right:32px;top:69px;border-top:1px dashed var(--line)}.ticket .eyebrow{font:500 9px DM Mono,monospace;color:#7190a4;letter-spacing:.14em}.ticket h3{font-size:54px;letter-spacing:-.055em;margin:50px 0 8px}.ticket p{margin:0;color:#698397;font-size:12px}.ticket .stamp{width:88px;height:88px;border-radius:50%;border:1px solid var(--blue);display:grid;place-items:center;font:500 9px DM Mono,monospace;letter-spacing:.12em;color:var(--blue);rotate:11deg;will-change:translate,rotate}.ticket.one{transform:translateY(calc((var(--scroll) - .38)*-240px)) rotate(-8deg);background:#fefefe}.ticket.two{transform:translateY(calc((var(--scroll) - .5)*-150px + 70px)) rotate(5deg);background:#eaf7fd}.ticket.three{transform:translateY(calc((var(--scroll) - .58)*-100px + 145px)) rotate(-2deg);background:#EDF6FB}.ticket:hover{z-index:9;filter:saturate(1.1);box-shadow:0 46px 95px rgba(34,94,129,.18)}
+.business{position:relative;padding:120px 5vw 160px;background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden}.business-head{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:90px;will-change:translate}.business h2{font-size:clamp(58px,8vw,120px);line-height:.84;letter-spacing:-.07em;margin:0;max-width:880px}.business-head p{max-width:410px;color:#607d90;line-height:1.65}.network-diagram{position:relative;min-height:610px;border:1px solid var(--line);border-radius:30px;overflow:hidden;background:linear-gradient(180deg,#fbfdff,#f0f7fb);will-change:translate}.network-diagram:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(8,45,70,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(8,45,70,.05) 1px,transparent 1px);background-size:40px 40px}.network-diagram:after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(260px circle at var(--nx,50%) var(--ny,50%),rgba(53,185,239,.16),transparent 72%)}.core{position:absolute;left:50%;top:50%;width:170px;height:170px;border-radius:50%;transform:translate(-50%,-50%);background:var(--ink);color:#fff;display:grid;place-items:center;text-align:center;z-index:3;box-shadow:0 0 0 18px rgba(0,143,211,.08),0 0 0 38px rgba(0,143,211,.035);will-change:translate}.core:before,.core:after{content:"";position:absolute;border:1px solid rgba(0,143,211,.35);border-radius:50%;inset:-46px;animation:spin 12s linear infinite}.core:after{inset:-80px;border-style:dashed;animation-duration:23s;animation-direction:reverse}.core b{font-size:18px}.core small{display:block;font:500 8px DM Mono,monospace;color:#93d8f7;letter-spacing:.1em;margin-top:5px}.node{position:absolute;z-index:4;width:180px;padding:18px;border:1px solid rgba(8,45,70,.14);background:rgba(255,255,255,.9);backdrop-filter:blur(8px);border-radius:16px;box-shadow:0 14px 38px rgba(45,103,136,.07);transition:border-color .35s,box-shadow .35s;will-change:translate}.node:hover{border-color:rgba(0,143,211,.45);box-shadow:0 20px 45px rgba(30,95,132,.14)}.node b{display:block;font-size:14px}.node span{font-size:10px;color:#7891a2}.n1{left:7%;top:13%}.n2{right:8%;top:12%}.n3{left:8%;bottom:12%}.n4{right:7%;bottom:14%}.n5{left:50%;top:9%;transform:translateX(-50%)}.wire{position:absolute;inset:0;z-index:2;width:100%;height:100%;pointer-events:none}.wire line{stroke:#0b93d2;stroke-width:1;stroke-dasharray:6 8;opacity:.45;animation:dash 9s linear infinite}.wire circle{fill:var(--green);filter:drop-shadow(0 0 5px rgba(53,148,209,.8))}
+.coordinates{padding:150px 5vw;display:grid;grid-template-columns:.8fr 1.2fr;gap:70px;align-items:center}.coordinates>div:first-child{will-change:translate}.coordinates h2{font-size:clamp(58px,8vw,116px);line-height:.86;letter-spacing:-.07em;margin:0}.coordinates p{color:#648094;line-height:1.7}.coordinate-field{position:relative;aspect-ratio:1.3;border-radius:32px;border:1px solid var(--line);background:#fff;overflow:hidden;will-change:translate}.coordinate-field:before{content:"";position:absolute;inset:-5%;background-image:linear-gradient(rgba(0,143,211,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(0,143,211,.08) 1px,transparent 1px);background-size:44px 44px;translate:calc(var(--mx)*-5px) calc(var(--my)*-5px)}.coordinate-field:after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(170px circle at var(--fx,50%) var(--fy,50%),rgba(0,143,211,.13),transparent 70%)}.locator{position:absolute;width:13px;height:13px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 10px rgba(0,143,211,.08),0 0 30px rgba(0,143,211,.4);animation:pulse 2s ease-in-out infinite;will-change:translate}.locator:after{content:attr(data-label);position:absolute;left:18px;top:-4px;white-space:nowrap;font:500 9px DM Mono,monospace;letter-spacing:.1em;color:var(--ink)}.l1{left:26%;top:31%}.l2{left:68%;top:24%;animation-delay:.3s}.l3{left:56%;top:67%;animation-delay:.6s}.l4{left:20%;top:74%;animation-delay:.9s}.axis{position:absolute;font:500 8px DM Mono,monospace;color:#8299a8;letter-spacing:.12em}.axis.x{right:18px;bottom:12px}.axis.y{left:13px;top:18px;writing-mode:vertical-rl}
+.news{padding:120px 5vw 160px;background:var(--ink);color:#fff;position:relative;overflow:hidden}.news:before{content:"TELIKOM";position:absolute;right:-2vw;bottom:-5vw;font-size:24vw;font-weight:800;letter-spacing:-.08em;color:rgba(255,255,255,.025);will-change:translate}.news-head{display:flex;align-items:end;justify-content:space-between;margin-bottom:70px;position:relative;z-index:2;will-change:translate}.news h2{font-size:clamp(58px,8vw,116px);line-height:.88;letter-spacing:-.07em;margin:0}.news-head a{font:500 9px DM Mono,monospace;letter-spacing:.1em;color:#89d7f7;border-bottom:1px solid rgba(137,215,247,.45);padding-bottom:5px}.news-list{position:relative;z-index:2}.story{display:grid;grid-template-columns:80px 1fr auto;gap:28px;align-items:center;padding:28px 0;border-top:1px solid rgba(255,255,255,.14);transition:background .35s,padding .35s;will-change:translate}.story:last-child{border-bottom:1px solid rgba(255,255,255,.14)}.story:hover{padding-left:20px;background:linear-gradient(90deg,rgba(255,255,255,.045),transparent)}.story .id{font:500 9px DM Mono,monospace;color:#7ccfee}.story h3{font-size:clamp(26px,3vw,46px);letter-spacing:-.04em;margin:0}.story p{margin:7px 0 0;color:#a9c2d1;font-size:12px}.story .arrow{width:50px;height:50px;border:1px solid rgba(255,255,255,.23);border-radius:50%;display:grid;place-items:center;font-size:20px;transition:.3s;will-change:translate,rotate}.story:hover .arrow{background:#fff;color:var(--ink);rotate:-45deg}
+.careers{padding:150px 5vw 120px;display:grid;grid-template-columns:1.3fr .7fr;gap:70px;align-items:center}.careers>div{will-change:translate}.careers h2{font-size:clamp(62px,9vw,140px);line-height:.82;letter-spacing:-.08em;margin:0}.careers .right p{font-size:16px;line-height:1.7;color:#607c90}.career-chip{display:inline-flex;align-items:center;gap:9px;padding:11px 14px;border:1px solid var(--line);border-radius:999px;font:500 9px DM Mono,monospace;letter-spacing:.09em;margin-bottom:20px;will-change:translate}.career-chip i{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 10px rgba(53,148,209,.55)}
+.finale{min-height:72vh;display:grid;place-items:center;text-align:center;padding:100px 5vw;background:linear-gradient(180deg,#f5f8fb,#e9f5fa);position:relative;overflow:hidden}.finale>.reveal{will-change:translate}.finale h2{font-size:clamp(70px,11vw,168px);line-height:.78;letter-spacing:-.085em;margin:0;position:relative;z-index:2}.finale h2 span{display:block;color:var(--blue)}.finale p{max-width:560px;margin:30px auto 0;color:#607e92;line-height:1.7;position:relative;z-index:2}.ring-field{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}.ring-field i{position:absolute;border:1px solid rgba(0,143,211,.14);border-radius:50%;width:33vw;height:33vw;animation:breath 4s ease-in-out infinite;will-change:translate}.ring-field i:nth-child(2){width:50vw;height:50vw;animation-delay:-1s}.ring-field i:nth-child(3){width:70vw;height:70vw;animation-delay:-2s}
+footer{padding:42px 5vw 34px;border-top:1px solid var(--line);background:#fff}.foot-top{display:grid;grid-template-columns:1.2fr repeat(3,.5fr);gap:40px}.foot-brand,.foot-col{will-change:translate}.foot-brand img{height:48px}.foot-brand p{max-width:320px;color:#6b8698;line-height:1.6;font-size:12px}.foot-col b{font-size:11px}.foot-col a{display:block;color:#6b8495;font-size:11px;margin-top:11px}.foot-bottom{display:flex;justify-content:space-between;border-top:1px solid var(--line);margin-top:35px;padding-top:18px;font:500 8px DM Mono,monospace;color:#8097a6;letter-spacing:.1em}
+.chat{position:fixed;right:22px;bottom:22px;z-index:120}.chat-panel{display:none;width:min(330px,calc(100vw - 30px));background:rgba(255,255,255,.94);border:1px solid var(--line);border-radius:18px;margin-bottom:10px;box-shadow:0 24px 70px rgba(26,77,105,.18);backdrop-filter:blur(18px);overflow:hidden}.chat.open .chat-panel{display:block;animation:chatIn .25s ease}.chat-head{padding:15px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--line)}.chat-head span{width:34px;height:34px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center}.chat-head b{font-size:12px}.chat-head small{display:block;color:#7891a1;font-size:9px;margin-top:3px}.chat-body{padding:14px;color:#5e788b;font-size:12px;line-height:1.55}.chat-actions{padding:0 12px 12px;display:grid;grid-template-columns:1fr 1fr;gap:6px}.chat-actions button{border:1px solid var(--line);background:#f6fafc;padding:9px;border-radius:9px;color:var(--ink);font-size:10px;font-weight:800;cursor:pointer}.chat-launch{width:58px;height:58px;border-radius:50%;border:0;background:var(--ink);color:#fff;font-size:21px;cursor:pointer;box-shadow:0 14px 34px rgba(8,45,70,.2)}
+.reveal{opacity:0;transform:translateY(46px) scale(.98);filter:blur(8px);transition:opacity .9s var(--ease),transform 1s var(--ease),filter 1s var(--ease)}.reveal.in{opacity:1;transform:none;filter:none}
+@keyframes ticker{to{transform:translateX(-50%)}}@keyframes morph{to{border-radius:65% 35% 58% 42% / 38% 68% 32% 62%;transform:rotate(16deg) scale(1.05)}}@keyframes scan{0%{transform:translateX(-130%)}100%{transform:translateX(330%)}}@keyframes dash{to{stroke-dashoffset:-220}}@keyframes spin{to{transform:rotate(360deg)}}@keyframes pulse{0%,100%{transform:scale(.8);opacity:.55}50%{transform:scale(1.15);opacity:1}}@keyframes breath{0%,100%{transform:scale(.97);opacity:.45}50%{transform:scale(1.03);opacity:1}}@keyframes chatIn{from{opacity:0;transform:translateY(8px) scale(.98)}to{opacity:1;transform:none}}
+@media(max-width:1050px){.topbar{left:12px;right:12px;top:10px}.nav{display:none}.menu{display:block}.hero{grid-template-columns:1fr;padding-top:130px}.hero-stage{min-height:520px}.stage-shell{width:min(560px,78vw)}.hero h1{font-size:clamp(72px,15vw,140px)}.statement,.coordinates,.careers{grid-template-columns:1fr}.statement-side{align-self:auto}.world-grid{grid-template-columns:1fr;grid-template-rows:auto}.world-card{min-height:390px}.world-card:nth-child(3){grid-column:auto}.w3{display:flex}.plans-intro{grid-template-columns:1fr}.business-head{display:block}.business-head p{margin-top:28px}.foot-top{grid-template-columns:1fr 1fr}.network-diagram{min-height:720px}.n1{left:5%;top:10%}.n2{right:5%;top:10%}.n3{left:5%;bottom:10%}.n4{right:5%;bottom:10%}}
+@media(max-width:700px){.cursor{display:none}.topbar{padding:9px 10px}.brand img{height:38px}.brand small,.utility a:not(.primary){display:none}.hero{padding:118px 18px 70px;min-height:auto}.hero h1{font-size:23vw}.hero-sub{grid-template-columns:1fr}.hero-number{display:none}.hero-stage{min-height:430px}.stage-shell{width:90vw}.tag-a{left:0}.tag-b{right:0}.tag-c{left:4%}.scroll-signal{display:none}.statement{padding:100px 18px}.statement .massive{font-size:20vw}.worlds{padding:60px 14px 110px}.worlds-head{display:block}.worlds-head p{width:auto}.world-card{min-height:360px;padding:23px}.world-card h3{font-size:16vw}.plans{padding:100px 18px 120px}.plans-intro{gap:20px}.plans h2,.business h2,.coordinates h2,.news h2,.careers h2{font-size:17vw}.ticket-stage{height:520px}.ticket{width:92vw;min-height:235px;padding:22px}.ticket h3{font-size:11vw}.ticket .stamp{width:65px;height:65px}.business{padding:100px 14px 120px}.network-diagram{min-height:820px}.core{width:130px;height:130px}.node{width:145px;padding:13px}.n1{left:4%;top:8%}.n2{right:4%;top:8%}.n3{left:4%;bottom:8%}.n4{right:4%;bottom:8%}.n5{top:22%}.coordinates{padding:110px 18px;gap:35px}.coordinate-field{aspect-ratio:.95}.news{padding:100px 18px 120px}.story{grid-template-columns:45px 1fr auto;gap:12px}.story h3{font-size:7vw}.story .arrow{width:40px;height:40px}.careers{padding:110px 18px}.finale{padding:100px 18px}.finale h2{font-size:20vw}.foot-top{grid-template-columns:1fr}.foot-bottom{gap:15px;flex-direction:column}.chat{right:12px;bottom:12px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none;filter:none}}
 </style>
+<script src="assets/telikom-brand.js" defer></script>
 </head>
 <body>
-<a class="skip" href="#main">Skip to main content</a>
-<div class="cursor" aria-hidden="true"></div>
-
-<header class="topbar depth" id="header" data-depth="5">
-  <a class="brand hot depth" href="#top" data-depth="8" aria-label="Telikom home"><img src="assets/brand/telikom-logo.png" alt="Telikom, Connecting you Anywhere Anytime"></a>
-  <nav class="nav" aria-label="Primary">
-    <a class="depth" data-depth="12" href="#offers">Offers</a>
-    <a class="depth" data-depth="-11" href="#services">Services</a>
-    <a class="depth" data-depth="14" href="#business">Business</a>
-    <a class="depth" data-depth="-13" href="#story">PNG</a>
-    <a class="depth" data-depth="11" href="#updates">Updates</a>
-  </nav>
-  <div class="header-actions">
-    <button class="icon-btn hot depth" data-depth="-18" type="button" data-search-open aria-label="Search">⌕</button>
-    <a class="pill-btn depth" data-depth="15" href="#support">Support</a>
-    <button class="pill-btn dark hot depth" data-depth="-20" type="button" data-action="selfcare">Self Care</button>
-    <button class="icon-btn menu-btn hot" type="button" aria-expanded="false" aria-label="Open menu">☰</button>
-  </div>
+<div class="cursor" id="cursor" aria-hidden="true"></div>
+<header class="topbar" data-depth="3">
+  <a href="#top" class="brand"><img src="https://www.telikom.com.pg/assets/misc/TPNGLOGO.png" alt="Telikom PNG"><small>Connecting you<br>anywhere anytime</small></a>
+  <nav class="nav" aria-label="Primary navigation"><a href="#worlds">Personal</a><a href="#worlds">Home</a><a href="#business">Business</a><a href="#news">News</a><a href="#support">Support</a></nav>
+  <div class="utility"><a href="#plans">Top up</a><a href="#support">Pay bill</a><a href="#worlds" class="primary">Explore Telikom ↗</a><button class="menu" aria-label="Menu">☰</button></div>
 </header>
-<nav class="mobile-nav" aria-label="Mobile navigation">
-  <a href="#offers">Offers</a><a href="#services">Services</a><a href="#business">Business</a><a href="#story">PNG</a><a href="#updates">Updates</a><a href="#support">Support</a>
-</nav>
-
-<main id="main">
-<section class="screen hero" id="top">
-  <div class="hero-shell depth" data-depth="-5">
-    <article class="hero-slide active">
-      <div class="hero-media photo depth" data-depth="-24"><img src="assets/design41/telikom-retail-team.jpg" alt="Telikom team in Papua New Guinea"></div>
-      <div class="hero-copy">
-        <div class="hero-index mono depth" data-depth="-19">01 / Connected PNG</div>
-        <h1 class="hero-title">
-          <span class="depth" data-depth="27">Your</span>
-          <span class="outline depth" data-depth="-23">network.</span>
-          <span class="blue depth" data-depth="31">Alive.</span>
-        </h1>
-        <p class="depth" data-depth="13">Mobile, internet and support designed around real tasks, real people and everyday connection across Papua New Guinea.</p>
-        <div class="hero-actions depth" data-depth="-17">
-          <button class="btn fill hot" data-action="recharge">Recharge now <span class="arr">→</span></button>
-          <a class="btn hot" href="#offers">Explore offers <span class="arr">↓</span></a>
-        </div>
-      </div>
-      <div class="hero-note mono depth" data-depth="-29">Telikom / Papua New Guinea</div>
-    </article>
-
-    <article class="hero-slide">
-      <div class="hero-media photo depth" data-depth="-26"><img src="assets/design41/upng-students-wide.jpg" alt="UPNG students in Port Moresby, Papua New Guinea"></div>
-      <div class="hero-copy">
-        <div class="hero-index mono depth" data-depth="-18">02 / Everyday access</div>
-        <h1 class="hero-title">
-          <span class="depth" data-depth="25">Make</span>
-          <span class="outline depth" data-depth="-24">connection</span>
-          <span class="blue depth" data-depth="30">simple.</span>
-        </h1>
-        <p class="depth" data-depth="12">Recharge, manage your account, check coverage and find help without hunting through the site.</p>
-        <div class="hero-actions depth" data-depth="-16">
-          <button class="btn fill hot" data-action="coverage">Check coverage <span class="arr">→</span></button>
-          <button class="btn hot" data-action="internet">Home internet <span class="arr">→</span></button>
-        </div>
-      </div>
-      <div class="hero-note mono depth" data-depth="-30">People first / PNG</div>
-    </article>
-
-    <article class="hero-slide">
-      <div class="hero-media photo depth" data-depth="-25"><img src="assets/design41/mount-hagen-sing-sing-2019.jpg" alt="People at the Mount Hagen Sing Sing in Papua New Guinea"></div>
-      <div class="hero-copy">
-        <div class="hero-index mono depth" data-depth="-20">03 / National reach</div>
-        <h1 class="hero-title">
-          <span class="depth" data-depth="29">Across</span>
-          <span class="outline depth" data-depth="-22">PNG.</span>
-          <span class="blue depth" data-depth="26">Together.</span>
-        </h1>
-        <p class="depth" data-depth="13">A national network story that feels local, practical and connected to the places Telikom serves.</p>
-        <div class="hero-actions depth" data-depth="-17">
-          <button class="btn fill hot" data-action="selfcare">Open Self Care <span class="arr">→</span></button>
-          <button class="btn hot" data-action="store">Find a store <span class="arr">→</span></button>
-        </div>
-      </div>
-      <div class="hero-note mono depth" data-depth="-28">National network / Local life</div>
-    </article>
-
-    <div class="hero-orbit depth" data-depth="-14"></div>
-    <div class="hero-controls">
-      <div class="hero-dots depth" data-depth="22">
-        <button class="hero-dot active hot" aria-label="Slide 1"></button>
-        <button class="hero-dot hot" aria-label="Slide 2"></button>
-        <button class="hero-dot hot" aria-label="Slide 3"></button>
-      </div>
-      <div class="hero-arrows depth" data-depth="-24">
-        <button class="hero-arrow hot" type="button" data-prev aria-label="Previous slide">←</button>
-        <button class="hero-arrow hot" type="button" data-next aria-label="Next slide">→</button>
-      </div>
-    </div>
-    <div class="hero-progress run"><i></i></div>
+<main id="top">
+<section class="hero">
+  <div class="hero-copy" data-depth="-10">
+    <div class="hero-index" data-depth="-5">TELIKOM / PAPUA NEW GUINEA / 10</div>
+    <h1><span data-depth="-6">Make</span><span class="outline" data-depth="-12">distance</span><span class="blue" data-depth="9">disappear.</span></h1>
+    <div class="hero-sub" data-depth="-5"><div class="hero-number">00</div><div><p>Telikom connects everyday life, business and communities across Papua New Guinea through mobile, broadband and digital services built for the way the country moves.</p><div class="hero-actions"><a class="btn fill" href="#worlds">Explore services <i>↗</i></a><a class="btn" href="#plans">View plans</a></div></div></div>
   </div>
-
-  <div class="quick-rail">
-    <button class="quick hot depth" data-depth="24" data-action="recharge"><span class="quick-ico">↻</span><span><strong>Recharge</strong><small>TOP UP MOBILE</small></span><span class="go">→</span></button>
-    <button class="quick hot depth" data-depth="-22" data-action="selfcare"><span class="quick-ico">◎</span><span><strong>Self Care</strong><small>MANAGE ACCOUNT</small></span><span class="go">→</span></button>
-    <button class="quick hot depth" data-depth="21" data-action="coverage"><span class="quick-ico">⌖</span><span><strong>Coverage</strong><small>CHECK YOUR AREA</small></span><span class="go">→</span></button>
-    <button class="quick hot depth" data-depth="-25" data-action="support"><span class="quick-ico">?</span><span><strong>Support</strong><small>GET HELP FAST</small></span><span class="go">→</span></button>
+  <div class="hero-stage" id="heroStage" data-depth="12">
+    <div class="hero-orbit o1" data-depth="20"></div><div class="hero-orbit o2" data-depth="-16"></div>
+    <div class="stage-shell" id="stageShell" data-depth="8"><div class="fallback-object"></div><canvas id="sculpture" aria-hidden="true"></canvas></div>
+    <div class="float-tag tag-a" data-depth="-24"><small>PERSONAL / 01</small><b>Mobile data</b></div>
+    <div class="float-tag tag-b" data-depth="21"><small>BUSINESS / 03</small><b>Built to scale</b></div>
+    <div class="float-tag tag-c" data-depth="-15"><small>REMOTE / 04</small><b>Reach further</b></div>
+  </div>
+  <div class="scroll-signal" data-depth="-7">SCROLL TO ASSEMBLE <span></span></div>
+</section>
+<div class="ticker" aria-hidden="true"><div class="ticker-track"><span>MOBILE</span><b>✦</b><span>FIXED BROADBAND</span><b>✦</b><span>BUSINESS DATA</span><b>✦</b><span>VOICE</span><b>✦</b><span>REMOTE CONNECTIVITY</span><b>✦</b><span>MOBILE</span><b>✦</b><span>FIXED BROADBAND</span><b>✦</b><span>BUSINESS DATA</span><b>✦</b><span>VOICE</span><b>✦</b><span>REMOTE CONNECTIVITY</span><b>✦</b></div></div>
+<section class="statement reveal">
+  <div data-depth="-8"><div class="micro">01 / NATIONAL CONNECTION</div><h2 class="massive" data-depth="-12">One network<span class="slash">/</span><br>many lives.</h2></div>
+  <div class="statement-side" data-depth="10"><p>Connection is not one thing. It is a call home, a business transaction, a classroom online, a team working across provinces and a community reaching beyond distance.</p><div class="mini-rule"></div><div class="micro">TELIKOM / CONNECTING YOU ANYWHERE ANYTIME</div></div>
+  <div class="rolling-word" data-depth="28">SIGNAL</div>
+</section>
+<section class="worlds" id="worlds">
+  <div class="worlds-head reveal" data-depth="-8"><div><div class="micro">02 / CHOOSE YOUR WORLD</div><h2>Different needs.<br>One Telikom.</h2></div><p>Move through services by what you need to do, not by how the network is built.</p></div>
+  <div class="world-grid">
+    <article class="world-card w1 reveal" data-depth="-9"><div class="num">01 / PERSONAL</div><div data-depth="-5"><h3>Everyday connection.</h3><p>Mobile data, prepaid options and simple ways to stay connected wherever the day takes you.</p><a class="btn" href="#plans">Personal services ↗</a></div><div class="shape" data-depth="20"></div></article>
+    <article class="world-card w2 reveal" data-depth="10"><div class="num">02 / HOME</div><div data-depth="5"><h3>Home,<br>always on.</h3><p>Fixed broadband and home connectivity designed for work, learning and entertainment.</p><a class="btn" href="#plans" style="border-color:rgba(255,255,255,.45);color:#fff">Home services ↗</a></div><div class="shape" data-depth="-18"></div></article>
+    <article class="world-card w3 reveal" data-depth="-6"><div data-depth="-7"><div class="num">03 / BUSINESS + REMOTE</div><h3>Infrastructure for ambition.</h3></div><div data-depth="8"><p>Data, voice, broadband, hosting and remote connectivity for organisations that need dependable reach across Papua New Guinea.</p><a class="btn fill" href="#business">Business solutions ↗</a></div><div class="signal-river" data-depth="14"><svg viewBox="0 0 1000 120" preserveAspectRatio="none"><path d="M0 70 C170 8 260 112 420 45 S710 115 1000 30"/><path d="M0 42 C220 110 340 2 530 78 S790 10 1000 88"/></svg></div></article>
   </div>
 </section>
-
-<section class="screen offers" id="offers">
-  <div class="wrap">
-    <div class="offers-head reveal">
-      <div>
-        <div class="section-kicker mono depth" data-depth="-16">Offers / Plans</div>
-        <h2 class="big-title depth" data-depth="24">Choose less.<br>Get more.</h2>
-      </div>
-      <p class="copy depth" data-depth="-12">Three clear paths instead of a wall of products. Start with the outcome, then open the details you need.</p>
-    </div>
-    <div class="offer-grid">
-      <article class="offer-main reveal hot depth" data-depth="-20">
-        <div class="photo depth" data-depth="-27"><img src="assets/design41/moresby-kastom-dancers-13.jpg" alt="Kastom dancers in Port Moresby, Papua New Guinea"></div>
-        <div class="offer-main-copy depth" data-depth="18">
-          <span class="mono">Mobile / Everyday</span>
-          <h3>More connection.<br>Less friction.</h3>
-          <p>Calls, data and recharge together in one straightforward mobile pathway.</p>
-          <button class="btn hot" data-plan="mobile">View mobile options <span class="arr">→</span></button>
-        </div>
-      </article>
-      <div class="offer-side">
-        <button class="offer-card hot depth" data-depth="22" data-plan="home">
-          <div class="thumb photo depth" data-depth="-18"><img src="assets/design41/medical-students.jpg" alt="Medical students in Port Moresby, Papua New Guinea"></div>
-          <div class="offer-card-copy depth" data-depth="14"><span class="mono blue">Home Internet</span><h3>Bring the network home.</h3><p>Check availability, plans and setup in one focused flow.</p><span class="linkline">Explore <span>→</span></span></div>
-        </button>
-        <button class="offer-card hot depth" data-depth="-23" data-plan="remote">
-          <div class="thumb photo depth" data-depth="19"><img src="assets/design41/kopar-village-child.jpg" alt="Child in traditional dress at Kopar Village on the Sepik River, Papua New Guinea"></div>
-          <div class="offer-card-copy depth" data-depth="-13"><span class="mono blue">Remote Connectivity</span><h3>Reach beyond the usual.</h3><p>A clearer route for remote places, organisations and communities.</p><span class="linkline">Explore <span>→</span></span></div>
-        </button>
-      </div>
-    </div>
+<section class="plans" id="plans">
+  <div class="plans-intro reveal" data-depth="-9"><div><div class="micro">03 / PLANS</div><h2>Pick a rhythm.</h2></div><p>Connectivity, voice and digital solutions for businesses of every size.</p></div>
+  <div class="ticket-stage">
+    <article class="ticket one" data-depth="-14"><div><div class="eyebrow">GUTPELA / DAILY</div><h3>Today.</h3><p>Quick data for the moments that matter now.</p></div><div class="stamp" data-depth="10">FLEXIBLE<br>DATA</div></article>
+    <article class="ticket two" data-depth="11"><div><div class="eyebrow">GUTPELA / WEEKLY</div><h3>This week.</h3><p>More room for work, chat and everything in between.</p></div><div class="stamp" data-depth="-8">WEEKLY<br>VALUE</div></article>
+    <article class="ticket three" data-depth="-7"><div><div class="eyebrow">GUTPELA / MONTHLY</div><h3>Keep going.</h3><p>A longer-running option for consistent connectivity.</p></div><div class="stamp" data-depth="12">MONTHLY<br>READY</div></article>
   </div>
 </section>
-
-<section class="screen services" id="services">
-  <div class="wrap">
-    <div>
-      <div class="section-kicker mono reveal depth" data-depth="-17">Service categories</div>
-      <div class="service-list reveal">
-        <button class="service-row active hot depth" data-depth="22" data-service="mobile"><span class="num">01</span><h3>Mobile</h3><span class="plus">+</span></button>
-        <button class="service-row hot depth" data-depth="-19" data-service="internet"><span class="num">02</span><h3>Home Internet</h3><span class="plus">+</span></button>
-        <button class="service-row hot depth" data-depth="18" data-service="devices"><span class="num">03</span><h3>Devices & Routers</h3><span class="plus">+</span></button>
-        <button class="service-row hot depth" data-depth="-21" data-service="enterprise"><span class="num">04</span><h3>Enterprise</h3><span class="plus">+</span></button>
-        <button class="service-row hot depth" data-depth="17" data-service="help"><span class="num">05</span><h3>Support Services</h3><span class="plus">+</span></button>
-      </div>
-    </div>
-    <aside class="service-stage reveal">
-      <div class="service-photo photo hot depth" data-depth="-28"><img id="serviceImage" src="assets/design41/goroka-market.jpg" alt="People at Goroka Market in Papua New Guinea"></div>
-      <div class="service-meta depth" data-depth="15"><div class="mono" id="serviceCode">01</div><div><h4 id="serviceTitle">Mobile</h4><p id="serviceText">Calls, data and everyday mobile services with a direct, practical journey.</p></div></div>
-    </aside>
+<section class="business" id="business">
+  <div class="business-head reveal" data-depth="-8"><div><div class="micro">04 / BUSINESS</div><h2>Built around your operation.</h2></div><p>Telikom business connectivity brings together the services organisations need to communicate, transact, host and operate across locations.</p></div>
+  <div class="network-diagram reveal" id="networkDiagram" data-depth="4">
+    <svg class="wire" viewBox="0 0 1000 610" preserveAspectRatio="none" aria-hidden="true"><line x1="500" y1="305" x2="160" y2="125"/><line x1="500" y1="305" x2="840" y2="125"/><line x1="500" y1="305" x2="150" y2="500"/><line x1="500" y1="305" x2="850" y2="490"/><line x1="500" y1="305" x2="500" y2="105"/><circle cx="500" cy="305" r="5"/></svg>
+    <div class="core" data-depth="10"><div><b>TELIKOM</b><small>BUSINESS CORE</small></div></div>
+    <div class="node n1" data-depth="-17"><b>Business Data</b><span>Reliable connectivity between teams and locations.</span></div>
+    <div class="node n2" data-depth="18"><b>Broadband</b><span>Connectivity built for daily business operations.</span></div>
+    <div class="node n3" data-depth="-13"><b>Voice & SIP</b><span>Clear communication across your organisation.</span></div>
+    <div class="node n4" data-depth="14"><b>Remote / VSAT</b><span>Extend connectivity beyond conventional reach.</span></div>
+    <div class="node n5" data-depth="-10"><b>Hosting</b><span>Digital infrastructure closer to home.</span></div>
   </div>
 </section>
-
-<section class="screen enterprise" id="business">
-  <div class="enterprise-grid">
-    <div class="enterprise-copy reveal">
-      <div class="section-kicker mono depth" data-depth="-18">Business & Government</div>
-      <h2 class="depth" data-depth="25">Built for<br>PNG at scale.</h2>
-      <p class="depth" data-depth="12" id="enterpriseText">Connectivity for teams and organisations that need dependable access, clear support and room to grow.</p>
-      <div class="segment-tabs depth" data-depth="-17">
-        <button class="segment-tab active hot" data-segment="business">Business</button>
-        <button class="segment-tab hot" data-segment="government">Government</button>
-      </div>
-      <div class="enterprise-links depth" data-depth="13">
-        <button data-action="business"><span>Talk to a solutions team</span><span>→</span></button>
-        <button data-action="coverage"><span>Explore connectivity footprint</span><span>→</span></button>
-        <button data-action="support"><span>Get service support</span><span>→</span></button>
-      </div>
-    </div>
-    <div class="enterprise-media depth" data-depth="-22">
-      <div class="photo depth" data-depth="-29"><img id="enterpriseImage" src="assets/design41/telikom-retail-team.jpg" alt="Telikom team in Papua New Guinea"></div>
-      <div class="signal depth" data-depth="18">
-        <svg viewBox="0 0 900 600" preserveAspectRatio="none" aria-hidden="true">
-          <path d="M30 470 C180 290 240 510 410 315 S650 120 865 240"/>
-          <path d="M80 130 C245 220 340 60 520 180 S720 430 860 360"/>
-          <circle cx="30" cy="470" r="5"/><circle cx="410" cy="315" r="5"/><circle cx="865" cy="240" r="5"/>
-        </svg>
-      </div>
-    </div>
+<section class="coordinates reveal">
+  <div data-depth="-9"><div class="micro">05 / STORES + SUPPORT</div><h2>Find Telikom in the real world.</h2><p>Top up, manage your account, pay bills and get support quickly.</p><a class="btn fill" href="#support">Find support ↗</a></div>
+  <div class="coordinate-field" id="coordinateField" data-depth="10"><span class="axis y">PNG / SERVICE COORDINATES</span><span class="axis x">TELIKOM / RETAIL NETWORK</span><i class="locator l1" data-label="PORT MORESBY" data-depth="-16"></i><i class="locator l2" data-label="LAE" data-depth="18"></i><i class="locator l3" data-label="MADANG" data-depth="-11"></i><i class="locator l4" data-label="MT HAGEN" data-depth="15"></i></div>
+</section>
+<section class="news" id="news">
+  <div class="news-head reveal" data-depth="-9"><div><div class="micro" style="color:#7ccfee">06 / NEWS + PUBLIC UPDATES</div><h2>What is<br>moving now.</h2></div><a href="#">VIEW ALL NEWS ↗</a></div>
+  <div class="news-list">
+    <a href="#" class="story reveal" data-depth="-7"><div class="id">N/01</div><div><h3>Network updates and public advisories</h3><p>Important information for customers and communities.</p></div><div class="arrow" data-depth="12">↗</div></a>
+    <a href="#" class="story reveal" data-depth="8"><div class="id">N/02</div><div><h3>Telikom in communities across PNG</h3><p>Stories about connection, service and national reach.</p></div><div class="arrow" data-depth="-10">↗</div></a>
+    <a href="#" class="story reveal" data-depth="-6"><div class="id">N/03</div><div><h3>Business and service announcements</h3><p>New capabilities, offers and developments from Telikom.</p></div><div class="arrow" data-depth="9">↗</div></a>
   </div>
 </section>
-
-<section class="screen story" id="story">
-  <div class="wrap">
-    <div class="story-collage reveal">
-      <div class="story-main photo hot depth" data-depth="-28"><img id="storyMainImage" src="assets/design41/asaro-goroka-performers.jpg" alt="Asaro performers in Goroka, Papua New Guinea"></div>
-      <div class="story-small photo hot depth" data-depth="23"><img src="assets/design41/mount-hagen-sing-sing-portrait.jpg" alt="Portrait from Mount Hagen Sing Sing in Papua New Guinea"></div>
-      <div class="story-badge mono depth" data-depth="-31">PNG<br>CONNECTED</div>
-    </div>
-    <div class="story-copy reveal">
-      <div class="section-kicker mono depth" data-depth="-16">PNG / National story</div>
-      <h2 class="depth" data-depth="25">Connection has a place.</h2>
-      <p class="depth" data-depth="12" id="storyText">Telikom's national story is made of people, towns, highlands, coastlines and communities connected by useful services.</p>
-      <div class="story-steps depth" data-depth="-14">
-        <button class="story-step active hot" data-story="0"><span class="mono">01</span><strong>People and communities</strong><span class="dot"></span></button>
-        <button class="story-step hot" data-story="1"><span class="mono">02</span><strong>Highlands and remote reach</strong><span class="dot"></span></button>
-        <button class="story-step hot" data-story="2"><span class="mono">03</span><strong>Everyday PNG</strong><span class="dot"></span></button>
-      </div>
-    </div>
-  </div>
+<section class="careers reveal">
+  <div data-depth="-12"><div class="micro">07 / CAREERS</div><h2>Build what connects PNG.</h2></div>
+  <div class="right" data-depth="11"><div class="career-chip" data-depth="-7"><i></i> OPPORTUNITIES AT TELIKOM</div><p>Join teams working on networks, digital services, customer experience and the infrastructure that keeps Papua New Guinea connected.</p><a class="btn fill" href="#">Explore careers ↗</a></div>
 </section>
-
-<section class="screen updates" id="updates">
-  <div class="ticker"><div class="ticker-track"><span>SERVICE UPDATES</span><b>•</b><span>LATEST NEWS</span><b>•</b><span>NETWORK INFORMATION</span><b>•</b><span>TELIKOM PNG</span><b>•</b><span>SERVICE UPDATES</span><b>•</b><span>LATEST NEWS</span><b>•</b><span>NETWORK INFORMATION</span><b>•</b><span>TELIKOM PNG</span><b>•</b></div></div>
-  <div class="wrap">
-    <div class="reveal">
-      <div class="section-kicker mono depth" data-depth="-16">Service notices</div>
-      <h3 class="depth" data-depth="22">What needs your attention</h3>
-      <div class="notice-list depth" data-depth="-12">
-        <article class="notice"><button class="notice-head hot"><span class="notice-dot"></span><span><strong>Planned maintenance information</strong><small>PROTOTYPE NOTICE</small></span><span>＋</span></button><div class="notice-body"><div><p>Important maintenance information can open in place without sending customers somewhere else.</p></div></div></article>
-        <article class="notice"><button class="notice-head hot"><span class="notice-dot"></span><span><strong>Coverage and service advisory</strong><small>PROTOTYPE NOTICE</small></span><span>＋</span></button><div class="notice-body"><div><p>Network and coverage notices remain visible and easy to understand.</p></div></div></article>
-        <article class="notice"><button class="notice-head hot"><span class="notice-dot"></span><span><strong>Customer support update</strong><small>PROTOTYPE NOTICE</small></span><span>＋</span></button><div class="notice-body"><div><p>Support updates connect directly into the help flow.</p></div></div></article>
-      </div>
-    </div>
-    <div class="reveal">
-      <div class="section-kicker mono depth" data-depth="-17">Latest news</div>
-      <h3 class="depth" data-depth="23">Stories from Telikom</h3>
-      <div class="news-grid">
-        <button class="news-card hot depth" data-depth="22" data-news="community"><div class="photo depth" data-depth="-19"><img src="assets/design41/village-men-festival-day.jpg" alt="Village festival in Papua New Guinea"></div><div class="news-copy"><span class="mono blue">Community</span><h4>Connection starts with people.</h4><p>A human story, presented without leaving the homepage flow.</p></div></button>
-        <button class="news-card hot depth" data-depth="-23" data-news="reach"><div class="photo depth" data-depth="18"><img src="assets/design41/moresby-kastom-dancers-2.jpg" alt="Kastom dancers in Port Moresby, Papua New Guinea"></div><div class="news-copy"><span class="mono blue">National reach</span><h4>PNG, connected in its own way.</h4><p>Local imagery and national relevance without generic telecom stock photography.</p></div></button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="screen support" id="support">
-  <div class="wrap">
-    <div class="reveal">
-      <div class="section-kicker mono depth" data-depth="-16">Help / Support / Stores</div>
-      <h2 class="depth" data-depth="25">What do you need to do?</h2>
-      <p class="copy depth" data-depth="11">Start with the task. Every row opens a working prototype action instead of pretending to be a link.</p>
-      <div class="command-list depth" data-depth="-14">
-        <button class="command hot" data-action="support"><span>01</span><strong>Get technical support</strong><span>→</span></button>
-        <button class="command hot" data-action="store"><span>02</span><strong>Find a Telikom store</strong><span>→</span></button>
-        <button class="command hot" data-action="selfcare"><span>03</span><strong>Open Self Care</strong><span>→</span></button>
-        <button class="command hot" data-action="recharge"><span>04</span><strong>Recharge a mobile</strong><span>→</span></button>
-      </div>
-    </div>
-    <aside class="support-panel reveal hot depth" data-depth="-24">
-      <span class="mono blue depth" data-depth="19">Fast path / Support</span>
-      <h3 class="depth" data-depth="23">Skip the search.<br>Start with the task.</h3>
-      <p class="depth" data-depth="-13">Use the command list, search or floating HELP button. They all route into the same simple action system.</p>
-      <button class="btn hot depth" data-depth="26" data-action="support">Start support <span class="arr">→</span></button>
-    </aside>
-  </div>
+<section class="finale" id="support">
+  <div class="ring-field"><i data-depth="24"></i><i data-depth="-18"></i><i data-depth="12"></i></div>
+  <div class="reveal" data-depth="-8"><div class="micro">08 / NEXT STEP</div><h2>Start<br><span>connected.</span></h2><p>Top up, pay a bill, find a store, choose a plan or talk to Telikom support — one clear starting point for whatever comes next.</p><div class="hero-actions" style="justify-content:center"><a class="btn fill" href="#">Top up ↗</a><a class="btn" href="#">Get support</a></div></div>
 </section>
 </main>
-
-<button class="help-fab hot depth" data-depth="30" data-action="support">HELP</button>
-
 <footer>
-  <div class="footer-inner">
-    <div class="footer-grid reveal">
-      <div class="footer-brand depth" data-depth="-16">
-        <a class="footer-logo hot" href="#top"><img src="assets/brand/telikom-logo.png" alt="Telikom, Connecting you Anywhere Anytime"></a>
-        <p>Telikom Alive keeps the approved homepage structure while giving every section its own editorial composition and one coherent fluid motion system.</p>
-      </div>
-      <div class="footer-col depth" data-depth="14"><h5>Personal</h5><button data-target="services">Mobile</button><button data-target="services">Home Internet</button><button data-action="recharge">Recharge</button><button data-target="offers">Offers</button></div>
-      <div class="footer-col depth" data-depth="-15"><h5>Business</h5><button data-target="business">Business Internet</button><button data-action="business">Solutions</button><button data-target="business">Government</button></div>
-      <div class="footer-col depth" data-depth="13"><h5>Support</h5><button data-action="support">Help Centre</button><button data-action="selfcare">Self Care</button><button data-action="store">Find a Store</button></div>
-      <div class="footer-col depth" data-depth="-14"><h5>Telikom</h5><button data-news="community">About</button><button data-target="updates">News & Media</button><button data-action="business">Contact</button></div>
-    </div>
-    <div class="footer-word depth" data-depth="-9">TELIKOM ALIVE</div>
-    <div class="footer-bottom"><span>Telikom PNG / Design concept 41</span><span>Rebuilt fluid prototype / PNG</span></div>
-  </div>
+  <div class="foot-top"><div class="foot-brand" data-depth="-5"><img src="https://www.telikom.com.pg/assets/misc/TPNGLOGO.png" alt="Telikom PNG"><p>Connecting people, homes, businesses and communities across Papua New Guinea.</p></div><div class="foot-col" data-depth="4"><b>Personal</b><a href="#">Mobile</a><a href="#">Data plans</a><a href="#">Top up</a></div><div class="foot-col" data-depth="-4"><b>Business</b><a href="#">Data</a><a href="#">Broadband</a><a href="#">Voice</a></div><div class="foot-col" data-depth="5"><b>Company</b><a href="#">News</a><a href="#">Careers</a><a href="#">Contact</a></div></div>
+  <div class="foot-bottom"><span>TELIKOM PNG</span><span>CONNECTING YOU ANYWHERE ANYTIME</span></div>
 </footer>
-
-<div class="scrim"></div>
-<aside class="drawer" aria-hidden="true">
-  <div class="drawer-head"><span class="mono blue" id="drawerKicker">TELIKOM / ACTION</span><button class="drawer-close hot" type="button" aria-label="Close">×</button></div>
-  <div id="drawerContent"></div>
-</aside>
-<div class="search-overlay" aria-hidden="true">
-  <div class="search-box"><input id="siteSearch" type="search" placeholder="Search mobile, internet, support..." aria-label="Search Telikom prototype"><button class="hot" data-search-close type="button" aria-label="Close search">×</button></div>
-  <div class="search-results" id="searchResults"></div>
-</div>
-
+<div class="chat" id="chat"><div class="chat-panel"><div class="chat-head"><span>✦</span><div><b>Telikom Assistant</b><small>How can we help?</small></div></div><div class="chat-body">Choose a common task or ask about Telikom services.</div><div class="chat-actions"><button>Top up</button><button>Pay bill</button><button>Find a plan</button><button>Get support</button></div></div><button class="chat-launch" id="chatLaunch" aria-label="Open Telikom assistant">✦</button></div>
 <script>
 (()=>{
-  const q=s=>document.querySelector(s),qa=s=>[...document.querySelectorAll(s)];
-  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
+  const root=document.documentElement;
+  const clamp=(n,a=-1,b=1)=>Math.max(a,Math.min(b,n));
+  const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let mx=0,my=0,tx=0,ty=0,lastX=innerWidth/2,lastY=innerHeight/2;
 
-  // Header and mobile navigation
-  const header=q('.topbar'),menu=q('.menu-btn'),mobile=q('.mobile-nav');
-  addEventListener('scroll',()=>header.classList.toggle('compact',scrollY>34),{passive:true});
-  menu.addEventListener('click',()=>{const open=mobile.classList.toggle('open');menu.setAttribute('aria-expanded',open)});
-  qa('.mobile-nav a').forEach(a=>a.addEventListener('click',()=>mobile.classList.remove('open')));
-
-  // Reveal
-  if(!reduce){
-    const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
-    qa('.reveal').forEach(el=>io.observe(el));
-  }else qa('.reveal').forEach(el=>el.classList.add('in'));
-
-  // ONE motion engine. Positive depth attracts toward the pointer, negative depth repels.
-  if(fine&&!reduce){
-    const cursor=q('.cursor');
-    let mx=innerWidth/2,my=innerHeight/2,cx=mx,cy=my,tick=0;
-    const items=qa('[data-depth]').map((el,i)=>({
-      el,depth:parseFloat(el.dataset.depth)||0,phase:i*.47,
-      x:0,y:0,tx:0,ty:0
-    }));
-    const clamp=(n,min,max)=>Math.max(min,Math.min(max,n));
-    addEventListener('pointermove',e=>{
-      mx=e.clientX;my=e.clientY;
-      document.documentElement.style.setProperty('--mx',mx+'px');
-      document.documentElement.style.setProperty('--my',my+'px');
-      cursor.classList.add('on');
-    },{passive:true});
-    qa('.hot,a,button').forEach(el=>{
-      el.addEventListener('pointerenter',()=>cursor.classList.add('hot'));
-      el.addEventListener('pointerleave',()=>cursor.classList.remove('hot'));
-    });
-    const frame=()=>{
-      tick+=.016;
-      cx+=(mx-cx)*.14;cy+=(my-cy)*.14;
-      cursor.style.left=cx+'px';cursor.style.top=cy+'px';
-      const vw=Math.max(innerWidth,1),vh=Math.max(innerHeight,1);
-      const gx=clamp((mx/vw-.5)*2,-1,1),gy=clamp((my/vh-.5)*2,-1,1);
-      items.forEach(o=>{
-        const r=o.el.getBoundingClientRect();
-        if(r.bottom<-220||r.top>vh+220){
-          o.tx=0;o.ty=0;
-        }else{
-          const ex=r.left+r.width/2,ey=r.top+r.height/2;
-          const dx=mx-ex,dy=my-ey,dist=Math.hypot(dx,dy);
-          const radius=clamp(Math.max(500,Math.min(680,Math.max(r.width,r.height)*1.15)),500,680);
-          const p=Math.max(0,1-dist/radius);
-          const nx=clamp(dx/radius,-1,1),ny=clamp(dy/radius,-1,1);
-          const d=o.depth;
-          const sign=d<0?-1:1;
-          const amp=Math.abs(d);
-          const idle=Math.sin(tick*.72+o.phase)*Math.min(2.8,amp*.09);
-          o.tx=gx*d*.38 + nx*amp*.92*p*sign + idle;
-          o.ty=gy*d*.28 + ny*amp*.68*p*sign - idle*.46;
-        }
-        o.x+=(o.tx-o.x)*.058;
-        o.y+=(o.ty-o.y)*.058;
-        o.el.style.setProperty('--fx',o.x.toFixed(2)+'px');
-        o.el.style.setProperty('--fy',o.y.toFixed(2)+'px');
-      });
-      requestAnimationFrame(frame);
-    };
-    frame();
+  if(!reduced&&window.Lenis){
+    const lenis=new Lenis({duration:1.18,smoothWheel:true,syncTouch:true,touchMultiplier:1.05,wheelMultiplier:.88,easing:t=>1-Math.pow(1-t,4)});
+    const raf=t=>{lenis.raf(t);requestAnimationFrame(raf)};requestAnimationFrame(raf);
   }
 
-  // Hero carousel
-  const slides=qa('.hero-slide'),dots=qa('.hero-dot'),progress=q('.hero-progress');
-  let slide=0,timer=null,startX=null;
-  const restartProgress=()=>{progress.classList.remove('run');void progress.offsetWidth;progress.classList.add('run')};
-  const show=n=>{
-    slide=(n+slides.length)%slides.length;
-    slides.forEach((s,i)=>s.classList.toggle('active',i===slide));
-    dots.forEach((d,i)=>d.classList.toggle('active',i===slide));
-    restartProgress();
+  const updatePointer=(x,y)=>{
+    lastX=x;lastY=y;tx=(x/innerWidth-.5)*2;ty=(y/innerHeight-.5)*2;
+    root.style.setProperty('--cx',x+'px');root.style.setProperty('--cy',y+'px');
   };
-  const autoplay=()=>{clearInterval(timer);timer=setInterval(()=>show(slide+1),7000)};
-  q('[data-prev]').addEventListener('click',()=>{show(slide-1);autoplay()});
-  q('[data-next]').addEventListener('click',()=>{show(slide+1);autoplay()});
-  dots.forEach((d,i)=>d.addEventListener('click',()=>{show(i);autoplay()}));
-  const shell=q('.hero-shell');
-  shell.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse')startX=e.clientX},{passive:true});
-  shell.addEventListener('pointerup',e=>{if(startX===null)return;const dx=e.clientX-startX;if(Math.abs(dx)>45){show(slide+(dx<0?1:-1));autoplay()}startX=null},{passive:true});
-  if(!reduce)autoplay();
+  addEventListener('pointermove',e=>updatePointer(e.clientX,e.clientY),{passive:true});
+  addEventListener('touchmove',e=>{if(e.touches[0])updatePointer(e.touches[0].clientX,e.touches[0].clientY)},{passive:true});
 
-  // Drawer actions
-  const scrim=q('.scrim'),drawer=q('.drawer'),drawerContent=q('#drawerContent'),drawerKicker=q('#drawerKicker');
-  const drawerData={
-    recharge:{k:'MOBILE / RECHARGE',t:'Recharge your mobile.',p:'Enter a mobile number and choose a recharge amount.',fields:[['Mobile number','e.g. 7xx xxx xxx'],['Amount','e.g. K20']],button:'Continue to recharge'},
-    selfcare:{k:'SELF CARE',t:'Manage your account.',p:'A fast path to balances, usage, services and account settings.',fields:[['Mobile or account number','Enter your number']],button:'Open Self Care'},
-    coverage:{k:'NETWORK / COVERAGE',t:'Check your area.',p:'Search a town, suburb or location to start a coverage check.',fields:[['Location','Port Moresby, Lae, Goroka...']],button:'Check coverage'},
-    support:{k:'HELP / SUPPORT',t:'How can Telikom help?',p:'Start with the service and describe what you need.',fields:[['Service','Mobile, internet, account...'],['What happened?','Describe the issue']],button:'Start support request'},
-    store:{k:'STORES / PNG',t:'Find a Telikom store.',p:'Search by town or area to find the closest service point.',fields:[['Town or area','Enter location']],button:'Find stores'},
-    internet:{k:'HOME INTERNET',t:'Bring the network home.',p:'Start with your location to explore suitable home internet options.',fields:[['Location','Enter suburb or town']],button:'Check home internet'},
-    business:{k:'BUSINESS / GOVERNMENT',t:'Talk to a solutions team.',p:'Tell us what your organisation needs and where you operate.',fields:[['Organisation','Company or department'],['Contact email','name@example.com']],button:'Start an enquiry'}
+  const cursor=document.getElementById('cursor');
+  if(cursor){
+    addEventListener('pointermove',e=>{cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px'},{passive:true});
+    document.querySelectorAll('a,button,.world-card,.ticket,.node,.story,.coordinate-field').forEach(el=>{el.addEventListener('mouseenter',()=>cursor.classList.add('hot'));el.addEventListener('mouseleave',()=>cursor.classList.remove('hot'))});
+  }
+
+  const reveals=[...document.querySelectorAll('.reveal')];
+  const io=new IntersectionObserver(entries=>entries.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in')}),{threshold:.14,rootMargin:'0px 0px -5%'});reveals.forEach(x=>io.observe(x));
+
+  const updateScroll=()=>{const max=Math.max(1,document.documentElement.scrollHeight-innerHeight);root.style.setProperty('--scroll',(scrollY/max).toFixed(4))};addEventListener('scroll',updateScroll,{passive:true});updateScroll();
+
+  // Pointer-reactive light inside key panels.
+  const lightField=(el,xName,yName)=>{
+    if(!el)return;
+    el.addEventListener('pointermove',e=>{const r=el.getBoundingClientRect();el.style.setProperty(xName,((e.clientX-r.left)/r.width*100).toFixed(1)+'%');el.style.setProperty(yName,((e.clientY-r.top)/r.height*100).toFixed(1)+'%')},{passive:true});
   };
-  const openDrawer=key=>{
-    const d=drawerData[key]||drawerData.support;
-    drawerKicker.textContent=d.k;
-    drawerContent.innerHTML='<h3>'+d.t+'</h3><p>'+d.p+'</p>'+d.fields.map(f=>'<div class="field"><label>'+f[0]+'</label><input placeholder="'+f[1]+'"></div>').join('')+'<button class="btn fill">'+d.button+' <span class="arr">→</span></button>';
-    scrim.classList.add('open');drawer.classList.add('open');drawer.setAttribute('aria-hidden','false');
-    setTimeout(()=>drawer.querySelector('input')?.focus(),250);
-  };
-  const closeDrawer=()=>{scrim.classList.remove('open');drawer.classList.remove('open');drawer.setAttribute('aria-hidden','true')};
-  qa('[data-action]').forEach(el=>el.addEventListener('click',()=>openDrawer(el.dataset.action)));
-  q('.drawer-close').addEventListener('click',closeDrawer);scrim.addEventListener('click',closeDrawer);
+  lightField(document.getElementById('networkDiagram'),'--nx','--ny');
+  lightField(document.getElementById('coordinateField'),'--fx','--fy');
 
-  // Offer plan actions
-  qa('[data-plan]').forEach(el=>el.addEventListener('click',()=>openDrawer(el.dataset.plan==='mobile'?'recharge':el.dataset.plan==='home'?'internet':'business')));
+  // Magnetic buttons and chips move toward the pointer while hovered.
+  document.querySelectorAll('.btn,.career-chip,.chat-actions button').forEach(el=>{
+    el.addEventListener('pointermove',e=>{if(e.pointerType==='touch')return;const r=el.getBoundingClientRect();const lx=(e.clientX-r.left)/r.width-.5,ly=(e.clientY-r.top)/r.height-.5;el.style.translate=`${(lx*7).toFixed(2)}px ${(ly*5).toFixed(2)}px`;el.style.setProperty('--hx',(lx*55)+'px');el.style.setProperty('--hy',(ly*40)+'px')});
+    el.addEventListener('pointerleave',()=>{el.style.translate='0 0'});
+  });
 
-  // Services
-  const serviceData={
-    mobile:['01','Mobile','Calls, data and everyday mobile services with a direct, practical journey.','assets/design41/goroka-market.jpg','People at Goroka Market in Papua New Guinea'],
-    internet:['02','Home Internet','Availability, setup and plan pathways grouped into one clear destination.','assets/design41/upng-students-wide.jpg','UPNG students in Port Moresby, Papua New Guinea'],
-    devices:['03','Devices & Routers','Find the hardware that fits the connection instead of browsing an endless product wall.','assets/design41/telikom-retail-team.jpg','Telikom team in Papua New Guinea'],
-    enterprise:['04','Enterprise','Connectivity and support pathways for organisations operating across PNG.','assets/design41/moresby-kastom-dancers-2.jpg','Kastom dancers in Port Moresby, Papua New Guinea'],
-    help:['05','Support Services','Technical help, stores, account support and service information in one place.','assets/design41/mount-hagen-sing-sing-portrait.jpg','Portrait from Mount Hagen Sing Sing in Papua New Guinea']
-  };
-  const serviceImage=q('#serviceImage'),serviceCode=q('#serviceCode'),serviceTitle=q('#serviceTitle'),serviceText=q('#serviceText');
-  const setService=key=>{
-    const d=serviceData[key];if(!d)return;
-    qa('.service-row').forEach(r=>r.classList.toggle('active',r.dataset.service===key));
-    serviceCode.textContent=d[0];serviceTitle.textContent=d[1];serviceText.textContent=d[2];
-    if(serviceImage.getAttribute('src')!==d[3]){serviceImage.style.opacity='.25';setTimeout(()=>{serviceImage.src=d[3];serviceImage.alt=d[4];serviceImage.style.opacity='1'},180)}
-  };
-  qa('.service-row').forEach(r=>['mouseenter','focus','click'].forEach(evt=>r.addEventListener(evt,()=>setService(r.dataset.service))));
+  // Global depth field: almost every visual layer now breathes with mouse position.
+  const motion=[...document.querySelectorAll('[data-depth]')].map((el,i)=>({el,depth:parseFloat(el.dataset.depth)||0,phase:(i%7)*.37}));
+  let tick=0;
+  const motionFrame=()=>{
+    requestAnimationFrame(motionFrame);tick+=.016;mx+=(tx-mx)*.055;my+=(ty-my)*.055;root.style.setProperty('--mx',mx.toFixed(3));root.style.setProperty('--my',my.toFixed(3));
+    const vw=innerWidth,vh=innerHeight;
+    motion.forEach((o,i)=>{
+      const r=o.el.getBoundingClientRect();if(r.bottom<-120||r.top>vh+120)return;
+      const cx=r.left+r.width/2,cy=r.top+r.height/2;
+      const localX=clamp((lastX-cx)/Math.max(260,r.width));
+      const localY=clamp((lastY-cy)/Math.max(220,r.height));
+      const proximity=Math.max(0,1-Math.min(1,Math.hypot((lastX-cx)/vw,(lastY-cy)/vh)*1.65));
+      const d=o.depth;
+      const x=mx*d*.72+localX*Math.abs(d)*.32*proximity;
+      const y=my*d*.48+localY*Math.abs(d)*.24*proximity;
+      const idle=Math.sin(tick*.7+o.phase)*Math.min(1.8,Math.abs(d)*.045);
+      o.el.style.translate=`${(x+idle).toFixed(2)}px ${(y-idle*.45).toFixed(2)}px`;
+    });
+  };motionFrame();
 
-  // Business / Government
-  const segmentData={
-    business:['Connectivity for teams and organisations that need dependable access, clear support and room to grow.','assets/design41/telikom-retail-team.jpg','Telikom team in Papua New Guinea'],
-    government:['National-scale connectivity for public services, departments and essential operations across PNG.','assets/design41/village-men-festival-day.jpg','Community festival in Papua New Guinea']
-  };
-  const enterpriseText=q('#enterpriseText'),enterpriseImage=q('#enterpriseImage');
-  const setSegment=key=>{
-    const d=segmentData[key];qa('.segment-tab').forEach(b=>b.classList.toggle('active',b.dataset.segment===key));enterpriseText.textContent=d[0];
-    enterpriseImage.style.opacity='.25';setTimeout(()=>{enterpriseImage.src=d[1];enterpriseImage.alt=d[2];enterpriseImage.style.opacity='1'},180);
-  };
-  qa('.segment-tab').forEach(b=>['mouseenter','focus','click'].forEach(evt=>b.addEventListener(evt,()=>setSegment(b.dataset.segment))));
+  // Abstract Three.js signal sculpture.
+  const canvas=document.getElementById('sculpture');const shell=document.getElementById('stageShell');
+  if(canvas&&shell&&window.THREE&&!reduced){
+    try{
+      const scene=new THREE.Scene();const camera=new THREE.PerspectiveCamera(35,1,.1,100);camera.position.set(0,0,7.2);
+      const renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setClearColor(0x000000,0);
+      const group=new THREE.Group();scene.add(group);
+      const knot=new THREE.Mesh(new THREE.TorusKnotGeometry(1.52,.43,220,28,2,3),new THREE.MeshPhysicalMaterial({color:0x008fd3,roughness:.22,metalness:.12,transmission:.18,transparent:true,opacity:.88,clearcoat:1,clearcoatRoughness:.1}));group.add(knot);
+      const wire=new THREE.LineSegments(new THREE.WireframeGeometry(new THREE.IcosahedronGeometry(2.32,2)),new THREE.LineBasicMaterial({color:0x35b9ef,transparent:true,opacity:.35}));group.add(wire);
+      const inner=new THREE.Mesh(new THREE.IcosahedronGeometry(.7,1),new THREE.MeshBasicMaterial({color:0x52b848,wireframe:true,transparent:true,opacity:.78}));group.add(inner);
+      const sats=[];for(let i=0;i<38;i++){const m=new THREE.Mesh(new THREE.SphereGeometry(i%7===0?.075:.035,12,12),new THREE.MeshBasicMaterial({color:i%7===0?0x52b848:0x008fd3,transparent:true,opacity:.85}));const a=Math.random()*Math.PI*2,b=Math.acos(2*Math.random()-1),r=2.65+Math.random()*.5;m.position.set(r*Math.sin(b)*Math.cos(a),r*Math.cos(b),r*Math.sin(b)*Math.sin(a));m.userData={phase:Math.random()*6.28,speed:.6+Math.random()*.9};group.add(m);sats.push(m)}
+      scene.add(new THREE.AmbientLight(0xffffff,2.1));const key=new THREE.DirectionalLight(0xffffff,4.3);key.position.set(4,4,5);scene.add(key);const rim=new THREE.PointLight(0x35b9ef,18,20);rim.position.set(-4,1,3);scene.add(rim);
+      const resize=()=>{const r=shell.getBoundingClientRect(),w=Math.max(1,r.width),h=Math.max(1,r.height);renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix()};resize();addEventListener('resize',resize,{passive:true});shell.classList.add('three-ready');
+      let t=0;const draw=()=>{requestAnimationFrame(draw);t+=.008;group.rotation.y=t*.55+mx*.38;group.rotation.x=.25+my*.26;knot.rotation.z=-t*.26;wire.rotation.z=t*.14;inner.rotation.x=t;inner.rotation.y=-t*.8;sats.forEach((s,i)=>{const pulse=.66+.34*Math.sin(t*s.userData.speed*8+s.userData.phase);s.scale.setScalar(pulse*(i%7===0?1.45:1));s.material.opacity=.4+.6*pulse});camera.position.x=mx*.52;camera.position.y=-my*.42;key.position.x=4+mx*2.4;key.position.y=4-my*1.8;rim.position.x=-4+mx*1.6;rim.position.y=1-my*1.2;camera.lookAt(0,0,0);renderer.render(scene,camera)};draw();
+    }catch(err){console.warn('3D sculpture fallback',err)}
+  }
 
-  // Story
-  const storyData=[
-    ['Telikom\'s national story is made of people, towns, highlands, coastlines and communities connected by useful services.','assets/design41/asaro-goroka-performers.jpg','Asaro performers in Goroka, Papua New Guinea'],
-    ['Connectivity has to reach beyond the easiest locations and make sense for highlands, remote communities and difficult terrain.','assets/design41/mount-hagen-sing-sing-2019.jpg','People at the Mount Hagen Sing Sing in Papua New Guinea'],
-    ['The network matters most when it supports ordinary moments, learning, work, family and access to services.','assets/design41/upng-students-wide.jpg','UPNG students in Port Moresby, Papua New Guinea']
-  ];
-  const storyText=q('#storyText'),storyImage=q('#storyMainImage');
-  const setStory=i=>{
-    const d=storyData[i];qa('.story-step').forEach((b,n)=>b.classList.toggle('active',n===i));storyText.textContent=d[0];
-    storyImage.style.opacity='.25';setTimeout(()=>{storyImage.src=d[1];storyImage.alt=d[2];storyImage.style.opacity='1'},180);
-  };
-  qa('.story-step').forEach((b,i)=>['mouseenter','focus','click'].forEach(evt=>b.addEventListener(evt,()=>setStory(i))));
-
-  // Notices
-  qa('.notice-head').forEach(btn=>btn.addEventListener('click',()=>btn.closest('.notice').classList.toggle('open')));
-
-  // News
-  qa('[data-news]').forEach(btn=>btn.addEventListener('click',()=>openDrawer('support')));
-
-  // Search
-  const search=q('.search-overlay'),searchInput=q('#siteSearch'),searchResults=q('#searchResults');
-  const searchItems=[
-    ['Recharge mobile','Top up a Telikom mobile','recharge'],['Self Care','Manage account and usage','selfcare'],['Coverage','Check network in your area','coverage'],
-    ['Home Internet','Check availability and setup','internet'],['Technical support','Get help with a service','support'],['Find a store','Locate a Telikom service point','store'],['Business solutions','Connectivity for organisations','business']
-  ];
-  const renderSearch=()=>{
-    const term=searchInput.value.trim().toLowerCase();
-    const list=(term?searchItems.filter(x=>(x[0]+' '+x[1]).toLowerCase().includes(term)):searchItems).slice(0,6);
-    searchResults.innerHTML=list.map(x=>'<button class="search-result" data-key="'+x[2]+'"><strong>'+x[0]+'</strong><small>'+x[1]+'</small></button>').join('');
-    qa('.search-result').forEach(b=>b.addEventListener('click',()=>{closeSearch();openDrawer(b.dataset.key)}));
-  };
-  const openSearch=()=>{search.classList.add('open');search.setAttribute('aria-hidden','false');renderSearch();setTimeout(()=>searchInput.focus(),120)};
-  const closeSearch=()=>{search.classList.remove('open');search.setAttribute('aria-hidden','true')};
-  q('[data-search-open]').addEventListener('click',openSearch);q('[data-search-close]').addEventListener('click',closeSearch);searchInput.addEventListener('input',renderSearch);
-
-  // Footer routing
-  qa('[data-target]').forEach(b=>b.addEventListener('click',()=>q('#'+b.dataset.target)?.scrollIntoView({behavior:reduce?'auto':'smooth'})));
-
-  addEventListener('keydown',e=>{if(e.key==='Escape'){closeDrawer();closeSearch();mobile.classList.remove('open')}if(e.key==='ArrowRight'&&document.activeElement.closest?.('.hero-shell')){show(slide+1);autoplay()}if(e.key==='ArrowLeft'&&document.activeElement.closest?.('.hero-shell')){show(slide-1);autoplay()}});
+  const chat=document.getElementById('chat'),launch=document.getElementById('chatLaunch');if(chat&&launch)launch.addEventListener('click',()=>chat.classList.toggle('open'));
 })();
 </script>
 </body>
 </html>
+<!-- Image sources: Unsplash photographs from Papua New Guinea / Port Moresby. -->
