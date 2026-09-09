@@ -13,7 +13,7 @@ jobs:
       - name: Download Milne Bay aerial
         run: |
           mkdir -p assets/design42
-          curl -L --fail --retry 3 --retry-delay 2 -A 'Mozilla/5.0' 'https://www.pagahill.com/wp-content/uploads/2019/03/paga-hill-blog-milne-bay-gummi-gudmundur-fridriksson-papua-new-guineajpg.jpg' -o assets/design42/milne-bay-aerial.jpg
+          curl -L --fail --retry 3 --retry-delay 2 -A 'Mozilla/5.0' 'https://cdn.tripspoint.com/uploads/photos/6967/tawali-resort-stay-7-pay-5-diving-package_QnCtx.jpeg' -o assets/design42/milne-bay-aerial.jpg
           test -s assets/design42/milne-bay-aerial.jpg
           file assets/design42/milne-bay-aerial.jpg
       - name: Apply cleanup
