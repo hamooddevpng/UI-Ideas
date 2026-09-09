@@ -19,6 +19,8 @@ jobs:
           s=patch.read_text()
           s=s.replace('assets/design42/png-photographer.jpg','assets/design42/png-people.jpg')
           s=s.replace('Papua New Guinea photographer working outdoors','People in Papua New Guinea')
+          s=s.replace('height:min(88vh,790px)!important;min-height:710px!important','height:min(84vh,756px)!important;min-height:690px!important')
+          s=s.replace('height:min(88vh,680px)!important;min-height:620px!important','height:min(83vh,640px)!important;min-height:600px!important')
           if "\nattr=Path('assets/design42/ATTRIBUTION.md')" in s:
               s=s.split("\nattr=Path('assets/design42/ATTRIBUTION.md')",1)[0]+'\n'
           patch.write_text(s)
