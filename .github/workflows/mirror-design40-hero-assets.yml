@@ -1,0 +1,117 @@
+name: Mirror Design 40 hero assets
+
+on:
+  push:
+    paths:
+      - '.github/workflows/mirror-design40-hero-assets.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Download hero assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p assets/design40/hero
+
+          curl -fL --retry 5 --retry-delay 3 --connect-timeout 20 \
+            'https://www.telikom.com.pg/assets/homebanner/NewYear_NewDeals_Together_2026.jpg' \
+            -o assets/design40/hero/telikom-new-year-2026.jpg
+
+          curl -fL --retry 5 --retry-delay 3 --connect-timeout 20 \
+            'https://www.telikom.com.pg/assets/homebanner/Wantok_e-SIM.jpg' \
+            -o assets/design40/hero/telikom-wantok-esim.jpg
+
+          curl -fL --retry 5 --retry-delay 3 --connect-timeout 20 \
+            'https://www.telikom.com.pg/assets/homebanner/Device_Bundled_Deals_v2.jpg' \
+            -o assets/design40/hero/telikom-device-bundles.jpg
+
+          curl -fL --retry 5 --retry-delay 3 --connect-timeout 20 \
+            'https://telikom-frontend.vercel.app/images/png/banner.png' \
+            -o assets/design40/hero/coastal-connectivity.png
+
+          curl -fL --retry 5 --retry-delay 3 --connect-timeout 20 \
+            'https://telikom-frontend.vercel.app/images/png/top-banner-highlands.png' \
+            -o assets/design40/hero/highlands-connectivity.png
+
+          curl -fL --retry 5 --retry-delay 3 --connect-timeout 20 \
+            'https://telikom-frontend.vercel.app/images/png/starlink_horizon_concept.png' \
+            -o assets/design40/hero/starlink-horizon.png
+
+      - name: Validate downloaded files
+        shell: bash
+        run: |
+          set -euo pipefail
+          for f in assets/design40/hero/*; do
+            test -s "$f"
+            mime="$(file --brief --mime-type "$f")"
+            case "$mime" in
+              image/jpeg|image/png) ;;
+              *) echo "Unexpected MIME for $f: $mime"; exit 1 ;;
+            esac
+            echo "$f  $mime  $(stat -c%s "$f") bytes"
+          done
+
+      - name: Point Design 40 at mirrored GitHub assets
+        shell: python
+        run: |
+          from pathlib import Path
+
+          path = Path('40.html')
+          text = path.read_text(encoding='utf-8')
+          replacements = {
+              'https://www.telikom.com.pg/assets/homebanner/NewYear_NewDeals_Together_2026.jpg':
+                  'https://raw.githubusercontent.com/hamooddevpng/UI-Ideas/main/assets/design40/hero/telikom-new-year-2026.jpg',
+              'https://www.telikom.com.pg/assets/homebanner/Wantok_e-SIM.jpg':
+                  'https://raw.githubusercontent.com/hamooddevpng/UI-Ideas/main/assets/design40/hero/telikom-wantok-esim.jpg',
+              'https://www.telikom.com.pg/assets/homebanner/Device_Bundled_Deals_v2.jpg':
+                  'https://raw.githubusercontent.com/hamooddevpng/UI-Ideas/main/assets/design40/hero/telikom-device-bundles.jpg',
+              'https://telikom-frontend.vercel.app/images/png/banner.png':
+                  'https://raw.githubusercontent.com/hamooddevpng/UI-Ideas/main/assets/design40/hero/coastal-connectivity.png',
+              'https://telikom-frontend.vercel.app/images/png/top-banner-highlands.png':
+                  'https://raw.githubusercontent.com/hamooddevpng/UI-Ideas/main/assets/design40/hero/highlands-connectivity.png',
+              'https://telikom-frontend.vercel.app/images/png/starlink_horizon_concept.png':
+                  'https://raw.githubusercontent.com/hamooddevpng/UI-Ideas/main/assets/design40/hero/starlink-horizon.png',
+          }
+          missing = [url for url in replacements if url not in text]
+          if missing:
+              raise SystemExit('Expected hero URLs missing from 40.html: ' + ', '.join(missing))
+          for old, new in replacements.items():
+              text = text.replace(old, new)
+          path.write_text(text, encoding='utf-8')
+
+      - name: Save source manifest
+        shell: bash
+        run: |
+          cat > assets/design40/hero/SOURCES.md <<'EOF'
+          # Design 40 hero source assets
+
+          These files are local mirrors used by the Design 40 prototype so the carousel does not depend on slower external servers at runtime.
+
+          - `telikom-new-year-2026.jpg` ← `https://www.telikom.com.pg/assets/homebanner/NewYear_NewDeals_Together_2026.jpg`
+          - `telikom-wantok-esim.jpg` ← `https://www.telikom.com.pg/assets/homebanner/Wantok_e-SIM.jpg`
+          - `telikom-device-bundles.jpg` ← `https://www.telikom.com.pg/assets/homebanner/Device_Bundled_Deals_v2.jpg`
+          - `coastal-connectivity.png` ← `https://telikom-frontend.vercel.app/images/png/banner.png`
+          - `highlands-connectivity.png` ← `https://telikom-frontend.vercel.app/images/png/top-banner-highlands.png`
+          - `starlink-horizon.png` ← `https://telikom-frontend.vercel.app/images/png/starlink_horizon_concept.png`
+          EOF
+
+      - name: Commit mirrored assets and cleanup helper workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/mirror-design40-hero-assets.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add 40.html assets/design40/hero .github/workflows/mirror-design40-hero-assets.yml
+          git commit -m 'Mirror Design 40 hero banners into repo'
+          git pull --rebase origin main
+          git push origin HEAD:main
