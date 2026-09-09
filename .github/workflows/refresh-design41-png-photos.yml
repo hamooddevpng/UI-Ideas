@@ -1,6 +1,6 @@
 name: Refresh Design 41 PNG photos
 
-# retry after safety-marker update
+# retry after rendered-layout validation update
 on:
   push:
     branches: [main]
