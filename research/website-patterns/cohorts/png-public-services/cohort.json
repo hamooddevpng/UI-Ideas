@@ -5,5 +5,5 @@
   "description": "PNG government, utilities, education and public-service websites used to study institutional patterns people in Papua New Guinea may encounter.",
   "source_root": "reference-screenshots/png-public-sites-curated/full-page-1440",
   "metadata_file": "capture-results.json",
-  "method_note": "All screenshots appear in the atlas. Semantic crop manifests are added progressively; pending sites remain visible."
+  "method_note": "All 20 public-service screenshots have reviewed semantic manifests. Bot challenges, loading screens, server errors and incomplete captures are explicitly coded as capture_partial rather than treated as normal page structure."
 }
