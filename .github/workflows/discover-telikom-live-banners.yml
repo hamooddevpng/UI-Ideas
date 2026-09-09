@@ -1,0 +1,65 @@
+name: Discover Telikom live banners
+on:
+  push:
+    paths:
+      - '.github/workflows/discover-telikom-live-banners.yml'
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install requests beautifulsoup4 pillow
+      - name: Discover Telikom homepage imagery
+        run: |
+          python - <<'PY'
+          import io,re,json,requests
+          from bs4 import BeautifulSoup
+          from PIL import Image
+          from urllib.parse import urljoin
+          base='https://www.telikom.com.pg/'
+          s=requests.Session(); s.headers['User-Agent']='Mozilla/5.0'
+          html=s.get(base,timeout=30).text
+          urls=[]
+          soup=BeautifulSoup(html,'html.parser')
+          for tag in soup.find_all(['img','source']):
+              for a in ('src','data-src','data-lazy-src','srcset'):
+                  v=tag.get(a)
+                  if not v: continue
+                  for part in v.split(','):
+                      u=part.strip().split(' ')[0]
+                      if u: urls.append(urljoin(base,u))
+          for m in re.findall(r'url\([\"\']?([^\)\"\']+)',html,re.I): urls.append(urljoin(base,m.strip()))
+          for css in soup.find_all('link',rel='stylesheet'):
+              href=css.get('href')
+              if not href: continue
+              try:
+                  txt=s.get(urljoin(base,href),timeout=20).text
+                  for m in re.findall(r'url\([\"\']?([^\)\"\']+)',txt,re.I): urls.append(urljoin(urljoin(base,href),m.strip()))
+              except: pass
+          seen=[]; rows=[]
+          for u in urls:
+              if u in seen or u.startswith('data:'): continue
+              seen.append(u)
+              try:
+                  r=s.get(u,timeout=20)
+                  if r.status_code!=200 or not r.content: continue
+                  im=Image.open(io.BytesIO(r.content)); w,h=im.size
+                  rows.append({'url':u,'width':w,'height':h,'ratio':round(w/max(h,1),2),'bytes':len(r.content)})
+              except: pass
+          rows.sort(key=lambda x:(x['width']>=1200 and x['ratio']>=1.8, x['width']*x['height']), reverse=True)
+          open('assets/design40/telikom-live-image-manifest.json','w').write(json.dumps(rows[:80],indent=2))
+          print(json.dumps(rows[:25],indent=2))
+          PY
+      - name: Commit manifest and remove workflow
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          rm .github/workflows/discover-telikom-live-banners.yml
+          git add assets/design40/telikom-live-image-manifest.json .github/workflows/discover-telikom-live-banners.yml
+          git commit -m "Record live Telikom homepage image manifest"
+          git push
