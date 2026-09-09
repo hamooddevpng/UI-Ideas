@@ -1,0 +1,27 @@
+{
+  "capturedAt": "2026-09-09T00:16:00.357Z",
+  "results": [
+    {
+      "slug": "daltron",
+      "name": "Daltron PNG",
+      "category": "Technology / Retail",
+      "url": "https://www.daltronpng.com/",
+      "finalUrl": "https://www.daltronpng.com/",
+      "title": "Daltron PNG | Your ICT Solutions Partner",
+      "httpStatus": 200,
+      "status": "ok",
+      "error": null
+    },
+    {
+      "slug": "boroko-motors",
+      "name": "Boroko Motors",
+      "category": "Automotive / Retail",
+      "url": "https://borokomotors.com/",
+      "finalUrl": "https://borokomotors.com/",
+      "title": "Boroko Motors | Who do you call? Boroko Motors tasol!",
+      "httpStatus": 200,
+      "status": "ok",
+      "error": null
+    }
+  ]
+}
