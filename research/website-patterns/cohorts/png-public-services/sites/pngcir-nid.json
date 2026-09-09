@@ -1,0 +1,103 @@
+{
+  "schema_version": "1.0",
+  "cohort": "png-public-services",
+  "site": {
+    "slug": "pngcir-nid",
+    "name": "PNG Civil & Identity Registry / NID",
+    "url": "https://pngcir.gov.pg/",
+    "source_repo_path": "reference-screenshots/png-public-sites-curated/full-page-1440/pngcir-nid.png",
+    "capture_status": "ok",
+    "coordinate_mode": "normalized",
+    "analysis_method": "AI vision on downscaled proxy of repository screenshot; normalized boundaries mapped to original image",
+    "sections": [
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 1.0,
+          "height": 0.055
+        },
+        "type": "navigation",
+        "label": "PNG Civil and Identity Registry navigation",
+        "confidence": 0.97
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.055,
+          "width": 1.0,
+          "height": 0.225
+        },
+        "type": "hero_cta",
+        "label": "Archiving / national data bank hero carousel",
+        "confidence": 0.95
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.28,
+          "width": 1.0,
+          "height": 0.13
+        },
+        "type": "service_categories",
+        "label": "Birth, marriage, adoption, divorce, legitimize and death services",
+        "confidence": 0.98
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.41,
+          "width": 1.0,
+          "height": 0.12
+        },
+        "type": "content_feature",
+        "label": "About PNG Civil and Identity Registry",
+        "confidence": 0.94
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.53,
+          "width": 1.0,
+          "height": 0.14
+        },
+        "type": "projects",
+        "label": "National Identification Project reports and rollout initiatives",
+        "confidence": 0.94
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.67,
+          "width": 1.0,
+          "height": 0.06
+        },
+        "type": "notices",
+        "label": "Vacancy and volunteer notices",
+        "confidence": 0.92
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.73,
+          "width": 1.0,
+          "height": 0.16
+        },
+        "type": "form_contact",
+        "label": "Nationwide locations and map",
+        "confidence": 0.92
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.89,
+          "width": 1.0,
+          "height": 0.11
+        },
+        "type": "footer",
+        "label": "Site statistics, policy, quick links and project footer",
+        "confidence": 0.95
+      }
+    ]
+  }
+}

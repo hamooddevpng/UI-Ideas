@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0",
+  "cohort": "png-public-services",
+  "site": {
+    "slug": "irc-tax",
+    "name": "Internal Revenue Commission",
+    "url": "https://irc.gov.pg/",
+    "source_repo_path": "reference-screenshots/png-public-sites-curated/full-page-1440/irc-tax.png",
+    "capture_status": "partial",
+    "coordinate_mode": "normalized",
+    "analysis_method": "AI vision on downscaled proxy of repository screenshot; normalized boundaries mapped to original image",
+    "sections": [
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 1.0,
+          "height": 1.0
+        },
+        "type": "capture_partial",
+        "label": "Internal Revenue Commission server error page; intended homepage was not captured",
+        "confidence": 0.99
+      }
+    ]
+  }
+}

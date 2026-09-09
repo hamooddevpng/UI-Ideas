@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "cohort": "png-public-services",
+  "site": {
+    "slug": "ncdc",
+    "name": "National Capital District Commission",
+    "url": "https://ncdc.gov.pg/",
+    "source_repo_path": "reference-screenshots/png-public-sites-curated/full-page-1440/ncdc.png",
+    "capture_status": "partial",
+    "coordinate_mode": "normalized",
+    "analysis_method": "AI vision on downscaled proxy of repository screenshot; normalized boundaries mapped to original image",
+    "sections": [
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 1.0,
+          "height": 0.035
+        },
+        "type": "navigation",
+        "label": "NCDC logo, utility links and service navigation",
+        "confidence": 0.95
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.035,
+          "width": 1.0,
+          "height": 0.105
+        },
+        "type": "hero_cta",
+        "label": "Land Tax and Garbage Rates online-payment hero",
+        "confidence": 0.96
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.14,
+          "width": 1.0,
+          "height": 0.86
+        },
+        "type": "capture_partial",
+        "label": "Extremely long blank remainder caused by incomplete full-page capture",
+        "confidence": 0.99
+      }
+    ]
+  }
+}

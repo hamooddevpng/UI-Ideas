@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0",
+  "cohort": "png-public-services",
+  "site": {
+    "slug": "ipa-registry",
+    "name": "Investment Promotion Authority / Registry Services",
+    "url": "https://www.ipa.gov.pg/",
+    "source_repo_path": "reference-screenshots/png-public-sites-curated/full-page-1440/ipa-registry.png",
+    "capture_status": "ok",
+    "coordinate_mode": "normalized",
+    "analysis_method": "AI vision on downscaled proxy of repository screenshot; normalized boundaries mapped to original image",
+    "sections": [
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 1.0,
+          "height": 0.13
+        },
+        "type": "navigation",
+        "label": "IPA Registry Services header and navigation",
+        "confidence": 0.96
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.13,
+          "width": 1.0,
+          "height": 0.19
+        },
+        "type": "hero_cta",
+        "label": "Welcome to PNG Registry Services hero",
+        "confidence": 0.95
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.32,
+          "width": 1.0,
+          "height": 0.24
+        },
+        "type": "notices",
+        "label": "Notices and registry service announcements",
+        "confidence": 0.94
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.56,
+          "width": 1.0,
+          "height": 0.14
+        },
+        "type": "quick_actions",
+        "label": "Quick links to company, business and association searches",
+        "confidence": 0.96
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.7,
+          "width": 1.0,
+          "height": 0.25
+        },
+        "type": "regulation_info",
+        "label": "Registry service information and public guidance",
+        "confidence": 0.91
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.95,
+          "width": 1.0,
+          "height": 0.05
+        },
+        "type": "footer",
+        "label": "IPA Registry footer",
+        "confidence": 0.92
+      }
+    ]
+  }
+}

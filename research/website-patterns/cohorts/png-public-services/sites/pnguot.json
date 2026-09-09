@@ -1,0 +1,103 @@
+{
+  "schema_version": "1.0",
+  "cohort": "png-public-services",
+  "site": {
+    "slug": "pnguot",
+    "name": "Papua New Guinea University of Technology",
+    "url": "https://www.pnguot.ac.pg/",
+    "source_repo_path": "reference-screenshots/png-public-sites-curated/full-page-1440/pnguot.png",
+    "capture_status": "ok",
+    "coordinate_mode": "normalized",
+    "analysis_method": "AI vision on downscaled proxy of repository screenshot; normalized boundaries mapped to original image",
+    "sections": [
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 1.0,
+          "height": 0.045
+        },
+        "type": "navigation",
+        "label": "PNGUoT utility and primary navigation",
+        "confidence": 0.98
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.045,
+          "width": 1.0,
+          "height": 0.315
+        },
+        "type": "quick_actions",
+        "label": "Applications, fees, programmes and library resource panel",
+        "confidence": 0.96
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.36,
+          "width": 1.0,
+          "height": 0.12
+        },
+        "type": "content_feature",
+        "label": "University profile / About the University",
+        "confidence": 0.95
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.48,
+          "width": 1.0,
+          "height": 0.09
+        },
+        "type": "service_categories",
+        "label": "Library, schools and alumni services",
+        "confidence": 0.95
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.57,
+          "width": 1.0,
+          "height": 0.15
+        },
+        "type": "news",
+        "label": "Campus News and Announcements",
+        "confidence": 0.96
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.72,
+          "width": 1.0,
+          "height": 0.1
+        },
+        "type": "projects",
+        "label": "Upcoming events and service-department features",
+        "confidence": 0.91
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.82,
+          "width": 1.0,
+          "height": 0.12
+        },
+        "type": "content_feature",
+        "label": "Academic calendar",
+        "confidence": 0.94
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.94,
+          "width": 1.0,
+          "height": 0.06
+        },
+        "type": "footer",
+        "label": "PNGUoT institutional footer",
+        "confidence": 0.98
+      }
+    ]
+  }
+}

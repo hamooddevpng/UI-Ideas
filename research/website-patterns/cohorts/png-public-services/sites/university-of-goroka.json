@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0",
+  "cohort": "png-public-services",
+  "site": {
+    "slug": "university-of-goroka",
+    "name": "University of Goroka",
+    "url": "https://www.unigoroka.ac.pg/",
+    "source_repo_path": "reference-screenshots/png-public-sites-curated/full-page-1440/university-of-goroka.png",
+    "capture_status": "partial",
+    "coordinate_mode": "normalized",
+    "analysis_method": "AI vision on downscaled proxy of repository screenshot; normalized boundaries mapped to original image",
+    "sections": [
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 1.0,
+          "height": 1.0
+        },
+        "type": "capture_partial",
+        "label": "University of Goroka page rendered incompletely with a large loading area",
+        "confidence": 0.99
+      }
+    ]
+  }
+}

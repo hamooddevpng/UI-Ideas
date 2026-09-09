@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0",
+  "cohort": "png-public-services",
+  "site": {
+    "slug": "teaching-service-commission",
+    "name": "Teaching Service Commission",
+    "url": "https://www.tsc.gov.pg/",
+    "source_repo_path": "reference-screenshots/png-public-sites-curated/full-page-1440/teaching-service-commission.png",
+    "capture_status": "ok",
+    "coordinate_mode": "normalized",
+    "analysis_method": "AI vision on downscaled proxy of repository screenshot; normalized boundaries mapped to original image",
+    "sections": [
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 1.0,
+          "height": 0.08
+        },
+        "type": "navigation",
+        "label": "Teaching Service Commission header and navigation",
+        "confidence": 0.98
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.08,
+          "width": 1.0,
+          "height": 0.22
+        },
+        "type": "hero_cta",
+        "label": "Serving Every Teacher hero banner",
+        "confidence": 0.97
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.3,
+          "width": 1.0,
+          "height": 0.19
+        },
+        "type": "content_feature",
+        "label": "Welcome messages from Teaching Service Commission leadership",
+        "confidence": 0.94
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.49,
+          "width": 1.0,
+          "height": 0.33
+        },
+        "type": "trust_stats",
+        "label": "Three functional wings, leadership and responsibilities",
+        "confidence": 0.95
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.82,
+          "width": 1.0,
+          "height": 0.11
+        },
+        "type": "news",
+        "label": "Teaching Service Commission News Updates",
+        "confidence": 0.96
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.93,
+          "width": 1.0,
+          "height": 0.07
+        },
+        "type": "footer",
+        "label": "About, related sites and contact footer",
+        "confidence": 0.98
+      }
+    ]
+  }
+}

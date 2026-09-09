@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0",
+  "cohort": "png-public-services",
+  "site": {
+    "slug": "road-traffic-authority",
+    "name": "Road Traffic Authority",
+    "url": "https://www.rta.gov.pg/",
+    "source_repo_path": "reference-screenshots/png-public-sites-curated/full-page-1440/road-traffic-authority.png",
+    "capture_status": "ok",
+    "coordinate_mode": "normalized",
+    "analysis_method": "AI vision on downscaled proxy of repository screenshot; normalized boundaries mapped to original image",
+    "sections": [
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 1.0,
+          "height": 0.22
+        },
+        "type": "navigation",
+        "label": "Road Traffic Authority header and navigation",
+        "confidence": 0.97
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.22,
+          "width": 1.0,
+          "height": 0.28
+        },
+        "type": "hero_cta",
+        "label": "RTA building / Home banner",
+        "confidence": 0.93
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.5,
+          "width": 1.0,
+          "height": 0.4
+        },
+        "type": "content_feature",
+        "label": "Road Traffic Authority welcome and mandate statement",
+        "confidence": 0.94
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.9,
+          "width": 1.0,
+          "height": 0.1
+        },
+        "type": "footer",
+        "label": "RTA footer",
+        "confidence": 0.97
+      }
+    ]
+  }
+}

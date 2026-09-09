@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "cohort": "png-public-services",
+  "site": {
+    "slug": "dherst-noas",
+    "name": "DHERST National Online Application System",
+    "url": "https://apply.dherst.gov.pg/Apply/Account/Login",
+    "source_repo_path": "reference-screenshots/png-public-sites-curated/full-page-1440/dherst-noas.png",
+    "capture_status": "ok",
+    "coordinate_mode": "normalized",
+    "analysis_method": "AI vision on downscaled proxy of repository screenshot; normalized boundaries mapped to original image",
+    "sections": [
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 1.0,
+          "height": 0.08
+        },
+        "type": "navigation",
+        "label": "DHERST / NOAS institutional header",
+        "confidence": 0.94
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.08,
+          "width": 1.0,
+          "height": 0.84
+        },
+        "type": "online_service",
+        "label": "NOAS application-cycle guidance and applicant login form",
+        "confidence": 0.97
+      },
+      {
+        "bounds_normalized": {
+          "x": 0.0,
+          "y": 0.92,
+          "width": 1.0,
+          "height": 0.08
+        },
+        "type": "footer",
+        "label": "NOAS copyright / institutional footer",
+        "confidence": 0.91
+      }
+    ]
+  }
+}
