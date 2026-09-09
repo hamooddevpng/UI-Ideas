@@ -36,7 +36,7 @@ const { chromium } = require('playwright-core');
     'Cable vandalism causes communication disruptions',
     'Telikom recruits new staff for retail expansion',
     'Telikom signs exclusive reseller agreement with SkyTel',
-    'Industrial &amp; Mining Exhibition &amp; Conference',
+    'Industrial & Mining Exhibition & Conference',
     'Telikom co-sponsors Vocal Fusion',
     'Telikom chairman highlights successes at PITA event'
   ];
