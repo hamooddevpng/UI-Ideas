@@ -1,0 +1,81 @@
+name: Refresh Design 41 PNG photos
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/refresh-design41-png-photos.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Download fresh PNG photo set
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p assets/design41
+          dl(){
+            local name="$1"; shift
+            local url="$1"
+            echo "Downloading $name"
+            curl -L --fail --retry 3 --retry-delay 2 -A 'Mozilla/5.0' "$url" -o "assets/design41/$name"
+            test -s "assets/design41/$name"
+            file "assets/design41/$name" | grep -qiE 'JPEG|image data'
+            test "$(wc -c < "assets/design41/$name")" -gt 20000
+          }
+          dl gerehu-market-wide.jpg 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Gerehu%20Markets%20Port%20Moresby%2C%20Papua%20New%20Guinea%20%2810697424025%29.jpg?width=1600'
+          dl gerehu-market-2.jpg 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Gerehu%20Markets%20Port%20Moresby%2C%20Papua%20New%20Guinea%20%2810697555344%29.jpg?width=1600'
+          dl gerehu-market-portrait.jpg 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Gerehu%20Markets%20Port%20Moresby%2C%20Papua%20New%20Guinea%20%2810697727534%29.jpg?width=1200'
+          dl png-electricians.jpg 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Australia%20provides%20training%20for%20PNG%20electricians%20%2810673381114%29.jpg?width=1600'
+          dl upng-students-wide.jpg 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Second%20year%20medical%20students%20from%20the%20UPNG%20School%20of%20Medicine%20and%20Health%20Science.%20Port%20Moresby%20General%20Hospital%2C%20PNG.%20%2810720542195%29.jpg?width=1600'
+          dl medical-students.jpg 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Second%20year%20medical%20students%20from%20the%20UPNG%20School%20of%20Medicine%20and%20Health%20Science.%20Port%20Moresby%20General%20Hospital%2C%20PNG.%20%2810720493845%29.jpg?width=1200'
+          dl village-people.jpg 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Village_people_in_Papua_New_Guinea.jpg?width=1400'
+          dl goroka-market.jpg 'https://commons.wikimedia.org/wiki/Special:Redirect/file/GorokaMarket.jpg?width=1400'
+          dl png-locals-meeting.jpg 'https://commons.wikimedia.org/wiki/Special:Redirect/file/PNG_Investigation_Mission-_Meeting_with_Locals_in_Village_and_Market_%288605587%29.jpg?width=1600'
+          dl education-png.jpg 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Education_in_PNG_%2810694200225%29.jpg?width=1500'
+          dl aptc-graduates.jpg 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Australia-Pacific_Technical_College_graduates_%2810673645196%29.jpg?width=1600'
+          dl mt-hagen-people.jpg 'https://commons.wikimedia.org/wiki/Special:Redirect/file/People_of_Papua_New_Guinea_%2848990314113%29.jpg?width=1200'
+
+      - name: Patch Design 41
+        run: python3 scripts/refresh_design41_photos.py
+
+      - name: Install browser test dependency
+        run: |
+          npm install --no-save playwright >/dev/null 2>&1
+          npx playwright install chromium >/dev/null 2>&1
+
+      - name: Browser validate photos and 80vh layout
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/d41-photo-http.log 2>&1 &
+          sleep 1
+          node scripts/test_design41_photo_refresh.js
+
+      - name: Commit safely and remove one-time helpers
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/refresh-design41-png-photos.yml scripts/refresh_design41_photos.py scripts/test_design41_photo_refresh.js
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add 41.html assets/design41 .github/workflows/refresh-design41-png-photos.yml scripts/refresh_design41_photos.py scripts/test_design41_photo_refresh.js
+          git commit -m 'Refresh Design 41 PNG photography and offer cards'
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            if git rebase origin/main && git push origin HEAD:main; then
+              exit 0
+            fi
+            git rebase --abort 2>/dev/null || true
+            sleep 2
+          done
+          exit 1
