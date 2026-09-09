@@ -39,3 +39,5 @@ jobs:
             sleep 2
           done
           exit 1
+
+# One-time rerun aligned to the current compact 41.html source.
