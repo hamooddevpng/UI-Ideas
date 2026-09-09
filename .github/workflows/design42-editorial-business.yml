@@ -10,14 +10,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Download replacement PNG photo
+      - name: Prepare PNG replacement photo
         run: |
-          mkdir -p assets/design42
-          curl -L --fail --retry 3 --retry-delay 2 -A 'Mozilla/5.0' \
-            'https://unsplash.com/photos/6h253CDCK2k/download?force=true&w=1400' \
-            -o assets/design42/png-photographer.jpg
-          test -s assets/design42/png-photographer.jpg
-          file assets/design42/png-photographer.jpg
+          test -s assets/design42/png-people.jpg
+          python3 - <<'PY'
+          from pathlib import Path
+          patch=Path('.github/scripts/design42_editorial_business.py')
+          s=patch.read_text()
+          s=s.replace('assets/design42/png-photographer.jpg','assets/design42/png-people.jpg')
+          s=s.replace('Papua New Guinea photographer working outdoors','People in Papua New Guinea')
+          if "\nattr=Path('assets/design42/ATTRIBUTION.md')" in s:
+              s=s.split("\nattr=Path('assets/design42/ATTRIBUTION.md')",1)[0]+'\n'
+          patch.write_text(s)
+          verify=Path('.github/scripts/verify42_editorial_business.js')
+          v=verify.read_text().replace('assets/design42/png-photographer.jpg','assets/design42/png-people.jpg')
+          verify.write_text(v)
+          PY
       - name: Apply editorial business redesign
         run: python3 .github/scripts/design42_editorial_business.py
       - name: JavaScript syntax check
