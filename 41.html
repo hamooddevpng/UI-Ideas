@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Telikom PNG | Connecting Papua New Guinea</title>
+<meta name="description" content="Telikom PNG connects people, homes, businesses and government across Papua New Guinea with mobile, broadband, remote connectivity and customer support services.">
+<meta name="theme-color" content="#082c41">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://www.telikom.com.pg/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#0875c9;
+  --blue2:#159ddd;
+  --green:#20a957;
+  --navy:#082c41;
+  --navy2:#0d4159;
+  --ink:#123246;
+  --muted:#6c8391;
+  --ice:#f4f9fb;
+  --sky:#eaf6fb;
+  --line:#dce8ee;
+  --white:#fff;
+  --max:1320px;
+  --shadow:0 20px 52px rgba(18,61,81,.10);
+  --spring:cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Manrope,Arial,sans-serif;background:#fff;color:var(--ink);overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button,input{font:inherit}
+button{color:inherit}
+img{display:block;max-width:100%}
+.wrap{width:min(var(--max),calc(100% - 64px));margin:auto}
+.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+.kicker{display:inline-flex;align-items:center;gap:8px;font-size:11px;line-height:1;font-weight:800;text-transform:uppercase;letter-spacing:.16em;color:var(--blue)}
+.kicker:before{content:"";width:18px;height:2px;border-radius:4px;background:linear-gradient(90deg,var(--blue),var(--green))}
+.section-title{font-family:"Space Grotesk",Manrope,sans-serif;font-size:clamp(36px,4.6vw,64px);line-height:.98;letter-spacing:-.05em;margin:16px 0 0;color:var(--ink)}
+.section-lead{font-size:15px;line-height:1.75;color:var(--muted);max-width:610px;margin:18px 0 0}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:40px;margin-bottom:34px}
+.text-link{font-size:12px;font-weight:800;color:var(--blue);white-space:nowrap}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s var(--spring)}
+.reveal.in{opacity:1;transform:none}
+
+/* Header */
+.utility{height:30px;background:#062333;color:#cde3ee;font-size:10px;font-weight:700}
+.utility .wrap{height:100%;display:flex;align-items:center;justify-content:space-between}
+.utility nav{display:flex;gap:18px;align-items:center}
+.utility a{opacity:.78;transition:.2s}
+.utility a:hover{opacity:1}
+.utility .active{color:#fff;opacity:1}
+.site-header{position:absolute;left:0;right:0;top:30px;z-index:100;height:78px;color:#fff;border-bottom:1px solid rgba(255,255,255,.12);transition:.3s ease}
+.site-header.scrolled{position:fixed;top:0;height:66px;background:rgba(7,38,53,.92);backdrop-filter:blur(18px);box-shadow:0 8px 28px rgba(3,29,41,.18)}
+.header-row{height:100%;display:flex;align-items:center;gap:28px}
+.brand{width:190px;height:48px;border-radius:13px;background:#fff;padding:7px 10px;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 28px rgba(0,0,0,.12);flex:0 0 auto}
+.brand img{max-width:168px;max-height:34px;object-fit:contain}
+.main-nav{display:flex;align-items:center;gap:28px;margin:auto}
+.main-nav a{font-size:11px;font-weight:800;position:relative}
+.main-nav a:after{content:"";position:absolute;left:0;right:100%;bottom:-9px;height:2px;background:#56c7f2;transition:.25s}
+.main-nav a:hover:after{right:0}
+.header-actions{display:flex;align-items:center;gap:9px}
+.header-icon,.menu-btn{width:40px;height:40px;border:1px solid rgba(255,255,255,.22);border-radius:50%;background:rgba(255,255,255,.06);display:grid;place-items:center;cursor:pointer;font-weight:800}
+.self-care{height:40px;padding:0 17px;border-radius:999px;background:#fff;color:var(--navy);display:flex;align-items:center;font-size:10px;font-weight:800}
+.menu-btn{display:none}
+.mobile-nav{display:none}
+
+/* Hero */
+.hero{position:relative;height:min(76svh,760px);min-height:620px;background:var(--navy);color:#fff;overflow:hidden}
+.hero-track,.hero-slide{position:absolute;inset:0}
+.hero-slide{opacity:0;visibility:hidden;transform:scale(1.035);transition:opacity .8s ease,transform 1.3s var(--spring),visibility .8s}
+.hero-slide.active{opacity:1;visibility:visible;transform:scale(1)}
+.hero-media{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero-slide:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,34,49,.92) 0%,rgba(5,34,49,.80) 34%,rgba(5,34,49,.38) 60%,rgba(5,34,49,.12) 100%),linear-gradient(180deg,rgba(5,34,49,.22),rgba(5,34,49,.08) 58%,rgba(5,34,49,.56))}
+.hero-slide.blue:after{background:linear-gradient(90deg,rgba(5,34,49,.95) 0%,rgba(5,34,49,.82) 38%,rgba(8,117,201,.28) 68%,rgba(8,117,201,.08) 100%),linear-gradient(180deg,rgba(5,34,49,.15),rgba(5,34,49,.4))}
+.hero-slide.green:after{background:linear-gradient(90deg,rgba(5,34,49,.95) 0%,rgba(5,34,49,.80) 39%,rgba(16,104,79,.30) 70%,rgba(16,104,79,.10) 100%),linear-gradient(180deg,rgba(5,34,49,.16),rgba(5,34,49,.42))}
+.hero-inner{position:relative;z-index:3;height:100%;display:grid;grid-template-columns:minmax(0,650px) 1fr;align-items:center;padding-top:94px}
+.hero-copy{max-width:620px}
+.hero-eyebrow{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.19em;color:#9addf7;margin-bottom:18px;display:flex;gap:9px;align-items:center}
+.hero-eyebrow:before{content:"";width:26px;height:2px;background:#53c8ef;border-radius:3px}
+.hero h1{font-family:"Space Grotesk",Manrope,sans-serif;font-size:clamp(52px,6.5vw,92px);line-height:.91;letter-spacing:-.06em;margin:0;max-width:720px}
+.hero p{font-size:15px;line-height:1.72;color:#d0e3eb;max-width:550px;margin:22px 0 0}
+.hero-actions{display:flex;gap:11px;margin-top:28px;flex-wrap:wrap}
+.btn{min-height:45px;border-radius:999px;padding:0 18px;display:inline-flex;align-items:center;justify-content:center;gap:8px;font-size:10px;font-weight:800;border:1px solid rgba(255,255,255,.25);transition:.28s var(--spring)}
+.btn:hover{transform:translateY(-2px)}
+.btn.primary{background:#fff;color:var(--navy);border-color:#fff}
+.btn.glass{background:rgba(255,255,255,.08);color:#fff}
+.hero-fact{justify-self:end;align-self:end;margin-bottom:92px;width:270px;padding:18px;border:1px solid rgba(255,255,255,.17);border-radius:20px;background:rgba(7,43,59,.46);backdrop-filter:blur(16px);box-shadow:0 18px 48px rgba(0,0,0,.14)}
+.hero-fact small{font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:.15em;color:#9fdaf1}
+.hero-fact strong{display:block;margin-top:7px;font-family:"Space Grotesk";font-size:20px;line-height:1.15}
+.hero-fact span{display:block;margin-top:7px;font-size:10px;line-height:1.5;color:#c7dce5}
+.hero-nav{position:absolute;z-index:5;left:0;right:0;bottom:26px}
+.hero-nav .wrap{display:flex;align-items:center;justify-content:space-between}
+.hero-dots{display:flex;gap:8px}
+.hero-dot{width:42px;height:3px;border:0;border-radius:8px;background:rgba(255,255,255,.28);padding:0;cursor:pointer;overflow:hidden}
+.hero-dot:before{content:"";display:block;width:0;height:100%;background:#fff;transition:width 5.4s linear}
+.hero-dot.active:before{width:100%}
+.hero-arrows{display:flex;gap:8px}
+.circle-btn{width:42px;height:42px;border:1px solid rgba(255,255,255,.25);border-radius:50%;background:rgba(255,255,255,.08);color:#fff;cursor:pointer;transition:.25s}
+.circle-btn:hover{background:#fff;color:var(--navy)}
+
+/* Quick actions */
+.quick-wrap{position:relative;z-index:10;margin-top:-34px}
+.quick-deck{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid rgba(16,68,90,.10);border-radius:22px;background:#fff;box-shadow:0 22px 56px rgba(18,61,81,.14);overflow:hidden}
+.quick-card{min-height:132px;padding:22px 24px;border-right:1px solid var(--line);position:relative;transition:.28s var(--spring);background:#fff}
+.quick-card:last-child{border-right:0}
+.quick-card:hover{background:#f8fcfe;transform:translateY(-4px)}
+.quick-top{display:flex;align-items:center;justify-content:space-between}
+.quick-num{font-size:8px;font-weight:800;letter-spacing:.15em;color:#8aa0ab}
+.quick-icon{width:32px;height:32px;border-radius:10px;background:var(--sky);color:var(--blue);display:grid;place-items:center;font-weight:800}
+.quick-card h3{font-family:"Space Grotesk";font-size:19px;margin:15px 0 4px}
+.quick-card p{margin:0;font-size:10px;line-height:1.5;color:var(--muted)}
+
+/* Offers */
+.section{padding:96px 0}
+.offers{padding-top:106px}
+.plan-grid{display:grid;grid-template-columns:1.12fr .94fr .94fr;gap:18px}
+.plan-card{border:1px solid var(--line);border-radius:24px;overflow:hidden;background:#fff;box-shadow:0 12px 34px rgba(19,63,84,.055);transition:.35s var(--spring)}
+.plan-card:hover{transform:translateY(-7px);box-shadow:var(--shadow)}
+.plan-media{height:210px;overflow:hidden;position:relative;background:#dceaf0}
+.plan-card.featured .plan-media{height:260px}
+.plan-media img{width:100%;height:100%;object-fit:cover;transition:transform .65s var(--spring)}
+.plan-card:hover .plan-media img{transform:scale(1.04)}
+.plan-media:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(7,39,55,.38))}
+.plan-badge{position:absolute;z-index:2;left:16px;bottom:15px;padding:7px 10px;border-radius:999px;background:rgba(255,255,255,.92);backdrop-filter:blur(9px);font-size:8px;font-weight:800;color:var(--blue);letter-spacing:.1em;text-transform:uppercase}
+.plan-body{padding:23px}
+.plan-body h3{font-family:"Space Grotesk";font-size:25px;letter-spacing:-.035em;margin:0}
+.plan-body p{font-size:11px;line-height:1.65;color:var(--muted);margin:9px 0 16px}
+.plan-points{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:18px}
+.plan-points span{padding:6px 8px;border-radius:7px;background:var(--ice);font-size:8px;font-weight:700;color:#59717e}
+.plan-link{font-size:10px;font-weight:800;color:var(--blue)}
+
+/* Services */
+.services{background:linear-gradient(180deg,#f7fbfd,#eef7fa)}
+.service-shell{display:grid;grid-template-columns:.82fr 1.18fr;gap:22px;align-items:stretch}
+.service-intro{border-radius:26px;background:linear-gradient(145deg,#0a3548,#0d536a);color:#fff;padding:34px;position:relative;overflow:hidden;min-height:440px}
+.service-intro:after{content:"";position:absolute;width:260px;height:260px;border:1px solid rgba(255,255,255,.09);border-radius:50%;right:-80px;bottom:-80px;box-shadow:0 0 0 44px rgba(255,255,255,.025),0 0 0 88px rgba(255,255,255,.018)}
+.service-intro .kicker{color:#9fdef5}
+.service-intro .kicker:before{background:#54c6eb}
+.service-intro h2{font-family:"Space Grotesk";font-size:46px;line-height:.98;letter-spacing:-.05em;margin:18px 0 0}
+.service-intro p{font-size:12px;line-height:1.72;color:#c8e0e8;max-width:400px}
+.service-stat{position:absolute;left:34px;right:34px;bottom:30px;display:flex;gap:24px;z-index:2}
+.service-stat div{padding-right:24px;border-right:1px solid rgba(255,255,255,.14)}
+.service-stat div:last-child{border-right:0}
+.service-stat b{display:block;font-family:"Space Grotesk";font-size:21px}
+.service-stat small{font-size:8px;color:#acd0dd}
+.service-list{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.service-item{min-height:138px;padding:21px;border:1px solid var(--line);border-radius:20px;background:#fff;position:relative;transition:.3s var(--spring);overflow:hidden}
+.service-item:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(var(--blue),var(--green));transform:scaleY(0);transform-origin:bottom;transition:.3s}
+.service-item:hover{transform:translateX(4px);box-shadow:0 14px 32px rgba(19,63,84,.07)}
+.service-item:hover:before{transform:scaleY(1)}
+.service-item small{font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:var(--blue)}
+.service-item h3{font-family:"Space Grotesk";font-size:20px;margin:9px 0 5px}
+.service-item p{font-size:9px;line-height:1.55;color:var(--muted);margin:0;max-width:260px}
+.service-item .arrow{position:absolute;right:17px;top:17px;width:29px;height:29px;border-radius:50%;background:var(--sky);color:var(--blue);display:grid;place-items:center}
+
+/* Business and government */
+.business{background:#fff}
+.dual-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.dual-card{min-height:480px;border-radius:28px;overflow:hidden;position:relative;color:#fff;padding:34px;display:flex;align-items:end;isolation:isolate}
+.dual-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform .8s var(--spring)}
+.dual-card:hover img{transform:scale(1.035)}
+.dual-card:after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(4,30,43,.05),rgba(4,30,43,.18) 42%,rgba(4,30,43,.88) 100%)}
+.dual-card.government:after{background:linear-gradient(180deg,rgba(7,45,42,.04),rgba(7,45,42,.22) 42%,rgba(6,49,42,.91) 100%)}
+.dual-copy{max-width:520px}
+.dual-copy small{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.14em;color:#aee2f6}
+.dual-copy h3{font-family:"Space Grotesk";font-size:37px;line-height:1;letter-spacing:-.045em;margin:10px 0}
+.dual-copy p{font-size:11px;line-height:1.65;color:#d1e4eb;margin:0 0 18px}
+.dual-tags{display:flex;flex-wrap:wrap;gap:7px}
+.dual-tags span{padding:7px 9px;border:1px solid rgba(255,255,255,.19);border-radius:999px;background:rgba(255,255,255,.08);backdrop-filter:blur(8px);font-size:8px;font-weight:700}
+
+/* PNG story */
+.png-story{position:relative;min-height:580px;color:#fff;overflow:hidden;background:#082c41;display:flex;align-items:center}
+.png-story-photo{position:absolute;inset:0;width:100%;height:110%;object-fit:cover;object-position:center 52%;top:-5%;transform:translateY(var(--story-y,0px)) scale(1.03)}
+.png-story:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(4,31,44,.91) 0%,rgba(4,31,44,.73) 37%,rgba(4,31,44,.28) 64%,rgba(4,31,44,.13) 100%)}
+.png-content{position:relative;z-index:2;padding:92px 0;max-width:660px}
+.png-content .kicker{color:#a8e1f5}
+.png-content .kicker:before{background:linear-gradient(90deg,#54c8ee,#74d39c)}
+.png-content h2{font-family:"Space Grotesk";font-size:clamp(45px,5.8vw,78px);line-height:.95;letter-spacing:-.06em;margin:18px 0}
+.png-content p{font-size:14px;line-height:1.75;color:#d2e5eb;max-width:570px}
+.png-links{display:flex;gap:11px;flex-wrap:wrap;margin-top:25px}
+.png-links a{padding:10px 13px;border-radius:999px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06);font-size:9px;font-weight:800}
+
+/* Notices and news */
+.updates{background:#f7fbfc}
+.updates-grid{display:grid;grid-template-columns:.82fr 1.18fr;gap:18px}
+.notice-board,.news-panel{border:1px solid var(--line);border-radius:24px;background:#fff;overflow:hidden}
+.panel-head{min-height:68px;padding:18px 21px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}
+.panel-head h3{font-family:"Space Grotesk";font-size:18px;margin:0}
+.panel-head span{font-size:8px;font-weight:800;color:var(--blue);text-transform:uppercase;letter-spacing:.12em}
+.notice-row{padding:18px 21px;border-bottom:1px solid var(--line);transition:.25s}
+.notice-row:last-child{border-bottom:0}
+.notice-row:hover{background:#f8fcfd}
+.notice-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px}
+.notice-badge{padding:5px 7px;border-radius:6px;background:#e8f5fb;color:var(--blue);font-size:7px;font-weight:800;text-transform:uppercase;letter-spacing:.1em}
+.notice-meta time{font-size:8px;color:#8ca0aa}
+.notice-row strong{display:block;font-size:12px;line-height:1.35}
+.notice-row p{font-size:9px;line-height:1.55;color:var(--muted);margin:6px 0 0}
+.news-list{padding:12px}
+.news-card{display:grid;grid-template-columns:150px 1fr;gap:15px;padding:10px;border-radius:17px;transition:.25s}
+.news-card:hover{background:#f5fafc}
+.news-card img{width:150px;height:105px;object-fit:cover;border-radius:13px}
+.news-copy small{font-size:7px;font-weight:800;color:var(--blue);text-transform:uppercase;letter-spacing:.1em}
+.news-copy h4{font-family:"Space Grotesk";font-size:17px;line-height:1.15;margin:7px 0}
+.news-copy p{font-size:9px;line-height:1.5;color:var(--muted);margin:0}
+
+/* Support */
+.support{background:#fff}
+.support-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}
+.help-panel{border-radius:27px;background:linear-gradient(145deg,#0b3548,#0d4f64);color:#fff;padding:36px;min-height:340px;position:relative;overflow:hidden}
+.help-panel:after{content:"?";position:absolute;right:20px;bottom:-70px;font-family:"Space Grotesk";font-size:280px;line-height:1;color:rgba(255,255,255,.035);font-weight:700}
+.help-panel h3{font-family:"Space Grotesk";font-size:42px;line-height:1;letter-spacing:-.05em;margin:13px 0 10px;position:relative;z-index:2}
+.help-panel p{font-size:11px;line-height:1.65;color:#cce0e7;max-width:500px;position:relative;z-index:2}
+.help-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:25px;position:relative;z-index:2}
+.help-actions a{padding:14px;border:1px solid rgba(255,255,255,.13);border-radius:13px;background:rgba(255,255,255,.06);font-size:9px;font-weight:800;display:flex;justify-content:space-between;transition:.25s}
+.help-actions a:hover{background:rgba(255,255,255,.12)}
+.store-panel{border:1px solid var(--line);border-radius:27px;background:linear-gradient(180deg,#fff,#f5fbfd);padding:30px;display:flex;flex-direction:column;justify-content:space-between}
+.store-map{height:150px;border-radius:18px;background:radial-gradient(circle at 30% 40%,rgba(8,117,201,.18),transparent 18%),radial-gradient(circle at 65% 55%,rgba(32,169,87,.16),transparent 20%),linear-gradient(135deg,#dceff6,#edf7fa);position:relative;overflow:hidden}
+.store-map:before,.store-map:after{content:"";position:absolute;inset:25% 8%;border:1px dashed rgba(8,117,201,.22);border-radius:50% 38% 55% 35%;transform:rotate(-9deg)}
+.store-map:after{inset:17% 21%;transform:rotate(17deg);border-color:rgba(32,169,87,.22)}
+.store-panel h3{font-family:"Space Grotesk";font-size:27px;margin:20px 0 7px}
+.store-panel p{font-size:10px;line-height:1.55;color:var(--muted);margin:0 0 18px}
+.store-search{display:flex;gap:7px}
+.store-search input{min-width:0;flex:1;height:42px;border:1px solid var(--line);border-radius:10px;padding:0 12px;outline:none;background:#fff;font-size:9px}
+.store-search button{height:42px;border:0;border-radius:10px;background:var(--blue);color:#fff;padding:0 14px;font-size:9px;font-weight:800;cursor:pointer}
+
+/* Footer */
+footer{background:#061f2e;color:#d4e3e9;padding:54px 0 24px}
+.footer-grid{display:grid;grid-template-columns:1.2fr repeat(3,.8fr);gap:40px}
+.footer-brand img{width:190px;background:#fff;border-radius:12px;padding:7px 10px}
+.footer-brand p{font-size:10px;line-height:1.65;color:#9fb9c5;max-width:330px;margin-top:15px}
+.footer-col h4{font-size:10px;text-transform:uppercase;letter-spacing:.14em;margin:0 0 14px;color:#fff}
+.footer-col a{display:block;font-size:9px;color:#9fb9c5;margin:10px 0}
+.footer-col a:hover{color:#fff}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);margin-top:38px;padding-top:18px;display:flex;justify-content:space-between;gap:20px;font-size:8px;color:#7899a7}
+
+@media(max-width:1050px){
+  .wrap{width:min(var(--max),calc(100% - 40px))}
+  .main-nav{gap:18px}.brand{width:170px}.header-actions .header-icon{display:none}
+  .hero-inner{grid-template-columns:1fr}.hero-fact{display:none}
+  .plan-grid{grid-template-columns:1fr 1fr}.plan-card.featured{grid-column:1/-1;display:grid;grid-template-columns:1.1fr .9fr}.plan-card.featured .plan-media{height:auto;min-height:280px}
+  .service-shell,.updates-grid,.support-grid{grid-template-columns:1fr}
+  .service-intro{min-height:350px}
+}
+@media(max-width:760px){
+  .wrap{width:calc(100% - 28px)}.utility{display:none}.site-header{top:0;height:68px}.site-header.scrolled{height:62px}.brand{width:148px;height:42px;padding:6px 8px}.brand img{max-width:132px}.main-nav,.header-actions .self-care{display:none}.header-actions{margin-left:auto}.menu-btn{display:grid}.mobile-nav{position:absolute;top:68px;left:14px;right:14px;padding:12px;border-radius:15px;background:rgba(7,38,53,.97);backdrop-filter:blur(18px);display:none;grid-template-columns:1fr 1fr;gap:7px;border:1px solid rgba(255,255,255,.1)}.mobile-nav.open{display:grid}.mobile-nav a{padding:10px;border-radius:9px;background:rgba(255,255,255,.05);font-size:10px;font-weight:800}
+  .hero{min-height:620px;height:78svh}.hero-inner{padding-top:88px}.hero h1{font-size:clamp(48px,14vw,72px)}.hero p{font-size:13px}.hero-slide:after,.hero-slide.blue:after,.hero-slide.green:after{background:linear-gradient(90deg,rgba(5,34,49,.93),rgba(5,34,49,.72) 70%,rgba(5,34,49,.42)),linear-gradient(180deg,rgba(5,34,49,.12),rgba(5,34,49,.48))}.hero-media{object-position:65% center}.hero-nav{bottom:20px}.hero-dot{width:28px}
+  .quick-wrap{margin-top:-22px}.quick-deck{grid-template-columns:1fr 1fr;border-radius:18px}.quick-card{min-height:114px;padding:17px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}.quick-card:nth-child(2){border-right:0}.quick-card:nth-child(3),.quick-card:nth-child(4){border-bottom:0}.quick-card h3{font-size:17px}
+  .section{padding:72px 0}.offers{padding-top:82px}.section-head{align-items:start;flex-direction:column;gap:14px}.section-title{font-size:42px}.plan-grid{grid-template-columns:1fr}.plan-card.featured{grid-column:auto;display:block}.plan-card.featured .plan-media,.plan-media{height:220px}
+  .service-list{grid-template-columns:1fr}.service-intro{padding:26px;min-height:360px}.service-intro h2{font-size:38px}.service-stat{left:26px;right:26px}.service-item{min-height:125px}
+  .dual-grid{grid-template-columns:1fr}.dual-card{min-height:430px;padding:25px}.dual-copy h3{font-size:31px}
+  .png-story{min-height:520px}.png-story:after{background:linear-gradient(90deg,rgba(4,31,44,.92),rgba(4,31,44,.66) 70%,rgba(4,31,44,.44))}.png-content{padding:72px 0}.png-content h2{font-size:47px}
+  .news-card{grid-template-columns:105px 1fr}.news-card img{width:105px;height:92px}.news-copy h4{font-size:15px}.help-panel{padding:27px}.help-panel h3{font-size:36px}.help-actions{grid-template-columns:1fr}.store-panel{padding:24px}
+  .footer-grid{grid-template-columns:1fr 1fr}.footer-brand{grid-column:1/-1}.footer-bottom{flex-direction:column}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}.hero-slide,.plan-card,.plan-media img,.dual-card img{transition:none}.hero-dot:before{transition:none}}
+</style>
+</head>
+<body>
+<h1 class="sr-only">Telikom PNG mobile, internet, business and government connectivity</h1>
+<div class="utility"><div class="wrap"><nav><a class="active" href="#">Personal</a><a href="#business">Business</a><a href="#business">Government</a></nav><nav><a href="#updates">Service updates</a><a href="#support">Contact</a></nav></div></div>
+<header class="site-header" id="header">
+  <div class="wrap header-row">
+    <a class="brand" href="#top" aria-label="Telikom PNG home"><img src="https://www.telikom.com.pg/assets/misc/TPNGLOGO.png" alt="Telikom, Connecting you Anywhere Anytime"></a>
+    <nav class="main-nav" aria-label="Primary navigation"><a href="#services">Mobile</a><a href="#services">Internet</a><a href="#offers">Offers</a><a href="#business">Business</a><a href="#png-story">About</a></nav>
+    <div class="header-actions"><a class="header-icon" href="#support" aria-label="Support">?</a><a class="self-care" href="#quick">Self Care</a><button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">☰</button></div>
+  </div>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation"><a href="#services">Mobile & Internet</a><a href="#offers">Offers</a><a href="#business">Business</a><a href="#business">Government</a><a href="#png-story">About</a><a href="#support">Support</a></nav>
+</header>
+<main>
+<section class="hero" id="top" aria-label="Featured Telikom services">
+  <div class="hero-track">
+    <article class="hero-slide active blue">
+      <img class="hero-media" src="https://raw.githubusercontent.com/hamooddevpng/UI-Ideas/main/assets/common/png-people/young-professionals.jpg" alt="Young Papua New Guineans using connected devices">
+      <div class="wrap hero-inner"><div class="hero-copy"><div class="hero-eyebrow">Telikom Self Care</div><h1>More control.<br>Less waiting.</h1><p>Top up, manage your services, check your account and get support through simple digital pathways built around everyday customer needs.</p><div class="hero-actions"><a class="btn primary" href="#quick">Open Self Care ↗</a><a class="btn glass" href="#support">Get support</a></div></div><aside class="hero-fact"><small>Quick access</small><strong>Your Telikom essentials in one place.</strong><span>Recharge, service information, account help and support without hunting through the site.</span></aside></div>
+    </article>
+    <article class="hero-slide green">
+      <img class="hero-media" src="https://raw.githubusercontent.com/hamooddevpng/UI-Ideas/main/assets/common/web-sourced/commons/port-moresby.jpg" alt="Port Moresby, Papua New Guinea">
+      <div class="wrap hero-inner"><div class="hero-copy"><div class="hero-eyebrow">100% PNG owned</div><h1>Connected<br>across PNG.</h1><p>Mobile, home, business and regional connectivity designed for the people, communities and organisations moving Papua New Guinea forward.</p><div class="hero-actions"><a class="btn primary" href="#services">Explore services ↗</a><a class="btn glass" href="#png-story">Our PNG story</a></div></div><aside class="hero-fact"><small>National focus</small><strong>Built around the places Telikom serves.</strong><span>A single homepage for personal customers, organisations, government and communities.</span></aside></div>
+    </article>
+    <article class="hero-slide">
+      <img class="hero-media" src="https://raw.githubusercontent.com/hamooddevpng/UI-Ideas/main/assets/common/web-sourced/telikom/business-data.jpg" alt="Telikom business connectivity services">
+      <div class="wrap hero-inner"><div class="hero-copy"><div class="hero-eyebrow">Business & Government</div><h1>Connection<br>that keeps<br>work moving.</h1><p>Internet, managed connectivity, voice and specialist regional solutions for organisations that need dependable telecommunications.</p><div class="hero-actions"><a class="btn primary" href="#business">Business solutions ↗</a><a class="btn glass" href="#support">Talk to Telikom</a></div></div><aside class="hero-fact"><small>For organisations</small><strong>Clear pathways for complex needs.</strong><span>Find the right entry point, then connect with the team that can help.</span></aside></div>
+    </article>
+  </div>
+  <div class="hero-nav"><div class="wrap"><div class="hero-dots" aria-label="Choose hero slide"><button class="hero-dot active" data-slide="0" aria-label="Slide 1"></button><button class="hero-dot" data-slide="1" aria-label="Slide 2"></button><button class="hero-dot" data-slide="2" aria-label="Slide 3"></button></div><div class="hero-arrows"><button class="circle-btn" id="heroPrev" aria-label="Previous slide">←</button><button class="circle-btn" id="heroNext" aria-label="Next slide">→</button></div></div></div>
+</section>
+
+<section class="quick-wrap" id="quick"><div class="wrap quick-deck reveal">
+  <a class="quick-card" href="#offers"><div class="quick-top"><span class="quick-num">01 / QUICK ACTION</span><span class="quick-icon">＋</span></div><h3>Recharge</h3><p>Top up mobile credit quickly.</p></a>
+  <a class="quick-card" href="#"><div class="quick-top"><span class="quick-num">02 / ACCOUNT</span><span class="quick-icon">◉</span></div><h3>Self Care</h3><p>Manage credit and services.</p></a>
+  <a class="quick-card" href="#services"><div class="quick-top"><span class="quick-num">03 / CONNECT</span><span class="quick-icon">⌁</span></div><h3>Internet</h3><p>Find the right connection.</p></a>
+  <a class="quick-card" href="#support"><div class="quick-top"><span class="quick-num">04 / HELP</span><span class="quick-icon">?</span></div><h3>Support</h3><p>Get help without the hunt.</p></a>
+</div></section>
+
+<section class="section offers" id="offers"><div class="wrap">
+  <div class="section-head reveal"><div><span class="kicker">Offers & plans</span><h2 class="section-title">Choose what fits<br>your day.</h2><p class="section-lead">Simple routes into Telikom mobile, home and regional services, with enough detail to make the next step obvious.</p></div><a class="text-link" href="#">View all offers →</a></div>
+  <div class="plan-grid">
+    <article class="plan-card featured reveal"><div class="plan-media"><img src="https://raw.githubusercontent.com/hamooddevpng/UI-Ideas/main/assets/common/png-people/young-professionals.jpg" alt="Young people using Telikom mobile services" loading="lazy"><span class="plan-badge">Everyday mobile</span></div><div class="plan-body"><h3>Mobile that moves with you.</h3><p>Prepaid, postpaid, data and SIM options for everyday connection across Papua New Guinea.</p><div class="plan-points"><span>Prepaid</span><span>Postpaid</span><span>Data bundles</span><span>SIM services</span></div><a class="plan-link" href="#">Explore mobile →</a></div></article>
+    <article class="plan-card reveal"><div class="plan-media"><img src="https://raw.githubusercontent.com/hamooddevpng/UI-Ideas/main/assets/common/web-sourced/telikom/fixed-broadband.jpg" alt="Telikom fixed broadband" loading="lazy"><span class="plan-badge">Home internet</span></div><div class="plan-body"><h3>Connected at home.</h3><p>Check availability first, then choose an internet pathway for work, study and everyday life.</p><div class="plan-points"><span>Availability</span><span>Broadband</span><span>Installation</span></div><a class="plan-link" href="#">Explore internet →</a></div></article>
+    <article class="plan-card reveal"><div class="plan-media"><img src="https://raw.githubusercontent.com/hamooddevpng/UI-Ideas/main/assets/common/png-people/market-connectivity.jpg" alt="Connectivity in Papua New Guinea communities" loading="lazy"><span class="plan-badge">Regional & remote</span></div><div class="plan-body"><h3>Beyond the usual reach.</h3><p>Specialist connectivity pathways for regional communities, businesses and remote operations.</p><div class="plan-points"><span>Regional</span><span>Remote</span><span>Specialist support</span></div><a class="plan-link" href="#">Explore connectivity →</a></div></article>
+  </div>
+</div></section>
+
+<section class="section services" id="services"><div class="wrap">
+  <div class="service-shell">
+    <article class="service-intro reveal"><span class="kicker">Service categories</span><h2>Everything Telikom,<br>clearly organised.</h2><p>Direct entry points for the services customers and organisations are most likely to need.</p><div class="service-stat"><div><b>Mobile</b><small>Everyday connection</small></div><div><b>Home</b><small>Fixed broadband</small></div><div><b>Remote</b><small>Regional reach</small></div></div></article>
+    <div class="service-list">
+      <a class="service-item reveal" href="#"><small>01 / Personal</small><h3>Mobile Services</h3><p>Prepaid, postpaid, data, SIMs and everyday mobile support.</p><span class="arrow">↗</span></a>
+      <a class="service-item reveal" href="#"><small>02 / Home</small><h3>Fixed Broadband</h3><p>Availability, plans, setup and help for home internet.</p><span class="arrow">↗</span></a>
+      <a class="service-item reveal" href="#"><small>03 / Remote</small><h3>VSAT & Regional</h3><p>Connectivity options for locations beyond the usual network edge.</p><span class="arrow">↗</span></a>
+      <a class="service-item reveal" href="#business"><small>04 / Business</small><h3>Business Data</h3><p>Reliable connectivity for offices, branches and organisations.</p><span class="arrow">↗</span></a>
+      <a class="service-item reveal" href="#business"><small>05 / Systems</small><h3>Business Systems</h3><p>Voice, office systems and communication tools built for work.</p><span class="arrow">↗</span></a>
+      <a class="service-item reveal" href="#support"><small>06 / Help</small><h3>Coverage & Support</h3><p>Find availability, stores, service information and customer help.</p><span class="arrow">↗</span></a>
+    </div>
+  </div>
+</div></section>
+
+<section class="section business" id="business"><div class="wrap">
+  <div class="section-head reveal"><div><span class="kicker">Business & Government</span><h2 class="section-title">Built for organisations<br>that keep PNG moving.</h2><p class="section-lead">Two clear pathways, with the same dependable national connectivity underneath.</p></div></div>
+  <div class="dual-grid">
+    <a class="dual-card reveal" href="#"><img src="https://raw.githubusercontent.com/hamooddevpng/UI-Ideas/main/assets/common/web-sourced/telikom/news-06.jpg" alt="Telikom business connectivity" loading="lazy"><div class="dual-copy"><small>For business</small><h3>Keep your organisation connected.</h3><p>Business internet, managed connectivity, voice and regional solutions through one clear entry point.</p><div class="dual-tags"><span>Business Internet</span><span>Managed Connectivity</span><span>Voice</span><span>Regional Solutions</span></div></div></a>
+    <a class="dual-card government reveal" href="#"><img src="https://raw.githubusercontent.com/hamooddevpng/UI-Ideas/main/assets/common/web-sourced/telikom/news-02.jpg" alt="Government and national connectivity" loading="lazy"><div class="dual-copy"><small>For government</small><h3>Reliable connection for national services.</h3><p>Connectivity, infrastructure and specialist support for organisations serving communities across Papua New Guinea.</p><div class="dual-tags"><span>National Connectivity</span><span>Regional Services</span><span>Infrastructure</span><span>Specialist Support</span></div></div></a>
+  </div>
+</div></section>
+
+<section class="png-story" id="png-story"><img class="png-story-photo" id="storyPhoto" src="https://raw.githubusercontent.com/hamooddevpng/UI-Ideas/main/assets/common/web-sourced/commons/hiri-moale.jpg" alt="Community life in Papua New Guinea" loading="lazy"><div class="wrap"><div class="png-content reveal"><span class="kicker">PNG / National story · Ples bilong yumi</span><h2>Connecting people<br>and places across<br>Papua New Guinea.</h2><p>Telikom is part of daily life across PNG, supporting families, communities, businesses and national services as they communicate, work and grow.</p><div class="png-links"><a href="#">About Telikom →</a><a href="#">Our Network →</a><a href="#">Community →</a></div></div></div></section>
+
+<section class="section updates" id="updates"><div class="wrap">
+  <div class="section-head reveal"><div><span class="kicker">Notices & news</span><h2 class="section-title">What customers<br>need to know now.</h2></div><a class="text-link" href="#">All updates →</a></div>
+  <div class="updates-grid">
+    <aside class="notice-board reveal"><div class="panel-head"><h3>Service notices</h3><span>Customer updates</span></div><article class="notice-row"><div class="notice-meta"><span class="notice-badge">Notice</span><time>Service</time></div><strong>Network and service information</strong><p>Maintenance notices, service information and practical customer advisories in one place.</p></article><article class="notice-row"><div class="notice-meta"><span class="notice-badge">Customer</span><time>Support</time></div><strong>Customer service updates</strong><p>Information affecting stores, assistance and customer access.</p></article><article class="notice-row"><div class="notice-meta"><span class="notice-badge">Tender</span><time>08 Apr 2026</time></div><strong>Properties tender notice</strong><p>Formal notices remain easy to distinguish from editorial news.</p></article></aside>
+    <section class="news-panel reveal"><div class="panel-head"><h3>Latest from Telikom</h3><span>Newsroom</span></div><div class="news-list"><a class="news-card" href="#"><img src="https://raw.githubusercontent.com/hamooddevpng/UI-Ideas/main/assets/common/web-sourced/telikom/mt-kegum.jpg" alt="Telikom infrastructure at Mt Kegum" loading="lazy"><div class="news-copy"><small>Infrastructure</small><h4>Mt. Kegum network tower restored</h4><p>Telikom continues infrastructure work supporting connectivity across Papua New Guinea.</p></div></a><a class="news-card" href="#"><img src="https://raw.githubusercontent.com/hamooddevpng/UI-Ideas/main/assets/common/web-sourced/telikom/news-04.jpg" alt="Telikom community activity" loading="lazy"><div class="news-copy"><small>Community</small><h4>Connecting communities beyond the city</h4><p>Stories from the people, locations and services that make up Telikom's national footprint.</p></div></a><a class="news-card" href="#"><img src="https://raw.githubusercontent.com/hamooddevpng/UI-Ideas/main/assets/common/web-sourced/telikom/news-05.jpg" alt="Telikom customer services" loading="lazy"><div class="news-copy"><small>Customer</small><h4>Making everyday service simpler</h4><p>Customer-focused improvements across support, self service and service discovery.</p></div></a></div></section>
+  </div>
+</div></section>
+
+<section class="section support" id="support"><div class="wrap">
+  <div class="section-head reveal"><div><span class="kicker">Help, support & stores</span><h2 class="section-title">Need a hand?<br>Start here.</h2><p class="section-lead">Fast access to the support tasks people need most, plus an obvious way to find Telikom in person.</p></div></div>
+  <div class="support-grid"><article class="help-panel reveal"><span class="kicker">Customer support</span><h3>Help without the runaround.</h3><p>Choose the issue you need help with and move straight to the right support path.</p><div class="help-actions"><a href="#"><span>Account & billing</span><b>→</b></a><a href="#"><span>Internet support</span><b>→</b></a><a href="#"><span>Mobile support</span><b>→</b></a><a href="#"><span>Service updates</span><b>→</b></a><a href="#"><span>Customer Care 1555</span><b>→</b></a><a href="#"><span>Business enquiries</span><b>→</b></a></div></article><aside class="store-panel reveal"><div><div class="store-map" aria-hidden="true"></div><h3>Find a Telikom store.</h3><p>Search by town or area to locate a service point close to you.</p></div><form class="store-search" onsubmit="event.preventDefault()"><input aria-label="Town or area" placeholder="Town or area"><button>Find store</button></form></aside></div>
+</div></section>
+</main>
+
+<footer><div class="wrap"><div class="footer-grid"><div class="footer-brand"><img src="https://www.telikom.com.pg/assets/misc/TPNGLOGO.png" alt="Telikom PNG"><p>Connecting people, communities, businesses and government across Papua New Guinea.</p></div><nav class="footer-col"><h4>Personal</h4><a href="#services">Mobile</a><a href="#offers">Internet</a><a href="#quick">Self Care</a><a href="#support">Support</a></nav><nav class="footer-col"><h4>Organisation</h4><a href="#business">Business</a><a href="#business">Government</a><a href="#services">Regional connectivity</a><a href="#">Enterprise support</a></nav><nav class="footer-col"><h4>Telikom</h4><a href="#png-story">About</a><a href="#updates">News</a><a href="#updates">Notices</a><a href="#support">Contact</a></nav></div><div class="footer-bottom"><span>© 2026 Telikom PNG. Concept homepage design.</span><span>Connecting you Anywhere Anytime.</span></div></div></footer>
+
+<script>
+(()=>{
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const header=document.getElementById('header');
+  const menuBtn=document.getElementById('menuBtn');
+  const mobileNav=document.getElementById('mobileNav');
+  const slides=[...document.querySelectorAll('.hero-slide')];
+  const dots=[...document.querySelectorAll('.hero-dot')];
+  const hero=document.querySelector('.hero');
+  let active=0,timer=null,hover=false;
+
+  addEventListener('scroll',()=>header.classList.toggle('scrolled',scrollY>28),{passive:true});
+  menuBtn.addEventListener('click',()=>{
+    const open=mobileNav.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded',String(open));
+  });
+  mobileNav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{mobileNav.classList.remove('open');menuBtn.setAttribute('aria-expanded','false')}));
+
+  function show(i){
+    active=(i+slides.length)%slides.length;
+    slides.forEach((s,n)=>s.classList.toggle('active',n===active));
+    dots.forEach((d,n)=>{d.classList.toggle('active',n===active);void d.offsetWidth;if(n===active)d.classList.add('active')});
+  }
+  function start(){
+    clearInterval(timer);
+    if(reduce)return;
+    timer=setInterval(()=>{if(!hover&&!document.hidden)show(active+1)},5400);
+  }
+  dots.forEach(d=>d.addEventListener('click',()=>{show(+d.dataset.slide);start()}));
+  document.getElementById('heroPrev').addEventListener('click',()=>{show(active-1);start()});
+  document.getElementById('heroNext').addEventListener('click',()=>{show(active+1);start()});
+  hero.addEventListener('mouseenter',()=>hover=true);
+  hero.addEventListener('mouseleave',()=>hover=false);
+  document.addEventListener('visibilitychange',()=>document.hidden?clearInterval(timer):start());
+  start();
+
+  const reveals=[...document.querySelectorAll('.reveal')];
+  if(reduce){reveals.forEach(el=>el.classList.add('in'))}else{
+    const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12,rootMargin:'0px 0px -30px'});
+    reveals.forEach(el=>io.observe(el));
+  }
+
+  if(!reduce){
+    const story=document.querySelector('.png-story');
+    const updateStory=()=>{
+      const r=story.getBoundingClientRect();
+      if(r.bottom<0||r.top>innerHeight)return;
+      const progress=(innerHeight-r.top)/(innerHeight+r.height);
+      story.style.setProperty('--story-y',((progress-.5)*22).toFixed(1)+'px');
+    };
+    addEventListener('scroll',updateStory,{passive:true});
+    updateStory();
+  }
+})();
+</script>
+</body>
+</html>
