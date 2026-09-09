@@ -26,7 +26,13 @@ jobs:
           test "$(git hash-object 10.html)" = "$(git hash-object 41.html)"
           git add 41.html
           git commit -m 'Reset Design 41 to exact Design 10 baseline'
-          git push origin HEAD:main
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            if git rebase origin/main && git push origin HEAD:main; then break; fi
+            git rebase --abort 2>/dev/null || true
+            sleep 2
+            if [ "$attempt" = 5 ]; then exit 1; fi
+          done
 
       - name: Apply Telikom 41 content layer
         shell: bash
@@ -70,4 +76,10 @@ jobs:
           rm -f .github/workflows/design41-from-design10.yml .github/scripts/design41_patch.py
           git add 41.html .github/workflows/design41-from-design10.yml .github/scripts/design41_patch.py
           git commit -m 'Layer Telikom content onto Design 10 motion baseline'
-          git push origin HEAD:main
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            if git rebase origin/main && git push origin HEAD:main; then exit 0; fi
+            git rebase --abort 2>/dev/null || true
+            sleep 2
+          done
+          exit 1
