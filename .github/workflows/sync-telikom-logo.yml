@@ -35,8 +35,17 @@ jobs:
           git add assets/brand/telikom-logo.png
           if git diff --cached --quiet; then
             echo 'Logo already up to date.'
-          else
-            git commit -m 'Add official Telikom logo asset'
-            git pull --rebase origin main
-            git push origin main
+            exit 0
           fi
+          git commit -m 'Add official Telikom logo asset'
+          for attempt in 1 2 3 4 5 6 7 8; do
+            echo "Push attempt $attempt"
+            git fetch origin main
+            git rebase origin/main
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            sleep 2
+          done
+          echo 'Could not push logo asset after retries.' >&2
+          exit 1
