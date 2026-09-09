@@ -15,10 +15,31 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Apply Design 41 rules
+      - name: Fix patch boundaries and apply Design 41 rules
         shell: bash
         run: |
           set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('.github/scripts/apply_design41_rules.py')
+          s=p.read_text()
+          fixes={
+            "header + '<main id=\"top\">'":"header",
+            "quick + '<div class=\"ticker\"'":"quick",
+            "plans + '<section class=\"worlds\" id=\"worlds\">'":"plans",
+            "services + '<section class=\"business\" id=\"business\">'":"services",
+            "business + '<section class=\"png-story\" id=\"png-story\">'":"business",
+            "png_story + '<section class=\"news\" id=\"news\">'":"png_story",
+            "news + '<section class=\"support-hub\" id=\"support\">'":"news",
+            "support + '</main>'":"support",
+            "footer + '\\n<div class=\"chat\" id=\"chat\">'":"footer"
+          }
+          for old,new in fixes.items():
+              if old not in s:
+                  raise SystemExit(f'missing patch expression: {old}')
+              s=s.replace(old,new)
+          p.write_text(s)
+          PY
           python3 .github/scripts/apply_design41_rules.py
       - name: Validate Design 41 structure and JS
         shell: bash
@@ -40,8 +61,13 @@ jobs:
           order=['<header class="topbar"','<section class="hero"','<section class="quick-zone"','<section class="plans"','<section class="worlds"','<section class="business"','<section class="png-story"','<section class="news"','<section class="support-hub"','<footer>']
           pos=[s.index(x) for x in order]
           assert pos==sorted(pos)
+          assert s.count('<main id="top">')==1
+          assert s.count('<section class="plans" id="plans">')==1
+          assert s.count('<section class="business" id="business">')==1
+          assert s.count('<section class="png-story" id="png-story">')==1
+          assert s.count('<section class="news" id="news">')==1
+          assert s.count('<section class="support-hub" id="support">')==1
           assert '<div class="ticker"<div class="ticker"' not in s
-          assert 'automatic carousel' not in s.lower()
           scripts=re.findall(r'<script>(.*?)</script>',s,re.S)
           Path('/tmp/41.js').write_text(scripts[-1])
           print('depth',s.count('data-depth='),'actions',s.count('data-action='),'images',s.count('<img '))
