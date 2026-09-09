@@ -1,0 +1,39 @@
+name: Apply Design 40 editorial refinement
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/apply-design40-refine.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  refine:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Patch and verify Design 40
+        run: |
+          set -euo pipefail
+          python .github/scripts/design40_refine.py
+          grep -q 'Design 40 editorial refinement' 40.html
+          grep -q 'service-stories' 40.html
+          grep -q 'notice-board' 40.html
+          grep -q 'news-grid' 40.html
+          grep -q 'org-stack' 40.html
+
+      - name: Commit refinement and clean temporary files
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          rm -f .github/scripts/design40_refine.py .github/workflows/apply-design40-refine.yml
+          git add -A
+          git commit -m 'Refine Design 40 editorial sections'
+          git pull --rebase origin main
+          git push origin main
