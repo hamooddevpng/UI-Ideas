@@ -20,20 +20,20 @@
       "capture_partial": 1
     },
     "site_presence": {
-      "hero_cta": 9,
       "pricing_plans": 4,
+      "hero_cta": 9,
       "product_offers": 6,
+      "service_categories": 3,
+      "faq_help": 3,
       "footer": 8,
       "device_promo": 3,
-      "service_categories": 3,
       "navigation": 9,
-      "faq_help": 3,
       "app_promo": 2,
       "quick_actions": 5,
-      "news": 3,
-      "content_feature": 4,
       "business_section": 3,
       "trust_stats": 3,
+      "content_feature": 4,
+      "news": 3,
       "capture_partial": 1
     },
     "transitions": [
