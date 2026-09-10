@@ -96,3 +96,5 @@ jobs:
           git add -A
           git diff --cached --quiet || git commit -m "fix: make Design 42 province lasers visibly fire"
           git push origin HEAD:fix/design42-visible-lasers-v9
+
+# trigger registration
