@@ -1393,20 +1393,22 @@
 
 
 
-/* Design 42: province laser network v5 */
-.province-laser-v5{pointer-events:none}
-.province-route-v5{fill:none;stroke:#159ed8;stroke-width:1.5;stroke-linecap:round;vector-effect:non-scaling-stroke;opacity:.20;filter:url(#nationalLaserGlow)}
-.province-node-v5 .halo{fill:rgba(19,169,226,.08);stroke:#2eb8e9;stroke-width:1.3;vector-effect:non-scaling-stroke;opacity:.72}
-.province-node-v5 .dot{fill:#0875c9;stroke:#fff;stroke-width:2;vector-effect:non-scaling-stroke;filter:url(#nationalLaserGlow)}
-.province-laser-glow-v5,.province-laser-core-v5{fill:none;stroke-linecap:round;vector-effect:non-scaling-stroke;stroke-dasharray:.12 .88;stroke-dashoffset:1;opacity:0}
-.province-laser-glow-v5{stroke:#00aef0;stroke-width:8;filter:blur(2.2px) drop-shadow(0 0 10px rgba(0,174,240,.95));animation:provinceLaserTravelV5 var(--laser-duration,1.25s) cubic-bezier(.18,.72,.2,1) forwards}
-.province-laser-core-v5{stroke:#f1fdff;stroke-width:2.7;filter:drop-shadow(0 0 4px #25c7ff) drop-shadow(0 0 8px rgba(8,117,201,.9));animation:provinceLaserTravelV5 var(--laser-duration,1.25s) cubic-bezier(.18,.72,.2,1) forwards}
-.province-impact-v5{fill:none;stroke:#08ace8;stroke-width:2.4;vector-effect:non-scaling-stroke;filter:url(#nationalLaserGlow);animation:provinceImpactV5 .78s ease-out forwards}
-.province-impact-dot-v5{fill:#fff;stroke:#0875c9;stroke-width:1.8;vector-effect:non-scaling-stroke;filter:url(#nationalLaserGlow);animation:provinceImpactDotV5 .78s ease-out forwards}
-@keyframes provinceLaserTravelV5{0%{stroke-dashoffset:1;opacity:0}7%{opacity:1}84%{opacity:1}100%{stroke-dashoffset:-.16;opacity:0}}
-@keyframes provinceImpactV5{0%{r:4;opacity:1}100%{r:21;opacity:0}}
-@keyframes provinceImpactDotV5{0%{r:5;opacity:1}100%{r:2.5;opacity:0}}
-@media(prefers-reduced-motion:reduce){.province-laser-glow-v5,.province-laser-core-v5,.province-impact-v5,.province-impact-dot-v5{display:none!important}.province-route-v5{opacity:.26!important}}
+
+/* Design 42: static province laser network v6 */
+.national-story-map #nationalMeshLinks,.national-story-map #nationalMeshPackets,.national-story-map #nationalMeshNodes,.national-story-map #nationalPointerLasers{opacity:0!important}
+.province-network-v6{pointer-events:none}
+.province-route-glow-v6,.province-route-v6,.province-shot-glow-v6,.province-shot-core-v6{fill:none;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.province-route-glow-v6{stroke:#4acbf3;stroke-width:7;opacity:.11;filter:url(#nationalLaserGlow)}
+.province-route-v6{stroke:#0f8fc7;stroke-width:2.2;opacity:.62;stroke-dasharray:5 5;filter:drop-shadow(0 0 2px rgba(8,117,201,.34))}
+.province-node-v6 .halo{fill:rgba(13,170,226,.13);stroke:#2bb6e7;stroke-width:1.4;vector-effect:non-scaling-stroke;opacity:.94}
+.province-node-v6 .dot{fill:#0875c9;stroke:#fff;stroke-width:2.25;vector-effect:non-scaling-stroke;filter:url(#nationalLaserGlow)}
+.province-node-v6.live .halo{fill:rgba(20,190,239,.24);stroke:#08aee8;stroke-width:2}
+.province-node-v6.live .dot{fill:#05b8ed}
+.province-shot-glow-v6{stroke:#00baf4;stroke-width:10;opacity:0;filter:blur(2.4px) drop-shadow(0 0 12px rgba(0,174,240,.9));stroke-dasharray:.13 .87;stroke-dashoffset:1}
+.province-shot-core-v6{stroke:#fff;stroke-width:3.2;opacity:0;filter:drop-shadow(0 0 5px #33d7ff) drop-shadow(0 0 9px #0875c9);stroke-dasharray:.13 .87;stroke-dashoffset:1}
+.province-impact-v6{fill:none;stroke:#05aee8;stroke-width:2.6;vector-effect:non-scaling-stroke;filter:url(#nationalLaserGlow)}
+.province-impact-dot-v6{fill:#fff;stroke:#0875c9;stroke-width:2;vector-effect:non-scaling-stroke;filter:url(#nationalLaserGlow)}
+@media(prefers-reduced-motion:reduce){.province-route-v6{opacity:.65!important}.province-shot-glow-v6,.province-shot-core-v6,.province-impact-v6,.province-impact-dot-v6{display:none!important}}
 
 </style>
 </head>
@@ -2041,45 +2043,37 @@ if(editorialImage&&editorialTitle&&editorialDetail&&editorialChips.length){
 
 
 
+
+
+
 <script>
-// Design 42: province laser network v5
+// Design 42: static province laser network v6
 (()=>{
   const section=document.querySelector('.national-story-map');
   const overlay=document.getElementById('nationalProvinceOverlay');
-  if(!section||!overlay||document.getElementById('provinceLaserV5'))return;
+  if(!section||!overlay||document.getElementById('provinceNetworkV6'))return;
   const NS='http://www.w3.org/2000/svg';
+  const points=[{"id":"PGNSB","name":"Autonomous Region of Bougainville","x":750.9,"y":294.1},{"id":"PGCPM","name":"Central Province","x":375.8,"y":440.3},{"id":"PGCPK","name":"Chimbu (Simbu) Province","x":244.2,"y":300.0},{"id":"PGEBR","name":"East New Britain Province","x":572.1,"y":238.7},{"id":"PGESW","name":"East Sepik Province","x":158.8,"y":200.7},{"id":"PGEHG","name":"Eastern Highlands Province","x":277.7,"y":306.1},{"id":"PGEPW","name":"Enga Province","x":173.5,"y":255.5},{"id":"PGGPK","name":"Gulf Province","x":239.4,"y":350.1},{"id":"PGHLA","name":"Hela Province","x":137.5,"y":267.4},{"id":"PGJWK","name":"Jiwaka Province","x":228.2,"y":273.2},{"id":"PGMPM","name":"Madang Province","x":260.2,"y":242.5},{"id":"PGMRL","name":"Manus Province","x":341.3,"y":91.7},{"id":"PGMBA","name":"Milne Bay Province","x":488.1,"y":487.0},{"id":"PGMPL","name":"Morobe Province","x":336.1,"y":325.6},{"id":"PGNCD","name":"National Capital District","x":355.4,"y":452.3},{"id":"PGNIK","name":"New Ireland Province","x":632.9,"y":202.2},{"id":"PGNPP","name":"Northern (Oro) Province","x":406.5,"y":429.6},{"id":"PGSHM","name":"Southern Highlands Province","x":179.2,"y":305.3},{"id":"PGWBK","name":"West New Britain Province","x":484.0,"y":271.4},{"id":"PGSAN","name":"West Sepik (Sandaun) Province","x":87.8,"y":181.3},{"id":"PGWHM","name":"Western Highlands Province","x":208.9,"y":271.7},{"id":"PGWPD","name":"Western Province","x":103.9,"y":352.8}];
   const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let sectionVisible=false;
-  new IntersectionObserver(([entry])=>{sectionVisible=entry.isIntersecting},{threshold:.08}).observe(section);
   const make=(tag,attrs={})=>{const el=document.createElementNS(NS,tag);Object.entries(attrs).forEach(([k,v])=>el.setAttribute(k,String(v)));return el};
-  const nodePoint=node=>{const t=node.getAttribute('transform')||'';const m=t.match(/translate\(\s*([-\d.]+)[ ,]+([-\d.]+)\s*\)/);return m?{x:+m[1],y:+m[2],node}:null};
   const dist=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y);
-  const edgeKey=(a,b)=>a<b?`${a}-${b}`:`${b}-${a}`;
-  const buildGraph=pts=>{
-    const n=pts.length,edges=[],used=new Set([0]),keys=new Set();
-    while(used.size<n){let best=null;used.forEach(i=>{for(let j=0;j<n;j++){if(used.has(j))continue;const d=dist(pts[i],pts[j]);if(!best||d<best.d)best={a:i,b:j,d}}});if(!best)break;edges.push(best);keys.add(edgeKey(best.a,best.b));used.add(best.b)}
-    for(let i=0;i<n;i++){const near=[];for(let j=0;j<n;j++)if(i!==j)near.push({a:i,b:j,d:dist(pts[i],pts[j])});near.sort((a,b)=>a.d-b.d);for(const e of near.slice(0,2)){const k=edgeKey(e.a,e.b);if(!keys.has(k)){edges.push(e);keys.add(k)}}}
-    return edges;
+  const key=(a,b)=>a<b?`${a}-${b}`:`${b}-${a}`;
+  const buildEdges=()=>{
+    const edges=[],keys=new Set(),used=new Set([0]);
+    while(used.size<points.length){let best=null;used.forEach(a=>points.forEach((_,b)=>{if(used.has(b))return;const d=dist(points[a],points[b]);if(!best||d<best.d)best={a,b,d}}));if(!best)break;edges.push(best);keys.add(key(best.a,best.b));used.add(best.b)}
+    const extras=[];points.forEach((p,a)=>{const near=points.map((q,b)=>({a,b,d:dist(p,q)})).filter(e=>e.b!==a).sort((x,y)=>x.d-y.d);for(const e of near.slice(0,2)){const k=key(e.a,e.b);if(!keys.has(k)&&e.d<185){extras.push(e);keys.add(k);break}}});
+    extras.sort((a,b)=>a.d-b.d);return edges.concat(extras.slice(0,8));
   };
-  const routeD=(a,b,index=0)=>{const dx=b.x-a.x,dy=b.y-a.y,len=Math.max(1,Math.hypot(dx,dy)),nx=-dy/len,ny=dx/len,bend=Math.min(18,Math.max(5,len*.035))*(index%2?1:-1),mx=(a.x+b.x)/2+nx*bend,my=(a.y+b.y)/2+ny*bend;return `M ${a.x.toFixed(1)} ${a.y.toFixed(1)} Q ${mx.toFixed(1)} ${my.toFixed(1)} ${b.x.toFixed(1)} ${b.y.toFixed(1)}`};
-  const init=pts=>{
-    const layer=make('g',{id:'provinceLaserV5',class:'province-laser-v5'}),routesG=make('g'),shotsG=make('g'),nodesG=make('g');layer.append(routesG,shotsG,nodesG);overlay.appendChild(layer);
-    const edges=buildGraph(pts).map((e,i)=>({...e,dPath:routeD(pts[e.a],pts[e.b],i)}));
-    edges.forEach(e=>routesG.appendChild(make('path',{class:'province-route-v5',d:e.dPath})));
-    pts.forEach(p=>{const g=make('g',{class:'province-node-v5',transform:`translate(${p.x.toFixed(1)} ${p.y.toFixed(1)})`});g.append(make('circle',{class:'halo',r:'7.5'}),make('circle',{class:'dot',r:'3.9'}));nodesG.appendChild(g)});
-    if(reduce)return;
-    const fire=()=>{
-      if(!sectionVisible||document.hidden||!edges.length)return;
-      const e=edges[Math.floor(Math.random()*edges.length)],forward=Math.random()>.5,from=pts[forward?e.a:e.b],to=pts[forward?e.b:e.a],d=forward?e.dPath:routeD(from,to,edges.indexOf(e)+1),dur=1050+Math.random()*450;
-      const glow=make('path',{class:'province-laser-glow-v5',d,pathLength:'1',style:`--laser-duration:${dur}ms`}),core=make('path',{class:'province-laser-core-v5',d,pathLength:'1',style:`--laser-duration:${dur}ms`});shotsG.append(glow,core);
-      setTimeout(()=>{if(!glow.isConnected)return;const ring=make('circle',{class:'province-impact-v5',cx:to.x,cy:to.y,r:'4'}),dot=make('circle',{class:'province-impact-dot-v5',cx:to.x,cy:to.y,r:'5'});shotsG.append(ring,dot);setTimeout(()=>{ring.remove();dot.remove()},850)},dur*.78);
-      setTimeout(()=>{glow.remove();core.remove()},dur+140);
-    };
-    const tick=()=>{if(sectionVisible&&!document.hidden){fire();if(Math.random()>.35)setTimeout(fire,190+Math.random()*180)}setTimeout(tick,720+Math.random()*520)};setTimeout(tick,450);
-  };
-  let tries=0;
-  const waitForRealProvinceNodes=()=>{const pts=[...overlay.querySelectorAll('.national-mesh-node')].map(nodePoint).filter(Boolean);if(pts.length>=18){init(pts);return}if(++tries<60)setTimeout(waitForRealProvinceNodes,100)};
-  waitForRealProvinceNodes();
+  const routeD=(a,b,index)=>{const dx=b.x-a.x,dy=b.y-a.y,len=Math.max(1,Math.hypot(dx,dy)),nx=-dy/len,ny=dx/len,bend=Math.min(17,Math.max(4,len*.025))*(index%2?1:-1),mx=(a.x+b.x)/2+nx*bend,my=(a.y+b.y)/2+ny*bend;return `M ${a.x} ${a.y} Q ${mx.toFixed(1)} ${my.toFixed(1)} ${b.x} ${b.y}`};
+  const layer=make('g',{id:'provinceNetworkV6',class:'province-network-v6'}),under=make('g'),routes=make('g'),shots=make('g'),nodes=make('g');layer.append(under,routes,shots,nodes);overlay.appendChild(layer);
+  const edges=buildEdges().map((e,i)=>({...e,path:routeD(points[e.a],points[e.b],i)}));
+  edges.forEach(e=>{under.appendChild(make('path',{class:'province-route-glow-v6',d:e.path}));routes.appendChild(make('path',{class:'province-route-v6',d:e.path}))});
+  const nodeEls=points.map(p=>{const g=make('g',{class:'province-node-v6','data-province':p.name,transform:`translate(${p.x} ${p.y})`});g.append(make('circle',{class:'halo',r:'9'}),make('circle',{class:'dot',r:'4.5'}));nodes.appendChild(g);return g});
+  if(reduce)return;
+  let visible=true;if('IntersectionObserver'in window){visible=false;new IntersectionObserver(([entry])=>{visible=entry.isIntersecting},{threshold:.05}).observe(section)}
+  const animatePath=(el,dur)=>el.animate([{strokeDashoffset:'1',opacity:0,offset:0},{strokeDashoffset:'.82',opacity:1,offset:.08},{strokeDashoffset:'-.03',opacity:1,offset:.88},{strokeDashoffset:'-.17',opacity:0,offset:1}],{duration:dur,easing:'cubic-bezier(.18,.72,.2,1)',fill:'forwards'});
+  const fire=()=>{if(!visible||document.hidden||!edges.length)return;const ei=Math.floor(Math.random()*edges.length),e=edges[ei],forward=Math.random()>.5,fromIndex=forward?e.a:e.b,toIndex=forward?e.b:e.a,from=points[fromIndex],to=points[toIndex],d=forward?e.path:routeD(from,to,ei+1),dur=1150+Math.random()*420,glow=make('path',{class:'province-shot-glow-v6',d,pathLength:'1'}),core=make('path',{class:'province-shot-core-v6',d,pathLength:'1'});shots.append(glow,core);nodeEls[fromIndex].classList.add('live');animatePath(glow,dur);animatePath(core,dur);setTimeout(()=>{nodeEls[toIndex].classList.add('live');const ring=make('circle',{class:'province-impact-v6',cx:to.x,cy:to.y,r:'4'}),dot=make('circle',{class:'province-impact-dot-v6',cx:to.x,cy:to.y,r:'5'});shots.append(ring,dot);ring.animate([{r:4,opacity:1},{r:23,opacity:0}],{duration:720,easing:'ease-out',fill:'forwards'});dot.animate([{r:5,opacity:1},{r:2.5,opacity:0}],{duration:720,easing:'ease-out',fill:'forwards'});setTimeout(()=>{ring.remove();dot.remove();nodeEls[toIndex].classList.remove('live')},760)},dur*.78);setTimeout(()=>{glow.remove();core.remove();nodeEls[fromIndex].classList.remove('live')},dur+120)};
+  const tick=()=>{if(visible&&!document.hidden){fire();if(Math.random()>.45)setTimeout(fire,260)}setTimeout(tick,900+Math.random()*620)};setTimeout(()=>{fire();setTimeout(fire,320);tick()},300);
 })();
 </script>
 
