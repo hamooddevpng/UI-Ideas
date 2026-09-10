@@ -2291,5 +2291,65 @@ body.telikom-ai-open .telikom-ai-panel{transform:none}
 })();
 </script>
 
+
+<style>
+/* Design 42: robust province lasers v9 */
+.province-laser-css-v9{pointer-events:none}
+.province-laser-glow-v9,.province-laser-core-v9{fill:none;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.province-laser-glow-v9{stroke:#00c8ff;stroke-width:12;opacity:0;filter:blur(2px) drop-shadow(0 0 9px rgba(0,200,255,.98)) drop-shadow(0 0 18px rgba(8,117,201,.8));stroke-dasharray:15 85;animation:provinceLaserForwardV9 var(--laser-dur,3.4s) linear infinite;animation-delay:var(--laser-delay,0s)}
+.province-laser-core-v9{stroke:#fff;stroke-width:3.4;opacity:0;filter:drop-shadow(0 0 3px #fff) drop-shadow(0 0 7px #53e3ff) drop-shadow(0 0 11px #0875c9);stroke-dasharray:11 89;animation:provinceLaserForwardV9 var(--laser-dur,3.4s) linear infinite;animation-delay:var(--laser-delay,0s)}
+.province-laser-glow-v9.reverse,.province-laser-core-v9.reverse{animation-name:provinceLaserReverseV9}
+@keyframes provinceLaserForwardV9{0%,56%{stroke-dashoffset:100;opacity:0}58%{stroke-dashoffset:100;opacity:1}84%{stroke-dashoffset:-15;opacity:1}87%{stroke-dashoffset:-22;opacity:0}100%{stroke-dashoffset:-22;opacity:0}}
+@keyframes provinceLaserReverseV9{0%,56%{stroke-dashoffset:-15;opacity:0}58%{stroke-dashoffset:-15;opacity:1}84%{stroke-dashoffset:100;opacity:1}87%{stroke-dashoffset:107;opacity:0}100%{stroke-dashoffset:107;opacity:0}}
+.province-node-v6.v9-live .halo{fill:rgba(37,211,255,.28)!important;stroke:#36d8ff!important;stroke-width:2.2!important;filter:drop-shadow(0 0 8px rgba(0,196,255,.9))}
+.province-node-v6.v9-live .dot{fill:#fff!important;stroke:#00b7ed!important;filter:drop-shadow(0 0 5px #fff) drop-shadow(0 0 11px #00b8ef)!important}
+@media(prefers-reduced-motion:reduce){.province-laser-glow-v9,.province-laser-core-v9{animation-duration:6s!important;animation-timing-function:linear!important}}
+</style>
+<script>
+// Design 42: robust province lasers v9
+(()=>{
+  const boot=()=>{
+    const network=document.getElementById('provinceNetworkV6');
+    if(!network){setTimeout(boot,100);return}
+    if(document.getElementById('provinceLaserCssV9'))return;
+    const routes=[...network.querySelectorAll('.province-route-v6')];
+    const nodes=[...network.querySelectorAll('.province-node-v6')];
+    if(!routes.length){setTimeout(boot,100);return}
+    const NS='http://www.w3.org/2000/svg';
+    const group=document.createElementNS(NS,'g');
+    group.setAttribute('id','provinceLaserCssV9');
+    group.setAttribute('class','province-laser-css-v9');
+    const nodeGroup=network.lastElementChild;
+    if(nodeGroup&&nodeGroup.parentNode===network)network.insertBefore(group,nodeGroup);else network.appendChild(group);
+    routes.forEach((route,i)=>{
+      if(i%2&&i%3)return;
+      const d=route.getAttribute('d');
+      if(!d)return;
+      const reverse=i%2===1;
+      const dur=(2.5+(i%5)*.34).toFixed(2)+'s';
+      const delay=(-((i*0.61)%3.8)).toFixed(2)+'s';
+      const glow=document.createElementNS(NS,'path');
+      const core=document.createElementNS(NS,'path');
+      glow.setAttribute('d',d);core.setAttribute('d',d);
+      glow.setAttribute('pathLength','100');core.setAttribute('pathLength','100');
+      glow.setAttribute('class','province-laser-glow-v9'+(reverse?' reverse':''));
+      core.setAttribute('class','province-laser-core-v9'+(reverse?' reverse':''));
+      glow.style.setProperty('--laser-dur',dur);core.style.setProperty('--laser-dur',dur);
+      glow.style.setProperty('--laser-delay',delay);core.style.setProperty('--laser-delay',delay);
+      group.append(glow,core);
+    });
+    const pulseNodes=()=>{
+      if(!nodes.length)return;
+      const a=nodes[Math.floor(Math.random()*nodes.length)];
+      const b=nodes[Math.floor(Math.random()*nodes.length)];
+      a&&a.classList.add('v9-live');b&&b.classList.add('v9-live');
+      setTimeout(()=>{a&&a.classList.remove('v9-live');b&&b.classList.remove('v9-live')},520);
+    };
+    pulseNodes();setInterval(pulseNodes,720);
+  };
+  boot();
+})();
+</script>
+
 </body>
 </html>
