@@ -2077,5 +2077,146 @@ if(editorialImage&&editorialTitle&&editorialDetail&&editorialChips.length){
 })();
 </script>
 
+
+<style>
+/* Design 42: animated laser shots v7 */
+.province-shot-glow-v6,.province-shot-core-v6,.province-impact-v6,.province-impact-dot-v6{display:none!important}
+.province-route-v6{transition:opacity .18s ease,stroke .18s ease,filter .18s ease}
+.province-route-v6.laser-route-active-v7{opacity:.92!important;stroke:#16bdec!important;filter:drop-shadow(0 0 5px rgba(0,174,240,.72))!important}
+.province-laser-layer-v7{pointer-events:none}
+.laser-trail-glow-v7,.laser-trail-core-v7{fill:none;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.laser-trail-glow-v7{stroke:#00bdf4;stroke-width:13;opacity:.72;filter:blur(2.4px) drop-shadow(0 0 9px rgba(0,174,240,.95)) drop-shadow(0 0 18px rgba(8,117,201,.72))}
+.laser-trail-core-v7{stroke:#fff;stroke-width:3.6;opacity:1;filter:drop-shadow(0 0 3px #fff) drop-shadow(0 0 7px #35d8ff) drop-shadow(0 0 12px #0875c9)}
+.laser-head-halo-v7{fill:rgba(0,190,244,.22);stroke:#50dcff;stroke-width:1.2;vector-effect:non-scaling-stroke;filter:drop-shadow(0 0 8px rgba(0,174,240,.95))}
+.laser-head-v7{fill:#fff;stroke:#00aee8;stroke-width:2.2;vector-effect:non-scaling-stroke;filter:drop-shadow(0 0 3px #fff) drop-shadow(0 0 8px #1acbff)}
+.province-node-v6.laser-source-v7 .halo{animation:laserChargeV7 .42s ease-out}
+.province-node-v6.laser-hit-v7 .halo{animation:laserNodeHitV7 .72s ease-out}
+.province-node-v6.laser-hit-v7 .dot{fill:#fff!important;stroke:#00aee8!important}
+.laser-impact-ring-v7{fill:none;stroke:#00aee8;stroke-width:3;vector-effect:non-scaling-stroke;filter:drop-shadow(0 0 7px #25d1ff);animation:laserImpactRingV7 .72s ease-out forwards}
+.laser-impact-flash-v7{fill:#fff;stroke:#3dd8ff;stroke-width:2;vector-effect:non-scaling-stroke;filter:drop-shadow(0 0 8px #fff) drop-shadow(0 0 14px #00aee8);animation:laserImpactFlashV7 .45s ease-out forwards}
+@keyframes laserChargeV7{0%{opacity:.3;transform:scale(.65)}45%{opacity:1;transform:scale(1.45)}100%{opacity:.94;transform:scale(1)}}
+@keyframes laserNodeHitV7{0%{opacity:1;transform:scale(.75)}35%{opacity:1;transform:scale(1.8)}100%{opacity:.94;transform:scale(1)}}
+@keyframes laserImpactRingV7{0%{r:5;opacity:1}100%{r:30;opacity:0}}
+@keyframes laserImpactFlashV7{0%{r:8;opacity:1}100%{r:2;opacity:0}}
+@media(prefers-reduced-motion:reduce){.province-laser-layer-v7{display:none!important}.province-route-v6.laser-route-active-v7{opacity:.62!important}}
+</style>
+<script>
+// Design 42: animated laser shots v7
+(()=>{
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  const NS='http://www.w3.org/2000/svg';
+  const overlay=document.getElementById('nationalProvinceOverlay');
+  const section=document.querySelector('.national-story-map');
+  if(!overlay||!section)return;
+
+  const boot=()=>{
+    if(document.getElementById('provinceLaserShotsV7'))return;
+    const network=document.getElementById('provinceNetworkV6');
+    const routeEls=network?[...network.querySelectorAll('.province-route-v6')]:[];
+    const nodeEls=network?[...network.querySelectorAll('.province-node-v6')]:[];
+    if(!network||routeEls.length<1||nodeEls.length<2){setTimeout(boot,90);return}
+
+    const make=(tag,attrs={})=>{const el=document.createElementNS(NS,tag);Object.entries(attrs).forEach(([k,v])=>el.setAttribute(k,String(v)));return el};
+    const layer=make('g',{id:'provinceLaserShotsV7',class:'province-laser-layer-v7'});
+    const nodesGroup=network.querySelector('g:last-child');
+    if(nodesGroup)network.insertBefore(layer,nodesGroup);else network.appendChild(layer);
+
+    const nodes=nodeEls.map(el=>{
+      const m=el.transform.baseVal.consolidate();
+      return {el,x:m?m.matrix.e:0,y:m?m.matrix.f:0};
+    });
+    const nearest=pt=>nodes.reduce((best,n)=>{
+      const d=(n.x-pt.x)**2+(n.y-pt.y)**2;
+      return !best||d<best.d?{...n,d}:best;
+    },null);
+
+    let visible=true;
+    if('IntersectionObserver'in window){
+      visible=false;
+      new IntersectionObserver(([entry])=>{visible=entry.isIntersecting},{threshold:.04}).observe(section);
+    }
+
+    const segmentD=(path,head,reverse,trail)=>{
+      const len=path.getTotalLength();
+      const tail=reverse?Math.min(len,head+trail):Math.max(0,head-trail);
+      const parts=[];
+      const steps=10;
+      for(let i=0;i<=steps;i++){
+        const d=tail+(head-tail)*(i/steps);
+        const pt=path.getPointAtLength(d);
+        parts.push(`${i?'L':'M'} ${pt.x.toFixed(2)} ${pt.y.toFixed(2)}`);
+      }
+      return parts.join(' ');
+    };
+
+    let active=0;
+    const impact=(target,pt)=>{
+      if(target){
+        target.el.classList.add('laser-hit-v7');
+        setTimeout(()=>target.el.classList.remove('laser-hit-v7'),760);
+      }
+      const ring=make('circle',{class:'laser-impact-ring-v7',cx:pt.x,cy:pt.y,r:5});
+      const flash=make('circle',{class:'laser-impact-flash-v7',cx:pt.x,cy:pt.y,r:8});
+      layer.append(ring,flash);
+      setTimeout(()=>{ring.remove();flash.remove()},780);
+    };
+
+    const fire=()=>{
+      if(!visible||document.hidden||active>=3)return;
+      const route=routeEls[Math.floor(Math.random()*routeEls.length)];
+      let len=0;try{len=route.getTotalLength()}catch(_){return}
+      if(!len||len<8)return;
+      active++;
+      const reverse=Math.random()<.5;
+      const startPt=route.getPointAtLength(reverse?len:0);
+      const endPt=route.getPointAtLength(reverse?0:len);
+      const source=nearest(startPt),target=nearest(endPt);
+      const glow=make('path',{class:'laser-trail-glow-v7'});
+      const core=make('path',{class:'laser-trail-core-v7'});
+      const halo=make('circle',{class:'laser-head-halo-v7',r:9});
+      const head=make('circle',{class:'laser-head-v7',r:4.2});
+      layer.append(glow,core,halo,head);
+      route.classList.add('laser-route-active-v7');
+      if(source){source.el.classList.add('laser-source-v7');setTimeout(()=>source.el.classList.remove('laser-source-v7'),430)}
+
+      const trail=Math.max(34,Math.min(78,len*.28));
+      const duration=Math.max(620,Math.min(1180,520+len*1.8));
+      const started=performance.now();
+      const frame=now=>{
+        const raw=Math.min(1,(now-started)/duration);
+        const eased=raw<.5?2*raw*raw:1-Math.pow(-2*raw+2,2)/2;
+        const d=reverse?len*(1-eased):len*eased;
+        const beam=segmentD(route,d,reverse,trail);
+        glow.setAttribute('d',beam);core.setAttribute('d',beam);
+        const pt=route.getPointAtLength(d);
+        halo.setAttribute('cx',pt.x);halo.setAttribute('cy',pt.y);
+        head.setAttribute('cx',pt.x);head.setAttribute('cy',pt.y);
+        const fade=Math.min(1,raw/.08,(1-raw)/.035);
+        glow.style.opacity=String(Math.max(0,.72*fade));
+        core.style.opacity=String(Math.max(0,fade));
+        halo.style.opacity=String(Math.max(0,.95*fade));
+        head.style.opacity=String(Math.max(0,fade));
+        if(raw<1){requestAnimationFrame(frame);return}
+        impact(target,endPt);
+        route.classList.remove('laser-route-active-v7');
+        glow.remove();core.remove();halo.remove();head.remove();
+        active=Math.max(0,active-1);
+      };
+      requestAnimationFrame(frame);
+    };
+
+    const cycle=()=>{
+      if(visible&&!document.hidden){
+        fire();
+        if(Math.random()>.48)setTimeout(fire,170+Math.random()*180);
+      }
+      setTimeout(cycle,720+Math.random()*780);
+    };
+    setTimeout(()=>{fire();setTimeout(fire,240);setTimeout(fire,510);cycle()},420);
+  };
+  boot();
+})();
+</script>
+
 </body>
 </html>
