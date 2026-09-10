@@ -18,7 +18,7 @@ jobs:
         with:
           ref: fix/design42-laser-runtime-v8
           fetch-depth: 0
-      - name: Patch laser runtime
+      - name: Patch Design 42
         shell: bash
         run: |
           python - <<'PY'
@@ -31,12 +31,11 @@ jobs:
     if(nodesGroup&&nodesGroup.parentNode===network)network.insertBefore(layer,nodesGroup);else network.appendChild(layer);"""
           if old not in s:
               raise SystemExit('target block not found')
-          s=s.replace(old,new,1)
-          p.write_text(s,encoding='utf-8')
+          p.write_text(s.replace(old,new,1),encoding='utf-8')
           PY
           rm -f .github/workflows/design42-laser-runtime-v8.yml
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
-          git commit -m "fix: start Design 42 laser runtime"
+          git diff --cached --quiet || git commit -m "fix: start Design 42 laser runtime"
           git push origin HEAD:fix/design42-laser-runtime-v8
