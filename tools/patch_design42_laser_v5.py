@@ -1,0 +1,84 @@
+from pathlib import Path
+
+path = Path('42.html')
+html = path.read_text(encoding='utf-8')
+
+old_css_marker = '/* Design 42: province laser shots visible v4 */'
+if old_css_marker in html:
+    before, tail = html.split(old_css_marker, 1)
+    if '</style>' in tail:
+        _, after_style = tail.split('</style>', 1)
+        html = before + '</style>' + after_style
+
+old_js_marker = '// Design 42: province laser shots visible v4'
+if old_js_marker in html:
+    marker_pos = html.find(old_js_marker)
+    script_start = html.rfind('<script', 0, marker_pos)
+    script_end = html.find('</script>', marker_pos)
+    if script_start != -1 and script_end != -1:
+        html = html[:script_start] + html[script_end + len('</script>'):]
+
+css = r'''
+/* Design 42: province laser network v5 */
+.province-laser-v5{pointer-events:none}
+.province-route-v5{fill:none;stroke:#159ed8;stroke-width:1.5;stroke-linecap:round;vector-effect:non-scaling-stroke;opacity:.20;filter:url(#nationalLaserGlow)}
+.province-node-v5 .halo{fill:rgba(19,169,226,.08);stroke:#2eb8e9;stroke-width:1.3;vector-effect:non-scaling-stroke;opacity:.72}
+.province-node-v5 .dot{fill:#0875c9;stroke:#fff;stroke-width:2;vector-effect:non-scaling-stroke;filter:url(#nationalLaserGlow)}
+.province-laser-glow-v5,.province-laser-core-v5{fill:none;stroke-linecap:round;vector-effect:non-scaling-stroke;stroke-dasharray:.12 .88;stroke-dashoffset:1;opacity:0}
+.province-laser-glow-v5{stroke:#00aef0;stroke-width:8;filter:blur(2.2px) drop-shadow(0 0 10px rgba(0,174,240,.95));animation:provinceLaserTravelV5 var(--laser-duration,1.25s) cubic-bezier(.18,.72,.2,1) forwards}
+.province-laser-core-v5{stroke:#f1fdff;stroke-width:2.7;filter:drop-shadow(0 0 4px #25c7ff) drop-shadow(0 0 8px rgba(8,117,201,.9));animation:provinceLaserTravelV5 var(--laser-duration,1.25s) cubic-bezier(.18,.72,.2,1) forwards}
+.province-impact-v5{fill:none;stroke:#08ace8;stroke-width:2.4;vector-effect:non-scaling-stroke;filter:url(#nationalLaserGlow);animation:provinceImpactV5 .78s ease-out forwards}
+.province-impact-dot-v5{fill:#fff;stroke:#0875c9;stroke-width:1.8;vector-effect:non-scaling-stroke;filter:url(#nationalLaserGlow);animation:provinceImpactDotV5 .78s ease-out forwards}
+@keyframes provinceLaserTravelV5{0%{stroke-dashoffset:1;opacity:0}7%{opacity:1}84%{opacity:1}100%{stroke-dashoffset:-.16;opacity:0}}
+@keyframes provinceImpactV5{0%{r:4;opacity:1}100%{r:21;opacity:0}}
+@keyframes provinceImpactDotV5{0%{r:5;opacity:1}100%{r:2.5;opacity:0}}
+@media(prefers-reduced-motion:reduce){.province-laser-glow-v5,.province-laser-core-v5,.province-impact-v5,.province-impact-dot-v5{display:none!important}.province-route-v5{opacity:.26!important}}
+'''
+
+js = r'''
+<script>
+// Design 42: province laser network v5
+(()=>{
+  const section=document.querySelector('.national-story-map');
+  const overlay=document.getElementById('nationalProvinceOverlay');
+  if(!section||!overlay||document.getElementById('provinceLaserV5'))return;
+  const NS='http://www.w3.org/2000/svg';
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let sectionVisible=false;
+  new IntersectionObserver(([entry])=>{sectionVisible=entry.isIntersecting},{threshold:.08}).observe(section);
+  const make=(tag,attrs={})=>{const el=document.createElementNS(NS,tag);Object.entries(attrs).forEach(([k,v])=>el.setAttribute(k,String(v)));return el};
+  const nodePoint=node=>{const t=node.getAttribute('transform')||'';const m=t.match(/translate\(\s*([-\d.]+)[ ,]+([-\d.]+)\s*\)/);return m?{x:+m[1],y:+m[2],node}:null};
+  const dist=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y);
+  const edgeKey=(a,b)=>a<b?`${a}-${b}`:`${b}-${a}`;
+  const buildGraph=pts=>{
+    const n=pts.length,edges=[],used=new Set([0]),keys=new Set();
+    while(used.size<n){let best=null;used.forEach(i=>{for(let j=0;j<n;j++){if(used.has(j))continue;const d=dist(pts[i],pts[j]);if(!best||d<best.d)best={a:i,b:j,d}}});if(!best)break;edges.push(best);keys.add(edgeKey(best.a,best.b));used.add(best.b)}
+    for(let i=0;i<n;i++){const near=[];for(let j=0;j<n;j++)if(i!==j)near.push({a:i,b:j,d:dist(pts[i],pts[j])});near.sort((a,b)=>a.d-b.d);for(const e of near.slice(0,2)){const k=edgeKey(e.a,e.b);if(!keys.has(k)){edges.push(e);keys.add(k)}}}
+    return edges;
+  };
+  const routeD=(a,b,index=0)=>{const dx=b.x-a.x,dy=b.y-a.y,len=Math.max(1,Math.hypot(dx,dy)),nx=-dy/len,ny=dx/len,bend=Math.min(18,Math.max(5,len*.035))*(index%2?1:-1),mx=(a.x+b.x)/2+nx*bend,my=(a.y+b.y)/2+ny*bend;return `M ${a.x.toFixed(1)} ${a.y.toFixed(1)} Q ${mx.toFixed(1)} ${my.toFixed(1)} ${b.x.toFixed(1)} ${b.y.toFixed(1)}`};
+  const init=pts=>{
+    const layer=make('g',{id:'provinceLaserV5',class:'province-laser-v5'}),routesG=make('g'),shotsG=make('g'),nodesG=make('g');layer.append(routesG,shotsG,nodesG);overlay.appendChild(layer);
+    const edges=buildGraph(pts).map((e,i)=>({...e,dPath:routeD(pts[e.a],pts[e.b],i)}));
+    edges.forEach(e=>routesG.appendChild(make('path',{class:'province-route-v5',d:e.dPath})));
+    pts.forEach(p=>{const g=make('g',{class:'province-node-v5',transform:`translate(${p.x.toFixed(1)} ${p.y.toFixed(1)})`});g.append(make('circle',{class:'halo',r:'7.5'}),make('circle',{class:'dot',r:'3.9'}));nodesG.appendChild(g)});
+    if(reduce)return;
+    const fire=()=>{
+      if(!sectionVisible||document.hidden||!edges.length)return;
+      const e=edges[Math.floor(Math.random()*edges.length)],forward=Math.random()>.5,from=pts[forward?e.a:e.b],to=pts[forward?e.b:e.a],d=forward?e.dPath:routeD(from,to,edges.indexOf(e)+1),dur=1050+Math.random()*450;
+      const glow=make('path',{class:'province-laser-glow-v5',d,pathLength:'1',style:`--laser-duration:${dur}ms`}),core=make('path',{class:'province-laser-core-v5',d,pathLength:'1',style:`--laser-duration:${dur}ms`});shotsG.append(glow,core);
+      setTimeout(()=>{if(!glow.isConnected)return;const ring=make('circle',{class:'province-impact-v5',cx:to.x,cy:to.y,r:'4'}),dot=make('circle',{class:'province-impact-dot-v5',cx:to.x,cy:to.y,r:'5'});shotsG.append(ring,dot);setTimeout(()=>{ring.remove();dot.remove()},850)},dur*.78);
+      setTimeout(()=>{glow.remove();core.remove()},dur+140);
+    };
+    const tick=()=>{if(sectionVisible&&!document.hidden){fire();if(Math.random()>.35)setTimeout(fire,190+Math.random()*180)}setTimeout(tick,720+Math.random()*520)};setTimeout(tick,450);
+  };
+  let tries=0;
+  const waitForRealProvinceNodes=()=>{const pts=[...overlay.querySelectorAll('.national-mesh-node')].map(nodePoint).filter(Boolean);if(pts.length>=18){init(pts);return}if(++tries<60)setTimeout(waitForRealProvinceNodes,100)};
+  waitForRealProvinceNodes();
+})();
+</script>
+'''
+
+html = html.replace('</style>', css + '\n</style>', 1)
+html = html.replace('</body>', js + '\n</body>', 1)
+path.write_text(html, encoding='utf-8')
