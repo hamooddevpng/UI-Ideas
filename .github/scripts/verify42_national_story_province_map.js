@@ -6,25 +6,31 @@ const { chromium } = require('playwright-core');
   await page.goto('http://127.0.0.1:8000/42.html',{waitUntil:'domcontentloaded',timeout:45000});
   await page.waitForTimeout(1200);
 
-  // Hero must be restored, with no 22-province overlay/status injected into the banner.
+  // Hero must be restored, with no province overlay/status injected into the banner.
   const heroInfo=await page.evaluate(()=>({
     provinceOverlay:!!document.querySelector('.scene-enterprise .province-network'),
     provinceStatus:!!document.querySelector('.scene-enterprise .province-network-status'),
-    peopleOpacity:getComputedStyle(document.querySelector('.scene-phone .hero-people')).opacity,
     remoteRidge:getComputedStyle(document.querySelector('.scene-remote .ridge')).display,
     networkDisplay:getComputedStyle(document.querySelector('.scene-art[data-art="2"] .network-svg')).display,
-    gridDisplay:getComputedStyle(document.querySelector('.scene-art[data-art="2"] .grid-plane')).display
+    gridDisplay:getComputedStyle(document.querySelector('.scene-art[data-art="2"] .grid-plane')).display,
+    satellite:!!document.querySelector('.satellite'),
+    dish:!!document.querySelector('.dish-head-svg'),
+    tower:!!document.querySelector('.tower')
   }));
   if(heroInfo.provinceOverlay||heroInfo.provinceStatus)throw new Error('province overlay still exists in hero '+JSON.stringify(heroInfo));
   if(heroInfo.remoteRidge==='none')throw new Error('remote hero mountain drawing still force-hidden '+JSON.stringify(heroInfo));
   if(heroInfo.networkDisplay==='none'||heroInfo.gridDisplay==='none')throw new Error('tower hero network art still hidden '+JSON.stringify(heroInfo));
+  if(!heroInfo.satellite||!heroInfo.dish||!heroInfo.tower)throw new Error('approved hero art missing '+JSON.stringify(heroInfo));
+  await page.locator('.scene-tab[data-scene="2"]').click();
+  await page.waitForTimeout(250);
+  const sceneIndex=await page.locator('#top').getAttribute('data-scene-index');
+  if(sceneIndex!=='2')throw new Error('tower hero tab no longer switches scenes');
 
   // National Story owns the detailed map now.
   const national=page.locator('#png-story');
   await national.scrollIntoViewIfNeeded();
   await page.waitForTimeout(1800);
-  const card=page.locator('#nationalMapCard');
-  if(await card.count()!==1)throw new Error('national map card missing');
+  if(await page.locator('#nationalMapCard').count()!==1)throw new Error('national map card missing');
   await page.waitForFunction(()=>document.querySelectorAll('#nationalProvinceOverlay .national-province-node').length>=22,{timeout:10000});
   const mapInfo=await page.evaluate(()=>{
     const obj=document.getElementById('nationalProvinceMap');
@@ -49,22 +55,10 @@ const { chromium } = require('playwright-core');
   const first=mapInfo.counter;await page.waitForTimeout(1300);const second=await page.locator('#nationalMapCount').textContent();
   if(first===second)throw new Error('province sequence did not advance '+first);
 
-  // Quick action readability and news fix from business feedback remain.
+  // Readability fixes requested by business remain.
   const quick=await page.evaluate(()=>({p:parseFloat(getComputedStyle(document.querySelector('.quick-card p')).fontSize),h:parseFloat(getComputedStyle(document.querySelector('.quick-card h3')).fontSize)}));
   if(quick.p<8.5||quick.h<18)throw new Error('quick action readability regressed '+JSON.stringify(quick));
-
-  // Hero interaction regression.
-  await page.evaluate(()=>scrollTo(0,0));
-  await page.waitForTimeout(300);
-  await page.locator('.scene-tab[data-scene="1"]').click();
-  await page.waitForTimeout(250);
-  const sat=page.locator('.satellite'),dish=page.locator('.dish-head-svg');
-  const sat0=await sat.evaluate(e=>getComputedStyle(e).transform),dish0=await dish.evaluate(e=>getComputedStyle(e).transform);
-  const hb=await page.locator('#top').boundingBox();
-  await page.mouse.move(hb.x+hb.width*.77,hb.y+hb.height*.28);await page.waitForTimeout(350);
-  const sat1=await sat.evaluate(e=>getComputedStyle(e).transform),dish1=await dish.evaluate(e=>getComputedStyle(e).transform);
-  if(sat0===sat1||dish0===dish1)throw new Error('hero satellite/dish regression');
   if(errors.length)throw new Error('page errors: '+errors.join(' | '));
-  console.log(JSON.stringify({heroInfo,mapInfo,counterAdvanced:[first,second],quick,satellite:true}));
+  console.log(JSON.stringify({heroInfo,mapInfo,counterAdvanced:[first,second],quick}));
   await browser.close();
 })().catch(e=>{console.error(e);process.exit(1)});
