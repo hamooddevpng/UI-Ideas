@@ -1,0 +1,13 @@
+name: Design 42 laser alignment v5
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  noop:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo ready
