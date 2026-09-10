@@ -1,1 +1,0 @@
-restore broken Digital PNG layout
