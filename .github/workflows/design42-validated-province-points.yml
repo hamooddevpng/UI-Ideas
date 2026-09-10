@@ -1,0 +1,48 @@
+name: One-time Design 42 validated province points
+on:
+  push:
+    paths:
+      - '.github/workflows/design42-validated-province-points.yml'
+permissions:
+  contents: write
+jobs:
+  patch-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply light National Story and validated province points
+        run: python3 .github/scripts/design42_validate_province_points.py
+      - name: JavaScript syntax check
+        run: |
+          python3 - <<'PY'
+          import re,pathlib
+          s=pathlib.Path('42.html').read_text()
+          pathlib.Path('/tmp/42.js').write_text('\n'.join(re.findall(r'<script>(.*?)</script>',s,re.S)))
+          PY
+          node --check /tmp/42.js
+      - name: Browser verification and screenshot
+        run: |
+          npm install --prefix /tmp/design42-pw --no-save playwright-core@1.55.0 >/dev/null 2>&1
+          python3 -m http.server 8000 >/tmp/42-http.log 2>&1 &
+          NODE_PATH=/tmp/design42-pw/node_modules node .github/scripts/verify42_validate_province_points.js
+      - name: Upload verification screenshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: design42-national-province-points
+          path: /tmp/design42-national-province-points.png
+          retention-days: 3
+      - name: Commit verified update
+        run: |
+          rm -f .github/workflows/design42-validated-province-points.yml \
+                .github/scripts/design42_validate_province_points.py \
+                .github/scripts/verify42_validate_province_points.js
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Lighten Design 42 National Story and validate province nodes'
+          for try in 1 2 3; do
+            if git push origin HEAD:main; then exit 0; fi
+            git fetch origin main
+            git rebase origin/main
+          done
+          exit 1
