@@ -1,0 +1,38 @@
+name: Design 42 Digital PNG motion patch
+
+on:
+  push:
+    paths:
+      - '.github/workflows/_design42_digital_png_motion.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply focused Digital PNG motion patch
+        run: python scripts/_design42_digital_png_motion.py
+      - name: Verify focused change
+        run: |
+          grep -q 'id="digital-png-rail"' 42.html
+          grep -q 'Services for every<br>part of PNG.' 42.html
+          grep -q '@keyframes dpSatOrbit' 42.html
+          grep -q '@keyframes dpCoreBreath' 42.html
+          grep -q '@keyframes dpCashConfirm' 42.html
+          grep -q 'prefers-reduced-motion:reduce' 42.html
+          test "$(git diff --name-only | tr -d '\r')" = '42.html'
+          git diff --check
+          git diff --stat
+      - name: Commit patch and remove temporary files
+        run: |
+          rm scripts/_design42_digital_png_motion.py
+          rm .github/workflows/_design42_digital_png_motion.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Refine Design 42 Digital PNG animations'
+          git push
