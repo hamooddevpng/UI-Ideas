@@ -1,0 +1,44 @@
+name: Apply Design 42 lasers only v10
+
+on:
+  push:
+    branches:
+      - fix/design42-lasers-only-v10
+    paths:
+      - .github/workflows/design42-lasers-only-v10.yml
+
+permissions:
+  contents: write
+
+jobs:
+  patch-design-42:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/design42-lasers-only-v10
+          fetch-depth: 0
+
+      - name: Hide static province routes
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('42.html')
+          s = p.read_text(encoding='utf-8')
+          marker = 'Design 42: lasers only v10'
+          if marker not in s:
+              block = '''\n<style>\n/* Design 42: lasers only v10 */\n.province-route-v6,\n.province-route-v6.laser-route-active-v7,\n.province-route-glow-v6{\n  opacity:0!important;\n  stroke-opacity:0!important;\n  filter:none!important;\n}\n</style>\n'''
+              s = s.replace('</body>', block + '\n</body>', 1)
+              p.write_text(s, encoding='utf-8')
+          PY
+
+      - name: Commit result
+        shell: bash
+        run: |
+          rm -f .github/workflows/design42-lasers-only-v10.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet || git commit -m "fix: hide static Design 42 province network lines"
+          git push origin HEAD:fix/design42-lasers-only-v10
