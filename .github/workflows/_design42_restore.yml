@@ -1,0 +1,34 @@
+name: One-time restore Design 42 services
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/_design42_restore_marker.txt'
+
+permissions:
+  contents: write
+
+jobs:
+  restore:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Restore 42.html before broken Digital PNG section
+        run: git show 57d7afd5fa76432fa4e537bc67860e63931341b0^:42.html > 42.html
+      - name: Verify restored state
+        run: |
+          grep -F '.main-nav a{font-size:13px;font-weight:700}' 42.html
+          grep -F 'STARLINK' 42.html
+          ! grep -F 'id="digitalPngLab"' 42.html
+          git diff --check
+      - name: Commit restore and clean temporary files
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git rm .github/workflows/_design42_restore.yml scripts/_design42_restore_marker.txt
+          git add 42.html
+          git commit -m 'Restore Design 42 service layout [skip ci]'
+          git push origin main
