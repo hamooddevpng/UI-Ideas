@@ -1,0 +1,42 @@
+name: One-time Design 42 full-section National Story map
+on:
+  push:
+    paths:
+      - '.github/workflows/design42-national-story-full-map.yml'
+permissions:
+  contents: write
+jobs:
+  patch-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply National Story full-map and Remote vignette pass
+        run: python3 .github/scripts/design42_national_story_full_map.py
+      - name: JavaScript syntax check
+        run: |
+          python3 - <<'PY'
+          import re,pathlib
+          s=pathlib.Path('42.html').read_text()
+          pathlib.Path('/tmp/42.js').write_text('\n'.join(re.findall(r'<script>(.*?)</script>',s,re.S)))
+          PY
+          node --check /tmp/42.js
+      - name: Browser verification
+        run: |
+          npm install --prefix /tmp/design42-pw --no-save playwright-core@1.55.0 >/dev/null 2>&1
+          python3 -m http.server 8000 >/tmp/42-http.log 2>&1 &
+          NODE_PATH=/tmp/design42-pw/node_modules node .github/scripts/verify42_national_story_full_map.js
+      - name: Commit verified update
+        run: |
+          rm -f .github/workflows/design42-national-story-full-map.yml \
+                .github/scripts/design42_national_story_full_map.py \
+                .github/scripts/verify42_national_story_full_map.js
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Integrate Design 42 province network into National Story'
+          for try in 1 2 3; do
+            if git push origin HEAD:main; then exit 0; fi
+            git fetch origin main
+            git rebase origin/main
+          done
+          exit 1
