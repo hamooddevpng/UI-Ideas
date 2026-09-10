@@ -1280,6 +1280,18 @@
 @media(prefers-reduced-motion:reduce){.eco-satellite,.eco-cloud-light,.eco-beam,.eco-node,.eco-zone,.eco-route,.eco-more{animation:none!important;transition:none!important}.eco-data-dot,.eco-compute-dot,.eco-kina-token{display:none!important}}
 
 
+
+/* Design 42: province laser shots v2 */
+.province-laser-layer{pointer-events:none}
+.province-laser-route,.province-laser-shot{fill:none;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke;pointer-events:none}
+.province-laser-route{stroke:#29b9ee;stroke-width:1.25;opacity:.16;filter:url(#nationalLaserGlow)}
+.province-laser-shot{stroke:#0875c9;stroke-width:3.15;opacity:0;filter:url(#nationalLaserGlow) drop-shadow(0 0 5px rgba(8,117,201,.68));stroke-dasharray:.12 .88;stroke-dashoffset:1}
+.province-laser-impact{fill:none;stroke:#0bb9ef;stroke-width:2;vector-effect:non-scaling-stroke;filter:url(#nationalLaserGlow);transform-box:fill-box;transform-origin:center;animation:provinceLaserImpact .82s ease-out forwards}
+.province-laser-spark{fill:#fff;stroke:#0875c9;stroke-width:1.4;vector-effect:non-scaling-stroke;filter:url(#nationalLaserGlow);animation:provinceLaserSpark .82s ease-out forwards}
+@keyframes provinceLaserImpact{0%{r:3;opacity:0}18%{opacity:1}100%{r:17;opacity:0}}
+@keyframes provinceLaserSpark{0%{r:1.8;opacity:0}22%{r:4.4;opacity:1}100%{r:2.2;opacity:0}}
+@media(prefers-reduced-motion:reduce){.province-laser-shot,.province-laser-impact,.province-laser-spark{display:none!important}.province-laser-route{opacity:.13!important}}
+
 </style>
 </head>
 <body>
@@ -1886,6 +1898,108 @@ if(editorialImage&&editorialTitle&&editorialDetail&&editorialChips.length){
     if(state)state.textContent='POINTER LINK ACTIVE';
   },{passive:true});
   stage.addEventListener('pointerleave',()=>{pointerLines.forEach(l=>l.classList.remove('live'));pointerCore.classList.remove('live');nodes.forEach(n=>n.classList.remove('hot'));section.style.setProperty('--national-x','50%');section.style.setProperty('--national-y','50%');if(state)state.textContent='MOVE ACROSS THE NETWORK'});
+})();
+</script>
+
+
+<script>
+// Design 42: province laser shots v2
+(()=>{
+  const section=document.querySelector('.national-story-map');
+  const overlay=document.getElementById('nationalProvinceOverlay');
+  if(!section||!overlay||document.getElementById('provinceLaserLayer'))return;
+
+  const NS='http://www.w3.org/2000/svg';
+  const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const layer=document.createElementNS(NS,'g');
+  layer.id='provinceLaserLayer';
+  layer.setAttribute('class','province-laser-layer');
+  overlay.appendChild(layer);
+
+  let visible=false;
+  const io=new IntersectionObserver(([entry])=>{visible=entry.isIntersecting},{threshold:.16});
+  io.observe(section);
+
+  const pointFromNode=node=>{
+    const t=node.getAttribute('transform')||'';
+    const m=t.match(/translate\(\s*([-\d.]+)[ ,]+([-\d.]+)\s*\)/);
+    return m?{x:+m[1],y:+m[2]}:null;
+  };
+
+  const fallback=[
+    {x:250,y:360},{x:315,y:335},{x:372,y:305},{x:438,y:330},{x:500,y:300},
+    {x:555,y:282},{x:612,y:260},{x:666,y:230},{x:724,y:206},{x:786,y:178},
+    {x:835,y:265},{x:760,y:330},{x:680,y:360},{x:585,y:390},{x:485,y:410},
+    {x:390,y:405},{x:305,y:420}
+  ];
+
+  const points=()=>{
+    const live=[...overlay.querySelectorAll('.national-mesh-node')].map(pointFromNode).filter(Boolean);
+    return live.length>=8?live:fallback;
+  };
+
+  const make=(tag,attrs={})=>{
+    const el=document.createElementNS(NS,tag);
+    Object.entries(attrs).forEach(([k,v])=>el.setAttribute(k,String(v)));
+    return el;
+  };
+
+  const choosePair=pts=>{
+    for(let attempt=0;attempt<16;attempt++){
+      const a=Math.floor(Math.random()*pts.length);
+      let b=Math.floor(Math.random()*pts.length);
+      if(a===b)b=(b+1)%pts.length;
+      const p=pts[a],q=pts[b];
+      const d=Math.hypot(q.x-p.x,q.y-p.y);
+      if(d>70&&d<390)return [p,q];
+    }
+    return [pts[0],pts[Math.min(pts.length-1,Math.floor(pts.length*.65))]];
+  };
+
+  const fire=()=>{
+    if(reduce||!visible||document.hidden)return;
+    const pts=points();
+    if(pts.length<2)return;
+    const [a,b]=choosePair(pts);
+    const bend=(Math.random()>.5?1:-1)*(18+Math.random()*28);
+    const mx=(a.x+b.x)/2,my=(a.y+b.y)/2+bend;
+    const d=`M ${a.x.toFixed(1)} ${a.y.toFixed(1)} Q ${mx.toFixed(1)} ${my.toFixed(1)} ${b.x.toFixed(1)} ${b.y.toFixed(1)}`;
+
+    const route=make('path',{class:'province-laser-route',d});
+    const shot=make('path',{class:'province-laser-shot',d,pathLength:'1'});
+    const impact=make('circle',{class:'province-laser-impact',cx:b.x,cy:b.y,r:'3'});
+    const spark=make('circle',{class:'province-laser-spark',cx:b.x,cy:b.y,r:'1.8'});
+    layer.append(route,shot,impact,spark);
+
+    const duration=560+Math.random()*330;
+    const anim=shot.animate([
+      {strokeDashoffset:'1',opacity:0,offset:0},
+      {opacity:1,offset:.12},
+      {opacity:1,offset:.78},
+      {strokeDashoffset:'-.15',opacity:0,offset:1}
+    ],{duration,easing:'cubic-bezier(.2,.72,.18,1)',fill:'forwards'});
+    route.animate([{opacity:0},{opacity:.24},{opacity:0}],{duration:duration+260,easing:'ease-out'});
+    anim.finished.catch(()=>{}).finally(()=>setTimeout(()=>{route.remove();shot.remove();impact.remove();spark.remove()},120));
+  };
+
+  if(reduce){
+    const pts=points();
+    [[0,5],[3,10],[7,13]].forEach(([i,j])=>{
+      if(!pts[i]||!pts[j])return;
+      const a=pts[i],b=pts[j],mx=(a.x+b.x)/2,my=(a.y+b.y)/2-20;
+      layer.appendChild(make('path',{class:'province-laser-route',d:`M ${a.x} ${a.y} Q ${mx} ${my} ${b.x} ${b.y}`}));
+    });
+    return;
+  }
+
+  const tick=()=>{
+    if(visible&&!document.hidden){
+      fire();
+      if(Math.random()>.58)setTimeout(fire,130+Math.random()*190);
+    }
+    setTimeout(tick,620+Math.random()*760);
+  };
+  setTimeout(tick,520);
 })();
 </script>
 
