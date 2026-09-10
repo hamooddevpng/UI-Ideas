@@ -1,20 +1,17 @@
 name: Apply Design 42 visible lasers v9
 
-on:
-  push:
-    branches:
-      - fix/design42-visible-lasers-v9
+on: [push]
 
 permissions:
   contents: write
 
 jobs:
   patch-design-42:
+    if: github.ref == 'refs/heads/fix/design42-visible-lasers-v9'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: fix/design42-visible-lasers-v9
           fetch-depth: 0
 
       - name: Add robust CSS laser pulses
