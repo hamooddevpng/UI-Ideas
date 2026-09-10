@@ -1,4 +1,5 @@
 name: One-time Design 42 move province map to National Story
+# retry after stabilising the browser verification
 on:
   push:
     paths:
