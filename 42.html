@@ -2118,8 +2118,8 @@ if(editorialImage&&editorialTitle&&editorialDetail&&editorialChips.length){
 
     const make=(tag,attrs={})=>{const el=document.createElementNS(NS,tag);Object.entries(attrs).forEach(([k,v])=>el.setAttribute(k,String(v)));return el};
     const layer=make('g',{id:'provinceLaserShotsV7',class:'province-laser-layer-v7'});
-    const nodesGroup=network.querySelector('g:last-child');
-    if(nodesGroup)network.insertBefore(layer,nodesGroup);else network.appendChild(layer);
+    const nodesGroup=network.lastElementChild;
+    if(nodesGroup&&nodesGroup.parentNode===network)network.insertBefore(layer,nodesGroup);else network.appendChild(layer);
 
     const nodes=nodeEls.map(el=>{
       const m=el.transform.baseVal.consolidate();
