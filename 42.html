@@ -1392,16 +1392,21 @@
 @media(prefers-reduced-motion:reduce){.eco-route,.eco-beam,.eco-data-dot,.eco-starlink-dot,.eco-compute-dot,.eco-kina-token,.eco-node span{animation:none!important;transition:none!important}}
 
 
-/* Design 42: province laser shots visible v4 */
-.province-laser-layer{pointer-events:none}
-.province-laser-route,.province-laser-shot{fill:none;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke;pointer-events:none}
-.province-laser-route{stroke:#39bff0;stroke-width:1.4;opacity:.28;filter:url(#nationalLaserGlow);stroke-dasharray:4 8}
-.province-laser-shot{stroke:#0875c9;stroke-width:3.8;opacity:0;filter:url(#nationalLaserGlow) drop-shadow(0 0 8px rgba(8,117,201,.88));stroke-dasharray:.18 .82;stroke-dashoffset:1}
-.province-laser-impact{fill:none;stroke:#0bb9ef;stroke-width:2.4;vector-effect:non-scaling-stroke;filter:url(#nationalLaserGlow);animation:provinceLaserImpact .9s ease-out forwards}
-.province-laser-spark{fill:#fff;stroke:#0875c9;stroke-width:1.6;vector-effect:non-scaling-stroke;filter:url(#nationalLaserGlow);animation:provinceLaserSpark .9s ease-out forwards}
-@keyframes provinceLaserImpact{0%{r:3;opacity:0}15%{opacity:1}100%{r:20;opacity:0}}
-@keyframes provinceLaserSpark{0%{r:2;opacity:0}20%{r:5;opacity:1}100%{r:2.4;opacity:0}}
-@media(prefers-reduced-motion:reduce){.province-laser-shot,.province-laser-impact,.province-laser-spark{display:none!important}.province-laser-route{opacity:.22!important}}
+
+/* Design 42: province laser network v5 */
+.province-laser-v5{pointer-events:none}
+.province-route-v5{fill:none;stroke:#159ed8;stroke-width:1.5;stroke-linecap:round;vector-effect:non-scaling-stroke;opacity:.20;filter:url(#nationalLaserGlow)}
+.province-node-v5 .halo{fill:rgba(19,169,226,.08);stroke:#2eb8e9;stroke-width:1.3;vector-effect:non-scaling-stroke;opacity:.72}
+.province-node-v5 .dot{fill:#0875c9;stroke:#fff;stroke-width:2;vector-effect:non-scaling-stroke;filter:url(#nationalLaserGlow)}
+.province-laser-glow-v5,.province-laser-core-v5{fill:none;stroke-linecap:round;vector-effect:non-scaling-stroke;stroke-dasharray:.12 .88;stroke-dashoffset:1;opacity:0}
+.province-laser-glow-v5{stroke:#00aef0;stroke-width:8;filter:blur(2.2px) drop-shadow(0 0 10px rgba(0,174,240,.95));animation:provinceLaserTravelV5 var(--laser-duration,1.25s) cubic-bezier(.18,.72,.2,1) forwards}
+.province-laser-core-v5{stroke:#f1fdff;stroke-width:2.7;filter:drop-shadow(0 0 4px #25c7ff) drop-shadow(0 0 8px rgba(8,117,201,.9));animation:provinceLaserTravelV5 var(--laser-duration,1.25s) cubic-bezier(.18,.72,.2,1) forwards}
+.province-impact-v5{fill:none;stroke:#08ace8;stroke-width:2.4;vector-effect:non-scaling-stroke;filter:url(#nationalLaserGlow);animation:provinceImpactV5 .78s ease-out forwards}
+.province-impact-dot-v5{fill:#fff;stroke:#0875c9;stroke-width:1.8;vector-effect:non-scaling-stroke;filter:url(#nationalLaserGlow);animation:provinceImpactDotV5 .78s ease-out forwards}
+@keyframes provinceLaserTravelV5{0%{stroke-dashoffset:1;opacity:0}7%{opacity:1}84%{opacity:1}100%{stroke-dashoffset:-.16;opacity:0}}
+@keyframes provinceImpactV5{0%{r:4;opacity:1}100%{r:21;opacity:0}}
+@keyframes provinceImpactDotV5{0%{r:5;opacity:1}100%{r:2.5;opacity:0}}
+@media(prefers-reduced-motion:reduce){.province-laser-glow-v5,.province-laser-core-v5,.province-impact-v5,.province-impact-dot-v5{display:none!important}.province-route-v5{opacity:.26!important}}
 
 </style>
 </head>
@@ -2033,86 +2038,48 @@ if(editorialImage&&editorialTitle&&editorialDetail&&editorialChips.length){
 </script>
 
 
+
+
+
 <script>
-// Design 42: province laser shots visible v4
+// Design 42: province laser network v5
 (()=>{
   const section=document.querySelector('.national-story-map');
   const overlay=document.getElementById('nationalProvinceOverlay');
-  if(!section||!overlay||document.getElementById('provinceLaserLayer'))return;
+  if(!section||!overlay||document.getElementById('provinceLaserV5'))return;
   const NS='http://www.w3.org/2000/svg';
-  const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const layer=document.createElementNS(NS,'g');
-  layer.id='provinceLaserLayer';
-  layer.setAttribute('class','province-laser-layer');
-  overlay.appendChild(layer);
-  let visible=false;
-  new IntersectionObserver(([entry])=>{visible=entry.isIntersecting},{threshold:.06}).observe(section);
-  const pointFromNode=node=>{
-    const m=(node.getAttribute('transform')||'').match(/translate\(\s*([-\d.]+)[ ,]+([-\d.]+)\s*\)/);
-    return m?{x:+m[1],y:+m[2]}:null;
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let sectionVisible=false;
+  new IntersectionObserver(([entry])=>{sectionVisible=entry.isIntersecting},{threshold:.08}).observe(section);
+  const make=(tag,attrs={})=>{const el=document.createElementNS(NS,tag);Object.entries(attrs).forEach(([k,v])=>el.setAttribute(k,String(v)));return el};
+  const nodePoint=node=>{const t=node.getAttribute('transform')||'';const m=t.match(/translate\(\s*([-\d.]+)[ ,]+([-\d.]+)\s*\)/);return m?{x:+m[1],y:+m[2],node}:null};
+  const dist=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y);
+  const edgeKey=(a,b)=>a<b?`${a}-${b}`:`${b}-${a}`;
+  const buildGraph=pts=>{
+    const n=pts.length,edges=[],used=new Set([0]),keys=new Set();
+    while(used.size<n){let best=null;used.forEach(i=>{for(let j=0;j<n;j++){if(used.has(j))continue;const d=dist(pts[i],pts[j]);if(!best||d<best.d)best={a:i,b:j,d}}});if(!best)break;edges.push(best);keys.add(edgeKey(best.a,best.b));used.add(best.b)}
+    for(let i=0;i<n;i++){const near=[];for(let j=0;j<n;j++)if(i!==j)near.push({a:i,b:j,d:dist(pts[i],pts[j])});near.sort((a,b)=>a.d-b.d);for(const e of near.slice(0,2)){const k=edgeKey(e.a,e.b);if(!keys.has(k)){edges.push(e);keys.add(k)}}}
+    return edges;
   };
-  const fallback=[
-    {x:230,y:360},{x:300,y:332},{x:365,y:302},{x:430,y:327},{x:500,y:300},{x:560,y:278},
-    {x:620,y:258},{x:680,y:230},{x:738,y:204},{x:798,y:182},{x:845,y:265},{x:770,y:330},
-    {x:690,y:360},{x:600,y:390},{x:505,y:408},{x:410,y:405},{x:320,y:420}
-  ];
-  const points=()=>{
-    const live=[...overlay.querySelectorAll('.national-mesh-node')].map(pointFromNode).filter(Boolean);
-    return live.length>=8?live:fallback;
+  const routeD=(a,b,index=0)=>{const dx=b.x-a.x,dy=b.y-a.y,len=Math.max(1,Math.hypot(dx,dy)),nx=-dy/len,ny=dx/len,bend=Math.min(18,Math.max(5,len*.035))*(index%2?1:-1),mx=(a.x+b.x)/2+nx*bend,my=(a.y+b.y)/2+ny*bend;return `M ${a.x.toFixed(1)} ${a.y.toFixed(1)} Q ${mx.toFixed(1)} ${my.toFixed(1)} ${b.x.toFixed(1)} ${b.y.toFixed(1)}`};
+  const init=pts=>{
+    const layer=make('g',{id:'provinceLaserV5',class:'province-laser-v5'}),routesG=make('g'),shotsG=make('g'),nodesG=make('g');layer.append(routesG,shotsG,nodesG);overlay.appendChild(layer);
+    const edges=buildGraph(pts).map((e,i)=>({...e,dPath:routeD(pts[e.a],pts[e.b],i)}));
+    edges.forEach(e=>routesG.appendChild(make('path',{class:'province-route-v5',d:e.dPath})));
+    pts.forEach(p=>{const g=make('g',{class:'province-node-v5',transform:`translate(${p.x.toFixed(1)} ${p.y.toFixed(1)})`});g.append(make('circle',{class:'halo',r:'7.5'}),make('circle',{class:'dot',r:'3.9'}));nodesG.appendChild(g)});
+    if(reduce)return;
+    const fire=()=>{
+      if(!sectionVisible||document.hidden||!edges.length)return;
+      const e=edges[Math.floor(Math.random()*edges.length)],forward=Math.random()>.5,from=pts[forward?e.a:e.b],to=pts[forward?e.b:e.a],d=forward?e.dPath:routeD(from,to,edges.indexOf(e)+1),dur=1050+Math.random()*450;
+      const glow=make('path',{class:'province-laser-glow-v5',d,pathLength:'1',style:`--laser-duration:${dur}ms`}),core=make('path',{class:'province-laser-core-v5',d,pathLength:'1',style:`--laser-duration:${dur}ms`});shotsG.append(glow,core);
+      setTimeout(()=>{if(!glow.isConnected)return;const ring=make('circle',{class:'province-impact-v5',cx:to.x,cy:to.y,r:'4'}),dot=make('circle',{class:'province-impact-dot-v5',cx:to.x,cy:to.y,r:'5'});shotsG.append(ring,dot);setTimeout(()=>{ring.remove();dot.remove()},850)},dur*.78);
+      setTimeout(()=>{glow.remove();core.remove()},dur+140);
+    };
+    const tick=()=>{if(sectionVisible&&!document.hidden){fire();if(Math.random()>.35)setTimeout(fire,190+Math.random()*180)}setTimeout(tick,720+Math.random()*520)};setTimeout(tick,450);
   };
-  const make=(tag,attrs={})=>{
-    const el=document.createElementNS(NS,tag);
-    Object.entries(attrs).forEach(([k,v])=>el.setAttribute(k,String(v)));
-    return el;
-  };
-  const routePath=(a,b,bend=0)=>{
-    const mx=(a.x+b.x)/2,my=(a.y+b.y)/2+bend;
-    return `M ${a.x.toFixed(1)} ${a.y.toFixed(1)} Q ${mx.toFixed(1)} ${my.toFixed(1)} ${b.x.toFixed(1)} ${b.y.toFixed(1)}`;
-  };
-  const addBackbone=()=>{
-    const pts=points();
-    [[0,3],[2,6],[4,8],[7,10],[3,12],[6,14],[9,11],[11,15],[1,13]].forEach(([i,j],n)=>{
-      if(!pts[i]||!pts[j])return;
-      layer.appendChild(make('path',{class:'province-laser-route',d:routePath(pts[i],pts[j],(n%2?1:-1)*(10+n*2))}));
-    });
-  };
-  setTimeout(addBackbone,250);
-  const choosePair=pts=>{
-    for(let attempt=0;attempt<20;attempt++){
-      const a=Math.floor(Math.random()*pts.length);
-      let b=Math.floor(Math.random()*pts.length);
-      if(a===b)b=(b+1)%pts.length;
-      const p=pts[a],q=pts[b],dist=Math.hypot(q.x-p.x,q.y-p.y);
-      if(dist>75&&dist<430)return [p,q];
-    }
-    return [pts[0],pts[Math.min(pts.length-1,Math.floor(pts.length*.7))]];
-  };
-  const fire=()=>{
-    if(reduce||!visible||document.hidden)return;
-    const pts=points();
-    if(pts.length<2)return;
-    const [a,b]=choosePair(pts);
-    const bend=(Math.random()>.5?1:-1)*(14+Math.random()*34);
-    const d=routePath(a,b,bend);
-    const shot=make('path',{class:'province-laser-shot',d,pathLength:'1'});
-    const impact=make('circle',{class:'province-laser-impact',cx:b.x,cy:b.y,r:'3'});
-    const spark=make('circle',{class:'province-laser-spark',cx:b.x,cy:b.y,r:'2'});
-    layer.append(shot,impact,spark);
-    const duration=520+Math.random()*240;
-    const anim=shot.animate([
-      {strokeDashoffset:'1',opacity:0,offset:0},
-      {opacity:1,offset:.08},
-      {opacity:1,offset:.84},
-      {strokeDashoffset:'-.18',opacity:0,offset:1}
-    ],{duration,easing:'cubic-bezier(.18,.72,.18,1)',fill:'forwards'});
-    anim.finished.catch(()=>{}).finally(()=>setTimeout(()=>{shot.remove();impact.remove();spark.remove()},100));
-  };
-  if(reduce)return;
-  const tick=()=>{
-    if(visible&&!document.hidden){fire();setTimeout(fire,120);if(Math.random()>.4)setTimeout(fire,260)}
-    setTimeout(tick,440+Math.random()*360);
-  };
-  setTimeout(tick,320);
+  let tries=0;
+  const waitForRealProvinceNodes=()=>{const pts=[...overlay.querySelectorAll('.national-mesh-node')].map(nodePoint).filter(Boolean);if(pts.length>=18){init(pts);return}if(++tries<60)setTimeout(waitForRealProvinceNodes,100)};
+  waitForRealProvinceNodes();
 })();
 </script>
 
