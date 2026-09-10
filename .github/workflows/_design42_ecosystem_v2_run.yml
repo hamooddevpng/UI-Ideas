@@ -1,0 +1,35 @@
+name: Design 42 live ecosystem iteration
+
+on:
+  push:
+    paths:
+      - '.github/workflows/_design42_ecosystem_v2_run.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply ecosystem iteration
+        run: python scripts/_design42_ecosystem_v2.py
+      - name: Verify focused change
+        run: |
+          grep -q 'Design 42 ecosystem iteration 2' 42.html
+          grep -q 'eco-story-overlay' 42.html
+          grep -q 'USER A → TELIKOM → USER B' 42.html
+          grep -q 'Services for every<br>part of PNG.' 42.html
+          git diff --check
+          test "$(git diff --name-only | grep -v '^42.html$' | wc -l)" -eq 0
+      - name: Commit iteration and clean helper
+        run: |
+          rm scripts/_design42_ecosystem_v2.py
+          rm .github/workflows/_design42_ecosystem_v2_run.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Make Design 42 ecosystem feel live and story-led'
+          git push
