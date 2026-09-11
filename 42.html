@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Telikom PNG | Loading Design 42…</title>
 <style>
-html,body{margin:0;min-height:100%;font-family:Manrope,Arial,sans-serif;background:#f4fafc;color:#10384c}#boot{min-height:100vh;display:grid;place-items:center;padding:32px;text-align:center}#boot b{display:block;font-size:22px;letter-spacing:-.03em;margin-bottom:7px}#boot span{font-size:12px;color:#6d8794}
+html,body{margin:0;min-height:100%;font-family:Manrope,Arial,sans-serif;background:#f3f4f1;color:#173546}#boot{min-height:100vh;display:grid;place-items:center;padding:32px;text-align:center}#boot b{display:block;font-size:22px;letter-spacing:-.03em;margin-bottom:7px}#boot span{font-size:12px;color:#6d8794}
 </style>
 </head>
 <body>
@@ -34,8 +34,68 @@ html,body{margin:0;min-height:100%;font-family:Manrope,Arial,sans-serif;backgrou
         oldSection.replaceWith(page.importNode(newSection,true));
         const prototypeScript=proto.querySelector('body > script');
         if(prototypeScript){const script=page.createElement('script');script.setAttribute('data-design42-ecosystem-v2','');script.textContent=prototypeScript.textContent;page.body.appendChild(script)}
-      }else console.warn('Design 42 ecosystem enhancement was not applied because the target section was not found.');
+      }
     }catch(ecosystemError){console.warn('Design 42 ecosystem enhancement failed; loading the stable base instead.',ecosystemError)}
+
+    const palette=page.createElement('style');
+    palette.setAttribute('data-design42-outline-v4','');
+    palette.textContent=String.raw`
+/* Design 42 outline glass v4 */
+:root{--deep-bg:#356f8f;--ink:#173546;--muted:#657e89}
+html,body{background:#f3f4f1!important;color:#173546!important}
+.offers,.raffle-offers,.updates,.updates-live{background:#f6f7f4!important}
+.services,.service-lab{background:#edf1f0!important}
+.business.business-dual{background:#eef2f2!important;color:#173546!important}
+.site-header.scrolled{background:rgba(46,91,118,.95)!important}
+.hero{background:#315f7d!important}
+.scene-phone{background:radial-gradient(circle at 78% 42%,rgba(151,205,228,.18),transparent 30%),linear-gradient(118deg,#28556f 0%,#376c88 56%,#527f95 100%)!important}
+.scene-phone:after{background:linear-gradient(90deg,rgba(29,61,79,.54) 0%,rgba(42,83,103,.25) 45%,rgba(75,126,145,.03) 76%,transparent 100%)!important}
+.scene-enterprise{background:radial-gradient(circle at 77% 49%,rgba(162,215,234,.17),transparent 29%),linear-gradient(120deg,#2c5b76 0%,#3d728a 58%,#568396 100%)!important}
+.hero[data-scene-index="2"] .scene-enterprise:after{background:linear-gradient(90deg,rgba(30,65,82,.42) 0%,rgba(46,91,108,.17) 52%,transparent 80%)!important}
+
+.business-dual .business-dual-head .title,.business-dual .dual-world-copy h3{color:#173546!important}
+.business-dual .business-dual-head .lead,.business-dual .dual-world-copy>p{color:#607985!important}
+.business-dual .business-dual-head .kicker{color:#0875c9!important}
+.business-dual .dual-world,.business-dual .business-world,.business-dual .government-world{background:rgba(255,255,255,.16)!important;border:1px solid rgba(40,86,105,.20)!important;box-shadow:0 16px 38px rgba(45,86,104,.055)!important;backdrop-filter:blur(8px)}
+.business-dual .mission-service-card{background:rgba(255,255,255,.42)!important;border-color:rgba(43,91,112,.12)!important;box-shadow:none!important}
+.business-dual .dual-world-top{color:#607c88!important}
+.business-dual .dual-world-top b{color:#2c6f93!important}
+.business-dual .government-world .dual-world-top b{color:#278263!important}
+
+.support-orbit{position:relative!important;isolation:isolate!important;overflow:hidden!important;background:#f2f3ef!important}
+.support-orbit:before{content:"";position:absolute;z-index:0;width:720px;height:720px;right:-220px;top:-250px;border-radius:50%;background:radial-gradient(circle at 42% 42%,rgba(8,117,201,.14),rgba(77,160,191,.06) 38%,transparent 70%);filter:blur(3px);pointer-events:none;animation:supportAmbientFloat 13s ease-in-out infinite alternate}
+.support-orbit:after{content:"";position:absolute;z-index:0;inset:-15%;pointer-events:none;opacity:.48;background-image:linear-gradient(rgba(47,102,124,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(47,102,124,.045) 1px,transparent 1px);background-size:48px 48px;mask-image:radial-gradient(ellipse at 72% 53%,#000 0 16%,rgba(0,0,0,.7) 38%,transparent 74%);animation:supportGridDrift 22s linear infinite}
+@keyframes supportAmbientFloat{from{transform:translate3d(-36px,24px,0) scale(.96)}to{transform:translate3d(30px,-22px,0) scale(1.06)}}
+@keyframes supportGridDrift{to{background-position:48px 24px,24px 48px}}
+.support-orbit .support-stage{position:relative!important;z-index:2!important;background:rgba(255,255,255,.10)!important;color:#173546!important;border:1px solid rgba(34,85,106,.24)!important;box-shadow:0 22px 55px rgba(41,78,94,.065)!important;backdrop-filter:blur(9px)!important}
+.support-orbit .support-stage .title{color:#173546!important}
+.support-orbit .support-stage .lead{color:#536f7b!important}
+.support-orbit .support-stage .kicker{color:#0875c9!important}
+.support-orbit .support-search,.support-orbit form{box-shadow:0 10px 28px rgba(40,82,101,.07)!important}
+.support-orbit .support-link{background:rgba(255,255,255,.24)!important;color:#173546!important;border-color:rgba(43,91,112,.19)!important;box-shadow:none!important;backdrop-filter:blur(8px)!important}
+.support-orbit .support-link:hover{background:rgba(255,255,255,.76)!important;color:#173546!important;border-color:rgba(8,117,201,.30)!important}
+.support-orbit .support-link small{color:#657f8a!important}
+.support-orbit .support-radar i,.support-orbit .support-radar span{border-color:rgba(42,112,145,.22)!important}
+.support-orbit .support-hub{box-shadow:0 14px 34px rgba(8,117,201,.18)!important}
+.support-hint{color:#718892!important}
+
+.telikom-ai-panel{background:rgba(239,243,242,.97)!important;color:#173546!important;box-shadow:-18px 0 55px rgba(42,77,94,.16)!important;border-left:1px solid rgba(40,86,105,.16)!important}
+.telikom-ai-head{background:rgba(255,255,255,.28)!important;border-bottom-color:rgba(38,83,105,.12)!important;color:#173546!important}
+.telikom-ai-chip,.telikom-ai-msg.bot,.telikom-ai-form{background:rgba(255,255,255,.32)!important;border-color:rgba(43,91,112,.16)!important;color:#173546!important;box-shadow:none!important}
+.telikom-ai-chip:hover{background:rgba(255,255,255,.72)!important;border-color:rgba(8,117,201,.28)!important}
+.telikom-ai-compose{background:rgba(229,236,237,.92)!important;border-top-color:rgba(38,83,105,.12)!important}
+.telikom-ai-panel p,.telikom-ai-panel small{color:#627d89!important}
+.telikom-ai-panel input{color:#173546!important}
+.telikom-ai-panel input::placeholder{color:#7f949d!important}
+
+footer{background:linear-gradient(180deg,#315b75 0%,#284b63 100%)!important}
+.footer-brand p,.footer-col a,.footer-bottom{color:#d6e3e8!important}
+.footer-col b{color:#fff!important}
+
+@media(max-width:820px){.support-orbit:before{width:520px;height:520px;right:-240px;top:220px;opacity:.86}.support-orbit:after{background-size:38px 38px;opacity:.36}.support-orbit .support-stage{background:rgba(255,255,255,.08)!important;border-color:rgba(34,85,106,.22)!important}.support-orbit .support-link{background:rgba(255,255,255,.22)!important}}
+@media(prefers-reduced-motion:reduce){.support-orbit:before,.support-orbit:after{animation:none!important}}
+`;
+    page.head.appendChild(palette);
 
     document.open();
     document.write('<!doctype html>'+page.documentElement.outerHTML);
@@ -46,119 +106,5 @@ html,body{margin:0;min-height:100%;font-family:Manrope,Arial,sans-serif;backgrou
   }
 })();
 </script>
-<style>
-/* Design 42: balanced daylight palette v3 */
-:root{
-  --deep-bg:#356f8f;
-  --page-blue:#f1f4f4;
-  --page-blue-2:#e8eef0;
-  --page-blue-3:#dce7eb;
-  --feature-blue:#2d6f98;
-  --feature-blue-2:#3d80a3;
-  --feature-blue-3:#5b97b1;
-  --footer-blue:#2b5876;
-  --footer-blue-2:#234761;
-  --ink:#173546;
-  --muted:#657e89;
-}
-html,body{background:#f1f4f4!important;color:#173546!important}
-
-/* Calm page rhythm, light without becoming a white sheet */
-.offers,.raffle-offers,.updates,.updates-live{background:#f4f6f5!important}
-.services,.service-lab{background:#e9eff1!important}
-.support,.support-orbit{background:#e2eaed!important}
-.quick-actions,.quick-launchpad{background:transparent!important}
-
-/* Hero: slate-blue, not cyan/teal */
-.site-header.scrolled{background:rgba(43,88,118,.96)!important;border-bottom-color:rgba(255,255,255,.18)!important}
-.hero{background:#2c6687!important}
-.scene-phone{
-  background:
-    radial-gradient(circle at 78% 42%,rgba(137,202,229,.20),transparent 31%),
-    linear-gradient(118deg,#245a79 0%,#347391 55%,#4a88a2 100%)!important;
-}
-.scene-phone:after{background:linear-gradient(90deg,rgba(27,65,86,.52) 0%,rgba(38,89,113,.26) 45%,rgba(65,126,148,.04) 74%,transparent 100%)!important}
-.scene-enterprise{
-  background:
-    radial-gradient(circle at 77% 49%,rgba(151,209,230,.18),transparent 29%),
-    linear-gradient(120deg,#285f7f 0%,#397793 58%,#4e8ba3 100%)!important;
-}
-.hero[data-scene-index="2"] .scene-enterprise:after{background:linear-gradient(90deg,rgba(28,69,91,.42) 0%,rgba(43,98,120,.18) 52%,rgba(73,137,158,.02) 78%,transparent 100%)!important}
-.scene-tabs{background:rgba(35,76,101,.64)!important;border-color:rgba(255,255,255,.22)!important}
-
-/* Services retain one strong branded visual anchor */
-.service-stage{background:linear-gradient(145deg,#316f94 0%,#3f83a4 58%,#5a9ab3 100%)!important;box-shadow:0 24px 58px rgba(41,90,115,.14)!important}
-.service-art{background:radial-gradient(circle at 72% 35%,rgba(183,224,239,.20),transparent 27%),linear-gradient(145deg,#306c90,#4b8ba8)!important}
-.service-caption p{color:#e4f0f4!important}
-
-/* Business & Government: light enterprise canvas, not another blue wall */
-.business.business-dual{background:#e5ecef!important;color:#173546!important}
-.business-dual .business-dual-head .title,
-.business-dual .dual-world-copy h3{color:#173546!important}
-.business-dual .business-dual-head .lead,
-.business-dual .dual-world-copy>p{color:#607985!important}
-.business-dual .business-dual-head .kicker{color:#0875c9!important}
-.business-dual .dual-world{
-  background:linear-gradient(135deg,#f2f5f5 0%,#e9eff1 100%)!important;
-  border:1px solid rgba(38,83,105,.12)!important;
-  box-shadow:0 14px 34px rgba(45,86,104,.07)!important;
-}
-.business-dual .business-world{background:linear-gradient(135deg,#f1f5f6 0%,#e4eef2 100%)!important}
-.business-dual .government-world{background:linear-gradient(135deg,#f0f5f2 0%,#e4eee9 100%)!important}
-.business-dual .dual-world-top{color:#597682!important}
-.business-dual .dual-world-top b{color:#2c6f93!important}
-.business-dual .government-world .dual-world-top b{color:#278263!important}
-.business-dual .mission-service-card{background:rgba(255,255,255,.68)!important;border-color:rgba(43,91,112,.11)!important;box-shadow:none!important}
-.business-dual .portfolio-rail-heading b{color:#173546!important}
-
-/* Customer care: daylight panel with strong blue focal orb */
-.support-orbit .support-stage{
-  background:
-    radial-gradient(circle at 78% 45%,rgba(8,117,201,.08),transparent 34%),
-    linear-gradient(145deg,#edf3f5 0%,#dfeaec 52%,#d7e5e9 100%)!important;
-  color:#173546!important;
-  box-shadow:0 22px 50px rgba(45,86,104,.10)!important;
-}
-.support-orbit .support-stage .title{color:#173546!important}
-.support-orbit .support-stage .lead{color:#607985!important}
-.support-orbit .support-stage .kicker{color:#0875c9!important}
-.support-orbit .support-link{
-  background:rgba(255,255,255,.74)!important;
-  color:#173546!important;
-  border-color:rgba(43,91,112,.16)!important;
-  box-shadow:0 9px 22px rgba(45,86,104,.06)!important;
-}
-.support-orbit .support-link:hover{background:#fff!important;color:#173546!important}
-.support-orbit .support-link small{color:#6a838e!important}
-.support-orbit .support-radar i,.support-orbit .support-radar span{border-color:rgba(42,112,145,.22)!important}
-.support-hint{color:#718892!important}
-
-/* Assistant: light utility drawer with Telikom blue accents */
-.telikom-ai-panel{
-  background:linear-gradient(180deg,#f1f5f6 0%,#e5edef 58%,#dde7ea 100%)!important;
-  color:#173546!important;
-  box-shadow:-18px 0 55px rgba(42,77,94,.18)!important;
-}
-.telikom-ai-head{background:rgba(226,236,240,.96)!important;border-bottom-color:rgba(38,83,105,.12)!important;color:#173546!important}
-.telikom-ai-chip,.telikom-ai-msg.bot,.telikom-ai-form{background:rgba(255,255,255,.62)!important;border-color:rgba(43,91,112,.15)!important;color:#173546!important}
-.telikom-ai-chip:hover{background:#fff!important;border-color:rgba(8,117,201,.28)!important}
-.telikom-ai-compose{background:#dce7eb!important;border-top-color:rgba(38,83,105,.12)!important}
-.telikom-ai-panel p,.telikom-ai-panel small{color:#627d89!important}
-.telikom-ai-panel input{color:#173546!important}
-.telikom-ai-panel input::placeholder{color:#7f949d!important}
-
-/* Small active elements use the actual brand blue */
-.btn.dark,.personal-offer-icon{background:#0875c9!important;border-color:#0875c9!important}
-.offer-option:hover,.offer-option.active{background:#2d6f98!important;color:#fff!important}
-.offer-option:hover small,.offer-option.active small{color:#d9ebf3!important}
-.float-pill,.scene-tabs,.news-live-badge{background:rgba(43,88,118,.72)!important}
-
-/* Footer: grounded slate, clearly lighter than the old navy */
-footer{background:linear-gradient(180deg,#2b5876 0%,#234761 100%)!important}
-.footer-top{border-bottom-color:rgba(255,255,255,.22)!important}
-.footer-brand p,.footer-col a,.footer-bottom{color:#d5e2e8!important}
-.footer-col b{color:#fff!important}
-.footer-social-icon{background:rgba(255,255,255,.09)!important;border-color:rgba(255,255,255,.25)!important}
-</style>
 </body>
 </html>
