@@ -1,2 +1,2 @@
 Visual QA trigger for Design 42.
-Run: daylight-palette-v4-final-check-2
+Run: balanced-daylight-palette-v3-review
