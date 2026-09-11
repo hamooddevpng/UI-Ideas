@@ -40,26 +40,22 @@ jobs:
           const path = require('path');
           (async()=>{
             const browser = await chromium.launch({headless:true});
-            const shots = [
-              {name:'latest-desktop.jpg', viewport:{width:1440,height:900}},
-              {name:'latest-mobile.jpg', viewport:{width:390,height:844}}
-            ];
-            for (const shot of shots) {
-              const context = await browser.newContext({viewport:shot.viewport, deviceScaleFactor:1});
-              const page = await context.newPage();
-              await page.goto('http://127.0.0.1:4173/42.html', {waitUntil:'networkidle', timeout:30000});
-              await page.waitForTimeout(1800);
-              await page.evaluate(() => window.scrollTo(0,0));
-              await page.screenshot({
-                path:path.join('qa','design42',shot.name),
-                type:'jpeg',
-                quality:86,
-                fullPage:true,
-                animations:'disabled',
-                timeout:30000
-              });
-              await context.close();
-            }
+            const context = await browser.newContext({viewport:{width:1440,height:900}, deviceScaleFactor:1});
+            const page = await context.newPage();
+            await page.goto('http://127.0.0.1:4173/42.html', {waitUntil:'networkidle', timeout:30000});
+            await page.waitForTimeout(1800);
+            await page.evaluate(() => window.scrollTo(0,0));
+            await page.screenshot({path:path.join('qa','design42','latest-desktop-fold.jpg'),type:'jpeg',quality:90,fullPage:false,animations:'disabled',timeout:30000});
+            await page.screenshot({path:path.join('qa','design42','latest-desktop-full.jpg'),type:'jpeg',quality:84,fullPage:true,animations:'disabled',timeout:30000});
+            await context.close();
+
+            const mobileContext = await browser.newContext({viewport:{width:390,height:844}, deviceScaleFactor:1});
+            const mobile = await mobileContext.newPage();
+            await mobile.goto('http://127.0.0.1:4173/42.html', {waitUntil:'networkidle', timeout:30000});
+            await mobile.waitForTimeout(1800);
+            await mobile.evaluate(() => window.scrollTo(0,0));
+            await mobile.screenshot({path:path.join('qa','design42','latest-mobile-full.jpg'),type:'jpeg',quality:84,fullPage:true,animations:'disabled',timeout:30000});
+            await mobileContext.close();
             await browser.close();
           })().catch(e=>{console.error(e);process.exit(1)});
           EOF
@@ -67,7 +63,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add qa/design42/latest-desktop.jpg qa/design42/latest-mobile.jpg
+          git add qa/design42/latest-desktop-fold.jpg qa/design42/latest-desktop-full.jpg qa/design42/latest-mobile-full.jpg
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "chore: refresh Design 42 visual QA screenshots"
           git pull --rebase origin main
