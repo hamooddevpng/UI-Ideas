@@ -5,6 +5,8 @@ on:
     branches: [main]
     paths:
       - '42.html'
+      - '42-base.html'
+      - 'design42-ecosystem-v2.html'
       - '.github/design42-qa-trigger.txt'
 
 permissions:
@@ -17,7 +19,7 @@ concurrency:
 jobs:
   capture:
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
         with:
@@ -40,27 +42,46 @@ jobs:
           const { chromium } = require('playwright');
           const path = require('path');
           const primePage = async page => {
-            await page.waitForTimeout(1400);
+            await page.waitForTimeout(1800);
+            // Scroll dynamically because offer loading and injected content can change page height.
             await page.evaluate(async () => {
               const sleep = ms => new Promise(r => setTimeout(r, ms));
-              const step = Math.max(420, Math.floor(window.innerHeight * .72));
-              const max = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
-              for (let y = 0; y <= max; y += step) {
-                window.scrollTo(0, y);
-                await sleep(120);
+              let y = 0;
+              let stableBottomPasses = 0;
+              while (stableBottomPasses < 3) {
+                const max = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+                if (y >= max - 8) {
+                  window.scrollTo(0, max);
+                  await sleep(260);
+                  const nextMax = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+                  if (Math.abs(nextMax - max) < 8) stableBottomPasses++;
+                  else stableBottomPasses = 0;
+                  y = Math.min(nextMax, max + Math.max(320, Math.floor(window.innerHeight * .55)));
+                } else {
+                  y = Math.min(max, y + Math.max(320, Math.floor(window.innerHeight * .55)));
+                  window.scrollTo(0, y);
+                  await sleep(170);
+                }
               }
-              window.scrollTo(0, max);
-              await sleep(180);
-              window.scrollTo(0, 0);
             });
-            await page.waitForTimeout(650);
+            // Explicitly wake late reveal/IO sections and allow offer loader to finish.
+            for (const selector of ['#updates', '#support']) {
+              const el = page.locator(selector);
+              if (await el.count()) {
+                await el.scrollIntoViewIfNeeded();
+                await page.waitForTimeout(700);
+              }
+            }
+            await page.waitForTimeout(2600);
+            await page.evaluate(() => window.scrollTo(0,0));
+            await page.waitForTimeout(500);
           };
           (async()=>{
             const browser = await chromium.launch({headless:true});
             const context = await browser.newContext({viewport:{width:1440,height:900}, deviceScaleFactor:1});
             const page = await context.newPage();
             await page.goto('http://127.0.0.1:4173/42.html', {waitUntil:'networkidle', timeout:30000});
-            await page.waitForTimeout(1400);
+            await page.waitForTimeout(1600);
             await page.evaluate(() => window.scrollTo(0,0));
             await page.screenshot({path:path.join('qa','design42','latest-desktop-fold.jpg'),type:'jpeg',quality:90,fullPage:false,animations:'disabled',timeout:30000});
             await primePage(page);
