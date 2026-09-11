@@ -18,43 +18,28 @@ jobs:
         with:
           ref: main
           fetch-depth: 0
-
-      - name: Add footer social icon row
+      - name: Add social icons
         shell: bash
         run: |
           python - <<'PY'
           from pathlib import Path
-
-          p = Path('42.html')
-          s = p.read_text(encoding='utf-8')
-          marker = 'Design 42 footer social icons'
+          import base64
+          p=Path('42.html')
+          s=p.read_text(encoding='utf-8')
+          marker='Design 42 footer social icons'
           if marker in s:
               raise SystemExit(0)
-
-          old = '<p>100% PNG owned telecommunications company.</p></div>'
-          social = '''<p>100% PNG owned telecommunications company.</p><div class="footer-social" aria-label="Telikom social media"><a class="footer-social-icon" href="#" onclick="event.preventDefault()" aria-label="Facebook" title="Facebook"><span class="social-facebook" aria-hidden="true">f</span></a><a class="footer-social-icon" href="#" onclick="event.preventDefault()" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4.5" y="4.5" width="15" height="15" rx="4" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="3.3" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.2" cy="6.9" r="1.1" fill="currentColor"/></svg></a><a class="footer-social-icon" href="https://www.linkedin.com/company/telikomltdpng" target="_blank" rel="noreferrer" aria-label="LinkedIn" title="LinkedIn"><span class="social-linkedin" aria-hidden="true">in</span></a><a class="footer-social-icon" href="#" onclick="event.preventDefault()" aria-label="YouTube" title="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="6.5" width="17" height="11" rx="3.2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M10 9.3 15 12l-5 2.7z" fill="currentColor"/></svg></a></div></div>'''
+          old='<p>100% PNG owned telecommunications company.</p></div>'
+          social=base64.b64decode('PHA+MTAwJSBQTkcgb3duZWQgdGVsZWNvbW11bmljYXRpb25zIGNvbXBhbnkuPC9wPjxkaXYgY2xhc3M9ImZvb3Rlci1zb2NpYWwiIGFyaWEtbGFiZWw9IlRlbGlrb20gc29jaWFsIG1lZGlhIj48YSBjbGFzcz0iZm9vdGVyLXNvY2lhbC1pY29uIiBocmVmPSIjIiBvbmNsaWNrPSJldmVudC5wcmV2ZW50RGVmYXVsdCgpIiBhcmlhLWxhYmVsPSJGYWNlYm9vayIgdGl0bGU9IkZhY2Vib29rIj48c3BhbiBjbGFzcz0ic29jaWFsLWZhY2Vib29rIiBhcmlhLWhpZGRlbj0idHJ1ZSI+Zjwvc3Bhbj48L2E+PGEgY2xhc3M9ImZvb3Rlci1zb2NpYWwtaWNvbiIgaHJlZj0iIyIgb25jbGljaz0iZXZlbnQucHJldmVudERlZmF1bHQoKSIgYXJpYS1sYWJlbD0iSW5zdGFncmFtIiB0aXRsZT0iSW5zdGFncmFtIj48c3ZnIHZpZXdCb3g9IjAgMCAyNCAyNCIgYXJpYS1oaWRkZW49InRydWUiPjxyZWN0IHg9IjQuNSIgeT0iNC41IiB3aWR0aD0iMTUiIGhlaWdodD0iMTUiIHJ4PSI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIxLjgiLz48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIzLjMiIGZpbGw9Im5vbmUiIHN0cm9rZT0iY3VycmVudENvbG9yIiBzdHJva2Utd2lkdGg9IjEuOCIvPjxjaXJjbGUgY3g9IjE3LjIiIGN5PSI2LjkiIHI9IjEuMSIgZmlsbD0iY3VycmVudENvbG9yIi8+PC9zdmc+PC9hPjxhIGNsYXNzPSJmb290ZXItc29jaWFsLWljb24iIGhyZWY9Imh0dHBzOi8vd3d3LmxpbmtlZGluLmNvbS9jb21wYW55L3RlbGlrb21sdGRwbmciIHRhcmdldD0iX2JsYW5rIiByZWw9Im5vcmVmZXJyZXIiIGFyaWEtbGFiZWw9IkxpbmtlZEluIiB0aXRsZT0iTGlua2VkSW4iPjxzcGFuIGNsYXNzPSJzb2NpYWwtbGlua2VkaW4iIGFyaWEtaGlkZGVuPSJ0cnVlIj5pbjwvc3Bhbj48L2E+PGEgY2xhc3M9ImZvb3Rlci1zb2NpYWwtaWNvbiIgaHJlZj0iIyIgb25jbGljaz0iZXZlbnQucHJldmVudERlZmF1bHQoKSIgYXJpYS1sYWJlbD0iWW91VHViZSIgdGl0bGU9IllvdVR1YmUiPjxzdmcgdmlld0JveD0iMCAwIDI0IDI0IiBhcmlhLWhpZGRlbj0idHJ1ZSI+PHJlY3QgeD0iMy41IiB5PSI2LjUiIHdpZHRoPSIxNyIgaGVpZ2h0PSIxMSIgcng9IjMuMiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJjdXJyZW50Q29sb3IiIHN0cm9rZS13aWR0aD0iMS43Ii8+PHBhdGggZD0iTTEwIDkuMyAxNSAxMmwtNSAyLjd6IiBmaWxsPSJjdXJyZW50Q29sb3IiLz48L3N2Zz48L2E+PC9kaXY+PC9kaXY+').decode()
+          css=base64.b64decode('PHN0eWxlPgovKiBEZXNpZ24gNDIgZm9vdGVyIHNvY2lhbCBpY29ucyAqLwouZm9vdGVyLXNvY2lhbHtkaXNwbGF5OmZsZXg7YWxpZ24taXRlbXM6Y2VudGVyO2dhcDo4cHg7bWFyZ2luLXRvcDoxNnB4fQouZm9vdGVyLXNvY2lhbC1pY29ue3dpZHRoOjM0cHg7aGVpZ2h0OjM0cHg7Ym9yZGVyLXJhZGl1czo1MCU7ZGlzcGxheTppbmxpbmUtZmxleDthbGlnbi1pdGVtczpjZW50ZXI7anVzdGlmeS1jb250ZW50OmNlbnRlcjtib3JkZXI6MXB4IHNvbGlkIHJnYmEoMjU1LDI1NSwyNTUsLjIyKTtiYWNrZ3JvdW5kOnJnYmEoMjU1LDI1NSwyNTUsLjA2KTtjb2xvcjojZThmN2ZkO3RyYW5zaXRpb246dHJhbnNmb3JtIC4yOHMgdmFyKC0tc3ByaW5nKSxiYWNrZ3JvdW5kIC4yOHMsYm9yZGVyLWNvbG9yIC4yOHMsY29sb3IgLjI4cztiYWNrZHJvcC1maWx0ZXI6Ymx1cig4cHgpfQouZm9vdGVyLXNvY2lhbC1pY29uOmhvdmVyLC5mb290ZXItc29jaWFsLWljb246Zm9jdXMtdmlzaWJsZXt0cmFuc2Zvcm06dHJhbnNsYXRlWSgtM3B4KTtiYWNrZ3JvdW5kOiNmZmY7Ym9yZGVyLWNvbG9yOiNmZmY7Y29sb3I6IzEyM2Y1NTtvdXRsaW5lOm5vbmU7Ym94LXNoYWRvdzowIDEwcHggMjRweCByZ2JhKDIsMjAsMzEsLjE4KX0KLmZvb3Rlci1zb2NpYWwtaWNvbiBzdmd7d2lkdGg6MTZweDtoZWlnaHQ6MTZweDtkaXNwbGF5OmJsb2NrfQouc29jaWFsLWZhY2Vib29re2ZvbnQtZmFtaWx5OkFyaWFsLHNhbnMtc2VyaWY7Zm9udC1zaXplOjE5cHg7Zm9udC13ZWlnaHQ6NzAwO2xpbmUtaGVpZ2h0OjE7dHJhbnNmb3JtOnRyYW5zbGF0ZVkoMXB4KX0KLnNvY2lhbC1saW5rZWRpbntmb250LWZhbWlseTpBcmlhbCxzYW5zLXNlcmlmO2ZvbnQtc2l6ZToxMnB4O2ZvbnQtd2VpZ2h0OjgwMDtsZXR0ZXItc3BhY2luZzotLjA0ZW07bGluZS1oZWlnaHQ6MX0KQG1lZGlhKG1heC13aWR0aDo4MjBweCl7LmZvb3Rlci1zb2NpYWx7bWFyZ2luLXRvcDoxNHB4fS5mb290ZXItc29jaWFsLWljb257d2lkdGg6MzZweDtoZWlnaHQ6MzZweH19Cjwvc3R5bGU+').decode()
           if old not in s:
-              raise SystemExit('footer brand target not found')
-          s = s.replace(old, social, 1)
-
-          css = '''
-<style>
-/* Design 42 footer social icons */
-.footer-social{display:flex;align-items:center;gap:8px;margin-top:16px}
-.footer-social-icon{width:34px;height:34px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.06);color:#e8f7fd;transition:transform .28s var(--spring),background .28s,border-color .28s,color .28s;backdrop-filter:blur(8px)}
-.footer-social-icon:hover,.footer-social-icon:focus-visible{transform:translateY(-3px);background:#fff;border-color:#fff;color:#123f55;outline:none;box-shadow:0 10px 24px rgba(2,20,31,.18)}
-.footer-social-icon svg{width:16px;height:16px;display:block}
-.social-facebook{font-family:Arial,sans-serif;font-size:19px;font-weight:700;line-height:1;transform:translateY(1px)}
-.social-linkedin{font-family:Arial,sans-serif;font-size:12px;font-weight:800;letter-spacing:-.04em;line-height:1}
-@media(max-width:820px){.footer-social{margin-top:14px}.footer-social-icon{width:36px;height:36px}}
-</style>
-'''
+              raise SystemExit('footer target not found')
+          s=s.replace(old,social,1)
           if '</body>' not in s:
               raise SystemExit('body close not found')
-          s = s.replace('</body>', css + '\n</body>', 1)
-          p.write_text(s, encoding='utf-8')
+          s=s.replace('</body>',css+'\n</body>',1)
+          p.write_text(s,encoding='utf-8')
           PY
-
       - name: Commit social icons
         shell: bash
         run: |
