@@ -1,0 +1,62 @@
+name: Capture Design 42 v4 QA
+
+on:
+  push:
+    branches:
+      - palette/design42-v4
+    paths:
+      - '42.html'
+      - '.github/workflows/capture-design42-v4.yml'
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install Playwright
+        run: |
+          npm install --no-save playwright
+          npx playwright install chromium
+      - name: Start server
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/design42-v4.log 2>&1 &
+          sleep 1
+      - name: Capture support section
+        run: |
+          mkdir -p qa-v4
+          node <<'EOF'
+          const { chromium } = require('playwright');
+          const path = require('path');
+          (async()=>{
+            const browser=await chromium.launch({headless:true});
+            for(const cfg of [
+              {name:'support-desktop.jpg',viewport:{width:1440,height:900}},
+              {name:'support-mobile.jpg',viewport:{width:390,height:844}},
+              {name:'full-mobile.jpg',viewport:{width:390,height:844},full:true}
+            ]){
+              const context=await browser.newContext({viewport:cfg.viewport,deviceScaleFactor:1});
+              const page=await context.newPage();
+              await page.goto('http://127.0.0.1:4173/42.html',{waitUntil:'networkidle',timeout:30000});
+              await page.waitForTimeout(2400);
+              if(cfg.full){
+                await page.screenshot({path:path.join('qa-v4',cfg.name),type:'jpeg',quality:86,fullPage:true,animations:'disabled',timeout:30000});
+              }else{
+                const support=page.locator('#support');
+                await support.scrollIntoViewIfNeeded();
+                await page.waitForTimeout(1000);
+                await support.screenshot({path:path.join('qa-v4',cfg.name),type:'jpeg',quality:90,animations:'disabled',timeout:30000});
+              }
+              await context.close();
+            }
+            await browser.close();
+          })().catch(e=>{console.error(e);process.exit(1)});
+          EOF
+      - uses: actions/upload-artifact@v4
+        with:
+          name: design42-v4-qa
+          path: qa-v4/*.jpg
+          retention-days: 7
