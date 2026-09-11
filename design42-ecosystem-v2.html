@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Design 42 — Digital PNG Ecosystem V2</title>
+<style>
+:root{
+  --ink:#102f3d;
+  --muted:#688391;
+  --line:rgba(22,91,119,.13);
+  --telikom:#0877c9;
+  --telikom-2:#18a4e5;
+  --cyan:#66c8df;
+  --teal:#22aa8b;
+  --green:#28b777;
+  --amber:#f1a64a;
+  --paper:#f8fcfc;
+}
+*{box-sizing:border-box}
+html{background:#f6fbfb}
+body{margin:0;color:var(--ink);font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f6fbfb;overflow-x:hidden}
+button,a{font:inherit}
+.eco-section{
+  position:relative;
+  min-height:100vh;
+  padding:clamp(28px,4vw,62px) clamp(20px,3vw,48px) 64px;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 12% 7%,rgba(51,174,228,.12),transparent 26%),
+    radial-gradient(circle at 84% 5%,rgba(49,190,144,.10),transparent 30%),
+    linear-gradient(180deg,#f5fbfc 0%,#fbfdfd 62%,#f4faf8 100%);
+}
+.eco-section:before,.eco-section:after{content:"";position:absolute;border-radius:999px;filter:blur(80px);pointer-events:none;opacity:.42}
+.eco-section:before{width:460px;height:460px;left:-260px;top:190px;background:#7ed2ed}
+.eco-section:after{width:560px;height:560px;right:-320px;top:80px;background:#a9e2c6}
+.eco-shell{position:relative;z-index:1;max-width:1500px;margin:0 auto}
+.eco-head{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(300px,.78fr);gap:56px;align-items:end;margin-bottom:22px}
+.eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:9px;color:#0575c9;font-size:11px;font-weight:850;letter-spacing:.19em;text-transform:uppercase}
+.eyebrow:before{content:"";width:18px;height:2px;background:linear-gradient(90deg,var(--telikom),var(--cyan));border-radius:99px}
+h1{margin:0;font-size:clamp(36px,4.2vw,68px);line-height:.98;letter-spacing:-.055em;font-weight:790;color:#0f3040}
+.eco-intro{margin:0 0 3px;color:#67818d;font-size:14px;line-height:1.62;max-width:590px}
+.eco-board{
+  position:relative;
+  isolation:isolate;
+  min-height:560px;
+  border:1px solid rgba(44,121,143,.13);
+  border-radius:32px;
+  overflow:hidden;
+  background:linear-gradient(180deg,rgba(247,253,254,.94),rgba(245,251,248,.94));
+  box-shadow:0 28px 80px rgba(19,74,91,.10),0 2px 8px rgba(19,74,91,.04),inset 0 1px 0 rgba(255,255,255,.9);
+  transform:translateZ(0);
+}
+.eco-board:before{content:"";position:absolute;inset:0;pointer-events:none;z-index:8;background:linear-gradient(112deg,rgba(255,255,255,.23),transparent 22% 78%,rgba(255,255,255,.30));mix-blend-mode:screen}
+.eco-world{position:relative;height:474px;overflow:hidden;background:linear-gradient(180deg,#edf9fc 0%,#f3fbf8 54%,#eaf7ef 100%)}
+.eco-world:before{content:"";position:absolute;inset:0;opacity:.28;background-image:linear-gradient(rgba(27,121,149,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(27,121,149,.055) 1px,transparent 1px);background-size:36px 36px;mask-image:linear-gradient(180deg,#000 0%,transparent 70%)}
+.eco-world:after{content:"";position:absolute;left:0;right:0;bottom:0;height:165px;background:linear-gradient(180deg,transparent,rgba(222,244,229,.78));pointer-events:none}
+.eco-map-silhouette{position:absolute;z-index:0;right:11%;top:34px;width:39%;height:auto;opacity:.055;filter:saturate(.2);pointer-events:none}
+.eco-atmosphere{position:absolute;z-index:0;inset:0;pointer-events:none;overflow:hidden}
+.eco-haze{position:absolute;border-radius:50%;filter:blur(26px);opacity:.45}
+.haze-a{width:280px;height:150px;left:7%;top:74px;background:rgba(99,201,226,.22)}
+.haze-b{width:310px;height:170px;right:10%;top:92px;background:rgba(77,204,153,.17)}
+.haze-c{width:240px;height:120px;left:38%;bottom:15px;background:rgba(7,119,201,.10)}
+.eco-svg{position:absolute;z-index:2;inset:0;width:100%;height:100%;overflow:visible;transition:transform .3s ease-out;will-change:transform}
+.eco-zone{transition:opacity .35s ease,filter .35s ease,transform .4s cubic-bezier(.2,.8,.2,1);transform-box:fill-box;transform-origin:center}
+.eco-route{fill:none;stroke-linecap:round;stroke-linejoin:round;opacity:.32;transition:opacity .3s ease,stroke-width .3s ease,filter .3s ease}
+.eco-route.core{stroke:#179ddd;stroke-width:2.25;stroke-dasharray:8 10;animation:routeFlow 4.8s linear infinite}
+.eco-route.satellite{stroke:#61bbd6;stroke-width:1.8;stroke-dasharray:3 10;animation:routeFlow 6.4s linear infinite}
+.eco-route.compute{stroke:#38aa8e;stroke-width:2.1;stroke-dasharray:7 10;animation:routeFlow 5.4s linear infinite}
+.eco-route.cash{stroke:#37b477;stroke-width:2.15;stroke-dasharray:4 9;animation:routeFlow 4.3s linear infinite}
+@keyframes routeFlow{to{stroke-dashoffset:-72}}
+.route-dot{filter:drop-shadow(0 0 5px currentColor)}
+.eco-board[data-active] .eco-zone:not(.is-active){opacity:.34;filter:saturate(.62)}
+.eco-board[data-active] .eco-zone.is-active{opacity:1;filter:saturate(1.08) drop-shadow(0 10px 12px rgba(17,83,103,.09));transform:translateY(-3px)}
+.eco-board[data-active] .eco-route{opacity:.08}
+.eco-board[data-active="network"] .eco-route[data-route="network"],
+.eco-board[data-active="starlink"] .eco-route[data-route="starlink"],
+.eco-board[data-active="telikom"] .eco-route[data-route="telikom"],
+.eco-board[data-active="compute"] .eco-route[data-route="compute"],
+.eco-board[data-active="tcash"] .eco-route[data-route="tcash"]{opacity:.98;stroke-width:3.1;filter:drop-shadow(0 0 5px rgba(27,157,216,.34))}
+.eco-board[data-active="telikom"] .eco-route{opacity:.62}
+.eco-hotspot{
+  position:absolute;z-index:7;width:38px;height:38px;border:1px solid rgba(255,255,255,.95);border-radius:50%;display:grid;place-items:center;
+  color:#0878c9;background:rgba(255,255,255,.88);box-shadow:0 8px 22px rgba(13,81,104,.13),0 0 0 1px rgba(42,147,186,.12);backdrop-filter:blur(10px);
+  cursor:pointer;transition:transform .22s ease,box-shadow .22s ease,background .22s ease,color .22s ease;
+}
+.eco-hotspot:before{content:"";position:absolute;inset:-7px;border:1px solid rgba(44,162,198,.22);border-radius:50%;animation:hotPulse 3.2s ease-out infinite}
+.eco-hotspot span{font-size:9px;font-weight:900;letter-spacing:-.01em}
+.eco-hotspot:hover,.eco-hotspot:focus-visible,.eco-hotspot[aria-pressed="true"]{outline:none;transform:translateY(-2px) scale(1.06);background:#0878c9;color:white;box-shadow:0 11px 26px rgba(8,119,201,.24),0 0 0 5px rgba(8,119,201,.09)}
+.eco-hotspot[aria-pressed="true"]:before{border-color:rgba(8,119,201,.45)}
+@keyframes hotPulse{0%,45%{transform:scale(.8);opacity:0}70%{opacity:.8}100%{transform:scale(1.28);opacity:0}}
+.hot-remote{left:22.5%;top:34%}.hot-people{left:22%;top:72%}.hot-core{left:49.1%;top:47%}.hot-cloud{right:17.4%;top:34.8%}.hot-cash{right:18%;top:72.2%}
+.eco-float-label{position:absolute;z-index:5;pointer-events:none;color:#1f5569}
+.eco-detail{
+  position:absolute;z-index:7;right:20px;top:18px;width:min(330px,31vw);min-width:260px;padding:15px 16px 15px;border:1px solid rgba(31,109,132,.13);border-radius:18px;
+  background:rgba(251,254,254,.84);box-shadow:0 12px 35px rgba(22,78,95,.08);backdrop-filter:blur(16px);transition:opacity .25s ease,transform .25s ease;
+}
+.eco-detail-top{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:8px}
+.eco-detail-kicker{font-size:9px;font-weight:900;letter-spacing:.16em;text-transform:uppercase;color:#0878c9}
+.eco-detail-code{font-size:8px;font-weight:800;letter-spacing:.12em;color:#8ca2aa}
+.eco-detail h3{margin:0 0 5px;font-size:17px;line-height:1.12;letter-spacing:-.025em}
+.eco-detail p{margin:0;color:#67818d;font-size:11px;line-height:1.52}
+.eco-detail-path{display:flex;gap:5px;align-items:center;margin-top:10px;overflow:hidden;white-space:nowrap;color:#4e7887;font-size:8px;font-weight:760;text-transform:uppercase;letter-spacing:.065em}
+.eco-detail-path i{display:block;width:14px;height:1px;background:#aad1dd}
+.eco-bottom{position:relative;z-index:5;min-height:86px;display:grid;grid-template-columns:110px 1fr auto;align-items:center;gap:20px;padding:14px 20px 15px;border-top:1px solid rgba(30,101,124,.10);background:rgba(255,255,255,.79);backdrop-filter:blur(14px)}
+.eco-brand small{display:block;margin-bottom:7px;color:#8aa4ad;font-size:8px;font-weight:900;letter-spacing:.16em;text-transform:uppercase}.eco-brand strong{font-size:12px;color:#0878c9;letter-spacing:-.015em}
+.eco-summary{font-size:16px;font-weight:760;letter-spacing:-.025em}.eco-summary span{display:block;margin-top:4px;color:#8198a1;font-size:9px;font-weight:650;letter-spacing:.05em;text-transform:uppercase}
+.eco-hint{display:flex;align-items:center;gap:10px;color:#78929c;font-size:9px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.eco-hint b{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:#f0f9fd;border:1px solid #bde4f3;color:#0878c9;font-size:13px;transition:transform .2s ease}.eco-hint:hover b{transform:translate(2px,-2px)}
+.scene-label{font-size:11px;font-weight:900;letter-spacing:.085em;fill:#376d7d}.scene-sub{font-size:7px;font-weight:750;letter-spacing:.08em;fill:#86a3ac}.scene-pill{font-size:6px;font-weight:900;letter-spacing:.12em;fill:#fff}.small-caption{font-size:6px;font-weight:850;letter-spacing:.12em;fill:#8ca6ae}
+@keyframes satFloat{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-5px) rotate(1deg)}}
+.satellite-group{animation:satFloat 6s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes serverPulse{0%,100%{opacity:.45}50%{opacity:1}}.server-led:nth-child(2n){animation:serverPulse 2.6s ease-in-out infinite}.server-led:nth-child(3n){animation:serverPulse 3.4s ease-in-out infinite .5s}
+@keyframes antennaPulse{0%,100%{opacity:.15;transform:scale(.82)}55%{opacity:.65;transform:scale(1.05)}}.antenna-ring{animation:antennaPulse 3.6s ease-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes cashPulse{0%,100%{transform:translateX(0);opacity:.55}50%{transform:translateX(8px);opacity:1}}.cash-token{animation:cashPulse 2.5s ease-in-out infinite;transform-box:fill-box}
+@keyframes cloudFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}.cloud-float{animation:cloudFloat 5s ease-in-out infinite;transform-box:fill-box}
+@media (max-width:900px){.eco-section{padding-inline:14px}.eco-head{grid-template-columns:1fr;gap:14px}.eco-intro{max-width:680px}.eco-board{border-radius:23px}.eco-world{overflow-x:auto;overflow-y:hidden}.eco-svg{min-width:940px}.eco-detail{display:none}.eco-hotspot{display:none}.eco-map-silhouette{display:none}.eco-bottom{grid-template-columns:92px 1fr}.eco-hint{display:none}}
+@media (max-width:560px){h1{font-size:38px}.eco-world{height:410px}.eco-svg{height:410px;min-width:820px}.eco-bottom{grid-template-columns:1fr;padding:16px 18px}.eco-brand{display:none}.eco-summary{font-size:14px}}
+@media (prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;scroll-behavior:auto!important;transition-duration:.01ms!important}.eco-svg{transform:none!important}}
+</style>
+</head>
+<body>
+<section class="eco-section" aria-labelledby="ecoTitle">
+  <div class="eco-shell">
+    <header class="eco-head">
+      <div>
+        <div class="eyebrow">Digital PNG ecosystem</div>
+        <h1 id="ecoTitle">One network. Many journeys.</h1>
+      </div>
+      <p class="eco-intro">A living view of how remote communities, people, payments, sovereign compute and Telikom's digital core connect across Papua New Guinea.</p>
+    </header>
+
+    <div class="eco-board" id="ecoBoard">
+      <div class="eco-world" id="ecoWorld">
+        <div class="eco-atmosphere" aria-hidden="true"><i class="eco-haze haze-a"></i><i class="eco-haze haze-b"></i><i class="eco-haze haze-c"></i></div>
+        <img class="eco-map-silhouette" src="assets/design42/png-admin1-national-light.svg" alt="" aria-hidden="true" />
+
+        <svg class="eco-svg" id="ecoSvg" viewBox="0 0 1100 474" role="img" aria-labelledby="ecoSvgTitle ecoSvgDesc">
+          <title id="ecoSvgTitle">Telikom digital Papua New Guinea ecosystem</title>
+          <desc id="ecoSvgDesc">An illustrated landscape connecting a remote Papua New Guinea community, people and businesses, the Telikom network core, Kumul Cloud and T-Cash, with satellite connectivity above.</desc>
+          <defs>
+            <linearGradient id="land" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e4f6e9"/><stop offset=".55" stop-color="#edf9ef"/><stop offset="1" stop-color="#dff2e6"/></linearGradient>
+            <linearGradient id="ridge" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b9dfd4"/><stop offset="1" stop-color="#dff2e8"/></linearGradient>
+            <linearGradient id="blueGlass" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fafdff"/><stop offset="1" stop-color="#dff4fb"/></linearGradient>
+            <linearGradient id="hubFront" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#ffffff"/><stop offset="1" stop-color="#e9f7fb"/></linearGradient>
+            <linearGradient id="hubSide" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#d9eff7"/><stop offset="1" stop-color="#c6e5ef"/></linearGradient>
+            <linearGradient id="telikomBand" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#066fbd"/><stop offset=".65" stop-color="#078bd5"/><stop offset="1" stop-color="#16a1e1"/></linearGradient>
+            <linearGradient id="cloudPanel" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f9fffd"/><stop offset="1" stop-color="#dff6ec"/></linearGradient>
+            <linearGradient id="cashScreen" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#ecfbf3"/><stop offset="1" stop-color="#d8f4e7"/></linearGradient>
+            <radialGradient id="hubGlow"><stop offset="0" stop-color="#21a5e3" stop-opacity=".32"/><stop offset="1" stop-color="#21a5e3" stop-opacity="0"/></radialGradient>
+            <radialGradient id="cloudGlow"><stop offset="0" stop-color="#2db690" stop-opacity=".24"/><stop offset="1" stop-color="#2db690" stop-opacity="0"/></radialGradient>
+            <filter id="shadow" x="-30%" y="-30%" width="160%" height="180%"><feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#16495a" flood-opacity=".12"/></filter>
+            <filter id="miniShadow" x="-30%" y="-40%" width="160%" height="190%"><feDropShadow dx="0" dy="5" stdDeviation="5" flood-color="#174f60" flood-opacity=".11"/></filter>
+            <filter id="blueGlow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+            <clipPath id="remotePhoto"><path d="M41 123 Q61 90 105 93 Q141 59 189 92 Q225 71 279 104 L303 194 Q235 213 166 205 Q93 214 42 187Z"/></clipPath>
+            <clipPath id="peoplePhoto"><circle cx="110" cy="342" r="42"/></clipPath>
+          </defs>
+
+          <!-- landscape -->
+          <path d="M0 207 C99 179 171 191 253 218 C355 252 424 207 514 198 C628 186 705 213 800 191 C910 164 1011 188 1100 171 L1100 474 L0 474Z" fill="url(#land)"/>
+          <path d="M0 206 C84 170 157 174 224 205 C304 242 367 221 429 195 C486 170 548 176 609 195 C668 214 725 212 783 187 C867 150 965 161 1100 169" fill="none" stroke="#cce8df" stroke-width="1.3"/>
+          <path d="M0 227 C106 204 177 214 257 242 C349 274 419 232 507 223 C612 212 695 242 782 221 C886 196 986 211 1100 194" fill="none" stroke="#d4ece5" stroke-width="1" opacity=".9"/>
+          <path d="M0 263 C116 245 206 264 287 286 C375 309 454 278 527 268 C635 254 715 287 813 270 C913 252 1002 262 1100 244" fill="none" stroke="#d8eee7" stroke-width="1" opacity=".75"/>
+
+          <!-- routes -->
+          <g aria-hidden="true">
+            <path class="eco-route satellite" data-route="starlink" d="M541 73 C429 78 318 94 232 128 C197 142 176 153 158 166"/>
+            <path class="eco-route core" data-route="starlink" d="M240 183 C307 207 357 227 438 238"/>
+            <path class="eco-route core" data-route="network" d="M213 346 C286 344 351 324 439 270"/>
+            <path class="eco-route core" data-route="telikom" d="M429 251 C374 250 325 267 282 292"/>
+            <path class="eco-route compute" data-route="compute" d="M563 222 C645 197 698 177 776 181"/>
+            <path class="eco-route cash" data-route="tcash" d="M556 273 C632 304 683 329 764 345"/>
+            <circle r="3.2" fill="#2aa6df" opacity=".95"><animateMotion dur="5.2s" repeatCount="indefinite" path="M213 346 C286 344 351 324 439 270"/></circle>
+            <circle r="3" fill="#36b18f" opacity=".9"><animateMotion dur="6.2s" repeatCount="indefinite" path="M563 222 C645 197 698 177 776 181"/></circle>
+            <circle r="3" fill="#36b979" opacity=".9"><animateMotion dur="4.8s" repeatCount="indefinite" path="M556 273 C632 304 683 329 764 345"/></circle>
+          </g>
+
+          <!-- satellite -->
+          <g class="eco-zone satellite-group" data-zone="starlink" transform="translate(478 37)" filter="url(#miniShadow)">
+            <g transform="rotate(-7 58 28)">
+              <rect x="0" y="17" width="47" height="25" rx="3" fill="#9bc9db" stroke="#4f94af" stroke-width="1"/>
+              <path d="M4 20H44M4 27H44M4 34H44M12 18V41M23 18V41M34 18V41" stroke="#d9eef5" stroke-width=".8"/>
+              <rect x="48" y="23" width="15" height="13" rx="3" fill="#f8fcfd" stroke="#5e9db5"/>
+              <path d="M63 21L85 13L103 19L101 41L80 44L63 35Z" fill="#f9feff" stroke="#5e9db5"/>
+              <circle cx="91" cy="27" r="3" fill="#52c0d9"/>
+              <path d="M55 22L58 12M54 20L49 12" stroke="#5e9db5" stroke-width="1.2"/>
+            </g>
+            <text x="46" y="58" class="small-caption">LOW EARTH ORBIT</text>
+          </g>
+
+          <!-- remote PNG -->
+          <g class="eco-zone is-active" data-zone="starlink">
+            <image href="assets/design42/png-highlands-landscape.png" x="35" y="75" width="280" height="145" preserveAspectRatio="xMidYMid slice" clip-path="url(#remotePhoto)" opacity=".88"/>
+            <path d="M41 123 Q61 90 105 93 Q141 59 189 92 Q225 71 279 104 L303 194 Q235 213 166 205 Q93 214 42 187Z" fill="rgba(11,105,113,.10)" stroke="#b9dfe0" stroke-width="1"/>
+            <path d="M41 161Q88 131 119 149T188 140T260 147T303 132V194Q232 211 166 205Q91 214 42 187Z" fill="rgba(219,242,222,.55)"/>
+            <g transform="translate(81 135)" filter="url(#miniShadow)">
+              <path d="M0 22L25 6L50 22" fill="#f7fcfb" stroke="#69a9ba"/>
+              <rect x="5" y="21" width="40" height="28" rx="2" fill="#fbfefe" stroke="#6ca9ba"/>
+              <rect x="14" y="32" width="8" height="10" fill="#8fd0df" opacity=".8"/>
+              <path d="M50 35L65 25L80 35" fill="#f7fcfb" stroke="#69a9ba"/>
+              <rect x="54" y="34" width="23" height="19" rx="2" fill="#fbfefe" stroke="#6ca9ba"/>
+            </g>
+            <g transform="translate(222 124)">
+              <path d="M9 49V17" stroke="#377d93" stroke-width="1.5"/><path d="M1 49H18" stroke="#377d93" stroke-width="1.5"/>
+              <ellipse cx="10" cy="12" rx="17" ry="7" transform="rotate(-17 10 12)" fill="#fff" stroke="#3c91ac"/>
+              <path d="M10 18L18 31" stroke="#377d93"/>
+              <circle cx="8" cy="8" r="12" fill="none" stroke="#68c7de" opacity=".18" class="antenna-ring"/>
+              <circle cx="8" cy="8" r="21" fill="none" stroke="#68c7de" opacity=".1" class="antenna-ring" style="animation-delay:.8s"/>
+            </g>
+            <g transform="translate(67 212)"><text class="scene-label">REMOTE PNG</text><text y="15" class="scene-sub">COMMUNITY + SATELLITE</text></g>
+          </g>
+
+          <!-- people + business -->
+          <g class="eco-zone" data-zone="network">
+            <circle cx="110" cy="342" r="47" fill="#fff" opacity=".8" filter="url(#miniShadow)"/>
+            <image href="assets/design42/png-people.jpg" x="67" y="299" width="86" height="86" preserveAspectRatio="xMidYMid slice" clip-path="url(#peoplePhoto)" opacity=".9"/>
+            <circle cx="110" cy="342" r="42" fill="none" stroke="#ffffff" stroke-width="3"/>
+            <g transform="translate(159 302)" filter="url(#miniShadow)">
+              <rect x="0" y="29" width="39" height="51" rx="4" fill="#fbfeff" stroke="#6aa8b9"/>
+              <rect x="11" y="40" width="8" height="8" fill="#9bd7e5"/><rect x="23" y="40" width="8" height="8" fill="#9bd7e5"/><rect x="11" y="55" width="8" height="8" fill="#9bd7e5"/><rect x="23" y="55" width="8" height="8" fill="#9bd7e5"/>
+              <rect x="48" y="9" width="48" height="71" rx="5" fill="#fbfeff" stroke="#6aa8b9"/>
+              <rect x="59" y="23" width="10" height="9" fill="#9bd7e5"/><rect x="75" y="23" width="10" height="9" fill="#9bd7e5"/><rect x="59" y="39" width="10" height="9" fill="#9bd7e5"/><rect x="75" y="39" width="10" height="9" fill="#9bd7e5"/>
+              <rect x="104" y="37" width="40" height="43" rx="5" fill="#fbfeff" stroke="#6aa8b9"/><rect x="116" y="49" width="9" height="8" fill="#9bd7e5"/>
+              <path d="M4 29L19 19L35 29M107 37L124 26L141 37" fill="#edf8fa" stroke="#6aa8b9"/>
+            </g>
+            <g transform="translate(71 407)"><text class="scene-label">PEOPLE + BUSINESS</text><text y="15" class="scene-sub">MOBILE · HOME · SME</text></g>
+          </g>
+
+          <!-- Telikom core -->
+          <g class="eco-zone" data-zone="telikom" filter="url(#shadow)">
+            <ellipse cx="509" cy="302" rx="104" ry="46" fill="url(#hubGlow)"/>
+            <g transform="translate(438 126)">
+              <path d="M17 47L73 16L127 46L73 78Z" fill="#e6f6fb" stroke="#479db9" stroke-width="1.4"/>
+              <path d="M17 47L73 78V163L17 133Z" fill="url(#hubFront)" stroke="#479db9" stroke-width="1.4"/>
+              <path d="M73 78L127 46V132L73 163Z" fill="url(#hubSide)" stroke="#479db9" stroke-width="1.4"/>
+              <path d="M17 102L73 132L127 101V126L73 157L17 127Z" fill="url(#telikomBand)"/>
+              <text x="37" y="124" fill="#fff" font-size="11" font-weight="900" letter-spacing=".05em">TELIKOM</text>
+              <g fill="#8ed5e8"><rect x="34" y="66" width="12" height="18" rx="2"/><rect x="56" y="78" width="12" height="18" rx="2"/><rect x="87" y="66" width="12" height="18" rx="2"/></g>
+              <g transform="translate(66 -1)"><path d="M7 18V-4" stroke="#3087a3" stroke-width="2"/><circle cx="7" cy="-5" r="4" fill="#25b47b"/><path d="M-2 3Q7-5 16 3M-8-3Q7-17 22-3" fill="none" stroke="#36b993" stroke-width="1" opacity=".65"/></g>
+              <g transform="translate(87 109)" opacity=".8"><rect x="0" y="0" width="25" height="32" rx="2" fill="#d8edf3"/><path d="M4 7H21M4 13H21M4 19H21M4 25H21" stroke="#6eafc3"/><circle class="server-led" cx="18" cy="7" r="1.4" fill="#22b27d"/><circle class="server-led" cx="18" cy="19" r="1.4" fill="#22b27d"/></g>
+            </g>
+            <g transform="translate(449 311)"><text class="scene-label">TELIKOM DIGITAL CORE</text><text y="15" class="scene-sub">NETWORK + DIGITAL SERVICES</text></g>
+          </g>
+
+          <!-- Kumul Cloud -->
+          <g class="eco-zone" data-zone="compute" filter="url(#shadow)">
+            <ellipse cx="858" cy="235" rx="126" ry="55" fill="url(#cloudGlow)"/>
+            <g transform="translate(770 103)">
+              <path d="M16 49L55 28H151L176 48L139 69H42Z" fill="#e7f6ef" stroke="#45a88f" stroke-width="1.3"/>
+              <path d="M16 49L42 69V142L16 122Z" fill="#e2f4ed" stroke="#45a88f" stroke-width="1.3"/>
+              <path d="M42 69H139V142H42Z" fill="url(#cloudPanel)" stroke="#45a88f" stroke-width="1.3"/>
+              <path d="M139 69L176 48V121L139 142Z" fill="#d3eee5" stroke="#45a88f" stroke-width="1.3"/>
+              <g transform="translate(54 82)"><rect width="21" height="45" rx="3" fill="#d7ede7"/><rect x="28" width="21" height="45" rx="3" fill="#d7ede7"/><rect x="56" width="21" height="45" rx="3" fill="#d7ede7"/><path d="M4 9H17M4 17H17M4 25H17M32 9H45M32 17H45M32 25H45M60 9H73M60 17H73M60 25H73" stroke="#85c1b2" stroke-width="1"/><g fill="#27b37d"><circle class="server-led" cx="17" cy="35" r="1.7"/><circle class="server-led" cx="45" cy="35" r="1.7"/><circle class="server-led" cx="73" cy="35" r="1.7"/></g></g>
+              <rect x="105" y="82" width="23" height="45" rx="5" fill="#effaf6" stroke="#9bd2c4"/><path d="M113 95L119 91L125 95V104C125 111 119 115 119 115S113 111 113 104Z" fill="#36b88e" opacity=".85"/><path d="M116 103L118 105L122 100" fill="none" stroke="#fff" stroke-width="1.4"/>
+              <g class="cloud-float" transform="translate(43 -2)"><path d="M18 35C7 35 1 30 1 22C1 14 7 8 16 8C18 1 24-3 32-3C39-3 45 1 48 6C51 3 56 1 61 1C72 1 81 10 81 21C89 21 95 27 95 35Z" fill="#fbfffd" stroke="#46af94" stroke-width="1.2"/></g>
+              <rect x="116" y="38" width="42" height="14" rx="7" fill="#22aa8b"/><text x="125" y="47.5" class="scene-pill">PNG HOSTED</text>
+            </g>
+            <g transform="translate(785 266)"><text class="scene-label">KUMUL CLOUD</text><text y="15" class="scene-sub">SOVEREIGN CLOUD + AI</text></g>
+          </g>
+
+          <!-- T-Cash -->
+          <g class="eco-zone" data-zone="tcash" filter="url(#miniShadow)">
+            <g transform="translate(761 314)">
+              <rect x="0" y="0" width="47" height="83" rx="11" fill="#f9fdff" stroke="#3a9cb9" stroke-width="1.5"/>
+              <rect x="7" y="12" width="33" height="55" rx="6" fill="url(#cashScreen)"/>
+              <path d="M15 38H32M15 45H28" stroke="#7fc7ae" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="23.5" cy="74" r="2" fill="#76b7ca"/>
+              <rect x="129" y="0" width="47" height="83" rx="11" fill="#f9fdff" stroke="#3a9cb9" stroke-width="1.5"/>
+              <rect x="136" y="12" width="33" height="55" rx="6" fill="url(#cashScreen)"/>
+              <circle cx="152.5" cy="39" r="12" fill="#d2f2e2"/><path d="M146 39L151 44L160 33" fill="none" stroke="#21ad6d" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="152.5" cy="74" r="2" fill="#76b7ca"/>
+              <path d="M53 42H123" stroke="#5dbf91" stroke-width="1.5" stroke-dasharray="4 6"/>
+              <g class="cash-token"><circle cx="84" cy="42" r="13" fill="#22af77"/><text x="79" y="46" fill="#fff" font-size="11" font-weight="900">K</text></g>
+            </g>
+            <g transform="translate(780 414)"><text class="scene-label">T-CASH</text><text y="15" class="scene-sub">KINA MOVES USER TO USER</text></g>
+          </g>
+        </svg>
+
+        <button class="eco-hotspot hot-remote" type="button" data-service="starlink" aria-label="Explore remote PNG connectivity" aria-pressed="false"><span>S</span></button>
+        <button class="eco-hotspot hot-people" type="button" data-service="network" aria-label="Explore people and business connectivity" aria-pressed="false"><span>N</span></button>
+        <button class="eco-hotspot hot-core" type="button" data-service="telikom" aria-label="Explore Telikom digital core" aria-pressed="false"><span>T</span></button>
+        <button class="eco-hotspot hot-cloud" type="button" data-service="compute" aria-label="Explore Kumul Cloud" aria-pressed="false"><span>C</span></button>
+        <button class="eco-hotspot hot-cash" type="button" data-service="tcash" aria-label="Explore T-Cash" aria-pressed="false"><span>K</span></button>
+
+        <aside class="eco-detail" id="ecoDetail" aria-live="polite">
+          <div class="eco-detail-top"><span class="eco-detail-kicker" id="detailKicker">Digital PNG</span><span class="eco-detail-code" id="detailCode">ECOSYSTEM</span></div>
+          <h3 id="detailTitle">One Telikom ecosystem.</h3>
+          <p id="detailText">Hover or tap a service to follow one journey through connectivity, compute and digital services.</p>
+          <div class="eco-detail-path" id="detailPath"><span>Community</span><i></i><span>Telikom</span><i></i><span>Digital PNG</span></div>
+        </aside>
+      </div>
+
+      <footer class="eco-bottom">
+        <div class="eco-brand"><small>Digital PNG</small><strong>ECOSYSTEM</strong></div>
+        <div class="eco-summary" id="ecoSummary">One Telikom ecosystem.<span id="ecoSummarySub">Remote PNG · Network · Cloud · Payments</span></div>
+        <div class="eco-hint"><span>Hover or tap a service</span><b>↗</b></div>
+      </footer>
+    </div>
+  </div>
+</section>
+<script>
+(()=>{
+  const board=document.getElementById('ecoBoard');
+  const world=document.getElementById('ecoWorld');
+  const svg=document.getElementById('ecoSvg');
+  const buttons=[...document.querySelectorAll('.eco-hotspot')];
+  const zones=[...document.querySelectorAll('.eco-zone')];
+  const detail={kicker:document.getElementById('detailKicker'),code:document.getElementById('detailCode'),title:document.getElementById('detailTitle'),text:document.getElementById('detailText'),path:document.getElementById('detailPath'),summary:document.getElementById('ecoSummary'),sub:document.getElementById('ecoSummarySub')};
+  const copy={
+    starlink:{kicker:'Remote PNG',code:'SATELLITE + COMMUNITY',title:'Reach beyond the road.',text:'Satellite and wireless access can bring remote communities back into the same Telikom digital ecosystem.',path:['Remote community','Satellite','Telikom core'],summary:'Remote PNG stays connected.',sub:'Community · Satellite · Telikom'},
+    network:{kicker:'People + business',code:'MOBILE · HOME · SME',title:'Connectivity becomes opportunity.',text:'Homes, mobile users and local businesses share the same network layer, keeping everyday digital life moving.',path:['People + SME','Access network','Telikom core'],summary:'One network for everyday PNG.',sub:'People · Home · Business'},
+    telikom:{kicker:'Telikom',code:'DIGITAL CORE',title:'The heart of the ecosystem.',text:'Telikom sits at the centre, connecting access networks, digital services, sovereign compute and payment journeys.',path:['Access','Telikom core','Digital services'],summary:'Telikom is the connecting layer.',sub:'Network · Core · Digital services'},
+    compute:{kicker:'Kumul Cloud',code:'SOVEREIGN CLOUD + AI',title:'PNG-hosted digital infrastructure.',text:'Sovereign compute keeps services and workloads close to home while connecting back into Telikom\'s wider digital layer.',path:['Telikom core','Secure data','Kumul Cloud'],summary:'Sovereign compute, connected.',sub:'Telikom · Data · Kumul Cloud'},
+    tcash:{kicker:'T-Cash',code:'DIGITAL PAYMENTS',title:'Value moves as easily as data.',text:'A simple user-to-user payment becomes a visible network journey, from phone to Telikom and back to another user.',path:['User','Telikom','User / merchant'],summary:'Kina moves through the ecosystem.',sub:'User · Network · User'}
+  };
+  function renderPath(items){return items.map((x,i)=>`<span>${x}</span>${i<items.length-1?'<i></i>':''}`).join('')}
+  function activate(key,pin=true){
+    const d=copy[key]; if(!d)return;
+    board.dataset.active=key;
+    zones.forEach(z=>z.classList.toggle('is-active',z.dataset.zone===key||key==='telikom'));
+    buttons.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.service===key)));
+    detail.kicker.textContent=d.kicker; detail.code.textContent=d.code; detail.title.textContent=d.title; detail.text.textContent=d.text; detail.path.innerHTML=renderPath(d.path);
+    detail.summary.childNodes[0].nodeValue=d.summary; detail.sub.textContent=d.sub;
+    board.dataset.pinned=pin?'true':'false';
+  }
+  function reset(){
+    delete board.dataset.active; delete board.dataset.pinned;
+    zones.forEach(z=>z.classList.remove('is-active'));
+    buttons.forEach(b=>b.setAttribute('aria-pressed','false'));
+    detail.kicker.textContent='Digital PNG'; detail.code.textContent='ECOSYSTEM'; detail.title.textContent='One Telikom ecosystem.'; detail.text.textContent='Hover or tap a service to follow one journey through connectivity, compute and digital services.'; detail.path.innerHTML=renderPath(['Community','Telikom','Digital PNG']);
+    detail.summary.childNodes[0].nodeValue='One Telikom ecosystem.'; detail.sub.textContent='Remote PNG · Network · Cloud · Payments';
+  }
+  buttons.forEach(btn=>{
+    btn.addEventListener('mouseenter',()=>activate(btn.dataset.service,false));
+    btn.addEventListener('focus',()=>activate(btn.dataset.service,false));
+    btn.addEventListener('click',()=>{
+      const same=board.dataset.active===btn.dataset.service&&board.dataset.pinned==='true';
+      same?reset():activate(btn.dataset.service,true);
+    });
+  });
+  board.addEventListener('mouseleave',()=>{if(board.dataset.pinned!=='true')reset()});
+  world.addEventListener('pointermove',e=>{
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+    const r=world.getBoundingClientRect(); const x=(e.clientX-r.left)/r.width-.5; const y=(e.clientY-r.top)/r.height-.5;
+    svg.style.transform=`translate3d(${x*-5}px,${y*-3}px,0)`;
+  });
+  world.addEventListener('pointerleave',()=>svg.style.transform='translate3d(0,0,0)');
+})();
+</script>
+</body>
+</html>
