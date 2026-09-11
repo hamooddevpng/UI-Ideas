@@ -2544,5 +2544,162 @@ footer{
 })();
 </script>
 
+<style>
+/* Design 42: brighter Telikom palette v2
+   Home-4-inspired blues without the white-heavy page treatment */
+:root{
+  --deep-bg:#237f9f;
+  --page-blue:#f2f9fc;
+  --page-blue-2:#e8f5fa;
+  --page-blue-3:#dceff6;
+  --feature-blue:#207b9d;
+  --feature-blue-2:#3094b2;
+  --feature-blue-3:#47abc4;
+  --footer-blue:#176a89;
+  --footer-blue-2:#115a77;
+  --ink:#10384c;
+  --muted:#5f7f8f;
+}
+html{background:var(--page-blue)!important}
+body{background:var(--page-blue)!important;color:var(--ink)!important}
+
+/* Light page rhythm: blue-tinted canvases rather than full white bands */
+.offers,.raffle-offers,.updates,.updates-live{background:#f8fcfd!important}
+.services,.service-lab{background:#edf8fb!important}
+.support,.support-orbit{background:#e4f3f9!mportant}
+.quick-actions,.quick-launchpad{background:transparent!important}
+.personal-offer,.updates-console,.news-feature{box-shadow:0 18px 46px rgba(36,119,151,.09)!important}
+
+/* Header and hero: much brighter Telikom blue family */
+.site-header.scrolled{
+  background:rgba(25,109,141,.94)!important;
+  border-bottom-color:rgba(255,255,255,.18)!important;
+}
+.hero{background:#1c7396!important}
+.scene-phone{
+  background:
+    radial-gradient(circle at 78% 42%,rgba(126,220,255,.38),transparent 31%),
+    linear-gradient(118deg,#196d91 0%,#2788a9 55%,#49adc6 100%)!important;
+}
+.scene-phone:after{
+  background:linear-gradient(90deg,rgba(17,84,112,.48) 0%,rgba(24,117,149,.22) 45%,rgba(51,157,184,.04) 74%,transparent 100%)!important;
+}
+.scene-enterprise{
+  background:
+    radial-gradient(circle at 77% 49%,rgba(156,231,255,.34),transparent 29%),
+    linear-gradient(120deg,#1b7397 0%,#2d90ae 58%,#4baac2 100%)!important;
+}
+.hero[data-scene-index="2"] .scene-enterprise:after{
+  background:linear-gradient(90deg,rgba(16,86,112,.38) 0%,rgba(28,133,161,.14) 52%,rgba(66,169,194,.02) 78%,transparent 100%)!important;
+}
+.grid-plane{opacity:.72!important}
+.scene-tabs{background:rgba(17,90,119,.42)!important;border-color:rgba(255,255,255,.22)!important}
+
+/* Service visual: medium blue instead of navy */
+.service-stage{
+  background:linear-gradient(145deg,#1d7598 0%,#2b91b1 58%,#43a9c4 100%)!important;
+  box-shadow:0 26px 62px rgba(32,113,146,.16)!important;
+}
+.service-art{
+  background:
+    radial-gradient(circle at 72% 35%,rgba(177,235,255,.34),transparent 27%),
+    linear-gradient(145deg,#1c7395,#2f97b5)!important;
+}
+.service-caption p{color:#d9f2fa!important}
+
+/* Business section: strong blue, still premium, no near-black field */
+.business{
+  background:
+    radial-gradient(circle at 78% 42%,rgba(126,222,255,.18),transparent 31%),
+    linear-gradient(135deg,#1a7195 0%,#2b8ead 57%,#43a6bf 100%)!important;
+}
+.business .lead{color:#d3edf6!important}
+.business .kicker{color:#d9f6ff!important}
+.biz-panel,.business-console{
+  background:linear-gradient(145deg,rgba(255,255,255,.17),rgba(255,255,255,.07))!important;
+  border-color:rgba(255,255,255,.24)!important;
+  box-shadow:0 25px 65px rgba(20,88,115,.16)!important;
+}
+.solution-list,.solution{border-color:rgba(255,255,255,.20)!important}
+.solution small{color:#c4e6f1!important}
+
+/* Customer Care: clearly lighter than previous pass */
+.support-orbit .support-stage{
+  background:
+    radial-gradient(circle at 82% 48%,rgba(198,242,255,.22),transparent 35%),
+    linear-gradient(145deg,#2b86a5 0%,#3b9ab6 52%,#50aec6 100%)!important;
+  box-shadow:0 24px 58px rgba(42,126,156,.13)!important;
+}
+.support-orbit .support-link{
+  background:rgba(24,103,133,.27)!important;
+  border-color:rgba(235,250,255,.32)!important;
+  box-shadow:none!important;
+}
+.support-orbit .support-link:hover{
+  background:#fff!important;
+  color:#15506a!important;
+}
+.support-orbit .support-radar i,
+.support-orbit .support-radar span{border-color:rgba(224,249,255,.25)!important}
+.support-hint{color:#c5e6f0!important}
+
+/* Assistant: blue interface, not a dark drawer */
+.telikom-ai-panel{
+  background:
+    radial-gradient(circle at 86% 8%,rgba(153,231,255,.24),transparent 29%),
+    linear-gradient(180deg,#247c9d 0%,#3296b3 57%,#297f9e 100%)!important;
+  box-shadow:-20px 0 65px rgba(31,102,129,.20)!important;
+}
+.telikom-ai-head{
+  background:rgba(25,105,136,.72)!important;
+  border-bottom-color:rgba(255,255,255,.18)!important;
+}
+.telikom-ai-chip,
+.telikom-ai-msg.bot,
+.telikom-ai-form{
+  background:rgba(18,87,116,.27)!important;
+  border-color:rgba(226,247,255,.28)!important;
+}
+.telikom-ai-compose{
+  background:rgba(24,102,132,.78)!important;
+  border-top-color:rgba(255,255,255,.18)!important;
+}
+.telikom-ai-panel p,
+.telikom-ai-panel small{color:#d9eff6!important}
+
+/* Active/compact dark elements now use mid Telikom blue */
+.btn.dark,
+.personal-offer-icon{
+  background:#207b9d!important;
+  border-color:#207b9d!important;
+}
+.offer-option:hover,.offer-option.active{
+  background:#247f9f!important;
+  color:#fff!important;
+}
+.offer-option:hover small,.offer-option.active small{color:#cfeaf4!important}
+
+/* Footer remains the darkest large section, but is no longer navy */
+footer{
+  background:
+    radial-gradient(circle at 16% 20%,rgba(91,190,221,.17),transparent 30%),
+    linear-gradient(180deg,#176a89 0%,#115a77 100%)!important;
+}
+.footer-top{border-bottom-color:rgba(255,255,255,.24)!important}
+.footer-brand p,
+.footer-col a,
+.footer-bottom{color:#d4eaf2!important}
+.footer-col b{color:#fff!important}
+.footer-social-icon{
+  background:rgba(255,255,255,.10)!important;
+  border-color:rgba(255,255,255,.28)!important;
+}
+
+/* Preserve deep navy only as a small accent, never a huge fill */
+.float-pill,.scene-tabs,.news-live-badge{
+  background:rgba(15,77,103,.58)!important;
+}
+</style>
+
 </body>
 </html>
