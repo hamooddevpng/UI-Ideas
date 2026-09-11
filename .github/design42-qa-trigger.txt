@@ -1,2 +1,2 @@
 Visual QA trigger for Design 42.
-Run: daylight-palette-v3-artifact
+Run: daylight-palette-v3-scrolled
