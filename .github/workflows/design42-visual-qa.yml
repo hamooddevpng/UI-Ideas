@@ -1,0 +1,74 @@
+name: Design 42 Visual QA
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '42.html'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: design42-visual-qa
+  cancel-in-progress: true
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install Playwright
+        run: |
+          npm install --no-save playwright
+          npx playwright install chromium
+      - name: Start local server
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/design42-http.log 2>&1 &
+          sleep 1
+      - name: Capture Design 42 desktop and mobile
+        run: |
+          mkdir -p qa/design42
+          node <<'EOF'
+          const { chromium } = require('playwright');
+          const path = require('path');
+          (async()=>{
+            const browser = await chromium.launch({headless:true});
+            const shots = [
+              {name:'latest-desktop.jpg', viewport:{width:1440,height:900}},
+              {name:'latest-mobile.jpg', viewport:{width:390,height:844}}
+            ];
+            for (const shot of shots) {
+              const context = await browser.newContext({viewport:shot.viewport, deviceScaleFactor:1});
+              const page = await context.newPage();
+              await page.goto('http://127.0.0.1:4173/42.html', {waitUntil:'networkidle', timeout:30000});
+              await page.waitForTimeout(1800);
+              await page.evaluate(() => window.scrollTo(0,0));
+              await page.screenshot({
+                path:path.join('qa','design42',shot.name),
+                type:'jpeg',
+                quality:86,
+                fullPage:true,
+                animations:'disabled',
+                timeout:30000
+              });
+              await context.close();
+            }
+            await browser.close();
+          })().catch(e=>{console.error(e);process.exit(1)});
+          EOF
+      - name: Commit visual QA screenshots
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add qa/design42/latest-desktop.jpg qa/design42/latest-mobile.jpg
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "chore: refresh Design 42 visual QA screenshots"
+          git pull --rebase origin main
+          git push origin main
