@@ -1,0 +1,31 @@
+name: Apply Design 42 simple lasers v11
+
+on:
+  push:
+    branches:
+      - fix/design42-simple-lasers-v11
+    paths:
+      - .github/workflows/design42-simple-lasers-v11.yml
+      - scripts/patch_design42_lasers_v11.py
+
+permissions:
+  contents: write
+
+jobs:
+  patch-design-42:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/design42-simple-lasers-v11
+          fetch-depth: 0
+      - name: Patch Design 42
+        run: python scripts/patch_design42_lasers_v11.py
+      - name: Commit result
+        run: |
+          rm -f .github/workflows/design42-simple-lasers-v11.yml scripts/patch_design42_lasers_v11.py
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet || git commit -m "fix: use simple visible province lasers in Design 42"
+          git push origin HEAD:fix/design42-simple-lasers-v11
