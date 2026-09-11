@@ -1,0 +1,67 @@
+name: Polish Design 42 Daylight Palette
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/polish-design42-daylight-palette.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  polish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Apply visual polish
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('42-base.html')
+          s=p.read_text()
+          marker='/* Design 42: daylight palette polish v4 */'
+          if marker in s:
+              raise SystemExit(0)
+          css=r'''
+          <style>
+          /* Design 42: daylight palette polish v4 */
+          /* The lush VSAT photograph needs light type. Dark navy looked muddy against the valley. */
+          .hero[data-scene-index="1"] .hero-copy h1{
+            color:#fff!important;
+            text-shadow:0 3px 26px rgba(4,39,54,.38),0 1px 2px rgba(4,39,54,.32)!important;
+          }
+          .hero[data-scene-index="1"] .hero-copy p{
+            color:#f2fbfd!important;
+            text-shadow:0 2px 15px rgba(4,39,54,.42)!important;
+          }
+          .hero[data-scene-index="1"] .eyebrow{color:#e6f9ff!important}
+          .hero[data-scene-index="1"] .btn:not(.primary){
+            border-color:rgba(255,255,255,.48)!important;
+            background:rgba(6,58,78,.18)!important;
+            backdrop-filter:blur(8px);
+          }
+          /* Keep pale sections visually distinct without becoming a white wall. */
+          .offers,.raffle-offers{background:#faf8f3!important}
+          .services,.service-lab,.service-stories{background:#eaf4f7!important}
+          .digital-ecosystem{background:#f7f5ef!important}
+          .updates,.updates-live{background:#edf5f7!important}
+          .support,.support-orbit{background:#f5f2eb!important}
+          </style>
+          '''
+          if '</body>' not in s:
+              raise SystemExit('42-base.html has no closing body tag')
+          s=s.replace('</body>',css+'\n</body>',1)
+          p.write_text(s)
+          PY
+      - name: Commit polish
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add 42-base.html
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "style: polish Design 42 daylight palette after visual QA"
+          git pull --rebase origin main
+          git push origin main
