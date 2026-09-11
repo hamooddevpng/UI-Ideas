@@ -1,0 +1,117 @@
+name: Apply Design 42 lighter palette to main
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/apply-design42-light-palette-main.yml
+
+permissions:
+  contents: write
+
+jobs:
+  apply-palette:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Apply lighter Design 42 backgrounds
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          p = Path('42.html')
+          s = p.read_text(encoding='utf-8')
+
+          if '--deep-bg:#0b3d57;' not in s:
+              s = s.replace('--navy2:#0a2838;', '--navy2:#0a2838;--deep-bg:#0b3d57;', 1)
+
+          bg_decl = re.compile(r'background(?:-color)?\s*:[^;}{]+', re.I)
+          def clean_bg(match):
+              value = match.group(0)
+              value = value.replace('var(--navy)', 'var(--deep-bg)')
+              value = value.replace('#061925', 'var(--deep-bg)')
+              value = value.replace('rgba(6,25,37,', 'rgba(11,61,87,')
+              value = value.replace('rgb(6,25,37)', 'rgb(11,61,87)')
+              return value
+          s = bg_decl.sub(clean_bg, s)
+
+          marker = 'Design 42: targeted lighter dark sections v1'
+          if marker not in s:
+              block = '''
+<style>
+/* Design 42: targeted lighter dark sections v1 */
+:root{
+  --section-mid:#164f68;
+  --section-mid-2:#1b5f79;
+  --section-mid-deep:#103d52;
+}
+.scene-enterprise{
+  background:
+    radial-gradient(circle at 76% 50%,rgba(87,203,255,.24),transparent 27%),
+    linear-gradient(120deg,#12465d 0%,#1b5872 58%,#17617a 100%)!important;
+}
+.hero[data-scene-index="2"] .scene-enterprise:after{
+  background:linear-gradient(90deg,rgba(10,48,64,.34) 0%,rgba(10,48,64,.17) 46%,rgba(10,48,64,.03) 74%,transparent 100%)!important;
+}
+.support-orbit .support-stage{
+  background:
+    radial-gradient(circle at 82% 48%,rgba(107,213,255,.13),transparent 34%),
+    linear-gradient(145deg,#174d64 0%,#1d5a72 52%,#205f78 100%)!important;
+  box-shadow:0 26px 64px rgba(18,70,91,.16)!important;
+}
+.support-orbit .support-link{
+  background:rgba(8,42,57,.34)!important;
+  border-color:rgba(210,243,255,.17)!important;
+}
+.support-orbit .support-link:hover{background:#fff!important}
+.telikom-ai-panel{
+  background:
+    radial-gradient(circle at 85% 8%,rgba(62,187,235,.18),transparent 28%),
+    linear-gradient(180deg,#123f55 0%,#17526b 58%,#103b50 100%)!important;
+}
+.telikom-ai-head{
+  background:rgba(18,67,88,.78)!important;
+  border-bottom-color:rgba(255,255,255,.13)!important;
+}
+.telikom-ai-chip,
+.telikom-ai-msg.bot,
+.telikom-ai-form{
+  background:rgba(7,38,52,.34)!important;
+  border-color:rgba(179,228,246,.18)!important;
+}
+.telikom-ai-compose{
+  background:rgba(11,49,66,.86)!important;
+  border-top-color:rgba(255,255,255,.12)!important;
+}
+footer{
+  background:linear-gradient(180deg,#174d64 0%,#123f55 100%)!important;
+}
+.footer-top{border-bottom-color:rgba(255,255,255,.17)!important}
+.footer-brand p,
+.footer-col a,
+.footer-bottom{color:#b6d3df!important}
+</style>
+'''
+              if '</body>' not in s:
+                  raise SystemExit('body close not found')
+              s = s.replace('</body>', block + '\n</body>', 1)
+
+          p.write_text(s, encoding='utf-8')
+          PY
+
+      - name: Commit palette
+        shell: bash
+        run: |
+          rm -f .github/workflows/apply-design42-light-palette-main.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet || git commit -m "style: lighten key Design 42 dark sections"
+          git push origin HEAD:main
