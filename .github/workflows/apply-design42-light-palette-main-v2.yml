@@ -1,0 +1,58 @@
+name: Apply Design 42 lighter palette v2
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/apply-design42-light-palette-main-v2.yml
+
+permissions:
+  contents: write
+
+jobs:
+  apply-palette:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Apply palette
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re, base64
+          p = Path('42.html')
+          s = p.read_text(encoding='utf-8')
+          if '--deep-bg:#0b3d57;' not in s:
+              s = s.replace('--navy2:#0a2838;', '--navy2:#0a2838;--deep-bg:#0b3d57;', 1)
+          bg_decl = re.compile(r'background(?:-color)?\s*:[^;}{]+', re.I)
+          def clean_bg(match):
+              value = match.group(0)
+              value = value.replace('var(--navy)', 'var(--deep-bg)')
+              value = value.replace('#061925', 'var(--deep-bg)')
+              value = value.replace('rgba(6,25,37,', 'rgba(11,61,87,')
+              value = value.replace('rgb(6,25,37)', 'rgb(11,61,87)')
+              return value
+          s = bg_decl.sub(clean_bg, s)
+          marker = 'Design 42: targeted lighter dark sections v1'
+          if marker not in s:
+              css_b64 = 'PHN0eWxlPgovKiBEZXNpZ24gNDI6IHRhcmdldGVkIGxpZ2h0ZXIgZGFyayBzZWN0aW9ucyB2MSAqLwo6cm9vdHsKICAtLXNlY3Rpb24tbWlkOiMxNjRmNjg7CiAgLS1zZWN0aW9uLW1pZC0yOiMxYjVmNzk7CiAgLS1zZWN0aW9uLW1pZC1kZWVwOiMxMDNkNTI7Cn0KLnNjZW5lLWVudGVycHJpc2V7CiAgYmFja2dyb3VuZDoKICAgIHJhZGlhbC1ncmFkaWVudChjaXJjbGUgYXQgNzYlIDUwJSxyZ2JhKDg3LDIwMywyNTUsLjI0KSx0cmFuc3BhcmVudCAyNyUpLAogICAgbGluZWFyLWdyYWRpZW50KDEyMGRlZywjMTI0NjVkIDAlLCMxYjU4NzIgNTglLCMxNzYxN2EgMTAwJSkhaW1wb3J0YW50Owp9Ci5oZXJvW2RhdGEtc2NlbmUtaW5kZXg9IjIiXSAuc2NlbmUtZW50ZXJwcmlzZTphZnRlcnsKICBiYWNrZ3JvdW5kOmxpbmVhci1ncmFkaWVudCg5MGRlZyxyZ2JhKDEwLDQ4LDY0LC4zNCkgMCUscmdiYSgxMCw0OCw2NCwuMTcpIDQ2JSxyZ2JhKDEwLDQ4LDY0LC4wMykgNzQlLHRyYW5zcGFyZW50IDEwMCUpIWltcG9ydGFudDsKfQouc3VwcG9ydC1vcmJpdCAuc3VwcG9ydC1zdGFnZXsKICBiYWNrZ3JvdW5kOgogICAgcmFkaWFsLWdyYWRpZW50KGNpcmNsZSBhdCA4MiUgNDglLHJnYmEoMTA3LDIxMywyNTUsLjEzKSx0cmFuc3BhcmVudCAzNCUpLAogICAgbGluZWFyLWdyYWRpZW50KDE0NWRlZywjMTc0ZDY0IDAlLCMxZDVhNzIgNTIlLCMyMDVmNzggMTAwJSkhaW1wb3J0YW50OwogIGJveC1zaGFkb3c6MCAyNnB4IDY0cHggcmdiYSgxOCw3MCw5MSwuMTYpIWltcG9ydGFudDsKfQouc3VwcG9ydC1vcmJpdCAuc3VwcG9ydC1saW5rewogIGJhY2tncm91bmQ6cmdiYSg4LDQyLDU3LC4zNCkhaW1wb3J0YW50OwogIGJvcmRlci1jb2xvcjpyZ2JhKDIxMCwyNDMsMjU1LC4xNykhaW1wb3J0YW50Owp9Ci5zdXBwb3J0LW9yYml0IC5zdXBwb3J0LWxpbms6aG92ZXJ7YmFja2dyb3VuZDojZmZmIWltcG9ydGFudH0KLnRlbGlrb20tYWktcGFuZWx7CiAgYmFja2dyb3VuZDoKICAgIHJhZGlhbC1ncmFkaWVudChjaXJjbGUgYXQgODUlIDglLHJnYmEoNjIsMTg3LDIzNSwuMTgpLHRyYW5zcGFyZW50IDI4JSksCiAgICBsaW5lYXItZ3JhZGllbnQoMTgwZGVnLCMxMjNmNTUgMCUsIzE3NTI2YiA1OCUsIzEwM2I1MCAxMDAlKSFpbXBvcnRhbnQ7Cn0KLnRlbGlrb20tYWktaGVhZHsKICBiYWNrZ3JvdW5kOnJnYmEoMTgsNjcsODgsLjc4KSFpbXBvcnRhbnQ7CiAgYm9yZGVyLWJvdHRvbS1jb2xvcjpyZ2JhKDI1NSwyNTUsMjU1LC4xMykhaW1wb3J0YW50Owp9Ci50ZWxpa29tLWFpLWNoaXAsCi50ZWxpa29tLWFpLW1zZy5ib3QsCi50ZWxpa29tLWFpLWZvcm17CiAgYmFja2dyb3VuZDpyZ2JhKDcsMzgsNTIsLjM0KSFpbXBvcnRhbnQ7CiAgYm9yZGVyLWNvbG9yOnJnYmEoMTc5LDIyOCwyNDYsLjE4KSFpbXBvcnRhbnQ7Cn0KLnRlbGlrb20tYWktY29tcG9zZXsKICBiYWNrZ3JvdW5kOnJnYmEoMTEsNDksNjYsLjg2KSFpbXBvcnRhbnQ7CiAgYm9yZGVyLXRvcC1jb2xvcjpyZ2JhKDI1NSwyNTUsMjU1LC4xMikhaW1wb3J0YW50Owp9CmZvb3RlcnsKICBiYWNrZ3JvdW5kOmxpbmVhci1ncmFkaWVudCgxODBkZWcsIzE3NGQ2NCAwJSwjMTIzZjU1IDEwMCUpIWltcG9ydGFudDsKfQouZm9vdGVyLXRvcHtib3JkZXItYm90dG9tLWNvbG9yOnJnYmEoMjU1LDI1NSwyNTUsLjE3KSFpbXBvcnRhbnR9Ci5mb290ZXItYnJhbmQgcCwKLmZvb3Rlci1jb2wgYSwKLmZvb3Rlci1ib3R0b217Y29sb3I6I2I2ZDNkZiFpbXBvcnRhbnR9Cjwvc3R5bGU+'
+              block = base64.b64decode(css_b64).decode('utf-8')
+              if '</body>' not in s:
+                  raise SystemExit('body close not found')
+              s = s.replace('</body>', block + '\n</body>', 1)
+          p.write_text(s, encoding='utf-8')
+          PY
+      - name: Commit result
+        shell: bash
+        run: |
+          rm -f .github/workflows/apply-design42-light-palette-main-v2.yml
+          rm -f .github/workflows/apply-design42-light-palette-main.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet || git commit -m "style: lighten key Design 42 dark sections"
+          git push origin HEAD:main
