@@ -1,0 +1,66 @@
+name: Add Design 42 footer social icons
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/add-design42-footer-social.yml
+
+permissions:
+  contents: write
+
+jobs:
+  add-social-icons:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Add footer social icon row
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          p = Path('42.html')
+          s = p.read_text(encoding='utf-8')
+          marker = 'Design 42 footer social icons'
+          if marker in s:
+              raise SystemExit(0)
+
+          old = '<p>100% PNG owned telecommunications company.</p></div>'
+          social = '''<p>100% PNG owned telecommunications company.</p><div class="footer-social" aria-label="Telikom social media"><a class="footer-social-icon" href="#" onclick="event.preventDefault()" aria-label="Facebook" title="Facebook"><span class="social-facebook" aria-hidden="true">f</span></a><a class="footer-social-icon" href="#" onclick="event.preventDefault()" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4.5" y="4.5" width="15" height="15" rx="4" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="3.3" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.2" cy="6.9" r="1.1" fill="currentColor"/></svg></a><a class="footer-social-icon" href="https://www.linkedin.com/company/telikomltdpng" target="_blank" rel="noreferrer" aria-label="LinkedIn" title="LinkedIn"><span class="social-linkedin" aria-hidden="true">in</span></a><a class="footer-social-icon" href="#" onclick="event.preventDefault()" aria-label="YouTube" title="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="6.5" width="17" height="11" rx="3.2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M10 9.3 15 12l-5 2.7z" fill="currentColor"/></svg></a></div></div>'''
+          if old not in s:
+              raise SystemExit('footer brand target not found')
+          s = s.replace(old, social, 1)
+
+          css = '''
+<style>
+/* Design 42 footer social icons */
+.footer-social{display:flex;align-items:center;gap:8px;margin-top:16px}
+.footer-social-icon{width:34px;height:34px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.06);color:#e8f7fd;transition:transform .28s var(--spring),background .28s,border-color .28s,color .28s;backdrop-filter:blur(8px)}
+.footer-social-icon:hover,.footer-social-icon:focus-visible{transform:translateY(-3px);background:#fff;border-color:#fff;color:#123f55;outline:none;box-shadow:0 10px 24px rgba(2,20,31,.18)}
+.footer-social-icon svg{width:16px;height:16px;display:block}
+.social-facebook{font-family:Arial,sans-serif;font-size:19px;font-weight:700;line-height:1;transform:translateY(1px)}
+.social-linkedin{font-family:Arial,sans-serif;font-size:12px;font-weight:800;letter-spacing:-.04em;line-height:1}
+@media(max-width:820px){.footer-social{margin-top:14px}.footer-social-icon{width:36px;height:36px}}
+</style>
+'''
+          if '</body>' not in s:
+              raise SystemExit('body close not found')
+          s = s.replace('</body>', css + '\n</body>', 1)
+          p.write_text(s, encoding='utf-8')
+          PY
+
+      - name: Commit social icons
+        shell: bash
+        run: |
+          rm -f .github/workflows/add-design42-footer-social.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet || git commit -m "style: add social media icons to Design 42 footer"
+          git push origin HEAD:main
