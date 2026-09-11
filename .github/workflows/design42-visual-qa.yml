@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - '42.html'
+      - '.github/design42-qa-trigger.txt'
 
 permissions:
   contents: write
