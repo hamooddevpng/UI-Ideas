@@ -108,7 +108,7 @@ footer{background:linear-gradient(180deg,#315b75 0%,#284b63 100%)!important}
 }
 @media(prefers-reduced-motion:reduce){.support-orbit,.support-orbit:before,.support-orbit:after,.support-orbit .support-stage:after{animation:none!important}}
 `;
-    page.head.appendChild(palette);
+    page.body.appendChild(palette);
 
     document.open();
     document.write('<!doctype html>'+page.documentElement.outerHTML);
