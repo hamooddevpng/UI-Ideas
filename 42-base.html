@@ -2450,11 +2450,13 @@ footer{
 </style>
 
 <style>
+/* Design 42: laser tuning v13 */
+/* Faster, thinner, glow-free source-to-destination beams. */
 /* Design 42: endpoint lasers v12 */
 .province-laser-v11{display:none!important}
 .province-laser-v12{pointer-events:none;fill:none;stroke-linecap:round;vector-effect:non-scaling-stroke;opacity:1}
-.province-laser-v12.glow{stroke:#18d8ff;stroke-width:9;filter:blur(1.2px) drop-shadow(0 0 8px rgba(24,216,255,.95)) drop-shadow(0 0 14px rgba(8,117,201,.7))}
-.province-laser-v12.core{stroke:#fff;stroke-width:2.8;filter:drop-shadow(0 0 2px #fff) drop-shadow(0 0 6px #68ecff)}
+.province-laser-v12.glow{display:none!important}
+.province-laser-v12.core{stroke:#079fd2;stroke-width:1.35;filter:none}
 </style>
 <script>
 // Design 42: endpoint lasers v12
@@ -2502,7 +2504,7 @@ footer{
       const [a,b]=pickPair();
       const glow=makeLine(a,'glow');
       const core=makeLine(a,'core');
-      const duration=520+Math.random()*260;
+      const duration=220+Math.random()*120;
       const started=performance.now();
 
       const frame=now=>{
@@ -2514,11 +2516,11 @@ footer{
         core.setAttribute('x2',x);core.setAttribute('y2',y);
         if(t<1){requestAnimationFrame(frame);return}
         setTimeout(()=>{
-          glow.style.transition='opacity 180ms ease';
-          core.style.transition='opacity 180ms ease';
+          glow.style.transition='opacity 60ms linear';
+          core.style.transition='opacity 60ms linear';
           glow.style.opacity='0';core.style.opacity='0';
-          setTimeout(()=>{glow.remove();core.remove()},210);
-        },120);
+          setTimeout(()=>{glow.remove();core.remove()},75);
+        },25);
       };
       requestAnimationFrame(frame);
     };
