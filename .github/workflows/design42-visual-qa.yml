@@ -39,22 +39,38 @@ jobs:
           node <<'EOF'
           const { chromium } = require('playwright');
           const path = require('path');
+          const primePage = async page => {
+            await page.waitForTimeout(1400);
+            await page.evaluate(async () => {
+              const sleep = ms => new Promise(r => setTimeout(r, ms));
+              const step = Math.max(420, Math.floor(window.innerHeight * .72));
+              const max = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+              for (let y = 0; y <= max; y += step) {
+                window.scrollTo(0, y);
+                await sleep(120);
+              }
+              window.scrollTo(0, max);
+              await sleep(180);
+              window.scrollTo(0, 0);
+            });
+            await page.waitForTimeout(650);
+          };
           (async()=>{
             const browser = await chromium.launch({headless:true});
             const context = await browser.newContext({viewport:{width:1440,height:900}, deviceScaleFactor:1});
             const page = await context.newPage();
             await page.goto('http://127.0.0.1:4173/42.html', {waitUntil:'networkidle', timeout:30000});
-            await page.waitForTimeout(1800);
+            await page.waitForTimeout(1400);
             await page.evaluate(() => window.scrollTo(0,0));
             await page.screenshot({path:path.join('qa','design42','latest-desktop-fold.jpg'),type:'jpeg',quality:90,fullPage:false,animations:'disabled',timeout:30000});
+            await primePage(page);
             await page.screenshot({path:path.join('qa','design42','latest-desktop-full.jpg'),type:'jpeg',quality:84,fullPage:true,animations:'disabled',timeout:30000});
             await context.close();
 
             const mobileContext = await browser.newContext({viewport:{width:390,height:844}, deviceScaleFactor:1});
             const mobile = await mobileContext.newPage();
             await mobile.goto('http://127.0.0.1:4173/42.html', {waitUntil:'networkidle', timeout:30000});
-            await mobile.waitForTimeout(1800);
-            await mobile.evaluate(() => window.scrollTo(0,0));
+            await primePage(mobile);
             await mobile.screenshot({path:path.join('qa','design42','latest-mobile-full.jpg'),type:'jpeg',quality:84,fullPage:true,animations:'disabled',timeout:30000});
             await mobileContext.close();
             await browser.close();
