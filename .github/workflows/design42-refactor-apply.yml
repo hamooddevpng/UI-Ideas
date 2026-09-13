@@ -1,0 +1,43 @@
+name: Design 42 Refactor Apply
+
+on:
+  push:
+    branches:
+      - refactor/design42-css-cleanup
+    paths:
+      - 'scripts/refactor-design42-base.mjs'
+      - '.github/workflows/design42-refactor-apply.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: design42-refactor-apply-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Apply palette migration
+        run: node scripts/refactor-design42-base.mjs --apply
+      - name: Verify architecture after migration
+        run: node tests/design42-css-architecture.test.mjs
+      - name: Commit generated refactor
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add 42-base.html assets/design42/design42-theme.css
+          if git diff --cached --quiet; then
+            echo "No generated changes to commit."
+            exit 0
+          fi
+          git commit -m "refactor: consolidate Design 42 palette ownership"
+          git push origin HEAD:refactor/design42-css-cleanup
