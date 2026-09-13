@@ -36,12 +36,12 @@ html,body{margin:0;min-height:100%;font-family:Manrope,Arial,sans-serif;backgrou
     if(!response.ok)throw new Error(`${response.status} ${response.statusText} · ${url}`);
     return response.text();
   };
-  const addStyle=(page,css,attribute)=>{
+  const addStyle=(page,css,attribute,target=page.head)=>{
     if(!css)return;
     const style=page.createElement('style');
     style.setAttribute(attribute,'');
     style.textContent=css;
-    page.head.appendChild(style);
+    target.appendChild(style);
   };
 
   try{
@@ -78,9 +78,12 @@ html,body{margin:0;min-height:100%;font-family:Manrope,Arial,sans-serif;backgrou
       }
     }
 
-    // Theme owns page colors; popup CSS owns only chatbot presentation.
-    addStyle(page,themeCss,'data-design42-theme');
-    addStyle(page,chatCss,'data-design42-chat-popup');
+    // The historical palette passes lived at the end of the base document.
+    // Keep the canonical theme as the final page-color owner so earlier legacy
+    // section styles cannot override it while they are being removed.
+    addStyle(page,themeCss,'data-design42-theme',page.body);
+    // Chat presentation intentionally comes last and owns only the popup.
+    addStyle(page,chatCss,'data-design42-chat-popup',page.body);
 
     document.open();
     document.write('<!doctype html>'+page.documentElement.outerHTML);
