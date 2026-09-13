@@ -2450,8 +2450,8 @@ footer{
 </style>
 
 <style>
-/* Design 42: laser tuning v13 */
-/* Faster, thinner, glow-free source-to-destination beams. */
+/* Design 42: laser tuning v14 */
+/* Fast, thin beams whose head and tail both travel from source to destination. */
 /* Design 42: endpoint lasers v12 */
 .province-laser-v11{display:none!important}
 .province-laser-v12{pointer-events:none;fill:none;stroke-linecap:round;vector-effect:non-scaling-stroke;opacity:1}
@@ -2509,18 +2509,20 @@ footer{
 
       const frame=now=>{
         const t=Math.min(1,(now-started)/duration);
-        const e=1-Math.pow(1-t,3);
-        const x=a.x+(b.x-a.x)*e;
-        const y=a.y+(b.y-a.y)*e;
-        glow.setAttribute('x2',x);glow.setAttribute('y2',y);
-        core.setAttribute('x2',x);core.setAttribute('y2',y);
+        const headE=1-Math.pow(1-t,3);
+        const tailDelay=.24;
+        const tailProgress=Math.max(0,Math.min(1,(t-tailDelay)/(1-tailDelay)));
+        const tailE=1-Math.pow(1-tailProgress,3);
+        const headX=a.x+(b.x-a.x)*headE;
+        const headY=a.y+(b.y-a.y)*headE;
+        const tailX=a.x+(b.x-a.x)*tailE;
+        const tailY=a.y+(b.y-a.y)*tailE;
+        glow.setAttribute('x1',tailX);glow.setAttribute('y1',tailY);
+        glow.setAttribute('x2',headX);glow.setAttribute('y2',headY);
+        core.setAttribute('x1',tailX);core.setAttribute('y1',tailY);
+        core.setAttribute('x2',headX);core.setAttribute('y2',headY);
         if(t<1){requestAnimationFrame(frame);return}
-        setTimeout(()=>{
-          glow.style.transition='opacity 60ms linear';
-          core.style.transition='opacity 60ms linear';
-          glow.style.opacity='0';core.style.opacity='0';
-          setTimeout(()=>{glow.remove();core.remove()},75);
-        },25);
+        glow.remove();core.remove();
       };
       requestAnimationFrame(frame);
     };
