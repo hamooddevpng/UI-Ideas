@@ -39,8 +39,8 @@ for (const marker of obsoletePaletteMarkers) {
 const paletteMentions = [...base.matchAll(/Design 42:[^\n]*palette[^\n]*/gi)].map(m => m[0]);
 assert.equal(paletteMentions.length, 0, `42-base.html should not own historical palette passes; found: ${paletteMentions.join(' | ')}`);
 
-// Phase 3: one province-network foundation plus one active laser implementation.
-assert.match(base, /Design 42: static province laser network v6/, 'The validated province node/network foundation must remain.');
+// Phase 3: one province-node foundation plus one active laser implementation.
+assert.match(base, /Design 42: static province laser network v6/, 'The validated province node foundation must remain.');
 assert.match(base, /Design 42: endpoint lasers v12/, 'The active endpoint laser implementation must remain.');
 assert.match(base, /Design 42: laser tuning v13/, 'The active laser tuning layer must remain.');
 
@@ -54,7 +54,10 @@ for (const marker of obsoleteLaserMarkers) {
   assert.ok(!base.includes(marker), `42-base.html still contains superseded laser pass: ${marker}`);
 }
 assert.doesNotMatch(base, /provinceLaserShotsV7|provinceLaserCssV9|provinceLaserLayerV11/, 'Superseded laser runtime layers must be removed.');
+assert.doesNotMatch(base, /v9-live|laser-source-v7|laser-hit-v7/, 'Superseded laser state classes must be removed.');
+assert.doesNotMatch(base, /const buildEdges=|const routeD=/, 'The v6 foundation must no longer run hidden route/shot animation infrastructure.');
 assert.match(base, /provinceLaserLayerV12/, 'The active v12 laser runtime layer must still be created.');
-assert.match(base, /province-node-v6\.laser-live/, 'Active laser endpoint feedback must be owned by the canonical laser implementation.');
+assert.match(base, /province-node-v6\.laser-live/, 'Active laser endpoint feedback must be owned by the canonical laser presentation.');
+assert.match(base, /classList\.add\('laser-live'\)/, 'The active endpoint runtime must drive canonical endpoint feedback.');
 
 console.log('Design 42 CSS architecture guardrails passed.');
