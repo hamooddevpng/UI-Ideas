@@ -1,5 +1,6 @@
 name: Design 42 CSS Extraction Apply
 
+# One-shot migration workflow for deterministic inline-CSS extraction.
 on:
   push:
     branches:
