@@ -6,6 +6,7 @@ const exists = path => fs.existsSync(new URL(`../${path}`, import.meta.url));
 
 const loader = read('42.html');
 const base = read('42-base.html');
+const theme = read('assets/design42/design42-theme.css');
 
 // Phase 1: loader and popup ownership.
 assert.ok(exists('assets/design42/design42-chat.css'), 'Design 42 popup presentation must live in an external chat stylesheet.');
@@ -62,6 +63,21 @@ for (const marker of obsoletePaletteMarkers) {
 
 const paletteMentions = [...base.matchAll(/Design 42:[^\n]*palette[^\n]*/gi)].map(m => m[0]);
 assert.equal(paletteMentions.length, 0, `42-base.html should not own historical palette passes; found: ${paletteMentions.join(' | ')}`);
+
+// Phase 2b: one canonical theme sourced from the approved untouched backup.
+assert.match(theme, /backup\/42-2026-09-10-1552-ist/, 'Canonical Design 42 theme must document the approved backup color source.');
+assert.doesNotMatch(theme, /Canonical theme migration layer/i, 'Historical theme migration layers must be collapsed into one theme.');
+for(const marker of obsoletePaletteMarkers){
+  assert.ok(!theme.toLowerCase().includes(marker.toLowerCase()), `Canonical theme still contains obsolete palette pass: ${marker}`);
+}
+assert.doesNotMatch(theme, /!mportant/i, 'Canonical theme contains a malformed !important declaration.');
+assert.equal((theme.match(/:root\s*\{/g)||[]).length,1,'Canonical Design 42 theme must have exactly one :root token block.');
+for(const token of ['--blue:#0875c9','--cyan:#1ca0e8','--green:#20a957','--navy:#061925','--navy2:#0a2838','--ink:#102b3c','--ice:#f5fafc','--sky:#e9f6fc']){
+  assert.ok(theme.replace(/\s/g,'').includes(token),`Canonical theme is missing approved backup token ${token}.`);
+}
+for(const legacyToken of ['--warm:','--warm-2:','--mist:','--mist-2:','--mint:']){
+  assert.ok(!theme.includes(legacyToken),`Canonical theme still contains temporary daylight token ${legacyToken}`);
+}
 
 // Phase 3: one province-node foundation plus one active laser implementation.
 assert.match(base, /Design 42: static province laser network v6/, 'The validated province node foundation must remain.');
