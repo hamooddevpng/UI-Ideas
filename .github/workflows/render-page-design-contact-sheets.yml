@@ -15,6 +15,7 @@ concurrency:
   group: page-design-contact-sheets-${{ github.ref }}
   cancel-in-progress: true
 
+# Regenerate visual QA boards after every expanded research capture.
 jobs:
   render:
     runs-on: ubuntu-latest
