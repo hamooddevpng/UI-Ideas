@@ -39,4 +39,22 @@ for (const marker of obsoletePaletteMarkers) {
 const paletteMentions = [...base.matchAll(/Design 42:[^\n]*palette[^\n]*/gi)].map(m => m[0]);
 assert.equal(paletteMentions.length, 0, `42-base.html should not own historical palette passes; found: ${paletteMentions.join(' | ')}`);
 
+// Phase 3: one province-network foundation plus one active laser implementation.
+assert.match(base, /Design 42: static province laser network v6/, 'The validated province node/network foundation must remain.');
+assert.match(base, /Design 42: endpoint lasers v12/, 'The active endpoint laser implementation must remain.');
+assert.match(base, /Design 42: laser tuning v13/, 'The active laser tuning layer must remain.');
+
+const obsoleteLaserMarkers = [
+  'Design 42: animated laser shots v7',
+  'Design 42: robust province lasers v9',
+  'Design 42: lasers only v10',
+  'Design 42: simple province lasers v11'
+];
+for (const marker of obsoleteLaserMarkers) {
+  assert.ok(!base.includes(marker), `42-base.html still contains superseded laser pass: ${marker}`);
+}
+assert.doesNotMatch(base, /provinceLaserShotsV7|provinceLaserCssV9|provinceLaserLayerV11/, 'Superseded laser runtime layers must be removed.');
+assert.match(base, /provinceLaserLayerV12/, 'The active v12 laser runtime layer must still be created.');
+assert.match(base, /province-node-v6\.laser-live/, 'Active laser endpoint feedback must be owned by the canonical laser implementation.');
+
 console.log('Design 42 CSS architecture guardrails passed.');
