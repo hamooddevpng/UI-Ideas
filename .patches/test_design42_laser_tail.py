@@ -2,7 +2,7 @@ from pathlib import Path
 import re
 
 html = Path('42-base.html').read_text(encoding='utf-8')
-start = html.index('/* Design 42: laser tuning v13 */')
+start = html.index('/* Design 42: laser tuning v')
 end = html.index('</script>', html.index('// Design 42: endpoint lasers v12', start))
 section = html[start:end]
 
