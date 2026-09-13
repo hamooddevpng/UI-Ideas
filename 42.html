@@ -37,6 +37,7 @@ html,body{margin:0;min-height:100%;font-family:Manrope,Arial,sans-serif;backgrou
     return response.text();
   };
   const addStyle=(page,css,attribute)=>{
+    if(!css)return;
     const style=page.createElement('style');
     style.setAttribute(attribute,'');
     style.textContent=css;
@@ -44,9 +45,10 @@ html,body{margin:0;min-height:100%;font-family:Manrope,Arial,sans-serif;backgrou
   };
 
   try{
-    const [baseHtml,ecosystemHtml,chatCss]=await Promise.all([
+    const [baseHtml,ecosystemHtml,themeCss,chatCss]=await Promise.all([
       fetchText(source('42-base.html')),
       fetchText(source('design42-ecosystem-v2.html')).catch(error=>{console.warn('Digital PNG enhancement could not be loaded.',error);return ''}),
+      fetchText(source('assets/design42/design42-theme.css')).catch(()=>''),
       fetchText(source('assets/design42/design42-chat.css'))
     ]);
 
@@ -76,6 +78,8 @@ html,body{margin:0;min-height:100%;font-family:Manrope,Arial,sans-serif;backgrou
       }
     }
 
+    // Theme owns page colors; popup CSS owns only chatbot presentation.
+    addStyle(page,themeCss,'data-design42-theme');
     addStyle(page,chatCss,'data-design42-chat-popup');
 
     document.open();
