@@ -5,6 +5,7 @@ on:
   push:
     paths:
       - 'research/page-design-reference/targets.json'
+      - 'research/page-design-reference/expanded-sources.js'
       - '.github/workflows/capture-page-design-references.yml'
 
 permissions:
@@ -17,7 +18,7 @@ concurrency:
 jobs:
   capture:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
 
@@ -30,14 +31,25 @@ jobs:
           npm install --no-save playwright
           npx playwright install --with-deps chromium
 
-      - name: Capture page-specific competitor references
+      - name: Capture expanded page-design research cohort
         run: |
           node <<'EOF'
           const { chromium } = require('playwright');
           const fs = require('fs');
           const path = require('path');
+          const { pageExtras, contextCohorts } = require('./research/page-design-reference/expanded-sources.js');
 
           const manifest = JSON.parse(fs.readFileSync('research/page-design-reference/targets.json', 'utf8'));
+          for (const pageStudy of manifest.pages) {
+            const existing = new Set(pageStudy.sources.map(s => s.slug));
+            const extras = (pageExtras[pageStudy.id] || []).filter(s => !existing.has(s.slug));
+            pageStudy.sources = [...pageStudy.sources, ...extras];
+            if (pageStudy.sources.length < 15) {
+              throw new Error(`${pageStudy.id} has only ${pageStudy.sources.length} sources; research minimum is 15`);
+            }
+          }
+          manifest.pages.push(...contextCohorts);
+
           const root = process.cwd();
           const base = path.join(root, 'reference-screenshots', 'page-design');
           fs.mkdirSync(base, { recursive: true });
@@ -94,6 +106,7 @@ jobs:
           }
 
           (async () => {
+            console.log(`Expanded research: ${manifest.pages.length} cohorts, ${jobs.length} captures`);
             const browser = await chromium.launch({
               headless: true,
               args: ['--disable-blink-features=AutomationControlled', '--no-sandbox']
@@ -147,6 +160,7 @@ jobs:
                   resultsByPage[pageStudy.id].push({
                     slug: source.slug,
                     name: source.name,
+                    category: source.category || null,
                     requestedUrl: source.url,
                     finalUrl,
                     title,
@@ -159,13 +173,14 @@ jobs:
               }
             }
 
-            await Promise.all([1,2,3,4].map(worker));
+            await Promise.all([1,2,3,4,5,6,7,8].map(worker));
             await browser.close();
 
             for (const pageStudy of manifest.pages) {
               const outDir = path.join(base, pageStudy.id, 'desktop-1440');
               const payload = {
                 capturedAt: new Date().toISOString(),
+                researchStandard: pageStudy.id.startsWith('context-') ? 'context cohort' : 'minimum 15 references',
                 pageStudy: { id: pageStudy.id, name: pageStudy.name, task_title: pageStudy.task_title },
                 viewport: `${(manifest.viewport || {}).width || 1440}x${(manifest.viewport || {}).height || 900}`,
                 results: resultsByPage[pageStudy.id].sort((a,b) => a.slug.localeCompare(b.slug))
@@ -187,6 +202,6 @@ jobs:
             echo "No screenshot changes to commit"
             exit 0
           fi
-          git commit -m "research: capture internal page competitor references"
+          git commit -m "research: capture expanded internal page references"
           git pull --rebase origin "$GITHUB_REF_NAME"
           git push origin "HEAD:$GITHUB_REF_NAME"
