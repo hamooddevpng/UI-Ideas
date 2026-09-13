@@ -1,0 +1,167 @@
+{
+  "services-hub": {
+    "title": "Services Hub",
+    "competitors": ["Ooredoo Qatar consumer", "stc Saudi consumer", "Vodafone PNG prepaid hub", "Vodafone PNG products & services"],
+    "observations": [
+      "Service hubs work best as navigational pages, not long product-detail pages.",
+      "Strong references put service families or self-service choices immediately after a concise hero.",
+      "Local Vodafone PNG pages are simpler and category-led; Ooredoo and stc show stronger cross-selling and digital-service depth.",
+      "Telikom should expose Personal, Home, Business and Remote/Enterprise pathways quickly while keeping support actions visible."
+    ],
+    "structure": ["Hero + service promise", "Audience/service-family switch", "Core service category grid", "Featured plans & offers", "Infrastructure / PNG-wide proof", "Business, VSAT & remote connectivity", "Quick actions + support", "Related links / footer"]
+  },
+  "personal-mobile": {
+    "title": "Personal - Mobile",
+    "competitors": ["Digicel PNG data plans", "Ooredoo Qatar postpaid", "stc Saudi prepaid", "Vodafone PNG prepaid"],
+    "observations": [
+      "Plan pages lead with product choice, then make price, data and validity comparison the visual center.",
+      "Ooredoo and stc add benefits, roaming and add-ons after the core plan decision instead of before it.",
+      "Digicel shows the value of compact tables for dense allowance data, but its support-page presentation is too text-heavy.",
+      "Telikom needs a stronger hybrid: scannable plan cards plus a full detail/comparison layer, with USSD activation never hidden."
+    ],
+    "structure": ["Hero + plan-family intro", "Plan family / validity filters", "Plan cards + comparison", "Allowances & benefit detail", "Special passes / roaming / IDD", "How to activate + USSD", "Eligibility / terms", "FAQs + support"]
+  },
+  "affordable-home-data": {
+    "title": "Affordable Home Data",
+    "competitors": ["Digicel PNG home internet", "Ooredoo Qatar Home+", "stc Saudi Baity", "Vodafone PNG mobile broadband"],
+    "observations": [
+      "Home internet references quickly establish the connection proposition, then move into package comparison.",
+      "Ooredoo and stc use benefits and feature blocks to explain why a plan is worth choosing, not just the quota.",
+      "Vodafone PNG uses a compact plan table followed by FAQs, which is efficient but visually less persuasive.",
+      "Telikom should balance affordability with clarity around supported connection, activation, eligibility and unlimited options."
+    ],
+    "structure": ["Value-led hero", "Supported connection / eligibility", "Plan category switch", "Plan comparison cards/table", "Benefits & usage guidance", "How it works / activation", "Featured unlimited offer", "FAQs + terms"]
+  },
+  "special-home-passes": {
+    "title": "Special Home Passes",
+    "competitors": ["Digicel PNG time-based data", "Ooredoo Qatar prepaid promotions", "stc Saudi prepaid add-ons", "Vodafone PNG specials & offers"],
+    "observations": [
+      "Pass and add-on pages benefit from grouping by intent rather than dumping every offer into one list.",
+      "Ooredoo makes promotion cards highly visual; stc gives deeper package detail and terms; Vodafone keeps categories simple.",
+      "Time-based or app-specific products must communicate validity windows and usage restrictions before purchase.",
+      "Telikom should foreground Video, Night, Study and Weekend use cases and show supported apps directly on the pass card."
+    ],
+    "structure": ["Hero + pass concept", "Pass-type tabs", "Visual pass cards", "Supported apps / use cases", "Price, data & validity details", "Activation / USSD", "Featured/popular pass", "Terms + FAQs"]
+  },
+  "u-tokmoa": {
+    "title": "U-TOKMoa Plans",
+    "competitors": ["Digicel PNG home internet", "Ooredoo Qatar Home+", "stc Saudi Baity Fiber", "Vodafone PNG mobile broadband"],
+    "observations": [
+      "Comparable bundle pages make the package tier or duration choice the primary interaction.",
+      "Competitors use benefit blocks to explain bundle value, then defer detailed terms and FAQs.",
+      "U-TOKMoa is more voice-specific than most references, so Telikom must make on-net and off-net minutes as prominent as data.",
+      "Duration labels should be a first-class selector because daily, weekly, fortnightly and monthly options are central to the product."
+    ],
+    "structure": ["Hero + U-TOKMoa proposition", "Duration selector", "Plan cards / comparison", "Voice + data allowance breakdown", "Benefits / ideal use", "How to activate + USSD", "Popular plan highlight", "FAQs + terms"]
+  },
+  "home-entertainment": {
+    "title": "Home Entertainment Package",
+    "competitors": ["Digicel PNG data + TV", "Ooredoo entertainment services", "Ooredoo TV", "stc Saudi Baity entertainment"],
+    "observations": [
+      "Entertainment pages sell the experience first, then explain package tiers and technology.",
+      "Ooredoo separates content ecosystem, TV device and package selection cleanly, which reduces cognitive load.",
+      "stc shows the value of integrating entertainment benefits directly into home-connectivity plans.",
+      "Telikom should make the triple-play story unmistakable: broadband + TV + fixed voice, with installation and eligibility close to the CTA."
+    ],
+    "structure": ["Entertainment-led hero", "Triple-play benefits", "Package tiers", "TV/content ecosystem", "Broadband + voice inclusions", "Device / setup experience", "Installation & eligibility", "Order enquiry + FAQs"]
+  },
+  "devices": {
+    "title": "Devices",
+    "competitors": ["Ooredoo Qatar eShop", "Verizon smartphones", "Vodafone PNG broadband devices", "Vodafone PNG devices"],
+    "observations": [
+      "Strong device catalogues put filters, categories and pricing directly beside the product grid.",
+      "Verizon and Ooredoo show that dense catalogues need persistent sorting/filtering and clear product cards.",
+      "Vodafone PNG product pages are useful local references for merchandising, but one broadband-device capture timed out and is excluded as a reliable structural sample.",
+      "Telikom should support phones, MiFi/routers and accessories in one searchable catalogue without burying network compatibility or stock status."
+    ],
+    "structure": ["Catalog hero / category chips", "Search + filters + sort", "Product grid", "Price, badge & stock states", "Quick specs / compare", "Compatibility + bonus data", "Where to buy / store CTA", "Device FAQs"]
+  },
+  "business-fixed": {
+    "title": "Business - Fixed",
+    "competitors": ["Ooredoo Qatar Business Internet", "stc Business Link 5G", "stc Fiber Link", "Vodafone PNG Dedicated Internet"],
+    "observations": [
+      "Business connectivity pages open with outcomes and reliability, then explain the service and enterprise benefits.",
+      "stc repeatedly uses package tiers, benefits, add-ons, terms and a lead form in a predictable sequence.",
+      "Ooredoo emphasizes benefits and direct sales/support contact earlier, which is useful for high-consideration buyers.",
+      "Telikom needs broader solution coverage than any single reference, so category navigation, feasibility and quote tooling are essential."
+    ],
+    "structure": ["Outcome-led hero + sales CTA", "Fixed solution categories", "Why Telikom / SLA / NOC proof", "Service details + ideal use", "Packages / rates / add-ons", "Feasibility + site survey", "Calculator / proposal request", "Enterprise support + FAQs"]
+  },
+  "business-mobile": {
+    "title": "Business - Mobile",
+    "competitors": ["Ooredoo Aamali mobile broadband", "stc Business Postpaid", "stc Business Prepaid", "Vodafone PNG Mobility Solutions"],
+    "observations": [
+      "Business mobile pages lead with productivity or workforce outcomes, followed by plan tiers.",
+      "stc separates package benefits, roaming, service pricing and enquiry forms into distinct decision blocks.",
+      "Ooredoo uses strong plan cards and a clear request/contact CTA after the plan decision.",
+      "Telikom can differentiate by making CUG/PUG, fleet savings, roaming, SIM management and onboarding part of one coherent business-mobile journey."
+    ],
+    "structure": ["Workforce-mobility hero", "Plan tiers", "CUG / PUG / roaming modules", "Benefits & management controls", "Savings / fleet calculator", "Commercial terms + SLA", "Corporate onboarding / SIM management", "Quote CTA + FAQs"]
+  },
+  "news-media": {
+    "title": "News & Media",
+    "competitors": ["Ooredoo Qatar news", "Orange newsroom", "Verizon news & stories", "Verizon press releases"],
+    "observations": [
+      "Newsrooms need a strong featured story plus fast scanning of recent content.",
+      "Verizon demonstrates a clear split between editorial stories and formal press releases; Ooredoo adds category filtering.",
+      "The 102k-pixel Verizon press-release capture is an over-expanded listing artifact and should not drive layout-length decisions.",
+      "Telikom should unify news, notices, promotions, network updates and press material but expose type filters immediately."
+    ],
+    "structure": ["Featured story / newsroom hero", "Search + content-type filters", "Latest news grid", "Public notices / network updates", "Promotions / community stories", "Press releases", "Media kit + media contact", "Pagination / archive"]
+  },
+  "about-us": {
+    "title": "About Us",
+    "competitors": ["Ooredoo Qatar about", "Telefonica about", "Verizon about", "Vodafone PNG about"],
+    "observations": [
+      "Modern About pages tell a narrative instead of opening with long corporate text.",
+      "Telefonica and Verizon use modular story blocks, purpose, impact and innovation to humanize corporate information.",
+      "Ooredoo surfaces leadership, vision and CSR as clear visual modules.",
+      "Telikom should combine PNG nation-building and infrastructure credibility with leadership, subsidiaries and Foundation/CSR rather than treating them as disconnected records."
+    ],
+    "structure": ["Purpose / PNG role hero", "Company story + milestones", "Mission, vision & values", "National infrastructure / impact", "CEO message", "Board + executive leadership", "Subsidiaries", "Foundation / CSR", "Key stats + related careers/contact"]
+  },
+  "store-locator": {
+    "title": "Store Locator",
+    "competitors": ["AT&T stores", "Digicel PNG stores", "Ooredoo Qatar business desks", "Vodafone PNG stores"],
+    "observations": [
+      "The strongest locator experience is search/map-first, with nearby locations and details synchronized.",
+      "Ooredoo combines map pins and a location list cleanly; AT&T prioritizes location search and action buttons.",
+      "Digicel and Vodafone PNG show that simple lists or accordions are still useful fallbacks when local map data is incomplete.",
+      "Telikom should make PNG region and outlet-type filters first-class and show services, hours, phone and directions without extra navigation."
+    ],
+    "structure": ["Search + region/type filters", "Interactive map", "Synchronized outlet list", "Store detail cards", "Services + opening hours", "Directions / call / email actions", "Featured or nearby outlets", "Support fallback"]
+  },
+  "careers": {
+    "title": "Careers",
+    "competitors": ["AT&T careers", "Ooredoo Qatar careers", "Verizon careers", "Vodafone PNG careers"],
+    "observations": [
+      "High-quality careers pages sell the employee proposition before or alongside job search.",
+      "AT&T and Ooredoo use career areas, benefits, culture and employee stories to build interest beyond vacancies.",
+      "Vodafone PNG is more informational and process-led, while Verizon's capture hit a security verification wall and is not a useful visual reference.",
+      "Telikom should keep job search prominent while also explaining PNG impact, culture, benefits and recruitment process."
+    ],
+    "structure": ["Employer-brand hero + job search", "Open roles + filters", "Career areas / departments", "Why Telikom / PNG impact", "Benefits + culture", "Employee stories", "Recruitment process", "Application / talent network", "FAQs + HR contact"]
+  },
+  "faqs": {
+    "title": "FAQs",
+    "competitors": ["Digicel PNG help centre", "Ooredoo Qatar help", "Vodafone PNG 4G FAQ", "Vodafone PNG help"],
+    "observations": [
+      "Support hubs put search first, then route users by category or popular issue.",
+      "Ooredoo and Digicel combine searchable help with topic tiles; Vodafone's product FAQ shows the value of focused accordion answers.",
+      "FAQ pages should not force users to browse everything before reaching support.",
+      "Telikom should merge global FAQ search with clear product categories and immediate escalation to contact, store or Self Care when an answer is not enough."
+    ],
+    "structure": ["Search-first help hero", "FAQ category tiles", "Popular questions", "Expandable answers", "Related guides / product links", "Still need help? channels", "Contact / store / Self Care CTA", "SEO FAQ structured data"]
+  },
+  "contact": {
+    "title": "Contact",
+    "competitors": ["Ooredoo Qatar contact", "Verizon contact", "Vodafone PNG contact", "Vodafone PNG help"],
+    "observations": [
+      "Good contact pages route users by intent or channel before presenting a long form.",
+      "Ooredoo surfaces phone, chat and WhatsApp as cards; Verizon organizes support contacts by product line.",
+      "Vodafone PNG combines a direct form with a support-hub fallback, which is useful for a smaller market.",
+      "Telikom should keep hotline, WhatsApp, email and HQ details visible while separating enquiries, feedback and complaints into explicit paths."
+    ],
+    "structure": ["Contact-channel cards", "Choose enquiry type", "Contextual support contacts", "Enquiry / feedback / complaint form", "Department contacts", "HQ address + map + hours", "Ticket/reference expectation", "Contact FAQs"]
+  }
+}
