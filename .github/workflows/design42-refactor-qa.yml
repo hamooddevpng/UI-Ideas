@@ -1,0 +1,53 @@
+name: Design 42 Refactor QA
+
+on:
+  push:
+    branches:
+      - refactor/design42-css-cleanup
+    paths:
+      - '42.html'
+      - '42-base.html'
+      - 'design42-ecosystem-v2.html'
+      - 'assets/design42/**'
+      - 'scripts/audit-design42.mjs'
+      - 'scripts/refactor-design42-base.mjs'
+      - 'tests/design42-css-architecture.test.mjs'
+      - '.github/workflows/design42-refactor-qa.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: design42-refactor-qa-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  architecture-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Run ownership audit
+        run: |
+          node scripts/audit-design42.mjs
+          cat qa/design42/refactor-audit.md
+      - name: Run architecture guardrails
+        id: guardrails
+        continue-on-error: true
+        run: node tests/design42-css-architecture.test.mjs
+      - name: Upload audit
+        uses: actions/upload-artifact@v4
+        with:
+          name: design42-refactor-audit
+          path: |
+            qa/design42/refactor-audit.md
+            qa/design42/refactor-audit.json
+          retention-days: 14
+      - name: Keep RED visible until refactor satisfies guardrails
+        if: steps.guardrails.outcome == 'failure'
+        run: |
+          echo 'Architecture guardrails are RED, as expected before the refactor.'
+          exit 1
