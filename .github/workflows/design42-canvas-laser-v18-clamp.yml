@@ -1,0 +1,30 @@
+name: Fix Design 42 canvas laser clamp v18
+on:
+  push:
+    branches:
+      - fix/design42-canvas-lasers-v18
+    paths:
+      - .github/workflows/design42-canvas-laser-v18-clamp.yml
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/design42-canvas-lasers-v18
+          fetch-depth: 0
+      - name: Clamp laser progress
+        run: python3 .patches/fix_design42_canvas_laser_v18_clamp.py
+      - name: Verify clamp
+        run: grep -q 'Math.max(0,Math.min(1,elapsed/laser.duration))' 42-base.html
+      - name: Remove temporary patch files
+        run: rm .patches/fix_design42_canvas_laser_v18_clamp.py .github/workflows/design42-canvas-laser-v18-clamp.yml
+      - name: Commit fix
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add 42-base.html .patches/fix_design42_canvas_laser_v18_clamp.py .github/workflows/design42-canvas-laser-v18-clamp.yml
+          git commit -m 'fix: clamp Design 42 canvas laser progress'
+          git push origin HEAD:fix/design42-canvas-lasers-v18
