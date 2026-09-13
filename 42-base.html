@@ -2889,90 +2889,95 @@ footer{background:linear-gradient(180deg,#0b5f89 0%,#084b6d 100%)!important}
 
 
 <style>
-/* Design 42: province laser bolt v16 */
-/* Match the hero bolt approach: a literal 5 CSS-pixel element translates from A to B. */
+/* Design 42: province laser track v17 */
+/* Same motion model as the hero bolt: an invisible rotated track carries a literal 5px dash. */
 .province-laser-v12{display:none!important}
-.province-laser-bolt-layer-v16{position:absolute;inset:0;pointer-events:none;z-index:7;overflow:hidden}
-.province-laser-bolt-v16{position:absolute;left:0;top:0;width:5px;height:1.25px;border-radius:999px;background:#079fd2;transform-origin:0 50%;will-change:transform,opacity;opacity:.96;pointer-events:none}
-@media(prefers-reduced-motion:reduce){.province-laser-bolt-layer-v16{display:none!important}}
+.province-laser-bolt-layer-v16{display:none!important}
+.province-laser-bolt-layer-v17{position:absolute;inset:0;pointer-events:none;z-index:20;overflow:hidden}
+.province-laser-track-v17{position:absolute;left:0;top:0;height:5px;transform-origin:0 50%;pointer-events:none}
+.province-laser-bolt-v17{position:absolute;left:0;top:50%;width:5px;height:1.5px;border-radius:999px;background:#0875c9;box-shadow:none;opacity:0;transform:translateY(-50%);transform-origin:100% 50%;will-change:transform,opacity;pointer-events:none}
+@keyframes provinceLaserBoltTravelV17{
+  0%{opacity:0;transform:translateY(-50%) translateX(0) scaleX(1)}
+  5%{opacity:1}
+  88%{opacity:1;transform:translateY(-50%) translateX(var(--laser-travel)) scaleX(1)}
+  100%{opacity:0;transform:translateY(-50%) translateX(var(--laser-travel)) scaleX(0)}
+}
+@media(prefers-reduced-motion:reduce){.province-laser-bolt-layer-v17{display:none!important}}
 </style>
 <script>
-// Design 42: province laser bolt v16
+// Design 42: province laser track v17
 (()=>{
   if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
   const boot=()=>{
     const section=document.querySelector('.national-story-map');
+    const stage=document.getElementById('nationalMapStage');
     const network=document.getElementById('provinceNetworkV6');
-    if(!section||!network){setTimeout(boot,100);return}
-    if(document.getElementById('provinceLaserBoltLayerV16'))return;
+    if(!section||!stage||!network){setTimeout(boot,100);return}
+    if(document.getElementById('provinceLaserBoltLayerV17'))return;
     const nodeEls=[...network.querySelectorAll('.province-node-v6')];
     if(nodeEls.length<2){setTimeout(boot,100);return}
 
-    const nodes=nodeEls.map(el=>{
+    const nodes=nodeEls.map((el,index)=>({el,index}));
+    const localPoint=el=>{
       const m=el.transform.baseVal.consolidate();
-      return {el,x:m?m.matrix.e:0,y:m?m.matrix.f:0};
-    });
-
+      return {x:m?m.matrix.e:0,y:m?m.matrix.f:0};
+    };
+    const local=nodes.map(n=>localPoint(n.el));
     const pairs=[];
-    nodes.forEach((a,i)=>{
-      nodes
-        .map((b,j)=>({j,d:j===i?Infinity:Math.hypot(b.x-a.x,b.y-a.y)}))
-        .sort((p,q)=>p.d-q.d)
-        .slice(0,3)
+    local.forEach((a,i)=>{
+      local.map((b,j)=>({j,d:j===i?Infinity:Math.hypot(b.x-a.x,b.y-a.y)}))
+        .sort((p,q)=>p.d-q.d).slice(0,3)
         .forEach(({j})=>{const key=i<j?`${i}:${j}`:`${j}:${i}`;if(!pairs.some(p=>p.key===key))pairs.push({key,a:i,b:j})});
     });
 
     const layer=document.createElement('div');
-    layer.id='provinceLaserBoltLayerV16';
-    layer.className='province-laser-bolt-layer-v16';
-    section.appendChild(layer);
+    layer.id='provinceLaserBoltLayerV17';
+    layer.className='province-laser-bolt-layer-v17';
+    stage.appendChild(layer);
 
-    const toSectionPoint=node=>{
-      const ctm=network.getScreenCTM();
-      const rect=section.getBoundingClientRect();
-      if(!ctm)return {x:0,y:0};
-      return {
-        x:ctm.a*node.x+ctm.c*node.y+ctm.e-rect.left,
-        y:ctm.b*node.x+ctm.d*node.y+ctm.f-rect.top
-      };
+    const toStagePoint=el=>{
+      const r=el.getBoundingClientRect();
+      const sr=stage.getBoundingClientRect();
+      return {x:r.left+r.width/2-sr.left,y:r.top+r.height/2-sr.top};
     };
 
     let visible=true;
     if('IntersectionObserver' in window){
       visible=false;
-      new IntersectionObserver(([entry])=>{visible=entry.isIntersecting},{threshold:.04}).observe(section);
+      new IntersectionObserver(([entry])=>{visible=entry.isIntersecting},{threshold:.03}).observe(section);
     }
 
     const shoot=()=>{
       if(!visible||document.hidden||!pairs.length)return;
       const pair=pairs[Math.floor(Math.random()*pairs.length)];
       const forward=Math.random()>.5;
-      const source=nodes[forward?pair.a:pair.b];
-      const target=nodes[forward?pair.b:pair.a];
-      const a=toSectionPoint(source),b=toSectionPoint(target);
-      const dx=b.x-a.x,dy=b.y-a.y;
-      if(Math.hypot(dx,dy)<8)return;
-      const angle=Math.atan2(dy,dx);
+      const source=nodes[forward?pair.a:pair.b].el;
+      const target=nodes[forward?pair.b:pair.a].el;
+      const a=toStagePoint(source),b=toStagePoint(target);
+      const dx=b.x-a.x,dy=b.y-a.y,dist=Math.hypot(dx,dy);
+      if(dist<12)return;
+
+      const track=document.createElement('span');
+      track.className='province-laser-track-v17';
+      track.style.left=`${a.x}px`;
+      track.style.top=`${a.y}px`;
+      track.style.width=`${dist}px`;
+      track.style.transform=`rotate(${Math.atan2(dy,dx)}rad)`;
+
       const bolt=document.createElement('i');
-      bolt.className='province-laser-bolt-v16';
-      layer.appendChild(bolt);
-      const start=`translate3d(${a.x}px,${a.y}px,0) rotate(${angle}rad) translateY(-50%)`;
-      const end=`translate3d(${b.x}px,${b.y}px,0) rotate(${angle}rad) translateY(-50%)`;
-      const anim=bolt.animate([
-        {transform:start,opacity:0,offset:0},
-        {transform:start,opacity:.96,offset:.06},
-        {transform:end,opacity:.96,offset:.94},
-        {transform:end,opacity:0,offset:1}
-      ],{duration:190+Math.random()*90,easing:'cubic-bezier(.18,.72,.2,1)',fill:'forwards'});
-      anim.onfinish=()=>bolt.remove();
-      anim.oncancel=()=>bolt.remove();
+      bolt.className='province-laser-bolt-v17';
+      bolt.style.setProperty('--laser-travel',`${Math.max(0,dist-5)}px`);
+      bolt.style.animation=`provinceLaserBoltTravelV17 ${300+Math.random()*80}ms linear forwards`;
+      track.appendChild(bolt);
+      layer.appendChild(track);
+      bolt.addEventListener('animationend',()=>track.remove(),{once:true});
     };
 
     const tick=()=>{
-      if(visible&&!document.hidden){shoot();if(Math.random()>.58)setTimeout(shoot,95)}
-      setTimeout(tick,360+Math.random()*420);
+      if(visible&&!document.hidden){shoot();if(Math.random()>.48)setTimeout(shoot,70)}
+      setTimeout(tick,160+Math.random()*120);
     };
-    setTimeout(()=>{shoot();setTimeout(shoot,120);tick()},260);
+    setTimeout(()=>{shoot();setTimeout(shoot,80);setTimeout(shoot,160);tick()},120);
   };
   boot();
 })();
