@@ -7,9 +7,8 @@ const exists = path => fs.existsSync(new URL(`../${path}`, import.meta.url));
 const loader = read('42.html');
 const base = read('42-base.html');
 
-assert.ok(exists('assets/design42/design42-theme.css'), 'Design 42 must have one canonical external theme stylesheet.');
+// Phase 1: loader and popup ownership.
 assert.ok(exists('assets/design42/design42-chat.css'), 'Design 42 popup presentation must live in an external chat stylesheet.');
-
 assert.doesNotMatch(
   loader,
   /raw\.githubusercontent\.com\/hamooddevpng\/UI-Ideas\/main\/42-base\.html/,
@@ -20,6 +19,12 @@ assert.doesNotMatch(
   /chatbotPopupStyle\.textContent\s*=|conventional floating support-chat popup[\s\S]*`/,
   '42.html must not carry the chatbot CSS as a large inline template literal.'
 );
+assert.match(loader, /resolveSourceRoot/, '42.html must have one source-root resolver for local and htmlpreview branch/commit previews.');
+assert.match(loader, /design42-chat\.css/, '42.html must load the external chatbot stylesheet.');
+
+// Phase 2: canonical theme ownership.
+assert.ok(exists('assets/design42/design42-theme.css'), 'Design 42 must have one canonical external theme stylesheet.');
+assert.match(loader, /design42-theme\.css/, '42.html must load the canonical external theme stylesheet.');
 
 const obsoletePaletteMarkers = [
   'brighter Telikom palette',
