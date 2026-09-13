@@ -2926,7 +2926,6 @@ footer{background:linear-gradient(180deg,#0b5f89 0%,#084b6d 100%)!important}
 
     let visible=true;
     if('IntersectionObserver' in window){
-      visible=false;
       new IntersectionObserver(([entry])=>{visible=entry.isIntersecting},{threshold:.03}).observe(section);
     }
 
