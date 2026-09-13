@@ -1,0 +1,47 @@
+/*
+ * Design 42 component stylesheet
+ * Owns later component additions that intentionally load after the isolated Digital PNG prototype CSS.
+ * Extracted from 42-base.html without selector rewrites so visual behavior stays stable.
+ */
+
+/* Design 42: Ask Telikom side assistant v1 */
+:root{--telikom-ai-w:420px;--telikom-ai-ease:cubic-bezier(.16,1,.3,1)}
+.site-viewport{position:relative;width:100%;min-width:0;transition:width .48s var(--telikom-ai-ease);overflow-x:clip}
+body.telikom-ai-open .site-viewport{width:calc(100% - var(--telikom-ai-w))}
+body.telikom-ai-open .site-header{right:var(--telikom-ai-w);transition:right .48s var(--telikom-ai-ease),height .3s,background .3s,backdrop-filter .3s}
+.telikom-ai-launcher{position:fixed;right:24px;bottom:24px;z-index:490;height:52px;padding:0 18px;border:1px solid rgba(255,255,255,.22);border-radius:999px;background:var(--deep-bg);color:#fff;display:flex;align-items:center;gap:10px;box-shadow:0 18px 44px rgba(6,25,37,.24);cursor:pointer;font:800 11px/1 Manrope,Arial,sans-serif;letter-spacing:.03em;transition:transform .25s var(--telikom-ai-ease),opacity .25s,visibility .25s,box-shadow .25s}
+.telikom-ai-launcher:hover{transform:translateY(-3px);box-shadow:0 22px 54px rgba(6,25,37,.3)}
+.telikom-ai-launcher .spark{width:27px;height:27px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 35% 30%,#6ee7ff,#1ca0e8 42%,#0875c9 72%);box-shadow:0 0 0 5px rgba(28,160,232,.11),0 0 24px rgba(28,160,232,.45);font-size:13px}
+body.telikom-ai-open .telikom-ai-launcher{opacity:0;visibility:hidden;transform:translateX(20px)}
+.telikom-ai-panel{position:fixed;z-index:500;inset:0 0 0 auto;width:var(--telikom-ai-w);background:linear-gradient(180deg,#071d2a 0%,var(--deep-bg) 64%,#04131d 100%);color:#fff;transform:translateX(100%);transition:transform .48s var(--telikom-ai-ease);box-shadow:-24px 0 70px rgba(5,24,36,.18);display:grid;grid-template-rows:auto 1fr auto;overflow:hidden;isolation:isolate}
+body.telikom-ai-open .telikom-ai-panel{transform:none}
+.telikom-ai-panel:before{content:"";position:absolute;inset:-80px -90px auto auto;width:270px;height:270px;border-radius:50%;background:radial-gradient(circle,rgba(28,160,232,.18),transparent 68%);pointer-events:none;z-index:-1}
+.telikom-ai-head{min-height:78px;padding:16px 16px 14px 18px;border-bottom:1px solid rgba(255,255,255,.09);display:flex;align-items:center;gap:12px;background:rgba(11,61,87,.72);backdrop-filter:blur(18px)}
+.telikom-ai-orb{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 34% 30%,#83ecff 0 8%,#27b8ed 31%,#0875c9 68%,#075583 100%);box-shadow:0 0 0 6px rgba(28,160,232,.08),0 0 28px rgba(28,160,232,.24);font-size:14px;flex:0 0 auto}
+.telikom-ai-title{min-width:0;flex:1}.telikom-ai-title b{display:block;font-family:"Space Grotesk",Manrope,sans-serif;font-size:16px;letter-spacing:-.02em}.telikom-ai-status{margin-top:3px;display:flex;align-items:center;gap:6px;font-size:8px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#8fcbe0}.telikom-ai-status i{width:6px;height:6px;border-radius:50%;background:#4be28c;box-shadow:0 0 8px rgba(75,226,140,.7)}
+.telikom-ai-lang{height:29px;padding:0 9px;border:1px solid rgba(255,255,255,.12);border-radius:999px;background:rgba(255,255,255,.05);color:#b9d9e5;font-size:8px;font-weight:800}.telikom-ai-close{width:34px;height:34px;border:1px solid rgba(255,255,255,.12);border-radius:50%;background:rgba(255,255,255,.05);color:#fff;cursor:pointer;font-size:18px;line-height:1}
+.telikom-ai-scroll{min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:18px 17px 24px;scrollbar-width:thin;scrollbar-color:rgba(123,209,239,.22) transparent}
+.telikom-ai-intro{padding:4px 2px 13px}.telikom-ai-intro .eyebrow{font-size:8px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:#69c9eb}.telikom-ai-intro h3{font-family:"Space Grotesk",Manrope,sans-serif;font-size:26px;line-height:1.02;letter-spacing:-.045em;margin:8px 0 8px}.telikom-ai-intro p{margin:0;color:#a9c1cc;font-size:10px;line-height:1.55}
+.telikom-ai-suggestions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0 18px}.telikom-ai-chip{min-height:42px;padding:9px 11px;border:1px solid rgba(132,207,234,.15);border-radius:13px;background:rgba(255,255,255,.045);color:#dff6ff;text-align:left;cursor:pointer;font-size:9px;font-weight:700;line-height:1.25;transition:.22s}.telikom-ai-chip:hover{background:rgba(28,160,232,.12);border-color:rgba(79,203,244,.35);transform:translateY(-1px)}
+.telikom-ai-chat{display:flex;flex-direction:column;gap:11px}.telikom-ai-msg{max-width:88%;font-size:10px;line-height:1.55}.telikom-ai-msg.user{align-self:flex-end;padding:10px 12px;border-radius:14px 14px 4px 14px;background:#0875c9;color:#fff;box-shadow:0 8px 22px rgba(8,117,201,.18)}.telikom-ai-msg.bot{align-self:flex-start;padding:11px 12px;border:1px solid rgba(255,255,255,.08);border-radius:4px 14px 14px 14px;background:rgba(255,255,255,.055);color:#d4e5ec}.telikom-ai-msg.bot b{color:#fff}.telikom-ai-msg.bot a{display:inline-flex;margin-top:8px;color:#75dbff;font-weight:800;font-size:9px}.telikom-ai-typing{display:inline-flex;gap:4px;align-items:center;height:12px}.telikom-ai-typing i{width:4px;height:4px;border-radius:50%;background:#78cce9;animation:telikomAiDot 1s ease-in-out infinite}.telikom-ai-typing i:nth-child(2){animation-delay:.15s}.telikom-ai-typing i:nth-child(3){animation-delay:.3s}@keyframes telikomAiDot{0%,60%,100%{transform:translateY(0);opacity:.4}30%{transform:translateY(-3px);opacity:1}}
+.telikom-ai-compose{padding:13px 14px 15px;border-top:1px solid rgba(255,255,255,.09);background:rgba(4,19,29,.86);backdrop-filter:blur(20px)}.telikom-ai-form{display:flex;align-items:flex-end;gap:8px;padding:7px 7px 7px 12px;border:1px solid rgba(142,210,234,.17);border-radius:16px;background:rgba(255,255,255,.055)}.telikom-ai-input{flex:1;min-width:0;min-height:34px;max-height:86px;border:0;resize:none;background:transparent;color:#fff;outline:none;padding:8px 0 6px;font:500 10px/1.45 Manrope,Arial,sans-serif}.telikom-ai-input::placeholder{color:#71909d}.telikom-ai-send{width:36px;height:36px;border:0;border-radius:11px;background:#1ca0e8;color:#fff;display:grid;place-items:center;cursor:pointer;font-size:15px;box-shadow:0 8px 20px rgba(28,160,232,.25)}.telikom-ai-note{margin:7px 2px 0;color:#587784;font-size:7px;line-height:1.4;text-align:center}
+@media(max-width:1180px){:root{--telikom-ai-w:370px}}
+@media(max-width:820px){:root{--telikom-ai-w:100vw}.site-viewport,body.telikom-ai-open .site-viewport{width:100%}.telikom-ai-panel{width:100vw}.telikom-ai-launcher{right:14px;bottom:14px}.telikom-ai-suggestions{grid-template-columns:1fr 1fr}body.telikom-ai-open .site-header{right:0}.telikom-ai-head{padding-top:max(16px,env(safe-area-inset-top))}.telikom-ai-compose{padding-bottom:max(15px,env(safe-area-inset-bottom))}}
+@media(prefers-reduced-motion:reduce){.site-viewport,.telikom-ai-panel,.site-header,.telikom-ai-launcher{transition:none!important}.telikom-ai-typing i{animation:none!important}}
+
+/* Design 42 footer social icons */
+.footer-social{display:flex;align-items:center;gap:8px;margin-top:16px}
+.footer-social-icon{width:34px;height:34px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.06);color:#e8f7fd;transition:transform .28s var(--spring),background .28s,border-color .28s,color .28s;backdrop-filter:blur(8px)}
+.footer-social-icon:hover,.footer-social-icon:focus-visible{transform:translateY(-3px);background:#fff;border-color:#fff;color:#123f55;outline:none;box-shadow:0 10px 24px rgba(2,20,31,.18)}
+.footer-social-icon svg{width:16px;height:16px;display:block}
+.social-facebook{font-family:Arial,sans-serif;font-size:19px;font-weight:700;line-height:1;transform:translateY(1px)}
+.social-linkedin{font-family:Arial,sans-serif;font-size:12px;font-weight:800;letter-spacing:-.04em;line-height:1}
+@media(max-width:820px){.footer-social{margin-top:14px}.footer-social-icon{width:36px;height:36px}}
+
+/* Design 42: laser tuning v13 */
+/* Canonical province laser presentation for the active endpoint v12 runtime. */
+.province-laser-v12{pointer-events:none;fill:none;stroke-linecap:round;vector-effect:non-scaling-stroke;opacity:1}
+.province-laser-v12.glow{display:none}
+.province-laser-v12.core{stroke:#079fd2;stroke-width:1.35;filter:none}
+.province-node-v6.laser-live .halo{fill:rgba(37,211,255,.28);stroke:#36d8ff;stroke-width:2.2;filter:drop-shadow(0 0 8px rgba(0,196,255,.9))}
+.province-node-v6.laser-live .dot{fill:#fff;stroke:#00b7ed;filter:drop-shadow(0 0 5px #fff) drop-shadow(0 0 11px #00b8ef)}
