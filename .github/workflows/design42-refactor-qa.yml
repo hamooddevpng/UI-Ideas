@@ -10,7 +10,6 @@ on:
       - 'design42-ecosystem-v2.html'
       - 'assets/design42/**'
       - 'scripts/audit-design42.mjs'
-      - 'scripts/refactor-design42-base.mjs'
       - 'tests/design42-css-architecture.test.mjs'
       - '.github/workflows/design42-refactor-qa.yml'
 
@@ -150,7 +149,7 @@ jobs:
             const result=await page.evaluate(selectors=>{
               const boxes={};
               for(const [name,selector] of Object.entries(selectors)){
-                const el=document.querySelector(selector);
+                const el=name==='footer'?[...document.querySelectorAll('footer')].at(-1):document.querySelector(selector);
                 if(!el)throw new Error(`Missing structural parity element ${selector}`);
                 const r=el.getBoundingClientRect();
                 boxes[name]={x:r.x,y:r.y+window.scrollY,width:r.width,height:r.height};
