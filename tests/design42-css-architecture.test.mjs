@@ -22,9 +22,17 @@ assert.doesNotMatch(
 assert.match(loader, /resolveSourceRoot/, '42.html must have one source-root resolver for local and htmlpreview branch/commit previews.');
 assert.match(loader, /design42-chat\.css/, '42.html must load the external chatbot stylesheet.');
 
-// Phase 2: canonical theme ownership.
-assert.ok(exists('assets/design42/design42-theme.css'), 'Design 42 must have one canonical external theme stylesheet.');
+// Phase 2: all page CSS has explicit external ownership.
+for (const file of [
+  'assets/design42/design42-core.css',
+  'assets/design42/design42-components.css',
+  'assets/design42/design42-theme.css'
+]) assert.ok(exists(file), `Missing Design 42 stylesheet: ${file}`);
+
+assert.match(loader, /design42-core\.css/, '42.html must load the core stylesheet.');
+assert.match(loader, /design42-components\.css/, '42.html must load the component stylesheet.');
 assert.match(loader, /design42-theme\.css/, '42.html must load the canonical external theme stylesheet.');
+assert.doesNotMatch(base, /<style(?:\s|>)/i, '42-base.html must not contain inline style blocks after the CSS ownership refactor.');
 assert.ok(!base.includes('Design 42: targeted lighter dark sections v1'), 'Legacy lighter-dark section patch must not remain in 42-base.html.');
 
 const obsoletePaletteMarkers = [
@@ -43,7 +51,7 @@ assert.equal(paletteMentions.length, 0, `42-base.html should not own historical 
 // Phase 3: one province-node foundation plus one active laser implementation.
 assert.match(base, /Design 42: static province laser network v6/, 'The validated province node foundation must remain.');
 assert.match(base, /Design 42: endpoint lasers v12/, 'The active endpoint laser implementation must remain.');
-assert.match(base, /Design 42: laser tuning v13/, 'The active laser tuning layer must remain.');
+assert.match(read('assets/design42/design42-components.css'), /Design 42: laser tuning v13/, 'The active laser tuning layer must move to component CSS.');
 
 const obsoleteLaserMarkers = [
   'Design 42: animated laser shots v7',
@@ -58,7 +66,7 @@ assert.doesNotMatch(base, /provinceLaserShotsV7|provinceLaserCssV9|provinceLaser
 assert.doesNotMatch(base, /v9-live|laser-source-v7|laser-hit-v7/, 'Superseded laser state classes must be removed.');
 assert.doesNotMatch(base, /const buildEdges=|const routeD=/, 'The v6 foundation must no longer run hidden route/shot animation infrastructure.');
 assert.match(base, /provinceLaserLayerV12/, 'The active v12 laser runtime layer must still be created.');
-assert.match(base, /province-node-v6\.laser-live/, 'Active laser endpoint feedback must be owned by the canonical laser presentation.');
+assert.match(read('assets/design42/design42-components.css'), /province-node-v6\.laser-live/, 'Active laser endpoint feedback must be owned by component CSS.');
 assert.match(base, /classList\.add\('laser-live'\)/, 'The active endpoint runtime must drive canonical endpoint feedback.');
 
 console.log('Design 42 CSS architecture guardrails passed.');
