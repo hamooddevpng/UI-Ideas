@@ -1,0 +1,172 @@
+{
+  "schema_version": "1.0",
+  "purpose": "Telikom internal page design competitor screenshot research",
+  "viewport": {"width": 1440, "height": 900},
+  "pages": [
+    {
+      "id": "services-hub",
+      "name": "Services Hub",
+      "task_title": "[Page Design] Services Hub",
+      "sources": [
+        {"slug": "vodafone-png-products-services", "name": "Vodafone PNG Products & Services", "url": "https://vodafone.com.pg/personal/products-services"},
+        {"slug": "vodafone-png-prepaid-hub", "name": "Vodafone PNG Prepaid Hub", "url": "https://vodafone.com.pg/personal/prepaid"},
+        {"slug": "ooredoo-qatar-consumer", "name": "Ooredoo Qatar Consumer Hub", "url": "https://www.ooredoo.qa/web/en/"},
+        {"slug": "stc-saudi-consumer", "name": "stc Saudi Consumer Hub", "url": "https://www.stc.com.sa/en/personal/home.html"}
+      ]
+    },
+    {
+      "id": "personal-mobile",
+      "name": "Personal - Mobile",
+      "task_title": "[Page Design] Personal — Mobile",
+      "sources": [
+        {"slug": "vodafone-png-prepaid", "name": "Vodafone PNG Prepaid Plans", "url": "https://vodafone.com.pg/personal/prepaid"},
+        {"slug": "digicel-png-data-plans", "name": "Digicel PNG Data Plans", "url": "https://support-pg.digicelpacific.com/hc/en-us/articles/7313007383439-What-are-the-new-data-plans"},
+        {"slug": "ooredoo-qatar-postpaid", "name": "Ooredoo Qatar Postpaid Plans", "url": "https://www.ooredoo.qa/web/en/postpaid-plans/"},
+        {"slug": "stc-saudi-prepaid", "name": "stc Saudi Prepaid", "url": "https://www.stc.com.sa/en/personal/mobile/packages/prepaid.html"}
+      ]
+    },
+    {
+      "id": "affordable-home-data",
+      "name": "Affordable Home Data",
+      "task_title": "[Page Design] Affordable Home Data",
+      "sources": [
+        {"slug": "vodafone-png-mobile-broadband", "name": "Vodafone PNG Mobile Broadband", "url": "https://www.vodafone.com.pg/personal/prepaid/Plans/mobile-broadband"},
+        {"slug": "digicel-png-home-internet", "name": "Digicel PNG Home Internet Packages", "url": "https://support-pg.digicelpacific.com/hc/en-us/articles/6454640929679-What-are-the-home-internet-packages"},
+        {"slug": "ooredoo-qatar-home-plus", "name": "Ooredoo Qatar Home+", "url": "https://www.ooredoo.qa/web/en/home-plus/"},
+        {"slug": "stc-saudi-baity", "name": "stc Saudi Baity", "url": "https://www.stc.com.sa/en/personal/homepackages/baity-bundles.html"}
+      ]
+    },
+    {
+      "id": "special-home-passes",
+      "name": "Special Home Passes",
+      "task_title": "[Page Design] Special Home Passes",
+      "sources": [
+        {"slug": "vodafone-png-specials", "name": "Vodafone PNG Specials & Offers", "url": "https://vodafone.com.pg/personal/specials-offers"},
+        {"slug": "digicel-png-time-data", "name": "Digicel PNG Time-Based Data", "url": "https://support-pg.digicelpacific.com/hc/en-us/articles/6454570292495-Where-do-I-go-to-buy-this-time-based-data-plans"},
+        {"slug": "ooredoo-qatar-prepaid-promos", "name": "Ooredoo Qatar Prepaid Promotions", "url": "https://www.ooredoo.qa/web/en/promotions/prepaid/"},
+        {"slug": "stc-saudi-prepaid-addons", "name": "stc Saudi Prepaid & Add-ons", "url": "https://www.stc.com.sa/en/personal/mobile/packages/prepaid.html"}
+      ]
+    },
+    {
+      "id": "u-tokmoa",
+      "name": "U-TOKMoa",
+      "task_title": "[Page Design] U-TOKMoa",
+      "sources": [
+        {"slug": "vodafone-png-mobile-broadband", "name": "Vodafone PNG Mobile Broadband", "url": "https://www.vodafone.com.pg/personal/prepaid/Plans/mobile-broadband"},
+        {"slug": "digicel-png-home-internet", "name": "Digicel PNG Home Internet", "url": "https://support-pg.digicelpacific.com/hc/en-us/articles/6454640929679-What-are-the-home-internet-packages"},
+        {"slug": "ooredoo-qatar-home-plus", "name": "Ooredoo Qatar Home+", "url": "https://www.ooredoo.qa/web/en/home-plus/"},
+        {"slug": "stc-saudi-baity-fiber", "name": "stc Saudi Baity Fiber", "url": "https://www.stc.com.sa/en/personal/homepackages/baity-fiber-packages.html"}
+      ]
+    },
+    {
+      "id": "home-entertainment",
+      "name": "Home Entertainment",
+      "task_title": "[Page Design] Home Entertainment",
+      "sources": [
+        {"slug": "digicel-png-data-tv", "name": "Digicel PNG Data & TV Bundles", "url": "https://support-pg.digicelpacific.com/hc/en-us/articles/6454640004879-What-are-the-new-data-and-TV-bundle-plans"},
+        {"slug": "ooredoo-qatar-tv", "name": "Ooredoo TV", "url": "https://www.ooredoo.qa/web/en/otv-guide/"},
+        {"slug": "ooredoo-qatar-entertainment", "name": "Ooredoo Entertainment Services", "url": "https://www.ooredoo.qa/web/en/entertainment-services/"},
+        {"slug": "stc-saudi-baity-entertainment", "name": "stc Saudi Baity Entertainment", "url": "https://www.stc.com.sa/en/personal/homepackages/baity-fiber-packages.html"}
+      ]
+    },
+    {
+      "id": "devices",
+      "name": "Devices",
+      "task_title": "[Page Design] Devices",
+      "sources": [
+        {"slug": "vodafone-png-devices", "name": "Vodafone PNG Devices", "url": "https://www.vodafone.com.pg/personal/specials-offers/devices"},
+        {"slug": "vodafone-png-broadband-devices", "name": "Vodafone PNG Broadband Devices", "url": "https://vodafone.com.pg/personal/prepaid/mobile-broadband/broadband-devices"},
+        {"slug": "ooredoo-qatar-eshop", "name": "Ooredoo Qatar eShop", "url": "https://eshop.ooredoo.qa/en/collections/all-products"},
+        {"slug": "verizon-smartphones", "name": "Verizon Smartphones", "url": "https://www.verizon.com/smartphones/"}
+      ]
+    },
+    {
+      "id": "business-fixed",
+      "name": "Business - Fixed",
+      "task_title": "[Page Design] Business — Fixed",
+      "sources": [
+        {"slug": "vodafone-png-dedicated-internet", "name": "Vodafone PNG Dedicated Internet", "url": "https://www.vodafone.com.pg/business/products-and-solutions/ict-cloud-solutions/dedicated-internet"},
+        {"slug": "ooredoo-qatar-business-internet", "name": "Ooredoo Qatar Business Internet", "url": "https://www.ooredoo.qa/web/en/business/local-connectivity/business-internet/"},
+        {"slug": "stc-saudi-fiber-link", "name": "stc Saudi Fiber Link", "url": "https://www.stc.com.sa/en/business/connect/internet-voice/fiber-link.html"},
+        {"slug": "stc-saudi-business-link-5g", "name": "stc Saudi Business Link 5G", "url": "https://www.stc.com.sa/en/business/connect/internet-voice/business-link-5g.html"}
+      ]
+    },
+    {
+      "id": "business-mobile",
+      "name": "Business - Mobile",
+      "task_title": "[Page Design] Business — Mobile",
+      "sources": [
+        {"slug": "vodafone-png-mobility", "name": "Vodafone PNG Mobility Solutions", "url": "https://vodafone.com.pg/business/products-and-solutions/mobility-solutions"},
+        {"slug": "ooredoo-qatar-business-mobile-broadband", "name": "Ooredoo Qatar Aamali Mobile Broadband", "url": "https://www.ooredoo.qa/web/en/business/mobile-broadband/"},
+        {"slug": "stc-saudi-business-postpaid", "name": "stc Saudi Business Postpaid", "url": "https://www.stc.com.sa/en/business/connect/mobile-services/mobile-business-postpaid.html"},
+        {"slug": "stc-saudi-business-prepaid", "name": "stc Saudi Business Prepaid", "url": "https://www.stc.com.sa/en/business/connect/mobile-services/mobile-business-prepaid.html"}
+      ]
+    },
+    {
+      "id": "news-media",
+      "name": "News & Media",
+      "task_title": "[Page Design] News & Media",
+      "sources": [
+        {"slug": "ooredoo-qatar-news", "name": "Ooredoo Qatar News", "url": "https://www.ooredoo.qa/web/en/press-release/"},
+        {"slug": "verizon-news", "name": "Verizon News & Stories", "url": "https://www.verizon.com/about/news"},
+        {"slug": "verizon-press", "name": "Verizon Press Releases", "url": "https://www.verizon.com/about/news/media-center"},
+        {"slug": "orange-newsroom", "name": "Orange Newsroom", "url": "https://newsroom.orange.com/"}
+      ]
+    },
+    {
+      "id": "about-us",
+      "name": "About Us",
+      "task_title": "[Page Design] About Us",
+      "sources": [
+        {"slug": "vodafone-png-about", "name": "Vodafone PNG About", "url": "https://www.vodafone.com.pg/about"},
+        {"slug": "ooredoo-qatar-about", "name": "Ooredoo Qatar About", "url": "https://www.ooredoo.qa/web/en/about-us/"},
+        {"slug": "verizon-about", "name": "Verizon About", "url": "https://www.verizon.com/about"},
+        {"slug": "telefonica-about", "name": "Telefonica About", "url": "https://www.telefonica.com/en/about-us/"}
+      ]
+    },
+    {
+      "id": "store-locator",
+      "name": "Store Locator",
+      "task_title": "[Page Design] Store Locator",
+      "sources": [
+        {"slug": "vodafone-png-stores", "name": "Vodafone PNG Store Locations", "url": "https://vodafone.com.pg/about/store-locations"},
+        {"slug": "digicel-png-stores", "name": "Digicel PNG Store Finder", "url": "https://support-pg.digicelpacific.com/hc/en-us/articles/6454578241679-Where-can-I-find-a-Digicel-Store"},
+        {"slug": "ooredoo-qatar-business-desks", "name": "Ooredoo Qatar Business Desks", "url": "https://www.ooredoo.qa/web/en/business/business-desks/"},
+        {"slug": "att-stores", "name": "AT&T Store Locator", "url": "https://www.att.com/stores/"}
+      ]
+    },
+    {
+      "id": "careers",
+      "name": "Careers",
+      "task_title": "[Page Design] Careers",
+      "sources": [
+        {"slug": "vodafone-png-careers", "name": "Vodafone PNG Careers", "url": "https://vodafone.com.pg/about/careers"},
+        {"slug": "ooredoo-qatar-careers", "name": "Ooredoo Qatar Careers", "url": "https://www.ooredoo.qa/web/en/careers/"},
+        {"slug": "verizon-careers", "name": "Verizon Careers", "url": "https://mycareer.verizon.com/"},
+        {"slug": "att-careers", "name": "AT&T Careers", "url": "https://www.att.jobs/"}
+      ]
+    },
+    {
+      "id": "faqs",
+      "name": "FAQs",
+      "task_title": "[Page Design] FAQs",
+      "sources": [
+        {"slug": "vodafone-png-help", "name": "Vodafone PNG Help", "url": "https://vodafone.com.pg/help"},
+        {"slug": "digicel-png-help", "name": "Digicel PNG Help Center", "url": "https://support-pg.digicelpacific.com/hc/en-us"},
+        {"slug": "ooredoo-qatar-help", "name": "Ooredoo Qatar Help Centre", "url": "https://www.ooredoo.qa/web/en/business/help-centre/"},
+        {"slug": "vodafone-png-4g-faq", "name": "Vodafone PNG 4G FAQ", "url": "https://vodafone.com.pg/personal/prepaid/mobile-internet/faqs---4g"}
+      ]
+    },
+    {
+      "id": "contact",
+      "name": "Contact",
+      "task_title": "[Page Design] Contact",
+      "sources": [
+        {"slug": "vodafone-png-contact", "name": "Vodafone PNG Contact", "url": "https://vodafone.com.pg/help/contact-us"},
+        {"slug": "ooredoo-qatar-contact", "name": "Ooredoo Qatar Contact", "url": "https://selfcare.ooredoo.qa/en/consumer/contact-us"},
+        {"slug": "verizon-contact", "name": "Verizon Contact", "url": "https://www.verizon.com/support/contact-us/"},
+        {"slug": "vodafone-png-help", "name": "Vodafone PNG Help & Channels", "url": "https://vodafone.com.pg/help"}
+      ]
+    }
+  ]
+}
