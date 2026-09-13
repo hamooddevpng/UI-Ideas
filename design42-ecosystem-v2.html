@@ -23,7 +23,6 @@ body{margin:0;color:var(--ink);font-family:Inter,ui-sans-serif,-apple-system,Bli
 button,a{font:inherit}
 .eco-section{
   position:relative;
-  min-height:100vh;
   padding:clamp(28px,4vw,62px) clamp(20px,3vw,48px) 64px;
   overflow:hidden;
   background:
@@ -112,7 +111,7 @@ h1{margin:0;font-size:clamp(36px,4.2vw,68px);line-height:.98;letter-spacing:-.05
 @keyframes serverPulse{0%,100%{opacity:.45}50%{opacity:1}}.server-led:nth-child(2n){animation:serverPulse 2.6s ease-in-out infinite}.server-led:nth-child(3n){animation:serverPulse 3.4s ease-in-out infinite .5s}
 @keyframes antennaPulse{0%,100%{opacity:.15;transform:scale(.82)}55%{opacity:.65;transform:scale(1.05)}}.antenna-ring{animation:antennaPulse 3.6s ease-out infinite;transform-box:fill-box;transform-origin:center}
 @keyframes cashPulse{0%,100%{transform:translateX(0);opacity:.55}50%{transform:translateX(8px);opacity:1}}.cash-token{animation:cashPulse 2.5s ease-in-out infinite;transform-box:fill-box}
-@keyframes cloudFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}.cloud-float{animation:cloudFloat 5s ease-in-out infinite;transform-box:fill-box}
+@keyframes cloudFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}.cloud-float{animation:cloudFloat 5s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
 @media (max-width:900px){.eco-section{padding-inline:14px}.eco-head{grid-template-columns:1fr;gap:14px}.eco-intro{max-width:680px}.eco-board{border-radius:23px}.eco-world{overflow-x:auto;overflow-y:hidden}.eco-svg{min-width:940px}.eco-detail{display:none}.eco-hotspot{display:none}.eco-map-silhouette{display:none}.eco-bottom{grid-template-columns:92px 1fr}.eco-hint{display:none}}
 @media (max-width:560px){h1{font-size:38px}.eco-world{height:410px}.eco-svg{height:410px;min-width:820px}.eco-bottom{grid-template-columns:1fr;padding:16px 18px}.eco-brand{display:none}.eco-summary{font-size:14px}}
 @media (prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;scroll-behavior:auto!important;transition-duration:.01ms!important}.eco-svg{transform:none!important}}
