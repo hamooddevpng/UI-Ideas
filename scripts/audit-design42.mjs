@@ -8,6 +8,7 @@ const loader = read('42.html');
 
 const cssFiles = [
   'assets/design42/design42-core.css',
+  'assets/design42/design42-ecosystem.css',
   'assets/design42/design42-components.css',
   'assets/design42/design42-theme.css',
   'assets/design42/design42-chat.css'
