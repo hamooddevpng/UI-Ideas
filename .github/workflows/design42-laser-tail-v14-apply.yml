@@ -1,0 +1,31 @@
+name: Apply Design 42 laser tail v14
+on:
+  push:
+    branches:
+      - fix/design42-laser-tail-v14
+    paths:
+      - '.github/workflows/design42-laser-tail-v14-apply.yml'
+jobs:
+  patch-design-42:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Patch only the Design 42 laser section
+        run: python .patches/apply_design42_laser_tail_v14.py
+      - name: Verify laser tail regression test now passes
+        run: python .patches/test_design42_laser_tail.py
+      - name: Remove temporary patch and test files
+        run: |
+          rm .patches/apply_design42_laser_tail_v14.py
+          rm .patches/test_design42_laser_tail.py
+          rm .github/workflows/design42-laser-tail-v14-test.yml
+          rm .github/workflows/design42-laser-tail-v14-apply.yml
+      - name: Commit laser tail fix
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add 42-base.html .patches .github/workflows
+          git commit -m "fix: move Design 42 laser tail to destination"
+          git push
