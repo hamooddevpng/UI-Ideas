@@ -1,0 +1,192 @@
+name: Capture Page Design Reference Screenshots
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'research/page-design-reference/targets.json'
+      - '.github/workflows/capture-page-design-references.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: page-design-reference-capture-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Playwright
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+
+      - name: Capture page-specific competitor references
+        run: |
+          node <<'EOF'
+          const { chromium } = require('playwright');
+          const fs = require('fs');
+          const path = require('path');
+
+          const manifest = JSON.parse(fs.readFileSync('research/page-design-reference/targets.json', 'utf8'));
+          const root = process.cwd();
+          const base = path.join(root, 'reference-screenshots', 'page-design');
+          fs.mkdirSync(base, { recursive: true });
+
+          async function dismissCommonOverlays(page) {
+            const patterns = [
+              /^accept all$/i, /^accept$/i, /^agree$/i, /^allow all$/i,
+              /^i agree$/i, /^accept cookies$/i, /^got it$/i,
+              /^continue$/i, /^close$/i, /^dismiss$/i, /^no thanks$/i
+            ];
+            for (const pattern of patterns) {
+              try {
+                const button = page.getByRole('button', { name: pattern }).first();
+                if (await button.isVisible({ timeout: 250 })) {
+                  await button.click({ timeout: 1000 });
+                  await page.waitForTimeout(250);
+                  break;
+                }
+              } catch {}
+            }
+          }
+
+          async function lazyLoad(page) {
+            try {
+              await page.evaluate(async () => {
+                await new Promise(resolve => {
+                  let last = -1;
+                  let stable = 0;
+                  const timer = setInterval(() => {
+                    const h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+                    window.scrollBy(0, 900);
+                    const y = window.scrollY + window.innerHeight;
+                    if (h === last && y >= h - 5) stable += 1; else stable = 0;
+                    last = h;
+                    if (stable >= 2) {
+                      clearInterval(timer);
+                      resolve();
+                    }
+                  }, 90);
+                  setTimeout(() => { clearInterval(timer); resolve(); }, 10000);
+                });
+              });
+              await page.waitForTimeout(500);
+              await page.evaluate(() => window.scrollTo(0, 0));
+              await page.waitForTimeout(350);
+            } catch {}
+          }
+
+          const jobs = [];
+          for (const pageStudy of manifest.pages) {
+            const outDir = path.join(base, pageStudy.id, 'desktop-1440');
+            fs.mkdirSync(outDir, { recursive: true });
+            for (const source of pageStudy.sources) jobs.push({ pageStudy, source, outDir });
+          }
+
+          (async () => {
+            const browser = await chromium.launch({
+              headless: true,
+              args: ['--disable-blink-features=AutomationControlled', '--no-sandbox']
+            });
+            const context = await browser.newContext({
+              viewport: manifest.viewport || { width: 1440, height: 900 },
+              deviceScaleFactor: 1,
+              locale: 'en-US',
+              userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36'
+            });
+
+            const resultsByPage = Object.fromEntries(manifest.pages.map(p => [p.id, []]));
+            let cursor = 0;
+
+            async function worker(workerId) {
+              while (true) {
+                const i = cursor++;
+                if (i >= jobs.length) return;
+                const { pageStudy, source, outDir } = jobs[i];
+                const page = await context.newPage();
+                const screenshotPath = path.join(outDir, `${source.slug}.png`);
+                let status = 'ok';
+                let finalUrl = source.url;
+                let title = '';
+                let error = null;
+                try {
+                  console.log(`[${workerId}] ${pageStudy.id}: ${source.url}`);
+                  await page.goto(source.url, { waitUntil: 'domcontentloaded', timeout: 45000 });
+                  await page.waitForTimeout(1800);
+                  await dismissCommonOverlays(page);
+                  await lazyLoad(page);
+                  await dismissCommonOverlays(page);
+                  finalUrl = page.url();
+                  title = await page.title().catch(() => '');
+                  await page.screenshot({
+                    path: screenshotPath,
+                    type: 'png',
+                    fullPage: true,
+                    animations: 'disabled',
+                    timeout: 30000
+                  });
+                } catch (e) {
+                  status = 'error';
+                  error = e.message;
+                  console.warn(`Failed ${pageStudy.id}/${source.slug}: ${e.message}`);
+                  try {
+                    await page.screenshot({ path: screenshotPath, type: 'png', fullPage: true, animations: 'disabled', timeout: 10000 });
+                    status = 'partial';
+                  } catch {}
+                } finally {
+                  resultsByPage[pageStudy.id].push({
+                    slug: source.slug,
+                    name: source.name,
+                    requestedUrl: source.url,
+                    finalUrl,
+                    title,
+                    status,
+                    error,
+                    researchFilename: `${source.slug}.png`
+                  });
+                  await page.close().catch(() => {});
+                }
+              }
+            }
+
+            await Promise.all([1,2,3,4].map(worker));
+            await browser.close();
+
+            for (const pageStudy of manifest.pages) {
+              const outDir = path.join(base, pageStudy.id, 'desktop-1440');
+              const payload = {
+                capturedAt: new Date().toISOString(),
+                pageStudy: { id: pageStudy.id, name: pageStudy.name, task_title: pageStudy.task_title },
+                viewport: `${(manifest.viewport || {}).width || 1440}x${(manifest.viewport || {}).height || 900}`,
+                results: resultsByPage[pageStudy.id].sort((a,b) => a.slug.localeCompare(b.slug))
+              };
+              fs.writeFileSync(path.join(outDir, 'capture-results.json'), JSON.stringify(payload, null, 2));
+            }
+          })().catch(err => {
+            console.error(err);
+            process.exit(1);
+          });
+          EOF
+
+      - name: Commit page-design screenshots
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reference-screenshots/page-design
+          if git diff --cached --quiet; then
+            echo "No screenshot changes to commit"
+            exit 0
+          fi
+          git commit -m "research: capture internal page competitor references"
+          git pull --rebase origin "$GITHUB_REF_NAME"
+          git push origin "HEAD:$GITHUB_REF_NAME"
