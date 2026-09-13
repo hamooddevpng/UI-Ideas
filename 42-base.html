@@ -1982,175 +1982,28 @@ if(editorialImage&&editorialTitle&&editorialDetail&&editorialChips.length){
 
 <script>
 // Design 42: static province laser network v6
+// Canonical responsibility: validated province coordinates and node geometry only.
 (()=>{
-  const section=document.querySelector('.national-story-map');
   const overlay=document.getElementById('nationalProvinceOverlay');
-  if(!section||!overlay||document.getElementById('provinceNetworkV6'))return;
+  if(!overlay||document.getElementById('provinceNetworkV6'))return;
   const NS='http://www.w3.org/2000/svg';
   const points=[{"id":"PGNSB","name":"Autonomous Region of Bougainville","x":750.9,"y":294.1},{"id":"PGCPM","name":"Central Province","x":375.8,"y":440.3},{"id":"PGCPK","name":"Chimbu (Simbu) Province","x":244.2,"y":300.0},{"id":"PGEBR","name":"East New Britain Province","x":572.1,"y":238.7},{"id":"PGESW","name":"East Sepik Province","x":158.8,"y":200.7},{"id":"PGEHG","name":"Eastern Highlands Province","x":277.7,"y":306.1},{"id":"PGEPW","name":"Enga Province","x":173.5,"y":255.5},{"id":"PGGPK","name":"Gulf Province","x":239.4,"y":350.1},{"id":"PGHLA","name":"Hela Province","x":137.5,"y":267.4},{"id":"PGJWK","name":"Jiwaka Province","x":228.2,"y":273.2},{"id":"PGMPM","name":"Madang Province","x":260.2,"y":242.5},{"id":"PGMRL","name":"Manus Province","x":341.3,"y":91.7},{"id":"PGMBA","name":"Milne Bay Province","x":488.1,"y":487.0},{"id":"PGMPL","name":"Morobe Province","x":336.1,"y":325.6},{"id":"PGNCD","name":"National Capital District","x":355.4,"y":452.3},{"id":"PGNIK","name":"New Ireland Province","x":632.9,"y":202.2},{"id":"PGNPP","name":"Northern (Oro) Province","x":406.5,"y":429.6},{"id":"PGSHM","name":"Southern Highlands Province","x":179.2,"y":305.3},{"id":"PGWBK","name":"West New Britain Province","x":484.0,"y":271.4},{"id":"PGSAN","name":"West Sepik (Sandaun) Province","x":87.8,"y":181.3},{"id":"PGWHM","name":"Western Highlands Province","x":208.9,"y":271.7},{"id":"PGWPD","name":"Western Province","x":103.9,"y":352.8}];
-  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const make=(tag,attrs={})=>{const el=document.createElementNS(NS,tag);Object.entries(attrs).forEach(([k,v])=>el.setAttribute(k,String(v)));return el};
-  const dist=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y);
-  const key=(a,b)=>a<b?`${a}-${b}`:`${b}-${a}`;
-  const buildEdges=()=>{
-    const edges=[],keys=new Set(),used=new Set([0]);
-    while(used.size<points.length){let best=null;used.forEach(a=>points.forEach((_,b)=>{if(used.has(b))return;const d=dist(points[a],points[b]);if(!best||d<best.d)best={a,b,d}}));if(!best)break;edges.push(best);keys.add(key(best.a,best.b));used.add(best.b)}
-    const extras=[];points.forEach((p,a)=>{const near=points.map((q,b)=>({a,b,d:dist(p,q)})).filter(e=>e.b!==a).sort((x,y)=>x.d-y.d);for(const e of near.slice(0,2)){const k=key(e.a,e.b);if(!keys.has(k)&&e.d<185){extras.push(e);keys.add(k);break}}});
-    extras.sort((a,b)=>a.d-b.d);return edges.concat(extras.slice(0,8));
-  };
-  const routeD=(a,b,index)=>{const dx=b.x-a.x,dy=b.y-a.y,len=Math.max(1,Math.hypot(dx,dy)),nx=-dy/len,ny=dx/len,bend=Math.min(17,Math.max(4,len*.025))*(index%2?1:-1),mx=(a.x+b.x)/2+nx*bend,my=(a.y+b.y)/2+ny*bend;return `M ${a.x} ${a.y} Q ${mx.toFixed(1)} ${my.toFixed(1)} ${b.x} ${b.y}`};
-  const layer=make('g',{id:'provinceNetworkV6',class:'province-network-v6'}),under=make('g'),routes=make('g'),shots=make('g'),nodes=make('g');layer.append(under,routes,shots,nodes);overlay.appendChild(layer);
-  const edges=buildEdges().map((e,i)=>({...e,path:routeD(points[e.a],points[e.b],i)}));
-  edges.forEach(e=>{under.appendChild(make('path',{class:'province-route-glow-v6',d:e.path}));routes.appendChild(make('path',{class:'province-route-v6',d:e.path}))});
-  const nodeEls=points.map(p=>{const g=make('g',{class:'province-node-v6','data-province':p.name,transform:`translate(${p.x} ${p.y})`});g.append(make('circle',{class:'halo',r:'9'}),make('circle',{class:'dot',r:'4.5'}));nodes.appendChild(g);return g});
-  if(reduce)return;
-  let visible=true;if('IntersectionObserver'in window){visible=false;new IntersectionObserver(([entry])=>{visible=entry.isIntersecting},{threshold:.05}).observe(section)}
-  const animatePath=(el,dur)=>el.animate([{strokeDashoffset:'1',opacity:0,offset:0},{strokeDashoffset:'.82',opacity:1,offset:.08},{strokeDashoffset:'-.03',opacity:1,offset:.88},{strokeDashoffset:'-.17',opacity:0,offset:1}],{duration:dur,easing:'cubic-bezier(.18,.72,.2,1)',fill:'forwards'});
-  const fire=()=>{if(!visible||document.hidden||!edges.length)return;const ei=Math.floor(Math.random()*edges.length),e=edges[ei],forward=Math.random()>.5,fromIndex=forward?e.a:e.b,toIndex=forward?e.b:e.a,from=points[fromIndex],to=points[toIndex],d=forward?e.path:routeD(from,to,ei+1),dur=1150+Math.random()*420,glow=make('path',{class:'province-shot-glow-v6',d,pathLength:'1'}),core=make('path',{class:'province-shot-core-v6',d,pathLength:'1'});shots.append(glow,core);nodeEls[fromIndex].classList.add('live');animatePath(glow,dur);animatePath(core,dur);setTimeout(()=>{nodeEls[toIndex].classList.add('live');const ring=make('circle',{class:'province-impact-v6',cx:to.x,cy:to.y,r:'4'}),dot=make('circle',{class:'province-impact-dot-v6',cx:to.x,cy:to.y,r:'5'});shots.append(ring,dot);ring.animate([{r:4,opacity:1},{r:23,opacity:0}],{duration:720,easing:'ease-out',fill:'forwards'});dot.animate([{r:5,opacity:1},{r:2.5,opacity:0}],{duration:720,easing:'ease-out',fill:'forwards'});setTimeout(()=>{ring.remove();dot.remove();nodeEls[toIndex].classList.remove('live')},760)},dur*.78);setTimeout(()=>{glow.remove();core.remove();nodeEls[fromIndex].classList.remove('live')},dur+120)};
-  const tick=()=>{if(visible&&!document.hidden){fire();if(Math.random()>.45)setTimeout(fire,260)}setTimeout(tick,900+Math.random()*620)};setTimeout(()=>{fire();setTimeout(fire,320);tick()},300);
+  const make=(tag,attrs={})=>{const el=document.createElementNS(NS,tag);Object.entries(attrs).forEach(([key,value])=>el.setAttribute(key,String(value)));return el};
+  const layer=make('g',{id:'provinceNetworkV6',class:'province-network-v6'});
+  const nodes=make('g',{class:'province-node-layer'});
+  layer.appendChild(nodes);
+  overlay.appendChild(layer);
+  points.forEach(point=>{
+    const node=make('g',{class:'province-node-v6','data-province':point.name,transform:`translate(${point.x} ${point.y})`});
+    node.append(make('circle',{class:'halo',r:'9'}),make('circle',{class:'dot',r:'4.5'}));
+    nodes.appendChild(node);
+  });
 })();
 </script>
 
 
-<style>
-/* Design 42: animated laser shots v7 */
-.province-shot-glow-v6,.province-shot-core-v6,.province-impact-v6,.province-impact-dot-v6{display:none!important}
-.province-route-v6{transition:opacity .18s ease,stroke .18s ease,filter .18s ease}
-.province-route-v6.laser-route-active-v7{opacity:.92!important;stroke:#16bdec!important;filter:drop-shadow(0 0 5px rgba(0,174,240,.72))!important}
-.province-laser-layer-v7{pointer-events:none}
-.laser-trail-glow-v7,.laser-trail-core-v7{fill:none;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
-.laser-trail-glow-v7{stroke:#00bdf4;stroke-width:13;opacity:.72;filter:blur(2.4px) drop-shadow(0 0 9px rgba(0,174,240,.95)) drop-shadow(0 0 18px rgba(8,117,201,.72))}
-.laser-trail-core-v7{stroke:#fff;stroke-width:3.6;opacity:1;filter:drop-shadow(0 0 3px #fff) drop-shadow(0 0 7px #35d8ff) drop-shadow(0 0 12px #0875c9)}
-.laser-head-halo-v7{fill:rgba(0,190,244,.22);stroke:#50dcff;stroke-width:1.2;vector-effect:non-scaling-stroke;filter:drop-shadow(0 0 8px rgba(0,174,240,.95))}
-.laser-head-v7{fill:#fff;stroke:#00aee8;stroke-width:2.2;vector-effect:non-scaling-stroke;filter:drop-shadow(0 0 3px #fff) drop-shadow(0 0 8px #1acbff)}
-.province-node-v6.laser-source-v7 .halo{animation:laserChargeV7 .42s ease-out}
-.province-node-v6.laser-hit-v7 .halo{animation:laserNodeHitV7 .72s ease-out}
-.province-node-v6.laser-hit-v7 .dot{fill:#fff!important;stroke:#00aee8!important}
-.laser-impact-ring-v7{fill:none;stroke:#00aee8;stroke-width:3;vector-effect:non-scaling-stroke;filter:drop-shadow(0 0 7px #25d1ff);animation:laserImpactRingV7 .72s ease-out forwards}
-.laser-impact-flash-v7{fill:#fff;stroke:#3dd8ff;stroke-width:2;vector-effect:non-scaling-stroke;filter:drop-shadow(0 0 8px #fff) drop-shadow(0 0 14px #00aee8);animation:laserImpactFlashV7 .45s ease-out forwards}
-@keyframes laserChargeV7{0%{opacity:.3;transform:scale(.65)}45%{opacity:1;transform:scale(1.45)}100%{opacity:.94;transform:scale(1)}}
-@keyframes laserNodeHitV7{0%{opacity:1;transform:scale(.75)}35%{opacity:1;transform:scale(1.8)}100%{opacity:.94;transform:scale(1)}}
-@keyframes laserImpactRingV7{0%{r:5;opacity:1}100%{r:30;opacity:0}}
-@keyframes laserImpactFlashV7{0%{r:8;opacity:1}100%{r:2;opacity:0}}
-@media(prefers-reduced-motion:reduce){.province-laser-layer-v7{display:none!important}.province-route-v6.laser-route-active-v7{opacity:.62!important}}
-</style>
-<script>
-// Design 42: animated laser shots v7
-(()=>{
-  if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-  const NS='http://www.w3.org/2000/svg';
-  const overlay=document.getElementById('nationalProvinceOverlay');
-  const section=document.querySelector('.national-story-map');
-  if(!overlay||!section)return;
 
-  const boot=()=>{
-    if(document.getElementById('provinceLaserShotsV7'))return;
-    const network=document.getElementById('provinceNetworkV6');
-    const routeEls=network?[...network.querySelectorAll('.province-route-v6')]:[];
-    const nodeEls=network?[...network.querySelectorAll('.province-node-v6')]:[];
-    if(!network||routeEls.length<1||nodeEls.length<2){setTimeout(boot,90);return}
 
-    const make=(tag,attrs={})=>{const el=document.createElementNS(NS,tag);Object.entries(attrs).forEach(([k,v])=>el.setAttribute(k,String(v)));return el};
-    const layer=make('g',{id:'provinceLaserShotsV7',class:'province-laser-layer-v7'});
-    const nodesGroup=network.lastElementChild;
-    if(nodesGroup&&nodesGroup.parentNode===network)network.insertBefore(layer,nodesGroup);else network.appendChild(layer);
-
-    const nodes=nodeEls.map(el=>{
-      const m=el.transform.baseVal.consolidate();
-      return {el,x:m?m.matrix.e:0,y:m?m.matrix.f:0};
-    });
-    const nearest=pt=>nodes.reduce((best,n)=>{
-      const d=(n.x-pt.x)**2+(n.y-pt.y)**2;
-      return !best||d<best.d?{...n,d}:best;
-    },null);
-
-    let visible=true;
-    if('IntersectionObserver'in window){
-      visible=false;
-      new IntersectionObserver(([entry])=>{visible=entry.isIntersecting},{threshold:.04}).observe(section);
-    }
-
-    const segmentD=(path,head,reverse,trail)=>{
-      const len=path.getTotalLength();
-      const tail=reverse?Math.min(len,head+trail):Math.max(0,head-trail);
-      const parts=[];
-      const steps=10;
-      for(let i=0;i<=steps;i++){
-        const d=tail+(head-tail)*(i/steps);
-        const pt=path.getPointAtLength(d);
-        parts.push(`${i?'L':'M'} ${pt.x.toFixed(2)} ${pt.y.toFixed(2)}`);
-      }
-      return parts.join(' ');
-    };
-
-    let active=0;
-    const impact=(target,pt)=>{
-      if(target){
-        target.el.classList.add('laser-hit-v7');
-        setTimeout(()=>target.el.classList.remove('laser-hit-v7'),760);
-      }
-      const ring=make('circle',{class:'laser-impact-ring-v7',cx:pt.x,cy:pt.y,r:5});
-      const flash=make('circle',{class:'laser-impact-flash-v7',cx:pt.x,cy:pt.y,r:8});
-      layer.append(ring,flash);
-      setTimeout(()=>{ring.remove();flash.remove()},780);
-    };
-
-    const fire=()=>{
-      if(!visible||document.hidden||active>=3)return;
-      const route=routeEls[Math.floor(Math.random()*routeEls.length)];
-      let len=0;try{len=route.getTotalLength()}catch(_){return}
-      if(!len||len<8)return;
-      active++;
-      const reverse=Math.random()<.5;
-      const startPt=route.getPointAtLength(reverse?len:0);
-      const endPt=route.getPointAtLength(reverse?0:len);
-      const source=nearest(startPt),target=nearest(endPt);
-      const glow=make('path',{class:'laser-trail-glow-v7'});
-      const core=make('path',{class:'laser-trail-core-v7'});
-      const halo=make('circle',{class:'laser-head-halo-v7',r:9});
-      const head=make('circle',{class:'laser-head-v7',r:4.2});
-      layer.append(glow,core,halo,head);
-      route.classList.add('laser-route-active-v7');
-      if(source){source.el.classList.add('laser-source-v7');setTimeout(()=>source.el.classList.remove('laser-source-v7'),430)}
-
-      const trail=Math.max(34,Math.min(78,len*.28));
-      const duration=Math.max(620,Math.min(1180,520+len*1.8));
-      const started=performance.now();
-      const frame=now=>{
-        const raw=Math.min(1,(now-started)/duration);
-        const eased=raw<.5?2*raw*raw:1-Math.pow(-2*raw+2,2)/2;
-        const d=reverse?len*(1-eased):len*eased;
-        const beam=segmentD(route,d,reverse,trail);
-        glow.setAttribute('d',beam);core.setAttribute('d',beam);
-        const pt=route.getPointAtLength(d);
-        halo.setAttribute('cx',pt.x);halo.setAttribute('cy',pt.y);
-        head.setAttribute('cx',pt.x);head.setAttribute('cy',pt.y);
-        const fade=Math.min(1,raw/.08,(1-raw)/.035);
-        glow.style.opacity=String(Math.max(0,.72*fade));
-        core.style.opacity=String(Math.max(0,fade));
-        halo.style.opacity=String(Math.max(0,.95*fade));
-        head.style.opacity=String(Math.max(0,fade));
-        if(raw<1){requestAnimationFrame(frame);return}
-        impact(target,endPt);
-        route.classList.remove('laser-route-active-v7');
-        glow.remove();core.remove();halo.remove();head.remove();
-        active=Math.max(0,active-1);
-      };
-      requestAnimationFrame(frame);
-    };
-
-    const cycle=()=>{
-      if(visible&&!document.hidden){
-        fire();
-        if(Math.random()>.48)setTimeout(fire,170+Math.random()*180);
-      }
-      setTimeout(cycle,720+Math.random()*780);
-    };
-    setTimeout(()=>{fire();setTimeout(fire,240);setTimeout(fire,510);cycle()},420);
-  };
-  boot();
-})();
-</script>
 
 
 </div>
@@ -2225,165 +2078,15 @@ body.telikom-ai-open .telikom-ai-panel{transform:none}
 </script>
 
 
-<style>
-/* Design 42: robust province lasers v9 */
-.province-laser-css-v9{pointer-events:none}
-.province-laser-glow-v9,.province-laser-core-v9{fill:none;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
-.province-laser-glow-v9{stroke:#00c8ff;stroke-width:12;opacity:0;filter:blur(2px) drop-shadow(0 0 9px rgba(0,200,255,.98)) drop-shadow(0 0 18px rgba(8,117,201,.8));stroke-dasharray:15 85;animation:provinceLaserForwardV9 var(--laser-dur,3.4s) linear infinite;animation-delay:var(--laser-delay,0s)}
-.province-laser-core-v9{stroke:#fff;stroke-width:3.4;opacity:0;filter:drop-shadow(0 0 3px #fff) drop-shadow(0 0 7px #53e3ff) drop-shadow(0 0 11px #0875c9);stroke-dasharray:11 89;animation:provinceLaserForwardV9 var(--laser-dur,3.4s) linear infinite;animation-delay:var(--laser-delay,0s)}
-.province-laser-glow-v9.reverse,.province-laser-core-v9.reverse{animation-name:provinceLaserReverseV9}
-@keyframes provinceLaserForwardV9{0%,56%{stroke-dashoffset:100;opacity:0}58%{stroke-dashoffset:100;opacity:1}84%{stroke-dashoffset:-15;opacity:1}87%{stroke-dashoffset:-22;opacity:0}100%{stroke-dashoffset:-22;opacity:0}}
-@keyframes provinceLaserReverseV9{0%,56%{stroke-dashoffset:-15;opacity:0}58%{stroke-dashoffset:-15;opacity:1}84%{stroke-dashoffset:100;opacity:1}87%{stroke-dashoffset:107;opacity:0}100%{stroke-dashoffset:107;opacity:0}}
-.province-node-v6.v9-live .halo{fill:rgba(37,211,255,.28)!important;stroke:#36d8ff!important;stroke-width:2.2!important;filter:drop-shadow(0 0 8px rgba(0,196,255,.9))}
-.province-node-v6.v9-live .dot{fill:#fff!important;stroke:#00b7ed!important;filter:drop-shadow(0 0 5px #fff) drop-shadow(0 0 11px #00b8ef)!important}
-@media(prefers-reduced-motion:reduce){.province-laser-glow-v9,.province-laser-core-v9{animation-duration:6s!important;animation-timing-function:linear!important}}
-</style>
-<script>
-// Design 42: robust province lasers v9
-(()=>{
-  const boot=()=>{
-    const network=document.getElementById('provinceNetworkV6');
-    if(!network){setTimeout(boot,100);return}
-    if(document.getElementById('provinceLaserCssV9'))return;
-    const routes=[...network.querySelectorAll('.province-route-v6')];
-    const nodes=[...network.querySelectorAll('.province-node-v6')];
-    if(!routes.length){setTimeout(boot,100);return}
-    const NS='http://www.w3.org/2000/svg';
-    const group=document.createElementNS(NS,'g');
-    group.setAttribute('id','provinceLaserCssV9');
-    group.setAttribute('class','province-laser-css-v9');
-    const nodeGroup=network.lastElementChild;
-    if(nodeGroup&&nodeGroup.parentNode===network)network.insertBefore(group,nodeGroup);else network.appendChild(group);
-    routes.forEach((route,i)=>{
-      if(i%2&&i%3)return;
-      const d=route.getAttribute('d');
-      if(!d)return;
-      const reverse=i%2===1;
-      const dur=(2.5+(i%5)*.34).toFixed(2)+'s';
-      const delay=(-((i*0.61)%3.8)).toFixed(2)+'s';
-      const glow=document.createElementNS(NS,'path');
-      const core=document.createElementNS(NS,'path');
-      glow.setAttribute('d',d);core.setAttribute('d',d);
-      glow.setAttribute('pathLength','100');core.setAttribute('pathLength','100');
-      glow.setAttribute('class','province-laser-glow-v9'+(reverse?' reverse':''));
-      core.setAttribute('class','province-laser-core-v9'+(reverse?' reverse':''));
-      glow.style.setProperty('--laser-dur',dur);core.style.setProperty('--laser-dur',dur);
-      glow.style.setProperty('--laser-delay',delay);core.style.setProperty('--laser-delay',delay);
-      group.append(glow,core);
-    });
-    const pulseNodes=()=>{
-      if(!nodes.length)return;
-      const a=nodes[Math.floor(Math.random()*nodes.length)];
-      const b=nodes[Math.floor(Math.random()*nodes.length)];
-      a&&a.classList.add('v9-live');b&&b.classList.add('v9-live');
-      setTimeout(()=>{a&&a.classList.remove('v9-live');b&&b.classList.remove('v9-live')},520);
-    };
-    pulseNodes();setInterval(pulseNodes,720);
-  };
-  boot();
-})();
-</script>
 
 
-<style>
-/* Design 42: lasers only v10 */
-.province-route-v6,
-.province-route-v6.laser-route-active-v7,
-.province-route-glow-v6{
-  opacity:0!important;
-  stroke-opacity:0!important;
-  filter:none!important;
-}
-</style>
 
 
-<style>
-/* Design 42: simple province lasers v11 */
-#provinceLaserShotsV7,#provinceLaserCssV9{display:none!important}
-.province-route-v6,.province-route-glow-v6{display:none!important}
-.province-laser-v11{fill:none;stroke-linecap:round;vector-effect:non-scaling-stroke;pointer-events:none;stroke-dasharray:1;stroke-dashoffset:1;animation:provinceLaserDrawV11 var(--laser-dur,1.2s) cubic-bezier(.18,.8,.2,1) forwards}
-.province-laser-glow-v11{stroke:#22d7ff;stroke-width:10;opacity:.9;filter:blur(1.2px) drop-shadow(0 0 7px rgba(34,215,255,.95)) drop-shadow(0 0 14px rgba(8,117,201,.7))}
-.province-laser-core-v11{stroke:#fff;stroke-width:2.7;opacity:1;filter:drop-shadow(0 0 2px #fff) drop-shadow(0 0 5px #63e8ff)}
-@keyframes provinceLaserDrawV11{
-  0%{stroke-dashoffset:1;opacity:0}
-  8%{opacity:1}
-  72%{stroke-dashoffset:0;opacity:1}
-  84%{stroke-dashoffset:0;opacity:1}
-  100%{stroke-dashoffset:0;opacity:0}
-}
-</style>
-<script>
-// Design 42: simple province lasers v11
-(()=>{
-  const NS='http://www.w3.org/2000/svg';
-  const boot=()=>{
-    const network=document.getElementById('provinceNetworkV6');
-    if(!network){setTimeout(boot,100);return}
-    if(document.getElementById('provinceLaserLayerV11'))return;
 
-    const nodeEls=[...network.querySelectorAll('.province-node-v6')];
-    if(nodeEls.length<2){setTimeout(boot,100);return}
 
-    const parseNode=el=>{
-      const raw=el.getAttribute('transform')||'';
-      const m=raw.match(/translate\(\s*([-\d.]+)[ ,]+([-\d.]+)\s*\)/);
-      if(!m)return null;
-      return {x:parseFloat(m[1]),y:parseFloat(m[2]),el};
-    };
-    const nodes=nodeEls.map(parseNode).filter(Boolean);
-    if(nodes.length<2){setTimeout(boot,100);return}
 
-    const layer=document.createElementNS(NS,'g');
-    layer.setAttribute('id','provinceLaserLayerV11');
-    layer.setAttribute('class','province-laser-layer-v11');
-    const nodeGroup=network.lastElementChild;
-    if(nodeGroup&&nodeGroup.parentNode===network)network.insertBefore(layer,nodeGroup);else network.appendChild(layer);
 
-    const pickPair=()=>{
-      let a,b,d,tries=0;
-      do{
-        a=nodes[Math.floor(Math.random()*nodes.length)];
-        b=nodes[Math.floor(Math.random()*nodes.length)];
-        d=a&&b?Math.hypot(a.x-b.x,a.y-b.y):0;
-        tries++;
-      }while((!a||!b||a===b||d<70||d>470)&&tries<40);
-      return a&&b&&a!==b?[a,b]:null;
-    };
 
-    const addLine=(a,b,cls,dur)=>{
-      const line=document.createElementNS(NS,'line');
-      line.setAttribute('x1',a.x);line.setAttribute('y1',a.y);
-      line.setAttribute('x2',b.x);line.setAttribute('y2',b.y);
-      line.setAttribute('pathLength','1');
-      line.setAttribute('class','province-laser-v11 '+cls);
-      line.style.setProperty('--laser-dur',dur+'ms');
-      layer.appendChild(line);
-      return line;
-    };
-
-    const shoot=()=>{
-      const pair=pickPair();
-      if(!pair)return;
-      const [a,b]=pair;
-      const dur=950+Math.floor(Math.random()*420);
-      const glow=addLine(a,b,'province-laser-glow-v11',dur);
-      const core=addLine(a,b,'province-laser-core-v11',dur);
-      a.el.classList.add('v9-live');
-      setTimeout(()=>b.el.classList.add('v9-live'),Math.floor(dur*.68));
-      setTimeout(()=>{a.el.classList.remove('v9-live');b.el.classList.remove('v9-live');glow.remove();core.remove()},dur+120);
-    };
-
-    shoot();
-    setTimeout(shoot,420);
-    setTimeout(shoot,900);
-    setInterval(()=>{
-      shoot();
-      if(Math.random()<.35)setTimeout(shoot,180+Math.random()*220);
-    },920);
-  };
-  boot();
-})();
-</script>
 
 <style>
 /* Design 42: targeted lighter dark sections v1 */
@@ -2451,12 +2154,12 @@ footer{
 
 <style>
 /* Design 42: laser tuning v13 */
-/* Faster, thinner, glow-free source-to-destination beams. */
-/* Design 42: endpoint lasers v12 */
-.province-laser-v11{display:none!important}
+/* Canonical province laser presentation for the active endpoint v12 runtime. */
 .province-laser-v12{pointer-events:none;fill:none;stroke-linecap:round;vector-effect:non-scaling-stroke;opacity:1}
-.province-laser-v12.glow{display:none!important}
+.province-laser-v12.glow{display:none}
 .province-laser-v12.core{stroke:#079fd2;stroke-width:1.35;filter:none}
+.province-node-v6.laser-live .halo{fill:rgba(37,211,255,.28);stroke:#36d8ff;stroke-width:2.2;filter:drop-shadow(0 0 8px rgba(0,196,255,.9))}
+.province-node-v6.laser-live .dot{fill:#fff;stroke:#00b7ed;filter:drop-shadow(0 0 5px #fff) drop-shadow(0 0 11px #00b8ef)}
 </style>
 <script>
 // Design 42: endpoint lasers v12
@@ -2505,6 +2208,8 @@ footer{
       const glow=makeLine(a,'glow');
       const core=makeLine(a,'core');
       const duration=220+Math.random()*120;
+      a.el.classList.add('laser-live');
+      setTimeout(()=>b.el.classList.add('laser-live'),Math.max(80,Math.floor(duration*.68)));
       const started=performance.now();
 
       const frame=now=>{
@@ -2519,7 +2224,7 @@ footer{
           glow.style.transition='opacity 60ms linear';
           core.style.transition='opacity 60ms linear';
           glow.style.opacity='0';core.style.opacity='0';
-          setTimeout(()=>{glow.remove();core.remove()},75);
+          setTimeout(()=>{a.el.classList.remove('laser-live');b.el.classList.remove('laser-live');glow.remove();core.remove()},75);
         },25);
       };
       requestAnimationFrame(frame);
