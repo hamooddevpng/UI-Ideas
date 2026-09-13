@@ -73,19 +73,29 @@ jobs:
           curl --fail --silent http://127.0.0.1:4173/42.html >/dev/null
           curl --fail --silent http://127.0.0.1:4174/42.html >/dev/null
 
-      - name: Run browser smoke tests and capture current/reference screenshots
+      - name: Run browser smoke tests and structural parity checks
         run: |
           mkdir -p qa/design42/refactor
           node <<'EOF'
           const { chromium } = require('playwright');
           const path = require('path');
+          const fs = require('fs');
           const assert = require('assert/strict');
 
           const currentUrl = 'http://127.0.0.1:4173/42.html';
           const referenceUrl = 'http://127.0.0.1:4174/42.html';
+          const geometrySelectors = {
+            hero: '.hero',
+            quickActions: '#quick-actions',
+            business: '#business',
+            digitalPng: '.eco-section',
+            support: '#support',
+            footer: 'footer'
+          };
 
           const settleFold = async page => {
             await page.waitForSelector('.hero', {timeout:15000});
+            await page.evaluate(() => document.fonts?.ready || Promise.resolve());
             await page.waitForTimeout(900);
             await page.evaluate(() => window.scrollTo(0,0));
             await page.waitForTimeout(350);
@@ -93,6 +103,7 @@ jobs:
 
           const primeFullPage = async page => {
             await page.waitForSelector('.hero', {timeout:15000});
+            await page.evaluate(() => document.fonts?.ready || Promise.resolve());
             await page.waitForTimeout(1000);
             await page.evaluate(async () => {
               const sleep = ms => new Promise(r => setTimeout(r, ms));
@@ -118,11 +129,7 @@ jobs:
           };
 
           const captureFold = async (browser, url, output) => {
-            const context = await browser.newContext({
-              viewport:{width:1440,height:900},
-              deviceScaleFactor:1,
-              reducedMotion:'reduce'
-            });
+            const context = await browser.newContext({viewport:{width:1440,height:900},deviceScaleFactor:1,reducedMotion:'reduce'});
             const page = await context.newPage();
             const errors=[];
             page.on('pageerror', error=>errors.push(String(error)));
@@ -133,12 +140,49 @@ jobs:
             await context.close();
           };
 
+          const captureGeometry = async (browser,url) => {
+            const context=await browser.newContext({viewport:{width:1440,height:900},deviceScaleFactor:1,reducedMotion:'reduce'});
+            const page=await context.newPage();
+            await page.goto(url,{waitUntil:'domcontentloaded',timeout:30000});
+            await primeFullPage(page);
+            await page.evaluate(()=>window.scrollTo(0,0));
+            await page.waitForTimeout(250);
+            const result=await page.evaluate(selectors=>{
+              const boxes={};
+              for(const [name,selector] of Object.entries(selectors)){
+                const el=document.querySelector(selector);
+                if(!el)throw new Error(`Missing structural parity element ${selector}`);
+                const r=el.getBoundingClientRect();
+                boxes[name]={x:r.x,y:r.y+window.scrollY,width:r.width,height:r.height};
+              }
+              return {scrollHeight:document.documentElement.scrollHeight,boxes};
+            },geometrySelectors);
+            await context.close();
+            return result;
+          };
+
           (async()=>{
             const browser=await chromium.launch({headless:true});
 
-            // Same Chromium build, viewport, motion preference and timing for both images.
             await captureFold(browser,referenceUrl,path.join('qa','design42','refactor','reference-fold.png'));
             await captureFold(browser,currentUrl,path.join('qa','design42','refactor','desktop-fold.png'));
+
+            const referenceGeometry=await captureGeometry(browser,referenceUrl);
+            const currentGeometry=await captureGeometry(browser,currentUrl);
+            const report={reference:referenceGeometry,current:currentGeometry,deltas:{}};
+            const tolerance=6;
+            assert.ok(Math.abs(currentGeometry.scrollHeight-referenceGeometry.scrollHeight)<=tolerance,
+              `Document height changed by ${currentGeometry.scrollHeight-referenceGeometry.scrollHeight}px.`);
+            for(const name of Object.keys(geometrySelectors)){
+              const a=referenceGeometry.boxes[name];
+              const b=currentGeometry.boxes[name];
+              const delta={x:b.x-a.x,y:b.y-a.y,width:b.width-a.width,height:b.height-a.height};
+              report.deltas[name]=delta;
+              for(const [metric,value] of Object.entries(delta)){
+                assert.ok(Math.abs(value)<=tolerance,`${name} ${metric} changed by ${value.toFixed(2)}px.`);
+              }
+            }
+            fs.writeFileSync(path.join('qa','design42','refactor','geometry-parity.json'),JSON.stringify(report,null,2));
 
             const context=await browser.newContext({viewport:{width:1440,height:900},deviceScaleFactor:1});
             const page=await context.newPage();
@@ -188,11 +232,11 @@ jobs:
             await mobile.screenshot({path:path.join('qa','design42','refactor','mobile-full.jpg'),type:'jpeg',quality:84,fullPage:true,animations:'disabled',timeout:30000});
             await mobileContext.close();
             await browser.close();
-            console.log('Design 42 browser smoke checks passed.');
+            console.log('Design 42 browser smoke and structural parity checks passed.');
           })().catch(error=>{console.error(error);process.exit(1)});
           EOF
 
-      - name: Measure refactor parity against exact parent render
+      - name: Generate same-run visual diff artifact
         run: |
           python3 <<'PY'
           from PIL import Image, ImageChops, ImageStat
@@ -202,15 +246,14 @@ jobs:
           reference = Image.open(Path('qa/design42/refactor/reference-fold.png')).convert('RGB')
           current = Image.open(Path('qa/design42/refactor/desktop-fold.png')).convert('RGB')
           if reference.size != current.size:
-              raise SystemExit(f'Parity dimensions changed: reference={reference.size}, current={current.size}')
+              raise SystemExit(f'Visual diff dimensions changed: reference={reference.size}, current={current.size}')
           diff = ImageChops.difference(reference,current)
           stat = ImageStat.Stat(diff)
           mse = sum((r ** 2) for r in stat.rms) / 3
           rmse = math.sqrt(mse) / 255
-          print(f'Normalized same-run parent/refactor RMSE: {rmse:.6f}')
+          print(f'Normalized same-run visual RMSE (informational after intentional palette restore): {rmse:.6f}')
           diff.save('qa/design42/refactor/fold-diff.png')
-          if rmse > 0.10:
-              raise SystemExit(f'Refactor parity regression too large: {rmse:.6f} > 0.10')
+          Path('qa/design42/refactor/visual-rmse.txt').write_text(f'{rmse:.6f}\n')
           PY
 
       - name: Upload audit and visual QA artifacts
