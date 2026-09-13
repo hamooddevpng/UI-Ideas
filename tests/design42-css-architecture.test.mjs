@@ -32,6 +32,21 @@ for (const file of [
 assert.match(loader, /design42-core\.css/, '42.html must load the core stylesheet.');
 assert.match(loader, /design42-components\.css/, '42.html must load the component stylesheet.');
 assert.match(loader, /design42-theme\.css/, '42.html must load the canonical external theme stylesheet.');
+
+const cascadeMarkers=[
+  'data-design42-core',
+  'data-design42-ecosystem-v2',
+  'data-design42-components',
+  'data-design42-theme',
+  'data-design42-chat-popup'
+];
+let previousIndex=-1;
+for(const marker of cascadeMarkers){
+  const index=loader.indexOf(marker);
+  assert.ok(index>previousIndex, `Design 42 stylesheet ownership order is wrong around ${marker}.`);
+  previousIndex=index;
+}
+
 assert.doesNotMatch(base, /<style(?:\s|>)/i, '42-base.html must not contain inline style blocks after the CSS ownership refactor.');
 assert.ok(!base.includes('Design 42: targeted lighter dark sections v1'), 'Legacy lighter-dark section patch must not remain in 42-base.html.');
 
