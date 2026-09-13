@@ -36,12 +36,20 @@ html,body{margin:0;min-height:100%;font-family:Manrope,Arial,sans-serif;backgrou
     if(!response.ok)throw new Error(`${response.status} ${response.statusText} · ${url}`);
     return response.text();
   };
-  const addStyle=(page,css,attribute,target=page.head)=>{
+  const addStyle=(page,css,attribute)=>{
     if(!css)return;
     const style=page.createElement('style');
     style.setAttribute(attribute,'');
     style.textContent=css;
-    target.appendChild(style);
+    page.head.appendChild(style);
+  };
+  const normalizeStyleOwnership=page=>{
+    // Some prototype-era passes were appended inside <body>. Move every
+    // existing style node into <head> while preserving their document order.
+    // This gives the page one deterministic stylesheet cascade without
+    // changing selector contents during the migration.
+    const styles=[...page.querySelectorAll('style')];
+    styles.forEach(style=>page.head.appendChild(style));
   };
 
   try{
@@ -78,12 +86,11 @@ html,body{margin:0;min-height:100%;font-family:Manrope,Arial,sans-serif;backgrou
       }
     }
 
-    // The historical palette passes lived at the end of the base document.
-    // Keep the canonical theme as the final page-color owner so earlier legacy
-    // section styles cannot override it while they are being removed.
-    addStyle(page,themeCss,'data-design42-theme',page.body);
+    normalizeStyleOwnership(page);
+    // Canonical theme is now the final owner of page color treatment.
+    addStyle(page,themeCss,'data-design42-theme');
     // Chat presentation intentionally comes last and owns only the popup.
-    addStyle(page,chatCss,'data-design42-chat-popup',page.body);
+    addStyle(page,chatCss,'data-design42-chat-popup');
 
     document.open();
     document.write('<!doctype html>'+page.documentElement.outerHTML);
