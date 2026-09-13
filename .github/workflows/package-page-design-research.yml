@@ -1,0 +1,23 @@
+name: Package Page Design Research
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/package-page-design-research.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Package captured page research
+        run: zip -qr page-design-research.zip reference-screenshots/page-design
+      - uses: actions/upload-artifact@v4
+        with:
+          name: page-design-research
+          path: page-design-research.zip
+          retention-days: 30
