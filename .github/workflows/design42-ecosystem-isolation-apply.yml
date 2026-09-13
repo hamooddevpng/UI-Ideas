@@ -1,0 +1,45 @@
+name: Design 42 Ecosystem Isolation Apply
+
+on:
+  push:
+    branches:
+      - refactor/design42-css-cleanup
+    paths:
+      - 'scripts/isolate-design42-ecosystem.mjs'
+      - '.github/workflows/design42-ecosystem-isolation-apply.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: design42-ecosystem-isolation-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  isolate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Preview deterministic isolation
+        run: node scripts/isolate-design42-ecosystem.mjs
+      - name: Apply deterministic isolation
+        run: node scripts/isolate-design42-ecosystem.mjs --apply
+      - name: Verify architecture guardrails
+        run: node tests/design42-css-architecture.test.mjs
+      - name: Commit ecosystem ownership cleanup
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add 42.html design42-ecosystem-v2.html assets/design42/design42-core.css assets/design42/design42-ecosystem.css scripts/audit-design42.mjs
+          if git diff --cached --quiet; then
+            echo "No ecosystem isolation changes to commit."
+            exit 0
+          fi
+          git commit -m "refactor: isolate Design 42 Digital PNG CSS"
+          git push
