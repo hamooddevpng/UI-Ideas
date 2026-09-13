@@ -43,20 +43,14 @@ html,body{margin:0;min-height:100%;font-family:Manrope,Arial,sans-serif;backgrou
     style.textContent=css;
     page.head.appendChild(style);
   };
-  const normalizeStyleOwnership=page=>{
-    // Some prototype-era passes were appended inside <body>. Move every
-    // existing style node into <head> while preserving their document order.
-    // This gives the page one deterministic stylesheet cascade without
-    // changing selector contents during the migration.
-    const styles=[...page.querySelectorAll('style')];
-    styles.forEach(style=>page.head.appendChild(style));
-  };
 
   try{
-    const [baseHtml,ecosystemHtml,themeCss,chatCss]=await Promise.all([
+    const [baseHtml,coreCss,ecosystemHtml,componentCss,themeCss,chatCss]=await Promise.all([
       fetchText(source('42-base.html')),
+      fetchText(source('assets/design42/design42-core.css')),
       fetchText(source('design42-ecosystem-v2.html')).catch(error=>{console.warn('Digital PNG enhancement could not be loaded.',error);return ''}),
-      fetchText(source('assets/design42/design42-theme.css')).catch(()=>''),
+      fetchText(source('assets/design42/design42-components.css')),
+      fetchText(source('assets/design42/design42-theme.css')),
       fetchText(source('assets/design42/design42-chat.css'))
     ]);
 
@@ -66,6 +60,10 @@ html,body{margin:0;min-height:100%;font-family:Manrope,Arial,sans-serif;backgrou
     base.href=sourceRoot;
     page.head.prepend(base);
 
+    // 1. Core page/component structure and motion.
+    addStyle(page,coreCss,'data-design42-core');
+
+    // 2. Digital PNG prototype owns its isolated ecosystem section.
     if(ecosystemHtml){
       const prototype=parser.parseFromString(ecosystemHtml,'text/html');
       const oldSection=page.querySelector('.digital-ecosystem');
@@ -86,10 +84,11 @@ html,body{margin:0;min-height:100%;font-family:Manrope,Arial,sans-serif;backgrou
       }
     }
 
-    normalizeStyleOwnership(page);
-    // Canonical theme is now the final owner of page color treatment.
+    // 3. Components added after the original core prototype.
+    addStyle(page,componentCss,'data-design42-components');
+    // 4. One page theme owns color treatment.
     addStyle(page,themeCss,'data-design42-theme');
-    // Chat presentation intentionally comes last and owns only the popup.
+    // 5. Popup chat presentation is intentionally last and isolated.
     addStyle(page,chatCss,'data-design42-chat-popup');
 
     document.open();
