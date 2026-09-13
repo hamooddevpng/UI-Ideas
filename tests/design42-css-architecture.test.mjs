@@ -25,6 +25,7 @@ assert.match(loader, /design42-chat\.css/, '42.html must load the external chatb
 // Phase 2: canonical theme ownership.
 assert.ok(exists('assets/design42/design42-theme.css'), 'Design 42 must have one canonical external theme stylesheet.');
 assert.match(loader, /design42-theme\.css/, '42.html must load the canonical external theme stylesheet.');
+assert.ok(!base.includes('Design 42: targeted lighter dark sections v1'), 'Legacy lighter-dark section patch must not remain in 42-base.html.');
 
 const obsoletePaletteMarkers = [
   'brighter Telikom palette',
