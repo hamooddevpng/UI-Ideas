@@ -1,0 +1,40 @@
+{
+  "cohort": "page-business-fixed",
+  "name": "Business Fixed Page Study",
+  "candidate_site_count": 4,
+  "reference_site_count": 0,
+  "excluded_site_count": 4,
+  "excluded_sites": [
+    {
+      "slug": "ooredoo-qatar-business-internet",
+      "name": "Ooredoo Qatar Business Internet",
+      "url": "",
+      "reason": "No usable screenshot file"
+    },
+    {
+      "slug": "stc-saudi-business-link-5g",
+      "name": "Stc Saudi Business Link 5G",
+      "url": "",
+      "reason": "No usable screenshot file"
+    },
+    {
+      "slug": "stc-saudi-fiber-link",
+      "name": "Stc Saudi Fiber Link",
+      "url": "",
+      "reason": "No usable screenshot file"
+    },
+    {
+      "slug": "vodafone-png-dedicated-internet",
+      "name": "Vodafone Png Dedicated Internet",
+      "url": "",
+      "reason": "No usable screenshot file"
+    }
+  ],
+  "analyzed_site_count": 0,
+  "pending_site_count": 0,
+  "section_counts": {},
+  "site_presence": {},
+  "position_patterns": [],
+  "recommended_structure": [],
+  "transitions": []
+}

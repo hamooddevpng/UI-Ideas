@@ -1,0 +1,40 @@
+{
+  "cohort": "page-services-hub",
+  "name": "Services Hub Page Study",
+  "candidate_site_count": 4,
+  "reference_site_count": 0,
+  "excluded_site_count": 4,
+  "excluded_sites": [
+    {
+      "slug": "ooredoo-qatar-consumer",
+      "name": "Ooredoo Qatar Consumer",
+      "url": "",
+      "reason": "No usable screenshot file"
+    },
+    {
+      "slug": "stc-saudi-consumer",
+      "name": "Stc Saudi Consumer",
+      "url": "",
+      "reason": "No usable screenshot file"
+    },
+    {
+      "slug": "vodafone-png-prepaid-hub",
+      "name": "Vodafone Png Prepaid Hub",
+      "url": "",
+      "reason": "No usable screenshot file"
+    },
+    {
+      "slug": "vodafone-png-products-services",
+      "name": "Vodafone Png Products Services",
+      "url": "",
+      "reason": "No usable screenshot file"
+    }
+  ],
+  "analyzed_site_count": 0,
+  "pending_site_count": 0,
+  "section_counts": {},
+  "site_presence": {},
+  "position_patterns": [],
+  "recommended_structure": [],
+  "transitions": []
+}

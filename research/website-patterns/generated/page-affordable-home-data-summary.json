@@ -1,0 +1,40 @@
+{
+  "cohort": "page-affordable-home-data",
+  "name": "Affordable Home Data Page Study",
+  "candidate_site_count": 4,
+  "reference_site_count": 0,
+  "excluded_site_count": 4,
+  "excluded_sites": [
+    {
+      "slug": "digicel-png-home-internet",
+      "name": "Digicel Png Home Internet",
+      "url": "",
+      "reason": "No usable screenshot file"
+    },
+    {
+      "slug": "ooredoo-qatar-home-plus",
+      "name": "Ooredoo Qatar Home Plus",
+      "url": "",
+      "reason": "No usable screenshot file"
+    },
+    {
+      "slug": "stc-saudi-baity",
+      "name": "Stc Saudi Baity",
+      "url": "",
+      "reason": "No usable screenshot file"
+    },
+    {
+      "slug": "vodafone-png-mobile-broadband",
+      "name": "Vodafone Png Mobile Broadband",
+      "url": "",
+      "reason": "No usable screenshot file"
+    }
+  ],
+  "analyzed_site_count": 0,
+  "pending_site_count": 0,
+  "section_counts": {},
+  "site_presence": {},
+  "position_patterns": [],
+  "recommended_structure": [],
+  "transitions": []
+}

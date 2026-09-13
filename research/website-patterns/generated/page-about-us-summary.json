@@ -1,0 +1,40 @@
+{
+  "cohort": "page-about-us",
+  "name": "About Us Page Study",
+  "candidate_site_count": 4,
+  "reference_site_count": 0,
+  "excluded_site_count": 4,
+  "excluded_sites": [
+    {
+      "slug": "ooredoo-qatar-about",
+      "name": "Ooredoo Qatar About",
+      "url": "",
+      "reason": "No usable screenshot file"
+    },
+    {
+      "slug": "telefonica-about",
+      "name": "Telefonica About",
+      "url": "",
+      "reason": "No usable screenshot file"
+    },
+    {
+      "slug": "verizon-about",
+      "name": "Verizon About",
+      "url": "",
+      "reason": "No usable screenshot file"
+    },
+    {
+      "slug": "vodafone-png-about",
+      "name": "Vodafone Png About",
+      "url": "",
+      "reason": "No usable screenshot file"
+    }
+  ],
+  "analyzed_site_count": 0,
+  "pending_site_count": 0,
+  "section_counts": {},
+  "site_presence": {},
+  "position_patterns": [],
+  "recommended_structure": [],
+  "transitions": []
+}

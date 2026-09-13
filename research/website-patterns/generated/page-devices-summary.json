@@ -1,0 +1,40 @@
+{
+  "cohort": "page-devices",
+  "name": "Devices Page Study",
+  "candidate_site_count": 4,
+  "reference_site_count": 0,
+  "excluded_site_count": 4,
+  "excluded_sites": [
+    {
+      "slug": "ooredoo-qatar-eshop",
+      "name": "Ooredoo Qatar Eshop",
+      "url": "",
+      "reason": "No usable screenshot file"
+    },
+    {
+      "slug": "verizon-smartphones",
+      "name": "Verizon Smartphones",
+      "url": "",
+      "reason": "No usable screenshot file"
+    },
+    {
+      "slug": "vodafone-png-broadband-devices",
+      "name": "Vodafone Png Broadband Devices",
+      "url": "",
+      "reason": "No usable screenshot file"
+    },
+    {
+      "slug": "vodafone-png-devices",
+      "name": "Vodafone Png Devices",
+      "url": "",
+      "reason": "No usable screenshot file"
+    }
+  ],
+  "analyzed_site_count": 0,
+  "pending_site_count": 0,
+  "section_counts": {},
+  "site_presence": {},
+  "position_patterns": [],
+  "recommended_structure": [],
+  "transitions": []
+}

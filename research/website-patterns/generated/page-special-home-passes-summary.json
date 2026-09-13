@@ -1,0 +1,40 @@
+{
+  "cohort": "page-special-home-passes",
+  "name": "Special Home Passes Page Study",
+  "candidate_site_count": 4,
+  "reference_site_count": 0,
+  "excluded_site_count": 4,
+  "excluded_sites": [
+    {
+      "slug": "digicel-png-time-data",
+      "name": "Digicel Png Time Data",
+      "url": "",
+      "reason": "No usable screenshot file"
+    },
+    {
+      "slug": "ooredoo-qatar-prepaid-promos",
+      "name": "Ooredoo Qatar Prepaid Promos",
+      "url": "",
+      "reason": "No usable screenshot file"
+    },
+    {
+      "slug": "stc-saudi-prepaid-addons",
+      "name": "Stc Saudi Prepaid Addons",
+      "url": "",
+      "reason": "No usable screenshot file"
+    },
+    {
+      "slug": "vodafone-png-specials",
+      "name": "Vodafone Png Specials",
+      "url": "",
+      "reason": "No usable screenshot file"
+    }
+  ],
+  "analyzed_site_count": 0,
+  "pending_site_count": 0,
+  "section_counts": {},
+  "site_presence": {},
+  "position_patterns": [],
+  "recommended_structure": [],
+  "transitions": []
+}

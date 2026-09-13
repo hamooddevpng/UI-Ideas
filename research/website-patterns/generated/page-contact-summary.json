@@ -1,0 +1,40 @@
+{
+  "cohort": "page-contact",
+  "name": "Contact Page Study",
+  "candidate_site_count": 4,
+  "reference_site_count": 0,
+  "excluded_site_count": 4,
+  "excluded_sites": [
+    {
+      "slug": "ooredoo-qatar-contact",
+      "name": "Ooredoo Qatar Contact",
+      "url": "",
+      "reason": "No usable screenshot file"
+    },
+    {
+      "slug": "verizon-contact",
+      "name": "Verizon Contact",
+      "url": "",
+      "reason": "No usable screenshot file"
+    },
+    {
+      "slug": "vodafone-png-contact",
+      "name": "Vodafone Png Contact",
+      "url": "",
+      "reason": "No usable screenshot file"
+    },
+    {
+      "slug": "vodafone-png-help",
+      "name": "Vodafone Png Help",
+      "url": "",
+      "reason": "No usable screenshot file"
+    }
+  ],
+  "analyzed_site_count": 0,
+  "pending_site_count": 0,
+  "section_counts": {},
+  "site_presence": {},
+  "position_patterns": [],
+  "recommended_structure": [],
+  "transitions": []
+}

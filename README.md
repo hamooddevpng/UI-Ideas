@@ -6,7 +6,7 @@
 
 > Auto-generated from clean screenshot inventory + semantic JSON. Failed, partial, blocked and unreliable captures are excluded from the atlas and research statistics.
 
-**45 clean reference screenshots tracked · 45 semantically analyzed · 15 captures excluded**
+**45 clean reference screenshots tracked · 45 semantically analyzed · 75 captures excluded**
 
 [Open the all-reference atlas](./research/website-patterns/generated/all-reference-atlas.jpg) · [Final decided structure](./research/website-patterns/generated/final-structure-recommendation.json) · [All cohort summaries](./research/website-patterns/generated/all-cohorts-summary.json)
 
@@ -34,6 +34,21 @@ This is the project-approved homepage information architecture. It is shown with
 | Cohort | Candidates | Included clean captures | Excluded captures | Analyzed | Pending |
 | --- | ---: | ---: | ---: | ---: | ---: |
 | Modern Telecom Cohort | 9 | 8 | 1 | 8 | 0 |
+| About Us Page Study | 4 | 0 | 4 | 0 | 0 |
+| Affordable Home Data Page Study | 4 | 0 | 4 | 0 | 0 |
+| Business Fixed Page Study | 4 | 0 | 4 | 0 | 0 |
+| Business Mobile Page Study | 4 | 0 | 4 | 0 | 0 |
+| Careers Page Study | 4 | 0 | 4 | 0 | 0 |
+| Contact Page Study | 4 | 0 | 4 | 0 | 0 |
+| Devices Page Study | 4 | 0 | 4 | 0 | 0 |
+| FAQs Page Study | 4 | 0 | 4 | 0 | 0 |
+| Home Entertainment Page Study | 4 | 0 | 4 | 0 | 0 |
+| News & Media Page Study | 4 | 0 | 4 | 0 | 0 |
+| Personal Mobile Page Study | 4 | 0 | 4 | 0 | 0 |
+| Services Hub Page Study | 4 | 0 | 4 | 0 | 0 |
+| Special Home Passes Page Study | 4 | 0 | 4 | 0 | 0 |
+| Store Locator Page Study | 4 | 0 | 4 | 0 | 0 |
+| U-TOKMoa Page Study | 4 | 0 | 4 | 0 | 0 |
 | PNG Private-Sector Familiarity Cohort | 31 | 25 | 6 | 25 | 0 |
 | PNG Public-Service Familiarity Cohort | 20 | 12 | 8 | 12 | 0 |
 
@@ -93,6 +108,261 @@ This is the project-approved homepage information architecture. It is shown with
 | Site | Reason |
 | --- | --- |
 | Vodafone Papua New Guinea | Capture metadata status: partial |
+
+### About Us Page Study
+
+**0 clean screenshots · 0 analyzed · 4 excluded · 0 pending**
+
+[Open cohort atlas](./research/website-patterns/generated/page-about-us-atlas.jpg) · [Summary JSON](./research/website-patterns/generated/page-about-us-summary.json) · [Observed structure CSV](./research/website-patterns/generated/page-about-us-recommended-structure.csv) · [Transitions CSV](./research/website-patterns/generated/page-about-us-transitions.csv)
+
+_No clean semantically analyzed screenshots are currently available for this cohort._
+
+**Excluded capture attempts**
+
+| Site | Reason |
+| --- | --- |
+| Ooredoo Qatar About | No usable screenshot file |
+| Telefonica About | No usable screenshot file |
+| Verizon About | No usable screenshot file |
+| Vodafone Png About | No usable screenshot file |
+
+### Affordable Home Data Page Study
+
+**0 clean screenshots · 0 analyzed · 4 excluded · 0 pending**
+
+[Open cohort atlas](./research/website-patterns/generated/page-affordable-home-data-atlas.jpg) · [Summary JSON](./research/website-patterns/generated/page-affordable-home-data-summary.json) · [Observed structure CSV](./research/website-patterns/generated/page-affordable-home-data-recommended-structure.csv) · [Transitions CSV](./research/website-patterns/generated/page-affordable-home-data-transitions.csv)
+
+_No clean semantically analyzed screenshots are currently available for this cohort._
+
+**Excluded capture attempts**
+
+| Site | Reason |
+| --- | --- |
+| Digicel Png Home Internet | No usable screenshot file |
+| Ooredoo Qatar Home Plus | No usable screenshot file |
+| Stc Saudi Baity | No usable screenshot file |
+| Vodafone Png Mobile Broadband | No usable screenshot file |
+
+### Business Fixed Page Study
+
+**0 clean screenshots · 0 analyzed · 4 excluded · 0 pending**
+
+[Open cohort atlas](./research/website-patterns/generated/page-business-fixed-atlas.jpg) · [Summary JSON](./research/website-patterns/generated/page-business-fixed-summary.json) · [Observed structure CSV](./research/website-patterns/generated/page-business-fixed-recommended-structure.csv) · [Transitions CSV](./research/website-patterns/generated/page-business-fixed-transitions.csv)
+
+_No clean semantically analyzed screenshots are currently available for this cohort._
+
+**Excluded capture attempts**
+
+| Site | Reason |
+| --- | --- |
+| Ooredoo Qatar Business Internet | No usable screenshot file |
+| Stc Saudi Business Link 5G | No usable screenshot file |
+| Stc Saudi Fiber Link | No usable screenshot file |
+| Vodafone Png Dedicated Internet | No usable screenshot file |
+
+### Business Mobile Page Study
+
+**0 clean screenshots · 0 analyzed · 4 excluded · 0 pending**
+
+[Open cohort atlas](./research/website-patterns/generated/page-business-mobile-atlas.jpg) · [Summary JSON](./research/website-patterns/generated/page-business-mobile-summary.json) · [Observed structure CSV](./research/website-patterns/generated/page-business-mobile-recommended-structure.csv) · [Transitions CSV](./research/website-patterns/generated/page-business-mobile-transitions.csv)
+
+_No clean semantically analyzed screenshots are currently available for this cohort._
+
+**Excluded capture attempts**
+
+| Site | Reason |
+| --- | --- |
+| Ooredoo Qatar Business Mobile Broadband | No usable screenshot file |
+| Stc Saudi Business Postpaid | No usable screenshot file |
+| Stc Saudi Business Prepaid | No usable screenshot file |
+| Vodafone Png Mobility | No usable screenshot file |
+
+### Careers Page Study
+
+**0 clean screenshots · 0 analyzed · 4 excluded · 0 pending**
+
+[Open cohort atlas](./research/website-patterns/generated/page-careers-atlas.jpg) · [Summary JSON](./research/website-patterns/generated/page-careers-summary.json) · [Observed structure CSV](./research/website-patterns/generated/page-careers-recommended-structure.csv) · [Transitions CSV](./research/website-patterns/generated/page-careers-transitions.csv)
+
+_No clean semantically analyzed screenshots are currently available for this cohort._
+
+**Excluded capture attempts**
+
+| Site | Reason |
+| --- | --- |
+| Att Careers | No usable screenshot file |
+| Ooredoo Qatar Careers | No usable screenshot file |
+| Verizon Careers | No usable screenshot file |
+| Vodafone Png Careers | No usable screenshot file |
+
+### Contact Page Study
+
+**0 clean screenshots · 0 analyzed · 4 excluded · 0 pending**
+
+[Open cohort atlas](./research/website-patterns/generated/page-contact-atlas.jpg) · [Summary JSON](./research/website-patterns/generated/page-contact-summary.json) · [Observed structure CSV](./research/website-patterns/generated/page-contact-recommended-structure.csv) · [Transitions CSV](./research/website-patterns/generated/page-contact-transitions.csv)
+
+_No clean semantically analyzed screenshots are currently available for this cohort._
+
+**Excluded capture attempts**
+
+| Site | Reason |
+| --- | --- |
+| Ooredoo Qatar Contact | No usable screenshot file |
+| Verizon Contact | No usable screenshot file |
+| Vodafone Png Contact | No usable screenshot file |
+| Vodafone Png Help | No usable screenshot file |
+
+### Devices Page Study
+
+**0 clean screenshots · 0 analyzed · 4 excluded · 0 pending**
+
+[Open cohort atlas](./research/website-patterns/generated/page-devices-atlas.jpg) · [Summary JSON](./research/website-patterns/generated/page-devices-summary.json) · [Observed structure CSV](./research/website-patterns/generated/page-devices-recommended-structure.csv) · [Transitions CSV](./research/website-patterns/generated/page-devices-transitions.csv)
+
+_No clean semantically analyzed screenshots are currently available for this cohort._
+
+**Excluded capture attempts**
+
+| Site | Reason |
+| --- | --- |
+| Ooredoo Qatar Eshop | No usable screenshot file |
+| Verizon Smartphones | No usable screenshot file |
+| Vodafone Png Broadband Devices | No usable screenshot file |
+| Vodafone Png Devices | No usable screenshot file |
+
+### FAQs Page Study
+
+**0 clean screenshots · 0 analyzed · 4 excluded · 0 pending**
+
+[Open cohort atlas](./research/website-patterns/generated/page-faqs-atlas.jpg) · [Summary JSON](./research/website-patterns/generated/page-faqs-summary.json) · [Observed structure CSV](./research/website-patterns/generated/page-faqs-recommended-structure.csv) · [Transitions CSV](./research/website-patterns/generated/page-faqs-transitions.csv)
+
+_No clean semantically analyzed screenshots are currently available for this cohort._
+
+**Excluded capture attempts**
+
+| Site | Reason |
+| --- | --- |
+| Digicel Png Help | No usable screenshot file |
+| Ooredoo Qatar Help | No usable screenshot file |
+| Vodafone Png 4G Faq | No usable screenshot file |
+| Vodafone Png Help | No usable screenshot file |
+
+### Home Entertainment Page Study
+
+**0 clean screenshots · 0 analyzed · 4 excluded · 0 pending**
+
+[Open cohort atlas](./research/website-patterns/generated/page-home-entertainment-atlas.jpg) · [Summary JSON](./research/website-patterns/generated/page-home-entertainment-summary.json) · [Observed structure CSV](./research/website-patterns/generated/page-home-entertainment-recommended-structure.csv) · [Transitions CSV](./research/website-patterns/generated/page-home-entertainment-transitions.csv)
+
+_No clean semantically analyzed screenshots are currently available for this cohort._
+
+**Excluded capture attempts**
+
+| Site | Reason |
+| --- | --- |
+| Digicel Png Data Tv | No usable screenshot file |
+| Ooredoo Qatar Entertainment | No usable screenshot file |
+| Ooredoo Qatar Tv | No usable screenshot file |
+| Stc Saudi Baity Entertainment | No usable screenshot file |
+
+### News & Media Page Study
+
+**0 clean screenshots · 0 analyzed · 4 excluded · 0 pending**
+
+[Open cohort atlas](./research/website-patterns/generated/page-news-media-atlas.jpg) · [Summary JSON](./research/website-patterns/generated/page-news-media-summary.json) · [Observed structure CSV](./research/website-patterns/generated/page-news-media-recommended-structure.csv) · [Transitions CSV](./research/website-patterns/generated/page-news-media-transitions.csv)
+
+_No clean semantically analyzed screenshots are currently available for this cohort._
+
+**Excluded capture attempts**
+
+| Site | Reason |
+| --- | --- |
+| Ooredoo Qatar News | No usable screenshot file |
+| Orange Newsroom | No usable screenshot file |
+| Verizon News | No usable screenshot file |
+| Verizon Press | No usable screenshot file |
+
+### Personal Mobile Page Study
+
+**0 clean screenshots · 0 analyzed · 4 excluded · 0 pending**
+
+[Open cohort atlas](./research/website-patterns/generated/page-personal-mobile-atlas.jpg) · [Summary JSON](./research/website-patterns/generated/page-personal-mobile-summary.json) · [Observed structure CSV](./research/website-patterns/generated/page-personal-mobile-recommended-structure.csv) · [Transitions CSV](./research/website-patterns/generated/page-personal-mobile-transitions.csv)
+
+_No clean semantically analyzed screenshots are currently available for this cohort._
+
+**Excluded capture attempts**
+
+| Site | Reason |
+| --- | --- |
+| Digicel Png Data Plans | No usable screenshot file |
+| Ooredoo Qatar Postpaid | No usable screenshot file |
+| Stc Saudi Prepaid | No usable screenshot file |
+| Vodafone Png Prepaid | No usable screenshot file |
+
+### Services Hub Page Study
+
+**0 clean screenshots · 0 analyzed · 4 excluded · 0 pending**
+
+[Open cohort atlas](./research/website-patterns/generated/page-services-hub-atlas.jpg) · [Summary JSON](./research/website-patterns/generated/page-services-hub-summary.json) · [Observed structure CSV](./research/website-patterns/generated/page-services-hub-recommended-structure.csv) · [Transitions CSV](./research/website-patterns/generated/page-services-hub-transitions.csv)
+
+_No clean semantically analyzed screenshots are currently available for this cohort._
+
+**Excluded capture attempts**
+
+| Site | Reason |
+| --- | --- |
+| Ooredoo Qatar Consumer | No usable screenshot file |
+| Stc Saudi Consumer | No usable screenshot file |
+| Vodafone Png Prepaid Hub | No usable screenshot file |
+| Vodafone Png Products Services | No usable screenshot file |
+
+### Special Home Passes Page Study
+
+**0 clean screenshots · 0 analyzed · 4 excluded · 0 pending**
+
+[Open cohort atlas](./research/website-patterns/generated/page-special-home-passes-atlas.jpg) · [Summary JSON](./research/website-patterns/generated/page-special-home-passes-summary.json) · [Observed structure CSV](./research/website-patterns/generated/page-special-home-passes-recommended-structure.csv) · [Transitions CSV](./research/website-patterns/generated/page-special-home-passes-transitions.csv)
+
+_No clean semantically analyzed screenshots are currently available for this cohort._
+
+**Excluded capture attempts**
+
+| Site | Reason |
+| --- | --- |
+| Digicel Png Time Data | No usable screenshot file |
+| Ooredoo Qatar Prepaid Promos | No usable screenshot file |
+| Stc Saudi Prepaid Addons | No usable screenshot file |
+| Vodafone Png Specials | No usable screenshot file |
+
+### Store Locator Page Study
+
+**0 clean screenshots · 0 analyzed · 4 excluded · 0 pending**
+
+[Open cohort atlas](./research/website-patterns/generated/page-store-locator-atlas.jpg) · [Summary JSON](./research/website-patterns/generated/page-store-locator-summary.json) · [Observed structure CSV](./research/website-patterns/generated/page-store-locator-recommended-structure.csv) · [Transitions CSV](./research/website-patterns/generated/page-store-locator-transitions.csv)
+
+_No clean semantically analyzed screenshots are currently available for this cohort._
+
+**Excluded capture attempts**
+
+| Site | Reason |
+| --- | --- |
+| Att Stores | No usable screenshot file |
+| Digicel Png Stores | No usable screenshot file |
+| Ooredoo Qatar Business Desks | No usable screenshot file |
+| Vodafone Png Stores | No usable screenshot file |
+
+### U-TOKMoa Page Study
+
+**0 clean screenshots · 0 analyzed · 4 excluded · 0 pending**
+
+[Open cohort atlas](./research/website-patterns/generated/page-u-tokmoa-atlas.jpg) · [Summary JSON](./research/website-patterns/generated/page-u-tokmoa-summary.json) · [Observed structure CSV](./research/website-patterns/generated/page-u-tokmoa-recommended-structure.csv) · [Transitions CSV](./research/website-patterns/generated/page-u-tokmoa-transitions.csv)
+
+_No clean semantically analyzed screenshots are currently available for this cohort._
+
+**Excluded capture attempts**
+
+| Site | Reason |
+| --- | --- |
+| Digicel Png Home Internet | No usable screenshot file |
+| Ooredoo Qatar Home Plus | No usable screenshot file |
+| Stc Saudi Baity Fiber | No usable screenshot file |
+| Vodafone Png Mobile Broadband | No usable screenshot file |
 
 ### PNG Private-Sector Familiarity Cohort
 
@@ -228,6 +498,7 @@ This is the project-approved homepage information architecture. It is shown with
 | University of Papua New Guinea | Semantic capture status: partial |
 
 <!-- WEBSITE_PATTERN_RESEARCH_END -->
+
 
 
 

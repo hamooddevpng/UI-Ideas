@@ -32,20 +32,20 @@
       "news": 3
     },
     "site_presence": {
-      "device_promo": 3,
-      "pricing_plans": 4,
       "service_categories": 2,
-      "faq_help": 3,
       "product_offers": 5,
       "navigation": 8,
       "hero_cta": 8,
+      "faq_help": 3,
       "footer": 8,
+      "pricing_plans": 4,
+      "device_promo": 3,
       "app_promo": 2,
       "quick_actions": 4,
-      "business_section": 3,
+      "trust_stats": 3,
       "news": 3,
       "content_feature": 4,
-      "trust_stats": 3
+      "business_section": 3
     },
     "position_patterns": [
       {
@@ -393,6 +393,606 @@
     ]
   },
   {
+    "cohort": "page-about-us",
+    "name": "About Us Page Study",
+    "candidate_site_count": 4,
+    "reference_site_count": 0,
+    "excluded_site_count": 4,
+    "excluded_sites": [
+      {
+        "slug": "ooredoo-qatar-about",
+        "name": "Ooredoo Qatar About",
+        "url": "",
+        "reason": "No usable screenshot file"
+      },
+      {
+        "slug": "telefonica-about",
+        "name": "Telefonica About",
+        "url": "",
+        "reason": "No usable screenshot file"
+      },
+      {
+        "slug": "verizon-about",
+        "name": "Verizon About",
+        "url": "",
+        "reason": "No usable screenshot file"
+      },
+      {
+        "slug": "vodafone-png-about",
+        "name": "Vodafone Png About",
+        "url": "",
+        "reason": "No usable screenshot file"
+      }
+    ],
+    "analyzed_site_count": 0,
+    "pending_site_count": 0,
+    "section_counts": {},
+    "site_presence": {},
+    "position_patterns": [],
+    "recommended_structure": [],
+    "transitions": []
+  },
+  {
+    "cohort": "page-affordable-home-data",
+    "name": "Affordable Home Data Page Study",
+    "candidate_site_count": 4,
+    "reference_site_count": 0,
+    "excluded_site_count": 4,
+    "excluded_sites": [
+      {
+        "slug": "digicel-png-home-internet",
+        "name": "Digicel Png Home Internet",
+        "url": "",
+        "reason": "No usable screenshot file"
+      },
+      {
+        "slug": "ooredoo-qatar-home-plus",
+        "name": "Ooredoo Qatar Home Plus",
+        "url": "",
+        "reason": "No usable screenshot file"
+      },
+      {
+        "slug": "stc-saudi-baity",
+        "name": "Stc Saudi Baity",
+        "url": "",
+        "reason": "No usable screenshot file"
+      },
+      {
+        "slug": "vodafone-png-mobile-broadband",
+        "name": "Vodafone Png Mobile Broadband",
+        "url": "",
+        "reason": "No usable screenshot file"
+      }
+    ],
+    "analyzed_site_count": 0,
+    "pending_site_count": 0,
+    "section_counts": {},
+    "site_presence": {},
+    "position_patterns": [],
+    "recommended_structure": [],
+    "transitions": []
+  },
+  {
+    "cohort": "page-business-fixed",
+    "name": "Business Fixed Page Study",
+    "candidate_site_count": 4,
+    "reference_site_count": 0,
+    "excluded_site_count": 4,
+    "excluded_sites": [
+      {
+        "slug": "ooredoo-qatar-business-internet",
+        "name": "Ooredoo Qatar Business Internet",
+        "url": "",
+        "reason": "No usable screenshot file"
+      },
+      {
+        "slug": "stc-saudi-business-link-5g",
+        "name": "Stc Saudi Business Link 5G",
+        "url": "",
+        "reason": "No usable screenshot file"
+      },
+      {
+        "slug": "stc-saudi-fiber-link",
+        "name": "Stc Saudi Fiber Link",
+        "url": "",
+        "reason": "No usable screenshot file"
+      },
+      {
+        "slug": "vodafone-png-dedicated-internet",
+        "name": "Vodafone Png Dedicated Internet",
+        "url": "",
+        "reason": "No usable screenshot file"
+      }
+    ],
+    "analyzed_site_count": 0,
+    "pending_site_count": 0,
+    "section_counts": {},
+    "site_presence": {},
+    "position_patterns": [],
+    "recommended_structure": [],
+    "transitions": []
+  },
+  {
+    "cohort": "page-business-mobile",
+    "name": "Business Mobile Page Study",
+    "candidate_site_count": 4,
+    "reference_site_count": 0,
+    "excluded_site_count": 4,
+    "excluded_sites": [
+      {
+        "slug": "ooredoo-qatar-business-mobile-broadband",
+        "name": "Ooredoo Qatar Business Mobile Broadband",
+        "url": "",
+        "reason": "No usable screenshot file"
+      },
+      {
+        "slug": "stc-saudi-business-postpaid",
+        "name": "Stc Saudi Business Postpaid",
+        "url": "",
+        "reason": "No usable screenshot file"
+      },
+      {
+        "slug": "stc-saudi-business-prepaid",
+        "name": "Stc Saudi Business Prepaid",
+        "url": "",
+        "reason": "No usable screenshot file"
+      },
+      {
+        "slug": "vodafone-png-mobility",
+        "name": "Vodafone Png Mobility",
+        "url": "",
+        "reason": "No usable screenshot file"
+      }
+    ],
+    "analyzed_site_count": 0,
+    "pending_site_count": 0,
+    "section_counts": {},
+    "site_presence": {},
+    "position_patterns": [],
+    "recommended_structure": [],
+    "transitions": []
+  },
+  {
+    "cohort": "page-careers",
+    "name": "Careers Page Study",
+    "candidate_site_count": 4,
+    "reference_site_count": 0,
+    "excluded_site_count": 4,
+    "excluded_sites": [
+      {
+        "slug": "att-careers",
+        "name": "Att Careers",
+        "url": "",
+        "reason": "No usable screenshot file"
+      },
+      {
+        "slug": "ooredoo-qatar-careers",
+        "name": "Ooredoo Qatar Careers",
+        "url": "",
+        "reason": "No usable screenshot file"
+      },
+      {
+        "slug": "verizon-careers",
+        "name": "Verizon Careers",
+        "url": "",
+        "reason": "No usable screenshot file"
+      },
+      {
+        "slug": "vodafone-png-careers",
+        "name": "Vodafone Png Careers",
+        "url": "",
+        "reason": "No usable screenshot file"
+      }
+    ],
+    "analyzed_site_count": 0,
+    "pending_site_count": 0,
+    "section_counts": {},
+    "site_presence": {},
+    "position_patterns": [],
+    "recommended_structure": [],
+    "transitions": []
+  },
+  {
+    "cohort": "page-contact",
+    "name": "Contact Page Study",
+    "candidate_site_count": 4,
+    "reference_site_count": 0,
+    "excluded_site_count": 4,
+    "excluded_sites": [
+      {
+        "slug": "ooredoo-qatar-contact",
+        "name": "Ooredoo Qatar Contact",
+        "url": "",
+        "reason": "No usable screenshot file"
+      },
+      {
+        "slug": "verizon-contact",
+        "name": "Verizon Contact",
+        "url": "",
+        "reason": "No usable screenshot file"
+      },
+      {
+        "slug": "vodafone-png-contact",
+        "name": "Vodafone Png Contact",
+        "url": "",
+        "reason": "No usable screenshot file"
+      },
+      {
+        "slug": "vodafone-png-help",
+        "name": "Vodafone Png Help",
+        "url": "",
+        "reason": "No usable screenshot file"
+      }
+    ],
+    "analyzed_site_count": 0,
+    "pending_site_count": 0,
+    "section_counts": {},
+    "site_presence": {},
+    "position_patterns": [],
+    "recommended_structure": [],
+    "transitions": []
+  },
+  {
+    "cohort": "page-devices",
+    "name": "Devices Page Study",
+    "candidate_site_count": 4,
+    "reference_site_count": 0,
+    "excluded_site_count": 4,
+    "excluded_sites": [
+      {
+        "slug": "ooredoo-qatar-eshop",
+        "name": "Ooredoo Qatar Eshop",
+        "url": "",
+        "reason": "No usable screenshot file"
+      },
+      {
+        "slug": "verizon-smartphones",
+        "name": "Verizon Smartphones",
+        "url": "",
+        "reason": "No usable screenshot file"
+      },
+      {
+        "slug": "vodafone-png-broadband-devices",
+        "name": "Vodafone Png Broadband Devices",
+        "url": "",
+        "reason": "No usable screenshot file"
+      },
+      {
+        "slug": "vodafone-png-devices",
+        "name": "Vodafone Png Devices",
+        "url": "",
+        "reason": "No usable screenshot file"
+      }
+    ],
+    "analyzed_site_count": 0,
+    "pending_site_count": 0,
+    "section_counts": {},
+    "site_presence": {},
+    "position_patterns": [],
+    "recommended_structure": [],
+    "transitions": []
+  },
+  {
+    "cohort": "page-faqs",
+    "name": "FAQs Page Study",
+    "candidate_site_count": 4,
+    "reference_site_count": 0,
+    "excluded_site_count": 4,
+    "excluded_sites": [
+      {
+        "slug": "digicel-png-help",
+        "name": "Digicel Png Help",
+        "url": "",
+        "reason": "No usable screenshot file"
+      },
+      {
+        "slug": "ooredoo-qatar-help",
+        "name": "Ooredoo Qatar Help",
+        "url": "",
+        "reason": "No usable screenshot file"
+      },
+      {
+        "slug": "vodafone-png-4g-faq",
+        "name": "Vodafone Png 4G Faq",
+        "url": "",
+        "reason": "No usable screenshot file"
+      },
+      {
+        "slug": "vodafone-png-help",
+        "name": "Vodafone Png Help",
+        "url": "",
+        "reason": "No usable screenshot file"
+      }
+    ],
+    "analyzed_site_count": 0,
+    "pending_site_count": 0,
+    "section_counts": {},
+    "site_presence": {},
+    "position_patterns": [],
+    "recommended_structure": [],
+    "transitions": []
+  },
+  {
+    "cohort": "page-home-entertainment",
+    "name": "Home Entertainment Page Study",
+    "candidate_site_count": 4,
+    "reference_site_count": 0,
+    "excluded_site_count": 4,
+    "excluded_sites": [
+      {
+        "slug": "digicel-png-data-tv",
+        "name": "Digicel Png Data Tv",
+        "url": "",
+        "reason": "No usable screenshot file"
+      },
+      {
+        "slug": "ooredoo-qatar-entertainment",
+        "name": "Ooredoo Qatar Entertainment",
+        "url": "",
+        "reason": "No usable screenshot file"
+      },
+      {
+        "slug": "ooredoo-qatar-tv",
+        "name": "Ooredoo Qatar Tv",
+        "url": "",
+        "reason": "No usable screenshot file"
+      },
+      {
+        "slug": "stc-saudi-baity-entertainment",
+        "name": "Stc Saudi Baity Entertainment",
+        "url": "",
+        "reason": "No usable screenshot file"
+      }
+    ],
+    "analyzed_site_count": 0,
+    "pending_site_count": 0,
+    "section_counts": {},
+    "site_presence": {},
+    "position_patterns": [],
+    "recommended_structure": [],
+    "transitions": []
+  },
+  {
+    "cohort": "page-news-media",
+    "name": "News & Media Page Study",
+    "candidate_site_count": 4,
+    "reference_site_count": 0,
+    "excluded_site_count": 4,
+    "excluded_sites": [
+      {
+        "slug": "ooredoo-qatar-news",
+        "name": "Ooredoo Qatar News",
+        "url": "",
+        "reason": "No usable screenshot file"
+      },
+      {
+        "slug": "orange-newsroom",
+        "name": "Orange Newsroom",
+        "url": "",
+        "reason": "No usable screenshot file"
+      },
+      {
+        "slug": "verizon-news",
+        "name": "Verizon News",
+        "url": "",
+        "reason": "No usable screenshot file"
+      },
+      {
+        "slug": "verizon-press",
+        "name": "Verizon Press",
+        "url": "",
+        "reason": "No usable screenshot file"
+      }
+    ],
+    "analyzed_site_count": 0,
+    "pending_site_count": 0,
+    "section_counts": {},
+    "site_presence": {},
+    "position_patterns": [],
+    "recommended_structure": [],
+    "transitions": []
+  },
+  {
+    "cohort": "page-personal-mobile",
+    "name": "Personal Mobile Page Study",
+    "candidate_site_count": 4,
+    "reference_site_count": 0,
+    "excluded_site_count": 4,
+    "excluded_sites": [
+      {
+        "slug": "digicel-png-data-plans",
+        "name": "Digicel Png Data Plans",
+        "url": "",
+        "reason": "No usable screenshot file"
+      },
+      {
+        "slug": "ooredoo-qatar-postpaid",
+        "name": "Ooredoo Qatar Postpaid",
+        "url": "",
+        "reason": "No usable screenshot file"
+      },
+      {
+        "slug": "stc-saudi-prepaid",
+        "name": "Stc Saudi Prepaid",
+        "url": "",
+        "reason": "No usable screenshot file"
+      },
+      {
+        "slug": "vodafone-png-prepaid",
+        "name": "Vodafone Png Prepaid",
+        "url": "",
+        "reason": "No usable screenshot file"
+      }
+    ],
+    "analyzed_site_count": 0,
+    "pending_site_count": 0,
+    "section_counts": {},
+    "site_presence": {},
+    "position_patterns": [],
+    "recommended_structure": [],
+    "transitions": []
+  },
+  {
+    "cohort": "page-services-hub",
+    "name": "Services Hub Page Study",
+    "candidate_site_count": 4,
+    "reference_site_count": 0,
+    "excluded_site_count": 4,
+    "excluded_sites": [
+      {
+        "slug": "ooredoo-qatar-consumer",
+        "name": "Ooredoo Qatar Consumer",
+        "url": "",
+        "reason": "No usable screenshot file"
+      },
+      {
+        "slug": "stc-saudi-consumer",
+        "name": "Stc Saudi Consumer",
+        "url": "",
+        "reason": "No usable screenshot file"
+      },
+      {
+        "slug": "vodafone-png-prepaid-hub",
+        "name": "Vodafone Png Prepaid Hub",
+        "url": "",
+        "reason": "No usable screenshot file"
+      },
+      {
+        "slug": "vodafone-png-products-services",
+        "name": "Vodafone Png Products Services",
+        "url": "",
+        "reason": "No usable screenshot file"
+      }
+    ],
+    "analyzed_site_count": 0,
+    "pending_site_count": 0,
+    "section_counts": {},
+    "site_presence": {},
+    "position_patterns": [],
+    "recommended_structure": [],
+    "transitions": []
+  },
+  {
+    "cohort": "page-special-home-passes",
+    "name": "Special Home Passes Page Study",
+    "candidate_site_count": 4,
+    "reference_site_count": 0,
+    "excluded_site_count": 4,
+    "excluded_sites": [
+      {
+        "slug": "digicel-png-time-data",
+        "name": "Digicel Png Time Data",
+        "url": "",
+        "reason": "No usable screenshot file"
+      },
+      {
+        "slug": "ooredoo-qatar-prepaid-promos",
+        "name": "Ooredoo Qatar Prepaid Promos",
+        "url": "",
+        "reason": "No usable screenshot file"
+      },
+      {
+        "slug": "stc-saudi-prepaid-addons",
+        "name": "Stc Saudi Prepaid Addons",
+        "url": "",
+        "reason": "No usable screenshot file"
+      },
+      {
+        "slug": "vodafone-png-specials",
+        "name": "Vodafone Png Specials",
+        "url": "",
+        "reason": "No usable screenshot file"
+      }
+    ],
+    "analyzed_site_count": 0,
+    "pending_site_count": 0,
+    "section_counts": {},
+    "site_presence": {},
+    "position_patterns": [],
+    "recommended_structure": [],
+    "transitions": []
+  },
+  {
+    "cohort": "page-store-locator",
+    "name": "Store Locator Page Study",
+    "candidate_site_count": 4,
+    "reference_site_count": 0,
+    "excluded_site_count": 4,
+    "excluded_sites": [
+      {
+        "slug": "att-stores",
+        "name": "Att Stores",
+        "url": "",
+        "reason": "No usable screenshot file"
+      },
+      {
+        "slug": "digicel-png-stores",
+        "name": "Digicel Png Stores",
+        "url": "",
+        "reason": "No usable screenshot file"
+      },
+      {
+        "slug": "ooredoo-qatar-business-desks",
+        "name": "Ooredoo Qatar Business Desks",
+        "url": "",
+        "reason": "No usable screenshot file"
+      },
+      {
+        "slug": "vodafone-png-stores",
+        "name": "Vodafone Png Stores",
+        "url": "",
+        "reason": "No usable screenshot file"
+      }
+    ],
+    "analyzed_site_count": 0,
+    "pending_site_count": 0,
+    "section_counts": {},
+    "site_presence": {},
+    "position_patterns": [],
+    "recommended_structure": [],
+    "transitions": []
+  },
+  {
+    "cohort": "page-u-tokmoa",
+    "name": "U-TOKMoa Page Study",
+    "candidate_site_count": 4,
+    "reference_site_count": 0,
+    "excluded_site_count": 4,
+    "excluded_sites": [
+      {
+        "slug": "digicel-png-home-internet",
+        "name": "Digicel Png Home Internet",
+        "url": "",
+        "reason": "No usable screenshot file"
+      },
+      {
+        "slug": "ooredoo-qatar-home-plus",
+        "name": "Ooredoo Qatar Home Plus",
+        "url": "",
+        "reason": "No usable screenshot file"
+      },
+      {
+        "slug": "stc-saudi-baity-fiber",
+        "name": "Stc Saudi Baity Fiber",
+        "url": "",
+        "reason": "No usable screenshot file"
+      },
+      {
+        "slug": "vodafone-png-mobile-broadband",
+        "name": "Vodafone Png Mobile Broadband",
+        "url": "",
+        "reason": "No usable screenshot file"
+      }
+    ],
+    "analyzed_site_count": 0,
+    "pending_site_count": 0,
+    "section_counts": {},
+    "site_presence": {},
+    "position_patterns": [],
+    "recommended_structure": [],
+    "transitions": []
+  },
+  {
     "cohort": "png-private-sector",
     "name": "PNG Private-Sector Familiarity Cohort",
     "candidate_site_count": 31,
@@ -456,19 +1056,19 @@
       "app_promo": 2
     },
     "site_presence": {
-      "product_offers": 8,
       "navigation": 25,
-      "hero_cta": 23,
       "footer": 25,
+      "hero_cta": 23,
+      "product_offers": 8,
       "service_categories": 12,
-      "quick_actions": 8,
       "trust_stats": 12,
-      "business_section": 4,
+      "quick_actions": 8,
       "projects": 5,
       "content_feature": 18,
-      "online_service": 3,
+      "business_section": 4,
       "faq_help": 3,
       "news": 8,
+      "online_service": 3,
       "form_contact": 5,
       "app_promo": 2
     },
@@ -1231,20 +1831,20 @@
     },
     "site_presence": {
       "navigation": 12,
-      "hero_cta": 10,
       "service_categories": 5,
+      "hero_cta": 10,
       "online_service": 2,
       "footer": 10,
+      "quick_actions": 4,
       "regulation_info": 2,
       "notices": 4,
-      "quick_actions": 4,
       "news": 6,
-      "form_contact": 3,
       "faq_help": 1,
       "content_feature": 5,
+      "form_contact": 3,
       "guidance": 1,
-      "projects": 3,
-      "trust_stats": 3
+      "trust_stats": 3,
+      "projects": 3
     },
     "position_patterns": [
       {

@@ -1,0 +1,40 @@
+{
+  "cohort": "page-faqs",
+  "name": "FAQs Page Study",
+  "candidate_site_count": 4,
+  "reference_site_count": 0,
+  "excluded_site_count": 4,
+  "excluded_sites": [
+    {
+      "slug": "digicel-png-help",
+      "name": "Digicel Png Help",
+      "url": "",
+      "reason": "No usable screenshot file"
+    },
+    {
+      "slug": "ooredoo-qatar-help",
+      "name": "Ooredoo Qatar Help",
+      "url": "",
+      "reason": "No usable screenshot file"
+    },
+    {
+      "slug": "vodafone-png-4g-faq",
+      "name": "Vodafone Png 4G Faq",
+      "url": "",
+      "reason": "No usable screenshot file"
+    },
+    {
+      "slug": "vodafone-png-help",
+      "name": "Vodafone Png Help",
+      "url": "",
+      "reason": "No usable screenshot file"
+    }
+  ],
+  "analyzed_site_count": 0,
+  "pending_site_count": 0,
+  "section_counts": {},
+  "site_presence": {},
+  "position_patterns": [],
+  "recommended_structure": [],
+  "transitions": []
+}

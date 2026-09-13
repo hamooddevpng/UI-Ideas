@@ -1,0 +1,40 @@
+{
+  "cohort": "page-store-locator",
+  "name": "Store Locator Page Study",
+  "candidate_site_count": 4,
+  "reference_site_count": 0,
+  "excluded_site_count": 4,
+  "excluded_sites": [
+    {
+      "slug": "att-stores",
+      "name": "Att Stores",
+      "url": "",
+      "reason": "No usable screenshot file"
+    },
+    {
+      "slug": "digicel-png-stores",
+      "name": "Digicel Png Stores",
+      "url": "",
+      "reason": "No usable screenshot file"
+    },
+    {
+      "slug": "ooredoo-qatar-business-desks",
+      "name": "Ooredoo Qatar Business Desks",
+      "url": "",
+      "reason": "No usable screenshot file"
+    },
+    {
+      "slug": "vodafone-png-stores",
+      "name": "Vodafone Png Stores",
+      "url": "",
+      "reason": "No usable screenshot file"
+    }
+  ],
+  "analyzed_site_count": 0,
+  "pending_site_count": 0,
+  "section_counts": {},
+  "site_presence": {},
+  "position_patterns": [],
+  "recommended_structure": [],
+  "transitions": []
+}

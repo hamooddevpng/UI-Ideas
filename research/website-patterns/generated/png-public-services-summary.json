@@ -75,20 +75,20 @@
   },
   "site_presence": {
     "navigation": 12,
-    "hero_cta": 10,
     "service_categories": 5,
+    "hero_cta": 10,
     "online_service": 2,
     "footer": 10,
+    "quick_actions": 4,
     "regulation_info": 2,
     "notices": 4,
-    "quick_actions": 4,
     "news": 6,
-    "form_contact": 3,
     "faq_help": 1,
     "content_feature": 5,
+    "form_contact": 3,
     "guidance": 1,
-    "projects": 3,
-    "trust_stats": 3
+    "trust_stats": 3,
+    "projects": 3
   },
   "position_patterns": [
     {

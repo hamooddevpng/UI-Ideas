@@ -31,20 +31,20 @@
     "news": 3
   },
   "site_presence": {
-    "device_promo": 3,
-    "pricing_plans": 4,
     "service_categories": 2,
-    "faq_help": 3,
     "product_offers": 5,
     "navigation": 8,
     "hero_cta": 8,
+    "faq_help": 3,
     "footer": 8,
+    "pricing_plans": 4,
+    "device_promo": 3,
     "app_promo": 2,
     "quick_actions": 4,
-    "business_section": 3,
+    "trust_stats": 3,
     "news": 3,
     "content_feature": 4,
-    "trust_stats": 3
+    "business_section": 3
   },
   "position_patterns": [
     {

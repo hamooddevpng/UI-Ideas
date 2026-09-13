@@ -1,0 +1,40 @@
+{
+  "cohort": "page-home-entertainment",
+  "name": "Home Entertainment Page Study",
+  "candidate_site_count": 4,
+  "reference_site_count": 0,
+  "excluded_site_count": 4,
+  "excluded_sites": [
+    {
+      "slug": "digicel-png-data-tv",
+      "name": "Digicel Png Data Tv",
+      "url": "",
+      "reason": "No usable screenshot file"
+    },
+    {
+      "slug": "ooredoo-qatar-entertainment",
+      "name": "Ooredoo Qatar Entertainment",
+      "url": "",
+      "reason": "No usable screenshot file"
+    },
+    {
+      "slug": "ooredoo-qatar-tv",
+      "name": "Ooredoo Qatar Tv",
+      "url": "",
+      "reason": "No usable screenshot file"
+    },
+    {
+      "slug": "stc-saudi-baity-entertainment",
+      "name": "Stc Saudi Baity Entertainment",
+      "url": "",
+      "reason": "No usable screenshot file"
+    }
+  ],
+  "analyzed_site_count": 0,
+  "pending_site_count": 0,
+  "section_counts": {},
+  "site_presence": {},
+  "position_patterns": [],
+  "recommended_structure": [],
+  "transitions": []
+}

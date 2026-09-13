@@ -1,0 +1,40 @@
+{
+  "cohort": "page-news-media",
+  "name": "News & Media Page Study",
+  "candidate_site_count": 4,
+  "reference_site_count": 0,
+  "excluded_site_count": 4,
+  "excluded_sites": [
+    {
+      "slug": "ooredoo-qatar-news",
+      "name": "Ooredoo Qatar News",
+      "url": "",
+      "reason": "No usable screenshot file"
+    },
+    {
+      "slug": "orange-newsroom",
+      "name": "Orange Newsroom",
+      "url": "",
+      "reason": "No usable screenshot file"
+    },
+    {
+      "slug": "verizon-news",
+      "name": "Verizon News",
+      "url": "",
+      "reason": "No usable screenshot file"
+    },
+    {
+      "slug": "verizon-press",
+      "name": "Verizon Press",
+      "url": "",
+      "reason": "No usable screenshot file"
+    }
+  ],
+  "analyzed_site_count": 0,
+  "pending_site_count": 0,
+  "section_counts": {},
+  "site_presence": {},
+  "position_patterns": [],
+  "recommended_structure": [],
+  "transitions": []
+}

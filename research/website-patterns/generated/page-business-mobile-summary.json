@@ -1,0 +1,40 @@
+{
+  "cohort": "page-business-mobile",
+  "name": "Business Mobile Page Study",
+  "candidate_site_count": 4,
+  "reference_site_count": 0,
+  "excluded_site_count": 4,
+  "excluded_sites": [
+    {
+      "slug": "ooredoo-qatar-business-mobile-broadband",
+      "name": "Ooredoo Qatar Business Mobile Broadband",
+      "url": "",
+      "reason": "No usable screenshot file"
+    },
+    {
+      "slug": "stc-saudi-business-postpaid",
+      "name": "Stc Saudi Business Postpaid",
+      "url": "",
+      "reason": "No usable screenshot file"
+    },
+    {
+      "slug": "stc-saudi-business-prepaid",
+      "name": "Stc Saudi Business Prepaid",
+      "url": "",
+      "reason": "No usable screenshot file"
+    },
+    {
+      "slug": "vodafone-png-mobility",
+      "name": "Vodafone Png Mobility",
+      "url": "",
+      "reason": "No usable screenshot file"
+    }
+  ],
+  "analyzed_site_count": 0,
+  "pending_site_count": 0,
+  "section_counts": {},
+  "site_presence": {},
+  "position_patterns": [],
+  "recommended_structure": [],
+  "transitions": []
+}
