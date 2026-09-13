@@ -37,6 +37,111 @@ html,body{margin:0;min-height:100%;font-family:Manrope,Arial,sans-serif;backgrou
       }else console.warn('Design 42 ecosystem enhancement was not applied because the target section was not found.');
     }catch(ecosystemError){console.warn('Design 42 ecosystem enhancement failed; loading the stable base instead.',ecosystemError)}
 
+    const chatbotPopupStyle=page.createElement('style');
+    chatbotPopupStyle.setAttribute('data-design42-chat-popup-v1','');
+    chatbotPopupStyle.textContent=`
+/* Design 42: conventional floating support-chat popup */
+body.telikom-ai-open .site-viewport{width:100%!important}
+body.telikom-ai-open .site-header{right:0!important}
+.telikom-ai-launcher{
+  width:58px!important;
+  height:58px!important;
+  padding:0!important;
+  right:24px!important;
+  bottom:24px!important;
+  border-radius:50%!important;
+  justify-content:center!important;
+  background:#0875c9!important;
+  border:1px solid rgba(255,255,255,.34)!important;
+  box-shadow:0 14px 32px rgba(30,74,103,.24)!important;
+}
+.telikom-ai-launcher>span:last-child{display:none!important}
+.telikom-ai-launcher .spark{
+  width:34px!important;
+  height:34px!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  font-size:17px!important;
+}
+.telikom-ai-panel{
+  inset:auto 24px 94px auto!important;
+  width:min(380px,calc(100vw - 32px))!important;
+  height:min(540px,calc(100dvh - 126px))!important;
+  border:1px solid rgba(38,83,105,.16)!important;
+  border-radius:20px!important;
+  background:#f7fafb!important;
+  color:#173546!important;
+  transform:translateY(16px) scale(.97)!important;
+  transform-origin:bottom right!important;
+  opacity:0!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
+  box-shadow:0 24px 64px rgba(31,67,88,.24)!important;
+  overflow:hidden!important;
+}
+.telikom-ai-panel:before{display:none!important}
+body.telikom-ai-open .telikom-ai-panel{
+  transform:none!important;
+  opacity:1!important;
+  visibility:visible!important;
+  pointer-events:auto!important;
+}
+.telikom-ai-head{
+  min-height:64px!important;
+  padding:12px 12px 11px 14px!important;
+  background:#0875c9!important;
+  color:#fff!important;
+  border-bottom:0!important;
+  backdrop-filter:none!important;
+}
+.telikom-ai-title b{color:#fff!important}
+.telikom-ai-status{color:#d9effb!important}
+.telikom-ai-lang,
+.telikom-ai-close{
+  border-color:rgba(255,255,255,.24)!important;
+  background:rgba(255,255,255,.12)!important;
+  color:#fff!important;
+}
+.telikom-ai-scroll{padding:15px 14px 18px!important;background:#f7fafb!important}
+.telikom-ai-intro{padding:2px 2px 11px!important}
+.telikom-ai-intro .eyebrow{color:#0875c9!important}
+.telikom-ai-intro h3{font-size:22px!important;margin:7px 0 7px!important;color:#173546!important}
+.telikom-ai-intro p{font-size:10px!important;color:#627d89!important}
+.telikom-ai-suggestions{grid-template-columns:1fr 1fr!important;gap:7px!important;margin:7px 0 14px!important}
+.telikom-ai-chip{
+  min-height:38px!important;
+  padding:8px 10px!important;
+  border-radius:10px!important;
+  background:#fff!important;
+  border-color:rgba(43,91,112,.14)!important;
+  color:#173546!important;
+  box-shadow:0 4px 12px rgba(45,86,104,.05)!important;
+}
+.telikom-ai-chip:hover{background:#edf6fb!important;border-color:rgba(8,117,201,.26)!important;transform:none!important}
+.telikom-ai-msg.bot{background:#edf2f4!important;border-color:rgba(43,91,112,.10)!important;color:#173546!important}
+.telikom-ai-msg.bot b{color:#173546!important}
+.telikom-ai-msg.bot a{color:#0875c9!important}
+.telikom-ai-compose{padding:10px 11px 12px!important;background:#eef3f5!important;border-top-color:rgba(38,83,105,.10)!important;backdrop-filter:none!important}
+.telikom-ai-form{background:#fff!important;border-color:rgba(43,91,112,.16)!important;color:#173546!important}
+.telikom-ai-input{color:#173546!important}
+.telikom-ai-input::placeholder{color:#81939c!important}
+.telikom-ai-send{background:#0875c9!important;box-shadow:none!important}
+.telikom-ai-note{color:#728791!important}
+@media(max-width:560px){
+  .telikom-ai-launcher{right:14px!important;bottom:14px!important;width:56px!important;height:56px!important}
+  .telikom-ai-panel{
+    inset:auto 12px 82px 12px!important;
+    width:auto!important;
+    height:min(590px,calc(100dvh - 104px))!important;
+    border-radius:18px!important;
+    transform-origin:bottom right!important;
+  }
+  .telikom-ai-suggestions{grid-template-columns:1fr 1fr!important}
+}
+@media(max-width:390px){.telikom-ai-suggestions{grid-template-columns:1fr!important}}
+`;
+    page.head.appendChild(chatbotPopupStyle);
+
     document.open();
     document.write('<!doctype html>'+page.documentElement.outerHTML);
     document.close();
