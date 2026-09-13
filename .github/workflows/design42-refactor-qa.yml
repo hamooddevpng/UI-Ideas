@@ -39,10 +39,11 @@ jobs:
       - name: Run architecture guardrails
         run: node tests/design42-css-architecture.test.mjs
 
-      - name: Install Playwright
+      - name: Install visual QA dependencies
         run: |
           npm install --no-save playwright
           npx playwright install chromium
+          python3 -m pip install --quiet pillow
 
       - name: Start local server
         run: |
@@ -152,27 +153,28 @@ jobs:
 
       - name: Measure desktop fold regression against baseline
         run: |
-          set +e
-          metric=$(compare -metric RMSE qa/design42/latest-desktop-fold.jpg qa/design42/refactor/desktop-fold.jpg null: 2>&1)
-          code=$?
-          set -e
-          echo "Desktop fold RMSE: $metric"
-          normalized=$(printf '%s' "$metric" | sed -n 's/.*(\([0-9.]*\)).*/\1/p')
-          if [ -z "$normalized" ]; then
-            echo "Could not parse ImageMagick RMSE output"
-            exit 1
-          fi
-          python3 - "$normalized" <<'PY'
-          import sys
-          value=float(sys.argv[1])
-          print(f'Normalized desktop-fold RMSE: {value:.6f}')
-          # Refactor parity guard. This catches wholesale visual breakage while
-          # allowing small animation/rendering differences in the prototype.
-          if value > 0.18:
-              raise SystemExit(f'Visual regression too large: {value:.6f} > 0.18')
+          python3 <<'PY'
+          from PIL import Image, ImageChops, ImageStat
+          from pathlib import Path
+          import math
+
+          baseline = Image.open(Path('qa/design42/latest-desktop-fold.jpg')).convert('RGB')
+          current = Image.open(Path('qa/design42/refactor/desktop-fold.jpg')).convert('RGB')
+          if baseline.size != current.size:
+              raise SystemExit(f'Visual regression dimensions changed: baseline={baseline.size}, current={current.size}')
+          diff = ImageChops.difference(baseline, current)
+          stat = ImageStat.Stat(diff)
+          mse = sum((r ** 2) for r in stat.rms) / 3
+          rmse = math.sqrt(mse) / 255
+          print(f'Normalized desktop-fold RMSE: {rmse:.6f}')
+          # This guard is intentionally tolerant of prototype animation/image timing.
+          # Its job is to catch wholesale visual breakage during the structural refactor.
+          if rmse > 0.18:
+              raise SystemExit(f'Visual regression too large: {rmse:.6f} > 0.18')
           PY
 
       - name: Upload audit and visual QA artifacts
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: design42-refactor-qa
