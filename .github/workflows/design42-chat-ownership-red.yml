@@ -1,0 +1,23 @@
+name: Design 42 Chat Ownership Red
+
+on:
+  push:
+    branches:
+      - refactor/design42-css-cleanup
+    paths:
+      - 'tests/design42-chat-ownership.test.mjs'
+      - '.github/workflows/design42-chat-ownership-red.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  guardrail:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Verify single-owner Ask Telikom CSS
+        run: node tests/design42-chat-ownership.test.mjs
