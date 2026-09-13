@@ -1,5 +1,6 @@
 {
-  "capturedAt": "2026-09-13T22:37:24.265Z",
+  "capturedAt": "2026-09-13T23:45:06.231Z",
+  "researchStandard": "minimum 15 references",
   "pageStudy": {
     "id": "u-tokmoa",
     "name": "U-TOKMoa",
@@ -8,8 +9,31 @@
   "viewport": "1440x900",
   "results": [
     {
+      "slug": "airtel-broadband",
+      "name": "Airtel Broadband",
+      "category": "telecom",
+      "requestedUrl": "https://www.airtel.in/broadband/",
+      "finalUrl": "https://www.airtel.in/new-connection/broadband/",
+      "title": "Buy New Broadband and Internet Connection for Home",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "airtel-broadband.png"
+    },
+    {
+      "slug": "att-home-phone",
+      "name": "AT&T Home Phone",
+      "category": "telecom",
+      "requestedUrl": "https://www.att.com/home-phone/",
+      "finalUrl": "https://www.att.com/home-phone/",
+      "title": "AT&T Home Phone | Digital Voice, Wireless & Landline",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "att-home-phone.png"
+    },
+    {
       "slug": "digicel-png-home-internet",
       "name": "Digicel PNG Home Internet",
+      "category": null,
       "requestedUrl": "https://support-pg.digicelpacific.com/hc/en-us/articles/6454640929679-What-are-the-home-internet-packages",
       "finalUrl": "https://support-pg.digicelpacific.com/hc/en-us/articles/6454640929679-What-are-the-home-internet-packages",
       "title": "What are the home internet packages? – Mobile - PNG",
@@ -18,8 +42,42 @@
       "researchFilename": "digicel-png-home-internet.png"
     },
     {
+      "slug": "globe-home",
+      "name": "Globe At Home",
+      "category": "telecom",
+      "requestedUrl": "https://new.globe.com.ph/gfiber",
+      "finalUrl": "https://shop.globe.com.ph/broadband/",
+      "title": "Just a moment...",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "globe-home.png"
+    },
+    {
+      "slug": "jiofiber",
+      "name": "JioFiber",
+      "category": "telecom",
+      "requestedUrl": "https://www.jio.com/fiber",
+      "finalUrl": "https://www.jio.com/fiber/",
+      "title": "Broadband Connection & Internet Services | JioFiber",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "jiofiber.png"
+    },
+    {
+      "slug": "one-nz-broadband",
+      "name": "One NZ Broadband",
+      "category": "telecom",
+      "requestedUrl": "https://one.nz/broadband/",
+      "finalUrl": "https://one.nz/broadband/",
+      "title": "Broadband. The options at your place. One NZ.",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "one-nz-broadband.png"
+    },
+    {
       "slug": "ooredoo-qatar-home-plus",
       "name": "Ooredoo Qatar Home+",
+      "category": null,
       "requestedUrl": "https://www.ooredoo.qa/web/en/home-plus/",
       "finalUrl": "https://www.ooredoo.qa/web/en/home-plus/",
       "title": "Home+ Internet Packages | Fast Home Wifi | Ooredoo Qatar",
@@ -28,8 +86,53 @@
       "researchFilename": "ooredoo-qatar-home-plus.png"
     },
     {
+      "slug": "optus-home-internet",
+      "name": "Optus Home Internet",
+      "category": "telecom",
+      "requestedUrl": "https://www.optus.com.au/broadband-nbn",
+      "finalUrl": "https://www.optus.com.au/broadband-nbn",
+      "title": "",
+      "status": "partial",
+      "error": "page.goto: net::ERR_HTTP2_PROTOCOL_ERROR at https://www.optus.com.au/broadband-nbn\nCall log:\n  - navigating to \"https://www.optus.com.au/broadband-nbn\", waiting until \"domcontentloaded\"\n",
+      "researchFilename": "optus-home-internet.png"
+    },
+    {
+      "slug": "pldt-home",
+      "name": "PLDT Home",
+      "category": "telecom",
+      "requestedUrl": "https://pldthome.com/",
+      "finalUrl": "https://pldthome.com/",
+      "title": "Fiber-Fast and Reliable Internet with PLDT Home",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "pldt-home.png"
+    },
+    {
+      "slug": "singtel-home",
+      "name": "Singtel Home",
+      "category": "telecom",
+      "requestedUrl": "https://www.singtel.com/personal/products-services/broadband",
+      "finalUrl": "https://www.singtel.com/personal/products-services/broadband",
+      "title": "Singtel Fibre Broadband - Singapore's #1 Network",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "singtel-home.png"
+    },
+    {
+      "slug": "spark-landline",
+      "name": "Spark Landline",
+      "category": "telecom",
+      "requestedUrl": "https://www.spark.co.nz/shop/landline",
+      "finalUrl": "https://validate.perfdrive.com/ab466d675e06052c21f7cc4df3656c91/?ssa=461a266c-244f-44cc-ab92-e4fef20bb702&ssb=53159299638&ssc=https%3A%2F%2Fwww.spark.co.nz%2Fshop%2Flandline&ssi=cb1a8445-cv5f-48dc-b147-c48a123c65a6&ssk=botmanager_support@radware.com&ssm=45814553726172912348229853460817&ssn=d51484c30cc06280990f344b0db7874a03f4e4d470f8-82eb-47b2-85397f&sso=b9a99c04-d4de67336897fda6566dfc927673bf4242349347e8a6c2b1&ssp=08369347761789340287178939316057235&ssq=66116944275795071779542652449995735171598&ssr=MjAuNTEuMjA2Ljg0&sst=Mozilla/5.0%20(Windows%20NT%2010.0;%20Win64;%20x64)%20AppleWebKit/537.36%20(KHTML,%20like%20Gecko)%20Chrome/152.0.0.0%20Safari/537.36&ssu=MjQzdHdlWUhKQ2tCUDVaaUxsVW5FY0ZmUEl2Sm1va0d0UWp0S05sR2pYbz0=&ssv=&ssw=&ssx=eyJfX3V6bWYiOiI3ZjkwMDBlNGQ0NzBmOC04MmViLTQ3YjItOGMwNC1kNGRlNjczMzY4OTcxLTE3ODkzNDI2NTI2NjIxMDQ4ODQtMDA0ZmE3ZGFhOGI1OGJjYTI5MTM0IiwicmQiOiJzcGFyay5jby5ueiIsInV6bXgiOiI3ZmMwMDBkNmVjZGI5NS05Y2Q3LTQyNzAtYTAwMy0wYzIxMDExMjEwNzExLTE3ODkzNDI2NTI2NjIxMDQ4ODQtMDA0NGUwOTAxMWJlNmRlMDUzNjM0In0=",
+      "title": "Radware Bot Manager Captcha",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "spark-landline.png"
+    },
+    {
       "slug": "stc-saudi-baity-fiber",
       "name": "stc Saudi Baity Fiber",
+      "category": null,
       "requestedUrl": "https://www.stc.com.sa/en/personal/homepackages/baity-fiber-packages.html",
       "finalUrl": "https://www.stc.com.sa/en/personal/homepackages/baity-fiber-packages.html",
       "title": "stc KSA | baity fiber packages",
@@ -38,8 +141,31 @@
       "researchFilename": "stc-saudi-baity-fiber.png"
     },
     {
+      "slug": "telstra-home-phone",
+      "name": "Telstra Home Phone",
+      "category": "telecom",
+      "requestedUrl": "https://www.telstra.com.au/home-phone",
+      "finalUrl": "https://www.telstra.com.au/phone-line?dclid=CJSYpaqw1csCFdhufgod8lMJCQ",
+      "title": "Telstra landline plans and rates | Telstra",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "telstra-home-phone.png"
+    },
+    {
+      "slug": "verizon-home",
+      "name": "Verizon Home Internet",
+      "category": "telecom",
+      "requestedUrl": "https://www.verizon.com/home/internet/",
+      "finalUrl": "https://www.verizon.com/home/internet/",
+      "title": "Verizon Home Internet Plans with myHome | Verizon",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "verizon-home.png"
+    },
+    {
       "slug": "vodafone-png-mobile-broadband",
       "name": "Vodafone PNG Mobile Broadband",
+      "category": null,
       "requestedUrl": "https://www.vodafone.com.pg/personal/prepaid/Plans/mobile-broadband",
       "finalUrl": "https://www.vodafone.com.pg/personal/prepaid/Plans/mobile-broadband",
       "title": "Vodafone PNG - Mobile Broadband | Vodafone PNG",

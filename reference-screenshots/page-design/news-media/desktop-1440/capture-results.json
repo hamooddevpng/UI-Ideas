@@ -1,5 +1,6 @@
 {
-  "capturedAt": "2026-09-13T22:37:24.266Z",
+  "capturedAt": "2026-09-13T23:45:06.232Z",
+  "researchStandard": "minimum 15 references",
   "pageStudy": {
     "id": "news-media",
     "name": "News & Media",
@@ -8,8 +9,86 @@
   "viewport": "1440x900",
   "results": [
     {
+      "slug": "air-niugini",
+      "name": "Air Niugini",
+      "category": "png-business",
+      "requestedUrl": "https://airniuginipng.com/",
+      "finalUrl": "https://airniuginipng.com/",
+      "title": "",
+      "status": "partial",
+      "error": "page.goto: net::ERR_NAME_NOT_RESOLVED at https://airniuginipng.com/\nCall log:\n  - navigating to \"https://airniuginipng.com/\", waiting until \"domcontentloaded\"\n",
+      "researchFilename": "air-niugini.png"
+    },
+    {
+      "slug": "att-newsroom",
+      "name": "AT&T Newsroom",
+      "category": "telecom",
+      "requestedUrl": "https://about.att.com/pages/newsroom",
+      "finalUrl": "https://about.att.com/pages/newsroom",
+      "title": "Access Denied",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "att-newsroom.png"
+    },
+    {
+      "slug": "bankpng",
+      "name": "Bank of Papua New Guinea",
+      "category": "png-government",
+      "requestedUrl": "https://www.bankpng.gov.pg/",
+      "finalUrl": "https://www.bankpng.gov.pg/",
+      "title": "Just a moment...",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "bankpng.png"
+    },
+    {
+      "slug": "bsp-bank",
+      "name": "BSP Bank",
+      "category": "png-business",
+      "requestedUrl": "https://www.bsp.com.pg/",
+      "finalUrl": "https://www.bsp.com.pg/",
+      "title": "PNG - BSP PNG",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "bsp-bank.png"
+    },
+    {
+      "slug": "dict-png",
+      "name": "PNG Department of ICT",
+      "category": "png-government",
+      "requestedUrl": "https://www.ict.gov.pg/",
+      "finalUrl": "https://www.ict.gov.pg/",
+      "title": "DICT I PNG |",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "dict-png.png"
+    },
+    {
+      "slug": "kina-bank",
+      "name": "Kina Bank",
+      "category": "png-business",
+      "requestedUrl": "https://www.kina.com.pg/",
+      "finalUrl": "https://www.kina.com.pg/",
+      "title": "",
+      "status": "error",
+      "error": "page.goto: Timeout 45000ms exceeded.\nCall log:\n  - navigating to \"https://www.kina.com.pg/\", waiting until \"domcontentloaded\"\n",
+      "researchFilename": "kina-bank.png"
+    },
+    {
+      "slug": "nicta-png",
+      "name": "NICTA PNG",
+      "category": "png-government",
+      "requestedUrl": "https://www.nicta.gov.pg/",
+      "finalUrl": "https://www.nicta.gov.pg/",
+      "title": "Home | NICTA PNG",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "nicta-png.png"
+    },
+    {
       "slug": "ooredoo-qatar-news",
       "name": "Ooredoo Qatar News",
+      "category": null,
       "requestedUrl": "https://www.ooredoo.qa/web/en/press-release/",
       "finalUrl": "https://www.ooredoo.qa/web/en/press-release/",
       "title": "Find out the Latest Ooredoo News | Ooredoo Qatar",
@@ -20,6 +99,7 @@
     {
       "slug": "orange-newsroom",
       "name": "Orange Newsroom",
+      "category": null,
       "requestedUrl": "https://newsroom.orange.com/",
       "finalUrl": "https://newsroom.orange.com/?lang=fra",
       "title": "Newsroom Groupe Orange",
@@ -28,8 +108,53 @@
       "researchFilename": "orange-newsroom.png"
     },
     {
+      "slug": "steamships",
+      "name": "Steamships",
+      "category": "png-business",
+      "requestedUrl": "https://www.steamships.com.pg/",
+      "finalUrl": "https://www.steamships.com.pg/",
+      "title": "Steamships, Papua New Guinea",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "steamships.png"
+    },
+    {
+      "slug": "telstra-news",
+      "name": "Telstra News",
+      "category": "telecom",
+      "requestedUrl": "https://www.telstra.com.au/exchange",
+      "finalUrl": "https://www.telstra.com.au/exchange",
+      "title": "Exchange - Telstra",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "telstra-news.png"
+    },
+    {
+      "slug": "treasury-png",
+      "name": "PNG Treasury",
+      "category": "png-government",
+      "requestedUrl": "https://www.treasury.gov.pg/",
+      "finalUrl": "https://www.treasury.gov.pg/",
+      "title": "Department of Treasury – Papua New Guinea",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "treasury-png.png"
+    },
+    {
+      "slug": "trukai",
+      "name": "Trukai Industries",
+      "category": "png-business",
+      "requestedUrl": "https://www.trukai.com.pg/",
+      "finalUrl": "https://www.trukai.com.pg/",
+      "title": "Trukai Industries Limited",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "trukai.png"
+    },
+    {
       "slug": "verizon-news",
       "name": "Verizon News & Stories",
+      "category": null,
       "requestedUrl": "https://www.verizon.com/about/news",
       "finalUrl": "https://www.verizon.com/about/news",
       "title": "Verizon News & Stories | About Verizon",
@@ -40,6 +165,7 @@
     {
       "slug": "verizon-press",
       "name": "Verizon Press Releases",
+      "category": null,
       "requestedUrl": "https://www.verizon.com/about/news/media-center",
       "finalUrl": "https://www.verizon.com/about/news/press-releases",
       "title": "Press Releases | About Verizon",

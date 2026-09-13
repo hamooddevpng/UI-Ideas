@@ -1,5 +1,6 @@
 {
-  "capturedAt": "2026-09-13T22:37:24.265Z",
+  "capturedAt": "2026-09-13T23:45:06.231Z",
+  "researchStandard": "minimum 15 references",
   "pageStudy": {
     "id": "business-fixed",
     "name": "Business - Fixed",
@@ -8,8 +9,53 @@
   "viewport": "1440x900",
   "results": [
     {
+      "slug": "airtel-business",
+      "name": "Airtel Business",
+      "category": "telecom",
+      "requestedUrl": "https://www.airtel.in/business/",
+      "finalUrl": "https://www.airtel.in/b2b/",
+      "title": "Airtel B2B Solutions - Enterprise Services for Businesses",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "airtel-business.png"
+    },
+    {
+      "slug": "att-business-internet",
+      "name": "AT&T Business Internet",
+      "category": "telecom",
+      "requestedUrl": "https://www.business.att.com/categories/internet.html",
+      "finalUrl": "https://www.business.att.com/portfolios/business-internet.html",
+      "title": "Ultra-Fast Business Internet & Wi-Fi Services | AT&T Business",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "att-business-internet.png"
+    },
+    {
+      "slug": "nicta-png",
+      "name": "NICTA PNG",
+      "category": "png-government",
+      "requestedUrl": "https://www.nicta.gov.pg/",
+      "finalUrl": "https://www.nicta.gov.pg/",
+      "title": "Home | NICTA PNG",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "nicta-png.png"
+    },
+    {
+      "slug": "one-nz-business",
+      "name": "One NZ Business",
+      "category": "telecom",
+      "requestedUrl": "https://one.nz/business/",
+      "finalUrl": "https://one.nz/business/",
+      "title": "For Business. Winner of Canstar Blue's Most Satisfied Customers - Small Business Telecommunications 2025. One NZ.",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "one-nz-business.png"
+    },
+    {
       "slug": "ooredoo-qatar-business-internet",
       "name": "Ooredoo Qatar Business Internet",
+      "category": null,
       "requestedUrl": "https://www.ooredoo.qa/web/en/business/local-connectivity/business-internet/",
       "finalUrl": "https://www.ooredoo.qa/web/en/business/local-connectivity/business-internet/",
       "title": "High Quality with Ooredoo Business Internet Plans | Ooredoo Qatar",
@@ -18,8 +64,53 @@
       "researchFilename": "ooredoo-qatar-business-internet.png"
     },
     {
+      "slug": "optus-enterprise",
+      "name": "Optus Enterprise",
+      "category": "telecom",
+      "requestedUrl": "https://www.optus.com.au/enterprise",
+      "finalUrl": "https://www.optus.com.au/enterprise",
+      "title": "",
+      "status": "partial",
+      "error": "page.goto: net::ERR_HTTP2_PROTOCOL_ERROR at https://www.optus.com.au/enterprise\nCall log:\n  - navigating to \"https://www.optus.com.au/enterprise\", waiting until \"domcontentloaded\"\n",
+      "researchFilename": "optus-enterprise.png"
+    },
+    {
+      "slug": "png-dataco",
+      "name": "PNG DataCo",
+      "category": "png-public-enterprise",
+      "requestedUrl": "https://www.pngdataco.com/",
+      "finalUrl": "https://www.pngdataco.com/",
+      "title": "PNG DataCo – Yes, you'll be covered!",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "png-dataco.png"
+    },
+    {
+      "slug": "singtel-enterprise",
+      "name": "Singtel Enterprise",
+      "category": "telecom",
+      "requestedUrl": "https://www.singtel.com/business",
+      "finalUrl": "https://www.singtel.com/business",
+      "title": "Singtel Business",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "singtel-enterprise.png"
+    },
+    {
+      "slug": "spark-business",
+      "name": "Spark Business",
+      "category": "telecom",
+      "requestedUrl": "https://www.spark.co.nz/business",
+      "finalUrl": "https://validate.perfdrive.com/ab466d675e06052c21f7cc4df3656c91/?ssa=c7a5576d-dcbc-4ec8-94f3-58f90764689d&ssb=33214286073&ssc=https%3A%2F%2Fwww.spark.co.nz%2Fbusiness&ssi=752b9a42-cv5f-4129-95fa-9165be7601d0&ssk=botmanager_support@radware.com&ssm=07893923933301817439853407737298&ssn=bf6d651fcb1bad6282936b6d47def82062b4e4d470f8-82eb-47b2-8befde&sso=12be0c04-d4de67336897738e94beaff8a0cffa9c34b7e7e62434a0d8&ssp=09774161441789366809178938510090288&ssq=13019614285596658743842652929132708457305&ssr=MjAuNTEuMjA2Ljg0&sst=Mozilla/5.0%20(Windows%20NT%2010.0;%20Win64;%20x64)%20AppleWebKit/537.36%20(KHTML,%20like%20Gecko)%20Chrome/152.0.0.0%20Safari/537.36&ssu=MjQzdHdlWUhKQ2tCUDVaaUxsVW5FY0ZmUEl2Sm1va0d0UWp0S05sR2pYbz0=&ssv=&ssw=&ssx=eyJfX3V6bWYiOiI3ZjkwMDBlNGQ0NzBmOC04MmViLTQ3YjItOGMwNC1kNGRlNjczMzY4OTcxLTE3ODkzNDI2NTI2NjIyMDI3NTktMDA0NTM3NDI4MmI5NDNjYzBmOTQzIiwicmQiOiJzcGFyay5jby5ueiIsInV6bXgiOiI3ZmMwMDBkNmVjZGI5NS05Y2Q3LTQyNzAtYTAwMy0wYzIxMDExMjEwNzExLTE3ODkzNDI2NTI2NjIyMDI3NTktMDA0ZTEzYWEyOGIyMWFlMWJiNTQzIn0=",
+      "title": "Radware Bot Manager Captcha",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "spark-business.png"
+    },
+    {
       "slug": "stc-saudi-business-link-5g",
       "name": "stc Saudi Business Link 5G",
+      "category": null,
       "requestedUrl": "https://www.stc.com.sa/en/business/connect/internet-voice/business-link-5g.html",
       "finalUrl": "https://www.stc.com.sa/en/business/connect/internet-voice/business-link-5g.html",
       "title": "stc KSA | stc 5G Internet 5G Broadband Internet Service For Reliable Connectivity",
@@ -30,6 +121,7 @@
     {
       "slug": "stc-saudi-fiber-link",
       "name": "stc Saudi Fiber Link",
+      "category": null,
       "requestedUrl": "https://www.stc.com.sa/en/business/connect/internet-voice/fiber-link.html",
       "finalUrl": "https://www.stc.com.sa/en/business/connect/internet-voice/fiber-link.html",
       "title": "stc KSA | stc fiber link Service For Enhanced Internet Connectivity",
@@ -38,13 +130,47 @@
       "researchFilename": "stc-saudi-fiber-link.png"
     },
     {
-      "slug": "vodafone-png-dedicated-internet",
-      "name": "Vodafone PNG Dedicated Internet",
-      "requestedUrl": "https://www.vodafone.com.pg/business/products-and-solutions/ict-cloud-solutions/dedicated-internet",
-      "finalUrl": "https://www.vodafone.com.pg/business/products-and-solutions/ict-cloud-solutions/dedicated-internet",
-      "title": "Vodafone PNG - Dedicated Internet",
+      "slug": "telstra-enterprise",
+      "name": "Telstra Enterprise",
+      "category": "telecom",
+      "requestedUrl": "https://www.telstra.com.au/business-enterprise",
+      "finalUrl": "https://www.telstra.com.au/business-enterprise",
+      "title": "Government, Business & Enterprise Solutions from Telstra",
       "status": "ok",
       "error": null,
+      "researchFilename": "telstra-enterprise.png"
+    },
+    {
+      "slug": "tmobile-business-internet",
+      "name": "T-Mobile Business Internet",
+      "category": "telecom",
+      "requestedUrl": "https://www.t-mobile.com/business/solutions/business-internet-services",
+      "finalUrl": "https://www.t-mobile.com/business/solutions/business-internet-services/business-internet",
+      "title": "Enterprise Business Internet Solutions | Business Broadband Internet",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "tmobile-business-internet.png"
+    },
+    {
+      "slug": "verizon-business-internet",
+      "name": "Verizon Business Internet",
+      "category": "telecom",
+      "requestedUrl": "https://www.verizon.com/business/products/internet/",
+      "finalUrl": "https://www.verizon.com/business/products/internet/",
+      "title": "Business Internet Services: Plans for Small Business & Enterprise | Verizon",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "verizon-business-internet.png"
+    },
+    {
+      "slug": "vodafone-png-dedicated-internet",
+      "name": "Vodafone PNG Dedicated Internet",
+      "category": null,
+      "requestedUrl": "https://www.vodafone.com.pg/business/products-and-solutions/ict-cloud-solutions/dedicated-internet",
+      "finalUrl": "https://www.vodafone.com.pg/business/products-and-solutions/ict-cloud-solutions/dedicated-internet",
+      "title": "",
+      "status": "error",
+      "error": "page.goto: Timeout 45000ms exceeded.\nCall log:\n  - navigating to \"https://www.vodafone.com.pg/business/products-and-solutions/ict-cloud-solutions/dedicated-internet\", waiting until \"domcontentloaded\"\n",
       "researchFilename": "vodafone-png-dedicated-internet.png"
     }
   ]

@@ -1,5 +1,6 @@
 {
-  "capturedAt": "2026-09-13T22:37:24.265Z",
+  "capturedAt": "2026-09-13T23:45:06.231Z",
+  "researchStandard": "minimum 15 references",
   "pageStudy": {
     "id": "devices",
     "name": "Devices",
@@ -8,8 +9,64 @@
   "viewport": "1440x900",
   "results": [
     {
+      "slug": "att-phones",
+      "name": "AT&T Phones",
+      "category": "telecom",
+      "requestedUrl": "https://www.att.com/buy/phones/",
+      "finalUrl": "https://www.att.com/buy/phones/",
+      "title": "Buy Cell Phones, Smartphones & Mobile Phones | AT&T Wireless",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "att-phones.png"
+    },
+    {
+      "slug": "brian-bell",
+      "name": "Brian Bell Homecentres",
+      "category": "png-business",
+      "requestedUrl": "https://www.brianbellonline.com/",
+      "finalUrl": "https://www.brianbellonline.com/",
+      "title": "",
+      "status": "partial",
+      "error": "page.goto: net::ERR_NAME_NOT_RESOLVED at https://www.brianbellonline.com/\nCall log:\n  - navigating to \"https://www.brianbellonline.com/\", waiting until \"domcontentloaded\"\n",
+      "researchFilename": "brian-bell.png"
+    },
+    {
+      "slug": "globe-devices",
+      "name": "Globe Devices",
+      "category": "telecom",
+      "requestedUrl": "https://new.globe.com.ph/mobile/postpaid/devices",
+      "finalUrl": "https://new.globe.com.ph/mobile/postpaid/devices",
+      "title": "Just a moment...",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "globe-devices.png"
+    },
+    {
+      "slug": "jio-devices",
+      "name": "Jio Devices",
+      "category": "telecom",
+      "requestedUrl": "https://www.jio.com/jcms/devices/",
+      "finalUrl": "https://www.jio.com/mobile/devices/",
+      "title": "Buy Jio Mobile Devices & Mobile Accessories Online",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "jio-devices.png"
+    },
+    {
+      "slug": "one-nz-phones",
+      "name": "One NZ Phones",
+      "category": "telecom",
+      "requestedUrl": "https://one.nz/mobile/phones/",
+      "finalUrl": "https://one.nz/mobile/phones/",
+      "title": "404 - Page Not Found",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "one-nz-phones.png"
+    },
+    {
       "slug": "ooredoo-qatar-eshop",
       "name": "Ooredoo Qatar eShop",
+      "category": null,
       "requestedUrl": "https://eshop.ooredoo.qa/en/collections/all-products",
       "finalUrl": "https://eshop.ooredoo.qa/en/collections/all-products",
       "title": "All Products | Electronics & Gadgets | Ooredoo QA Qatar",
@@ -18,8 +75,75 @@
       "researchFilename": "ooredoo-qatar-eshop.png"
     },
     {
+      "slug": "optus-phones",
+      "name": "Optus Phones",
+      "category": "telecom",
+      "requestedUrl": "https://www.optus.com.au/mobile/phones",
+      "finalUrl": "https://www.optus.com.au/mobile/phones",
+      "title": "",
+      "status": "partial",
+      "error": "page.goto: net::ERR_HTTP2_PROTOCOL_ERROR at https://www.optus.com.au/mobile/phones\nCall log:\n  - navigating to \"https://www.optus.com.au/mobile/phones\", waiting until \"domcontentloaded\"\n",
+      "researchFilename": "optus-phones.png"
+    },
+    {
+      "slug": "singtel-phones",
+      "name": "Singtel Phones",
+      "category": "telecom",
+      "requestedUrl": "https://www.singtel.com/personal/products-services/mobile/phones",
+      "finalUrl": "https://shop.singtel.com/",
+      "title": "Phones | Singtel",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "singtel-phones.png"
+    },
+    {
+      "slug": "smart-devices",
+      "name": "Smart Devices",
+      "category": "telecom",
+      "requestedUrl": "https://smart.com.ph/Postpaid/devices",
+      "finalUrl": "https://smart.com.ph/Postpaid/devices",
+      "title": "",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "smart-devices.png"
+    },
+    {
+      "slug": "spark-phones",
+      "name": "Spark Phones",
+      "category": "telecom",
+      "requestedUrl": "https://www.spark.co.nz/shop/mobile/phones",
+      "finalUrl": "https://validate.perfdrive.com/ab466d675e06052c21f7cc4df3656c91/?ssa=9ab066bc-6d05-433f-9cd5-98049a6bd8e3&ssb=47549292348&ssc=https%3A%2F%2Fwww.spark.co.nz%2Fshop%2Fmobile%2Fphones&ssi=590eb685-cv5f-450b-a8af-3d7291db5f46&ssk=botmanager_support@radware.com&ssm=41525127268149390406134343980429&ssn=69283ca8b76c08f75d8d3cbfcbfaebf18bebe4d470f8-82eb-47b2-82a90e&sso=519b2c04-d4de67336897eb06aba89c8d7f39e78f4a6797ae5357893b&ssp=17285769201789342559178935898549779&ssq=27129454281314690265242652633142009100842&ssr=MjAuNTEuMjA2Ljg0&sst=Mozilla/5.0%20(Windows%20NT%2010.0;%20Win64;%20x64)%20AppleWebKit/537.36%20(KHTML,%20like%20Gecko)%20Chrome/152.0.0.0%20Safari/537.36&ssu=MjQzdHdlWUhKQ2tCUDVaaUxsVW5FY0ZmUEl2Sm1va0d0UWp0S05sR2pYbz0=&ssv=&ssw=&ssx=eyJfX3V6bWYiOiI3ZjkwMDBlNGQ0NzBmOC04MmViLTQ3YjItOGMwNC1kNGRlNjczMzY4OTcxLTE3ODkzNDI2NTI2NjIxNjExMDQtMDA0OTNiZTZmNGE3ZjhiZmQwZjQwIiwicmQiOiJzcGFyay5jby5ueiIsInV6bXgiOiI3ZmMwMDBkNmVjZGI5NS05Y2Q3LTQyNzAtYTAwMy0wYzIxMDExMjEwNzExLTE3ODkzNDI2NTI2NjIxNjExMDQtMDA0MzVhZTMzODk3MTQ3OWJjYjQwIn0=",
+      "title": "Radware Bot Manager Captcha",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "spark-phones.png"
+    },
+    {
+      "slug": "telstra-phones",
+      "name": "Telstra Phones",
+      "category": "telecom",
+      "requestedUrl": "https://www.telstra.com.au/mobile-phones/mobiles-on-a-plan",
+      "finalUrl": "https://www.telstra.com.au/mobile-phones/mobiles-on-a-plan",
+      "title": "Mobile Phone Plans & Customisable Data | Telstra",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "telstra-phones.png"
+    },
+    {
+      "slug": "tmobile-phones",
+      "name": "T-Mobile Phones",
+      "category": "telecom",
+      "requestedUrl": "https://www.t-mobile.com/cell-phones",
+      "finalUrl": "https://www.t-mobile.com/cell-phones",
+      "title": "New Cell Phones for Sale | Buy Smartphones Online or in Store | T-Mobile",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "tmobile-phones.png"
+    },
+    {
       "slug": "verizon-smartphones",
       "name": "Verizon Smartphones",
+      "category": null,
       "requestedUrl": "https://www.verizon.com/smartphones/",
       "finalUrl": "https://www.verizon.com/smartphones/",
       "title": "Cell Phones: Shop the Best Smartphones Online | Verizon",
@@ -30,21 +154,23 @@
     {
       "slug": "vodafone-png-broadband-devices",
       "name": "Vodafone PNG Broadband Devices",
+      "category": null,
       "requestedUrl": "https://vodafone.com.pg/personal/prepaid/mobile-broadband/broadband-devices",
       "finalUrl": "https://vodafone.com.pg/personal/prepaid/mobile-broadband/broadband-devices",
       "title": "",
-      "status": "partial",
+      "status": "error",
       "error": "page.goto: Timeout 45000ms exceeded.\nCall log:\n  - navigating to \"https://vodafone.com.pg/personal/prepaid/mobile-broadband/broadband-devices\", waiting until \"domcontentloaded\"\n",
       "researchFilename": "vodafone-png-broadband-devices.png"
     },
     {
       "slug": "vodafone-png-devices",
       "name": "Vodafone PNG Devices",
+      "category": null,
       "requestedUrl": "https://www.vodafone.com.pg/personal/specials-offers/devices",
       "finalUrl": "https://www.vodafone.com.pg/personal/specials-offers/devices",
-      "title": "Vodafone PNG - Mix Devices| Vodafone PNG",
-      "status": "ok",
-      "error": null,
+      "title": "",
+      "status": "error",
+      "error": "page.goto: Timeout 45000ms exceeded.\nCall log:\n  - navigating to \"https://www.vodafone.com.pg/personal/specials-offers/devices\", waiting until \"domcontentloaded\"\n",
       "researchFilename": "vodafone-png-devices.png"
     }
   ]

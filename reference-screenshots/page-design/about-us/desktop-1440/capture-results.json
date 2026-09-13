@@ -1,5 +1,6 @@
 {
-  "capturedAt": "2026-09-13T22:37:24.266Z",
+  "capturedAt": "2026-09-13T23:45:06.232Z",
+  "researchStandard": "minimum 15 references",
   "pageStudy": {
     "id": "about-us",
     "name": "About Us",
@@ -8,8 +9,97 @@
   "viewport": "1440x900",
   "results": [
     {
+      "slug": "air-niugini",
+      "name": "Air Niugini",
+      "category": "png-business",
+      "requestedUrl": "https://airniuginipng.com/",
+      "finalUrl": "https://airniuginipng.com/",
+      "title": "",
+      "status": "partial",
+      "error": "page.goto: net::ERR_NAME_NOT_RESOLVED at https://airniuginipng.com/\nCall log:\n  - navigating to \"https://airniuginipng.com/\", waiting until \"domcontentloaded\"\n",
+      "researchFilename": "air-niugini.png"
+    },
+    {
+      "slug": "bsp-bank",
+      "name": "BSP Bank",
+      "category": "png-business",
+      "requestedUrl": "https://www.bsp.com.pg/",
+      "finalUrl": "https://www.bsp.com.pg/",
+      "title": "PNG - BSP PNG",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "bsp-bank.png"
+    },
+    {
+      "slug": "dict-png-about",
+      "name": "PNG Department of ICT About",
+      "category": "png-government",
+      "requestedUrl": "https://www.ict.gov.pg/about-us/",
+      "finalUrl": "https://www.ict.gov.pg/about-us/",
+      "title": "About us | DICT I PNG",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "dict-png-about.png"
+    },
+    {
+      "slug": "kina-bank",
+      "name": "Kina Bank",
+      "category": "png-business",
+      "requestedUrl": "https://www.kina.com.pg/",
+      "finalUrl": "https://www.kina.com.pg/",
+      "title": "",
+      "status": "error",
+      "error": "page.goto: Timeout 45000ms exceeded.\nCall log:\n  - navigating to \"https://www.kina.com.pg/\", waiting until \"domcontentloaded\"\n",
+      "researchFilename": "kina-bank.png"
+    },
+    {
+      "slug": "kumul-petroleum",
+      "name": "Kumul Petroleum",
+      "category": "png-public-enterprise",
+      "requestedUrl": "https://kumulpetroleum.com/",
+      "finalUrl": "https://kumulpetroleum.com/",
+      "title": "KUMUL PETROLEUM HOLDINGS",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "kumul-petroleum.png"
+    },
+    {
+      "slug": "nambawan-super",
+      "name": "Nambawan Super",
+      "category": "png-business",
+      "requestedUrl": "https://www.nambawansuper.com.pg/",
+      "finalUrl": "https://www.nambawansuper.com.pg/",
+      "title": "Home » Nambawan Super",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "nambawan-super.png"
+    },
+    {
+      "slug": "nasfund",
+      "name": "Nasfund",
+      "category": "png-business",
+      "requestedUrl": "https://www.nasfund.com.pg/",
+      "finalUrl": "https://www.nasfund.com.pg/",
+      "title": "Home | Nasfund",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "nasfund.png"
+    },
+    {
+      "slug": "nicta-png-about",
+      "name": "NICTA About",
+      "category": "png-government",
+      "requestedUrl": "https://www.nicta.gov.pg/about-us/",
+      "finalUrl": "https://www.nicta.gov.pg/about-us/",
+      "title": "About Us | NICTA PNG",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "nicta-png-about.png"
+    },
+    {
       "slug": "ooredoo-qatar-about",
       "name": "Ooredoo Qatar About",
+      "category": null,
       "requestedUrl": "https://www.ooredoo.qa/web/en/about-us/",
       "finalUrl": "https://www.ooredoo.qa/web/en/about-us/",
       "title": "About Us | Ooredoo Qatar",
@@ -18,8 +108,31 @@
       "researchFilename": "ooredoo-qatar-about.png"
     },
     {
+      "slug": "png-lng",
+      "name": "PNG LNG",
+      "category": "png-business",
+      "requestedUrl": "https://pnglng.com/",
+      "finalUrl": "https://www.pnglng.com/",
+      "title": "PNG LNG - PNG LNG",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "png-lng.png"
+    },
+    {
+      "slug": "steamships",
+      "name": "Steamships",
+      "category": "png-business",
+      "requestedUrl": "https://www.steamships.com.pg/",
+      "finalUrl": "https://www.steamships.com.pg/",
+      "title": "Steamships, Papua New Guinea",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "steamships.png"
+    },
+    {
       "slug": "telefonica-about",
       "name": "Telefonica About",
+      "category": null,
       "requestedUrl": "https://www.telefonica.com/en/about-us/",
       "finalUrl": "https://www.telefonica.com/en/about-us/",
       "title": "About us, corporate purpose and values - Telefónica",
@@ -28,8 +141,20 @@
       "researchFilename": "telefonica-about.png"
     },
     {
+      "slug": "trukai",
+      "name": "Trukai Industries",
+      "category": "png-business",
+      "requestedUrl": "https://www.trukai.com.pg/",
+      "finalUrl": "https://www.trukai.com.pg/",
+      "title": "Trukai Industries Limited",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "trukai.png"
+    },
+    {
       "slug": "verizon-about",
       "name": "Verizon About",
+      "category": null,
       "requestedUrl": "https://www.verizon.com/about",
       "finalUrl": "https://www.verizon.com/about",
       "title": "Verizon Company Information, News, Leadership, Community & More",
@@ -40,6 +165,7 @@
     {
       "slug": "vodafone-png-about",
       "name": "Vodafone PNG About",
+      "category": null,
       "requestedUrl": "https://www.vodafone.com.pg/about",
       "finalUrl": "https://www.vodafone.com.pg/about",
       "title": "",

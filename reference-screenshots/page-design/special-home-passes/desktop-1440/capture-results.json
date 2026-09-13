@@ -1,5 +1,6 @@
 {
-  "capturedAt": "2026-09-13T22:37:24.265Z",
+  "capturedAt": "2026-09-13T23:45:06.231Z",
+  "researchStandard": "minimum 15 references",
   "pageStudy": {
     "id": "special-home-passes",
     "name": "Special Home Passes",
@@ -8,8 +9,31 @@
   "viewport": "1440x900",
   "results": [
     {
+      "slug": "airtel-offers",
+      "name": "Airtel Offers",
+      "category": "telecom",
+      "requestedUrl": "https://www.airtel.in/offers/",
+      "finalUrl": "https://www.airtel.in/offers/",
+      "title": "airtel: Prepaid | Postpaid | Broadband | 5G | DTH Services in India",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "airtel-offers.png"
+    },
+    {
+      "slug": "att-deals",
+      "name": "AT&T Deals",
+      "category": "telecom",
+      "requestedUrl": "https://www.att.com/deals/",
+      "finalUrl": "https://www.att.com/deals/",
+      "title": "Get the Best AT&T Deals on Phones, Wireless and Internet",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "att-deals.png"
+    },
+    {
       "slug": "digicel-png-time-data",
       "name": "Digicel PNG Time-Based Data",
+      "category": null,
       "requestedUrl": "https://support-pg.digicelpacific.com/hc/en-us/articles/6454570292495-Where-do-I-go-to-buy-this-time-based-data-plans",
       "finalUrl": "https://support-pg.digicelpacific.com/hc/en-us/articles/6454570292495-Where-do-I-go-to-buy-this-time-based-data-plans",
       "title": "Where do I go to buy this time based data plans? – Mobile - PNG",
@@ -18,8 +42,31 @@
       "researchFilename": "digicel-png-time-data.png"
     },
     {
+      "slug": "globe-promos",
+      "name": "Globe Prepaid Promos",
+      "category": "telecom",
+      "requestedUrl": "https://www.globe.com.ph/prepaid",
+      "finalUrl": "https://www.globe.com.ph/prepaid",
+      "title": "Just a moment...",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "globe-promos.png"
+    },
+    {
+      "slug": "one-nz-offers",
+      "name": "One NZ Offers",
+      "category": "telecom",
+      "requestedUrl": "https://one.nz/offers/",
+      "finalUrl": "https://one.nz/offers/",
+      "title": "404 - Page Not Found",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "one-nz-offers.png"
+    },
+    {
       "slug": "ooredoo-qatar-prepaid-promos",
       "name": "Ooredoo Qatar Prepaid Promotions",
+      "category": null,
       "requestedUrl": "https://www.ooredoo.qa/web/en/promotions/prepaid/",
       "finalUrl": "https://www.ooredoo.qa/web/en/promotions/prepaid/",
       "title": "Prepaid plans | Offers and Promotions | Ooredoo Qatar",
@@ -28,8 +75,53 @@
       "researchFilename": "ooredoo-qatar-prepaid-promos.png"
     },
     {
+      "slug": "optus-deals",
+      "name": "Optus Deals",
+      "category": "telecom",
+      "requestedUrl": "https://www.optus.com.au/deals",
+      "finalUrl": "https://www.optus.com.au/deals",
+      "title": "",
+      "status": "partial",
+      "error": "page.goto: net::ERR_HTTP2_PROTOCOL_ERROR at https://www.optus.com.au/deals\nCall log:\n  - navigating to \"https://www.optus.com.au/deals\", waiting until \"domcontentloaded\"\n",
+      "researchFilename": "optus-deals.png"
+    },
+    {
+      "slug": "singtel-promotions",
+      "name": "Singtel Promotions",
+      "category": "telecom",
+      "requestedUrl": "https://www.singtel.com/personal/products-services/promotions",
+      "finalUrl": "https://www.singtel.com/personal/products-services/promotions",
+      "title": "Page Not Found",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "singtel-promotions.png"
+    },
+    {
+      "slug": "smart-promos",
+      "name": "Smart Prepaid",
+      "category": "telecom",
+      "requestedUrl": "https://smart.com.ph/Prepaid",
+      "finalUrl": "https://smart.com.ph/Prepaid",
+      "title": "",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "smart-promos.png"
+    },
+    {
+      "slug": "spark-deals",
+      "name": "Spark Deals",
+      "category": "telecom",
+      "requestedUrl": "https://www.spark.co.nz/deals",
+      "finalUrl": "https://validate.perfdrive.com/ab466d675e06052c21f7cc4df3656c91/?ssa=797d6859-940e-4e58-9dbe-9fea3ff830fe&ssb=55311290890&ssc=https%3A%2F%2Fwww.spark.co.nz%2Fdeals&ssi=f46363fd-cv5f-4a58-bf6f-3d4b8486c5e3&ssk=botmanager_support@radware.com&ssm=75127167004111625317427903816040&ssn=72ce3141160e092613f4d93f8539c5ec12a7e4d470f8-82eb-47b2-8510f5&sso=b125ac04-d4de673368974aedb3bcbbb361c20b8218f8c335a898002b&ssp=51127369031789369852178932120655177&ssq=67909974273654745096442652395577539554599&ssr=MjAuNTEuMjA2Ljg0&sst=Mozilla/5.0%20(Windows%20NT%2010.0;%20Win64;%20x64)%20AppleWebKit/537.36%20(KHTML,%20like%20Gecko)%20Chrome/152.0.0.0%20Safari/537.36&ssu=MjQzdHdlWUhKQ2tCUDVaaUxsVW5FY0ZmUEl2Sm1va0d0UWp0S05sR2pYbz0=&ssv=&ssw=&ssx=eyJfX3V6bWYiOiI3ZjkwMDBlNGQ0NzBmOC04MmViLTQ3YjItOGMwNC1kNGRlNjczMzY4OTcxLTE3ODkzNDI2NTI2NjI4Mzk0Mi0wMDQ0ZjY5NGQ0ZWJiM2E1YTc5MzEiLCJyZCI6InNwYXJrLmNvLm56IiwidXpteCI6IjdmYzAwMGQ2ZWNkYjk1LTljZDctNDI3MC1hMDAzLTBjMjEwMTEyMTA3MTEtMTc4OTM0MjY1MjY2MjgzOTQyLTAwNGFhYjJhOTc5ZDQyMjYyZWMzMSJ9",
+      "title": "Radware Bot Manager Captcha",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "spark-deals.png"
+    },
+    {
       "slug": "stc-saudi-prepaid-addons",
       "name": "stc Saudi Prepaid & Add-ons",
+      "category": null,
       "requestedUrl": "https://www.stc.com.sa/en/personal/mobile/packages/prepaid.html",
       "finalUrl": "https://www.stc.com.sa/en/personal/mobile/packages/prepaid.html",
       "title": "stc KSA | stc sawa Internet Packages | stc Prepaid Packages for Mobile",
@@ -38,8 +130,42 @@
       "researchFilename": "stc-saudi-prepaid-addons.png"
     },
     {
+      "slug": "telstra-deals",
+      "name": "Telstra Deals",
+      "category": "telecom",
+      "requestedUrl": "https://www.telstra.com.au/deals",
+      "finalUrl": "https://www.telstra.com.au/deals",
+      "title": "Best Deals & Special Offers from Telstra",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "telstra-deals.png"
+    },
+    {
+      "slug": "tmobile-offers",
+      "name": "T-Mobile Offers",
+      "category": "telecom",
+      "requestedUrl": "https://www.t-mobile.com/offers",
+      "finalUrl": "https://www.t-mobile.com/offers",
+      "title": "Our Best Cell Phone Deals & Device Promotions | T-Mobile",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "tmobile-offers.png"
+    },
+    {
+      "slug": "verizon-deals",
+      "name": "Verizon Deals",
+      "category": "telecom",
+      "requestedUrl": "https://www.verizon.com/deals/",
+      "finalUrl": "https://www.verizon.com/loyalty/",
+      "title": "Verizon's Loyalty Program | Verizon Shine and Verizon Dollars",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "verizon-deals.png"
+    },
+    {
       "slug": "vodafone-png-specials",
       "name": "Vodafone PNG Specials & Offers",
+      "category": null,
       "requestedUrl": "https://vodafone.com.pg/personal/specials-offers",
       "finalUrl": "https://vodafone.com.pg/personal/specials-offers",
       "title": "Vodafone PNG - Specials & Offers | Vodafone PNG",

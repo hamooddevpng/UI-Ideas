@@ -1,5 +1,6 @@
 {
-  "capturedAt": "2026-09-13T22:37:24.266Z",
+  "capturedAt": "2026-09-13T23:45:06.233Z",
+  "researchStandard": "minimum 15 references",
   "pageStudy": {
     "id": "contact",
     "name": "Contact",
@@ -8,8 +9,108 @@
   "viewport": "1440x900",
   "results": [
     {
+      "slug": "air-niugini",
+      "name": "Air Niugini",
+      "category": "png-business",
+      "requestedUrl": "https://airniuginipng.com/",
+      "finalUrl": "https://airniuginipng.com/",
+      "title": "",
+      "status": "partial",
+      "error": "page.goto: net::ERR_NAME_NOT_RESOLVED at https://airniuginipng.com/\nCall log:\n  - navigating to \"https://airniuginipng.com/\", waiting until \"domcontentloaded\"\n",
+      "researchFilename": "air-niugini.png"
+    },
+    {
+      "slug": "att-contact",
+      "name": "AT&T Contact",
+      "category": "telecom",
+      "requestedUrl": "https://www.att.com/support/contact-us/",
+      "finalUrl": "https://www.att.com/support/contact-us/",
+      "title": "AT&T Customer Service - Phone Numbers & Live Chat",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "att-contact.png"
+    },
+    {
+      "slug": "bankpng",
+      "name": "Bank of Papua New Guinea",
+      "category": "png-government",
+      "requestedUrl": "https://www.bankpng.gov.pg/",
+      "finalUrl": "https://www.bankpng.gov.pg/",
+      "title": "Just a moment...",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "bankpng.png"
+    },
+    {
+      "slug": "bsp-bank",
+      "name": "BSP Bank",
+      "category": "png-business",
+      "requestedUrl": "https://www.bsp.com.pg/",
+      "finalUrl": "https://www.bsp.com.pg/",
+      "title": "PNG - BSP PNG",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "bsp-bank.png"
+    },
+    {
+      "slug": "dict-png",
+      "name": "PNG Department of ICT",
+      "category": "png-government",
+      "requestedUrl": "https://www.ict.gov.pg/",
+      "finalUrl": "https://www.ict.gov.pg/",
+      "title": "DICT I PNG |",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "dict-png.png"
+    },
+    {
+      "slug": "kina-bank",
+      "name": "Kina Bank",
+      "category": "png-business",
+      "requestedUrl": "https://www.kina.com.pg/",
+      "finalUrl": "https://www.kina.com.pg/",
+      "title": "",
+      "status": "partial",
+      "error": "page.goto: net::ERR_CONNECTION_TIMED_OUT at https://www.kina.com.pg/\nCall log:\n  - navigating to \"https://www.kina.com.pg/\", waiting until \"domcontentloaded\"\n",
+      "researchFilename": "kina-bank.png"
+    },
+    {
+      "slug": "nambawan-super",
+      "name": "Nambawan Super",
+      "category": "png-business",
+      "requestedUrl": "https://www.nambawansuper.com.pg/",
+      "finalUrl": "https://www.nambawansuper.com.pg/",
+      "title": "Home » Nambawan Super",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "nambawan-super.png"
+    },
+    {
+      "slug": "nasfund",
+      "name": "Nasfund",
+      "category": "png-business",
+      "requestedUrl": "https://www.nasfund.com.pg/",
+      "finalUrl": "https://www.nasfund.com.pg/",
+      "title": "Home | Nasfund",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "nasfund.png"
+    },
+    {
+      "slug": "nicta-png",
+      "name": "NICTA PNG",
+      "category": "png-government",
+      "requestedUrl": "https://www.nicta.gov.pg/",
+      "finalUrl": "https://www.nicta.gov.pg/",
+      "title": "Home | NICTA PNG",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "nicta-png.png"
+    },
+    {
       "slug": "ooredoo-qatar-contact",
       "name": "Ooredoo Qatar Contact",
+      "category": null,
       "requestedUrl": "https://selfcare.ooredoo.qa/en/consumer/contact-us",
       "finalUrl": "https://selfcare.ooredoo.qa/en/consumer/contact-us",
       "title": "Ooredoo Customer Care | Contact Us | Ooredoo Qatar Consumer - Ooredoo",
@@ -18,11 +119,34 @@
       "researchFilename": "ooredoo-qatar-contact.png"
     },
     {
+      "slug": "telstra-contact",
+      "name": "Telstra Contact",
+      "category": "telecom",
+      "requestedUrl": "https://www.telstra.com.au/contact-us",
+      "finalUrl": "https://www.telstra.com.au/contact-us",
+      "title": "Contact us - Telstra",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "telstra-contact.png"
+    },
+    {
+      "slug": "treasury-png",
+      "name": "PNG Treasury",
+      "category": "png-government",
+      "requestedUrl": "https://www.treasury.gov.pg/",
+      "finalUrl": "https://www.treasury.gov.pg/",
+      "title": "Department of Treasury – Papua New Guinea",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "treasury-png.png"
+    },
+    {
       "slug": "verizon-contact",
       "name": "Verizon Contact",
+      "category": null,
       "requestedUrl": "https://www.verizon.com/support/contact-us/",
-      "finalUrl": "https://www.verizon.com/digital/nsa/nos/ui/ngd/contactus",
-      "title": "Contact us",
+      "finalUrl": "https://www.verizon.com/support/contact-us/",
+      "title": "Error",
       "status": "ok",
       "error": null,
       "researchFilename": "verizon-contact.png"
@@ -30,6 +154,7 @@
     {
       "slug": "vodafone-png-contact",
       "name": "Vodafone PNG Contact",
+      "category": null,
       "requestedUrl": "https://vodafone.com.pg/help/contact-us",
       "finalUrl": "https://vodafone.com.pg/help/contact-us",
       "title": "Vodafone PNG - Contact Us",
@@ -40,6 +165,7 @@
     {
       "slug": "vodafone-png-help",
       "name": "Vodafone PNG Help & Channels",
+      "category": null,
       "requestedUrl": "https://vodafone.com.pg/help",
       "finalUrl": "https://vodafone.com.pg/help",
       "title": "Help| Vodafone PNG",

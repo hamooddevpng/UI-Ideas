@@ -1,5 +1,6 @@
 {
-  "capturedAt": "2026-09-13T22:37:24.266Z",
+  "capturedAt": "2026-09-13T23:45:06.232Z",
+  "researchStandard": "minimum 15 references",
   "pageStudy": {
     "id": "faqs",
     "name": "FAQs",
@@ -8,8 +9,42 @@
   "viewport": "1440x900",
   "results": [
     {
+      "slug": "att-support",
+      "name": "AT&T Support",
+      "category": "telecom",
+      "requestedUrl": "https://www.att.com/support/",
+      "finalUrl": "https://www.att.com/support/",
+      "title": "AT&T Customer Support",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "att-support.png"
+    },
+    {
+      "slug": "bsp-bank",
+      "name": "BSP Bank",
+      "category": "png-business",
+      "requestedUrl": "https://www.bsp.com.pg/",
+      "finalUrl": "https://www.bsp.com.pg/",
+      "title": "PNG - BSP PNG",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "bsp-bank.png"
+    },
+    {
+      "slug": "dict-png",
+      "name": "PNG Department of ICT",
+      "category": "png-government",
+      "requestedUrl": "https://www.ict.gov.pg/",
+      "finalUrl": "https://www.ict.gov.pg/",
+      "title": "DICT I PNG |",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "dict-png.png"
+    },
+    {
       "slug": "digicel-png-help",
       "name": "Digicel PNG Help Center",
+      "category": null,
       "requestedUrl": "https://support-pg.digicelpacific.com/hc/en-us",
       "finalUrl": "https://support-pg.digicelpacific.com/hc/en-us",
       "title": "Mobile - PNG",
@@ -18,8 +53,31 @@
       "researchFilename": "digicel-png-help.png"
     },
     {
+      "slug": "nicta-png",
+      "name": "NICTA PNG",
+      "category": "png-government",
+      "requestedUrl": "https://www.nicta.gov.pg/",
+      "finalUrl": "https://www.nicta.gov.pg/",
+      "title": "Home | NICTA PNG",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "nicta-png.png"
+    },
+    {
+      "slug": "one-nz-help",
+      "name": "One NZ Help",
+      "category": "telecom",
+      "requestedUrl": "https://one.nz/faq/",
+      "finalUrl": "https://one.nz/faq/",
+      "title": "Find answers to Frequently Asked Questions. One NZ.",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "one-nz-help.png"
+    },
+    {
       "slug": "ooredoo-qatar-help",
       "name": "Ooredoo Qatar Help Centre",
+      "category": null,
       "requestedUrl": "https://www.ooredoo.qa/web/en/business/help-centre/",
       "finalUrl": "https://www.ooredoo.qa/web/en/business/help-centre/",
       "title": "Business Help Centre - Ooredoo Qatar",
@@ -28,8 +86,75 @@
       "researchFilename": "ooredoo-qatar-help.png"
     },
     {
+      "slug": "optus-support",
+      "name": "Optus Support",
+      "category": "telecom",
+      "requestedUrl": "https://www.optus.com.au/support",
+      "finalUrl": "https://www.optus.com.au/support",
+      "title": "",
+      "status": "partial",
+      "error": "page.goto: net::ERR_HTTP2_PROTOCOL_ERROR at https://www.optus.com.au/support\nCall log:\n  - navigating to \"https://www.optus.com.au/support\", waiting until \"domcontentloaded\"\n",
+      "researchFilename": "optus-support.png"
+    },
+    {
+      "slug": "singtel-support",
+      "name": "Singtel Support",
+      "category": "telecom",
+      "requestedUrl": "https://www.singtel.com/personal/support",
+      "finalUrl": "https://www.singtel.com/personal/support",
+      "title": "Mobile, Broadband, TV, Billing | Singtel Support",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "singtel-support.png"
+    },
+    {
+      "slug": "spark-help",
+      "name": "Spark Help",
+      "category": "telecom",
+      "requestedUrl": "https://www.spark.co.nz/help",
+      "finalUrl": "https://validate.perfdrive.com/ab466d675e06052c21f7cc4df3656c91/?ssa=6039f6d7-a78f-4775-a6c2-9b8ff1f22cc1&ssb=73069290286&ssc=https%3A%2F%2Fwww.spark.co.nz%2Fhelp&ssi=50da50f5-cv5f-4bb9-a7f2-68b752848314&ssk=botmanager_support@radware.com&ssm=33262068008934371524387461502795&ssn=36c52db9a65665a6c54a42aa6ac30674b7eee4d470f8-82eb-47b2-8dba1e&sso=8449ec04-d4de67336897ffbc89ba654409b16c2b010c8030420de245&ssp=42050027921789313389178937788183175&ssq=14490594301332377511842652899569893937519&ssr=MjAuNTEuMjA2Ljg0&sst=Mozilla/5.0%20(Windows%20NT%2010.0;%20Win64;%20x64)%20AppleWebKit/537.36%20(KHTML,%20like%20Gecko)%20Chrome/152.0.0.0%20Safari/537.36&ssu=MjQzdHdlWUhKQ2tCUDVaaUxsVW5FY0ZmUEl2Sm1va0d0UWp0S05sR2pYbz0=&ssv=&ssw=&ssx=eyJfX3V6bWYiOiI3ZjkwMDBlNGQ0NzBmOC04MmViLTQ3YjItOGMwNC1kNGRlNjczMzY4OTcxLTE3ODkzNDI2NTI2NjIzNjExNjAtMDA0Nzg5NDZmMGIxMDNmNDYyNzUyIiwicmQiOiJzcGFyay5jby5ueiIsInV6bXgiOiI3ZmMwMDBkNmVjZGI5NS05Y2Q3LTQyNzAtYTAwMy0wYzIxMDExMjEwNzExLTE3ODkzNDI2NTI2NjIzNjExNjAtMDA0NzI4ZWZjMTdmNzc1Y2QwYjUyIn0=",
+      "title": "Radware Bot Manager Captcha",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "spark-help.png"
+    },
+    {
+      "slug": "telstra-support",
+      "name": "Telstra Support",
+      "category": "telecom",
+      "requestedUrl": "https://www.telstra.com.au/support",
+      "finalUrl": "https://www.telstra.com.au/support",
+      "title": "Help and Support | Ways We Can Support You | Telstra",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "telstra-support.png"
+    },
+    {
+      "slug": "tmobile-support",
+      "name": "T-Mobile Support",
+      "category": "telecom",
+      "requestedUrl": "https://www.t-mobile.com/support",
+      "finalUrl": "https://www.t-mobile.com/support",
+      "title": "T-Mobile Support: Help with Devices, Plans, Billing & More",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "tmobile-support.png"
+    },
+    {
+      "slug": "verizon-support",
+      "name": "Verizon Support",
+      "category": "telecom",
+      "requestedUrl": "https://www.verizon.com/support/",
+      "finalUrl": "https://www.verizon.com/support/",
+      "title": "Support Home",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "verizon-support.png"
+    },
+    {
       "slug": "vodafone-png-4g-faq",
       "name": "Vodafone PNG 4G FAQ",
+      "category": null,
       "requestedUrl": "https://vodafone.com.pg/personal/prepaid/mobile-internet/faqs---4g",
       "finalUrl": "https://vodafone.com.pg/personal/prepaid/mobile-internet/faqs---4g",
       "title": "Vodafone PNG - FAQs - 4G/4G+ | Vodafone PNG",
@@ -40,6 +165,7 @@
     {
       "slug": "vodafone-png-help",
       "name": "Vodafone PNG Help",
+      "category": null,
       "requestedUrl": "https://vodafone.com.pg/help",
       "finalUrl": "https://vodafone.com.pg/help",
       "title": "Help| Vodafone PNG",

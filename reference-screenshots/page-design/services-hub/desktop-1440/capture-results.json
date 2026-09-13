@@ -1,5 +1,6 @@
 {
-  "capturedAt": "2026-09-13T22:37:24.259Z",
+  "capturedAt": "2026-09-13T23:45:06.223Z",
+  "researchStandard": "minimum 15 references",
   "pageStudy": {
     "id": "services-hub",
     "name": "Services Hub",
@@ -8,8 +9,53 @@
   "viewport": "1440x900",
   "results": [
     {
+      "slug": "airtel-india",
+      "name": "Airtel",
+      "category": "telecom",
+      "requestedUrl": "https://www.airtel.in/",
+      "finalUrl": "https://www.airtel.in/",
+      "title": "Airtel: Wi-Fi, Postpaid, Prepaid, DTH, Bank & Business",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "airtel-india.png"
+    },
+    {
+      "slug": "att-consumer",
+      "name": "AT&T",
+      "category": "telecom",
+      "requestedUrl": "https://www.att.com/",
+      "finalUrl": "https://www.att.com/",
+      "title": "AT&T Official Site | Our Best Wireless & Internet Service",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "att-consumer.png"
+    },
+    {
+      "slug": "globe-ph",
+      "name": "Globe",
+      "category": "telecom",
+      "requestedUrl": "https://www.globe.com.ph/",
+      "finalUrl": "https://www.globe.com.ph/",
+      "title": "Go Forward Together - Globe Telecom",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "globe-ph.png"
+    },
+    {
+      "slug": "one-nz",
+      "name": "One NZ",
+      "category": "telecom",
+      "requestedUrl": "https://one.nz/",
+      "finalUrl": "https://one.nz/",
+      "title": "One NZ. Let's Get Connected.",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "one-nz.png"
+    },
+    {
       "slug": "ooredoo-qatar-consumer",
       "name": "Ooredoo Qatar Consumer Hub",
+      "category": null,
       "requestedUrl": "https://www.ooredoo.qa/web/en/",
       "finalUrl": "https://www.ooredoo.qa/web/en/",
       "title": "Telecom and ICT Company in Qatar | Ooredoo Qatar",
@@ -18,8 +64,53 @@
       "researchFilename": "ooredoo-qatar-consumer.png"
     },
     {
+      "slug": "optus-consumer",
+      "name": "Optus",
+      "category": "telecom",
+      "requestedUrl": "https://www.optus.com.au/",
+      "finalUrl": "https://www.optus.com.au/",
+      "title": "",
+      "status": "partial",
+      "error": "page.goto: net::ERR_HTTP2_PROTOCOL_ERROR at https://www.optus.com.au/\nCall log:\n  - navigating to \"https://www.optus.com.au/\", waiting until \"domcontentloaded\"\n",
+      "researchFilename": "optus-consumer.png"
+    },
+    {
+      "slug": "singtel-consumer",
+      "name": "Singtel",
+      "category": "telecom",
+      "requestedUrl": "https://www.singtel.com/personal",
+      "finalUrl": "https://www.singtel.com/",
+      "title": "Singtel: Mobile, Fibre Broadband and TV services provider",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "singtel-consumer.png"
+    },
+    {
+      "slug": "smart-ph",
+      "name": "Smart",
+      "category": "telecom",
+      "requestedUrl": "https://smart.com.ph/",
+      "finalUrl": "https://smart.com.ph/",
+      "title": "",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "smart-ph.png"
+    },
+    {
+      "slug": "spark-nz",
+      "name": "Spark NZ",
+      "category": "telecom",
+      "requestedUrl": "https://www.spark.co.nz/",
+      "finalUrl": "https://validate.perfdrive.com/ab466d675e06052c21f7cc4df3656c91/?ssa=701c3c05-bc56-49d7-ab92-24193892f0e6&ssb=07377222788&ssc=https%3A%2F%2Fwww.spark.co.nz%2Fonline%2Fshop%2Fpromotions%2Ftravel-and-move&ssi=436a2732-cv5f-49f2-8ea9-232143e18638&ssk=botmanager_support%40radware.com&ssm=33567138619197222130797396932728&ssn=8b617832c131ec31ca0b8aceda8649e09ab1e4d470f8-82eb-47b2-8c2141&sso=495aec04-d4de67336897b8b95d5a08ba48fed2628ce32826ed1ba904&ssp=84361220771789308116178938509593469&ssq=14551584265853510332942652890217824507340&ssr=MjAuNTEuMjA2Ljg0&sst=Mozilla%2F5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F152.0.0.0+Safari%2F537.36&ssu=MjQzdHdlWUhKQ2tCUDVaaUxsVW5FY0ZmUEl2Sm1va0d0UWp0S05sR2pYbz0%3D&ssv=&ssw=&ssx=eyJfX3V6bWYiOiI3ZjkwMDBlNGQ0NzBmOC04MmViLTQ3YjItOGMwNC1kNGRlNjczMzY4OTcxLTE3ODkzNDI2NTI2NjI1ODM1LTAwNGE2Mzc1NWU1OWNkY2MwMzUxMyIsInV6bXgiOiI3ZmMwMDBkNmVjZGI5NS05Y2Q3LTQyNzAtYTAwMy0wYzIxMDExMjEwNzExLTE3ODkzNDI2NTI2NjI1ODM1LTAwNGY4NGZjOGNkMzJiZGVhNTExMyIsInJkIjoic3BhcmsuY28ubnoifQ%3D%3D",
+      "title": "Radware Bot Manager Captcha",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "spark-nz.png"
+    },
+    {
       "slug": "stc-saudi-consumer",
       "name": "stc Saudi Consumer Hub",
+      "category": null,
       "requestedUrl": "https://www.stc.com.sa/en/personal/home.html",
       "finalUrl": "https://www.stc.com.sa/en/personal/home.html",
       "title": "stc KSA | stc KSA Internet Packages | stc Personal Packages",
@@ -28,8 +119,42 @@
       "researchFilename": "stc-saudi-consumer.png"
     },
     {
+      "slug": "telstra-consumer",
+      "name": "Telstra",
+      "category": "telecom",
+      "requestedUrl": "https://www.telstra.com.au/",
+      "finalUrl": "https://www.telstra.com.au/",
+      "title": "Telstra | Mobile Phones, Plans, NBN, Home Internet, Accessories & more",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "telstra-consumer.png"
+    },
+    {
+      "slug": "tmobile-consumer",
+      "name": "T-Mobile",
+      "category": "telecom",
+      "requestedUrl": "https://www.t-mobile.com/",
+      "finalUrl": "https://www.t-mobile.com/",
+      "title": "T-Mobile® Official Site | Best 5G Network & Unlimited Data Plans",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "tmobile-consumer.png"
+    },
+    {
+      "slug": "verizon-consumer",
+      "name": "Verizon",
+      "category": "telecom",
+      "requestedUrl": "https://www.verizon.com/",
+      "finalUrl": "https://www.verizon.com/",
+      "title": "Verizon: Wireless, Internet, TV and Phone Services | Official Site",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "verizon-consumer.png"
+    },
+    {
       "slug": "vodafone-png-prepaid-hub",
       "name": "Vodafone PNG Prepaid Hub",
+      "category": null,
       "requestedUrl": "https://vodafone.com.pg/personal/prepaid",
       "finalUrl": "https://vodafone.com.pg/personal/prepaid",
       "title": "Vodafone PNG - Prepaid Plans | Vodafone PNG",
@@ -40,6 +165,7 @@
     {
       "slug": "vodafone-png-products-services",
       "name": "Vodafone PNG Products & Services",
+      "category": null,
       "requestedUrl": "https://vodafone.com.pg/personal/products-services",
       "finalUrl": "https://vodafone.com.pg/personal/products-services",
       "title": "Vodafone PNG - Products & Services | Vodafone PNG",

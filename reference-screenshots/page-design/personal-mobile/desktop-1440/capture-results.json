@@ -1,5 +1,6 @@
 {
-  "capturedAt": "2026-09-13T22:37:24.265Z",
+  "capturedAt": "2026-09-13T23:45:06.230Z",
+  "researchStandard": "minimum 15 references",
   "pageStudy": {
     "id": "personal-mobile",
     "name": "Personal - Mobile",
@@ -8,8 +9,31 @@
   "viewport": "1440x900",
   "results": [
     {
+      "slug": "airtel-prepaid",
+      "name": "Airtel Prepaid",
+      "category": "telecom",
+      "requestedUrl": "https://www.airtel.in/prepaid-recharge/",
+      "finalUrl": "https://www.airtel.in/recharge/prepaid/",
+      "title": "Online Mobile Recharge - Prepaid Plans & Topup | Airtel",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "airtel-prepaid.png"
+    },
+    {
+      "slug": "att-prepaid",
+      "name": "AT&T Prepaid",
+      "category": "telecom",
+      "requestedUrl": "https://www.att.com/prepaid/plans/",
+      "finalUrl": "https://www.att.com/prepaid/plans/",
+      "title": "AT&T Prepaid Phone Plans: Unlimited Data & 5G",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "att-prepaid.png"
+    },
+    {
       "slug": "digicel-png-data-plans",
       "name": "Digicel PNG Data Plans",
+      "category": null,
       "requestedUrl": "https://support-pg.digicelpacific.com/hc/en-us/articles/7313007383439-What-are-the-new-data-plans",
       "finalUrl": "https://support-pg.digicelpacific.com/hc/en-us/articles/7313007383439-What-are-the-new-data-plans",
       "title": "What are the new data plans? – Mobile - PNG",
@@ -18,8 +42,31 @@
       "researchFilename": "digicel-png-data-plans.png"
     },
     {
+      "slug": "globe-prepaid",
+      "name": "Globe Prepaid",
+      "category": "telecom",
+      "requestedUrl": "https://www.globe.com.ph/prepaid",
+      "finalUrl": "https://www.globe.com.ph/prepaid",
+      "title": "Just a moment...",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "globe-prepaid.png"
+    },
+    {
+      "slug": "one-nz-prepay",
+      "name": "One NZ Prepay",
+      "category": "telecom",
+      "requestedUrl": "https://one.nz/mobile/prepay/",
+      "finalUrl": "https://one.nz/mobile/prepay/",
+      "title": "404 - Page Not Found",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "one-nz-prepay.png"
+    },
+    {
       "slug": "ooredoo-qatar-postpaid",
       "name": "Ooredoo Qatar Postpaid Plans",
+      "category": null,
       "requestedUrl": "https://www.ooredoo.qa/web/en/postpaid-plans/",
       "finalUrl": "https://www.ooredoo.qa/web/en/postpaid-plans/",
       "title": "Ooredoo Postpaid Plans | Ooredoo Qatar",
@@ -28,8 +75,53 @@
       "researchFilename": "ooredoo-qatar-postpaid.png"
     },
     {
+      "slug": "optus-prepaid",
+      "name": "Optus Prepaid",
+      "category": "telecom",
+      "requestedUrl": "https://www.optus.com.au/prepaid/plans",
+      "finalUrl": "https://www.optus.com.au/prepaid/plans",
+      "title": "",
+      "status": "partial",
+      "error": "page.goto: net::ERR_HTTP2_PROTOCOL_ERROR at https://www.optus.com.au/prepaid/plans\nCall log:\n  - navigating to \"https://www.optus.com.au/prepaid/plans\", waiting until \"domcontentloaded\"\n",
+      "researchFilename": "optus-prepaid.png"
+    },
+    {
+      "slug": "singtel-prepaid",
+      "name": "Singtel Prepaid",
+      "category": "telecom",
+      "requestedUrl": "https://www.singtel.com/personal/products-services/mobile/prepaid-plans",
+      "finalUrl": "https://www.singtel.com/personal/products-services/mobile/prepaid-plans",
+      "title": "Best Prepaid Data Plans In Singapore | Singtel Prepaid",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "singtel-prepaid.png"
+    },
+    {
+      "slug": "smart-prepaid",
+      "name": "Smart Prepaid",
+      "category": "telecom",
+      "requestedUrl": "https://smart.com.ph/Prepaid",
+      "finalUrl": "https://smart.com.ph/Prepaid",
+      "title": "",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "smart-prepaid.png"
+    },
+    {
+      "slug": "spark-prepaid",
+      "name": "Spark Prepaid",
+      "category": "telecom",
+      "requestedUrl": "https://www.spark.co.nz/shop/mobile-plans/prepaid",
+      "finalUrl": "https://validate.perfdrive.com/ab466d675e06052c21f7cc4df3656c91/?ssa=4686be55-377d-4f87-a50b-7913085a7742&ssb=97321230224&ssc=https%3A%2F%2Fwww.spark.co.nz%2Fshop%2Fmobile-plans%2Fprepaid&ssi=adc34c4f-cv5f-49a3-9cf8-b6d3e93a2464&ssk=botmanager_support@radware.com&ssm=87313828420638107250706767938201&ssn=1164b96cddf8dd1d3ce4b132e8db45245ed6e4d470f8-82eb-47b2-8f09ed&sso=2a962c04-d4de67336897e9674d8098838019badc13f01d41ca24cf16&ssp=67542557061789311095178933158014672&ssq=36996454267732257104442652796039494432870&ssr=MjAuNTEuMjA2Ljg0&sst=Mozilla/5.0%20(Windows%20NT%2010.0;%20Win64;%20x64)%20AppleWebKit/537.36%20(KHTML,%20like%20Gecko)%20Chrome/152.0.0.0%20Safari/537.36&ssu=MjQzdHdlWUhKQ2tCUDVaaUxsVW5FY0ZmUEl2Sm1va0d0UWp0S05sR2pYbz0=&ssv=&ssw=&ssx=eyJfX3V6bWYiOiI3ZjkwMDBlNGQ0NzBmOC04MmViLTQ3YjItOGMwNC1kNGRlNjczMzY4OTcxLTE3ODkzNDI2NTI2NjIyNDQ3Mi0wMDQxYTZkOWI4MTY5NjNjMmIyMjUiLCJ1em14IjoiN2ZjMDAwZDZlY2RiOTUtOWNkNy00MjcwLWEwMDMtMGMyMTAxMTIxMDcxMS0xNzg5MzQyNjUyNjYyMjQ0NzItMDA0Mjg2MDVjN2Q3MTA3NWEzMzI1IiwicmQiOiJzcGFyay5jby5ueiJ9",
+      "title": "Radware Bot Manager Captcha",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "spark-prepaid.png"
+    },
+    {
       "slug": "stc-saudi-prepaid",
       "name": "stc Saudi Prepaid",
+      "category": null,
       "requestedUrl": "https://www.stc.com.sa/en/personal/mobile/packages/prepaid.html",
       "finalUrl": "https://www.stc.com.sa/en/personal/mobile/packages/prepaid.html",
       "title": "stc KSA | stc sawa Internet Packages | stc Prepaid Packages for Mobile",
@@ -38,8 +130,42 @@
       "researchFilename": "stc-saudi-prepaid.png"
     },
     {
+      "slug": "telstra-prepaid",
+      "name": "Telstra Prepaid",
+      "category": "telecom",
+      "requestedUrl": "https://www.telstra.com.au/mobile-phones/prepaid-mobiles/offers-and-rates",
+      "finalUrl": "https://www.telstra.com.au/mobile-phones/prepaid-mobiles/offers-and-rates",
+      "title": "Pre-Paid Plans & Pre-Paid SIM Cards - Save Up to $98 | Telstra",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "telstra-prepaid.png"
+    },
+    {
+      "slug": "tmobile-prepaid",
+      "name": "T-Mobile Prepaid",
+      "category": "telecom",
+      "requestedUrl": "https://prepaid.t-mobile.com/prepaid-plans",
+      "finalUrl": "https://prepaid.t-mobile.com/prepaid-plans",
+      "title": "Compare Our Best Prepaid Phone Plans | T-Mobile Prepaid",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "tmobile-prepaid.png"
+    },
+    {
+      "slug": "verizon-prepaid",
+      "name": "Verizon Prepaid",
+      "category": "telecom",
+      "requestedUrl": "https://www.verizon.com/plans/prepaid/",
+      "finalUrl": "https://www.verizon.com/prepaid/plans/phone-plans/",
+      "title": "Best Prepaid Phone Plans | 5G Nationwide & More | Verizon Prepaid",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "verizon-prepaid.png"
+    },
+    {
       "slug": "vodafone-png-prepaid",
       "name": "Vodafone PNG Prepaid Plans",
+      "category": null,
       "requestedUrl": "https://vodafone.com.pg/personal/prepaid",
       "finalUrl": "https://vodafone.com.pg/personal/prepaid",
       "title": "Vodafone PNG - Prepaid Plans | Vodafone PNG",

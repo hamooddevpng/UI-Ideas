@@ -1,5 +1,6 @@
 {
-  "capturedAt": "2026-09-13T22:37:24.266Z",
+  "capturedAt": "2026-09-13T23:45:06.232Z",
+  "researchStandard": "minimum 15 references",
   "pageStudy": {
     "id": "store-locator",
     "name": "Store Locator",
@@ -10,6 +11,7 @@
     {
       "slug": "att-stores",
       "name": "AT&T Store Locator",
+      "category": null,
       "requestedUrl": "https://www.att.com/stores/",
       "finalUrl": "https://www.att.com/stores/",
       "title": "AT&T Stores Near You - Get Directions & Book Appointments",
@@ -18,8 +20,42 @@
       "researchFilename": "att-stores.png"
     },
     {
+      "slug": "brian-bell",
+      "name": "Brian Bell Homecentres",
+      "category": "png-business",
+      "requestedUrl": "https://www.brianbellonline.com/",
+      "finalUrl": "https://www.brianbellonline.com/",
+      "title": "",
+      "status": "partial",
+      "error": "page.goto: net::ERR_NAME_NOT_RESOLVED at https://www.brianbellonline.com/\nCall log:\n  - navigating to \"https://www.brianbellonline.com/\", waiting until \"domcontentloaded\"\n",
+      "researchFilename": "brian-bell.png"
+    },
+    {
+      "slug": "bsp-bank",
+      "name": "BSP Bank Branch Context",
+      "category": "png-business",
+      "requestedUrl": "https://www.bsp.com.pg/",
+      "finalUrl": "https://www.bsp.com.pg/",
+      "title": "PNG - BSP PNG",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "bsp-bank.png"
+    },
+    {
+      "slug": "cpl-group",
+      "name": "CPL Group",
+      "category": "png-business",
+      "requestedUrl": "https://www.cpl.com.pg/",
+      "finalUrl": "https://cpl.com.pg/",
+      "title": "CPL – CPL",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "cpl-group.png"
+    },
+    {
       "slug": "digicel-png-stores",
       "name": "Digicel PNG Store Finder",
+      "category": null,
       "requestedUrl": "https://support-pg.digicelpacific.com/hc/en-us/articles/6454578241679-Where-can-I-find-a-Digicel-Store",
       "finalUrl": "https://support-pg.digicelpacific.com/hc/en-us/articles/6454578241679-Where-can-I-find-a-Digicel-Store",
       "title": "Where can I find a Digicel Store? – Mobile - PNG",
@@ -28,8 +64,31 @@
       "researchFilename": "digicel-png-stores.png"
     },
     {
+      "slug": "kina-bank",
+      "name": "Kina Bank",
+      "category": "png-business",
+      "requestedUrl": "https://www.kina.com.pg/",
+      "finalUrl": "https://www.kina.com.pg/",
+      "title": "",
+      "status": "error",
+      "error": "page.goto: Timeout 45000ms exceeded.\nCall log:\n  - navigating to \"https://www.kina.com.pg/\", waiting until \"domcontentloaded\"\n",
+      "researchFilename": "kina-bank.png"
+    },
+    {
+      "slug": "one-nz-stores",
+      "name": "One NZ Stores",
+      "category": "telecom",
+      "requestedUrl": "https://one.nz/stores/",
+      "finalUrl": "https://one.nz/stores/",
+      "title": "404 - Page Not Found",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "one-nz-stores.png"
+    },
+    {
       "slug": "ooredoo-qatar-business-desks",
       "name": "Ooredoo Qatar Business Desks",
+      "category": null,
       "requestedUrl": "https://www.ooredoo.qa/web/en/business/business-desks/",
       "finalUrl": "https://www.ooredoo.qa/web/en/business/business-desks/",
       "title": "Business Desks at Ooredoo Shops | Ooredoo Qatar",
@@ -38,8 +97,75 @@
       "researchFilename": "ooredoo-qatar-business-desks.png"
     },
     {
+      "slug": "optus-stores",
+      "name": "Optus Store Locator",
+      "category": "telecom",
+      "requestedUrl": "https://www.optus.com.au/stores",
+      "finalUrl": "https://www.optus.com.au/stores",
+      "title": "",
+      "status": "error",
+      "error": "page.goto: net::ERR_HTTP2_PROTOCOL_ERROR at https://www.optus.com.au/stores\nCall log:\n  - navigating to \"https://www.optus.com.au/stores\", waiting until \"domcontentloaded\"\n",
+      "researchFilename": "optus-stores.png"
+    },
+    {
+      "slug": "png-power",
+      "name": "PNG Power",
+      "category": "png-public-enterprise",
+      "requestedUrl": "https://www.pngpower.com.pg/",
+      "finalUrl": "https://www.pngpower.com.pg/",
+      "title": "PNG Power Limited | Papua New Guinea's State-Owned Power Authority",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "png-power.png"
+    },
+    {
+      "slug": "spark-stores",
+      "name": "Spark Store Finder",
+      "category": "telecom",
+      "requestedUrl": "https://www.spark.co.nz/store-finder",
+      "finalUrl": "https://validate.perfdrive.com/ab466d675e06052c21f7cc4df3656c91/?ssa=c9dda4cb-125c-4fa1-b9e3-0d6fde9aec91&ssb=49825200919&ssc=https%3A%2F%2Fwww.spark.co.nz%2Fstore-finder&ssi=4dd600aa-cv5f-47f0-a478-10f1088a7f61&ssk=botmanager_support@radware.com&ssm=52504334218389462498132765754415&ssn=c6dc1af3a745415ef0818ca9fd10497426c6e4d470f8-82eb-47b2-8e925b&sso=ccbfbc04-d4de67336897cea10c2b5253e2f8c6074911f1b24306d5b3&ssp=48579961861789365919178936914472389&ssq=84546204296339841954842652331039492805154&ssr=MjAuNTEuMjA2Ljg0&sst=Mozilla/5.0%20(Windows%20NT%2010.0;%20Win64;%20x64)%20AppleWebKit/537.36%20(KHTML,%20like%20Gecko)%20Chrome/152.0.0.0%20Safari/537.36&ssu=MjQzdHdlWUhKQ2tCUDVaaUxsVW5FY0ZmUEl2Sm1va0d0UWp0S05sR2pYbz0=&ssv=&ssw=&ssx=eyJfX3V6bWYiOiI3ZjkwMDBlNGQ0NzBmOC04MmViLTQ3YjItOGMwNC1kNGRlNjczMzY4OTcxLTE3ODkzNDI2NTI2NjIzMTEyNzktMDA0ZjIyOTBhOWIyN2U5YTdiZjQ5IiwicmQiOiJzcGFyay5jby5ueiIsInV6bXgiOiI3ZmMwMDBkNmVjZGI5NS05Y2Q3LTQyNzAtYTAwMy0wYzIxMDExMjEwNzExLTE3ODkzNDI2NTI2NjIzMTEyNzktMDA0Zjc4MDliMTJlOWFkNGZmYjQ5In0=",
+      "title": "Radware Bot Manager Captcha",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "spark-stores.png"
+    },
+    {
+      "slug": "telstra-stores",
+      "name": "Telstra Store Locator",
+      "category": "telecom",
+      "requestedUrl": "https://www.telstra.com.au/find-us",
+      "finalUrl": "https://www.telstra.com.au/find-us",
+      "title": "Find your nearest store, payphone, Wi-Fi hotspot or business technology centre - Telstra",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "telstra-stores.png"
+    },
+    {
+      "slug": "tmobile-stores",
+      "name": "T-Mobile Store Locator",
+      "category": "telecom",
+      "requestedUrl": "https://www.t-mobile.com/stores/locator",
+      "finalUrl": "https://www.t-mobile.com/stores",
+      "title": "Find T-Mobile Stores & Wireless Services Near You | Cell Phones",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "tmobile-stores.png"
+    },
+    {
+      "slug": "verizon-stores",
+      "name": "Verizon Store Locator",
+      "category": "telecom",
+      "requestedUrl": "https://www.verizon.com/stores/",
+      "finalUrl": "https://www.verizon.com/stores/",
+      "title": "Find & Locate Verizon Stores in Your Area | Verizon",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "verizon-stores.png"
+    },
+    {
       "slug": "vodafone-png-stores",
       "name": "Vodafone PNG Store Locations",
+      "category": null,
       "requestedUrl": "https://vodafone.com.pg/about/store-locations",
       "finalUrl": "https://vodafone.com.pg/about/store-locations",
       "title": "Vodafone PNG - Store Locations",

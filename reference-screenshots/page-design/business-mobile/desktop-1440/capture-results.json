@@ -1,5 +1,6 @@
 {
-  "capturedAt": "2026-09-13T22:37:24.265Z",
+  "capturedAt": "2026-09-13T23:45:06.232Z",
+  "researchStandard": "minimum 15 references",
   "pageStudy": {
     "id": "business-mobile",
     "name": "Business - Mobile",
@@ -8,8 +9,64 @@
   "viewport": "1440x900",
   "results": [
     {
+      "slug": "airtel-business-mobile",
+      "name": "Airtel Business Mobility",
+      "category": "telecom",
+      "requestedUrl": "https://www.airtel.in/business/b2b/mobility/",
+      "finalUrl": "https://www.airtel.in/business/b2b/mobility/",
+      "title": "airtel: Prepaid | Postpaid | Broadband | 5G | DTH Services in India",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "airtel-business-mobile.png"
+    },
+    {
+      "slug": "att-business-wireless",
+      "name": "AT&T Business Wireless",
+      "category": "telecom",
+      "requestedUrl": "https://www.business.att.com/products/wireless-plans.html",
+      "finalUrl": "https://www.business.att.com/products/wireless-plans.html",
+      "title": "Business Cell Phone Plans | AT&T Business Wireless & Mobile",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "att-business-wireless.png"
+    },
+    {
+      "slug": "bsp-bank",
+      "name": "BSP Bank",
+      "category": "png-business",
+      "requestedUrl": "https://www.bsp.com.pg/",
+      "finalUrl": "https://www.bsp.com.pg/",
+      "title": "PNG - BSP PNG",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "bsp-bank.png"
+    },
+    {
+      "slug": "kina-bank",
+      "name": "Kina Bank",
+      "category": "png-business",
+      "requestedUrl": "https://www.kina.com.pg/",
+      "finalUrl": "https://www.kina.com.pg/",
+      "title": "",
+      "status": "error",
+      "error": "page.goto: Timeout 45000ms exceeded.\nCall log:\n  - navigating to \"https://www.kina.com.pg/\", waiting until \"domcontentloaded\"\n",
+      "researchFilename": "kina-bank.png"
+    },
+    {
+      "slug": "one-nz-business-mobile",
+      "name": "One NZ Business Mobile",
+      "category": "telecom",
+      "requestedUrl": "https://one.nz/business/mobile/",
+      "finalUrl": "https://one.nz/business/mobile/",
+      "title": "Mobile packages for your Business. One NZ.",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "one-nz-business-mobile.png"
+    },
+    {
       "slug": "ooredoo-qatar-business-mobile-broadband",
       "name": "Ooredoo Qatar Aamali Mobile Broadband",
+      "category": null,
       "requestedUrl": "https://www.ooredoo.qa/web/en/business/mobile-broadband/",
       "finalUrl": "https://www.ooredoo.qa/web/en/business/mobile-broadband/",
       "title": "New Ooredoo Aamali Broadband | Ooredoo Business | Ooredoo Qatar",
@@ -18,8 +75,42 @@
       "researchFilename": "ooredoo-qatar-business-mobile-broadband.png"
     },
     {
+      "slug": "optus-business-mobile",
+      "name": "Optus Business Mobile",
+      "category": "telecom",
+      "requestedUrl": "https://www.optus.com.au/business/mobile",
+      "finalUrl": "https://www.optus.com.au/business/mobile",
+      "title": "",
+      "status": "partial",
+      "error": "page.goto: net::ERR_HTTP2_PROTOCOL_ERROR at https://www.optus.com.au/business/mobile\nCall log:\n  - navigating to \"https://www.optus.com.au/business/mobile\", waiting until \"domcontentloaded\"\n",
+      "researchFilename": "optus-business-mobile.png"
+    },
+    {
+      "slug": "singtel-business-mobile",
+      "name": "Singtel Business Mobile",
+      "category": "telecom",
+      "requestedUrl": "https://www.singtel.com/business/products-services/mobility",
+      "finalUrl": "https://www.singtel.com/business/products-services/mobility",
+      "title": "Mobility",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "singtel-business-mobile.png"
+    },
+    {
+      "slug": "spark-business-mobile",
+      "name": "Spark Business Mobile",
+      "category": "telecom",
+      "requestedUrl": "https://www.spark.co.nz/business/mobile",
+      "finalUrl": "https://validate.perfdrive.com/ab466d675e06052c21f7cc4df3656c91/?ssa=1b2e14be-0f56-4eb5-8de9-42e08b9ac11c&ssb=46910227351&ssc=https%3A%2F%2Fwww.spark.co.nz%2Fbusiness%2Fmobile&ssi=a590aeed-cv5f-4a26-a429-344ce13f2c66&ssk=botmanager_support@radware.com&ssm=24210514050484271467355210775588&ssn=77f13583c2a714616d6f0e60ee7bc36b1f75e4d470f8-82eb-47b2-8120ae&sso=d33acc04-d4de673368976a6b3ae8d429b6dcdab08ce70351677306c0&ssp=41927170021789366877178939783337978&ssq=37142564288741163702742652972360589539619&ssr=MjAuNTEuMjA2Ljg0&sst=Mozilla/5.0%20(Windows%20NT%2010.0;%20Win64;%20x64)%20AppleWebKit/537.36%20(KHTML,%20like%20Gecko)%20Chrome/152.0.0.0%20Safari/537.36&ssu=MjQzdHdlWUhKQ2tCUDVaaUxsVW5FY0ZmUEl2Sm1va0d0UWp0S05sR2pYbz0=&ssv=&ssw=&ssx=eyJfX3V6bWYiOiI3ZjkwMDBlNGQ0NzBmOC04MmViLTQ3YjItOGMwNC1kNGRlNjczMzY4OTcxLTE3ODkzNDI2NTI2NjIyMzQ5ODYtMDA0ZTJlZWQ1ZTI0MTRkODMyYjQ2IiwicmQiOiJzcGFyay5jby5ueiIsInV6bXgiOiI3ZmMwMDBkNmVjZGI5NS05Y2Q3LTQyNzAtYTAwMy0wYzIxMDExMjEwNzExLTE3ODkzNDI2NTI2NjIyMzQ5ODYtMDA0Y2UyZjAxMDJhMzQ3MmU3NDQ2In0=",
+      "title": "Radware Bot Manager Captcha",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "spark-business-mobile.png"
+    },
+    {
       "slug": "stc-saudi-business-postpaid",
       "name": "stc Saudi Business Postpaid",
+      "category": null,
       "requestedUrl": "https://www.stc.com.sa/en/business/connect/mobile-services/mobile-business-postpaid.html",
       "finalUrl": "https://www.stc.com.sa/en/business/connect/mobile-services/mobile-business-postpaid.html",
       "title": "stc KSA | mofawtar business",
@@ -30,6 +121,7 @@
     {
       "slug": "stc-saudi-business-prepaid",
       "name": "stc Saudi Business Prepaid",
+      "category": null,
       "requestedUrl": "https://www.stc.com.sa/en/business/connect/mobile-services/mobile-business-prepaid.html",
       "finalUrl": "https://www.stc.com.sa/en/business/connect/mobile-services/mobile-business-prepaid.html",
       "title": "stc KSA | stc Business Sawa Aamal Package | Prepaid Mobile Voice Packages For Business",
@@ -38,13 +130,47 @@
       "researchFilename": "stc-saudi-business-prepaid.png"
     },
     {
-      "slug": "vodafone-png-mobility",
-      "name": "Vodafone PNG Mobility Solutions",
-      "requestedUrl": "https://vodafone.com.pg/business/products-and-solutions/mobility-solutions",
-      "finalUrl": "https://vodafone.com.pg/business/products-and-solutions/mobility-solutions",
-      "title": "Vodafone PNG -",
+      "slug": "telstra-business-mobile",
+      "name": "Telstra Business Mobile",
+      "category": "telecom",
+      "requestedUrl": "https://www.telstra.com.au/small-business/mobile-phones",
+      "finalUrl": "https://www.telstra.com.au/small-business/mobile-phones",
+      "title": "Small Business Mobile Phones & Plans | Telstra",
       "status": "ok",
       "error": null,
+      "researchFilename": "telstra-business-mobile.png"
+    },
+    {
+      "slug": "tmobile-business-plans",
+      "name": "T-Mobile Business Plans",
+      "category": "telecom",
+      "requestedUrl": "https://www.t-mobile.com/business/wireless-business-plans",
+      "finalUrl": "https://www.t-mobile.com/business/wireless-business-plans",
+      "title": "Business Cell Phone Plans | T-Mobile for Business",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "tmobile-business-plans.png"
+    },
+    {
+      "slug": "verizon-business-mobile",
+      "name": "Verizon Business Mobile",
+      "category": "telecom",
+      "requestedUrl": "https://www.verizon.com/business/products/mobile/plans/",
+      "finalUrl": "https://www.verizon.com/business/products/mobile/plans/",
+      "title": "Business Cell Phone and Mobile Plans | Verizon",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "verizon-business-mobile.png"
+    },
+    {
+      "slug": "vodafone-png-mobility",
+      "name": "Vodafone PNG Mobility Solutions",
+      "category": null,
+      "requestedUrl": "https://vodafone.com.pg/business/products-and-solutions/mobility-solutions",
+      "finalUrl": "https://vodafone.com.pg/business/products-and-solutions/mobility-solutions",
+      "title": "",
+      "status": "error",
+      "error": "page.goto: Timeout 45000ms exceeded.\nCall log:\n  - navigating to \"https://vodafone.com.pg/business/products-and-solutions/mobility-solutions\", waiting until \"domcontentloaded\"\n",
       "researchFilename": "vodafone-png-mobility.png"
     }
   ]

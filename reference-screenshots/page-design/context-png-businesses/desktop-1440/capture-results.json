@@ -1,0 +1,177 @@
+{
+  "capturedAt": "2026-09-13T23:45:06.233Z",
+  "researchStandard": "context cohort",
+  "pageStudy": {
+    "id": "context-png-businesses",
+    "name": "PNG Business Context",
+    "task_title": "Research Context - PNG Businesses"
+  },
+  "viewport": "1440x900",
+  "results": [
+    {
+      "slug": "air-niugini",
+      "name": "Air Niugini",
+      "category": "png-business",
+      "requestedUrl": "https://airniuginipng.com/",
+      "finalUrl": "https://airniuginipng.com/",
+      "title": "",
+      "status": "partial",
+      "error": "page.goto: net::ERR_NAME_NOT_RESOLVED at https://airniuginipng.com/\nCall log:\n  - navigating to \"https://airniuginipng.com/\", waiting until \"domcontentloaded\"\n",
+      "researchFilename": "air-niugini.png"
+    },
+    {
+      "slug": "brian-bell",
+      "name": "Brian Bell Homecentres",
+      "category": "png-business",
+      "requestedUrl": "https://www.brianbellonline.com/",
+      "finalUrl": "https://www.brianbellonline.com/",
+      "title": "",
+      "status": "partial",
+      "error": "page.goto: net::ERR_NAME_NOT_RESOLVED at https://www.brianbellonline.com/\nCall log:\n  - navigating to \"https://www.brianbellonline.com/\", waiting until \"domcontentloaded\"\n",
+      "researchFilename": "brian-bell.png"
+    },
+    {
+      "slug": "bsp-bank",
+      "name": "BSP Bank",
+      "category": "png-business",
+      "requestedUrl": "https://www.bsp.com.pg/",
+      "finalUrl": "https://www.bsp.com.pg/",
+      "title": "PNG - BSP PNG",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "bsp-bank.png"
+    },
+    {
+      "slug": "cpl-group",
+      "name": "CPL Group",
+      "category": "png-business",
+      "requestedUrl": "https://www.cpl.com.pg/",
+      "finalUrl": "https://cpl.com.pg/",
+      "title": "CPL – CPL",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "cpl-group.png"
+    },
+    {
+      "slug": "credit-corp",
+      "name": "Credit Corporation",
+      "category": "png-business",
+      "requestedUrl": "https://www.creditcorporation.com.pg/",
+      "finalUrl": "https://www.creditcorporation.com.pg/",
+      "title": "Just a moment...",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "credit-corp.png"
+    },
+    {
+      "slug": "kina-bank",
+      "name": "Kina Bank",
+      "category": "png-business",
+      "requestedUrl": "https://www.kina.com.pg/",
+      "finalUrl": "https://www.kina.com.pg/",
+      "title": "",
+      "status": "partial",
+      "error": "page.goto: net::ERR_CONNECTION_TIMED_OUT at https://www.kina.com.pg/\nCall log:\n  - navigating to \"https://www.kina.com.pg/\", waiting until \"domcontentloaded\"\n",
+      "researchFilename": "kina-bank.png"
+    },
+    {
+      "slug": "kumul-petroleum",
+      "name": "Kumul Petroleum",
+      "category": "png-public-enterprise",
+      "requestedUrl": "https://kumulpetroleum.com/",
+      "finalUrl": "https://kumulpetroleum.com/",
+      "title": "KUMUL PETROLEUM HOLDINGS",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "kumul-petroleum.png"
+    },
+    {
+      "slug": "nambawan-super",
+      "name": "Nambawan Super",
+      "category": "png-business",
+      "requestedUrl": "https://www.nambawansuper.com.pg/",
+      "finalUrl": "https://www.nambawansuper.com.pg/",
+      "title": "Home » Nambawan Super",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "nambawan-super.png"
+    },
+    {
+      "slug": "nasfund",
+      "name": "Nasfund",
+      "category": "png-business",
+      "requestedUrl": "https://www.nasfund.com.pg/",
+      "finalUrl": "https://www.nasfund.com.pg/",
+      "title": "Home | Nasfund",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "nasfund.png"
+    },
+    {
+      "slug": "paradise-foods",
+      "name": "Paradise Foods",
+      "category": "png-business",
+      "requestedUrl": "https://www.paradisefoods.com.pg/",
+      "finalUrl": "https://paradisefoods.com.pg/",
+      "title": "Paradise Foods - Paradise Foods Limited",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "paradise-foods.png"
+    },
+    {
+      "slug": "png-air",
+      "name": "PNG Air",
+      "category": "png-business",
+      "requestedUrl": "https://pngair.com.pg/",
+      "finalUrl": "https://pngair.com.pg/",
+      "title": "PNG Air | Fly with Papua New Guinea's airline",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "png-air.png"
+    },
+    {
+      "slug": "png-lng",
+      "name": "PNG LNG",
+      "category": "png-business",
+      "requestedUrl": "https://pnglng.com/",
+      "finalUrl": "https://www.pnglng.com/",
+      "title": "PNG LNG - PNG LNG",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "png-lng.png"
+    },
+    {
+      "slug": "sp-brewery",
+      "name": "SP Brewery",
+      "category": "png-business",
+      "requestedUrl": "https://www.sp.com.pg/",
+      "finalUrl": "https://www.sp.com.pg/",
+      "title": "SP Brewery",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "sp-brewery.png"
+    },
+    {
+      "slug": "steamships",
+      "name": "Steamships",
+      "category": "png-business",
+      "requestedUrl": "https://www.steamships.com.pg/",
+      "finalUrl": "https://www.steamships.com.pg/",
+      "title": "Steamships, Papua New Guinea",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "steamships.png"
+    },
+    {
+      "slug": "trukai",
+      "name": "Trukai Industries",
+      "category": "png-business",
+      "requestedUrl": "https://www.trukai.com.pg/",
+      "finalUrl": "https://www.trukai.com.pg/",
+      "title": "Trukai Industries Limited",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "trukai.png"
+    }
+  ]
+}

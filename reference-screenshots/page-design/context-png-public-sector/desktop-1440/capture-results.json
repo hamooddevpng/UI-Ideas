@@ -1,0 +1,144 @@
+{
+  "capturedAt": "2026-09-13T23:45:06.233Z",
+  "researchStandard": "context cohort",
+  "pageStudy": {
+    "id": "context-png-public-sector",
+    "name": "PNG Government & Public Sector Context",
+    "task_title": "Research Context - PNG Government"
+  },
+  "viewport": "1440x900",
+  "results": [
+    {
+      "slug": "bankpng",
+      "name": "Bank of Papua New Guinea",
+      "category": "png-government",
+      "requestedUrl": "https://www.bankpng.gov.pg/",
+      "finalUrl": "https://www.bankpng.gov.pg/",
+      "title": "Just a moment...",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "bankpng.png"
+    },
+    {
+      "slug": "dict-png",
+      "name": "Department of ICT",
+      "category": "png-government",
+      "requestedUrl": "https://www.ict.gov.pg/",
+      "finalUrl": "https://www.ict.gov.pg/",
+      "title": "DICT I PNG |",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "dict-png.png"
+    },
+    {
+      "slug": "dpm-png",
+      "name": "Department of Personnel Management",
+      "category": "png-government",
+      "requestedUrl": "https://www.dpm.gov.pg/",
+      "finalUrl": "https://www.dpm.gov.pg/",
+      "title": "Department of Personnel Management | DPM PNG",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "dpm-png.png"
+    },
+    {
+      "slug": "finance-png",
+      "name": "Department of Finance",
+      "category": "png-government",
+      "requestedUrl": "https://www.finance.gov.pg/",
+      "finalUrl": "https://www.finance.gov.pg/",
+      "title": "Department of Finance – Papua New Guinea",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "finance-png.png"
+    },
+    {
+      "slug": "health-png",
+      "name": "Department of Health",
+      "category": "png-government",
+      "requestedUrl": "https://www.health.gov.pg/",
+      "finalUrl": "https://www.health.gov.pg/",
+      "title": "Department of Health- PNG",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "health-png.png"
+    },
+    {
+      "slug": "irc-png",
+      "name": "Internal Revenue Commission",
+      "category": "png-government",
+      "requestedUrl": "https://irc.gov.pg/",
+      "finalUrl": "https://irc.gov.pg/",
+      "title": "Internal Revenue Commission | myIRC",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "irc-png.png"
+    },
+    {
+      "slug": "justice-png",
+      "name": "Department of Justice",
+      "category": "png-government",
+      "requestedUrl": "https://www.justice.gov.pg/",
+      "finalUrl": "https://justice.gov.pg/",
+      "title": "Department of Justice & Attorney General - Papua New Guinea",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "justice-png.png"
+    },
+    {
+      "slug": "mra-png",
+      "name": "Mineral Resources Authority",
+      "category": "png-government",
+      "requestedUrl": "https://mra.gov.pg/",
+      "finalUrl": "https://mra.gov.pg/",
+      "title": "Home - MRA - Mineral Resources Authority of PNG",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "mra-png.png"
+    },
+    {
+      "slug": "nicta-png",
+      "name": "NICTA",
+      "category": "png-government",
+      "requestedUrl": "https://www.nicta.gov.pg/",
+      "finalUrl": "https://www.nicta.gov.pg/",
+      "title": "Home | NICTA PNG",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "nicta-png.png"
+    },
+    {
+      "slug": "nso-png",
+      "name": "National Statistical Office",
+      "category": "png-government",
+      "requestedUrl": "https://www.nso.gov.pg/",
+      "finalUrl": "https://www.nso.gov.pg/",
+      "title": "National Statistical Office | Papua New Guinea – Become smarter and strategic with statistics",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "nso-png.png"
+    },
+    {
+      "slug": "png-power",
+      "name": "PNG Power",
+      "category": "png-public-enterprise",
+      "requestedUrl": "https://www.pngpower.com.pg/",
+      "finalUrl": "https://www.pngpower.com.pg/",
+      "title": "PNG Power Limited | Papua New Guinea's State-Owned Power Authority",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "png-power.png"
+    },
+    {
+      "slug": "treasury-png",
+      "name": "Department of Treasury",
+      "category": "png-government",
+      "requestedUrl": "https://www.treasury.gov.pg/",
+      "finalUrl": "https://www.treasury.gov.pg/",
+      "title": "Department of Treasury – Papua New Guinea",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "treasury-png.png"
+    }
+  ]
+}

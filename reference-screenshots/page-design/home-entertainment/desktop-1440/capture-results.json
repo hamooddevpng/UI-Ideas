@@ -1,5 +1,6 @@
 {
-  "capturedAt": "2026-09-13T22:37:24.265Z",
+  "capturedAt": "2026-09-13T23:45:06.231Z",
+  "researchStandard": "minimum 15 references",
   "pageStudy": {
     "id": "home-entertainment",
     "name": "Home Entertainment",
@@ -8,8 +9,31 @@
   "viewport": "1440x900",
   "results": [
     {
+      "slug": "airtel-xstream",
+      "name": "Airtel Xstream Fiber",
+      "category": "telecom",
+      "requestedUrl": "https://www.airtel.in/broadband/",
+      "finalUrl": "https://www.airtel.in/new-connection/broadband/",
+      "title": "Airtel Wi-Fi",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "airtel-xstream.png"
+    },
+    {
+      "slug": "att-tv",
+      "name": "AT&T TV",
+      "category": "telecom",
+      "requestedUrl": "https://www.att.com/tv/",
+      "finalUrl": "https://www.att.com/tv/",
+      "title": "",
+      "status": "partial",
+      "error": "page.goto: net::ERR_HTTP2_PROTOCOL_ERROR at https://www.att.com/tv/\nCall log:\n  - navigating to \"https://www.att.com/tv/\", waiting until \"domcontentloaded\"\n",
+      "researchFilename": "att-tv.png"
+    },
+    {
       "slug": "digicel-png-data-tv",
       "name": "Digicel PNG Data & TV Bundles",
+      "category": null,
       "requestedUrl": "https://support-pg.digicelpacific.com/hc/en-us/articles/6454640004879-What-are-the-new-data-and-TV-bundle-plans",
       "finalUrl": "https://support-pg.digicelpacific.com/hc/en-us/articles/6454640004879-What-are-the-new-data-and-TV-bundle-plans",
       "title": "What are the new data and TV bundle plans? – Mobile - PNG",
@@ -18,8 +42,42 @@
       "researchFilename": "digicel-png-data-tv.png"
     },
     {
+      "slug": "globe-home",
+      "name": "Globe At Home",
+      "category": "telecom",
+      "requestedUrl": "https://new.globe.com.ph/gfiber",
+      "finalUrl": "https://shop.globe.com.ph/broadband/",
+      "title": "Just a moment...",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "globe-home.png"
+    },
+    {
+      "slug": "jiofiber",
+      "name": "JioFiber",
+      "category": "telecom",
+      "requestedUrl": "https://www.jio.com/fiber",
+      "finalUrl": "https://www.jio.com/fiber/",
+      "title": "Broadband Connection & Internet Services | JioFiber",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "jiofiber.png"
+    },
+    {
+      "slug": "one-nz-tv",
+      "name": "One NZ TV",
+      "category": "telecom",
+      "requestedUrl": "https://one.nz/tv/",
+      "finalUrl": "https://one.nz/broadband/",
+      "title": "Broadband. The options at your place. One NZ.",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "one-nz-tv.png"
+    },
+    {
       "slug": "ooredoo-qatar-entertainment",
       "name": "Ooredoo Entertainment Services",
+      "category": null,
       "requestedUrl": "https://www.ooredoo.qa/web/en/entertainment-services/",
       "finalUrl": "https://www.ooredoo.qa/web/en/entertainment-services/",
       "title": "Entertainment Services - Ooredoo Qatar",
@@ -30,6 +88,7 @@
     {
       "slug": "ooredoo-qatar-tv",
       "name": "Ooredoo TV",
+      "category": null,
       "requestedUrl": "https://www.ooredoo.qa/web/en/otv-guide/",
       "finalUrl": "https://www.ooredoo.qa/web/en/otv-guide/",
       "title": "Ooredoo TV | Streaming & TV on Demand | Ooredoo Qatar",
@@ -38,14 +97,81 @@
       "researchFilename": "ooredoo-qatar-tv.png"
     },
     {
+      "slug": "optus-subhub",
+      "name": "Optus SubHub",
+      "category": "telecom",
+      "requestedUrl": "https://www.optus.com.au/subhub",
+      "finalUrl": "https://www.optus.com.au/subhub",
+      "title": "",
+      "status": "partial",
+      "error": "page.goto: net::ERR_HTTP2_PROTOCOL_ERROR at https://www.optus.com.au/subhub\nCall log:\n  - navigating to \"https://www.optus.com.au/subhub\", waiting until \"domcontentloaded\"\n",
+      "researchFilename": "optus-subhub.png"
+    },
+    {
+      "slug": "pldt-home",
+      "name": "PLDT Home",
+      "category": "telecom",
+      "requestedUrl": "https://pldthome.com/",
+      "finalUrl": "https://pldthome.com/",
+      "title": "Fiber-Fast and Reliable Internet with PLDT Home",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "pldt-home.png"
+    },
+    {
+      "slug": "singtel-tv",
+      "name": "Singtel TV",
+      "category": "telecom",
+      "requestedUrl": "https://www.singtel.com/personal/products-services/tv",
+      "finalUrl": "https://www.singtel.com/personal/products-services/tv#carousel2",
+      "title": "Singtel TV: Your Entertainment Hub, Anytime, Anywhere",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "singtel-tv.png"
+    },
+    {
+      "slug": "spark-entertainment",
+      "name": "Spark Entertainment",
+      "category": "telecom",
+      "requestedUrl": "https://www.spark.co.nz/shop/entertainment",
+      "finalUrl": "https://validate.perfdrive.com/ab466d675e06052c21f7cc4df3656c91/?ssa=1764b901-7677-47d3-9be2-d39030a858ae&ssb=11874267244&ssc=https%3A%2F%2Fwww.spark.co.nz%2Fshop%2Fentertainment&ssi=9b935a2e-cv5f-4b2a-8fca-6c8436fb8b1f&ssk=botmanager_support@radware.com&ssm=53435567095016739370559680799563&ssn=aad3328de94082935ee1db711c264ba3a660e4d470f8-82eb-47b2-861301&sso=9215dc04-d4de673368978cd307aebfd1a4600fc29cc066bee760b9dc&ssp=54264050771789337916178936467880328&ssq=44866714277852605258042652236530466651217&ssr=MjAuNTEuMjA2Ljg0&sst=Mozilla/5.0%20(Windows%20NT%2010.0;%20Win64;%20x64)%20AppleWebKit/537.36%20(KHTML,%20like%20Gecko)%20Chrome/152.0.0.0%20Safari/537.36&ssu=MjQzdHdlWUhKQ2tCUDVaaUxsVW5FY0ZmUEl2Sm1va0d0UWp0S05sR2pYbz0=&ssv=&ssw=&ssx=eyJfX3V6bWYiOiI3ZjkwMDBlNGQ0NzBmOC04MmViLTQ3YjItOGMwNC1kNGRlNjczMzY4OTcxLTE3ODkzNDI2NTI2NjIxMjYzMTAtMDA0M2RhNDc2NjQ3YjE0MmU2OTM3IiwicmQiOiJzcGFyay5jby5ueiIsInV6bXgiOiI3ZmMwMDBkNmVjZGI5NS05Y2Q3LTQyNzAtYTAwMy0wYzIxMDExMjEwNzExLTE3ODkzNDI2NTI2NjIxMjYzMTAtMDA0OWQ3ZGFkNDMwNDIzN2Q1ZTM3In0=",
+      "title": "Radware Bot Manager Captcha",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "spark-entertainment.png"
+    },
+    {
       "slug": "stc-saudi-baity-entertainment",
       "name": "stc Saudi Baity Entertainment",
+      "category": null,
       "requestedUrl": "https://www.stc.com.sa/en/personal/homepackages/baity-fiber-packages.html",
       "finalUrl": "https://www.stc.com.sa/en/personal/homepackages/baity-fiber-packages.html",
       "title": "stc KSA | baity fiber packages",
       "status": "ok",
       "error": null,
       "researchFilename": "stc-saudi-baity-entertainment.png"
+    },
+    {
+      "slug": "telstra-entertainment",
+      "name": "Telstra Entertainment",
+      "category": "telecom",
+      "requestedUrl": "https://www.telstra.com.au/entertainment",
+      "finalUrl": "https://www.telstra.com.au/entertainment",
+      "title": "Gaming Consoles, Fetch, and Streaming Services | Telstra",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "telstra-entertainment.png"
+    },
+    {
+      "slug": "verizon-fios-tv",
+      "name": "Verizon Fios TV",
+      "category": "telecom",
+      "requestedUrl": "https://www.verizon.com/home/fios-tv/",
+      "finalUrl": "https://www.verizon.com/home/fios-tv/",
+      "title": "Fios TV Packages - More than Digital Cable TV | Verizon",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "verizon-fios-tv.png"
     }
   ]
 }

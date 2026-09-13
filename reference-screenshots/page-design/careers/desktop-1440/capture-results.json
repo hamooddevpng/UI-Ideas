@@ -1,5 +1,6 @@
 {
-  "capturedAt": "2026-09-13T22:37:24.266Z",
+  "capturedAt": "2026-09-13T23:45:06.232Z",
+  "researchStandard": "minimum 15 references",
   "pageStudy": {
     "id": "careers",
     "name": "Careers",
@@ -8,8 +9,20 @@
   "viewport": "1440x900",
   "results": [
     {
+      "slug": "air-niugini",
+      "name": "Air Niugini",
+      "category": "png-business",
+      "requestedUrl": "https://airniuginipng.com/",
+      "finalUrl": "https://airniuginipng.com/",
+      "title": "",
+      "status": "partial",
+      "error": "page.goto: net::ERR_NAME_NOT_RESOLVED at https://airniuginipng.com/\nCall log:\n  - navigating to \"https://airniuginipng.com/\", waiting until \"domcontentloaded\"\n",
+      "researchFilename": "air-niugini.png"
+    },
+    {
       "slug": "att-careers",
       "name": "AT&T Careers",
+      "category": null,
       "requestedUrl": "https://www.att.jobs/",
       "finalUrl": "https://www.att.jobs/",
       "title": "AT&T Careers: Shape the future of connectivity",
@@ -18,8 +31,53 @@
       "researchFilename": "att-careers.png"
     },
     {
+      "slug": "bsp-bank",
+      "name": "BSP Bank",
+      "category": "png-business",
+      "requestedUrl": "https://www.bsp.com.pg/",
+      "finalUrl": "https://www.bsp.com.pg/",
+      "title": "PNG - BSP PNG",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "bsp-bank.png"
+    },
+    {
+      "slug": "dict-png",
+      "name": "PNG Department of ICT",
+      "category": "png-government",
+      "requestedUrl": "https://www.ict.gov.pg/",
+      "finalUrl": "https://www.ict.gov.pg/",
+      "title": "DICT I PNG |",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "dict-png.png"
+    },
+    {
+      "slug": "dpm-png",
+      "name": "PNG Department of Personnel Management",
+      "category": "png-government",
+      "requestedUrl": "https://www.dpm.gov.pg/",
+      "finalUrl": "https://www.dpm.gov.pg/",
+      "title": "Department of Personnel Management | DPM PNG",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "dpm-png.png"
+    },
+    {
+      "slug": "kina-bank",
+      "name": "Kina Bank",
+      "category": "png-business",
+      "requestedUrl": "https://www.kina.com.pg/",
+      "finalUrl": "https://www.kina.com.pg/",
+      "title": "",
+      "status": "partial",
+      "error": "page.goto: net::ERR_CONNECTION_TIMED_OUT at https://www.kina.com.pg/\nCall log:\n  - navigating to \"https://www.kina.com.pg/\", waiting until \"domcontentloaded\"\n",
+      "researchFilename": "kina-bank.png"
+    },
+    {
       "slug": "ooredoo-qatar-careers",
       "name": "Ooredoo Qatar Careers",
+      "category": null,
       "requestedUrl": "https://www.ooredoo.qa/web/en/careers/",
       "finalUrl": "https://www.ooredoo.qa/web/en/careers/",
       "title": "Explore Jobs & Career Opportunities in Qatar | Ooredoo Qatar",
@@ -28,8 +86,75 @@
       "researchFilename": "ooredoo-qatar-careers.png"
     },
     {
+      "slug": "png-lng",
+      "name": "PNG LNG",
+      "category": "png-business",
+      "requestedUrl": "https://pnglng.com/",
+      "finalUrl": "https://www.pnglng.com/",
+      "title": "PNG LNG - PNG LNG",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "png-lng.png"
+    },
+    {
+      "slug": "steamships",
+      "name": "Steamships",
+      "category": "png-business",
+      "requestedUrl": "https://www.steamships.com.pg/",
+      "finalUrl": "https://www.steamships.com.pg/",
+      "title": "Steamships, Papua New Guinea",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "steamships.png"
+    },
+    {
+      "slug": "telstra-careers",
+      "name": "Telstra Careers",
+      "category": "telecom",
+      "requestedUrl": "https://www.telstra.com.au/careers",
+      "finalUrl": "https://www.telstra.com.au/careers",
+      "title": "Careers at Telstra - Telstra",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "telstra-careers.png"
+    },
+    {
+      "slug": "tmobile-careers",
+      "name": "T-Mobile Careers",
+      "category": "telecom",
+      "requestedUrl": "https://careers.t-mobile.com/",
+      "finalUrl": "https://careers.t-mobile.com/",
+      "title": "Careers at T-Mobile",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "tmobile-careers.png"
+    },
+    {
+      "slug": "treasury-png",
+      "name": "PNG Treasury",
+      "category": "png-government",
+      "requestedUrl": "https://www.treasury.gov.pg/",
+      "finalUrl": "https://www.treasury.gov.pg/",
+      "title": "Department of Treasury – Papua New Guinea",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "treasury-png.png"
+    },
+    {
+      "slug": "trukai",
+      "name": "Trukai Industries",
+      "category": "png-business",
+      "requestedUrl": "https://www.trukai.com.pg/",
+      "finalUrl": "https://www.trukai.com.pg/",
+      "title": "Trukai Industries Limited",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "trukai.png"
+    },
+    {
       "slug": "verizon-careers",
       "name": "Verizon Careers",
+      "category": null,
       "requestedUrl": "https://mycareer.verizon.com/",
       "finalUrl": "https://mycareer.verizon.com/",
       "title": "Just a moment...",
@@ -40,6 +165,7 @@
     {
       "slug": "vodafone-png-careers",
       "name": "Vodafone PNG Careers",
+      "category": null,
       "requestedUrl": "https://vodafone.com.pg/about/careers",
       "finalUrl": "https://vodafone.com.pg/about/careers",
       "title": "Vodafone PNG - Careers | Vodafone PNG",
