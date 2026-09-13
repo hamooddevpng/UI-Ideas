@@ -24,9 +24,13 @@ concurrency:
 jobs:
   architecture-and-visual-qa:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 18
+    env:
+      DESIGN42_REFERENCE_SHA: afd38e0482f8c27665de2e61439b916ce2e3965a
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
@@ -45,12 +49,31 @@ jobs:
           npx playwright install chromium
           python3 -m pip install --quiet pillow
 
-      - name: Start local server
+      - name: Prepare exact pre-refactor reference
         run: |
-          python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/design42-refactor-http.log 2>&1 &
-          sleep 1
+          rm -rf /tmp/design42-reference
+          git worktree add --detach /tmp/design42-reference "$DESIGN42_REFERENCE_SHA"
+          python3 <<'PY'
+          from pathlib import Path
+          path = Path('/tmp/design42-reference/42.html')
+          text = path.read_text()
+          old = 'https://raw.githubusercontent.com/hamooddevpng/UI-Ideas/main/'
+          if old not in text:
+              raise SystemExit('Expected hard-coded main raw source root was not found in reference 42.html')
+          text = text.replace(old, 'http://127.0.0.1:4174/')
+          path.write_text(text)
+          print('Reference wrapper patched to load its own checked-out sibling files.')
+          PY
 
-      - name: Run browser smoke tests and capture refactor screenshots
+      - name: Start current and reference servers
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/design42-current-http.log 2>&1 &
+          (cd /tmp/design42-reference && python3 -m http.server 4174 --bind 127.0.0.1 >/tmp/design42-reference-http.log 2>&1) &
+          sleep 1
+          curl --fail --silent http://127.0.0.1:4173/42.html >/dev/null
+          curl --fail --silent http://127.0.0.1:4174/42.html >/dev/null
+
+      - name: Run browser smoke tests and capture current/reference screenshots
         run: |
           mkdir -p qa/design42/refactor
           node <<'EOF'
@@ -58,11 +81,19 @@ jobs:
           const path = require('path');
           const assert = require('assert/strict');
 
-          const url = 'http://127.0.0.1:4173/42.html';
-          const primePage = async page => {
-            await page.waitForSelector('.hero', {timeout: 15000});
-            await page.waitForSelector('.eco-section', {timeout: 15000});
-            await page.waitForTimeout(1200);
+          const currentUrl = 'http://127.0.0.1:4173/42.html';
+          const referenceUrl = 'http://127.0.0.1:4174/42.html';
+
+          const settleFold = async page => {
+            await page.waitForSelector('.hero', {timeout:15000});
+            await page.waitForTimeout(900);
+            await page.evaluate(() => window.scrollTo(0,0));
+            await page.waitForTimeout(350);
+          };
+
+          const primeFullPage = async page => {
+            await page.waitForSelector('.hero', {timeout:15000});
+            await page.waitForTimeout(1000);
             await page.evaluate(async () => {
               const sleep = ms => new Promise(r => setTimeout(r, ms));
               let y = 0;
@@ -83,66 +114,76 @@ jobs:
                 }
               }
             });
-            for (const selector of ['#updates', '#support']) {
-              const el = page.locator(selector);
-              if (await el.count()) {
-                await el.scrollIntoViewIfNeeded();
-                await page.waitForTimeout(450);
-              }
-            }
-            await page.waitForTimeout(1400);
+            await page.waitForTimeout(1000);
+          };
+
+          const captureFold = async (browser, url, output) => {
+            const context = await browser.newContext({
+              viewport:{width:1440,height:900},
+              deviceScaleFactor:1,
+              reducedMotion:'reduce'
+            });
+            const page = await context.newPage();
+            const errors=[];
+            page.on('pageerror', error=>errors.push(String(error)));
+            await page.goto(url,{waitUntil:'domcontentloaded',timeout:30000});
+            await settleFold(page);
+            await page.screenshot({path:output,type:'png',fullPage:false,animations:'disabled',timeout:30000});
+            assert.equal(errors.length,0,`Page errors while capturing ${url}: ${errors.join(' | ')}`);
+            await context.close();
           };
 
           (async()=>{
-            const browser = await chromium.launch({headless:true});
-            const context = await browser.newContext({viewport:{width:1440,height:900}, deviceScaleFactor:1});
-            const page = await context.newPage();
-            const browserErrors = [];
-            page.on('pageerror', error => browserErrors.push(String(error)));
-            await page.goto(url, {waitUntil:'domcontentloaded', timeout:30000});
-            await page.waitForSelector('.hero', {timeout:15000});
+            const browser=await chromium.launch({headless:true});
 
-            for (const selector of ['#quick-actions','#business','#support','.eco-section','.telikom-ai-launcher']) {
-              assert.ok(await page.locator(selector).count(), `Missing expected Design 42 element: ${selector}`);
+            // Same Chromium build, viewport, motion preference and timing for both images.
+            await captureFold(browser,referenceUrl,path.join('qa','design42','refactor','reference-fold.png'));
+            await captureFold(browser,currentUrl,path.join('qa','design42','refactor','desktop-fold.png'));
+
+            const context=await browser.newContext({viewport:{width:1440,height:900},deviceScaleFactor:1});
+            const page=await context.newPage();
+            const browserErrors=[];
+            page.on('pageerror',error=>browserErrors.push(String(error)));
+            await page.goto(currentUrl,{waitUntil:'domcontentloaded',timeout:30000});
+            await page.waitForSelector('.hero',{timeout:15000});
+
+            for(const selector of ['#quick-actions','#business','#support','.eco-section','.telikom-ai-launcher']){
+              assert.ok(await page.locator(selector).count(),`Missing expected Design 42 element: ${selector}`);
             }
-            assert.equal(await page.locator('#boot').count(), 0, 'Loader shell should have been replaced by the rendered Design 42 document.');
+            assert.equal(await page.locator('#boot').count(),0,'Loader shell should be replaced by rendered Design 42.');
 
-            const initialScene = await page.locator('.hero').getAttribute('data-scene-index');
+            const initialScene=await page.locator('.hero').getAttribute('data-scene-index');
             await page.locator('.scene-tab[data-scene="2"]').click();
             await page.waitForTimeout(250);
-            const switchedScene = await page.locator('.hero').getAttribute('data-scene-index');
-            assert.notEqual(switchedScene, initialScene, 'Hero scene switching must remain functional.');
+            const switchedScene=await page.locator('.hero').getAttribute('data-scene-index');
+            assert.notEqual(switchedScene,initialScene,'Hero scene switching must remain functional.');
             await page.locator('.scene-tab[data-scene="0"]').click();
 
             await page.locator('.telikom-ai-launcher').click();
-            await page.waitForFunction(() => document.body.classList.contains('telikom-ai-open'));
-            assert.equal(await page.locator('.telikom-ai-panel').getAttribute('aria-hidden'), 'false', 'Chat popup must open.');
+            await page.waitForFunction(()=>document.body.classList.contains('telikom-ai-open'));
+            assert.equal(await page.locator('.telikom-ai-panel').getAttribute('aria-hidden'),'false','Chat popup must open.');
             await page.locator('.telikom-ai-close').click();
-            await page.waitForFunction(() => !document.body.classList.contains('telikom-ai-open'));
+            await page.waitForFunction(()=>!document.body.classList.contains('telikom-ai-open'));
 
-            const national = page.locator('.national-story-map');
-            if (await national.count()) {
+            const national=page.locator('.national-story-map');
+            if(await national.count()){
               await national.scrollIntoViewIfNeeded();
-              await page.waitForSelector('#provinceNetworkV6', {timeout:10000});
-              await page.waitForSelector('#provinceLaserLayerV12', {timeout:10000});
+              await page.waitForSelector('#provinceNetworkV6',{timeout:10000});
+              await page.waitForSelector('#provinceLaserLayerV12',{timeout:10000});
             }
 
-            await page.evaluate(() => window.scrollTo(0,0));
-            await page.waitForTimeout(450);
-            await page.screenshot({path:path.join('qa','design42','refactor','desktop-fold.jpg'),type:'jpeg',quality:90,fullPage:false,animations:'disabled',timeout:30000});
-            await primePage(page);
-            await page.evaluate(() => window.scrollTo(0,0));
+            await primeFullPage(page);
+            await page.evaluate(()=>window.scrollTo(0,0));
             await page.waitForTimeout(350);
             await page.screenshot({path:path.join('qa','design42','refactor','desktop-full.jpg'),type:'jpeg',quality:84,fullPage:true,animations:'disabled',timeout:30000});
-
-            assert.equal(browserErrors.length, 0, `Browser page errors: ${browserErrors.join(' | ')}`);
+            assert.equal(browserErrors.length,0,`Browser page errors: ${browserErrors.join(' | ')}`);
             await context.close();
 
-            const mobileContext = await browser.newContext({viewport:{width:390,height:844},deviceScaleFactor:1});
-            const mobile = await mobileContext.newPage();
-            await mobile.goto(url,{waitUntil:'domcontentloaded',timeout:30000});
-            await primePage(mobile);
-            await mobile.evaluate(() => window.scrollTo(0,0));
+            const mobileContext=await browser.newContext({viewport:{width:390,height:844},deviceScaleFactor:1,reducedMotion:'reduce'});
+            const mobile=await mobileContext.newPage();
+            await mobile.goto(currentUrl,{waitUntil:'domcontentloaded',timeout:30000});
+            await primeFullPage(mobile);
+            await mobile.evaluate(()=>window.scrollTo(0,0));
             await mobile.waitForTimeout(350);
             await mobile.screenshot({path:path.join('qa','design42','refactor','mobile-full.jpg'),type:'jpeg',quality:84,fullPage:true,animations:'disabled',timeout:30000});
             await mobileContext.close();
@@ -151,26 +192,25 @@ jobs:
           })().catch(error=>{console.error(error);process.exit(1)});
           EOF
 
-      - name: Measure desktop fold regression against baseline
+      - name: Measure refactor parity against exact parent render
         run: |
           python3 <<'PY'
           from PIL import Image, ImageChops, ImageStat
           from pathlib import Path
           import math
 
-          baseline = Image.open(Path('qa/design42/latest-desktop-fold.jpg')).convert('RGB')
-          current = Image.open(Path('qa/design42/refactor/desktop-fold.jpg')).convert('RGB')
-          if baseline.size != current.size:
-              raise SystemExit(f'Visual regression dimensions changed: baseline={baseline.size}, current={current.size}')
-          diff = ImageChops.difference(baseline, current)
+          reference = Image.open(Path('qa/design42/refactor/reference-fold.png')).convert('RGB')
+          current = Image.open(Path('qa/design42/refactor/desktop-fold.png')).convert('RGB')
+          if reference.size != current.size:
+              raise SystemExit(f'Parity dimensions changed: reference={reference.size}, current={current.size}')
+          diff = ImageChops.difference(reference,current)
           stat = ImageStat.Stat(diff)
           mse = sum((r ** 2) for r in stat.rms) / 3
           rmse = math.sqrt(mse) / 255
-          print(f'Normalized desktop-fold RMSE: {rmse:.6f}')
-          # This guard is intentionally tolerant of prototype animation/image timing.
-          # Its job is to catch wholesale visual breakage during the structural refactor.
-          if rmse > 0.18:
-              raise SystemExit(f'Visual regression too large: {rmse:.6f} > 0.18')
+          print(f'Normalized same-run parent/refactor RMSE: {rmse:.6f}')
+          diff.save('qa/design42/refactor/fold-diff.png')
+          if rmse > 0.10:
+              raise SystemExit(f'Refactor parity regression too large: {rmse:.6f} > 0.10')
           PY
 
       - name: Upload audit and visual QA artifacts
@@ -181,5 +221,5 @@ jobs:
           path: |
             qa/design42/refactor-audit.md
             qa/design42/refactor-audit.json
-            qa/design42/refactor/*.jpg
+            qa/design42/refactor/*
           retention-days: 14
