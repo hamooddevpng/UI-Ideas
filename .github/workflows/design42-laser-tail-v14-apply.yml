@@ -1,4 +1,5 @@
 name: Apply Design 42 laser tail v14
+# retry after version-agnostic regression test
 on:
   push:
     branches:
