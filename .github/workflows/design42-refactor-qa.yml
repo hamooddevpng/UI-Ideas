@@ -168,20 +168,23 @@ jobs:
 
             const referenceGeometry=await captureGeometry(browser,referenceUrl);
             const currentGeometry=await captureGeometry(browser,currentUrl);
-            const report={reference:referenceGeometry,current:currentGeometry,deltas:{}};
+            const report={reference:referenceGeometry,current:currentGeometry,deltas:{},documentHeightDelta:currentGeometry.scrollHeight-referenceGeometry.scrollHeight};
             const tolerance=6;
-            assert.ok(Math.abs(currentGeometry.scrollHeight-referenceGeometry.scrollHeight)<=tolerance,
-              `Document height changed by ${currentGeometry.scrollHeight-referenceGeometry.scrollHeight}px.`);
             for(const name of Object.keys(geometrySelectors)){
               const a=referenceGeometry.boxes[name];
               const b=currentGeometry.boxes[name];
-              const delta={x:b.x-a.x,y:b.y-a.y,width:b.width-a.width,height:b.height-a.height};
-              report.deltas[name]=delta;
+              report.deltas[name]={x:b.x-a.x,y:b.y-a.y,width:b.width-a.width,height:b.height-a.height};
+            }
+            fs.writeFileSync(path.join('qa','design42','refactor','geometry-parity.json'),JSON.stringify(report,null,2));
+            console.log('Design 42 geometry parity report:',JSON.stringify(report,null,2));
+
+            assert.ok(Math.abs(report.documentHeightDelta)<=tolerance,
+              `Document height changed by ${report.documentHeightDelta}px.`);
+            for(const [name,delta] of Object.entries(report.deltas)){
               for(const [metric,value] of Object.entries(delta)){
                 assert.ok(Math.abs(value)<=tolerance,`${name} ${metric} changed by ${value.toFixed(2)}px.`);
               }
             }
-            fs.writeFileSync(path.join('qa','design42','refactor','geometry-parity.json'),JSON.stringify(report,null,2));
 
             const context=await browser.newContext({viewport:{width:1440,height:900},deviceScaleFactor:1});
             const page=await context.newPage();
