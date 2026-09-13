@@ -22,32 +22,162 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  architecture-audit:
+  architecture-and-visual-qa:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
+
       - name: Run ownership audit
         run: |
           node scripts/audit-design42.mjs
           cat qa/design42/refactor-audit.md
+
       - name: Run architecture guardrails
-        id: guardrails
-        continue-on-error: true
         run: node tests/design42-css-architecture.test.mjs
-      - name: Upload audit
+
+      - name: Install Playwright
+        run: |
+          npm install --no-save playwright
+          npx playwright install chromium
+
+      - name: Start local server
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/design42-refactor-http.log 2>&1 &
+          sleep 1
+
+      - name: Run browser smoke tests and capture refactor screenshots
+        run: |
+          mkdir -p qa/design42/refactor
+          node <<'EOF'
+          const { chromium } = require('playwright');
+          const path = require('path');
+          const assert = require('assert/strict');
+
+          const url = 'http://127.0.0.1:4173/42.html';
+          const primePage = async page => {
+            await page.waitForSelector('.hero', {timeout: 15000});
+            await page.waitForSelector('.eco-section', {timeout: 15000});
+            await page.waitForTimeout(1200);
+            await page.evaluate(async () => {
+              const sleep = ms => new Promise(r => setTimeout(r, ms));
+              let y = 0;
+              let stableBottomPasses = 0;
+              while (stableBottomPasses < 2) {
+                const max = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+                if (y >= max - 8) {
+                  window.scrollTo(0, max);
+                  await sleep(220);
+                  const nextMax = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+                  if (Math.abs(nextMax - max) < 8) stableBottomPasses++;
+                  else stableBottomPasses = 0;
+                  y = Math.min(nextMax, max + Math.max(320, Math.floor(window.innerHeight * .55)));
+                } else {
+                  y = Math.min(max, y + Math.max(320, Math.floor(window.innerHeight * .55)));
+                  window.scrollTo(0, y);
+                  await sleep(140);
+                }
+              }
+            });
+            for (const selector of ['#updates', '#support']) {
+              const el = page.locator(selector);
+              if (await el.count()) {
+                await el.scrollIntoViewIfNeeded();
+                await page.waitForTimeout(450);
+              }
+            }
+            await page.waitForTimeout(1400);
+          };
+
+          (async()=>{
+            const browser = await chromium.launch({headless:true});
+            const context = await browser.newContext({viewport:{width:1440,height:900}, deviceScaleFactor:1});
+            const page = await context.newPage();
+            const browserErrors = [];
+            page.on('pageerror', error => browserErrors.push(String(error)));
+            await page.goto(url, {waitUntil:'domcontentloaded', timeout:30000});
+            await page.waitForSelector('.hero', {timeout:15000});
+
+            for (const selector of ['#quick-actions','#business','#support','.eco-section','.telikom-ai-launcher']) {
+              assert.ok(await page.locator(selector).count(), `Missing expected Design 42 element: ${selector}`);
+            }
+            assert.equal(await page.locator('#boot').count(), 0, 'Loader shell should have been replaced by the rendered Design 42 document.');
+
+            const initialScene = await page.locator('.hero').getAttribute('data-scene-index');
+            await page.locator('.scene-tab[data-scene="2"]').click();
+            await page.waitForTimeout(250);
+            const switchedScene = await page.locator('.hero').getAttribute('data-scene-index');
+            assert.notEqual(switchedScene, initialScene, 'Hero scene switching must remain functional.');
+            await page.locator('.scene-tab[data-scene="0"]').click();
+
+            await page.locator('.telikom-ai-launcher').click();
+            await page.waitForFunction(() => document.body.classList.contains('telikom-ai-open'));
+            assert.equal(await page.locator('.telikom-ai-panel').getAttribute('aria-hidden'), 'false', 'Chat popup must open.');
+            await page.locator('.telikom-ai-close').click();
+            await page.waitForFunction(() => !document.body.classList.contains('telikom-ai-open'));
+
+            const national = page.locator('.national-story-map');
+            if (await national.count()) {
+              await national.scrollIntoViewIfNeeded();
+              await page.waitForSelector('#provinceNetworkV6', {timeout:10000});
+              await page.waitForSelector('#provinceLaserLayerV12', {timeout:10000});
+            }
+
+            await page.evaluate(() => window.scrollTo(0,0));
+            await page.waitForTimeout(450);
+            await page.screenshot({path:path.join('qa','design42','refactor','desktop-fold.jpg'),type:'jpeg',quality:90,fullPage:false,animations:'disabled',timeout:30000});
+            await primePage(page);
+            await page.evaluate(() => window.scrollTo(0,0));
+            await page.waitForTimeout(350);
+            await page.screenshot({path:path.join('qa','design42','refactor','desktop-full.jpg'),type:'jpeg',quality:84,fullPage:true,animations:'disabled',timeout:30000});
+
+            assert.equal(browserErrors.length, 0, `Browser page errors: ${browserErrors.join(' | ')}`);
+            await context.close();
+
+            const mobileContext = await browser.newContext({viewport:{width:390,height:844},deviceScaleFactor:1});
+            const mobile = await mobileContext.newPage();
+            await mobile.goto(url,{waitUntil:'domcontentloaded',timeout:30000});
+            await primePage(mobile);
+            await mobile.evaluate(() => window.scrollTo(0,0));
+            await mobile.waitForTimeout(350);
+            await mobile.screenshot({path:path.join('qa','design42','refactor','mobile-full.jpg'),type:'jpeg',quality:84,fullPage:true,animations:'disabled',timeout:30000});
+            await mobileContext.close();
+            await browser.close();
+            console.log('Design 42 browser smoke checks passed.');
+          })().catch(error=>{console.error(error);process.exit(1)});
+          EOF
+
+      - name: Measure desktop fold regression against baseline
+        run: |
+          set +e
+          metric=$(compare -metric RMSE qa/design42/latest-desktop-fold.jpg qa/design42/refactor/desktop-fold.jpg null: 2>&1)
+          code=$?
+          set -e
+          echo "Desktop fold RMSE: $metric"
+          normalized=$(printf '%s' "$metric" | sed -n 's/.*(\([0-9.]*\)).*/\1/p')
+          if [ -z "$normalized" ]; then
+            echo "Could not parse ImageMagick RMSE output"
+            exit 1
+          fi
+          python3 - "$normalized" <<'PY'
+          import sys
+          value=float(sys.argv[1])
+          print(f'Normalized desktop-fold RMSE: {value:.6f}')
+          # Refactor parity guard. This catches wholesale visual breakage while
+          # allowing small animation/rendering differences in the prototype.
+          if value > 0.18:
+              raise SystemExit(f'Visual regression too large: {value:.6f} > 0.18')
+          PY
+
+      - name: Upload audit and visual QA artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: design42-refactor-audit
+          name: design42-refactor-qa
           path: |
             qa/design42/refactor-audit.md
             qa/design42/refactor-audit.json
+            qa/design42/refactor/*.jpg
           retention-days: 14
-      - name: Keep RED visible until refactor satisfies guardrails
-        if: steps.guardrails.outcome == 'failure'
-        run: |
-          echo 'Architecture guardrails are RED, as expected before the refactor.'
-          exit 1
