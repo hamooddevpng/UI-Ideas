@@ -1,0 +1,12 @@
+name: Test Design 42 laser tail v14
+on:
+  push:
+    branches:
+      - fix/design42-laser-tail-v14
+jobs:
+  test-laser-tail:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify laser tail travels
+        run: python .patches/test_design42_laser_tail.py
