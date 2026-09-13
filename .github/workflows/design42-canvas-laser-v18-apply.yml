@@ -1,8 +1,10 @@
 name: Apply Design 42 canvas lasers v18
 on:
   push:
-    branches: [fix/design42-canvas-lasers-v18]
-    paths: [.github/workflows/design42-canvas-laser-v18-apply.yml]
+    branches:
+      - fix/design42-canvas-lasers-v18
+    paths:
+      - .github/workflows/design42-canvas-laser-v18-apply.yml
 permissions:
   contents: write
 jobs:
@@ -13,187 +15,9 @@ jobs:
         with:
           ref: fix/design42-canvas-lasers-v18
           fetch-depth: 0
-      - name: Replace accumulated laser code with canvas renderer
-        run: |
-          python3 - <<'PY'
-          from pathlib import Path
-          p=Path('42-base.html')
-          s=p.read_text()
-
-          markers=[
-            'Design 42: animated laser shots v7',
-            'Design 42: robust province lasers v9',
-            'Design 42: simple province lasers v11',
-            'Design 42: laser tuning v13',
-            'Design 42: endpoint lasers v12',
-          ]
-
-          def strip_container(text, marker):
-              while marker in text:
-                  i=text.index(marker)
-                  candidates=[]
-                  for tag in ('style','script'):
-                      start=text.rfind(f'<{tag}>',0,i)
-                      end=text.find(f'</{tag}>',i)
-                      if start!=-1 and end!=-1:
-                          candidates.append((i-start,start,end+len(f'</{tag}>')))
-                  if not candidates:
-                      break
-                  _,start,end=min(candidates)
-                  text=text[:start]+text[end:]
-              return text
-
-          for marker in markers:
-              s=strip_container(s,marker)
-
-          block=r'''
-<style>
-/* Design 42: clean canvas province lasers v18 */
-#provinceLaserShotsV7,#provinceLaserCssV9,#provinceLaserLayerV11,.province-laser-v12{display:none!important}
-#provinceLaserCanvasV18{position:absolute;inset:0;width:100%;height:100%;z-index:12;pointer-events:none}
-@media(prefers-reduced-motion:reduce){#provinceLaserCanvasV18{display:none!important}}
-</style>
-<script>
-// Design 42: clean canvas province lasers v18
-(()=>{
-  if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-
-  const boot=()=>{
-    const section=document.querySelector('.national-story-map');
-    const stage=document.getElementById('nationalMapStage');
-    const network=document.getElementById('provinceNetworkV6');
-    if(!section||!stage||!network){setTimeout(boot,80);return}
-    if(document.getElementById('provinceLaserCanvasV18'))return;
-
-    const nodeEls=[...network.querySelectorAll('.province-node-v6')];
-    if(nodeEls.length<2){setTimeout(boot,80);return}
-
-    const canvas=document.createElement('canvas');
-    canvas.id='provinceLaserCanvasV18';
-    canvas.setAttribute('aria-hidden','true');
-    stage.appendChild(canvas);
-    const ctx=canvas.getContext('2d',{alpha:true,desynchronized:true});
-    if(!ctx)return;
-
-    const stats=window.__provinceLaserV18Stats={frames:0,maxSegmentPx:0,travelSamples:0,shots:0};
-    let width=0,height=0,dpr=1,points=[],pairs=[];
-    let active=[];
-    let running=false,raf=0,nextShot=0,lastSampleKey='';
-
-    const rebuildGeometry=()=>{
-      const sr=stage.getBoundingClientRect();
-      width=Math.max(1,sr.width);height=Math.max(1,sr.height);
-      dpr=Math.min(2,window.devicePixelRatio||1);
-      canvas.width=Math.round(width*dpr);
-      canvas.height=Math.round(height*dpr);
-      canvas.style.width=width+'px';
-      canvas.style.height=height+'px';
-      ctx.setTransform(dpr,0,0,dpr,0,0);
-
-      points=nodeEls.map(el=>{
-        const r=el.getBoundingClientRect();
-        return {x:r.left+r.width/2-sr.left,y:r.top+r.height/2-sr.top};
-      });
-      pairs=[];
-      points.forEach((a,i)=>{
-        points.map((b,j)=>({j,d:j===i?Infinity:Math.hypot(b.x-a.x,b.y-a.y)}))
-          .sort((u,v)=>u.d-v.d).slice(0,3)
-          .forEach(({j,d})=>{
-            if(!Number.isFinite(d)||d<18||d>320)return;
-            const lo=Math.min(i,j),hi=Math.max(i,j),key=lo+':'+hi;
-            if(!pairs.some(p=>p.key===key))pairs.push({key,a:lo,b:hi});
-          });
-      });
-    };
-
-    const spawn=(now)=>{
-      if(!pairs.length)return;
-      const pair=pairs[(Math.random()*pairs.length)|0];
-      const reverse=Math.random()>.5;
-      const a=points[reverse?pair.b:pair.a];
-      const b=points[reverse?pair.a:pair.b];
-      const dx=b.x-a.x,dy=b.y-a.y,dist=Math.hypot(dx,dy);
-      if(dist<10)return;
-      active.push({a,b,dx,dy,dist,start:now,duration:170+Math.random()*90,catch:46});
-      stats.shots++;
-    };
-
-    const drawLaser=(laser,now)=>{
-      const elapsed=now-laser.start;
-      const travel=Math.min(1,elapsed/laser.duration);
-      const eased=travel*(2-travel);
-      const headDist=laser.dist*eased;
-      let tailDist=Math.max(0,headDist-5);
-      let done=false;
-      if(travel>=1){
-        const catchT=Math.min(1,(elapsed-laser.duration)/laser.catch);
-        tailDist=Math.max(0,laser.dist-5+5*catchT);
-        done=catchT>=1;
-      }
-      const ux=laser.dx/laser.dist,uy=laser.dy/laser.dist;
-      const x1=laser.a.x+ux*tailDist,y1=laser.a.y+uy*tailDist;
-      const x2=laser.a.x+ux*headDist,y2=laser.a.y+uy*headDist;
-      const len=Math.hypot(x2-x1,y2-y1);
-      stats.maxSegmentPx=Math.max(stats.maxSegmentPx,len);
-      const sampleKey=Math.round(x1)+','+Math.round(y1)+','+Math.round(x2)+','+Math.round(y2);
-      if(sampleKey!==lastSampleKey){stats.travelSamples++;lastSampleKey=sampleKey}
-
-      ctx.beginPath();
-      ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);
-      ctx.strokeStyle='#0875c9';
-      ctx.lineWidth=1.25;
-      ctx.lineCap='round';
-      ctx.stroke();
-      return done;
-    };
-
-    const frame=now=>{
-      if(!running)return;
-      stats.frames++;
-      ctx.clearRect(0,0,width,height);
-      if(now>=nextShot){
-        spawn(now);
-        if(Math.random()>.55)spawn(now+18);
-        nextShot=now+120+Math.random()*150;
-      }
-      active=active.filter(l=>!drawLaser(l,now));
-      raf=requestAnimationFrame(frame);
-    };
-
-    const start=()=>{
-      if(running)return;
-      running=true;
-      rebuildGeometry();
-      nextShot=performance.now();
-      raf=requestAnimationFrame(frame);
-    };
-    const stop=()=>{
-      running=false;
-      if(raf)cancelAnimationFrame(raf);
-      raf=0;active=[];
-      ctx.clearRect(0,0,width,height);
-    };
-
-    const ro='ResizeObserver' in window?new ResizeObserver(rebuildGeometry):null;
-    if(ro)ro.observe(stage);else window.addEventListener('resize',rebuildGeometry,{passive:true});
-
-    if('IntersectionObserver' in window){
-      new IntersectionObserver(([entry])=>entry.isIntersecting?start():stop(),{threshold:.02}).observe(section);
-    }else start();
-    document.addEventListener('visibilitychange',()=>document.hidden?stop():start());
-    requestAnimationFrame(()=>{
-      const r=section.getBoundingClientRect();
-      if(r.bottom>0&&r.top<innerHeight)start();
-    });
-  };
-  boot();
-})();
-</script>
-'''
-          s=s.replace('</body>',block+'\n</body>',1)
-          p.write_text(s)
-          PY
-      - name: Verify only one laser generation remains
+      - name: Apply canvas renderer
+        run: python3 .patches/apply_design42_canvas_lasers_v18.py
+      - name: Verify canvas implementation
         run: |
           grep -q 'clean canvas province lasers v18' 42-base.html
           grep -q "canvas.id='provinceLaserCanvasV18'" 42-base.html
@@ -202,12 +26,12 @@ jobs:
           ! grep -q 'Design 42: robust province lasers v9' 42-base.html
           ! grep -q 'Design 42: simple province lasers v11' 42-base.html
           ! grep -q 'Design 42: endpoint lasers v12' 42-base.html
-      - name: Remove temporary apply workflow
-        run: rm .github/workflows/design42-canvas-laser-v18-apply.yml
+      - name: Remove temporary patch files
+        run: rm .patches/apply_design42_canvas_lasers_v18.py .github/workflows/design42-canvas-laser-v18-apply.yml
       - name: Commit implementation
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add 42-base.html .github/workflows/design42-canvas-laser-v18-apply.yml
+          git add 42-base.html .patches/apply_design42_canvas_lasers_v18.py .github/workflows/design42-canvas-laser-v18-apply.yml
           git commit -m 'fix: rebuild Design 42 lasers with a canvas renderer'
           git push origin HEAD:fix/design42-canvas-lasers-v18
