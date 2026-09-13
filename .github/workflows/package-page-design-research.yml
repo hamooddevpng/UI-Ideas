@@ -10,6 +10,7 @@ on:
 permissions:
   contents: read
 
+# Keep the expanded visual research available as a downloadable QA artifact.
 jobs:
   package:
     runs-on: ubuntu-latest
