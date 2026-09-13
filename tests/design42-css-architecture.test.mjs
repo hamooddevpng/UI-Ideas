@@ -100,4 +100,11 @@ assert.match(base, /provinceLaserLayerV12/, 'The active v12 laser runtime layer 
 assert.match(read('assets/design42/design42-components.css'), /province-node-v6\.laser-live/, 'Active laser endpoint feedback must be owned by component CSS.');
 assert.match(base, /classList\.add\('laser-live'\)/, 'The active endpoint runtime must drive canonical endpoint feedback.');
 
+// Phase 4: the audit must measure the actual external CSS ownership, not only inline HTML.
+const auditScript=read('scripts/audit-design42.mjs');
+for(const file of ['design42-core.css','design42-components.css','design42-theme.css','design42-chat.css']){
+  assert.ok(auditScript.includes(file),`Design 42 audit does not include external stylesheet ${file}.`);
+}
+assert.match(auditScript,/cssFiles/, 'Design 42 audit must report per-file external CSS ownership.');
+
 console.log('Design 42 CSS architecture guardrails passed.');
