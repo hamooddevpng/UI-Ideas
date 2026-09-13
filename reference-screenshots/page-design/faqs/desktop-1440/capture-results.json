@@ -1,0 +1,51 @@
+{
+  "capturedAt": "2026-09-13T22:37:24.266Z",
+  "pageStudy": {
+    "id": "faqs",
+    "name": "FAQs",
+    "task_title": "[Page Design] FAQs"
+  },
+  "viewport": "1440x900",
+  "results": [
+    {
+      "slug": "digicel-png-help",
+      "name": "Digicel PNG Help Center",
+      "requestedUrl": "https://support-pg.digicelpacific.com/hc/en-us",
+      "finalUrl": "https://support-pg.digicelpacific.com/hc/en-us",
+      "title": "Mobile - PNG",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "digicel-png-help.png"
+    },
+    {
+      "slug": "ooredoo-qatar-help",
+      "name": "Ooredoo Qatar Help Centre",
+      "requestedUrl": "https://www.ooredoo.qa/web/en/business/help-centre/",
+      "finalUrl": "https://www.ooredoo.qa/web/en/business/help-centre/",
+      "title": "Business Help Centre - Ooredoo Qatar",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "ooredoo-qatar-help.png"
+    },
+    {
+      "slug": "vodafone-png-4g-faq",
+      "name": "Vodafone PNG 4G FAQ",
+      "requestedUrl": "https://vodafone.com.pg/personal/prepaid/mobile-internet/faqs---4g",
+      "finalUrl": "https://vodafone.com.pg/personal/prepaid/mobile-internet/faqs---4g",
+      "title": "Vodafone PNG - FAQs - 4G/4G+ | Vodafone PNG",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "vodafone-png-4g-faq.png"
+    },
+    {
+      "slug": "vodafone-png-help",
+      "name": "Vodafone PNG Help",
+      "requestedUrl": "https://vodafone.com.pg/help",
+      "finalUrl": "https://vodafone.com.pg/help",
+      "title": "Help| Vodafone PNG",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "vodafone-png-help.png"
+    }
+  ]
+}

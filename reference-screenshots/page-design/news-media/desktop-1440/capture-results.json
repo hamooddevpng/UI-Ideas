@@ -1,0 +1,51 @@
+{
+  "capturedAt": "2026-09-13T22:37:24.266Z",
+  "pageStudy": {
+    "id": "news-media",
+    "name": "News & Media",
+    "task_title": "[Page Design] News & Media"
+  },
+  "viewport": "1440x900",
+  "results": [
+    {
+      "slug": "ooredoo-qatar-news",
+      "name": "Ooredoo Qatar News",
+      "requestedUrl": "https://www.ooredoo.qa/web/en/press-release/",
+      "finalUrl": "https://www.ooredoo.qa/web/en/press-release/",
+      "title": "Find out the Latest Ooredoo News | Ooredoo Qatar",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "ooredoo-qatar-news.png"
+    },
+    {
+      "slug": "orange-newsroom",
+      "name": "Orange Newsroom",
+      "requestedUrl": "https://newsroom.orange.com/",
+      "finalUrl": "https://newsroom.orange.com/?lang=fra",
+      "title": "Newsroom Groupe Orange",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "orange-newsroom.png"
+    },
+    {
+      "slug": "verizon-news",
+      "name": "Verizon News & Stories",
+      "requestedUrl": "https://www.verizon.com/about/news",
+      "finalUrl": "https://www.verizon.com/about/news",
+      "title": "Verizon News & Stories | About Verizon",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "verizon-news.png"
+    },
+    {
+      "slug": "verizon-press",
+      "name": "Verizon Press Releases",
+      "requestedUrl": "https://www.verizon.com/about/news/media-center",
+      "finalUrl": "https://www.verizon.com/about/news/press-releases",
+      "title": "Press Releases | About Verizon",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "verizon-press.png"
+    }
+  ]
+}

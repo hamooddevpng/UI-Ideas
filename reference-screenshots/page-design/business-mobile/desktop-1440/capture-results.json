@@ -1,0 +1,51 @@
+{
+  "capturedAt": "2026-09-13T22:37:24.265Z",
+  "pageStudy": {
+    "id": "business-mobile",
+    "name": "Business - Mobile",
+    "task_title": "[Page Design] Business — Mobile"
+  },
+  "viewport": "1440x900",
+  "results": [
+    {
+      "slug": "ooredoo-qatar-business-mobile-broadband",
+      "name": "Ooredoo Qatar Aamali Mobile Broadband",
+      "requestedUrl": "https://www.ooredoo.qa/web/en/business/mobile-broadband/",
+      "finalUrl": "https://www.ooredoo.qa/web/en/business/mobile-broadband/",
+      "title": "New Ooredoo Aamali Broadband | Ooredoo Business | Ooredoo Qatar",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "ooredoo-qatar-business-mobile-broadband.png"
+    },
+    {
+      "slug": "stc-saudi-business-postpaid",
+      "name": "stc Saudi Business Postpaid",
+      "requestedUrl": "https://www.stc.com.sa/en/business/connect/mobile-services/mobile-business-postpaid.html",
+      "finalUrl": "https://www.stc.com.sa/en/business/connect/mobile-services/mobile-business-postpaid.html",
+      "title": "stc KSA | mofawtar business",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "stc-saudi-business-postpaid.png"
+    },
+    {
+      "slug": "stc-saudi-business-prepaid",
+      "name": "stc Saudi Business Prepaid",
+      "requestedUrl": "https://www.stc.com.sa/en/business/connect/mobile-services/mobile-business-prepaid.html",
+      "finalUrl": "https://www.stc.com.sa/en/business/connect/mobile-services/mobile-business-prepaid.html",
+      "title": "stc KSA | stc Business Sawa Aamal Package | Prepaid Mobile Voice Packages For Business",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "stc-saudi-business-prepaid.png"
+    },
+    {
+      "slug": "vodafone-png-mobility",
+      "name": "Vodafone PNG Mobility Solutions",
+      "requestedUrl": "https://vodafone.com.pg/business/products-and-solutions/mobility-solutions",
+      "finalUrl": "https://vodafone.com.pg/business/products-and-solutions/mobility-solutions",
+      "title": "Vodafone PNG -",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "vodafone-png-mobility.png"
+    }
+  ]
+}

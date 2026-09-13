@@ -1,0 +1,51 @@
+{
+  "capturedAt": "2026-09-13T22:37:24.266Z",
+  "pageStudy": {
+    "id": "careers",
+    "name": "Careers",
+    "task_title": "[Page Design] Careers"
+  },
+  "viewport": "1440x900",
+  "results": [
+    {
+      "slug": "att-careers",
+      "name": "AT&T Careers",
+      "requestedUrl": "https://www.att.jobs/",
+      "finalUrl": "https://www.att.jobs/",
+      "title": "AT&T Careers: Shape the future of connectivity",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "att-careers.png"
+    },
+    {
+      "slug": "ooredoo-qatar-careers",
+      "name": "Ooredoo Qatar Careers",
+      "requestedUrl": "https://www.ooredoo.qa/web/en/careers/",
+      "finalUrl": "https://www.ooredoo.qa/web/en/careers/",
+      "title": "Explore Jobs & Career Opportunities in Qatar | Ooredoo Qatar",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "ooredoo-qatar-careers.png"
+    },
+    {
+      "slug": "verizon-careers",
+      "name": "Verizon Careers",
+      "requestedUrl": "https://mycareer.verizon.com/",
+      "finalUrl": "https://mycareer.verizon.com/",
+      "title": "Just a moment...",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "verizon-careers.png"
+    },
+    {
+      "slug": "vodafone-png-careers",
+      "name": "Vodafone PNG Careers",
+      "requestedUrl": "https://vodafone.com.pg/about/careers",
+      "finalUrl": "https://vodafone.com.pg/about/careers",
+      "title": "Vodafone PNG - Careers | Vodafone PNG",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "vodafone-png-careers.png"
+    }
+  ]
+}

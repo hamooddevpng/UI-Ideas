@@ -1,0 +1,51 @@
+{
+  "capturedAt": "2026-09-13T22:37:24.265Z",
+  "pageStudy": {
+    "id": "personal-mobile",
+    "name": "Personal - Mobile",
+    "task_title": "[Page Design] Personal — Mobile"
+  },
+  "viewport": "1440x900",
+  "results": [
+    {
+      "slug": "digicel-png-data-plans",
+      "name": "Digicel PNG Data Plans",
+      "requestedUrl": "https://support-pg.digicelpacific.com/hc/en-us/articles/7313007383439-What-are-the-new-data-plans",
+      "finalUrl": "https://support-pg.digicelpacific.com/hc/en-us/articles/7313007383439-What-are-the-new-data-plans",
+      "title": "What are the new data plans? – Mobile - PNG",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "digicel-png-data-plans.png"
+    },
+    {
+      "slug": "ooredoo-qatar-postpaid",
+      "name": "Ooredoo Qatar Postpaid Plans",
+      "requestedUrl": "https://www.ooredoo.qa/web/en/postpaid-plans/",
+      "finalUrl": "https://www.ooredoo.qa/web/en/postpaid-plans/",
+      "title": "Ooredoo Postpaid Plans | Ooredoo Qatar",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "ooredoo-qatar-postpaid.png"
+    },
+    {
+      "slug": "stc-saudi-prepaid",
+      "name": "stc Saudi Prepaid",
+      "requestedUrl": "https://www.stc.com.sa/en/personal/mobile/packages/prepaid.html",
+      "finalUrl": "https://www.stc.com.sa/en/personal/mobile/packages/prepaid.html",
+      "title": "stc KSA | stc sawa Internet Packages | stc Prepaid Packages for Mobile",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "stc-saudi-prepaid.png"
+    },
+    {
+      "slug": "vodafone-png-prepaid",
+      "name": "Vodafone PNG Prepaid Plans",
+      "requestedUrl": "https://vodafone.com.pg/personal/prepaid",
+      "finalUrl": "https://vodafone.com.pg/personal/prepaid",
+      "title": "Vodafone PNG - Prepaid Plans | Vodafone PNG",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "vodafone-png-prepaid.png"
+    }
+  ]
+}

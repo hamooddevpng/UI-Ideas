@@ -1,0 +1,51 @@
+{
+  "capturedAt": "2026-09-13T22:37:24.265Z",
+  "pageStudy": {
+    "id": "special-home-passes",
+    "name": "Special Home Passes",
+    "task_title": "[Page Design] Special Home Passes"
+  },
+  "viewport": "1440x900",
+  "results": [
+    {
+      "slug": "digicel-png-time-data",
+      "name": "Digicel PNG Time-Based Data",
+      "requestedUrl": "https://support-pg.digicelpacific.com/hc/en-us/articles/6454570292495-Where-do-I-go-to-buy-this-time-based-data-plans",
+      "finalUrl": "https://support-pg.digicelpacific.com/hc/en-us/articles/6454570292495-Where-do-I-go-to-buy-this-time-based-data-plans",
+      "title": "Where do I go to buy this time based data plans? – Mobile - PNG",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "digicel-png-time-data.png"
+    },
+    {
+      "slug": "ooredoo-qatar-prepaid-promos",
+      "name": "Ooredoo Qatar Prepaid Promotions",
+      "requestedUrl": "https://www.ooredoo.qa/web/en/promotions/prepaid/",
+      "finalUrl": "https://www.ooredoo.qa/web/en/promotions/prepaid/",
+      "title": "Prepaid plans | Offers and Promotions | Ooredoo Qatar",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "ooredoo-qatar-prepaid-promos.png"
+    },
+    {
+      "slug": "stc-saudi-prepaid-addons",
+      "name": "stc Saudi Prepaid & Add-ons",
+      "requestedUrl": "https://www.stc.com.sa/en/personal/mobile/packages/prepaid.html",
+      "finalUrl": "https://www.stc.com.sa/en/personal/mobile/packages/prepaid.html",
+      "title": "stc KSA | stc sawa Internet Packages | stc Prepaid Packages for Mobile",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "stc-saudi-prepaid-addons.png"
+    },
+    {
+      "slug": "vodafone-png-specials",
+      "name": "Vodafone PNG Specials & Offers",
+      "requestedUrl": "https://vodafone.com.pg/personal/specials-offers",
+      "finalUrl": "https://vodafone.com.pg/personal/specials-offers",
+      "title": "Vodafone PNG - Specials & Offers | Vodafone PNG",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "vodafone-png-specials.png"
+    }
+  ]
+}

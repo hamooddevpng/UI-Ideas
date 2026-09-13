@@ -1,0 +1,51 @@
+{
+  "capturedAt": "2026-09-13T22:37:24.265Z",
+  "pageStudy": {
+    "id": "devices",
+    "name": "Devices",
+    "task_title": "[Page Design] Devices"
+  },
+  "viewport": "1440x900",
+  "results": [
+    {
+      "slug": "ooredoo-qatar-eshop",
+      "name": "Ooredoo Qatar eShop",
+      "requestedUrl": "https://eshop.ooredoo.qa/en/collections/all-products",
+      "finalUrl": "https://eshop.ooredoo.qa/en/collections/all-products",
+      "title": "All Products | Electronics & Gadgets | Ooredoo QA Qatar",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "ooredoo-qatar-eshop.png"
+    },
+    {
+      "slug": "verizon-smartphones",
+      "name": "Verizon Smartphones",
+      "requestedUrl": "https://www.verizon.com/smartphones/",
+      "finalUrl": "https://www.verizon.com/smartphones/",
+      "title": "Cell Phones: Shop the Best Smartphones Online | Verizon",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "verizon-smartphones.png"
+    },
+    {
+      "slug": "vodafone-png-broadband-devices",
+      "name": "Vodafone PNG Broadband Devices",
+      "requestedUrl": "https://vodafone.com.pg/personal/prepaid/mobile-broadband/broadband-devices",
+      "finalUrl": "https://vodafone.com.pg/personal/prepaid/mobile-broadband/broadband-devices",
+      "title": "",
+      "status": "partial",
+      "error": "page.goto: Timeout 45000ms exceeded.\nCall log:\n  - navigating to \"https://vodafone.com.pg/personal/prepaid/mobile-broadband/broadband-devices\", waiting until \"domcontentloaded\"\n",
+      "researchFilename": "vodafone-png-broadband-devices.png"
+    },
+    {
+      "slug": "vodafone-png-devices",
+      "name": "Vodafone PNG Devices",
+      "requestedUrl": "https://www.vodafone.com.pg/personal/specials-offers/devices",
+      "finalUrl": "https://www.vodafone.com.pg/personal/specials-offers/devices",
+      "title": "Vodafone PNG - Mix Devices| Vodafone PNG",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "vodafone-png-devices.png"
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "capturedAt": "2026-09-13T22:37:24.266Z",
+  "pageStudy": {
+    "id": "contact",
+    "name": "Contact",
+    "task_title": "[Page Design] Contact"
+  },
+  "viewport": "1440x900",
+  "results": [
+    {
+      "slug": "ooredoo-qatar-contact",
+      "name": "Ooredoo Qatar Contact",
+      "requestedUrl": "https://selfcare.ooredoo.qa/en/consumer/contact-us",
+      "finalUrl": "https://selfcare.ooredoo.qa/en/consumer/contact-us",
+      "title": "Ooredoo Customer Care | Contact Us | Ooredoo Qatar Consumer - Ooredoo",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "ooredoo-qatar-contact.png"
+    },
+    {
+      "slug": "verizon-contact",
+      "name": "Verizon Contact",
+      "requestedUrl": "https://www.verizon.com/support/contact-us/",
+      "finalUrl": "https://www.verizon.com/digital/nsa/nos/ui/ngd/contactus",
+      "title": "Contact us",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "verizon-contact.png"
+    },
+    {
+      "slug": "vodafone-png-contact",
+      "name": "Vodafone PNG Contact",
+      "requestedUrl": "https://vodafone.com.pg/help/contact-us",
+      "finalUrl": "https://vodafone.com.pg/help/contact-us",
+      "title": "Vodafone PNG - Contact Us",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "vodafone-png-contact.png"
+    },
+    {
+      "slug": "vodafone-png-help",
+      "name": "Vodafone PNG Help & Channels",
+      "requestedUrl": "https://vodafone.com.pg/help",
+      "finalUrl": "https://vodafone.com.pg/help",
+      "title": "Help| Vodafone PNG",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "vodafone-png-help.png"
+    }
+  ]
+}

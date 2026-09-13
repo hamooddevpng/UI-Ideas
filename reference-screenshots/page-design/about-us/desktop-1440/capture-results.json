@@ -1,0 +1,51 @@
+{
+  "capturedAt": "2026-09-13T22:37:24.266Z",
+  "pageStudy": {
+    "id": "about-us",
+    "name": "About Us",
+    "task_title": "[Page Design] About Us"
+  },
+  "viewport": "1440x900",
+  "results": [
+    {
+      "slug": "ooredoo-qatar-about",
+      "name": "Ooredoo Qatar About",
+      "requestedUrl": "https://www.ooredoo.qa/web/en/about-us/",
+      "finalUrl": "https://www.ooredoo.qa/web/en/about-us/",
+      "title": "About Us | Ooredoo Qatar",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "ooredoo-qatar-about.png"
+    },
+    {
+      "slug": "telefonica-about",
+      "name": "Telefonica About",
+      "requestedUrl": "https://www.telefonica.com/en/about-us/",
+      "finalUrl": "https://www.telefonica.com/en/about-us/",
+      "title": "About us, corporate purpose and values - Telefónica",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "telefonica-about.png"
+    },
+    {
+      "slug": "verizon-about",
+      "name": "Verizon About",
+      "requestedUrl": "https://www.verizon.com/about",
+      "finalUrl": "https://www.verizon.com/about",
+      "title": "Verizon Company Information, News, Leadership, Community & More",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "verizon-about.png"
+    },
+    {
+      "slug": "vodafone-png-about",
+      "name": "Vodafone PNG About",
+      "requestedUrl": "https://www.vodafone.com.pg/about",
+      "finalUrl": "https://www.vodafone.com.pg/about",
+      "title": "",
+      "status": "partial",
+      "error": "page.goto: Timeout 45000ms exceeded.\nCall log:\n  - navigating to \"https://www.vodafone.com.pg/about\", waiting until \"domcontentloaded\"\n",
+      "researchFilename": "vodafone-png-about.png"
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "capturedAt": "2026-09-13T22:37:24.265Z",
+  "pageStudy": {
+    "id": "home-entertainment",
+    "name": "Home Entertainment",
+    "task_title": "[Page Design] Home Entertainment"
+  },
+  "viewport": "1440x900",
+  "results": [
+    {
+      "slug": "digicel-png-data-tv",
+      "name": "Digicel PNG Data & TV Bundles",
+      "requestedUrl": "https://support-pg.digicelpacific.com/hc/en-us/articles/6454640004879-What-are-the-new-data-and-TV-bundle-plans",
+      "finalUrl": "https://support-pg.digicelpacific.com/hc/en-us/articles/6454640004879-What-are-the-new-data-and-TV-bundle-plans",
+      "title": "What are the new data and TV bundle plans? – Mobile - PNG",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "digicel-png-data-tv.png"
+    },
+    {
+      "slug": "ooredoo-qatar-entertainment",
+      "name": "Ooredoo Entertainment Services",
+      "requestedUrl": "https://www.ooredoo.qa/web/en/entertainment-services/",
+      "finalUrl": "https://www.ooredoo.qa/web/en/entertainment-services/",
+      "title": "Entertainment Services - Ooredoo Qatar",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "ooredoo-qatar-entertainment.png"
+    },
+    {
+      "slug": "ooredoo-qatar-tv",
+      "name": "Ooredoo TV",
+      "requestedUrl": "https://www.ooredoo.qa/web/en/otv-guide/",
+      "finalUrl": "https://www.ooredoo.qa/web/en/otv-guide/",
+      "title": "Ooredoo TV | Streaming & TV on Demand | Ooredoo Qatar",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "ooredoo-qatar-tv.png"
+    },
+    {
+      "slug": "stc-saudi-baity-entertainment",
+      "name": "stc Saudi Baity Entertainment",
+      "requestedUrl": "https://www.stc.com.sa/en/personal/homepackages/baity-fiber-packages.html",
+      "finalUrl": "https://www.stc.com.sa/en/personal/homepackages/baity-fiber-packages.html",
+      "title": "stc KSA | baity fiber packages",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "stc-saudi-baity-entertainment.png"
+    }
+  ]
+}

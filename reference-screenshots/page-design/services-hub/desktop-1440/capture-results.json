@@ -1,0 +1,51 @@
+{
+  "capturedAt": "2026-09-13T22:37:24.259Z",
+  "pageStudy": {
+    "id": "services-hub",
+    "name": "Services Hub",
+    "task_title": "[Page Design] Services Hub"
+  },
+  "viewport": "1440x900",
+  "results": [
+    {
+      "slug": "ooredoo-qatar-consumer",
+      "name": "Ooredoo Qatar Consumer Hub",
+      "requestedUrl": "https://www.ooredoo.qa/web/en/",
+      "finalUrl": "https://www.ooredoo.qa/web/en/",
+      "title": "Telecom and ICT Company in Qatar | Ooredoo Qatar",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "ooredoo-qatar-consumer.png"
+    },
+    {
+      "slug": "stc-saudi-consumer",
+      "name": "stc Saudi Consumer Hub",
+      "requestedUrl": "https://www.stc.com.sa/en/personal/home.html",
+      "finalUrl": "https://www.stc.com.sa/en/personal/home.html",
+      "title": "stc KSA | stc KSA Internet Packages | stc Personal Packages",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "stc-saudi-consumer.png"
+    },
+    {
+      "slug": "vodafone-png-prepaid-hub",
+      "name": "Vodafone PNG Prepaid Hub",
+      "requestedUrl": "https://vodafone.com.pg/personal/prepaid",
+      "finalUrl": "https://vodafone.com.pg/personal/prepaid",
+      "title": "Vodafone PNG - Prepaid Plans | Vodafone PNG",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "vodafone-png-prepaid-hub.png"
+    },
+    {
+      "slug": "vodafone-png-products-services",
+      "name": "Vodafone PNG Products & Services",
+      "requestedUrl": "https://vodafone.com.pg/personal/products-services",
+      "finalUrl": "https://vodafone.com.pg/personal/products-services",
+      "title": "Vodafone PNG - Products & Services | Vodafone PNG",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "vodafone-png-products-services.png"
+    }
+  ]
+}

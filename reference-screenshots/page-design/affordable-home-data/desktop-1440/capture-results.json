@@ -1,0 +1,51 @@
+{
+  "capturedAt": "2026-09-13T22:37:24.265Z",
+  "pageStudy": {
+    "id": "affordable-home-data",
+    "name": "Affordable Home Data",
+    "task_title": "[Page Design] Affordable Home Data"
+  },
+  "viewport": "1440x900",
+  "results": [
+    {
+      "slug": "digicel-png-home-internet",
+      "name": "Digicel PNG Home Internet Packages",
+      "requestedUrl": "https://support-pg.digicelpacific.com/hc/en-us/articles/6454640929679-What-are-the-home-internet-packages",
+      "finalUrl": "https://support-pg.digicelpacific.com/hc/en-us/articles/6454640929679-What-are-the-home-internet-packages",
+      "title": "What are the home internet packages? – Mobile - PNG",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "digicel-png-home-internet.png"
+    },
+    {
+      "slug": "ooredoo-qatar-home-plus",
+      "name": "Ooredoo Qatar Home+",
+      "requestedUrl": "https://www.ooredoo.qa/web/en/home-plus/",
+      "finalUrl": "https://www.ooredoo.qa/web/en/home-plus/",
+      "title": "Home+ Internet Packages | Fast Home Wifi | Ooredoo Qatar",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "ooredoo-qatar-home-plus.png"
+    },
+    {
+      "slug": "stc-saudi-baity",
+      "name": "stc Saudi Baity",
+      "requestedUrl": "https://www.stc.com.sa/en/personal/homepackages/baity-bundles.html",
+      "finalUrl": "https://www.stc.com.sa/en/personal/homepackages/baity-bundles.html",
+      "title": "stc KSA | Baity packages",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "stc-saudi-baity.png"
+    },
+    {
+      "slug": "vodafone-png-mobile-broadband",
+      "name": "Vodafone PNG Mobile Broadband",
+      "requestedUrl": "https://www.vodafone.com.pg/personal/prepaid/Plans/mobile-broadband",
+      "finalUrl": "https://www.vodafone.com.pg/personal/prepaid/Plans/mobile-broadband",
+      "title": "Vodafone PNG - Mobile Broadband | Vodafone PNG",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "vodafone-png-mobile-broadband.png"
+    }
+  ]
+}

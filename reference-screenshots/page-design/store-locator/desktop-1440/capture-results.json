@@ -1,0 +1,51 @@
+{
+  "capturedAt": "2026-09-13T22:37:24.266Z",
+  "pageStudy": {
+    "id": "store-locator",
+    "name": "Store Locator",
+    "task_title": "[Page Design] Store Locator"
+  },
+  "viewport": "1440x900",
+  "results": [
+    {
+      "slug": "att-stores",
+      "name": "AT&T Store Locator",
+      "requestedUrl": "https://www.att.com/stores/",
+      "finalUrl": "https://www.att.com/stores/",
+      "title": "AT&T Stores Near You - Get Directions & Book Appointments",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "att-stores.png"
+    },
+    {
+      "slug": "digicel-png-stores",
+      "name": "Digicel PNG Store Finder",
+      "requestedUrl": "https://support-pg.digicelpacific.com/hc/en-us/articles/6454578241679-Where-can-I-find-a-Digicel-Store",
+      "finalUrl": "https://support-pg.digicelpacific.com/hc/en-us/articles/6454578241679-Where-can-I-find-a-Digicel-Store",
+      "title": "Where can I find a Digicel Store? – Mobile - PNG",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "digicel-png-stores.png"
+    },
+    {
+      "slug": "ooredoo-qatar-business-desks",
+      "name": "Ooredoo Qatar Business Desks",
+      "requestedUrl": "https://www.ooredoo.qa/web/en/business/business-desks/",
+      "finalUrl": "https://www.ooredoo.qa/web/en/business/business-desks/",
+      "title": "Business Desks at Ooredoo Shops | Ooredoo Qatar",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "ooredoo-qatar-business-desks.png"
+    },
+    {
+      "slug": "vodafone-png-stores",
+      "name": "Vodafone PNG Store Locations",
+      "requestedUrl": "https://vodafone.com.pg/about/store-locations",
+      "finalUrl": "https://vodafone.com.pg/about/store-locations",
+      "title": "Vodafone PNG - Store Locations",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "vodafone-png-stores.png"
+    }
+  ]
+}

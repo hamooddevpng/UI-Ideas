@@ -1,0 +1,51 @@
+{
+  "capturedAt": "2026-09-13T22:37:24.265Z",
+  "pageStudy": {
+    "id": "business-fixed",
+    "name": "Business - Fixed",
+    "task_title": "[Page Design] Business — Fixed"
+  },
+  "viewport": "1440x900",
+  "results": [
+    {
+      "slug": "ooredoo-qatar-business-internet",
+      "name": "Ooredoo Qatar Business Internet",
+      "requestedUrl": "https://www.ooredoo.qa/web/en/business/local-connectivity/business-internet/",
+      "finalUrl": "https://www.ooredoo.qa/web/en/business/local-connectivity/business-internet/",
+      "title": "High Quality with Ooredoo Business Internet Plans | Ooredoo Qatar",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "ooredoo-qatar-business-internet.png"
+    },
+    {
+      "slug": "stc-saudi-business-link-5g",
+      "name": "stc Saudi Business Link 5G",
+      "requestedUrl": "https://www.stc.com.sa/en/business/connect/internet-voice/business-link-5g.html",
+      "finalUrl": "https://www.stc.com.sa/en/business/connect/internet-voice/business-link-5g.html",
+      "title": "stc KSA | stc 5G Internet 5G Broadband Internet Service For Reliable Connectivity",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "stc-saudi-business-link-5g.png"
+    },
+    {
+      "slug": "stc-saudi-fiber-link",
+      "name": "stc Saudi Fiber Link",
+      "requestedUrl": "https://www.stc.com.sa/en/business/connect/internet-voice/fiber-link.html",
+      "finalUrl": "https://www.stc.com.sa/en/business/connect/internet-voice/fiber-link.html",
+      "title": "stc KSA | stc fiber link Service For Enhanced Internet Connectivity",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "stc-saudi-fiber-link.png"
+    },
+    {
+      "slug": "vodafone-png-dedicated-internet",
+      "name": "Vodafone PNG Dedicated Internet",
+      "requestedUrl": "https://www.vodafone.com.pg/business/products-and-solutions/ict-cloud-solutions/dedicated-internet",
+      "finalUrl": "https://www.vodafone.com.pg/business/products-and-solutions/ict-cloud-solutions/dedicated-internet",
+      "title": "Vodafone PNG - Dedicated Internet",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "vodafone-png-dedicated-internet.png"
+    }
+  ]
+}
