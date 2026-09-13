@@ -1,0 +1,71 @@
+name: Verify Design 42 laser v17 in browser
+on:
+  push:
+    branches:
+      - fix/design42-laser-track-v17
+    paths:
+      - .github/workflows/design42-laser-v17-browser-test.yml
+permissions:
+  contents: write
+jobs:
+  browser-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/design42-laser-track-v17
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install browser test dependency
+        run: |
+          npm init -y >/dev/null 2>&1
+          npm install --save-dev @playwright/test >/dev/null 2>&1
+          npx playwright install chromium >/dev/null 2>&1
+      - name: Run browser assertion
+        run: |
+          python3 -m http.server 8000 >/tmp/design42-http.log 2>&1 &
+          cat > /tmp/laser.spec.js <<'EOF'
+          const { test, expect } = require('@playwright/test');
+          test('5px province bolt is actually visible and moving', async ({ page }) => {
+            await page.goto('http://127.0.0.1:8000/42-base.html', { waitUntil: 'domcontentloaded' });
+            await page.locator('#png-story').scrollIntoViewIfNeeded();
+            await page.waitForSelector('#provinceLaserBoltLayerV17', { timeout: 10000 });
+            await page.waitForFunction(() => {
+              const el = document.querySelector('.province-laser-bolt-v17');
+              return !!el && parseFloat(getComputedStyle(el).opacity) > 0;
+            }, null, { timeout: 10000 });
+            const sample = await page.evaluate(() => {
+              const el = document.querySelector('.province-laser-bolt-v17');
+              const cs = getComputedStyle(el);
+              const track = el.parentElement;
+              return {
+                width: cs.width,
+                height: cs.height,
+                opacity: parseFloat(cs.opacity),
+                animation: cs.animationName,
+                trackTransform: getComputedStyle(track).transform
+              };
+            });
+            console.log('LASER_SAMPLE', sample);
+            expect(sample.width).toBe('5px');
+            expect(sample.height).toBe('1.5px');
+            expect(sample.opacity).toBeGreaterThan(0);
+            expect(sample.animation).toContain('provinceLaserBoltTravelV17');
+            expect(sample.trackTransform).not.toBe('none');
+          });
+          EOF
+          cp /tmp/laser.spec.js laser.spec.js
+          npx playwright test laser.spec.js --reporter=line
+          rm laser.spec.js package.json package-lock.json
+          rm -rf node_modules
+      - name: Cleanup workflow
+        run: rm .github/workflows/design42-laser-v17-browser-test.yml
+      - name: Commit cleanup
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .github/workflows/design42-laser-v17-browser-test.yml
+          git commit -m 'ci: remove temporary Design 42 laser browser test'
+          git push origin HEAD:fix/design42-laser-track-v17
