@@ -71,6 +71,14 @@ assert.doesNotMatch(ecosystemCss,/(^|\})\s*body\s*\{/m,'Digital PNG V2 must not 
 assert.doesNotMatch(ecosystemCss,/(^|\})\s*h1\s*\{/m,'Digital PNG V2 heading styles must be scoped to its section.');
 assert.doesNotMatch(ecosystemCss,/(^|\})\s*\.eyebrow(?:\s|:|\{)/m,'Digital PNG V2 eyebrow styles must be scoped to its section.');
 
+// The pre-refactor prototype leaked its body typography globally. Preserve the
+// rendered result deliberately in Core instead of letting Digital PNG own it.
+assert.match(
+  core,
+  /body\{[^}]*font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif[^}]*\}/,
+  'Core must explicitly own the rendered Design 42 body typography that the old Digital PNG prototype accidentally supplied.'
+);
+
 const obsoletePaletteMarkers = [
   'brighter Telikom palette',
   'daylight Telikom palette',
