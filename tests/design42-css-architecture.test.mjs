@@ -6,6 +6,7 @@ const exists = path => fs.existsSync(new URL(`../${path}`, import.meta.url));
 
 const loader = read('42.html');
 const base = read('42-base.html');
+const core = read('assets/design42/design42-core.css');
 const theme = read('assets/design42/design42-theme.css');
 
 // Phase 1: loader and popup ownership.
@@ -26,11 +27,13 @@ assert.match(loader, /design42-chat\.css/, '42.html must load the external chatb
 // Phase 2: all page CSS has explicit external ownership.
 for (const file of [
   'assets/design42/design42-core.css',
+  'assets/design42/design42-ecosystem.css',
   'assets/design42/design42-components.css',
   'assets/design42/design42-theme.css'
 ]) assert.ok(exists(file), `Missing Design 42 stylesheet: ${file}`);
 
 assert.match(loader, /design42-core\.css/, '42.html must load the core stylesheet.');
+assert.match(loader, /design42-ecosystem\.css/, '42.html must load the Digital PNG V2 stylesheet.');
 assert.match(loader, /design42-components\.css/, '42.html must load the component stylesheet.');
 assert.match(loader, /design42-theme\.css/, '42.html must load the canonical external theme stylesheet.');
 
@@ -50,6 +53,23 @@ for(const marker of cascadeMarkers){
 
 assert.doesNotMatch(base, /<style(?:\s|>)/i, '42-base.html must not contain inline style blocks after the CSS ownership refactor.');
 assert.ok(!base.includes('Design 42: targeted lighter dark sections v1'), 'Legacy lighter-dark section patch must not remain in 42-base.html.');
+
+// The active Digital PNG V2 experience owns its CSS. Core must not carry the
+// three older ecosystem generations that shared selectors with it.
+for(const marker of [
+  'Design 42: light interactive Digital PNG ecosystem.',
+  'Design 42 ecosystem iteration 2: live routes + story overlays.',
+  'Design 42 ecosystem iteration 3: calm topology.'
+]) assert.ok(!core.includes(marker),`Core still contains obsolete Digital PNG CSS: ${marker}`);
+
+const ecosystemPrototype=read('design42-ecosystem-v2.html');
+assert.doesNotMatch(ecosystemPrototype,/<style(?:\s|>)/i,'Digital PNG V2 prototype must not carry inline CSS.');
+const ecosystemCss=read('assets/design42/design42-ecosystem.css');
+assert.doesNotMatch(ecosystemCss,/(^|\})\s*:root\s*\{/m,'Digital PNG V2 must not redefine global :root tokens.');
+assert.doesNotMatch(ecosystemCss,/(^|\})\s*html\s*\{/m,'Digital PNG V2 must not style the global html element.');
+assert.doesNotMatch(ecosystemCss,/(^|\})\s*body\s*\{/m,'Digital PNG V2 must not style the global body element.');
+assert.doesNotMatch(ecosystemCss,/(^|\})\s*h1\s*\{/m,'Digital PNG V2 heading styles must be scoped to its section.');
+assert.doesNotMatch(ecosystemCss,/(^|\})\s*\.eyebrow(?:\s|:|\{)/m,'Digital PNG V2 eyebrow styles must be scoped to its section.');
 
 const obsoletePaletteMarkers = [
   'brighter Telikom palette',
@@ -102,7 +122,7 @@ assert.match(base, /classList\.add\('laser-live'\)/, 'The active endpoint runtim
 
 // Phase 4: the audit must measure the actual external CSS ownership, not only inline HTML.
 const auditScript=read('scripts/audit-design42.mjs');
-for(const file of ['design42-core.css','design42-components.css','design42-theme.css','design42-chat.css']){
+for(const file of ['design42-core.css','design42-ecosystem.css','design42-components.css','design42-theme.css','design42-chat.css']){
   assert.ok(auditScript.includes(file),`Design 42 audit does not include external stylesheet ${file}.`);
 }
 assert.match(auditScript,/cssFiles/, 'Design 42 audit must report per-file external CSS ownership.');
