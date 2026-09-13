@@ -1,10 +1,12 @@
-name: Design 42 Chat Ownership Red
+name: Design 42 Chat Ownership Guard
 
 on:
   push:
     branches:
       - refactor/design42-css-cleanup
     paths:
+      - 'assets/design42/design42-components.css'
+      - 'assets/design42/design42-chat.css'
       - 'tests/design42-chat-ownership.test.mjs'
       - '.github/workflows/design42-chat-ownership-red.yml'
 
