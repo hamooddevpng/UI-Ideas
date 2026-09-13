@@ -2568,7 +2568,7 @@ footer{background:linear-gradient(180deg,#0b5f89 0%,#084b6d 100%)!important}
 
     const drawLaser=(laser,now)=>{
       const elapsed=now-laser.start;
-      const travel=Math.min(1,elapsed/laser.duration);
+      const travel=Math.max(0,Math.min(1,elapsed/laser.duration));
       const eased=travel*(2-travel);
       const headDist=laser.dist*eased;
       let tailDist=Math.max(0,headDist-5),done=false;
