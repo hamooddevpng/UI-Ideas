@@ -54,10 +54,59 @@
   filter:saturate(1.08) drop-shadow(0 10px 12px rgba(17,83,103,.12));
 }
 
+/* Invisible normal-flow marker used by the mobile scroll controller. */
+.eco-section .eco-scroll-start{
+  display:block;
+  width:100%;
+  height:0;
+  pointer-events:none;
+}
+
 @media (max-width:900px){
+  /*
+   * Keep the original illustration wider than the phone so it can be explored
+   * horizontally. Native horizontal touch scrolling remains available as a
+   * fallback, while JS also drives scrollLeft from vertical page progress.
+   */
+  .eco-section .eco-world{
+    overflow-x:auto;
+    overflow-y:hidden;
+    overscroll-behavior-inline:contain;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:thin;
+    scroll-behavior:auto;
+  }
+
+  .eco-section .eco-svg{
+    min-width:max(940px,145vw);
+  }
+
   .eco-section .eco-bottom{
     grid-template-columns:92px minmax(0,1fr);
     gap:16px;
+  }
+}
+
+@media (max-width:900px) and (prefers-reduced-motion:no-preference){
+  /*
+   * The board pins briefly while vertical scrolling advances the illustration
+   * from left to right. JS sets --eco-scroll-runway to match the real amount
+   * of horizontal overflow, then normal page scrolling resumes naturally.
+   */
+  .eco-section{
+    overflow:clip;
+    padding-bottom:calc(64px + var(--eco-scroll-runway,0px));
+  }
+
+  .eco-section .eco-board{
+    position:sticky;
+    top:68px;
+    z-index:4;
+  }
+
+  /* Disable the desktop mouse-parallax transform while scrollLeft owns motion. */
+  .eco-section .eco-svg{
+    transform:none !important;
   }
 }
 
