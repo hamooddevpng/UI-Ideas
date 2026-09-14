@@ -26,11 +26,41 @@ body{background:var(--ice);color:var(--ink)}
 .lead{color:var(--muted)}
 .kicker{color:var(--blue)}
 
-/* Header and hero use the approved deep Telikom treatment from the backup. */
-.site-header.scrolled{
-  background:rgba(6,25,37,.90);
-  border-bottom-color:rgba(255,255,255,.09);
+/* Header stays transparent over the hero, then becomes a light navigation bar after scroll. */
+.site-header,
+.site-header .main-nav a,
+.site-header .icon-btn,
+.site-header .selfcare,
+.site-header .brand{
+  transition:background-color .3s var(--ease),color .3s var(--ease),border-color .3s var(--ease),box-shadow .3s var(--ease);
 }
+.site-header.scrolled{
+  background:rgba(255,255,255,.96);
+  color:var(--ink);
+  border-bottom-color:rgba(16,43,60,.10);
+  box-shadow:0 10px 34px rgba(6,25,37,.08);
+}
+.site-header.scrolled .main-nav a{color:var(--ink)}
+.site-header.scrolled .icon-btn{
+  color:var(--ink);
+  background:rgba(8,117,201,.04);
+  border-color:rgba(16,43,60,.15);
+}
+.site-header.scrolled .icon-btn:hover,
+.site-header.scrolled .icon-btn:focus-visible{
+  background:rgba(8,117,201,.10);
+  border-color:rgba(8,117,201,.24);
+}
+.site-header.scrolled .selfcare{
+  background:var(--blue);
+  color:#fff;
+  box-shadow:0 8px 20px rgba(8,117,201,.18);
+}
+.site-header.scrolled .brand{
+  background:#fff;
+  box-shadow:0 8px 22px rgba(6,25,37,.10);
+}
+
 .hero{background:var(--navy)}
 .scene-phone{
   background:
