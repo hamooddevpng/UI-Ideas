@@ -11,6 +11,11 @@ const base = read('42-base.html');
 const core = read('assets/design42/design42-core.css');
 const theme = read('assets/design42/design42-theme.css');
 
+assert.ok(
+  (core.match(/!important/g) || []).length <= 693,
+  'Design 42 core specificity debt must not regress above the cleaned 693-declaration baseline.'
+);
+
 // Phase 1: loader and popup ownership.
 assert.ok(exists('assets/design42/design42-chat.css'), 'Design 42 popup presentation must live in an external chat stylesheet.');
 assert.doesNotMatch(
