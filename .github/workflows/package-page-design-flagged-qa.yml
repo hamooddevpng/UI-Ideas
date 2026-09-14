@@ -8,7 +8,9 @@ on:
 permissions:
   contents: read
 
-group: page-design-flagged-visual-qa
+concurrency:
+  group: page-design-flagged-visual-qa
+  cancel-in-progress: true
 
 jobs:
   package:
