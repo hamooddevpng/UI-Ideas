@@ -1,0 +1,22 @@
+name: Design 42 Newsroom Specificity
+
+on:
+  push:
+    branches:
+      - refactor/design42-css-cleanup
+    paths:
+      - '.github/workflows/design42-newsroom-specificity.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Run newsroom specificity guard
+        run: node tests/design42-core-specificity.test.mjs
