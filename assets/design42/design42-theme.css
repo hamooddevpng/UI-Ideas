@@ -143,14 +143,16 @@ body{background:var(--ice);color:var(--ink)}
   border:2px solid var(--navy);
   box-shadow:0 24px 64px rgba(6,25,37,.10),inset 0 1px 0 rgba(255,255,255,.92);
 }
+.support-orbit .kicker{color:var(--blue)}
 .support-orbit .support-copy h2{color:var(--navy)}
-.support-orbit .support-copy p{color:#4f7080}
+.support-orbit .support-copy p{color:#365b6d}
 .support-orbit .support-search{
   background:#fff;
   border:1px solid rgba(6,25,37,.14);
   box-shadow:0 10px 28px rgba(6,25,37,.07);
 }
 .support-orbit .support-search input{background:transparent;color:var(--ink)}
+.support-orbit .support-search input::placeholder{color:#607985;opacity:1}
 .support-orbit .support-radar i{border-color:rgba(8,117,201,.14)}
 .support-orbit .support-radar span{background:linear-gradient(rgba(8,117,201,.42),rgba(8,117,201,0))}
 .support-orbit .support-stage.searching .support-radar i{border-color:rgba(8,117,201,.30)}
@@ -160,7 +162,8 @@ body{background:var(--ice);color:var(--ink)}
   border-color:rgba(6,25,37,.16);
   box-shadow:0 10px 24px rgba(6,25,37,.06);
 }
-.support-orbit .support-link small{color:#6d8794}
+.support-orbit .support-link b{color:var(--navy)}
+.support-orbit .support-link small{color:#557180}
 .support-orbit .support-link:hover,
 .support-orbit .support-link:focus-visible{
   background:#fff;
@@ -169,8 +172,8 @@ body{background:var(--ice);color:var(--ink)}
   box-shadow:0 16px 38px rgba(6,25,37,.12);
 }
 .support-orbit .support-link:hover small,
-.support-orbit .support-link:focus-visible small{color:#587887}
-.support-hint{color:#7195a6}
+.support-orbit .support-link:focus-visible small{color:#456474}
+.support-hint{color:#557180}
 
 /* Compact active elements use the same backup navy and primary blue. */
 .btn.dark,.personal-offer-icon{background:var(--navy);border-color:var(--navy)}
