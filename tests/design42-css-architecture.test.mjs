@@ -12,8 +12,8 @@ const core = read('assets/design42/design42-core.css');
 const theme = read('assets/design42/design42-theme.css');
 
 assert.ok(
-  (core.match(/!important/g) || []).length <= 693,
-  'Design 42 core specificity debt must not regress above the cleaned 693-declaration baseline.'
+  (core.match(/!important/g) || []).length <= 671,
+  'Design 42 core specificity debt must not regress above the cleaned 671-declaration baseline.'
 );
 
 // Phase 1: loader and popup ownership.
