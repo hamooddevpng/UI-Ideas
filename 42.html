@@ -48,13 +48,15 @@ html,body{margin:0;min-height:100%;font-family:Manrope,Arial,sans-serif;backgrou
   };
 
   try{
-    const [baseHtml,coreCss,ecosystemHtml,ecosystemCss,ecosystemCleanCss,ecosystemCleanJs,componentCss,themeCss,chatCss]=await Promise.all([
+    const [baseHtml,coreCss,ecosystemHtml,ecosystemCss,ecosystemCleanCss,ecosystemCleanJs,serviceScrollCss,serviceScrollJs,componentCss,themeCss,chatCss]=await Promise.all([
       fetchText(source('42-base.html')),
       fetchText(source('assets/design42/design42-core.css')),
       fetchText(source('design42-ecosystem-v2.html')).catch(error=>{console.warn('Digital PNG enhancement markup could not be loaded.',error);return ''}),
       fetchText(source('assets/design42/design42-ecosystem.css')).catch(error=>{console.warn('Digital PNG enhancement styles could not be loaded.',error);return ''}),
       fetchText(source('assets/design42/design42-ecosystem-clean.css')).catch(error=>{console.warn('Digital PNG cleanup styles could not be loaded.',error);return ''}),
       fetchText(source('assets/design42/design42-ecosystem-clean.js')).catch(error=>{console.warn('Digital PNG cleanup behavior could not be loaded.',error);return ''}),
+      fetchText(source('assets/design42/design42-service-scroll.css')).catch(error=>{console.warn('Service scroll styles could not be loaded.',error);return ''}),
+      fetchText(source('assets/design42/design42-service-scroll.js')).catch(error=>{console.warn('Service scroll behavior could not be loaded.',error);return ''}),
       fetchText(source('assets/design42/design42-components.css')),
       fetchText(source('assets/design42/design42-theme.css')),
       fetchText(source('assets/design42/design42-chat.css'))
@@ -99,9 +101,17 @@ html,body{margin:0;min-height:100%;font-family:Manrope,Arial,sans-serif;backgrou
     addStyle(page,componentCss,'data-design42-components');
     // 4. One page theme owns color treatment.
     addStyle(page,themeCss,'data-design42-theme');
-    // 5. Ecosystem cleanup is intentionally last for the Digital PNG section.
+    // 5. Mobile service stories use an isolated vertical-to-horizontal scroll layer.
+    addStyle(page,serviceScrollCss,'data-design42-service-scroll');
+    if(serviceScrollJs){
+      const serviceScrollScript=page.createElement('script');
+      serviceScrollScript.setAttribute('data-design42-service-scroll','');
+      serviceScrollScript.textContent=serviceScrollJs;
+      page.body.appendChild(serviceScrollScript);
+    }
+    // 6. Ecosystem cleanup is intentionally late for the Digital PNG section.
     addStyle(page,ecosystemCleanCss,'data-design42-ecosystem-clean');
-    // 6. Popup chat presentation is intentionally last and isolated.
+    // 7. Popup chat presentation is intentionally last and isolated.
     addStyle(page,chatCss,'data-design42-chat-popup');
 
     document.open();
