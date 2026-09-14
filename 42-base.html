@@ -793,89 +793,100 @@ if(editorialImage&&editorialTitle&&editorialDetail&&editorialChips.length){
 
 <script>
 // Design 42: endpoint lasers v12
+// Rebuilt after the CSS architecture refactor: a literal 5px HTML bolt travels A -> B.
 (()=>{
-  const NS='http://www.w3.org/2000/svg';
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
   const boot=()=>{
+    const section=document.querySelector('.national-story-map');
+    const stage=document.getElementById('nationalMapStage');
     const network=document.getElementById('provinceNetworkV6');
-    if(!network){setTimeout(boot,100);return}
+    if(!section||!stage||!network){setTimeout(boot,80);return}
     if(document.getElementById('provinceLaserLayerV12'))return;
+
     const nodeEls=[...network.querySelectorAll('.province-node-v6')];
-    if(nodeEls.length<2){setTimeout(boot,100);return}
+    if(nodeEls.length<2){setTimeout(boot,80);return}
 
-    const nodes=nodeEls.map(el=>{
-      const m=el.transform.baseVal.consolidate();
-      return {el,x:m?m.matrix.e:0,y:m?m.matrix.f:0};
-    });
-
-    const layer=document.createElementNS(NS,'g');
+    const layer=document.createElement('div');
     layer.id='provinceLaserLayerV12';
-    const nodesGroup=network.lastElementChild;
-    if(nodesGroup&&nodesGroup.parentNode===network)network.insertBefore(layer,nodesGroup);else network.appendChild(layer);
+    layer.className='province-laser-layer-v12';
+    layer.setAttribute('aria-hidden','true');
+    stage.appendChild(layer);
 
-    const dist=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y);
+    let nodes=[];
+    const rebuild=()=>{
+      const sr=stage.getBoundingClientRect();
+      nodes=nodeEls.map(el=>{
+        const dot=el.querySelector('.dot')||el;
+        const r=dot.getBoundingClientRect();
+        return {el,x:r.left+r.width/2-sr.left,y:r.top+r.height/2-sr.top};
+      }).filter(p=>Number.isFinite(p.x)&&Number.isFinite(p.y));
+    };
+    rebuild();
+
     const pickPair=()=>{
-      for(let i=0;i<30;i++){
+      if(nodes.length<2)return null;
+      for(let tries=0;tries<32;tries++){
         const a=nodes[Math.floor(Math.random()*nodes.length)];
         const b=nodes[Math.floor(Math.random()*nodes.length)];
-        if(a===b)continue;
-        const d=dist(a,b);
-        if(d>55&&d<260)return [a,b];
+        if(!a||!b||a===b)continue;
+        const d=Math.hypot(b.x-a.x,b.y-a.y);
+        if(d>=80&&d<=620)return {a,b,d};
       }
-      return [nodes[0],nodes[1]];
+      return {a:nodes[0],b:nodes[1],d:Math.hypot(nodes[1].x-nodes[0].x,nodes[1].y-nodes[0].y)};
     };
 
-    const makeLine=(a,klass)=>{
-      const el=document.createElementNS(NS,'line');
-      el.setAttribute('class','province-laser-v12 '+klass);
-      el.setAttribute('x1',a.x);el.setAttribute('y1',a.y);
-      el.setAttribute('x2',a.x);el.setAttribute('y2',a.y);
-      layer.appendChild(el);
-      return el;
-    };
+    let active=0,visible=true;
+    const stats=window.__provinceLaserV12Stats={shots:0,finishes:0,last:null};
 
     const fire=()=>{
-      const [a,b]=pickPair();
-      const glow=makeLine(a,'glow');
-      const core=makeLine(a,'core');
-      const duration=220+Math.random()*120;
+      if(!visible||document.hidden||active>=4)return;
+      const pair=pickPair();
+      if(!pair)return;
+      const {a,b,d}=pair;
+      const dx=b.x-a.x,dy=b.y-a.y;
+      const angle=Math.atan2(dy,dx)*180/Math.PI;
+      const bolt=document.createElement('i');
+      bolt.className='province-bolt-v12';
+      layer.appendChild(bolt);
+      active++;stats.shots++;
+
+      const start=`translate3d(${a.x}px,${a.y}px,0) translate(-50%,-50%) rotate(${angle}deg)`;
+      const end=`translate3d(${b.x}px,${b.y}px,0) translate(-50%,-50%) rotate(${angle}deg)`;
+      const duration=Math.max(260,Math.min(520,d*.9));
+
       a.el.classList.add('laser-live');
-      setTimeout(()=>b.el.classList.add('laser-live'),Math.max(80,Math.floor(duration*.68)));
-      const started=performance.now();
+      setTimeout(()=>a.el.classList.remove('laser-live'),110);
+      setTimeout(()=>{
+        b.el.classList.add('laser-live');
+        setTimeout(()=>b.el.classList.remove('laser-live'),150);
+      },Math.max(90,duration-70));
 
-      const frame=now=>{
-        const t=Math.min(1,(now-started)/duration);
-        const e=1-Math.pow(1-t,3);
-        const x=a.x+(b.x-a.x)*e;
-        const y=a.y+(b.y-a.y)*e;
-        glow.setAttribute('x2',x);glow.setAttribute('y2',y);
-        core.setAttribute('x2',x);core.setAttribute('y2',y);
-        if(t<1){requestAnimationFrame(frame);return}
-        setTimeout(()=>{
-          glow.style.transition='opacity 60ms linear';
-          core.style.transition='opacity 60ms linear';
-          glow.style.opacity='0';core.style.opacity='0';
-          setTimeout(()=>{a.el.classList.remove('laser-live');b.el.classList.remove('laser-live');glow.remove();core.remove()},75);
-        },25);
-      };
-      requestAnimationFrame(frame);
+      const anim=bolt.animate([
+        {transform:start,opacity:0,offset:0},
+        {transform:start,opacity:1,offset:.04},
+        {transform:end,opacity:1,offset:.94},
+        {transform:end,opacity:0,offset:1}
+      ],{duration,easing:'linear',fill:'forwards'});
+
+      stats.last={from:{x:a.x,y:a.y},to:{x:b.x,y:b.y},distance:d,duration};
+      anim.onfinish=()=>{bolt.remove();active=Math.max(0,active-1);stats.finishes++};
+      anim.oncancel=()=>{bolt.remove();active=Math.max(0,active-1)};
     };
 
-    let timer=null;
-    const start=()=>{
-      if(timer)return;
-      fire();
-      timer=setInterval(()=>{
+    const tick=()=>{
+      if(visible&&!document.hidden){
         fire();
-        if(Math.random()>.62)setTimeout(fire,140);
-      },620);
+        if(Math.random()>.48)setTimeout(fire,95);
+      }
+      setTimeout(tick,230+Math.random()*150);
     };
-    const stop=()=>{if(timer){clearInterval(timer);timer=null}};
 
-    const section=document.querySelector('.national-story-map');
-    if(section&&'IntersectionObserver' in window){
-      new IntersectionObserver(([entry])=>entry.isIntersecting?start():stop(),{threshold:.03}).observe(section);
-    }else start();
-    document.addEventListener('visibilitychange',()=>document.hidden?stop():start());
+    if('ResizeObserver' in window)new ResizeObserver(rebuild).observe(stage);
+    else addEventListener('resize',rebuild,{passive:true});
+    if('IntersectionObserver' in window)new IntersectionObserver(([entry])=>{visible=entry.isIntersecting;if(visible)rebuild()},{threshold:.03}).observe(section);
+    document.addEventListener('visibilitychange',()=>{if(!document.hidden)rebuild()});
+
+    setTimeout(()=>{fire();setTimeout(fire,120);tick()},180);
   };
   boot();
 })();

@@ -15,8 +15,8 @@
 
 /* Design 42: laser tuning v13 */
 /* Canonical province laser presentation for the active endpoint v12 runtime. */
-.province-laser-v12{pointer-events:none;fill:none;stroke-linecap:round;vector-effect:non-scaling-stroke;opacity:1}
-.province-laser-v12.glow{display:none}
-.province-laser-v12.core{stroke:#079fd2;stroke-width:1.35;filter:none}
-.province-node-v6.laser-live .halo{fill:rgba(37,211,255,.28);stroke:#36d8ff;stroke-width:2.2;filter:drop-shadow(0 0 8px rgba(0,196,255,.9))}
-.province-node-v6.laser-live .dot{fill:#fff;stroke:#00b7ed;filter:drop-shadow(0 0 5px #fff) drop-shadow(0 0 11px #00b8ef)}
+.province-laser-layer-v12{position:absolute;inset:0;z-index:30;pointer-events:none;overflow:hidden}
+.province-bolt-v12{position:absolute;left:0;top:0;width:5px;height:1.5px;border-radius:999px;background:#006fd6;opacity:0;transform-origin:50% 50%;will-change:transform,opacity;box-shadow:none}
+.province-node-v6.laser-live .halo{fill:rgba(37,211,255,.20);stroke:#1bbce9;stroke-width:1.6;filter:none}
+.province-node-v6.laser-live .dot{fill:#fff;stroke:#007fc4;filter:none}
+@media(prefers-reduced-motion:reduce){.province-laser-layer-v12{display:none!important}}
