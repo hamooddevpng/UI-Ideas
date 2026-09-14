@@ -1,0 +1,124 @@
+/*
+ * Design 42 canonical color theme.
+ * Source of truth: backup/42-2026-09-10-1552-ist.
+ *
+ * This file owns color treatment only. Structure, spacing, typography, motion
+ * and component geometry remain in design42-core.css and design42-components.css.
+ */
+
+:root{
+  --blue:#0875c9;
+  --cyan:#1ca0e8;
+  --green:#20a957;
+  --navy:#061925;
+  --navy2:#0a2838;
+  --deep-bg:#061925;
+  --ink:#102b3c;
+  --ice:#f5fafc;
+  --sky:#e9f6fc;
+  --white:#fff;
+  --muted:#708995;
+  --line:rgba(16,43,60,.12);
+}
+
+html{background:var(--navy)}
+body{background:var(--ice);color:var(--ink)}
+.lead{color:var(--muted)}
+.kicker{color:var(--blue)}
+
+/* Header and hero use the approved deep Telikom treatment from the backup. */
+.site-header.scrolled{
+  background:rgba(6,25,37,.90);
+  border-bottom-color:rgba(255,255,255,.09);
+}
+.hero{background:var(--navy)}
+.scene-phone{
+  background:
+    radial-gradient(circle at 76% 43%,rgba(29,156,227,.25),transparent 28%),
+    linear-gradient(115deg,#061925 0 52%,#0a2e42 100%);
+}
+.scene-phone:after{
+  background:linear-gradient(90deg,rgba(6,25,37,.56) 0%,rgba(6,25,37,.26) 45%,rgba(6,25,37,.05) 72%,transparent 100%);
+}
+.scene-enterprise{
+  background:
+    radial-gradient(circle at 76% 50%,rgba(33,160,243,.18),transparent 25%),
+    linear-gradient(120deg,#03151e,#072535 65%,#0a3347);
+}
+.hero[data-scene-index="2"] .scene-enterprise:after{
+  background:linear-gradient(90deg,rgba(3,21,30,.48) 0%,rgba(3,21,30,.20) 48%,rgba(3,21,30,.03) 76%,transparent 100%);
+}
+.scene-tabs,.float-pill,.news-live-badge{background:rgba(6,25,37,.74)}
+
+/* Preserve the backup's light/dark rhythm rather than flattening every section. */
+.offers,.raffle-offers,.updates,.updates-live{background:#f9fcfd}
+.services,.service-lab{background:var(--sky)}
+.service-stories{background:var(--ice)}
+.quick-actions,.quick-launchpad{background:transparent}
+
+.service-portal,.service-stage{
+  background:
+    radial-gradient(circle at 54% 35%,rgba(33,160,243,.18),transparent 27%),
+    linear-gradient(145deg,#061925,#0a3043);
+}
+.service-art{
+  background:
+    radial-gradient(circle at 72% 35%,rgba(33,160,243,.18),transparent 27%),
+    linear-gradient(145deg,#061925,#0a3043);
+}
+.service-caption p{color:#c9dbe4}
+.service-magnet.over-card,.story-cursor.over-story{background:rgba(6,25,37,.90)}
+
+/* Current business layout keeps its geometry, with the backup's navy/brand accents. */
+.business-command{background:var(--navy)}
+.business-command .kicker{color:#8cd9ff}
+.business-command .lead{color:#94adba}
+.business-console{
+  background:linear-gradient(145deg,rgba(10,42,59,.96),rgba(4,22,32,.98));
+  border-color:rgba(153,222,255,.15);
+}
+.business-dual{background:var(--ice);color:var(--ink)}
+.business-dual .dual-world{background:rgba(255,255,255,.88);border-color:rgba(16,43,60,.10)}
+.business-dual .dual-world-copy h3,.portfolio-rail-heading b{color:#15394a}
+.business-dual .dual-world-copy>p,.portfolio-rail-heading>span{color:#728f9b}
+.business-dual .dual-world-copy>small{background:rgba(8,117,201,.075);color:var(--blue)}
+.business-dual .government-world .dual-world-copy>small{background:rgba(32,169,87,.08);color:var(--green)}
+.business-dual .dual-art-wrap{background:linear-gradient(145deg,#e7f7fd,#d8f0fb)}
+.business-dual .government-world .dual-art-wrap{background:linear-gradient(145deg,#eaf7ee,#dff1e5)}
+
+/* Digital PNG remains daylight, but uses the original Telikom blue/green system. */
+.digital-ecosystem,.eco-section{background:linear-gradient(180deg,#f3fbfd 0%,#f8fcfb 58%,#f4faf8 100%)}
+.digital-ecosystem-board,.eco-board{background:rgba(255,255,255,.84);border-color:rgba(29,101,128,.11)}
+.eco-map{background:linear-gradient(180deg,#edf9fb 0 49%,#edf8f3 49% 100%)}
+.eco-water{fill:#dff4f6}
+.eco-land{fill:#edf8f0}
+.eco-insight{background:rgba(252,254,254,.96)}
+
+/* National PNG storytelling keeps the dark photographic character of the backup. */
+.png-live{background:#092b2f}
+.png-story-wash{background:linear-gradient(90deg,rgba(3,23,28,.86) 0%,rgba(3,23,28,.62) 34%,rgba(3,23,28,.12) 66%,rgba(3,23,28,.24) 100%)}
+
+/* News and support return to the original cool-light canvases. */
+.updates-console,.news-feature{background:#fff;border-color:rgba(16,43,60,.11)}
+.live-feed-card{background:#fff;border-color:rgba(16,43,60,.09)}
+.support,.support-orbit{background:linear-gradient(180deg,var(--sky),var(--ice))}
+.support-orbit .support-stage{
+  background:
+    radial-gradient(circle at 54% 35%,rgba(33,160,243,.18),transparent 27%),
+    linear-gradient(145deg,#061925,#0a3043);
+}
+.support-orbit .support-link{background:rgba(255,255,255,.075);border-color:rgba(255,255,255,.18)}
+.support-orbit .support-link:hover{background:#fff;color:var(--navy);border-color:#fff}
+.support-hint{color:#7195a6}
+
+/* Compact active elements use the same backup navy and primary blue. */
+.btn.dark,.personal-offer-icon{background:var(--navy);border-color:var(--navy)}
+.offer-option:hover,.offer-option.active{background:var(--blue);color:#fff}
+.offer-option:hover small,.offer-option.active small{color:#dff3fb}
+
+/* Footer is the closing deep surface, matching the original Design 42 family. */
+footer{background:linear-gradient(180deg,var(--navy2) 0%,var(--navy) 100%)}
+.footer-top{border-bottom-color:rgba(255,255,255,.17)}
+.footer-brand p,.footer-col a,.footer-bottom{color:#b9d0da}
+.footer-col b{color:#fff}
+.footer-social-icon{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.22)}
