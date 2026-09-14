@@ -2,6 +2,30 @@
   const board=document.getElementById('ecoBoard');
   if(!board)return;
 
+  /*
+   * The satellite shares data-zone="starlink" with Remote PNG, but it is
+   * decorative artwork rather than an interaction target. Keeping it inside
+   * .eco-zone lets the active-state transform override its SVG positioning,
+   * which makes it jump toward the top-left when Remote PNG or the Telikom
+   * core becomes active. Remove only that state class so its original SVG
+   * transform and floating animation remain untouched.
+   */
+  const satellite=board.querySelector('.satellite-group.eco-zone');
+  if(satellite){
+    satellite.classList.remove('eco-zone','is-active');
+    satellite.removeAttribute('tabindex');
+    satellite.removeAttribute('role');
+    satellite.removeAttribute('aria-label');
+  }
+
+  /* Remove only the white TELIKOM word printed on the core building. */
+  const telikomCore=board.querySelector('.eco-zone[data-zone="telikom"]');
+  if(telikomCore){
+    telikomCore.querySelectorAll('text').forEach(text=>{
+      if(text.textContent.trim()==='TELIKOM')text.style.display='none';
+    });
+  }
+
   const zones=[...board.querySelectorAll('.eco-zone[data-zone]')];
   const summary=document.getElementById('ecoSummary');
   const summarySub=document.getElementById('ecoSummarySub');
