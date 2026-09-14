@@ -48,7 +48,7 @@ html,body{margin:0;min-height:100%;font-family:Manrope,Arial,sans-serif;backgrou
   };
 
   try{
-    const [baseHtml,coreCss,ecosystemHtml,ecosystemCss,ecosystemCleanCss,ecosystemCleanJs,componentCss,themeCss,chatCss]=await Promise.all([
+    const [baseHtml,coreCss,ecosystemHtml,ecosystemCss,ecosystemCleanCss,ecosystemCleanJs,componentCss,themeCss,chatCss,laserJs]=await Promise.all([
       fetchText(source('42-base.html')),
       fetchText(source('assets/design42/design42-core.css')),
       fetchText(source('design42-ecosystem-v2.html')).catch(error=>{console.warn('Digital PNG enhancement markup could not be loaded.',error);return ''}),
@@ -57,7 +57,8 @@ html,body{margin:0;min-height:100%;font-family:Manrope,Arial,sans-serif;backgrou
       fetchText(source('assets/design42/design42-ecosystem-clean.js')).catch(error=>{console.warn('Digital PNG cleanup behavior could not be loaded.',error);return ''}),
       fetchText(source('assets/design42/design42-components.css')),
       fetchText(source('assets/design42/design42-theme.css')),
-      fetchText(source('assets/design42/design42-chat.css'))
+      fetchText(source('assets/design42/design42-chat.css')),
+      fetchText(source('assets/design42/design42-lasers.js')).catch(error=>{console.warn('Province laser runtime could not be loaded.',error);return ''})
     ]);
 
     const parser=new DOMParser();
@@ -65,6 +66,14 @@ html,body{margin:0;min-height:100%;font-family:Manrope,Arial,sans-serif;backgrou
     const base=page.createElement('base');
     base.href=sourceRoot;
     page.head.prepend(base);
+
+    // Prevent the legacy v12 laser timer from starting. The v14 runtime removes this marker.
+    if(laserJs){
+      const legacyLaserMarker=page.createElement('span');
+      legacyLaserMarker.id='provinceLaserLayerV12';
+      legacyLaserMarker.hidden=true;
+      page.body.prepend(legacyLaserMarker);
+    }
 
     // 1. Core page/component structure and motion.
     addStyle(page,coreCss,'data-design42-core');
@@ -103,6 +112,13 @@ html,body{margin:0;min-height:100%;font-family:Manrope,Arial,sans-serif;backgrou
     addStyle(page,ecosystemCleanCss,'data-design42-ecosystem-clean');
     // 6. Popup chat presentation is intentionally last and isolated.
     addStyle(page,chatCss,'data-design42-chat-popup');
+
+    if(laserJs){
+      const laserScript=page.createElement('script');
+      laserScript.setAttribute('data-design42-lasers','');
+      laserScript.textContent=laserJs;
+      page.body.appendChild(laserScript);
+    }
 
     document.open();
     document.write('<!doctype html>'+page.documentElement.outerHTML);
