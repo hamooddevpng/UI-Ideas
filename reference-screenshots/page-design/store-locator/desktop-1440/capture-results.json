@@ -1,6 +1,6 @@
 {
-  "capturedAt": "2026-09-13T23:45:06.232Z",
-  "researchStandard": "minimum 15 references",
+  "capturedAt": "2026-09-14T00:32:21.807Z",
+  "researchStandard": "20+ candidates; minimum 15 valid visual references after QA",
   "pageStudy": {
     "id": "store-locator",
     "name": "Store Locator",
@@ -42,6 +42,17 @@
       "researchFilename": "bsp-bank.png"
     },
     {
+      "slug": "coral-sea-hotels",
+      "name": "Coral Sea Hotels Locations",
+      "category": "png-business",
+      "requestedUrl": "https://coralseahotels.com.pg/",
+      "finalUrl": "https://coralseahotels.com.pg/",
+      "title": "Coral Sea Hotels Papua New Guinea. Port Moresby, Lae, Goroka, Mt Hagen and Kiunga",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "coral-sea-hotels.png"
+    },
+    {
       "slug": "cpl-group",
       "name": "CPL Group",
       "category": "png-business",
@@ -64,15 +75,59 @@
       "researchFilename": "digicel-png-stores.png"
     },
     {
+      "slug": "ee-store-finder",
+      "name": "EE Store Finder",
+      "category": "telecom",
+      "requestedUrl": "https://ee.co.uk/store-finder",
+      "finalUrl": "https://ee.co.uk/store-finder",
+      "title": "EE Store Finder | How to find your nearest EE store | EE",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "ee-store-finder.png"
+    },
+    {
+      "slug": "ela-motors-locations",
+      "name": "Ela Motors Locations",
+      "category": "png-business",
+      "requestedUrl": "https://www.toyota-png.com/contact-us/",
+      "finalUrl": "https://www.toyota-png.com/contact-us/",
+      "title": "Contact Us at Ela Motors PNG | Toyota Dealer Alotau",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "ela-motors-locations.png"
+    },
+    {
       "slug": "kina-bank",
       "name": "Kina Bank",
       "category": "png-business",
       "requestedUrl": "https://www.kina.com.pg/",
       "finalUrl": "https://www.kina.com.pg/",
       "title": "",
-      "status": "error",
-      "error": "page.goto: Timeout 45000ms exceeded.\nCall log:\n  - navigating to \"https://www.kina.com.pg/\", waiting until \"domcontentloaded\"\n",
+      "status": "partial",
+      "error": "page.goto: net::ERR_CONNECTION_TIMED_OUT at https://www.kina.com.pg/\nCall log:\n  - navigating to \"https://www.kina.com.pg/\", waiting until \"domcontentloaded\"\n",
       "researchFilename": "kina-bank.png"
+    },
+    {
+      "slug": "moniplus-branches",
+      "name": "Moni Plus Branches",
+      "category": "png-business",
+      "requestedUrl": "https://www.moniplus.com/branches/",
+      "finalUrl": "https://www.moniplus.com/branches/",
+      "title": "BRANCHES - Moni Plus",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "moniplus-branches.png"
+    },
+    {
+      "slug": "o2-stores",
+      "name": "O2 Store Locator",
+      "category": "telecom",
+      "requestedUrl": "https://stores.o2.co.uk/",
+      "finalUrl": "https://stores.o2.co.uk/",
+      "title": "Find The Nearest O2 Phone Shop",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "o2-stores.png"
     },
     {
       "slug": "one-nz-stores",
@@ -103,7 +158,7 @@
       "requestedUrl": "https://www.optus.com.au/stores",
       "finalUrl": "https://www.optus.com.au/stores",
       "title": "",
-      "status": "error",
+      "status": "partial",
       "error": "page.goto: net::ERR_HTTP2_PROTOCOL_ERROR at https://www.optus.com.au/stores\nCall log:\n  - navigating to \"https://www.optus.com.au/stores\", waiting until \"domcontentloaded\"\n",
       "researchFilename": "optus-stores.png"
     },
@@ -123,7 +178,7 @@
       "name": "Spark Store Finder",
       "category": "telecom",
       "requestedUrl": "https://www.spark.co.nz/store-finder",
-      "finalUrl": "https://validate.perfdrive.com/ab466d675e06052c21f7cc4df3656c91/?ssa=c9dda4cb-125c-4fa1-b9e3-0d6fde9aec91&ssb=49825200919&ssc=https%3A%2F%2Fwww.spark.co.nz%2Fstore-finder&ssi=4dd600aa-cv5f-47f0-a478-10f1088a7f61&ssk=botmanager_support@radware.com&ssm=52504334218389462498132765754415&ssn=c6dc1af3a745415ef0818ca9fd10497426c6e4d470f8-82eb-47b2-8e925b&sso=ccbfbc04-d4de67336897cea10c2b5253e2f8c6074911f1b24306d5b3&ssp=48579961861789365919178936914472389&ssq=84546204296339841954842652331039492805154&ssr=MjAuNTEuMjA2Ljg0&sst=Mozilla/5.0%20(Windows%20NT%2010.0;%20Win64;%20x64)%20AppleWebKit/537.36%20(KHTML,%20like%20Gecko)%20Chrome/152.0.0.0%20Safari/537.36&ssu=MjQzdHdlWUhKQ2tCUDVaaUxsVW5FY0ZmUEl2Sm1va0d0UWp0S05sR2pYbz0=&ssv=&ssw=&ssx=eyJfX3V6bWYiOiI3ZjkwMDBlNGQ0NzBmOC04MmViLTQ3YjItOGMwNC1kNGRlNjczMzY4OTcxLTE3ODkzNDI2NTI2NjIzMTEyNzktMDA0ZjIyOTBhOWIyN2U5YTdiZjQ5IiwicmQiOiJzcGFyay5jby5ueiIsInV6bXgiOiI3ZmMwMDBkNmVjZGI5NS05Y2Q3LTQyNzAtYTAwMy0wYzIxMDExMjEwNzExLTE3ODkzNDI2NTI2NjIzMTEyNzktMDA0Zjc4MDliMTJlOWFkNGZmYjQ5In0=",
+      "finalUrl": "https://validate.perfdrive.com/ab466d675e06052c21f7cc4df3656c91/?ssa=cef5ad3d-b582-4600-b258-226a2c7a6230&ssb=42173259940&ssc=https%3A%2F%2Fwww.spark.co.nz%2Fstore-finder&ssi=ebf87903-cv5f-47bd-abc6-c41bf332ad9a&ssk=botmanager_support@radware.com&ssm=97916858982543776495054287952119&ssn=9bd507a44ed4aa8b7d26cccc342415b0f2ca6322a404-4734-4bee-8925a0&sso=c4f2900a-a2b63d728a45de8dc4ece0a38e34e3ca0714af4516e1563e&ssp=23536312941789338105178930360274617&ssq=81826054571523756888445263029725783744220&ssr=MTA0LjIwOS4xMS4xOA==&sst=Mozilla/5.0%20(Windows%20NT%2010.0;%20Win64;%20x64)%20AppleWebKit/537.36%20(KHTML,%20like%20Gecko)%20Chrome/152.0.0.0%20Safari/537.36&ssu=MFNxcDRIUVlXWFYyd28wcml6c3NvTkJCZjhJOExWTGovRkpPeGJQU1c0WT0=&ssv=&ssw=&ssx=eyJyZCI6InNwYXJrLmNvLm56IiwiX191em1mIjoiN2Y5MDAwNjMyMmE0MDQtNDczNC00YmVlLTgwMGEtYTJiNjNkNzI4YTQ1MS0xNzg5MzQ1MjYzODI3NDUxNjk5LTAwNDZjYTQ5ZDczNTc3OTRjYzk0OSIsInV6bXgiOiI3ZmMwMDA5MDg1ZjhlZC1kZTE0LTQ0MzItOWRkYy00OWNiZTFkNDg3ZWMxLTE3ODkzNDUyNjM4Mjc0NTE2OTktMDA1ZTMzOTY3YTUzOGM2YWFmZjQ5In0=",
       "title": "Radware Bot Manager Captcha",
       "status": "ok",
       "error": null,
@@ -139,6 +194,17 @@
       "status": "ok",
       "error": null,
       "researchFilename": "telstra-stores.png"
+    },
+    {
+      "slug": "three-store-locator",
+      "name": "Three Store Locator",
+      "category": "telecom",
+      "requestedUrl": "https://www.three.co.uk/store-locator",
+      "finalUrl": "https://www.three.co.uk/store-locator",
+      "title": "404 | Three",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "three-store-locator.png"
     },
     {
       "slug": "tmobile-stores",
@@ -172,6 +238,17 @@
       "status": "ok",
       "error": null,
       "researchFilename": "vodafone-png-stores.png"
+    },
+    {
+      "slug": "vodafone-uk-stores",
+      "name": "Vodafone UK Store Finder",
+      "category": "telecom",
+      "requestedUrl": "https://stores.vodafone.co.uk/search",
+      "finalUrl": "https://stores.vodafone.co.uk/search",
+      "title": "Find the nearest Vodafone store near you | Mobile Phones, SIM and Mobile Broadband Deals",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "vodafone-uk-stores.png"
     }
   ]
 }

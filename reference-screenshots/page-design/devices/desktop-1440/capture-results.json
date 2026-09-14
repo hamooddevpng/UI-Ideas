@@ -1,6 +1,6 @@
 {
-  "capturedAt": "2026-09-13T23:45:06.231Z",
-  "researchStandard": "minimum 15 references",
+  "capturedAt": "2026-09-14T00:32:21.805Z",
+  "researchStandard": "20+ candidates; minimum 15 valid visual references after QA",
   "pageStudy": {
     "id": "devices",
     "name": "Devices",
@@ -8,6 +8,17 @@
   },
   "viewport": "1440x900",
   "results": [
+    {
+      "slug": "apple-iphone",
+      "name": "Apple iPhone",
+      "category": "adjacent-retail",
+      "requestedUrl": "https://www.apple.com/uk/iphone/",
+      "finalUrl": "https://www.apple.com/iphone/",
+      "title": "iPhone - Apple",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "apple-iphone.png"
+    },
     {
       "slug": "att-phones",
       "name": "AT&T Phones",
@@ -31,6 +42,28 @@
       "researchFilename": "brian-bell.png"
     },
     {
+      "slug": "ee-phones",
+      "name": "EE Phones",
+      "category": "telecom",
+      "requestedUrl": "https://ee.co.uk/mobile/phones",
+      "finalUrl": "https://ee.co.uk/mobile/phones",
+      "title": "Sorry, we couldn't find that page",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "ee-phones.png"
+    },
+    {
+      "slug": "giffgaff-phones",
+      "name": "giffgaff Phones",
+      "category": "telecom",
+      "requestedUrl": "https://www.giffgaff.com/mobile-phones",
+      "finalUrl": "https://www.giffgaff.com/mobile-phones",
+      "title": "",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "giffgaff-phones.png"
+    },
+    {
       "slug": "globe-devices",
       "name": "Globe Devices",
       "category": "telecom",
@@ -48,9 +81,20 @@
       "requestedUrl": "https://www.jio.com/jcms/devices/",
       "finalUrl": "https://www.jio.com/mobile/devices/",
       "title": "Buy Jio Mobile Devices & Mobile Accessories Online",
+      "status": "error",
+      "error": "page.screenshot: Timeout 30000ms exceeded.\nCall log:\n  - taking page screenshot\n    - disabled all CSS animations\n  - waiting for fonts to load...\n  - fonts loaded\n",
+      "researchFilename": "jio-devices.png"
+    },
+    {
+      "slug": "o2-phones",
+      "name": "O2 Phones",
+      "category": "telecom",
+      "requestedUrl": "https://www.o2.co.uk/shop/phones",
+      "finalUrl": "https://www.o2.co.uk/shop/phones#.",
+      "title": "Phone Deals | Pay Monthly Mobile Phone Contracts",
       "status": "ok",
       "error": null,
-      "researchFilename": "jio-devices.png"
+      "researchFilename": "o2-phones.png"
     },
     {
       "slug": "one-nz-phones",
@@ -86,6 +130,17 @@
       "researchFilename": "optus-phones.png"
     },
     {
+      "slug": "samsung-smartphones",
+      "name": "Samsung Smartphones",
+      "category": "adjacent-retail",
+      "requestedUrl": "https://www.samsung.com/uk/smartphones/",
+      "finalUrl": "https://www.samsung.com/uk/smartphones/",
+      "title": "Smartphone Deals & Offers | New Samsung Phones | Samsung UK",
+      "status": "partial",
+      "error": "page.screenshot: Timeout 30000ms exceeded.\nCall log:\n  - taking page screenshot\n    - disabled all CSS animations\n  - waiting for fonts to load...\n  - fonts loaded\n",
+      "researchFilename": "samsung-smartphones.png"
+    },
+    {
       "slug": "singtel-phones",
       "name": "Singtel Phones",
       "category": "telecom",
@@ -112,7 +167,7 @@
       "name": "Spark Phones",
       "category": "telecom",
       "requestedUrl": "https://www.spark.co.nz/shop/mobile/phones",
-      "finalUrl": "https://validate.perfdrive.com/ab466d675e06052c21f7cc4df3656c91/?ssa=9ab066bc-6d05-433f-9cd5-98049a6bd8e3&ssb=47549292348&ssc=https%3A%2F%2Fwww.spark.co.nz%2Fshop%2Fmobile%2Fphones&ssi=590eb685-cv5f-450b-a8af-3d7291db5f46&ssk=botmanager_support@radware.com&ssm=41525127268149390406134343980429&ssn=69283ca8b76c08f75d8d3cbfcbfaebf18bebe4d470f8-82eb-47b2-82a90e&sso=519b2c04-d4de67336897eb06aba89c8d7f39e78f4a6797ae5357893b&ssp=17285769201789342559178935898549779&ssq=27129454281314690265242652633142009100842&ssr=MjAuNTEuMjA2Ljg0&sst=Mozilla/5.0%20(Windows%20NT%2010.0;%20Win64;%20x64)%20AppleWebKit/537.36%20(KHTML,%20like%20Gecko)%20Chrome/152.0.0.0%20Safari/537.36&ssu=MjQzdHdlWUhKQ2tCUDVaaUxsVW5FY0ZmUEl2Sm1va0d0UWp0S05sR2pYbz0=&ssv=&ssw=&ssx=eyJfX3V6bWYiOiI3ZjkwMDBlNGQ0NzBmOC04MmViLTQ3YjItOGMwNC1kNGRlNjczMzY4OTcxLTE3ODkzNDI2NTI2NjIxNjExMDQtMDA0OTNiZTZmNGE3ZjhiZmQwZjQwIiwicmQiOiJzcGFyay5jby5ueiIsInV6bXgiOiI3ZmMwMDBkNmVjZGI5NS05Y2Q3LTQyNzAtYTAwMy0wYzIxMDExMjEwNzExLTE3ODkzNDI2NTI2NjIxNjExMDQtMDA0MzVhZTMzODk3MTQ3OWJjYjQwIn0=",
+      "finalUrl": "https://validate.perfdrive.com/ab466d675e06052c21f7cc4df3656c91/?ssa=bb476731-35d3-424c-8948-cc1e19a2721d&ssb=23934285437&ssc=https%3A%2F%2Fwww.spark.co.nz%2Fshop%2Fmobile%2Fphones&ssi=e61150bb-cv5f-4beb-b8c1-b66cacceba29&ssk=botmanager_support@radware.com&ssm=87821518019722317400468915408503&ssn=d1f904ca700ba4624f78b18cd5f7334e193a6322a404-4734-4bee-8c8eaa&sso=dc9a500a-a2b63d728a4515168a18b9f7cec1819316b1b5473f0a18d1&ssp=08871053071789309236178938032091691&ssq=65433634549709253506645263228094623537727&ssr=MTA0LjIwOS4xMS4xOA==&sst=Mozilla/5.0%20(Windows%20NT%2010.0;%20Win64;%20x64)%20AppleWebKit/537.36%20(KHTML,%20like%20Gecko)%20Chrome/152.0.0.0%20Safari/537.36&ssu=MFNxcDRIUVlXWFYyd28wcml6c3NvTkJCZjhJOExWTGovRkpPeGJQU1c0WT0=&ssv=&ssw=&ssx=eyJfX3V6bWYiOiI3ZjkwMDA2MzIyYTQwNC00NzM0LTRiZWUtODAwYS1hMmI2M2Q3MjhhNDUxLTE3ODkzNDUyNjM4MjcyMzM5NDAtMDA0ODU1Y2VmYjIxNzBmNWVmNTQwIiwidXpteCI6IjdmYzAwMDkwODVmOGVkLWRlMTQtNDQzMi05ZGRjLTQ5Y2JlMWQ0ODdlYzEtMTc4OTM0NTI2MzgyNzIzMzk0MC0wMDUxZTI4NDg3MDVhYjdlZTE0NDAiLCJyZCI6InNwYXJrLmNvLm56In0=",
       "title": "Radware Bot Manager Captcha",
       "status": "ok",
       "error": null,
@@ -128,6 +183,28 @@
       "status": "ok",
       "error": null,
       "researchFilename": "telstra-phones.png"
+    },
+    {
+      "slug": "three-phone-brands",
+      "name": "Three Phone Brands",
+      "category": "telecom",
+      "requestedUrl": "https://www.three.co.uk/mobile-phones/brands",
+      "finalUrl": "https://www.three.co.uk/mobile-phones/brands",
+      "title": "Explore our range of mobile phone brands - Apple, Samsung, Google and more | Three",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "three-phone-brands.png"
+    },
+    {
+      "slug": "three-phones",
+      "name": "Three Phones",
+      "category": "telecom",
+      "requestedUrl": "https://www.three.co.uk/shop/phones",
+      "finalUrl": "https://www.three.co.uk/shop/phones",
+      "title": "Mobile Phone Deals – Pay Monthly Phone Contracts | Three",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "three-phones.png"
     },
     {
       "slug": "tmobile-phones",
@@ -168,10 +245,21 @@
       "category": null,
       "requestedUrl": "https://www.vodafone.com.pg/personal/specials-offers/devices",
       "finalUrl": "https://www.vodafone.com.pg/personal/specials-offers/devices",
-      "title": "",
-      "status": "error",
-      "error": "page.goto: Timeout 45000ms exceeded.\nCall log:\n  - navigating to \"https://www.vodafone.com.pg/personal/specials-offers/devices\", waiting until \"domcontentloaded\"\n",
+      "title": "Vodafone PNG - Mix Devices| Vodafone PNG",
+      "status": "ok",
+      "error": null,
       "researchFilename": "vodafone-png-devices.png"
+    },
+    {
+      "slug": "vodafone-uk-phones",
+      "name": "Vodafone UK Phones",
+      "category": "telecom",
+      "requestedUrl": "https://www.vodafone.co.uk/mobile/phones",
+      "finalUrl": "https://www.vodafone.co.uk/mobile/phones",
+      "title": "Buy Mobile Phones online | Vodafone UK",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "vodafone-uk-phones.png"
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
-  "capturedAt": "2026-09-13T23:45:06.232Z",
-  "researchStandard": "minimum 15 references",
+  "capturedAt": "2026-09-14T00:32:21.807Z",
+  "researchStandard": "20+ candidates; minimum 15 valid visual references after QA",
   "pageStudy": {
     "id": "careers",
     "name": "Careers",
@@ -42,6 +42,17 @@
       "researchFilename": "bsp-bank.png"
     },
     {
+      "slug": "bt-careers",
+      "name": "BT Careers",
+      "category": "telecom",
+      "requestedUrl": "https://jobs.bt.com/BT/",
+      "finalUrl": "https://jobs.bt.com/BT/",
+      "title": "Careers | BT Plc",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "bt-careers.png"
+    },
+    {
       "slug": "dict-png",
       "name": "PNG Department of ICT",
       "category": "png-government",
@@ -64,6 +75,17 @@
       "researchFilename": "dpm-png.png"
     },
     {
+      "slug": "ela-motors",
+      "name": "Ela Motors PNG",
+      "category": "png-business",
+      "requestedUrl": "https://www.toyota-png.com/",
+      "finalUrl": "https://www.toyota-png.com/",
+      "title": "Toyota vehicles | Ela Motors PNG",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "ela-motors.png"
+    },
+    {
       "slug": "kina-bank",
       "name": "Kina Bank",
       "category": "png-business",
@@ -73,6 +95,28 @@
       "status": "partial",
       "error": "page.goto: net::ERR_CONNECTION_TIMED_OUT at https://www.kina.com.pg/\nCall log:\n  - navigating to \"https://www.kina.com.pg/\", waiting until \"domcontentloaded\"\n",
       "researchFilename": "kina-bank.png"
+    },
+    {
+      "slug": "lae-biscuit",
+      "name": "Lae Biscuit",
+      "category": "png-business",
+      "requestedUrl": "https://www.laebiscuit.com/",
+      "finalUrl": "https://www.laebiscuit.com/",
+      "title": "HOME | Lae Biscuit Co. Ltd.",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "lae-biscuit.png"
+    },
+    {
+      "slug": "nac-png",
+      "name": "National Airports Corporation",
+      "category": "png-public-enterprise",
+      "requestedUrl": "https://nac.com.pg/",
+      "finalUrl": "https://nac.com.pg/",
+      "title": "National Airports Corporation",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "nac-png.png"
     },
     {
       "slug": "ooredoo-qatar-careers",
@@ -161,6 +205,28 @@
       "status": "ok",
       "error": null,
       "researchFilename": "verizon-careers.png"
+    },
+    {
+      "slug": "vodafone-applying",
+      "name": "Vodafone Hiring Process",
+      "category": "telecom",
+      "requestedUrl": "https://careers.vodafone.com/applying-to-vodafone/",
+      "finalUrl": "https://careers.vodafone.com/applying-to-vodafone/",
+      "title": "Applying to Vodafone · Vodafone Careers",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "vodafone-applying.png"
+    },
+    {
+      "slug": "vodafone-careers",
+      "name": "Vodafone Careers",
+      "category": "telecom",
+      "requestedUrl": "https://careers.vodafone.com/",
+      "finalUrl": "https://careers.vodafone.com/",
+      "title": "Vodafone Careers · Together we can",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "vodafone-careers.png"
     },
     {
       "slug": "vodafone-png-careers",

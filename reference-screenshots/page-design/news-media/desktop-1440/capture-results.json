@@ -1,6 +1,6 @@
 {
-  "capturedAt": "2026-09-13T23:45:06.232Z",
-  "researchStandard": "minimum 15 references",
+  "capturedAt": "2026-09-14T00:32:21.806Z",
+  "researchStandard": "20+ candidates; minimum 15 valid visual references after QA",
   "pageStudy": {
     "id": "news-media",
     "name": "News & Media",
@@ -53,6 +53,28 @@
       "researchFilename": "bsp-bank.png"
     },
     {
+      "slug": "bt-newsroom",
+      "name": "BT Group Newsroom",
+      "category": "telecom",
+      "requestedUrl": "https://newsroom.bt.com/",
+      "finalUrl": "https://newsroom.bt.com/",
+      "title": "BT Group Newsroom",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "bt-newsroom.png"
+    },
+    {
+      "slug": "deutsche-telekom-media",
+      "name": "Deutsche Telekom Media",
+      "category": "telecom",
+      "requestedUrl": "https://www.telekom.com/en/newsroom/latest-updates/media-information",
+      "finalUrl": "https://www.telekom.com/en/newsroom/latest-updates/media-information",
+      "title": "Media Information | Deutsche Telekom",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "deutsche-telekom-media.png"
+    },
+    {
       "slug": "dict-png",
       "name": "PNG Department of ICT",
       "category": "png-government",
@@ -64,6 +86,17 @@
       "researchFilename": "dict-png.png"
     },
     {
+      "slug": "gsma-newsroom",
+      "name": "GSMA Newsroom",
+      "category": "industry",
+      "requestedUrl": "https://www.gsma.com/newsroom/",
+      "finalUrl": "https://www.gsma.com/newsroom/",
+      "title": "Newsroom - Newsroom",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "gsma-newsroom.png"
+    },
+    {
       "slug": "kina-bank",
       "name": "Kina Bank",
       "category": "png-business",
@@ -73,6 +106,17 @@
       "status": "error",
       "error": "page.goto: Timeout 45000ms exceeded.\nCall log:\n  - navigating to \"https://www.kina.com.pg/\", waiting until \"domcontentloaded\"\n",
       "researchFilename": "kina-bank.png"
+    },
+    {
+      "slug": "nac-png",
+      "name": "National Airports Corporation PNG",
+      "category": "png-public-enterprise",
+      "requestedUrl": "https://nac.com.pg/",
+      "finalUrl": "https://nac.com.pg/",
+      "title": "National Airports Corporation",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "nac-png.png"
     },
     {
       "slug": "nicta-png",
@@ -108,6 +152,17 @@
       "researchFilename": "orange-newsroom.png"
     },
     {
+      "slug": "png-ports",
+      "name": "PNG Ports",
+      "category": "png-public-enterprise",
+      "requestedUrl": "https://www.pngports.com.pg/",
+      "finalUrl": "https://www.pngports.com.pg/",
+      "title": "Home - PNG Ports Corporation Limited",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "png-ports.png"
+    },
+    {
       "slug": "steamships",
       "name": "Steamships",
       "category": "png-business",
@@ -119,6 +174,17 @@
       "researchFilename": "steamships.png"
     },
     {
+      "slug": "telefonica-news",
+      "name": "Telefonica News",
+      "category": "telecom",
+      "requestedUrl": "https://www.telefonica.com/en/communication-room/",
+      "finalUrl": "https://www.telefonica.com/en/communication-room/",
+      "title": "Communication room - Telefónica",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "telefonica-news.png"
+    },
+    {
       "slug": "telstra-news",
       "name": "Telstra News",
       "category": "telecom",
@@ -128,6 +194,17 @@
       "status": "ok",
       "error": null,
       "researchFilename": "telstra-news.png"
+    },
+    {
+      "slug": "tmobile-newsroom",
+      "name": "T-Mobile Newsroom",
+      "category": "telecom",
+      "requestedUrl": "https://www.t-mobile.com/news",
+      "finalUrl": "https://www.t-mobile.com/news",
+      "title": "Latest T‑Mobile News, Offers & Devices | T‑Mobile Newsroom",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "tmobile-newsroom.png"
     },
     {
       "slug": "treasury-png",
@@ -157,7 +234,7 @@
       "category": null,
       "requestedUrl": "https://www.verizon.com/about/news",
       "finalUrl": "https://www.verizon.com/about/news",
-      "title": "Verizon News & Stories | About Verizon",
+      "title": "400 Request Header Or Cookie Too Large",
       "status": "ok",
       "error": null,
       "researchFilename": "verizon-news.png"
@@ -167,11 +244,22 @@
       "name": "Verizon Press Releases",
       "category": null,
       "requestedUrl": "https://www.verizon.com/about/news/media-center",
-      "finalUrl": "https://www.verizon.com/about/news/press-releases",
-      "title": "Press Releases | About Verizon",
+      "finalUrl": "https://www.verizon.com/about/news/media-center",
+      "title": "400 Request Header Or Cookie Too Large",
       "status": "ok",
       "error": null,
       "researchFilename": "verizon-press.png"
+    },
+    {
+      "slug": "vodafone-group-news",
+      "name": "Vodafone Group News",
+      "category": "telecom",
+      "requestedUrl": "https://www.vodafone.com/news",
+      "finalUrl": "https://www.vodafone.com/news",
+      "title": "News – Vodafone",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "vodafone-group-news.png"
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
-  "capturedAt": "2026-09-13T23:45:06.223Z",
-  "researchStandard": "minimum 15 references",
+  "capturedAt": "2026-09-14T00:32:21.796Z",
+  "researchStandard": "20+ candidates; minimum 15 valid visual references after QA",
   "pageStudy": {
     "id": "services-hub",
     "name": "Services Hub",
@@ -29,6 +29,28 @@
       "status": "ok",
       "error": null,
       "researchFilename": "att-consumer.png"
+    },
+    {
+      "slug": "bt-consumer",
+      "name": "BT",
+      "category": "telecom",
+      "requestedUrl": "https://www.bt.com/",
+      "finalUrl": "https://www.bt.com/",
+      "title": "Broadband, TV Packages, TNT Sports & Mobile Deals | BT",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "bt-consumer.png"
+    },
+    {
+      "slug": "ee-consumer",
+      "name": "EE",
+      "category": "telecom",
+      "requestedUrl": "https://ee.co.uk/",
+      "finalUrl": "https://ee.co.uk/",
+      "title": "EE | The UK's Best Mobile Network, Broadband & Tech Deals",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "ee-consumer.png"
     },
     {
       "slug": "globe-ph",
@@ -86,6 +108,17 @@
       "researchFilename": "singtel-consumer.png"
     },
     {
+      "slug": "sky-uk",
+      "name": "Sky UK",
+      "category": "telecom",
+      "requestedUrl": "https://www.sky.com/",
+      "finalUrl": "https://www.sky.com/",
+      "title": "Discover TV, Broadband & Mobile Phone Packages with Sky",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "sky-uk.png"
+    },
+    {
       "slug": "smart-ph",
       "name": "Smart",
       "category": "telecom",
@@ -101,7 +134,7 @@
       "name": "Spark NZ",
       "category": "telecom",
       "requestedUrl": "https://www.spark.co.nz/",
-      "finalUrl": "https://validate.perfdrive.com/ab466d675e06052c21f7cc4df3656c91/?ssa=701c3c05-bc56-49d7-ab92-24193892f0e6&ssb=07377222788&ssc=https%3A%2F%2Fwww.spark.co.nz%2Fonline%2Fshop%2Fpromotions%2Ftravel-and-move&ssi=436a2732-cv5f-49f2-8ea9-232143e18638&ssk=botmanager_support%40radware.com&ssm=33567138619197222130797396932728&ssn=8b617832c131ec31ca0b8aceda8649e09ab1e4d470f8-82eb-47b2-8c2141&sso=495aec04-d4de67336897b8b95d5a08ba48fed2628ce32826ed1ba904&ssp=84361220771789308116178938509593469&ssq=14551584265853510332942652890217824507340&ssr=MjAuNTEuMjA2Ljg0&sst=Mozilla%2F5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F152.0.0.0+Safari%2F537.36&ssu=MjQzdHdlWUhKQ2tCUDVaaUxsVW5FY0ZmUEl2Sm1va0d0UWp0S05sR2pYbz0%3D&ssv=&ssw=&ssx=eyJfX3V6bWYiOiI3ZjkwMDBlNGQ0NzBmOC04MmViLTQ3YjItOGMwNC1kNGRlNjczMzY4OTcxLTE3ODkzNDI2NTI2NjI1ODM1LTAwNGE2Mzc1NWU1OWNkY2MwMzUxMyIsInV6bXgiOiI3ZmMwMDBkNmVjZGI5NS05Y2Q3LTQyNzAtYTAwMy0wYzIxMDExMjEwNzExLTE3ODkzNDI2NTI2NjI1ODM1LTAwNGY4NGZjOGNkMzJiZGVhNTExMyIsInJkIjoic3BhcmsuY28ubnoifQ%3D%3D",
+      "finalUrl": "https://validate.perfdrive.com/ab466d675e06052c21f7cc4df3656c91/?ssa=32a5e2aa-4dda-4759-b57e-b435ca2b9ade&ssb=42816277887&ssc=https%3A%2F%2Fwww.spark.co.nz%2Fonline%2Fshop%2Fpromotions%2Ftravel-and-move&ssi=e6f50c97-cv5f-4075-bafd-0996e66edba6&ssk=botmanager_support%40radware.com&ssm=07569592100164047197339125084293&ssn=c67076d76c24e08106a73fe15a18c9b29a0e6322a404-4734-4bee-830cda&sso=fb4d000a-a2b63d728a4533804014bb4d47c23770dff6946b1f32b7ff&ssp=24645132781789339816178932372162760&ssq=03375924526931203530245263270316949177965&ssr=MTA0LjIwOS4xMS4xOA%3D%3D&sst=Mozilla%2F5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F152.0.0.0+Safari%2F537.36&ssu=MFNxcDRIUVlXWFYyd28wcml6c3NvTkJCZjhJOExWTGovRkpPeGJQU1c0WT0%3D&ssv=&ssw=&ssx=eyJfX3V6bWYiOiI3ZjkwMDA2MzIyYTQwNC00NzM0LTRiZWUtODAwYS1hMmI2M2Q3MjhhNDUxLTE3ODkzNDUyNjM4Mjc1OTIzLTAwNGYwZDQ5Y2IyMzFjMWYyM2MxOSIsInV6bXgiOiI3ZmMwMDA5MDg1ZjhlZC1kZTE0LTQ0MzItOWRkYy00OWNiZTFkNDg3ZWMxLTE3ODkzNDUyNjM4Mjc1OTIzLTAwNWQxMzFkZjNjMjViZjJhZTMxOSIsInJkIjoic3BhcmsuY28ubnoifQ%3D%3D",
       "title": "Radware Bot Manager Captcha",
       "status": "ok",
       "error": null,
@@ -130,6 +163,17 @@
       "researchFilename": "telstra-consumer.png"
     },
     {
+      "slug": "three-uk",
+      "name": "Three UK",
+      "category": "telecom",
+      "requestedUrl": "https://www.three.co.uk/",
+      "finalUrl": "https://www.three.co.uk/",
+      "title": "Three | Phones, Broadband & SIM Only deals",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "three-uk.png"
+    },
+    {
       "slug": "tmobile-consumer",
       "name": "T-Mobile",
       "category": "telecom",
@@ -152,6 +196,17 @@
       "researchFilename": "verizon-consumer.png"
     },
     {
+      "slug": "virgin-media",
+      "name": "Virgin Media",
+      "category": "telecom",
+      "requestedUrl": "https://www.virginmedia.com/",
+      "finalUrl": "https://www.virginmedia.com/",
+      "title": "Virgin Media | Cable Deals - See What You Can Do",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "virgin-media.png"
+    },
+    {
       "slug": "vodafone-png-prepaid-hub",
       "name": "Vodafone PNG Prepaid Hub",
       "category": null,
@@ -172,6 +227,17 @@
       "status": "ok",
       "error": null,
       "researchFilename": "vodafone-png-products-services.png"
+    },
+    {
+      "slug": "vodafone-uk",
+      "name": "Vodafone UK",
+      "category": "telecom",
+      "requestedUrl": "https://www.vodafone.co.uk/",
+      "finalUrl": "https://www.vodafone.co.uk/",
+      "title": "Vodafone - Our Best Ever Network | Now With 5G",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "vodafone-uk.png"
     }
   ]
 }

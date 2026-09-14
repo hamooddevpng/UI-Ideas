@@ -1,6 +1,6 @@
 {
-  "capturedAt": "2026-09-13T23:45:06.231Z",
-  "researchStandard": "minimum 15 references",
+  "capturedAt": "2026-09-14T00:32:21.805Z",
+  "researchStandard": "20+ candidates; minimum 15 valid visual references after QA",
   "pageStudy": {
     "id": "home-entertainment",
     "name": "Home Entertainment",
@@ -29,6 +29,17 @@
       "status": "partial",
       "error": "page.goto: net::ERR_HTTP2_PROTOCOL_ERROR at https://www.att.com/tv/\nCall log:\n  - navigating to \"https://www.att.com/tv/\", waiting until \"domcontentloaded\"\n",
       "researchFilename": "att-tv.png"
+    },
+    {
+      "slug": "bt-tv-home",
+      "name": "BT Broadband & TV",
+      "category": "telecom",
+      "requestedUrl": "https://www.bt.com/",
+      "finalUrl": "https://www.bt.com/",
+      "title": "Broadband, TV Packages, TNT Sports & Mobile Deals | BT",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "bt-tv-home.png"
     },
     {
       "slug": "digicel-png-data-tv",
@@ -130,11 +141,33 @@
       "researchFilename": "singtel-tv.png"
     },
     {
+      "slug": "sky-broadband",
+      "name": "Sky Broadband",
+      "category": "telecom",
+      "requestedUrl": "https://www.sky.com/broadband",
+      "finalUrl": "https://www.sky.com/broadband",
+      "title": "Sky's Best Broadband Deals & WiFi Packages",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "sky-broadband.png"
+    },
+    {
+      "slug": "sky-tv",
+      "name": "Sky TV",
+      "category": "telecom",
+      "requestedUrl": "https://www.sky.com/tv",
+      "finalUrl": "https://www.sky.com/tv",
+      "title": "Sky TV Packages & Deals | Netflix Included",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "sky-tv.png"
+    },
+    {
       "slug": "spark-entertainment",
       "name": "Spark Entertainment",
       "category": "telecom",
       "requestedUrl": "https://www.spark.co.nz/shop/entertainment",
-      "finalUrl": "https://validate.perfdrive.com/ab466d675e06052c21f7cc4df3656c91/?ssa=1764b901-7677-47d3-9be2-d39030a858ae&ssb=11874267244&ssc=https%3A%2F%2Fwww.spark.co.nz%2Fshop%2Fentertainment&ssi=9b935a2e-cv5f-4b2a-8fca-6c8436fb8b1f&ssk=botmanager_support@radware.com&ssm=53435567095016739370559680799563&ssn=aad3328de94082935ee1db711c264ba3a660e4d470f8-82eb-47b2-861301&sso=9215dc04-d4de673368978cd307aebfd1a4600fc29cc066bee760b9dc&ssp=54264050771789337916178936467880328&ssq=44866714277852605258042652236530466651217&ssr=MjAuNTEuMjA2Ljg0&sst=Mozilla/5.0%20(Windows%20NT%2010.0;%20Win64;%20x64)%20AppleWebKit/537.36%20(KHTML,%20like%20Gecko)%20Chrome/152.0.0.0%20Safari/537.36&ssu=MjQzdHdlWUhKQ2tCUDVaaUxsVW5FY0ZmUEl2Sm1va0d0UWp0S05sR2pYbz0=&ssv=&ssw=&ssx=eyJfX3V6bWYiOiI3ZjkwMDBlNGQ0NzBmOC04MmViLTQ3YjItOGMwNC1kNGRlNjczMzY4OTcxLTE3ODkzNDI2NTI2NjIxMjYzMTAtMDA0M2RhNDc2NjQ3YjE0MmU2OTM3IiwicmQiOiJzcGFyay5jby5ueiIsInV6bXgiOiI3ZmMwMDBkNmVjZGI5NS05Y2Q3LTQyNzAtYTAwMy0wYzIxMDExMjEwNzExLTE3ODkzNDI2NTI2NjIxMjYzMTAtMDA0OWQ3ZGFkNDMwNDIzN2Q1ZTM3In0=",
+      "finalUrl": "https://validate.perfdrive.com/ab466d675e06052c21f7cc4df3656c91/?ssa=eaf6d0ed-a461-4766-b259-addc4d93fc02&ssb=30350279198&ssc=https%3A%2F%2Fwww.spark.co.nz%2Fshop%2Fentertainment&ssi=a9d058f3-cv5f-4f56-ba33-2d3d9a31f678&ssk=botmanager_support@radware.com&ssm=74248003765533206371922536485382&ssn=1126f3141dd0b8232b281b78eff97f8817c56322a404-4734-4bee-86e788&sso=f4f2300a-a2b63d728a45f8740781bf5be41007b371a2bf71dd3ae43c&ssp=85241859391789303495178937015003974&ssq=73619574544846123413445263985999054013820&ssr=MTA0LjIwOS4xMS4xOA==&sst=Mozilla/5.0%20(Windows%20NT%2010.0;%20Win64;%20x64)%20AppleWebKit/537.36%20(KHTML,%20like%20Gecko)%20Chrome/152.0.0.0%20Safari/537.36&ssu=MFNxcDRIUVlXWFYyd28wcml6c3NvTkJCZjhJOExWTGovRkpPeGJQU1c0WT0=&ssv=&ssw=&ssx=eyJfX3V6bWYiOiI3ZjkwMDA2MzIyYTQwNC00NzM0LTRiZWUtODAwYS1hMmI2M2Q3MjhhNDUxLTE3ODkzNDUyNjM4MjcxODQzNTYtMDA0NGY3NDdiNmUzODBmMzMyNzM3IiwidXpteCI6IjdmYzAwMDkwODVmOGVkLWRlMTQtNDQzMi05ZGRjLTQ5Y2JlMWQ0ODdlYzEtMTc4OTM0NTI2MzgyNzE4NDM1Ni0wMDU3OWNlY2I0MTk3NWYxMDVmMzciLCJyZCI6InNwYXJrLmNvLm56In0=",
       "title": "Radware Bot Manager Captcha",
       "status": "ok",
       "error": null,
@@ -172,6 +205,39 @@
       "status": "ok",
       "error": null,
       "researchFilename": "verizon-fios-tv.png"
+    },
+    {
+      "slug": "virgin-media-broadband-tv",
+      "name": "Virgin Media Broadband & TV",
+      "category": "telecom",
+      "requestedUrl": "https://www.virginmedia.com/broadband",
+      "finalUrl": "https://www.virginmedia.com/broadband",
+      "title": "Broadband Deals | Award Winning | September 2026",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "virgin-media-broadband-tv.png"
+    },
+    {
+      "slug": "virgin-tv-subscriptions",
+      "name": "Virgin TV Subscriptions",
+      "category": "telecom",
+      "requestedUrl": "https://www.virginmedia.com/the-edit/tv/virgin-media-tv-subscriptions",
+      "finalUrl": "https://www.virginmedia.com/the-edit/tv/virgin-media-tv-subscriptions",
+      "title": "What subscriptions are available on Virgin TV? Disney+, Netflix, Sky Sports and More | Virgin Media O2",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "virgin-tv-subscriptions.png"
+    },
+    {
+      "slug": "vodafone-uk-broadband",
+      "name": "Vodafone UK Broadband",
+      "category": "telecom",
+      "requestedUrl": "https://www.vodafone.co.uk/broadband",
+      "finalUrl": "https://www.vodafone.co.uk/broadband",
+      "title": "Our best broadband deals | Award winning | September 2026 | Vodafone UK",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "vodafone-uk-broadband.png"
     }
   ]
 }

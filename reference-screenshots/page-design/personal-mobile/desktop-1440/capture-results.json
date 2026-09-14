@@ -1,6 +1,6 @@
 {
-  "capturedAt": "2026-09-13T23:45:06.230Z",
-  "researchStandard": "minimum 15 references",
+  "capturedAt": "2026-09-14T00:32:21.804Z",
+  "researchStandard": "20+ candidates; minimum 15 valid visual references after QA",
   "pageStudy": {
     "id": "personal-mobile",
     "name": "Personal - Mobile",
@@ -13,7 +13,7 @@
       "name": "Airtel Prepaid",
       "category": "telecom",
       "requestedUrl": "https://www.airtel.in/prepaid-recharge/",
-      "finalUrl": "https://www.airtel.in/recharge/prepaid/",
+      "finalUrl": "https://www.airtel.in/prepaid-recharge/",
       "title": "Online Mobile Recharge - Prepaid Plans & Topup | Airtel",
       "status": "ok",
       "error": null,
@@ -42,6 +42,28 @@
       "researchFilename": "digicel-png-data-plans.png"
     },
     {
+      "slug": "ee-payg",
+      "name": "EE PAYG Plans",
+      "category": "telecom",
+      "requestedUrl": "https://ee.co.uk/help/mobile/manage-use/pay-as-you-go/pay-as-you-go-mobile-plans-may2026",
+      "finalUrl": "https://ee.co.uk/help/mobile/manage-use/pay-as-you-go/pay-as-you-go-mobile-plans-may2026",
+      "title": "About pay as you go plans and benefits | Mobile Help | EE",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "ee-payg.png"
+    },
+    {
+      "slug": "giffgaff-payg",
+      "name": "giffgaff PAYG",
+      "category": "telecom",
+      "requestedUrl": "https://www.giffgaff.com/sim-only-deals/pay-as-you-go",
+      "finalUrl": "https://www.giffgaff.com/sim-only-deals/pay-as-you-go",
+      "title": "",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "giffgaff-payg.png"
+    },
+    {
       "slug": "globe-prepaid",
       "name": "Globe Prepaid",
       "category": "telecom",
@@ -51,6 +73,17 @@
       "status": "ok",
       "error": null,
       "researchFilename": "globe-prepaid.png"
+    },
+    {
+      "slug": "lebara-mobile",
+      "name": "Lebara UK",
+      "category": "telecom",
+      "requestedUrl": "https://www.lebara.co.uk/en/home.html",
+      "finalUrl": "https://www.lebara.co.uk/en/home.html",
+      "title": "Fast, Reliable Mobile Network at Affordable Prices | Lebara UK",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "lebara-mobile.png"
     },
     {
       "slug": "one-nz-prepay",
@@ -108,11 +141,22 @@
       "researchFilename": "smart-prepaid.png"
     },
     {
+      "slug": "smarty-plans",
+      "name": "SMARTY Plans",
+      "category": "telecom",
+      "requestedUrl": "https://smarty.co.uk/all-plans",
+      "finalUrl": "https://smarty.co.uk/all-plans",
+      "title": "All plans | SMARTY",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "smarty-plans.png"
+    },
+    {
       "slug": "spark-prepaid",
       "name": "Spark Prepaid",
       "category": "telecom",
       "requestedUrl": "https://www.spark.co.nz/shop/mobile-plans/prepaid",
-      "finalUrl": "https://validate.perfdrive.com/ab466d675e06052c21f7cc4df3656c91/?ssa=4686be55-377d-4f87-a50b-7913085a7742&ssb=97321230224&ssc=https%3A%2F%2Fwww.spark.co.nz%2Fshop%2Fmobile-plans%2Fprepaid&ssi=adc34c4f-cv5f-49a3-9cf8-b6d3e93a2464&ssk=botmanager_support@radware.com&ssm=87313828420638107250706767938201&ssn=1164b96cddf8dd1d3ce4b132e8db45245ed6e4d470f8-82eb-47b2-8f09ed&sso=2a962c04-d4de67336897e9674d8098838019badc13f01d41ca24cf16&ssp=67542557061789311095178933158014672&ssq=36996454267732257104442652796039494432870&ssr=MjAuNTEuMjA2Ljg0&sst=Mozilla/5.0%20(Windows%20NT%2010.0;%20Win64;%20x64)%20AppleWebKit/537.36%20(KHTML,%20like%20Gecko)%20Chrome/152.0.0.0%20Safari/537.36&ssu=MjQzdHdlWUhKQ2tCUDVaaUxsVW5FY0ZmUEl2Sm1va0d0UWp0S05sR2pYbz0=&ssv=&ssw=&ssx=eyJfX3V6bWYiOiI3ZjkwMDBlNGQ0NzBmOC04MmViLTQ3YjItOGMwNC1kNGRlNjczMzY4OTcxLTE3ODkzNDI2NTI2NjIyNDQ3Mi0wMDQxYTZkOWI4MTY5NjNjMmIyMjUiLCJ1em14IjoiN2ZjMDAwZDZlY2RiOTUtOWNkNy00MjcwLWEwMDMtMGMyMTAxMTIxMDcxMS0xNzg5MzQyNjUyNjYyMjQ0NzItMDA0Mjg2MDVjN2Q3MTA3NWEzMzI1IiwicmQiOiJzcGFyay5jby5ueiJ9",
+      "finalUrl": "https://validate.perfdrive.com/ab466d675e06052c21f7cc4df3656c91/?ssa=a04575f2-2a85-473d-82d1-785b2b11cfdc&ssb=50525230474&ssc=https%3A%2F%2Fwww.spark.co.nz%2Fshop%2Fmobile-plans%2Fprepaid&ssi=c4ace1d6-cv5f-4f53-9555-b577bdac8420&ssk=botmanager_support@radware.com&ssm=43198950843196060251625780995883&ssn=e1d5f555b924663bf6c45cf1b22fb9737b6d6322a404-4734-4bee-8d001c&sso=2caff00a-a2b63d728a45825d671262e59ff9f5a5371cdad7f03d12e7&ssp=96127046331789387889178932375443702&ssq=86130504530576597902845263716266288549087&ssr=MTA0LjIwOS4xMS4xOA==&sst=Mozilla/5.0%20(Windows%20NT%2010.0;%20Win64;%20x64)%20AppleWebKit/537.36%20(KHTML,%20like%20Gecko)%20Chrome/152.0.0.0%20Safari/537.36&ssu=MFNxcDRIUVlXWFYyd28wcml6c3NvTkJCZjhJOExWTGovRkpPeGJQU1c0WT0=&ssv=&ssw=&ssx=eyJfX3V6bWYiOiI3ZjkwMDA2MzIyYTQwNC00NzM0LTRiZWUtODAwYS1hMmI2M2Q3MjhhNDUxLTE3ODkzNDUyNjM4Mjc0MTE5OC0wMDQ5YjMyZTFiYmIzMzI3NTE2MjUiLCJ1em14IjoiN2ZjMDAwOTA4NWY4ZWQtZGUxNC00NDMyLTlkZGMtNDljYmUxZDQ4N2VjMS0xNzg5MzQ1MjYzODI3NDExOTgtMDA1YWU4YzVkMzMzZGNhY2ZlYTI1IiwicmQiOiJzcGFyay5jby5ueiJ9",
       "title": "Radware Bot Manager Captcha",
       "status": "ok",
       "error": null,
@@ -139,6 +183,17 @@
       "status": "ok",
       "error": null,
       "researchFilename": "telstra-prepaid.png"
+    },
+    {
+      "slug": "three-uk-payg",
+      "name": "Three UK PAYG Data Packs",
+      "category": "telecom",
+      "requestedUrl": "https://www.three.co.uk/pay-as-you-go/payg-data-packs",
+      "finalUrl": "https://www.three.co.uk/pay-as-you-go/payg-data-packs",
+      "title": "Pay As You Go Data Packs | Flexible Data Pack Deals | Three",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "three-uk-payg.png"
     },
     {
       "slug": "tmobile-prepaid",
@@ -172,6 +227,17 @@
       "status": "ok",
       "error": null,
       "researchFilename": "vodafone-png-prepaid.png"
+    },
+    {
+      "slug": "vodafone-uk-payg",
+      "name": "Vodafone UK PAYG",
+      "category": "telecom",
+      "requestedUrl": "https://www.vodafone.co.uk/sim-only/pay-as-you-go-sim",
+      "finalUrl": "https://www.vodafone.co.uk/sim-only/pay-as-you-go-sim",
+      "title": "Best Pay as you go SIM Deals | No-contract SIM | Vodafone UK",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "vodafone-uk-payg.png"
     }
   ]
 }

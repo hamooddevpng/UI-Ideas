@@ -1,6 +1,6 @@
 {
-  "capturedAt": "2026-09-13T23:45:06.232Z",
-  "researchStandard": "minimum 15 references",
+  "capturedAt": "2026-09-14T00:32:21.806Z",
+  "researchStandard": "20+ candidates; minimum 15 valid visual references after QA",
   "pageStudy": {
     "id": "business-mobile",
     "name": "Business - Mobile",
@@ -40,6 +40,39 @@
       "status": "ok",
       "error": null,
       "researchFilename": "bsp-bank.png"
+    },
+    {
+      "slug": "bt-business",
+      "name": "BT Business",
+      "category": "telecom",
+      "requestedUrl": "https://business.bt.com/",
+      "finalUrl": "https://business.bt.com/",
+      "title": "Business Broadband & Connectivity solutions | BT Business",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "bt-business.png"
+    },
+    {
+      "slug": "ee-business-mobile",
+      "name": "EE Business Mobile",
+      "category": "telecom",
+      "requestedUrl": "https://business.ee.co.uk/business-solutions/plans-devices/",
+      "finalUrl": "https://business.ee.co.uk/business-solutions/plans-devices/",
+      "title": "Business Plans and Devices | Business Mobile | EE Business",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "ee-business-mobile.png"
+    },
+    {
+      "slug": "ee-small-business-mobile",
+      "name": "EE Small Business Mobile",
+      "category": "telecom",
+      "requestedUrl": "https://business.ee.co.uk/business-solutions/plans-devices/small-business/",
+      "finalUrl": "https://business.ee.co.uk/business-solutions/plans-devices/small-business/",
+      "title": "Small Business Plans | Business Mobile | EE Business",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "ee-small-business-mobile.png"
     },
     {
       "slug": "kina-bank",
@@ -86,6 +119,17 @@
       "researchFilename": "optus-business-mobile.png"
     },
     {
+      "slug": "orange-business",
+      "name": "Orange Business",
+      "category": "telecom",
+      "requestedUrl": "https://www.orange-business.com/en",
+      "finalUrl": "https://www.orange-business.com/en",
+      "title": "Your partner for digital transformation | Orange Business",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "orange-business.png"
+    },
+    {
       "slug": "singtel-business-mobile",
       "name": "Singtel Business Mobile",
       "category": "telecom",
@@ -101,7 +145,7 @@
       "name": "Spark Business Mobile",
       "category": "telecom",
       "requestedUrl": "https://www.spark.co.nz/business/mobile",
-      "finalUrl": "https://validate.perfdrive.com/ab466d675e06052c21f7cc4df3656c91/?ssa=1b2e14be-0f56-4eb5-8de9-42e08b9ac11c&ssb=46910227351&ssc=https%3A%2F%2Fwww.spark.co.nz%2Fbusiness%2Fmobile&ssi=a590aeed-cv5f-4a26-a429-344ce13f2c66&ssk=botmanager_support@radware.com&ssm=24210514050484271467355210775588&ssn=77f13583c2a714616d6f0e60ee7bc36b1f75e4d470f8-82eb-47b2-8120ae&sso=d33acc04-d4de673368976a6b3ae8d429b6dcdab08ce70351677306c0&ssp=41927170021789366877178939783337978&ssq=37142564288741163702742652972360589539619&ssr=MjAuNTEuMjA2Ljg0&sst=Mozilla/5.0%20(Windows%20NT%2010.0;%20Win64;%20x64)%20AppleWebKit/537.36%20(KHTML,%20like%20Gecko)%20Chrome/152.0.0.0%20Safari/537.36&ssu=MjQzdHdlWUhKQ2tCUDVaaUxsVW5FY0ZmUEl2Sm1va0d0UWp0S05sR2pYbz0=&ssv=&ssw=&ssx=eyJfX3V6bWYiOiI3ZjkwMDBlNGQ0NzBmOC04MmViLTQ3YjItOGMwNC1kNGRlNjczMzY4OTcxLTE3ODkzNDI2NTI2NjIyMzQ5ODYtMDA0ZTJlZWQ1ZTI0MTRkODMyYjQ2IiwicmQiOiJzcGFyay5jby5ueiIsInV6bXgiOiI3ZmMwMDBkNmVjZGI5NS05Y2Q3LTQyNzAtYTAwMy0wYzIxMDExMjEwNzExLTE3ODkzNDI2NTI2NjIyMzQ5ODYtMDA0Y2UyZjAxMDJhMzQ3MmU3NDQ2In0=",
+      "finalUrl": "https://validate.perfdrive.com/ab466d675e06052c21f7cc4df3656c91/?ssa=b2a84279-3f20-4c87-aa3c-2e8fc8b60908&ssb=19597241678&ssc=https%3A%2F%2Fwww.spark.co.nz%2Fbusiness%2Fmobile&ssi=d478deb6-cv5f-46e1-87bb-241ec1ac3369&ssk=botmanager_support@radware.com&ssm=53198844519504192468387352806551&ssn=b489533ce0e453f27f79ad3ac7a0d96a3d7c6322a404-4734-4bee-86d6d4&sso=d399a00a-a2b63d728a45957fc7744c792630af4dd88c2b15b866fba0&ssp=14436185391789321249178931644699365&ssq=33345324561713770384545263536219256506286&ssr=MTA0LjIwOS4xMS4xOA==&sst=Mozilla/5.0%20(Windows%20NT%2010.0;%20Win64;%20x64)%20AppleWebKit/537.36%20(KHTML,%20like%20Gecko)%20Chrome/152.0.0.0%20Safari/537.36&ssu=MFNxcDRIUVlXWFYyd28wcml6c3NvTkJCZjhJOExWTGovRkpPeGJQU1c0WT0=&ssv=&ssw=&ssx=eyJfX3V6bWYiOiI3ZjkwMDA2MzIyYTQwNC00NzM0LTRiZWUtODAwYS1hMmI2M2Q3MjhhNDUxLTE3ODkzNDUyNjM4MjczNTQwMjgtMDA0Y2ViYThkYmE5MjdlNDVkYjQ2IiwidXpteCI6IjdmYzAwMDkwODVmOGVkLWRlMTQtNDQzMi05ZGRjLTQ5Y2JlMWQ0ODdlYzEtMTc4OTM0NTI2MzgyNzM1NDAyOC0wMDU0YzVkZDBjZmU1ZDc2ZDg2NDYiLCJyZCI6InNwYXJrLmNvLm56In0=",
       "title": "Radware Bot Manager Captcha",
       "status": "ok",
       "error": null,
@@ -141,6 +185,17 @@
       "researchFilename": "telstra-business-mobile.png"
     },
     {
+      "slug": "three-business",
+      "name": "Three Business",
+      "category": "telecom",
+      "requestedUrl": "https://www.three.co.uk/business",
+      "finalUrl": "https://www.three.co.uk/business",
+      "title": "Three Business | Superfast 5G broadband, business phone contracts & SIM plans",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "three-business.png"
+    },
+    {
       "slug": "tmobile-business-plans",
       "name": "T-Mobile Business Plans",
       "category": "telecom",
@@ -163,14 +218,25 @@
       "researchFilename": "verizon-business-mobile.png"
     },
     {
+      "slug": "vodafone-business",
+      "name": "Vodafone Business",
+      "category": "telecom",
+      "requestedUrl": "https://www.vodafone.co.uk/business",
+      "finalUrl": "https://www.vodafone.co.uk/business",
+      "title": "Business Solutions for All Business Sizes | Vodafone UK",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "vodafone-business.png"
+    },
+    {
       "slug": "vodafone-png-mobility",
       "name": "Vodafone PNG Mobility Solutions",
       "category": null,
       "requestedUrl": "https://vodafone.com.pg/business/products-and-solutions/mobility-solutions",
       "finalUrl": "https://vodafone.com.pg/business/products-and-solutions/mobility-solutions",
-      "title": "",
-      "status": "error",
-      "error": "page.goto: Timeout 45000ms exceeded.\nCall log:\n  - navigating to \"https://vodafone.com.pg/business/products-and-solutions/mobility-solutions\", waiting until \"domcontentloaded\"\n",
+      "title": "Vodafone PNG -",
+      "status": "ok",
+      "error": null,
       "researchFilename": "vodafone-png-mobility.png"
     }
   ]

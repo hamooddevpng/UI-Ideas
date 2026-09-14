@@ -1,6 +1,6 @@
 {
-  "capturedAt": "2026-09-13T23:45:06.232Z",
-  "researchStandard": "minimum 15 references",
+  "capturedAt": "2026-09-14T00:32:21.807Z",
+  "researchStandard": "20+ candidates; minimum 15 valid visual references after QA",
   "pageStudy": {
     "id": "faqs",
     "name": "FAQs",
@@ -31,6 +31,17 @@
       "researchFilename": "bsp-bank.png"
     },
     {
+      "slug": "bt-help",
+      "name": "BT Help",
+      "category": "telecom",
+      "requestedUrl": "https://www.bt.com/help",
+      "finalUrl": "https://www.bt.com/help",
+      "title": "Get support with BT products and services | BT Help",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "bt-help.png"
+    },
+    {
       "slug": "dict-png",
       "name": "PNG Department of ICT",
       "category": "png-government",
@@ -53,6 +64,17 @@
       "researchFilename": "digicel-png-help.png"
     },
     {
+      "slug": "ee-help",
+      "name": "EE Help",
+      "category": "telecom",
+      "requestedUrl": "https://ee.co.uk/help",
+      "finalUrl": "https://ee.co.uk/help",
+      "title": "Help Centre | EE",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "ee-help.png"
+    },
+    {
       "slug": "nicta-png",
       "name": "NICTA PNG",
       "category": "png-government",
@@ -62,6 +84,17 @@
       "status": "ok",
       "error": null,
       "researchFilename": "nicta-png.png"
+    },
+    {
+      "slug": "o2-help",
+      "name": "O2 Help",
+      "category": "telecom",
+      "requestedUrl": "https://www.o2.co.uk/help",
+      "finalUrl": "https://www.o2.co.uk/help",
+      "title": "Help & Support",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "o2-help.png"
     },
     {
       "slug": "one-nz-help",
@@ -92,7 +125,7 @@
       "requestedUrl": "https://www.optus.com.au/support",
       "finalUrl": "https://www.optus.com.au/support",
       "title": "",
-      "status": "partial",
+      "status": "error",
       "error": "page.goto: net::ERR_HTTP2_PROTOCOL_ERROR at https://www.optus.com.au/support\nCall log:\n  - navigating to \"https://www.optus.com.au/support\", waiting until \"domcontentloaded\"\n",
       "researchFilename": "optus-support.png"
     },
@@ -112,7 +145,7 @@
       "name": "Spark Help",
       "category": "telecom",
       "requestedUrl": "https://www.spark.co.nz/help",
-      "finalUrl": "https://validate.perfdrive.com/ab466d675e06052c21f7cc4df3656c91/?ssa=6039f6d7-a78f-4775-a6c2-9b8ff1f22cc1&ssb=73069290286&ssc=https%3A%2F%2Fwww.spark.co.nz%2Fhelp&ssi=50da50f5-cv5f-4bb9-a7f2-68b752848314&ssk=botmanager_support@radware.com&ssm=33262068008934371524387461502795&ssn=36c52db9a65665a6c54a42aa6ac30674b7eee4d470f8-82eb-47b2-8dba1e&sso=8449ec04-d4de67336897ffbc89ba654409b16c2b010c8030420de245&ssp=42050027921789313389178937788183175&ssq=14490594301332377511842652899569893937519&ssr=MjAuNTEuMjA2Ljg0&sst=Mozilla/5.0%20(Windows%20NT%2010.0;%20Win64;%20x64)%20AppleWebKit/537.36%20(KHTML,%20like%20Gecko)%20Chrome/152.0.0.0%20Safari/537.36&ssu=MjQzdHdlWUhKQ2tCUDVaaUxsVW5FY0ZmUEl2Sm1va0d0UWp0S05sR2pYbz0=&ssv=&ssw=&ssx=eyJfX3V6bWYiOiI3ZjkwMDBlNGQ0NzBmOC04MmViLTQ3YjItOGMwNC1kNGRlNjczMzY4OTcxLTE3ODkzNDI2NTI2NjIzNjExNjAtMDA0Nzg5NDZmMGIxMDNmNDYyNzUyIiwicmQiOiJzcGFyay5jby5ueiIsInV6bXgiOiI3ZmMwMDBkNmVjZGI5NS05Y2Q3LTQyNzAtYTAwMy0wYzIxMDExMjEwNzExLTE3ODkzNDI2NTI2NjIzNjExNjAtMDA0NzI4ZWZjMTdmNzc1Y2QwYjUyIn0=",
+      "finalUrl": "https://validate.perfdrive.com/ab466d675e06052c21f7cc4df3656c91/?ssa=6b76dffd-cabd-46f6-9cd9-8bcd127169d7&ssb=64807269424&ssc=https%3A%2F%2Fwww.spark.co.nz%2Fhelp&ssi=d94e3b02-cv5f-484b-9fd9-ede545180041&ssk=botmanager_support@radware.com&ssm=77297467722907196521027698220542&ssn=c2c906b246ebb65c3b4826edbf6b1f24e8146322a404-4734-4bee-8154d6&sso=d00a600a-a2b63d728a456d751481a8d5994b2ca4bd8d4a2a66b173d9&ssp=49968334471789344989178936184813025&ssq=28127764578290670803945263403036509872458&ssr=MTA0LjIwOS4xMS4xOA==&sst=Mozilla/5.0%20(Windows%20NT%2010.0;%20Win64;%20x64)%20AppleWebKit/537.36%20(KHTML,%20like%20Gecko)%20Chrome/152.0.0.0%20Safari/537.36&ssu=MFNxcDRIUVlXWFYyd28wcml6c3NvTkJCZjhJOExWTGovRkpPeGJQU1c0WT0=&ssv=&ssw=&ssx=eyJyZCI6InNwYXJrLmNvLm56IiwiX191em1mIjoiN2Y5MDAwNjMyMmE0MDQtNDczNC00YmVlLTgwMGEtYTJiNjNkNzI4YTQ1MS0xNzg5MzQ1MjYzODI3NTE4MjA3LTAwNDBiMDE0NjQyZTFiYjhhZDk1MiIsInV6bXgiOiI3ZmMwMDA5MDg1ZjhlZC1kZTE0LTQ0MzItOWRkYy00OWNiZTFkNDg3ZWMxLTE3ODkzNDUyNjM4Mjc1MTgyMDctMDA1ZWNkMTBmNTliMWVjNTk5NDUyIn0=",
       "title": "Radware Bot Manager Captcha",
       "status": "ok",
       "error": null,
@@ -128,6 +161,28 @@
       "status": "ok",
       "error": null,
       "researchFilename": "telstra-support.png"
+    },
+    {
+      "slug": "three-contact",
+      "name": "Three Contact & Support",
+      "category": "telecom",
+      "requestedUrl": "https://www.three.co.uk/support/contact-us",
+      "finalUrl": "https://www.three.co.uk/support/contact-us",
+      "title": "Need help with your Three account or device? | Support | Three",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "three-contact.png"
+    },
+    {
+      "slug": "three-support",
+      "name": "Three Support",
+      "category": "telecom",
+      "requestedUrl": "https://www.three.co.uk/support",
+      "finalUrl": "https://www.three.co.uk/support",
+      "title": "Support | Three",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "three-support.png"
     },
     {
       "slug": "tmobile-support",
@@ -172,6 +227,17 @@
       "status": "ok",
       "error": null,
       "researchFilename": "vodafone-png-help.png"
+    },
+    {
+      "slug": "vodafone-uk",
+      "name": "Vodafone UK",
+      "category": "telecom",
+      "requestedUrl": "https://www.vodafone.co.uk/",
+      "finalUrl": "https://www.vodafone.co.uk/",
+      "title": "Vodafone - Our Best Ever Network | Now With 5G",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "vodafone-uk.png"
     }
   ]
 }

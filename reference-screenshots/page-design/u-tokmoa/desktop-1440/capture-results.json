@@ -1,6 +1,6 @@
 {
-  "capturedAt": "2026-09-13T23:45:06.231Z",
-  "researchStandard": "minimum 15 references",
+  "capturedAt": "2026-09-14T00:32:21.805Z",
+  "researchStandard": "20+ candidates; minimum 15 valid visual references after QA",
   "pageStudy": {
     "id": "u-tokmoa",
     "name": "U-TOKMoa",
@@ -14,7 +14,7 @@
       "category": "telecom",
       "requestedUrl": "https://www.airtel.in/broadband/",
       "finalUrl": "https://www.airtel.in/new-connection/broadband/",
-      "title": "Buy New Broadband and Internet Connection for Home",
+      "title": "Airtel Wi-Fi",
       "status": "ok",
       "error": null,
       "researchFilename": "airtel-broadband.png"
@@ -31,6 +31,17 @@
       "researchFilename": "att-home-phone.png"
     },
     {
+      "slug": "bt-home",
+      "name": "BT Home",
+      "category": "telecom",
+      "requestedUrl": "https://www.bt.com/",
+      "finalUrl": "https://www.bt.com/",
+      "title": "Broadband, TV Packages, TNT Sports & Mobile Deals | BT",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "bt-home.png"
+    },
+    {
       "slug": "digicel-png-home-internet",
       "name": "Digicel PNG Home Internet",
       "category": null,
@@ -40,6 +51,17 @@
       "status": "ok",
       "error": null,
       "researchFilename": "digicel-png-home-internet.png"
+    },
+    {
+      "slug": "giffgaff-plans",
+      "name": "giffgaff",
+      "category": "telecom",
+      "requestedUrl": "https://www.giffgaff.com/sim-only",
+      "finalUrl": "https://www.giffgaff.com/sim-only",
+      "title": "",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "giffgaff-plans.png"
     },
     {
       "slug": "globe-home",
@@ -119,11 +141,22 @@
       "researchFilename": "singtel-home.png"
     },
     {
+      "slug": "sky-broadband",
+      "name": "Sky Broadband",
+      "category": "telecom",
+      "requestedUrl": "https://www.sky.com/broadband",
+      "finalUrl": "https://www.sky.com/broadband",
+      "title": "Sky's Best Broadband Deals & WiFi Packages",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "sky-broadband.png"
+    },
+    {
       "slug": "spark-landline",
       "name": "Spark Landline",
       "category": "telecom",
       "requestedUrl": "https://www.spark.co.nz/shop/landline",
-      "finalUrl": "https://validate.perfdrive.com/ab466d675e06052c21f7cc4df3656c91/?ssa=461a266c-244f-44cc-ab92-e4fef20bb702&ssb=53159299638&ssc=https%3A%2F%2Fwww.spark.co.nz%2Fshop%2Flandline&ssi=cb1a8445-cv5f-48dc-b147-c48a123c65a6&ssk=botmanager_support@radware.com&ssm=45814553726172912348229853460817&ssn=d51484c30cc06280990f344b0db7874a03f4e4d470f8-82eb-47b2-85397f&sso=b9a99c04-d4de67336897fda6566dfc927673bf4242349347e8a6c2b1&ssp=08369347761789340287178939316057235&ssq=66116944275795071779542652449995735171598&ssr=MjAuNTEuMjA2Ljg0&sst=Mozilla/5.0%20(Windows%20NT%2010.0;%20Win64;%20x64)%20AppleWebKit/537.36%20(KHTML,%20like%20Gecko)%20Chrome/152.0.0.0%20Safari/537.36&ssu=MjQzdHdlWUhKQ2tCUDVaaUxsVW5FY0ZmUEl2Sm1va0d0UWp0S05sR2pYbz0=&ssv=&ssw=&ssx=eyJfX3V6bWYiOiI3ZjkwMDBlNGQ0NzBmOC04MmViLTQ3YjItOGMwNC1kNGRlNjczMzY4OTcxLTE3ODkzNDI2NTI2NjIxMDQ4ODQtMDA0ZmE3ZGFhOGI1OGJjYTI5MTM0IiwicmQiOiJzcGFyay5jby5ueiIsInV6bXgiOiI3ZmMwMDBkNmVjZGI5NS05Y2Q3LTQyNzAtYTAwMy0wYzIxMDExMjEwNzExLTE3ODkzNDI2NTI2NjIxMDQ4ODQtMDA0NGUwOTAxMWJlNmRlMDUzNjM0In0=",
+      "finalUrl": "https://validate.perfdrive.com/ab466d675e06052c21f7cc4df3656c91/?ssa=b1baf49c-4284-4d9f-8c93-0ee6934729bd&ssb=21433225632&ssc=https%3A%2F%2Fwww.spark.co.nz%2Fshop%2Flandline&ssi=64bd936d-cv5f-473d-a2e7-62380acad284&ssk=botmanager_support@radware.com&ssm=74710494677558181342770350995671&ssn=2810b27f08500c0d87c458bdfcd738bae1646322a404-4734-4bee-8bd70f&sso=b689e00a-a2b63d728a45aad2fa2f3632f4ead2b2d1834ff67b991e7a&ssp=91458676181789312776178938116473826&ssq=27765144540944284406645263748999165089902&ssr=MTA0LjIwOS4xMS4xOA==&sst=Mozilla/5.0%20(Windows%20NT%2010.0;%20Win64;%20x64)%20AppleWebKit/537.36%20(KHTML,%20like%20Gecko)%20Chrome/152.0.0.0%20Safari/537.36&ssu=MFNxcDRIUVlXWFYyd28wcml6c3NvTkJCZjhJOExWTGovRkpPeGJQU1c0WT0=&ssv=&ssw=&ssx=eyJfX3V6bWYiOiI3ZjkwMDA2MzIyYTQwNC00NzM0LTRiZWUtODAwYS1hMmI2M2Q3MjhhNDUxLTE3ODkzNDUyNjM4MjcxNDU5OTYtMDA0MmQ1NmM3NDg5YzE4YmI4YzM0IiwidXpteCI6IjdmYzAwMDkwODVmOGVkLWRlMTQtNDQzMi05ZGRjLTQ5Y2JlMWQ0ODdlYzEtMTc4OTM0NTI2MzgyNzE0NTk5Ni0wMDVkNmI5ODAwYjU5Y2ExNTMxMzQiLCJyZCI6InNwYXJrLmNvLm56In0=",
       "title": "Radware Bot Manager Captcha",
       "status": "ok",
       "error": null,
@@ -145,11 +178,22 @@
       "name": "Telstra Home Phone",
       "category": "telecom",
       "requestedUrl": "https://www.telstra.com.au/home-phone",
-      "finalUrl": "https://www.telstra.com.au/phone-line?dclid=CJSYpaqw1csCFdhufgod8lMJCQ",
+      "finalUrl": "https://www.telstra.com.au/phone-line",
       "title": "Telstra landline plans and rates | Telstra",
       "status": "ok",
       "error": null,
       "researchFilename": "telstra-home-phone.png"
+    },
+    {
+      "slug": "three-data-sim",
+      "name": "Three Data Only SIM",
+      "category": "telecom",
+      "requestedUrl": "https://www.three.co.uk/sim/data-sim-payg",
+      "finalUrl": "https://www.three.co.uk/sim/data-sim-payg",
+      "title": "Pay As You Go Data Only SIMs  | Broadband | Three",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "three-data-sim.png"
     },
     {
       "slug": "verizon-home",
@@ -161,6 +205,28 @@
       "status": "ok",
       "error": null,
       "researchFilename": "verizon-home.png"
+    },
+    {
+      "slug": "virgin-media-broadband",
+      "name": "Virgin Media Broadband",
+      "category": "telecom",
+      "requestedUrl": "https://www.virginmedia.com/broadband",
+      "finalUrl": "https://www.virginmedia.com/broadband",
+      "title": "Broadband Deals | Award Winning | September 2026",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "virgin-media-broadband.png"
+    },
+    {
+      "slug": "vodafone-broadband-landline",
+      "name": "Vodafone Broadband & Landline",
+      "category": "telecom",
+      "requestedUrl": "https://www.vodafone.co.uk/broadband/broadband-and-landline",
+      "finalUrl": "https://www.vodafone.co.uk/broadband/broadband-and-landline",
+      "title": "Broadband and Landline Deals | Vodafone UK",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "vodafone-broadband-landline.png"
     },
     {
       "slug": "vodafone-png-mobile-broadband",

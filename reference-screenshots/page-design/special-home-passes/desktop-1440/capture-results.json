@@ -1,6 +1,6 @@
 {
-  "capturedAt": "2026-09-13T23:45:06.231Z",
-  "researchStandard": "minimum 15 references",
+  "capturedAt": "2026-09-14T00:32:21.805Z",
+  "researchStandard": "20+ candidates; minimum 15 valid visual references after QA",
   "pageStudy": {
     "id": "special-home-passes",
     "name": "Special Home Passes",
@@ -42,6 +42,28 @@
       "researchFilename": "digicel-png-time-data.png"
     },
     {
+      "slug": "ee-data-addons",
+      "name": "EE PAYG Data Add-ons",
+      "category": "telecom",
+      "requestedUrl": "https://ee.co.uk/help/mobile/manage-use/pay-as-you-go/payg-data-addons",
+      "finalUrl": "https://ee.co.uk/help/mobile/manage-use/pay-as-you-go/payg-data-addons",
+      "title": "About pay as you go data add-ons | Mobile Help | EE",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "ee-data-addons.png"
+    },
+    {
+      "slug": "giffgaff-payg",
+      "name": "giffgaff PAYG",
+      "category": "telecom",
+      "requestedUrl": "https://www.giffgaff.com/sim-only-deals/pay-as-you-go",
+      "finalUrl": "https://www.giffgaff.com/sim-only-deals/pay-as-you-go",
+      "title": "",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "giffgaff-payg.png"
+    },
+    {
       "slug": "globe-promos",
       "name": "Globe Prepaid Promos",
       "category": "telecom",
@@ -51,6 +73,17 @@
       "status": "ok",
       "error": null,
       "researchFilename": "globe-promos.png"
+    },
+    {
+      "slug": "lebara-mobile",
+      "name": "Lebara UK",
+      "category": "telecom",
+      "requestedUrl": "https://www.lebara.co.uk/en/home.html",
+      "finalUrl": "https://www.lebara.co.uk/en/home.html",
+      "title": "Just a moment...",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "lebara-mobile.png"
     },
     {
       "slug": "one-nz-offers",
@@ -108,11 +141,22 @@
       "researchFilename": "smart-promos.png"
     },
     {
+      "slug": "smarty-payg",
+      "name": "SMARTY PAYG",
+      "category": "telecom",
+      "requestedUrl": "https://smarty.co.uk/pay-as-you-go",
+      "finalUrl": "https://smarty.co.uk/pay-as-you-go",
+      "title": "Pay As You Go SIM Deals | Free PAYG SIM Card | SMARTY",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "smarty-payg.png"
+    },
+    {
       "slug": "spark-deals",
       "name": "Spark Deals",
       "category": "telecom",
       "requestedUrl": "https://www.spark.co.nz/deals",
-      "finalUrl": "https://validate.perfdrive.com/ab466d675e06052c21f7cc4df3656c91/?ssa=797d6859-940e-4e58-9dbe-9fea3ff830fe&ssb=55311290890&ssc=https%3A%2F%2Fwww.spark.co.nz%2Fdeals&ssi=f46363fd-cv5f-4a58-bf6f-3d4b8486c5e3&ssk=botmanager_support@radware.com&ssm=75127167004111625317427903816040&ssn=72ce3141160e092613f4d93f8539c5ec12a7e4d470f8-82eb-47b2-8510f5&sso=b125ac04-d4de673368974aedb3bcbbb361c20b8218f8c335a898002b&ssp=51127369031789369852178932120655177&ssq=67909974273654745096442652395577539554599&ssr=MjAuNTEuMjA2Ljg0&sst=Mozilla/5.0%20(Windows%20NT%2010.0;%20Win64;%20x64)%20AppleWebKit/537.36%20(KHTML,%20like%20Gecko)%20Chrome/152.0.0.0%20Safari/537.36&ssu=MjQzdHdlWUhKQ2tCUDVaaUxsVW5FY0ZmUEl2Sm1va0d0UWp0S05sR2pYbz0=&ssv=&ssw=&ssx=eyJfX3V6bWYiOiI3ZjkwMDBlNGQ0NzBmOC04MmViLTQ3YjItOGMwNC1kNGRlNjczMzY4OTcxLTE3ODkzNDI2NTI2NjI4Mzk0Mi0wMDQ0ZjY5NGQ0ZWJiM2E1YTc5MzEiLCJyZCI6InNwYXJrLmNvLm56IiwidXpteCI6IjdmYzAwMGQ2ZWNkYjk1LTljZDctNDI3MC1hMDAzLTBjMjEwMTEyMTA3MTEtMTc4OTM0MjY1MjY2MjgzOTQyLTAwNGFhYjJhOTc5ZDQyMjYyZWMzMSJ9",
+      "finalUrl": "https://validate.perfdrive.com/ab466d675e06052c21f7cc4df3656c91/?ssa=3c4988e8-e5d4-4223-84ab-7208b15a8111&ssb=61037226326&ssc=https%3A%2F%2Fwww.spark.co.nz%2Fdeals&ssi=a251cfa6-cv5f-453e-905a-f78072682d1f&ssk=botmanager_support@radware.com&ssm=60338004078404861316378197599314&ssn=f3f1a08011eeb80b2dbed08aeb3f385164446322a404-4734-4bee-8e3eab&sso=bdeec00a-a2b63d728a45d03eca65f93f2c483c97dd97cbff4f67dbe3&ssp=74551477651789393789178938973721664&ssq=90102914537335960787345263408143228336729&ssr=MTA0LjIwOS4xMS4xOA==&sst=Mozilla/5.0%20(Windows%20NT%2010.0;%20Win64;%20x64)%20AppleWebKit/537.36%20(KHTML,%20like%20Gecko)%20Chrome/152.0.0.0%20Safari/537.36&ssu=MFNxcDRIUVlXWFYyd28wcml6c3NvTkJCZjhJOExWTGovRkpPeGJQU1c0WT0=&ssv=&ssw=&ssx=eyJfX3V6bWYiOiI3ZjkwMDA2MzIyYTQwNC00NzM0LTRiZWUtODAwYS1hMmI2M2Q3MjhhNDUxLTE3ODkzNDUyNjM4MjcxMTAxNDgtMDA0MWQ4OGVlNjhjYTRmMDhiMTMxIiwidXpteCI6IjdmYzAwMDkwODVmOGVkLWRlMTQtNDQzMi05ZGRjLTQ5Y2JlMWQ0ODdlYzEtMTc4OTM0NTI2MzgyNzExMDE0OC0wMDVhZTg3ZWFhMzlhODU5M2Q1MzEiLCJyZCI6InNwYXJrLmNvLm56In0=",
       "title": "Radware Bot Manager Captcha",
       "status": "ok",
       "error": null,
@@ -141,6 +185,17 @@
       "researchFilename": "telstra-deals.png"
     },
     {
+      "slug": "three-data-packs",
+      "name": "Three PAYG Data Packs",
+      "category": "telecom",
+      "requestedUrl": "https://www.three.co.uk/pay-as-you-go/payg-data-packs",
+      "finalUrl": "https://www.three.co.uk/pay-as-you-go/payg-data-packs",
+      "title": "Pay As You Go Data Packs | Flexible Data Pack Deals | Three",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "three-data-packs.png"
+    },
+    {
       "slug": "tmobile-offers",
       "name": "T-Mobile Offers",
       "category": "telecom",
@@ -161,6 +216,17 @@
       "status": "ok",
       "error": null,
       "researchFilename": "verizon-deals.png"
+    },
+    {
+      "slug": "vodafone-payg-bundles",
+      "name": "Vodafone UK PAYG Bundles",
+      "category": "telecom",
+      "requestedUrl": "https://www.vodafone.co.uk/sim-only/pay-as-you-go-sim/renew-bundle",
+      "finalUrl": "https://www.vodafone.co.uk/sim-only/pay-as-you-go-sim/renew-bundle",
+      "title": "Pay as you go SIM bundles | Vodafone UK",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "vodafone-payg-bundles.png"
     },
     {
       "slug": "vodafone-png-specials",

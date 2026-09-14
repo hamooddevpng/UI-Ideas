@@ -1,6 +1,6 @@
 {
-  "capturedAt": "2026-09-13T23:45:06.231Z",
-  "researchStandard": "minimum 15 references",
+  "capturedAt": "2026-09-14T00:32:21.804Z",
+  "researchStandard": "20+ candidates; minimum 15 valid visual references after QA",
   "pageStudy": {
     "id": "affordable-home-data",
     "name": "Affordable Home Data",
@@ -31,6 +31,17 @@
       "researchFilename": "att-fiber.png"
     },
     {
+      "slug": "bt-home",
+      "name": "BT Broadband / Home",
+      "category": "telecom",
+      "requestedUrl": "https://www.bt.com/",
+      "finalUrl": "https://www.bt.com/",
+      "title": "Broadband, TV Packages, TNT Sports & Mobile Deals | BT",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "bt-home.png"
+    },
+    {
       "slug": "digicel-png-home-internet",
       "name": "Digicel PNG Home Internet Packages",
       "category": null,
@@ -40,6 +51,17 @@
       "status": "ok",
       "error": null,
       "researchFilename": "digicel-png-home-internet.png"
+    },
+    {
+      "slug": "giffgaff-broadband",
+      "name": "giffgaff",
+      "category": "telecom",
+      "requestedUrl": "https://www.giffgaff.com/",
+      "finalUrl": "https://www.giffgaff.com/",
+      "title": "",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "giffgaff-broadband.png"
     },
     {
       "slug": "globe-home",
@@ -108,11 +130,22 @@
       "researchFilename": "singtel-broadband.png"
     },
     {
+      "slug": "sky-broadband",
+      "name": "Sky Broadband",
+      "category": "telecom",
+      "requestedUrl": "https://www.sky.com/broadband",
+      "finalUrl": "https://www.sky.com/broadband",
+      "title": "Sky's Best Broadband Deals & WiFi Packages",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "sky-broadband.png"
+    },
+    {
       "slug": "spark-broadband",
       "name": "Spark Broadband",
       "category": "telecom",
       "requestedUrl": "https://www.spark.co.nz/shop/internet",
-      "finalUrl": "https://validate.perfdrive.com/ab466d675e06052c21f7cc4df3656c91/?ssa=fadcdacc-9060-45fc-99e2-b84878c55155&ssb=92880247403&ssc=https%3A%2F%2Fwww.spark.co.nz%2Fshop%2Finternet&ssi=39f43e82-cv5f-4b2e-9a45-525ffaf913b5&ssk=botmanager_support@radware.com&ssm=86995337789753891280030596675763&ssn=d8b3a7c01c676f9b308da434a6987c0c205de4d470f8-82eb-47b2-897147&sso=8c6c8c04-d4de673368971f9b3433f5f8a4339c4c823188d57f7e9fb8&ssp=62920791351789392921178938006320691&ssq=44072184270024256107142652558432046197767&ssr=MjAuNTEuMjA2Ljg0&sst=Mozilla/5.0%20(Windows%20NT%2010.0;%20Win64;%20x64)%20AppleWebKit/537.36%20(KHTML,%20like%20Gecko)%20Chrome/152.0.0.0%20Safari/537.36&ssu=MjQzdHdlWUhKQ2tCUDVaaUxsVW5FY0ZmUEl2Sm1va0d0UWp0S05sR2pYbz0=&ssv=&ssw=&ssx=eyJfX3V6bWYiOiI3ZjkwMDBlNGQ0NzBmOC04MmViLTQ3YjItOGMwNC1kNGRlNjczMzY4OTcxLTE3ODkzNDI2NTI2NjI0ODMyMS0wMDQ0MDQxNjM1MWJhYmI4MzFmMjgiLCJ1em14IjoiN2ZjMDAwZDZlY2RiOTUtOWNkNy00MjcwLWEwMDMtMGMyMTAxMTIxMDcxMS0xNzg5MzQyNjUyNjYyNDgzMjEtMDA0NjVlOWE4MDdhODA4ZTBkZTI4IiwicmQiOiJzcGFyay5jby5ueiJ9",
+      "finalUrl": "https://validate.perfdrive.com/ab466d675e06052c21f7cc4df3656c91/?ssa=1f0396ad-2dd6-420e-8ae3-08e1a4a3051b&ssb=54993290679&ssc=https%3A%2F%2Fwww.spark.co.nz%2Fshop%2Finternet&ssi=edb22aaa-cv5f-4516-9b9d-6ea11ef8b63d&ssk=botmanager_support@radware.com&ssm=60229082239356365287343747820016&ssn=f28d23bc1b764fb9d84092045847b5808a526322a404-4734-4bee-80bc01&sso=36dcb00a-a2b63d728a452764a4b28d19a61533c8f4f0d7d008a1c14e&ssp=08592870741789334238178934564450993&ssq=07356234533744857593445263632873957815255&ssr=MTA0LjIwOS4xMS4xOA==&sst=Mozilla/5.0%20(Windows%20NT%2010.0;%20Win64;%20x64)%20AppleWebKit/537.36%20(KHTML,%20like%20Gecko)%20Chrome/152.0.0.0%20Safari/537.36&ssu=MFNxcDRIUVlXWFYyd28wcml6c3NvTkJCZjhJOExWTGovRkpPeGJQU1c0WT0=&ssv=&ssw=&ssx=eyJfX3V6bWYiOiI3ZjkwMDA2MzIyYTQwNC00NzM0LTRiZWUtODAwYS1hMmI2M2Q3MjhhNDUxLTE3ODkzNDUyNjM4Mjc3NDAwOS0wMDRjYTg4MTg5MmQwZDYyYTgyMjgiLCJ1em14IjoiN2ZjMDAwOTA4NWY4ZWQtZGUxNC00NDMyLTlkZGMtNDljYmUxZDQ4N2VjMS0xNzg5MzQ1MjYzODI3NzQwMDktMDA1OGQzZjY4ODliNmQzMzkzNzI4IiwicmQiOiJzcGFyay5jby5ueiJ9",
       "title": "Radware Bot Manager Captcha",
       "status": "ok",
       "error": null,
@@ -141,6 +174,17 @@
       "researchFilename": "telstra-internet.png"
     },
     {
+      "slug": "three-data-sim",
+      "name": "Three Data Only SIM",
+      "category": "telecom",
+      "requestedUrl": "https://www.three.co.uk/sim/data-sim-payg",
+      "finalUrl": "https://www.three.co.uk/sim/data-sim-payg",
+      "title": "Pay As You Go Data Only SIMs  | Broadband | Three",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "three-data-sim.png"
+    },
+    {
       "slug": "tmobile-home",
       "name": "T-Mobile Home Internet",
       "category": "telecom",
@@ -163,6 +207,17 @@
       "researchFilename": "verizon-home.png"
     },
     {
+      "slug": "virgin-media-broadband",
+      "name": "Virgin Media Broadband",
+      "category": "telecom",
+      "requestedUrl": "https://www.virginmedia.com/broadband",
+      "finalUrl": "https://www.virginmedia.com/broadband",
+      "title": "Broadband Deals | Award Winning | September 2026",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "virgin-media-broadband.png"
+    },
+    {
       "slug": "vodafone-png-mobile-broadband",
       "name": "Vodafone PNG Mobile Broadband",
       "category": null,
@@ -172,6 +227,17 @@
       "status": "ok",
       "error": null,
       "researchFilename": "vodafone-png-mobile-broadband.png"
+    },
+    {
+      "slug": "vodafone-uk-broadband",
+      "name": "Vodafone UK Broadband",
+      "category": "telecom",
+      "requestedUrl": "https://www.vodafone.co.uk/broadband",
+      "finalUrl": "https://www.vodafone.co.uk/broadband",
+      "title": "Our best broadband deals | Award winning | September 2026 | Vodafone UK",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "vodafone-uk-broadband.png"
     }
   ]
 }

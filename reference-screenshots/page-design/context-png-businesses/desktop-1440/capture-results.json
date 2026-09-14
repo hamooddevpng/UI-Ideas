@@ -1,6 +1,6 @@
 {
-  "capturedAt": "2026-09-13T23:45:06.233Z",
-  "researchStandard": "context cohort",
+  "capturedAt": "2026-09-14T00:32:21.807Z",
+  "researchStandard": "context cohort with QA backfills",
   "pageStudy": {
     "id": "context-png-businesses",
     "name": "PNG Business Context",
@@ -42,6 +42,17 @@
       "researchFilename": "bsp-bank.png"
     },
     {
+      "slug": "coral-sea-hotels",
+      "name": "Coral Sea Hotels",
+      "category": "png-business",
+      "requestedUrl": "https://coralseahotels.com.pg/",
+      "finalUrl": "https://coralseahotels.com.pg/",
+      "title": "Coral Sea Hotels Papua New Guinea. Port Moresby, Lae, Goroka, Mt Hagen and Kiunga",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "coral-sea-hotels.png"
+    },
+    {
       "slug": "cpl-group",
       "name": "CPL Group",
       "category": "png-business",
@@ -62,6 +73,28 @@
       "status": "ok",
       "error": null,
       "researchFilename": "credit-corp.png"
+    },
+    {
+      "slug": "ela-motors",
+      "name": "Ela Motors PNG",
+      "category": "png-business",
+      "requestedUrl": "https://www.toyota-png.com/",
+      "finalUrl": "https://www.toyota-png.com/",
+      "title": "Toyota vehicles | Ela Motors PNG",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "ela-motors.png"
+    },
+    {
+      "slug": "goodman-fielder-png",
+      "name": "Goodman Fielder PNG",
+      "category": "png-business",
+      "requestedUrl": "https://goodmanfielder.com/countries/papua-new-guinea/",
+      "finalUrl": "https://goodmanfielder.com/countries/papua-new-guinea/",
+      "title": "Papua New Guinea | Goodman Fielder",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "goodman-fielder-png.png"
     },
     {
       "slug": "kina-bank",
@@ -86,6 +119,28 @@
       "researchFilename": "kumul-petroleum.png"
     },
     {
+      "slug": "lae-biscuit",
+      "name": "Lae Biscuit",
+      "category": "png-business",
+      "requestedUrl": "https://www.laebiscuit.com/",
+      "finalUrl": "https://www.laebiscuit.com/",
+      "title": "HOME | Lae Biscuit Co. Ltd.",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "lae-biscuit.png"
+    },
+    {
+      "slug": "moniplus",
+      "name": "Moni Plus",
+      "category": "png-business",
+      "requestedUrl": "https://www.moniplus.com/",
+      "finalUrl": "https://www.moniplus.com/",
+      "title": "HOME - Moni Plus",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "moniplus.png"
+    },
+    {
       "slug": "nambawan-super",
       "name": "Nambawan Super",
       "category": "png-business",
@@ -106,6 +161,17 @@
       "status": "ok",
       "error": null,
       "researchFilename": "nasfund.png"
+    },
+    {
+      "slug": "pacific-industries",
+      "name": "Pacific Industries",
+      "category": "png-business",
+      "requestedUrl": "https://www.pacificindustries.com.pg/",
+      "finalUrl": "https://www.pacificindustries.com.pg/",
+      "title": "HOME | Pacific Industries",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "pacific-industries.png"
     },
     {
       "slug": "paradise-foods",

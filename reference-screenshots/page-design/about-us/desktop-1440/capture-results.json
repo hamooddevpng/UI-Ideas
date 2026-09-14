@@ -1,6 +1,6 @@
 {
-  "capturedAt": "2026-09-13T23:45:06.232Z",
-  "researchStandard": "minimum 15 references",
+  "capturedAt": "2026-09-14T00:32:21.807Z",
+  "researchStandard": "20+ candidates; minimum 15 valid visual references after QA",
   "pageStudy": {
     "id": "about-us",
     "name": "About Us",
@@ -31,6 +31,17 @@
       "researchFilename": "bsp-bank.png"
     },
     {
+      "slug": "bt-about",
+      "name": "BT About",
+      "category": "telecom",
+      "requestedUrl": "https://www.bt.com/about/bt",
+      "finalUrl": "https://www.bt.com/about/bt",
+      "title": "About BT | BT",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "bt-about.png"
+    },
+    {
       "slug": "dict-png-about",
       "name": "PNG Department of ICT About",
       "category": "png-government",
@@ -40,6 +51,28 @@
       "status": "ok",
       "error": null,
       "researchFilename": "dict-png-about.png"
+    },
+    {
+      "slug": "ela-motors-profile",
+      "name": "Ela Motors Corporate Profile",
+      "category": "png-business",
+      "requestedUrl": "https://www.toyota-png.com/corporate-profile/",
+      "finalUrl": "https://www.toyota-png.com/corporate-profile/",
+      "title": "CORPORATE PROFILE - Ela Motors PNG",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "ela-motors-profile.png"
+    },
+    {
+      "slug": "goodman-fielder-png",
+      "name": "Goodman Fielder PNG",
+      "category": "png-business",
+      "requestedUrl": "https://goodmanfielder.com/countries/papua-new-guinea/",
+      "finalUrl": "https://goodmanfielder.com/countries/papua-new-guinea/",
+      "title": "Papua New Guinea | Goodman Fielder",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "goodman-fielder-png.png"
     },
     {
       "slug": "kina-bank",
@@ -62,6 +95,17 @@
       "status": "ok",
       "error": null,
       "researchFilename": "kumul-petroleum.png"
+    },
+    {
+      "slug": "lae-biscuit",
+      "name": "Lae Biscuit",
+      "category": "png-business",
+      "requestedUrl": "https://www.laebiscuit.com/",
+      "finalUrl": "https://www.laebiscuit.com/",
+      "title": "HOME | Lae Biscuit Co. Ltd.",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "lae-biscuit.png"
     },
     {
       "slug": "nambawan-super",
@@ -141,6 +185,17 @@
       "researchFilename": "telefonica-about.png"
     },
     {
+      "slug": "telstra-about",
+      "name": "Telstra About",
+      "category": "telecom",
+      "requestedUrl": "https://www.telstra.com.au/aboutus/our-company",
+      "finalUrl": "https://www.telstra.com.au/aboutus/our-company",
+      "title": "Our company - Telstra",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "telstra-about.png"
+    },
+    {
       "slug": "trukai",
       "name": "Trukai Industries",
       "category": "png-business",
@@ -157,10 +212,21 @@
       "category": null,
       "requestedUrl": "https://www.verizon.com/about",
       "finalUrl": "https://www.verizon.com/about",
-      "title": "Verizon Company Information, News, Leadership, Community & More",
+      "title": "400 Request Header Or Cookie Too Large",
       "status": "ok",
       "error": null,
       "researchFilename": "verizon-about.png"
+    },
+    {
+      "slug": "vodafone-group",
+      "name": "Vodafone Group",
+      "category": "telecom",
+      "requestedUrl": "https://www.vodafone.com/about-vodafone",
+      "finalUrl": "https://www.vodafone.com/our-company?section=future-defining-services",
+      "title": "Our company – Vodafone",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "vodafone-group.png"
     },
     {
       "slug": "vodafone-png-about",
@@ -168,9 +234,9 @@
       "category": null,
       "requestedUrl": "https://www.vodafone.com.pg/about",
       "finalUrl": "https://www.vodafone.com.pg/about",
-      "title": "",
-      "status": "partial",
-      "error": "page.goto: Timeout 45000ms exceeded.\nCall log:\n  - navigating to \"https://www.vodafone.com.pg/about\", waiting until \"domcontentloaded\"\n",
+      "title": "Vodafone PNG - About Us | Vodafone PNG",
+      "status": "ok",
+      "error": null,
       "researchFilename": "vodafone-png-about.png"
     }
   ]

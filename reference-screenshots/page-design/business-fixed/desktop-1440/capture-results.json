@@ -1,6 +1,6 @@
 {
-  "capturedAt": "2026-09-13T23:45:06.231Z",
-  "researchStandard": "minimum 15 references",
+  "capturedAt": "2026-09-14T00:32:21.806Z",
+  "researchStandard": "20+ candidates; minimum 15 valid visual references after QA",
   "pageStudy": {
     "id": "business-fixed",
     "name": "Business - Fixed",
@@ -29,6 +29,39 @@
       "status": "ok",
       "error": null,
       "researchFilename": "att-business-internet.png"
+    },
+    {
+      "slug": "bt-business-broadband",
+      "name": "BT Business Broadband",
+      "category": "telecom",
+      "requestedUrl": "https://business.bt.com/business-broadband/",
+      "finalUrl": "https://business.bt.com/business-broadband/",
+      "title": "Business Broadband Solutions | Business Internet, Wi-Fi & Fibre",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "bt-business-broadband.png"
+    },
+    {
+      "slug": "comcast-business",
+      "name": "Comcast Business",
+      "category": "telecom",
+      "requestedUrl": "https://business.comcast.com/",
+      "finalUrl": "https://business.comcast.com/",
+      "title": "",
+      "status": "partial",
+      "error": "page.goto: net::ERR_HTTP2_PROTOCOL_ERROR at https://business.comcast.com/\nCall log:\n  - navigating to \"https://business.comcast.com/\", waiting until \"domcontentloaded\"\n",
+      "researchFilename": "comcast-business.png"
+    },
+    {
+      "slug": "ee-business",
+      "name": "EE Business",
+      "category": "telecom",
+      "requestedUrl": "https://business.ee.co.uk/",
+      "finalUrl": "https://business.ee.co.uk/",
+      "title": "Shop | Business Mobiles | Business Phone Contracts | EE Business",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "ee-business.png"
     },
     {
       "slug": "nicta-png",
@@ -75,6 +108,17 @@
       "researchFilename": "optus-enterprise.png"
     },
     {
+      "slug": "orange-business",
+      "name": "Orange Business",
+      "category": "telecom",
+      "requestedUrl": "https://www.orange-business.com/en",
+      "finalUrl": "https://www.orange-business.com/en",
+      "title": "Your partner for digital transformation | Orange Business",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "orange-business.png"
+    },
+    {
       "slug": "png-dataco",
       "name": "PNG DataCo",
       "category": "png-public-enterprise",
@@ -101,7 +145,7 @@
       "name": "Spark Business",
       "category": "telecom",
       "requestedUrl": "https://www.spark.co.nz/business",
-      "finalUrl": "https://validate.perfdrive.com/ab466d675e06052c21f7cc4df3656c91/?ssa=c7a5576d-dcbc-4ec8-94f3-58f90764689d&ssb=33214286073&ssc=https%3A%2F%2Fwww.spark.co.nz%2Fbusiness&ssi=752b9a42-cv5f-4129-95fa-9165be7601d0&ssk=botmanager_support@radware.com&ssm=07893923933301817439853407737298&ssn=bf6d651fcb1bad6282936b6d47def82062b4e4d470f8-82eb-47b2-8befde&sso=12be0c04-d4de67336897738e94beaff8a0cffa9c34b7e7e62434a0d8&ssp=09774161441789366809178938510090288&ssq=13019614285596658743842652929132708457305&ssr=MjAuNTEuMjA2Ljg0&sst=Mozilla/5.0%20(Windows%20NT%2010.0;%20Win64;%20x64)%20AppleWebKit/537.36%20(KHTML,%20like%20Gecko)%20Chrome/152.0.0.0%20Safari/537.36&ssu=MjQzdHdlWUhKQ2tCUDVaaUxsVW5FY0ZmUEl2Sm1va0d0UWp0S05sR2pYbz0=&ssv=&ssw=&ssx=eyJfX3V6bWYiOiI3ZjkwMDBlNGQ0NzBmOC04MmViLTQ3YjItOGMwNC1kNGRlNjczMzY4OTcxLTE3ODkzNDI2NTI2NjIyMDI3NTktMDA0NTM3NDI4MmI5NDNjYzBmOTQzIiwicmQiOiJzcGFyay5jby5ueiIsInV6bXgiOiI3ZmMwMDBkNmVjZGI5NS05Y2Q3LTQyNzAtYTAwMy0wYzIxMDExMjEwNzExLTE3ODkzNDI2NTI2NjIyMDI3NTktMDA0ZTEzYWEyOGIyMWFlMWJiNTQzIn0=",
+      "finalUrl": "https://validate.perfdrive.com/ab466d675e06052c21f7cc4df3656c91/?ssa=22bcb83b-43c5-4a42-a9a8-73694bf84691&ssb=04014286242&ssc=https%3A%2F%2Fwww.spark.co.nz%2Fbusiness&ssi=39f607ce-cv5f-455b-8894-00671a90bb9f&ssk=botmanager_support@radware.com&ssm=40869382705201610438766462650847&ssn=339d7611f7d576c9a677e83973f3947b262e6322a404-4734-4bee-87d4ae&sso=fb25700a-a2b63d728a45a397a16a378f254bdeedba54ca3b7c9036aa&ssp=73820763931789387617178930270687781&ssq=55276264556614000897245263686023564156806&ssr=MTA0LjIwOS4xMS4xOA==&sst=Mozilla/5.0%20(Windows%20NT%2010.0;%20Win64;%20x64)%20AppleWebKit/537.36%20(KHTML,%20like%20Gecko)%20Chrome/152.0.0.0%20Safari/537.36&ssu=MFNxcDRIUVlXWFYyd28wcml6c3NvTkJCZjhJOExWTGovRkpPeGJQU1c0WT0=&ssv=&ssw=&ssx=eyJfX3V6bWYiOiI3ZjkwMDA2MzIyYTQwNC00NzM0LTRiZWUtODAwYS1hMmI2M2Q3MjhhNDUxLTE3ODkzNDUyNjM4MjczMDMxMTQtMDA0MTc0YTY2MmI2NzRmMTA5MDQzIiwidXpteCI6IjdmYzAwMDkwODVmOGVkLWRlMTQtNDQzMi05ZGRjLTQ5Y2JlMWQ0ODdlYzEtMTc4OTM0NTI2MzgyNzMwMzExNC0wMDVjY2E0MDhlNzM1Yjg0YzE3NDMiLCJyZCI6InNwYXJrLmNvLm56In0=",
       "title": "Radware Bot Manager Captcha",
       "status": "ok",
       "error": null,
@@ -163,14 +207,36 @@
       "researchFilename": "verizon-business-internet.png"
     },
     {
+      "slug": "vodafone-business",
+      "name": "Vodafone Business",
+      "category": "telecom",
+      "requestedUrl": "https://www.vodafone.co.uk/business",
+      "finalUrl": "https://www.vodafone.co.uk/business",
+      "title": "Business Solutions for All Business Sizes | Vodafone UK",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "vodafone-business.png"
+    },
+    {
+      "slug": "vodafone-enterprise-broadband",
+      "name": "Vodafone Enterprise Broadband",
+      "category": "telecom",
+      "requestedUrl": "https://www.vodafone.co.uk/business/business-broadband/enterprise-broadband",
+      "finalUrl": "https://www.vodafone.co.uk/business/business-broadband/enterprise-broadband",
+      "title": "Enterprise Broadband | Built For Large Business | Vodafone UK",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "vodafone-enterprise-broadband.png"
+    },
+    {
       "slug": "vodafone-png-dedicated-internet",
       "name": "Vodafone PNG Dedicated Internet",
       "category": null,
       "requestedUrl": "https://www.vodafone.com.pg/business/products-and-solutions/ict-cloud-solutions/dedicated-internet",
       "finalUrl": "https://www.vodafone.com.pg/business/products-and-solutions/ict-cloud-solutions/dedicated-internet",
-      "title": "",
-      "status": "error",
-      "error": "page.goto: Timeout 45000ms exceeded.\nCall log:\n  - navigating to \"https://www.vodafone.com.pg/business/products-and-solutions/ict-cloud-solutions/dedicated-internet\", waiting until \"domcontentloaded\"\n",
+      "title": "Vodafone PNG - Dedicated Internet",
+      "status": "ok",
+      "error": null,
       "researchFilename": "vodafone-png-dedicated-internet.png"
     }
   ]

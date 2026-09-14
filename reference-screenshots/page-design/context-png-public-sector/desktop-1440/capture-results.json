@@ -1,6 +1,6 @@
 {
-  "capturedAt": "2026-09-13T23:45:06.233Z",
-  "researchStandard": "context cohort",
+  "capturedAt": "2026-09-14T00:32:21.808Z",
+  "researchStandard": "context cohort with QA backfills",
   "pageStudy": {
     "id": "context-png-public-sector",
     "name": "PNG Government & Public Sector Context",
@@ -8,6 +8,17 @@
   },
   "viewport": "1440x900",
   "results": [
+    {
+      "slug": "aic-png",
+      "name": "PNG Accident Investigation Commission",
+      "category": "png-government",
+      "requestedUrl": "https://aic.gov.pg/",
+      "finalUrl": "https://aic.gov.pg/",
+      "title": "Home | AIC",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "aic-png.png"
+    },
     {
       "slug": "bankpng",
       "name": "Bank of Papua New Guinea",
@@ -18,6 +29,17 @@
       "status": "ok",
       "error": null,
       "researchFilename": "bankpng.png"
+    },
+    {
+      "slug": "casa-png",
+      "name": "Civil Aviation Safety Authority",
+      "category": "png-government",
+      "requestedUrl": "https://www.casapng.gov.pg/",
+      "finalUrl": "https://www.casapng.gov.pg/",
+      "title": "CASA - PNG",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "casa-png.png"
     },
     {
       "slug": "dict-png",
@@ -47,9 +69,9 @@
       "category": "png-government",
       "requestedUrl": "https://www.finance.gov.pg/",
       "finalUrl": "https://www.finance.gov.pg/",
-      "title": "Department of Finance – Papua New Guinea",
-      "status": "ok",
-      "error": null,
+      "title": "",
+      "status": "error",
+      "error": "page.goto: Timeout 45000ms exceeded.\nCall log:\n  - navigating to \"https://www.finance.gov.pg/\", waiting until \"domcontentloaded\"\n",
       "researchFilename": "finance-png.png"
     },
     {
@@ -97,6 +119,17 @@
       "researchFilename": "mra-png.png"
     },
     {
+      "slug": "national-airports",
+      "name": "National Airports Corporation",
+      "category": "png-public-enterprise",
+      "requestedUrl": "https://nac.com.pg/",
+      "finalUrl": "https://nac.com.pg/",
+      "title": "National Airports Corporation",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "national-airports.png"
+    },
+    {
       "slug": "nicta-png",
       "name": "NICTA",
       "category": "png-government",
@@ -119,6 +152,28 @@
       "researchFilename": "nso-png.png"
     },
     {
+      "slug": "png-customs",
+      "name": "PNG Customs",
+      "category": "png-government",
+      "requestedUrl": "https://customs.gov.pg/",
+      "finalUrl": "https://customs.gov.pg/",
+      "title": "509 Bandwidth Limit Exceeded",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "png-customs.png"
+    },
+    {
+      "slug": "png-ports",
+      "name": "PNG Ports",
+      "category": "png-public-enterprise",
+      "requestedUrl": "https://www.pngports.com.pg/",
+      "finalUrl": "https://www.pngports.com.pg/",
+      "title": "Home - PNG Ports Corporation Limited",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "png-ports.png"
+    },
+    {
       "slug": "png-power",
       "name": "PNG Power",
       "category": "png-public-enterprise",
@@ -139,6 +194,17 @@
       "status": "ok",
       "error": null,
       "researchFilename": "treasury-png.png"
+    },
+    {
+      "slug": "works-png",
+      "name": "Department of Works & Highways",
+      "category": "png-government",
+      "requestedUrl": "https://www.works.gov.pg/",
+      "finalUrl": "https://www.works.gov.pg/",
+      "title": "Department of Works Papua New Guinea - Building Infrastructure for National Growth",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "works-png.png"
     }
   ]
 }

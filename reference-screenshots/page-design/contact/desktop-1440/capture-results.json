@@ -1,6 +1,6 @@
 {
-  "capturedAt": "2026-09-13T23:45:06.233Z",
-  "researchStandard": "minimum 15 references",
+  "capturedAt": "2026-09-14T00:32:21.807Z",
+  "researchStandard": "20+ candidates; minimum 15 valid visual references after QA",
   "pageStudy": {
     "id": "contact",
     "name": "Contact",
@@ -53,6 +53,17 @@
       "researchFilename": "bsp-bank.png"
     },
     {
+      "slug": "coral-sea-contact",
+      "name": "Coral Sea Hotels Contact",
+      "category": "png-business",
+      "requestedUrl": "https://coralseahotels.com.pg/contact-us/",
+      "finalUrl": "https://coralseahotels.com.pg/contact-us/",
+      "title": "Contact Us - Coral Sea Hotels",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "coral-sea-contact.png"
+    },
+    {
       "slug": "dict-png",
       "name": "PNG Department of ICT",
       "category": "png-government",
@@ -64,6 +75,28 @@
       "researchFilename": "dict-png.png"
     },
     {
+      "slug": "ee-contact",
+      "name": "EE Contact",
+      "category": "telecom",
+      "requestedUrl": "https://ee.co.uk/help/contact-ee",
+      "finalUrl": "https://ee.co.uk/help/contact-ee",
+      "title": "",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "ee-contact.png"
+    },
+    {
+      "slug": "ela-motors-contact",
+      "name": "Ela Motors Contact",
+      "category": "png-business",
+      "requestedUrl": "https://www.toyota-png.com/contact-us/",
+      "finalUrl": "https://www.toyota-png.com/contact-us/",
+      "title": "Contact Us at Ela Motors PNG | Toyota Dealer Alotau",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "ela-motors-contact.png"
+    },
+    {
       "slug": "kina-bank",
       "name": "Kina Bank",
       "category": "png-business",
@@ -73,6 +106,17 @@
       "status": "partial",
       "error": "page.goto: net::ERR_CONNECTION_TIMED_OUT at https://www.kina.com.pg/\nCall log:\n  - navigating to \"https://www.kina.com.pg/\", waiting until \"domcontentloaded\"\n",
       "researchFilename": "kina-bank.png"
+    },
+    {
+      "slug": "moniplus-branches",
+      "name": "Moni Plus Branches",
+      "category": "png-business",
+      "requestedUrl": "https://www.moniplus.com/branches/",
+      "finalUrl": "https://www.moniplus.com/branches/",
+      "title": "BRANCHES - Moni Plus",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "moniplus-branches.png"
     },
     {
       "slug": "nambawan-super",
@@ -119,6 +163,17 @@
       "researchFilename": "ooredoo-qatar-contact.png"
     },
     {
+      "slug": "pacific-industries-contact",
+      "name": "Pacific Industries Contact",
+      "category": "png-business",
+      "requestedUrl": "https://www.pacificindustries.com.pg/contact",
+      "finalUrl": "https://www.pacificindustries.com.pg/contact",
+      "title": "CONTACT | Pacific Industries",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "pacific-industries-contact.png"
+    },
+    {
       "slug": "telstra-contact",
       "name": "Telstra Contact",
       "category": "telecom",
@@ -128,6 +183,17 @@
       "status": "ok",
       "error": null,
       "researchFilename": "telstra-contact.png"
+    },
+    {
+      "slug": "three-contact",
+      "name": "Three Contact",
+      "category": "telecom",
+      "requestedUrl": "https://www.three.co.uk/support/contact-us",
+      "finalUrl": "https://www.three.co.uk/support/contact-us",
+      "title": "Need help with your Three account or device? | Support | Three",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "three-contact.png"
     },
     {
       "slug": "treasury-png",
@@ -145,8 +211,8 @@
       "name": "Verizon Contact",
       "category": null,
       "requestedUrl": "https://www.verizon.com/support/contact-us/",
-      "finalUrl": "https://www.verizon.com/support/contact-us/",
-      "title": "Error",
+      "finalUrl": "https://www.verizon.com/digital/nsa/nos/ui/ngd/contactus",
+      "title": "Contact us",
       "status": "ok",
       "error": null,
       "researchFilename": "verizon-contact.png"
