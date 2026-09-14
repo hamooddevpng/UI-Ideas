@@ -91,4 +91,75 @@
 
     zone.addEventListener('focus',()=>preview(zone));
   });
+
+  /* Mobile vertical-scroll -> horizontal-journey controller. */
+  const section=board.closest('.eco-section');
+  const world=document.getElementById('ecoWorld');
+  if(!section||!world)return;
+
+  const mobileQuery=matchMedia('(max-width:900px)');
+  const reduceQuery=matchMedia('(prefers-reduced-motion: reduce)');
+  const stickyTop=68;
+  const marker=document.createElement('span');
+  marker.className='eco-scroll-start';
+  marker.setAttribute('aria-hidden','true');
+  board.before(marker);
+
+  let runway=0;
+  let scrollFrame=0;
+
+  function clamp(value,min,max){
+    return Math.max(min,Math.min(max,value));
+  }
+
+  function scrollProgress(scrollY,start,distance){
+    if(distance<=0)return 0;
+    return clamp((scrollY-start)/distance,0,1);
+  }
+
+  function horizontalOffset(progress,scrollWidth,clientWidth){
+    const maxScroll=Math.max(0,scrollWidth-clientWidth);
+    return maxScroll*clamp(progress,0,1);
+  }
+
+  function updateHorizontalJourney(){
+    scrollFrame=0;
+    if(!mobileQuery.matches||reduceQuery.matches||runway<=0)return;
+
+    const markerPageTop=scrollY+marker.getBoundingClientRect().top;
+    const start=markerPageTop-stickyTop;
+    const progress=scrollProgress(scrollY,start,runway);
+    const target=horizontalOffset(progress,world.scrollWidth,world.clientWidth);
+
+    if(Math.abs(world.scrollLeft-target)>.5)world.scrollLeft=target;
+  }
+
+  function scheduleJourneyUpdate(){
+    if(scrollFrame)return;
+    scrollFrame=requestAnimationFrame(updateHorizontalJourney);
+  }
+
+  function measureHorizontalJourney(){
+    if(!mobileQuery.matches||reduceQuery.matches){
+      runway=0;
+      section.style.removeProperty('--eco-scroll-runway');
+      world.scrollLeft=0;
+      return;
+    }
+
+    const maxScroll=Math.max(0,world.scrollWidth-world.clientWidth);
+    runway=maxScroll>0?Math.round(clamp(maxScroll*1.1,420,760)):0;
+    section.style.setProperty('--eco-scroll-runway',`${runway}px`);
+    scheduleJourneyUpdate();
+  }
+
+  addEventListener('scroll',scheduleJourneyUpdate,{passive:true});
+  addEventListener('resize',measureHorizontalJourney,{passive:true});
+  mobileQuery.addEventListener?.('change',measureHorizontalJourney);
+  reduceQuery.addEventListener?.('change',measureHorizontalJourney);
+
+  requestAnimationFrame(()=>{
+    measureHorizontalJourney();
+    requestAnimationFrame(measureHorizontalJourney);
+  });
 })();
