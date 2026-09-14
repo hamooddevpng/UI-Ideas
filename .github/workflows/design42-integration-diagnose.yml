@@ -1,0 +1,100 @@
+name: Design 42 Integration Diagnose
+
+on:
+  push:
+    branches:
+      - integration/design42-css-refactor-main
+    paths:
+      - '.github/workflows/design42-integration-diagnose.yml'
+
+permissions:
+  contents: read
+
+env:
+  DESIGN42_REFERENCE_SHA: d8fd930bfeebf39addfc41a3d81e60f2e6bc9000
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: |
+          npm install --no-save playwright
+          npx playwright install chromium
+      - name: Prepare reference and servers
+        run: |
+          rm -rf /tmp/design42-reference
+          git worktree add --detach /tmp/design42-reference "$DESIGN42_REFERENCE_SHA"
+          python3 <<'PY'
+          from pathlib import Path
+          p=Path('/tmp/design42-reference/42.html')
+          t=p.read_text()
+          old='https://raw.githubusercontent.com/hamooddevpng/UI-Ideas/main/'
+          if old not in t: raise SystemExit('reference source root not found')
+          p.write_text(t.replace(old,'http://127.0.0.1:4174/'))
+          PY
+          python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/current.log 2>&1 &
+          (cd /tmp/design42-reference && python3 -m http.server 4174 --bind 127.0.0.1 >/tmp/reference.log 2>&1) &
+          sleep 1
+      - name: Print section geometry deltas
+        run: |
+          node <<'EOF'
+          const { chromium } = require('playwright');
+          const selectors={
+            hero:'.hero',quick:'#quick-actions',offers:'#offers',services:'#services',
+            digital:'.eco-section',business:'#business',national:'.national-story-map',
+            updates:'#updates',support:'#support',footer:'footer'
+          };
+          const capture=async(browser,url)=>{
+            const ctx=await browser.newContext({viewport:{width:1440,height:900},reducedMotion:'reduce'});
+            const page=await ctx.newPage();
+            await page.goto(url,{waitUntil:'domcontentloaded',timeout:30000});
+            await page.waitForSelector('.hero',{timeout:15000});
+            await page.waitForSelector('.eco-section',{timeout:15000});
+            await page.evaluate(()=>document.fonts?.ready||Promise.resolve());
+            await page.evaluate(async()=>{
+              const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+              let y=0;
+              for(let i=0;i<30;i++){
+                const max=Math.max(0,document.documentElement.scrollHeight-innerHeight);
+                y=Math.min(max,y+480);scrollTo(0,y);await sleep(80);if(y>=max)break;
+              }
+              scrollTo(0,0);
+            });
+            await page.waitForTimeout(400);
+            const out=await page.evaluate(sels=>{
+              const boxes={};
+              for(const [name,sel] of Object.entries(sels)){
+                const matches=[...document.querySelectorAll(sel)];
+                const el=name==='footer'?matches.at(-1):matches[0];
+                if(!el){boxes[name]=null;continue;}
+                const r=el.getBoundingClientRect();
+                boxes[name]={y:r.y+scrollY,height:r.height,width:r.width};
+              }
+              return {scrollHeight:document.documentElement.scrollHeight,boxes};
+            },selectors);
+            await ctx.close();return out;
+          };
+          (async()=>{
+            const browser=await chromium.launch({headless:true});
+            const ref=await capture(browser,'http://127.0.0.1:4174/42.html');
+            const cur=await capture(browser,'http://127.0.0.1:4173/42.html');
+            console.log('REFERENCE',JSON.stringify(ref,null,2));
+            console.log('CURRENT',JSON.stringify(cur,null,2));
+            console.log('DOCUMENT DELTA',cur.scrollHeight-ref.scrollHeight);
+            for(const name of Object.keys(selectors)){
+              if(!ref.boxes[name]||!cur.boxes[name]){console.log(name,'missing in one side');continue;}
+              console.log(name,{
+                y:cur.boxes[name].y-ref.boxes[name].y,
+                height:cur.boxes[name].height-ref.boxes[name].height,
+                width:cur.boxes[name].width-ref.boxes[name].width
+              });
+            }
+            await browser.close();
+          })().catch(e=>{console.error(e);process.exit(1)});
+          EOF
