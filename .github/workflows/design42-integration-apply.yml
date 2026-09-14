@@ -1,0 +1,41 @@
+name: Design 42 Integration Apply
+
+on:
+  push:
+    branches:
+      - integration/design42-css-refactor-main
+    paths:
+      - '.github/workflows/design42-integration-apply.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Preserve current main Digital PNG height behavior
+        run: |
+          python3 <<'PY'
+          from pathlib import Path
+          path = Path('assets/design42/design42-ecosystem.css')
+          text = path.read_text()
+          needle = '  min-height:100vh;\n'
+          count = text.count(needle)
+          if count != 1:
+              raise SystemExit(f'Expected exactly one Digital PNG min-height declaration, found {count}.')
+          path.write_text(text.replace(needle, '', 1))
+          print('Removed legacy Digital PNG min-height:100vh while preserving the refactored stylesheet.')
+          PY
+          node tests/design42-css-architecture.test.mjs
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/design42/design42-ecosystem.css
+          git commit -m 'fix: preserve Design 42 Digital PNG height behavior'
+          git push origin HEAD:integration/design42-css-refactor-main
