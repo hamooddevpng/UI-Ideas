@@ -41,16 +41,23 @@
     const mobileQuery=matchMedia('(max-width:820px)');
     const reduceQuery=matchMedia('(prefers-reduced-motion: reduce)');
     const startViewportRatio=.82;
+    let marker=section.querySelector('.service-scroll-start');
+    if(!marker){
+      marker=document.createElement('span');
+      marker.className='service-scroll-start';
+      marker.setAttribute('aria-hidden','true');
+      grid.before(marker);
+    }
     let journeyDistance=0;
     let frame=0;
 
     const viewportHeight=()=>innerHeight||document.documentElement.clientHeight||800;
-    const gridPageTop=()=>scrollY+grid.getBoundingClientRect().top;
+    const markerPageTop=()=>scrollY+marker.getBoundingClientRect().top;
 
     function update(){
       frame=0;
       if(!mobileQuery.matches||reduceQuery.matches||journeyDistance<=0)return;
-      const start=journeyStart(gridPageTop(),viewportHeight(),startViewportRatio);
+      const start=journeyStart(markerPageTop(),viewportHeight(),startViewportRatio);
       const progress=scrollProgress(scrollY,start,journeyDistance);
       const target=horizontalOffset(progress,grid.scrollWidth,grid.clientWidth);
       if(Math.abs(grid.scrollLeft-target)>.5)grid.scrollLeft=target;
