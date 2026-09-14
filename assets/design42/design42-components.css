@@ -14,9 +14,18 @@
 @media(max-width:820px){.footer-social{margin-top:14px}.footer-social-icon{width:36px;height:36px}}
 
 /* Design 42: laser tuning v13 */
-/* Canonical province laser presentation for the active endpoint v12 runtime. */
+/* Canonical province laser presentation for the legacy endpoint v12 runtime. */
 .province-laser-layer-v12{position:absolute;inset:0;z-index:30;pointer-events:none;overflow:hidden}
 .province-bolt-v12{position:absolute;left:0;top:0;width:5px;height:1.5px;border-radius:999px;background:#006fd6;opacity:0;transform-origin:50% 50%;will-change:transform,opacity;box-shadow:none}
 .province-node-v6.laser-live .halo{fill:rgba(37,211,255,.20);stroke:#1bbce9;stroke-width:1.6;filter:none}
 .province-node-v6.laser-live .dot{fill:#fff;stroke:#007fc4;filter:none}
 @media(prefers-reduced-motion:reduce){.province-laser-layer-v12{display:none!important}}
+
+/* Design 42: province lasers v14 */
+.province-laser-layer-v14{position:absolute;inset:0;z-index:30;pointer-events:none;overflow:hidden}
+.province-bolt-v14{position:absolute;left:0;top:0;width:22px;height:2px;border-radius:999px;background:linear-gradient(90deg,rgba(0,111,214,.08),#128bd8 42%,#dff8ff 100%);opacity:0;transform-origin:50% 50%;will-change:transform,opacity;box-shadow:0 0 5px rgba(0,126,203,.46),0 0 11px rgba(31,171,229,.22)}
+.province-bolt-v14:after{content:"";position:absolute;right:-1px;top:50%;width:4px;height:4px;border-radius:50%;background:#fff;transform:translateY(-50%);box-shadow:0 0 5px rgba(255,255,255,.95),0 0 9px rgba(32,184,238,.65)}
+.province-node-v6.laser-live-v14 .halo{fill:rgba(37,211,255,.24);stroke:#1bbce9;stroke-width:1.8;filter:drop-shadow(0 0 5px rgba(27,188,233,.38))}
+.province-node-v6.laser-live-v14 .dot{fill:#fff;stroke:#007fc4;filter:drop-shadow(0 0 4px rgba(255,255,255,.9)) drop-shadow(0 0 8px rgba(0,127,196,.42))}
+@media(max-width:820px){.province-bolt-v14{width:14px;height:2px}.province-bolt-v14:after{width:3.5px;height:3.5px}}
+@media(prefers-reduced-motion:reduce){.province-laser-layer-v14{display:none!important}}
