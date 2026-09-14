@@ -1,0 +1,168 @@
+name: Design 42 Integration QA
+
+on:
+  push:
+    branches:
+      - integration/design42-css-refactor-main
+    paths:
+      - '.github/workflows/design42-integration-qa.yml'
+
+permissions:
+  contents: read
+
+env:
+  DESIGN42_REFERENCE_SHA: d8fd930bfeebf39addfc41a3d81e60f2e6bc9000
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Run architecture and ownership checks
+        run: |
+          node scripts/audit-design42.mjs
+          node tests/design42-css-architecture.test.mjs
+      - name: Install browser QA
+        run: |
+          npm install --no-save playwright
+          npx playwright install chromium
+      - name: Prepare current-main reference
+        run: |
+          rm -rf /tmp/design42-integration-reference
+          git worktree add --detach /tmp/design42-integration-reference "$DESIGN42_REFERENCE_SHA"
+          python3 <<'PY'
+          from pathlib import Path
+          path = Path('/tmp/design42-integration-reference/42.html')
+          text = path.read_text()
+          old = 'https://raw.githubusercontent.com/hamooddevpng/UI-Ideas/main/'
+          if old not in text:
+              raise SystemExit('Expected main raw source root was not found in reference 42.html')
+          path.write_text(text.replace(old, 'http://127.0.0.1:4174/'))
+          PY
+      - name: Start current and reference servers
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/design42-integration-current.log 2>&1 &
+          (cd /tmp/design42-integration-reference && python3 -m http.server 4174 --bind 127.0.0.1 >/tmp/design42-integration-reference.log 2>&1) &
+          sleep 1
+          curl --fail --silent http://127.0.0.1:4173/42.html >/dev/null
+          curl --fail --silent http://127.0.0.1:4174/42.html >/dev/null
+      - name: Run browser behavior and geometry parity
+        run: |
+          node <<'EOF'
+          const { chromium } = require('playwright');
+          const assert = require('assert/strict');
+
+          const currentUrl = 'http://127.0.0.1:4173/42.html';
+          const referenceUrl = 'http://127.0.0.1:4174/42.html';
+          const selectors = {
+            hero: '.hero',
+            quickActions: '#quick-actions',
+            digitalPng: '.eco-section',
+            business: '#business',
+            support: '#support',
+            footer: 'footer'
+          };
+
+          const settle = async page => {
+            await page.waitForSelector('.hero', { timeout: 15000 });
+            await page.waitForSelector('.eco-section', { timeout: 15000 });
+            await page.waitForSelector('#business', { timeout: 15000 });
+            await page.waitForSelector('#support', { timeout: 15000 });
+            await page.evaluate(() => document.fonts?.ready || Promise.resolve());
+            await page.evaluate(async () => {
+              const sleep = ms => new Promise(r => setTimeout(r, ms));
+              let y = 0;
+              for (let i = 0; i < 24; i++) {
+                const max = Math.max(0, document.documentElement.scrollHeight - innerHeight);
+                y = Math.min(max, y + Math.max(360, Math.floor(innerHeight * .6)));
+                scrollTo(0, y);
+                await sleep(90);
+                if (y >= max) break;
+              }
+              scrollTo(0, 0);
+            });
+            await page.waitForTimeout(500);
+          };
+
+          const geometry = async (browser, url) => {
+            const context = await browser.newContext({ viewport: { width: 1440, height: 900 }, reducedMotion: 'reduce' });
+            const page = await context.newPage();
+            const errors = [];
+            page.on('pageerror', e => errors.push(String(e)));
+            await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 });
+            await settle(page);
+            const result = await page.evaluate(sels => {
+              const boxes = {};
+              for (const [name, selector] of Object.entries(sels)) {
+                const el = name === 'footer' ? [...document.querySelectorAll('footer')].at(-1) : document.querySelector(selector);
+                if (!el) throw new Error(`Missing parity element ${selector}`);
+                const r = el.getBoundingClientRect();
+                boxes[name] = { x: r.x, y: r.y + scrollY, width: r.width, height: r.height };
+              }
+              return { scrollHeight: document.documentElement.scrollHeight, boxes };
+            }, selectors);
+            assert.equal(errors.length, 0, `Page errors on ${url}: ${errors.join(' | ')}`);
+            await context.close();
+            return result;
+          };
+
+          (async () => {
+            const browser = await chromium.launch({ headless: true });
+            const reference = await geometry(browser, referenceUrl);
+            const current = await geometry(browser, currentUrl);
+            const tolerance = 6;
+
+            assert.ok(Math.abs(current.scrollHeight - reference.scrollHeight) <= tolerance,
+              `Document height delta is ${current.scrollHeight - reference.scrollHeight}px`);
+            for (const name of Object.keys(selectors)) {
+              for (const metric of ['x', 'y', 'width', 'height']) {
+                const delta = current.boxes[name][metric] - reference.boxes[name][metric];
+                assert.ok(Math.abs(delta) <= tolerance, `${name} ${metric} delta is ${delta}px`);
+              }
+            }
+
+            const context = await browser.newContext({ viewport: { width: 1440, height: 900 } });
+            const page = await context.newPage();
+            const errors = [];
+            page.on('pageerror', e => errors.push(String(e)));
+            await page.goto(currentUrl, { waitUntil: 'domcontentloaded', timeout: 30000 });
+            await page.waitForSelector('.hero', { timeout: 15000 });
+            await page.waitForSelector('.telikom-ai-launcher', { timeout: 15000 });
+
+            const initial = await page.locator('.hero').getAttribute('data-scene-index');
+            await page.locator('.scene-tab[data-scene="2"]').click();
+            await page.waitForTimeout(250);
+            assert.notEqual(await page.locator('.hero').getAttribute('data-scene-index'), initial, 'Hero switching failed');
+
+            await page.locator('.telikom-ai-launcher').click();
+            await page.waitForFunction(() => document.body.classList.contains('telikom-ai-open'));
+            assert.equal(await page.locator('.telikom-ai-panel').getAttribute('aria-hidden'), 'false', 'Chat popup did not open');
+            await page.locator('.telikom-ai-close').click();
+            await page.waitForFunction(() => !document.body.classList.contains('telikom-ai-open'));
+
+            const national = page.locator('.national-story-map');
+            if (await national.count()) {
+              await national.scrollIntoViewIfNeeded();
+              await page.waitForSelector('#provinceNetworkV6', { timeout: 10000 });
+              await page.waitForSelector('#provinceLaserLayerV12', { timeout: 10000 });
+            }
+            assert.equal(errors.length, 0, `Browser errors: ${errors.join(' | ')}`);
+            await context.close();
+
+            const mobileContext = await browser.newContext({ viewport: { width: 390, height: 844 }, reducedMotion: 'reduce' });
+            const mobile = await mobileContext.newPage();
+            await mobile.goto(currentUrl, { waitUntil: 'domcontentloaded', timeout: 30000 });
+            await mobile.waitForSelector('.hero', { timeout: 15000 });
+            const mobileMetrics = await mobile.evaluate(() => ({ scrollWidth: document.documentElement.scrollWidth, clientWidth: document.documentElement.clientWidth }));
+            assert.ok(mobileMetrics.scrollWidth <= mobileMetrics.clientWidth + 2, `Mobile horizontal overflow: ${mobileMetrics.scrollWidth} > ${mobileMetrics.clientWidth}`);
+            await mobileContext.close();
+            await browser.close();
+
+            console.log('Design 42 integration architecture, behavior, desktop geometry, and mobile overflow checks passed.');
+          })().catch(error => { console.error(error); process.exit(1); });
+          EOF
