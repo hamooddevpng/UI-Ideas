@@ -95,7 +95,11 @@
    */
   .eco-section{
     overflow:clip;
-    padding-bottom:calc(64px + var(--eco-scroll-runway,0px));
+  }
+
+  /* Keep the extra scroll runway inside the sticky board's containing block. */
+  .eco-section .eco-shell{
+    padding-bottom:var(--eco-scroll-runway,0px);
   }
 
   .eco-section .eco-board{
