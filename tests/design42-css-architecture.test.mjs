@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import './design42-chat-ownership.test.mjs';
+import './design42-core-specificity.test.mjs';
 
 const read = path => fs.readFileSync(new URL(`../${path}`, import.meta.url), 'utf8');
 const exists = path => fs.existsSync(new URL(`../${path}`, import.meta.url));
