@@ -1,0 +1,21 @@
+/*
+ * Design 42 mobile service-story scroll journey.
+ * Keeps the existing swipe rail intact, while allowing vertical page scroll
+ * to drive the service cards horizontally on phones.
+ */
+
+@media (max-width:820px) and (prefers-reduced-motion:no-preference){
+  .service-stories{
+    overflow:visible;
+    padding-bottom:calc(72px + var(--service-scroll-runway,0px));
+  }
+
+  .service-stories .service-story-grid{
+    position:sticky;
+    top:76px;
+    z-index:3;
+    overscroll-behavior-inline:contain;
+    -webkit-overflow-scrolling:touch;
+    scroll-behavior:auto;
+  }
+}
