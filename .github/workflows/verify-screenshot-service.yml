@@ -1,0 +1,32 @@
+name: Verify screenshot service
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/verify-screenshot-service.yml'
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Capture phone PNG from hosted option
+        run: |
+          curl --fail --location --retry 2 --retry-delay 3 --max-time 120 \
+            --output /tmp/phone.png \
+            'https://telikom-website.onrender.com/api/screenshot?url=https%3A%2F%2Ftelikom-frontend.vercel.app%2Fconcise-home&viewport=phone'
+      - name: Capture desktop PNG from Design 42
+        run: |
+          curl --fail --location --retry 2 --retry-delay 3 --max-time 120 \
+            --output /tmp/desktop.png \
+            'https://telikom-website.onrender.com/api/screenshot?url=https%3A%2F%2Fhtmlpreview.github.io%2F%3Fhttps%3A%2F%2Fraw.githubusercontent.com%2Fhamooddevpng%2FUI-Ideas%2Fmain%2F42.html&viewport=desktop'
+      - name: Verify PNG responses
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          for name in ('phone.png', 'desktop.png'):
+              data = Path('/tmp', name).read_bytes()
+              assert data.startswith(b'\x89PNG\r\n\x1a\n'), f'{name} is not a PNG'
+              assert len(data) > 10_000, f'{name} is unexpectedly small: {len(data)} bytes'
+              print(name, len(data), 'bytes')
+          PY
