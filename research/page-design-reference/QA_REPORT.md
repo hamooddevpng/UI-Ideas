@@ -4,23 +4,23 @@ Automated QA screen for the expanded Telikom Page Design visual research. This i
 
 | Cohort | Captured | Candidate-valid | Needs visual review | Excluded | Gate |
 |---|---:|---:|---:|---:|---|
-| About Us (`about-us`) | 15 | 12 | 0 | 3 | BACKFILL REQUIRED |
-| Affordable Home Data (`affordable-home-data`) | 15 | 12 | 0 | 3 | BACKFILL REQUIRED |
-| Business - Fixed (`business-fixed`) | 15 | 12 | 0 | 3 | BACKFILL REQUIRED |
-| Business - Mobile (`business-mobile`) | 15 | 11 | 0 | 4 | BACKFILL REQUIRED |
-| Careers (`careers`) | 15 | 12 | 0 | 3 | BACKFILL REQUIRED |
-| Contact (`contact`) | 15 | 11 | 0 | 4 | BACKFILL REQUIRED |
-| PNG Business Context (`context-png-businesses`) | 15 | 11 | 0 | 4 | BACKFILL REQUIRED |
-| PNG Government & Public Sector Context (`context-png-public-sector`) | 12 | 11 | 0 | 1 | BACKFILL REQUIRED |
-| Devices (`devices`) | 15 | 6 | 2 | 7 | BACKFILL REQUIRED |
-| FAQs (`faqs`) | 15 | 13 | 0 | 2 | BACKFILL REQUIRED |
-| Home Entertainment (`home-entertainment`) | 15 | 11 | 0 | 4 | BACKFILL REQUIRED |
-| News & Media (`news-media`) | 15 | 9 | 0 | 6 | BACKFILL REQUIRED |
-| Personal - Mobile (`personal-mobile`) | 15 | 10 | 1 | 4 | BACKFILL REQUIRED |
-| Services Hub (`services-hub`) | 15 | 12 | 1 | 2 | BACKFILL REQUIRED |
-| Special Home Passes (`special-home-passes`) | 15 | 9 | 1 | 5 | BACKFILL REQUIRED |
-| Store Locator (`store-locator`) | 15 | 10 | 0 | 5 | BACKFILL REQUIRED |
-| U-TOKMoa (`u-tokmoa`) | 15 | 12 | 0 | 3 | BACKFILL REQUIRED |
+| About Us (`about-us`) | 21 | 17 | 2 | 2 | PASS |
+| Affordable Home Data (`affordable-home-data`) | 21 | 17 | 1 | 3 | PASS |
+| Business - Fixed (`business-fixed`) | 21 | 18 | 0 | 3 | PASS |
+| Business - Mobile (`business-mobile`) | 21 | 18 | 0 | 3 | PASS |
+| Careers (`careers`) | 21 | 18 | 0 | 3 | PASS |
+| Contact (`contact`) | 21 | 16 | 1 | 4 | PASS |
+| PNG Business Context (`context-png-businesses`) | 21 | 17 | 0 | 4 | PASS |
+| PNG Government & Public Sector Context (`context-png-public-sector`) | 18 | 15 | 1 | 2 | PASS |
+| Devices (`devices`) | 23 | 12 | 3 | 8 | PASS after visual review |
+| FAQs (`faqs`) | 21 | 19 | 0 | 2 | PASS |
+| Home Entertainment (`home-entertainment`) | 21 | 17 | 0 | 4 | PASS |
+| News & Media (`news-media`) | 23 | 16 | 1 | 6 | PASS |
+| Personal - Mobile (`personal-mobile`) | 21 | 15 | 2 | 4 | PASS |
+| Services Hub (`services-hub`) | 21 | 18 | 1 | 2 | PASS |
+| Special Home Passes (`special-home-passes`) | 21 | 13 | 2 | 6 | PASS after visual review |
+| Store Locator (`store-locator`) | 22 | 17 | 0 | 5 | PASS |
+| U-TOKMoa (`u-tokmoa`) | 21 | 17 | 1 | 3 | PASS |
 
 ## Exclusions and review flags
 
@@ -28,26 +28,29 @@ Automated QA screen for the expanded Telikom Page Design visual research. This i
 **Excluded:**
 - `air-niugini` — capture status=partial
 - `kina-bank` — capture status=error; screenshot missing
-- `vodafone-png-about` — capture status=partial
+**Manual visual review required:**
+- `bt-about` — very small screenshot file; inspect for blank/partial render
+- `verizon-about` — very small screenshot file; inspect for blank/partial render
 
 ### Affordable Home Data
 **Excluded:**
 - `globe-home` — blocked/error title: Just a moment...
 - `optus-internet` — capture status=partial
 - `spark-broadband` — blocked/error title: Radware Bot Manager Captcha; bot/security redirect
+**Manual visual review required:**
+- `giffgaff-broadband` — blank document title; visual confirmation required
 
 ### Business - Fixed
 **Excluded:**
+- `comcast-business` — capture status=partial
 - `optus-enterprise` — capture status=partial
 - `spark-business` — blocked/error title: Radware Bot Manager Captcha; bot/security redirect
-- `vodafone-png-dedicated-internet` — capture status=error
 
 ### Business - Mobile
 **Excluded:**
 - `kina-bank` — capture status=error; screenshot missing
 - `optus-business-mobile` — capture status=partial
 - `spark-business-mobile` — blocked/error title: Radware Bot Manager Captcha; bot/security redirect
-- `vodafone-png-mobility` — capture status=error
 
 ### Careers
 **Excluded:**
@@ -60,7 +63,9 @@ Automated QA screen for the expanded Telikom Page Design visual research. This i
 - `air-niugini` — capture status=partial
 - `bankpng` — blocked/error title: Just a moment...
 - `kina-bank` — capture status=partial
-- `verizon-contact` — blocked/error title: Error; error page rather than contact experience
+- `verizon-contact` — error page rather than contact experience
+**Manual visual review required:**
+- `ee-contact` — blank document title; visual confirmation required
 
 ### PNG Business Context
 **Excluded:**
@@ -72,23 +77,28 @@ Automated QA screen for the expanded Telikom Page Design visual research. This i
 ### PNG Government & Public Sector Context
 **Excluded:**
 - `bankpng` — blocked/error title: Just a moment...
+- `finance-png` — capture status=error
+**Manual visual review required:**
+- `png-customs` — very small screenshot file; inspect for blank/partial render
 
 ### Devices
 **Excluded:**
 - `brian-bell` — capture status=partial
 - `globe-devices` — blocked/error title: Just a moment...
+- `jio-devices` — capture status=error
 - `one-nz-phones` — blocked/error title: 404 - Page Not Found
 - `optus-phones` — capture status=partial
+- `samsung-smartphones` — capture status=partial
 - `spark-phones` — blocked/error title: Radware Bot Manager Captcha; bot/security redirect
 - `vodafone-png-broadband-devices` — capture status=error; incomplete/failed local devices capture
-- `vodafone-png-devices` — capture status=error
 **Manual visual review required:**
+- `giffgaff-phones` — blank document title; visual confirmation required
 - `singtel-phones` — very small screenshot file; inspect for blank/partial render
 - `smart-devices` — very small screenshot file; inspect for blank/partial render; blank document title; visual confirmation required
 
 ### FAQs
 **Excluded:**
-- `optus-support` — capture status=partial
+- `optus-support` — capture status=error
 - `spark-help` — blocked/error title: Radware Bot Manager Captcha; bot/security redirect
 
 ### Home Entertainment
@@ -106,6 +116,8 @@ Automated QA screen for the expanded Telikom Page Design visual research. This i
 - `kina-bank` — capture status=error; screenshot missing
 - `orange-newsroom` — cookie consent overlay obstructs the page
 - `verizon-press` — pathological over-expanded/infinite listing capture
+**Manual visual review required:**
+- `verizon-news` — very small screenshot file; inspect for blank/partial render
 
 ### Personal - Mobile
 **Excluded:**
@@ -114,6 +126,7 @@ Automated QA screen for the expanded Telikom Page Design visual research. This i
 - `optus-prepaid` — capture status=partial
 - `spark-prepaid` — blocked/error title: Radware Bot Manager Captcha; bot/security redirect
 **Manual visual review required:**
+- `giffgaff-payg` — blank document title; visual confirmation required
 - `smart-prepaid` — very small screenshot file; inspect for blank/partial render; blank document title; visual confirmation required
 
 ### Services Hub
@@ -126,19 +139,21 @@ Automated QA screen for the expanded Telikom Page Design visual research. This i
 ### Special Home Passes
 **Excluded:**
 - `globe-promos` — blocked/error title: Just a moment...
+- `lebara-mobile` — blocked/error title: Just a moment...
 - `one-nz-offers` — blocked/error title: 404 - Page Not Found
 - `optus-deals` — capture status=partial
 - `singtel-promotions` — blocked/error title: Page Not Found
 - `spark-deals` — blocked/error title: Radware Bot Manager Captcha; bot/security redirect
 **Manual visual review required:**
+- `giffgaff-payg` — blank document title; visual confirmation required
 - `smart-promos` — very small screenshot file; inspect for blank/partial render; blank document title; visual confirmation required
 
 ### Store Locator
 **Excluded:**
 - `brian-bell` — capture status=partial
-- `kina-bank` — capture status=error; screenshot missing
+- `kina-bank` — capture status=partial
 - `one-nz-stores` — blocked/error title: 404 - Page Not Found
-- `optus-stores` — capture status=error; screenshot missing
+- `optus-stores` — capture status=partial
 - `spark-stores` — blocked/error title: Radware Bot Manager Captcha; bot/security redirect
 
 ### U-TOKMoa
@@ -146,4 +161,6 @@ Automated QA screen for the expanded Telikom Page Design visual research. This i
 - `globe-home` — blocked/error title: Just a moment...
 - `optus-home-internet` — capture status=partial
 - `spark-landline` — blocked/error title: Radware Bot Manager Captcha; bot/security redirect
+**Manual visual review required:**
+- `giffgaff-plans` — blank document title; visual confirmation required
 
