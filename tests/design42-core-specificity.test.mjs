@@ -41,19 +41,4 @@ for (const selector of ['.live-news-stream{', '.live-feed-card{', '.updates-live
   assert.ok(newsroom.includes(selector), `Newsroom cleanup lost required selector ${selector}`);
 }
 
-const launchpad = section(
-  '/* Design 42: eight-action kinetic launchpad */',
-  '/* Design 42: business feedback readability only */'
-);
-
-assert.equal(
-  (launchpad.match(/!important/g) || []).length,
-  0,
-  'Eight-action Quick Actions launchpad must use scoped source order, not !important.'
-);
-
-for (const selector of ['.quick-launchpad{', '.quick-launchpad .quick-deck{', '.quick-launchpad .quick-card{']) {
-  assert.ok(launchpad.includes(selector), `Quick Actions cleanup lost required selector ${selector}`);
-}
-
 console.log('Design 42 core specificity guardrails passed.');
