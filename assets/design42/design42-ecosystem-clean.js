@@ -100,12 +100,14 @@
   const mobileQuery=matchMedia('(max-width:900px)');
   const reduceQuery=matchMedia('(prefers-reduced-motion: reduce)');
   const stickyTop=68;
+  const startViewportRatio=.78;
   const marker=document.createElement('span');
   marker.className='eco-scroll-start';
   marker.setAttribute('aria-hidden','true');
   board.before(marker);
 
   let runway=0;
+  let journeyDistance=0;
   let scrollFrame=0;
 
   function clamp(value,min,max){
@@ -122,13 +124,22 @@
     return maxScroll*clamp(progress,0,1);
   }
 
+  function viewportHeight(){
+    return innerHeight||document.documentElement.clientHeight||800;
+  }
+
+  function journeyStart(markerPageTop){
+    /* Begin while the board is entering the viewport, before it reaches stickyTop. */
+    return markerPageTop-(viewportHeight()*startViewportRatio);
+  }
+
   function updateHorizontalJourney(){
     scrollFrame=0;
-    if(!mobileQuery.matches||reduceQuery.matches||runway<=0)return;
+    if(!mobileQuery.matches||reduceQuery.matches||journeyDistance<=0)return;
 
     const markerPageTop=scrollY+marker.getBoundingClientRect().top;
-    const start=markerPageTop-stickyTop;
-    const progress=scrollProgress(scrollY,start,runway);
+    const start=journeyStart(markerPageTop);
+    const progress=scrollProgress(scrollY,start,journeyDistance);
     const target=horizontalOffset(progress,world.scrollWidth,world.clientWidth);
 
     if(Math.abs(world.scrollLeft-target)>.5)world.scrollLeft=target;
@@ -142,13 +153,27 @@
   function measureHorizontalJourney(){
     if(!mobileQuery.matches||reduceQuery.matches){
       runway=0;
+      journeyDistance=0;
       section.style.removeProperty('--eco-scroll-runway');
       world.scrollLeft=0;
       return;
     }
 
     const maxScroll=Math.max(0,world.scrollWidth-world.clientWidth);
-    runway=maxScroll>0?Math.round(clamp(maxScroll*1.1,420,760)):0;
+    if(maxScroll<=0){
+      runway=0;
+      journeyDistance=0;
+      section.style.removeProperty('--eco-scroll-runway');
+      return;
+    }
+
+    /*
+     * Keep the horizontal motion smooth, but give the sticky card extra room
+     * after the motion distance so it cannot release before the journey ends.
+     */
+    journeyDistance=Math.round(clamp(maxScroll*1.25,600,900));
+    const holdDistance=Math.round(clamp(viewportHeight()*.35,180,300));
+    runway=journeyDistance+holdDistance;
     section.style.setProperty('--eco-scroll-runway',`${runway}px`);
     scheduleJourneyUpdate();
   }
