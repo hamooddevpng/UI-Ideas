@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#06131f" />
-  <title>Telikom Website — Executive Design Review</title>
+  <title>Telikom Homepage — Executive Review</title>
   <style>
     :root {
       color-scheme: dark;
@@ -15,9 +15,8 @@
       --muted: #9fb0c1;
       --line: rgba(255,255,255,.10);
       --blue: #18a7eb;
-      --blue-soft: rgba(24,167,235,.12);
       --green: #35c58b;
-      --shadow: 0 24px 80px rgba(0,0,0,.35);
+      --shadow: 0 24px 80px rgba(0,0,0,.34);
     }
 
     * { box-sizing: border-box; }
@@ -27,19 +26,137 @@
       min-height: 100vh;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background:
-        radial-gradient(circle at 12% 0%, rgba(24,167,235,.13), transparent 32rem),
-        radial-gradient(circle at 88% 18%, rgba(53,197,139,.08), transparent 28rem),
+        radial-gradient(circle at 10% 0%, rgba(24,167,235,.13), transparent 32rem),
+        radial-gradient(circle at 88% 16%, rgba(53,197,139,.08), transparent 28rem),
         var(--bg);
       color: var(--text);
     }
 
-    button, a { font: inherit; }
-    button { color: inherit; }
+    a { color: inherit; }
 
-    .page {
-      width: min(1440px, calc(100% - 32px));
+    /* Mobile review is intentionally first in the DOM so phones land on Design 42 immediately. */
+    .mobile-experience { display: none; }
+
+    .mobile-slide {
+      position: relative;
+      width: 100%;
+      height: 100dvh;
+      min-height: 100dvh;
+      overflow: hidden;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      background: #fff;
+    }
+
+    .mobile-slide iframe {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      background: #fff;
+    }
+
+    .mobile-overlay {
+      position: absolute;
+      z-index: 20;
+      left: 10px;
+      right: 10px;
+      bottom: max(10px, env(safe-area-inset-bottom));
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 10px 10px 14px;
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 18px;
+      background: rgba(4,13,22,.90);
+      box-shadow: 0 14px 44px rgba(0,0,0,.34);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      touch-action: pan-y;
+    }
+
+    .mobile-meta { min-width: 0; }
+    .mobile-kicker {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin-bottom: 3px;
+      color: #99ddfb;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .mobile-kicker .selected-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 4px rgba(53,197,139,.11);
+    }
+
+    .mobile-title {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      font-size: 14px;
+      font-weight: 850;
+      letter-spacing: -.02em;
+    }
+
+    .mobile-nav {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .mobile-nav a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 0 12px;
+      border: 1px solid rgba(255,255,255,.13);
+      border-radius: 12px;
+      background: rgba(255,255,255,.08);
+      color: #fff;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 850;
+      white-space: nowrap;
+    }
+
+    .mobile-nav a.primary {
+      border-color: rgba(24,167,235,.35);
+      background: rgba(24,167,235,.18);
+      color: #bcecff;
+    }
+
+    .mobile-swipe-hint {
+      position: absolute;
+      z-index: 19;
+      left: 50%;
+      bottom: calc(max(10px, env(safe-area-inset-bottom)) + 73px);
+      transform: translateX(-50%);
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(5,14,22,.72);
+      color: rgba(255,255,255,.78);
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: .03em;
+      pointer-events: none;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    /* Desktop / tablet executive review. */
+    .desktop-experience {
+      width: min(1480px, calc(100% - 36px));
       margin: 0 auto;
-      padding: 30px 0 54px;
+      padding: 28px 0 46px;
     }
 
     .topbar {
@@ -47,7 +164,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 20px;
-      padding: 6px 0 26px;
+      padding: 4px 0 22px;
     }
 
     .brand {
@@ -71,100 +188,70 @@
 
     .top-label {
       color: var(--muted);
-      font-size: 12px;
-      font-weight: 800;
+      font-size: 11px;
+      font-weight: 900;
       text-transform: uppercase;
       letter-spacing: .12em;
     }
 
     .intro {
       display: grid;
-      grid-template-columns: minmax(0, 1.25fr) minmax(280px, .75fr);
-      gap: 28px;
+      grid-template-columns: minmax(0, 1.3fr) minmax(280px, .7fr);
+      gap: 24px;
       align-items: end;
-      margin-bottom: 26px;
-      padding: 34px;
+      margin-bottom: 20px;
+      padding: 30px;
       border: 1px solid var(--line);
-      border-radius: 26px;
+      border-radius: 24px;
       background: linear-gradient(145deg, rgba(255,255,255,.055), rgba(255,255,255,.018));
       box-shadow: var(--shadow);
-      overflow: hidden;
-      position: relative;
-    }
-
-    .intro::after {
-      content: "";
-      position: absolute;
-      width: 360px;
-      height: 360px;
-      border-radius: 50%;
-      right: -170px;
-      top: -220px;
-      background: rgba(24,167,235,.11);
-      filter: blur(2px);
-      pointer-events: none;
     }
 
     .eyebrow {
-      margin: 0 0 12px;
-      color: #73cef6;
-      font-size: 12px;
+      margin: 0 0 10px;
+      color: #79d3fa;
+      font-size: 11px;
       font-weight: 900;
-      letter-spacing: .13em;
       text-transform: uppercase;
+      letter-spacing: .13em;
     }
 
     h1 {
       margin: 0;
       max-width: 900px;
-      font-size: clamp(34px, 5.4vw, 74px);
-      line-height: .98;
-      letter-spacing: -.055em;
+      font-size: clamp(34px, 4.5vw, 64px);
+      line-height: 1;
+      letter-spacing: -.05em;
     }
 
     .intro-copy {
-      margin: 18px 0 0;
-      max-width: 760px;
-      color: #b8c6d3;
-      font-size: clamp(15px, 1.6vw, 19px);
+      margin: 15px 0 0;
+      max-width: 820px;
+      color: #b7c5d2;
+      font-size: 16px;
       line-height: 1.6;
     }
 
     .decision-card {
-      position: relative;
-      z-index: 1;
-      padding: 20px;
-      border: 1px solid rgba(53,197,139,.25);
-      border-radius: 20px;
-      background: rgba(5,26,26,.54);
-    }
-
-    .decision-card strong {
-      display: block;
-      margin-bottom: 8px;
-      font-size: 15px;
-    }
-
-    .decision-card p {
-      margin: 0;
-      color: #afc2c4;
-      font-size: 13px;
-      line-height: 1.55;
+      padding: 18px;
+      border: 1px solid rgba(53,197,139,.24);
+      border-radius: 18px;
+      background: rgba(5,26,26,.52);
     }
 
     .status {
       display: inline-flex;
       align-items: center;
       gap: 7px;
-      margin-bottom: 13px;
+      margin-bottom: 10px;
       padding: 7px 10px;
       border-radius: 999px;
       background: rgba(53,197,139,.12);
       color: #79e6ba;
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 900;
-      letter-spacing: .06em;
       text-transform: uppercase;
+      letter-spacing: .07em;
     }
 
     .status::before {
@@ -173,546 +260,327 @@
       height: 7px;
       border-radius: 50%;
       background: var(--green);
-      box-shadow: 0 0 0 4px rgba(53,197,139,.1);
+    }
+
+    .decision-card strong {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 15px;
+    }
+
+    .decision-card p {
+      margin: 0;
+      color: #afc1c4;
+      font-size: 12px;
+      line-height: 1.55;
     }
 
     .review-layout {
       display: grid;
-      grid-template-columns: 270px minmax(0, 1fr);
+      grid-template-columns: 280px minmax(0, 1fr);
       gap: 18px;
       align-items: start;
     }
 
-    .rail {
+    .option-rail {
       position: sticky;
-      top: 18px;
+      top: 16px;
       display: grid;
-      gap: 12px;
+      gap: 10px;
     }
 
     .rail-title {
-      margin: 0 0 2px;
+      margin: 0 0 3px;
       color: var(--muted);
-      font-size: 11px;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: .12em;
-    }
-
-    .design-card {
-      width: 100%;
-      text-align: left;
-      padding: 16px;
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      background: var(--surface);
-      cursor: pointer;
-      transition: transform .2s ease, border-color .2s ease, background .2s ease;
-    }
-
-    .design-card:hover {
-      transform: translateY(-2px);
-      border-color: rgba(24,167,235,.45);
-    }
-
-    .design-card.active {
-      border-color: rgba(24,167,235,.72);
-      background: linear-gradient(145deg, rgba(24,167,235,.13), rgba(255,255,255,.025));
-      box-shadow: 0 12px 36px rgba(0,0,0,.22);
-    }
-
-    .design-card.selected-design::after {
-      content: "Selected";
-      display: inline-flex;
-      margin-top: 12px;
-      padding: 5px 8px;
-      border-radius: 999px;
-      background: rgba(53,197,139,.12);
-      color: #70dfb1;
       font-size: 10px;
       font-weight: 900;
       text-transform: uppercase;
-      letter-spacing: .08em;
+      letter-spacing: .13em;
     }
 
-    .design-number {
+    .option-card {
       display: block;
-      color: #6fcdf8;
-      font-size: 11px;
+      padding: 15px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--surface);
+      text-decoration: none;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+      outline: none;
+    }
+
+    .option-card:hover,
+    .option-card:focus-visible {
+      transform: translateY(-1px);
+      border-color: rgba(24,167,235,.46);
+      background: #0e1c2a;
+    }
+
+    .option-card.selected {
+      border-color: rgba(53,197,139,.46);
+      background: linear-gradient(145deg, rgba(53,197,139,.10), rgba(255,255,255,.025));
+    }
+
+    .option-label {
+      display: block;
+      color: #78cff7;
+      font-size: 10px;
       font-weight: 900;
       text-transform: uppercase;
-      letter-spacing: .1em;
+      letter-spacing: .09em;
     }
 
-    .design-name {
+    .option-card.selected .option-label { color: #75e0b4; }
+
+    .option-name {
       display: block;
-      margin-top: 6px;
-      font-size: 17px;
+      margin-top: 5px;
+      font-size: 16px;
       font-weight: 900;
       letter-spacing: -.025em;
     }
 
-    .design-note {
+    .option-note {
       display: block;
-      margin-top: 7px;
+      margin-top: 6px;
       color: var(--muted);
-      font-size: 12px;
+      font-size: 11px;
       line-height: 1.45;
     }
 
-    .workspace {
+    .preview-shell {
       min-width: 0;
-      border: 1px solid var(--line);
-      border-radius: 24px;
       overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 22px;
       background: var(--surface);
       box-shadow: var(--shadow);
     }
 
-    .workspace-head {
+    .preview-head {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 18px;
-      padding: 20px 22px;
+      gap: 16px;
+      padding: 15px 18px;
       border-bottom: 1px solid var(--line);
-      background: rgba(255,255,255,.015);
+      background: rgba(255,255,255,.018);
     }
 
-    .workspace-title .small {
-      margin: 0 0 5px;
-      color: #70cdf7;
-      font-size: 11px;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: .1em;
-    }
-
-    .workspace-title h2 {
-      margin: 0;
-      font-size: clamp(22px, 2.8vw, 34px);
-      letter-spacing: -.04em;
-    }
-
-    .workspace-title p {
-      margin: 7px 0 0;
-      color: var(--muted);
+    .preview-head strong {
       font-size: 13px;
-      line-height: 1.5;
-      max-width: 720px;
+      letter-spacing: -.01em;
     }
 
-    .view-controls {
-      flex: 0 0 auto;
-      display: inline-flex;
-      padding: 4px;
-      border: 1px solid var(--line);
-      border-radius: 13px;
-      background: #07111c;
-    }
-
-    .view-btn {
-      min-height: 38px;
-      padding: 0 14px;
-      border: 0;
-      border-radius: 9px;
-      background: transparent;
+    .preview-head span {
       color: var(--muted);
-      font-size: 12px;
-      font-weight: 900;
-      cursor: pointer;
+      font-size: 11px;
     }
 
-    .view-btn.active {
-      background: #173148;
-      color: #fff;
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,.07);
-    }
-
-    .preview-area {
-      min-height: 720px;
-      padding: 28px;
-      display: grid;
-      place-items: start center;
-      background:
-        linear-gradient(rgba(255,255,255,.023) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.023) 1px, transparent 1px),
-        #07111b;
-      background-size: 32px 32px;
-      overflow: hidden;
-    }
-
-    .phone-wrap {
-      width: min(410px, 100%);
-      padding: 10px;
-      border-radius: 36px;
-      background: #02070b;
-      border: 1px solid #263746;
-      box-shadow: 0 30px 90px rgba(0,0,0,.55);
-    }
-
-    .phone-top {
-      height: 28px;
+    .browser-dots {
       display: flex;
-      align-items: center;
-      justify-content: center;
+      gap: 6px;
     }
 
-    .notch {
-      width: 96px;
-      height: 17px;
-      border-radius: 999px;
-      background: #0d141b;
+    .browser-dots i {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.23);
     }
 
-    .phone-screen {
-      position: relative;
-      height: min(780px, 72vh);
-      min-height: 600px;
-      overflow: hidden;
-      border-radius: 27px;
+    .desktop-frame {
+      display: block;
+      width: 100%;
+      height: min(820px, calc(100dvh - 150px));
+      min-height: 650px;
+      border: 0;
       background: #fff;
     }
 
-    .phone-screen iframe {
-      width: 100%;
-      height: 100%;
-      border: 0;
-      background: white;
-    }
-
-    .desktop-wrap {
-      width: 100%;
-      overflow: hidden;
-      border: 1px solid #314255;
-      border-radius: 18px;
-      background: #101922;
-      box-shadow: 0 24px 70px rgba(0,0,0,.4);
-    }
-
-    .desktop-top {
-      height: 42px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      padding: 0 14px;
-      background: #141f2a;
-      border-bottom: 1px solid rgba(255,255,255,.06);
-    }
-
-    .desktop-top i {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: rgba(255,255,255,.22);
-    }
-
-    .desktop-viewport {
-      position: relative;
-      width: 100%;
-      height: 0;
-      overflow: hidden;
-      background: white;
-    }
-
-    .desktop-viewport iframe {
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 1440px;
-      height: 900px;
-      border: 0;
-      transform-origin: top left;
-      background: white;
-    }
-
-    .workspace-foot {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 18px;
-      padding: 17px 22px;
+    .preview-foot {
+      padding: 12px 18px;
       border-top: 1px solid var(--line);
-      background: rgba(255,255,255,.015);
-    }
-
-    .foot-copy {
       color: var(--muted);
-      font-size: 12px;
-      line-height: 1.5;
+      font-size: 11px;
+      line-height: 1.45;
     }
 
-    .open-link {
-      flex: 0 0 auto;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 40px;
-      padding: 0 15px;
-      border: 1px solid rgba(24,167,235,.32);
-      border-radius: 11px;
-      background: var(--blue-soft);
-      color: #a8e4ff;
-      text-decoration: none;
-      font-size: 12px;
-      font-weight: 900;
-    }
-
-    .context {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      margin-top: 18px;
-    }
-
-    .context-card {
-      padding: 18px;
-      border: 1px solid var(--line);
-      border-radius: 17px;
-      background: rgba(255,255,255,.025);
-    }
-
-    .context-card b {
-      display: block;
-      margin-bottom: 7px;
-      font-size: 13px;
-    }
-
-    .context-card span {
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.5;
-    }
-
-    .mobile-only-note {
-      display: none;
-      margin: 0 0 14px;
-      padding: 12px 14px;
-      border: 1px solid rgba(24,167,235,.22);
-      border-radius: 13px;
-      background: rgba(24,167,235,.07);
-      color: #acdff6;
-      font-size: 12px;
-      line-height: 1.5;
-    }
-
-    @media (max-width: 980px) {
+    @media (max-width: 1000px) and (min-width: 761px) {
       .intro { grid-template-columns: 1fr; }
-      .review-layout { grid-template-columns: 1fr; }
-      .rail {
-        position: static;
-        grid-template-columns: repeat(3, minmax(0,1fr));
-      }
-      .rail-title { grid-column: 1 / -1; }
-      .context { grid-template-columns: 1fr; }
+      .review-layout { grid-template-columns: 230px minmax(0,1fr); }
     }
 
-    @media (max-width: 700px) {
-      .page { width: min(100% - 20px, 1440px); padding-top: 15px; }
-      .topbar { padding-bottom: 16px; }
-      .top-label { display: none; }
-      .intro { padding: 22px; border-radius: 20px; }
-      h1 { font-size: clamp(38px, 13vw, 58px); }
-      .intro-copy { font-size: 15px; }
-      .rail {
-        display: flex;
-        overflow-x: auto;
-        padding-bottom: 3px;
-        scrollbar-width: none;
+    @media (max-width: 760px) {
+      html, body {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: #000;
       }
-      .rail::-webkit-scrollbar { display: none; }
-      .rail-title { display: none; }
-      .design-card { flex: 0 0 218px; }
-      .workspace { border-radius: 18px; }
-      .workspace-head {
-        display: grid;
-        padding: 18px;
+
+      .desktop-experience { display: none; }
+
+      .mobile-experience {
+        display: block;
+        width: 100%;
+        height: 100dvh;
+        overflow-y: auto;
+        overflow-x: hidden;
+        scroll-snap-type: y mandatory;
+        overscroll-behavior-y: contain;
+        -webkit-overflow-scrolling: touch;
+        background: #000;
       }
-      .view-controls { width: 100%; }
-      .view-btn { flex: 1; }
-      .preview-area { min-height: 620px; padding: 15px 10px 22px; }
-      .phone-wrap { border-radius: 29px; }
-      .phone-screen { min-height: 540px; height: 68vh; border-radius: 22px; }
-      .workspace-foot { align-items: stretch; flex-direction: column; padding: 16px 18px; }
-      .open-link { width: 100%; }
-      .mobile-only-note { display: block; }
     }
   </style>
 </head>
 <body>
-  <main class="page">
+  <div class="mobile-experience" aria-label="Mobile homepage review">
+    <section class="mobile-slide" id="review-1">
+      <iframe src="https://htmlpreview.github.io/?https://raw.githubusercontent.com/hamooddevpng/UI-Ideas/main/42.html" title="Design 42 mobile preview"></iframe>
+      <div class="mobile-swipe-hint">Use the overlay to move between designs</div>
+      <div class="mobile-overlay">
+        <div class="mobile-meta">
+          <div class="mobile-kicker"><span class="selected-dot"></span>Selected direction · 1/5</div>
+          <div class="mobile-title">Design 42 · Selected Direction</div>
+        </div>
+        <div class="mobile-nav">
+          <a class="primary" href="#review-2" aria-label="Next design">Next design ↓</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="mobile-slide" id="review-2">
+      <iframe src="https://telikom-frontend.vercel.app/home-2" title="Homepage option 2 mobile preview"></iframe>
+      <div class="mobile-overlay">
+        <div class="mobile-meta">
+          <div class="mobile-kicker">Alternative · 2/5</div>
+          <div class="mobile-title">Homepage Option 2</div>
+        </div>
+        <div class="mobile-nav">
+          <a href="#review-1" aria-label="Previous design">↑</a>
+          <a class="primary" href="#review-3" aria-label="Next design">Next design ↓</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="mobile-slide" id="review-3">
+      <iframe src="https://telikom-frontend.vercel.app/home-3" title="Homepage option 3 mobile preview"></iframe>
+      <div class="mobile-overlay">
+        <div class="mobile-meta">
+          <div class="mobile-kicker">Alternative · 3/5</div>
+          <div class="mobile-title">Homepage Option 3</div>
+        </div>
+        <div class="mobile-nav">
+          <a href="#review-2" aria-label="Previous design">↑</a>
+          <a class="primary" href="#review-4" aria-label="Next design">Next design ↓</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="mobile-slide" id="review-4">
+      <iframe src="https://telikom-frontend.vercel.app/home-4" title="Homepage option 4 mobile preview"></iframe>
+      <div class="mobile-overlay">
+        <div class="mobile-meta">
+          <div class="mobile-kicker">Alternative · 4/5</div>
+          <div class="mobile-title">Homepage Option 4</div>
+        </div>
+        <div class="mobile-nav">
+          <a href="#review-3" aria-label="Previous design">↑</a>
+          <a class="primary" href="#review-5" aria-label="Next design">Next design ↓</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="mobile-slide" id="review-5">
+      <iframe src="https://telikom-frontend.vercel.app/concise-home" title="Homepage option 5 mobile preview"></iframe>
+      <div class="mobile-overlay">
+        <div class="mobile-meta">
+          <div class="mobile-kicker">Alternative · 5/5</div>
+          <div class="mobile-title">Homepage Option 5 · Concise</div>
+        </div>
+        <div class="mobile-nav">
+          <a href="#review-4" aria-label="Previous design">↑</a>
+          <a class="primary" href="#review-1" aria-label="Back to selected design">Back to 42 ↑</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <main class="desktop-experience">
     <header class="topbar">
       <div class="brand"><span class="brand-mark">T</span><span>Telikom Website</span></div>
-      <span class="top-label">Executive Design Review</span>
+      <span class="top-label">Executive Homepage Review</span>
     </header>
 
     <section class="intro">
       <div>
-        <p class="eyebrow">Current Website Direction</p>
-        <h1>Designed for Telikom.<br />Built to work everywhere.</h1>
-        <p class="intro-copy">This review presents the current homepage direction across desktop and mobile. Design 42 is the selected direction and has continued to be refined after the earlier design comparison.</p>
+        <p class="eyebrow">Homepage Review</p>
+        <h1>One selected direction.<br />Four alternatives.</h1>
+        <p class="intro-copy">Design 42 is the current selected direction and is presented first. The additional homepage concepts remain available below for a clean side-by-side executive review.</p>
       </div>
       <aside class="decision-card">
         <span class="status">Selected direction</span>
         <strong>Design 42 is the current design.</strong>
-        <p>Designs 40 and 41 are retained below only as earlier final-stage alternatives for context. They are not being presented as equal recommendations.</p>
+        <p>The alternatives are included for comparison only. On phones, every homepage opens full-screen with simple next/previous controls.</p>
       </aside>
     </section>
 
-    <p class="mobile-only-note">You are viewing the executive review on a phone. The preview below starts in the mobile layout; use “Desktop” to inspect the full desktop composition.</p>
-
     <section class="review-layout">
-      <nav class="rail" aria-label="Design directions">
-        <p class="rail-title">Design directions</p>
-        <button class="design-card active selected-design" data-design="42">
-          <span class="design-number">Design 42</span>
-          <span class="design-name">Current direction</span>
-          <span class="design-note">Selected and further refined. Premium, service-led and responsive.</span>
-        </button>
-        <button class="design-card" data-design="41">
-          <span class="design-number">Design 41</span>
-          <span class="design-name">Earlier alternative</span>
-          <span class="design-note">A balanced middle-ground direction retained for comparison.</span>
-        </button>
-        <button class="design-card" data-design="40">
-          <span class="design-number">Design 40</span>
-          <span class="design-name">Earlier alternative</span>
-          <span class="design-note">The simplest final-stage direction, retained for reference.</span>
-        </button>
+      <nav class="option-rail" aria-label="Homepage options">
+        <p class="rail-title">Homepage options</p>
+
+        <a class="option-card selected" href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/hamooddevpng/UI-Ideas/main/42.html" target="desktopPreview">
+          <span class="option-label">Selected Direction</span>
+          <span class="option-name">Design 42</span>
+          <span class="option-note">Current direction, refined further after selection.</span>
+        </a>
+
+        <a class="option-card" href="https://telikom-frontend.vercel.app/home-2" target="desktopPreview">
+          <span class="option-label">Alternative</span>
+          <span class="option-name">Homepage Option 2</span>
+          <span class="option-note">Alternative homepage concept for comparison.</span>
+        </a>
+
+        <a class="option-card" href="https://telikom-frontend.vercel.app/home-3" target="desktopPreview">
+          <span class="option-label">Alternative</span>
+          <span class="option-name">Homepage Option 3</span>
+          <span class="option-note">Alternative homepage concept for comparison.</span>
+        </a>
+
+        <a class="option-card" href="https://telikom-frontend.vercel.app/home-4" target="desktopPreview">
+          <span class="option-label">Alternative</span>
+          <span class="option-name">Homepage Option 4</span>
+          <span class="option-note">Alternative homepage concept for comparison.</span>
+        </a>
+
+        <a class="option-card" href="https://telikom-frontend.vercel.app/concise-home" target="desktopPreview">
+          <span class="option-label">Alternative</span>
+          <span class="option-name">Homepage Option 5 · Concise</span>
+          <span class="option-note">A shorter, more concise homepage concept.</span>
+        </a>
       </nav>
 
-      <div>
-        <article class="workspace">
-          <header class="workspace-head">
-            <div class="workspace-title">
-              <p class="small" id="designLabel">Design 42 · Selected direction</p>
-              <h2 id="designTitle">Current Telikom Homepage</h2>
-              <p id="designDescription">The selected design direction, shown first in its mobile experience.</p>
-            </div>
-            <div class="view-controls" role="group" aria-label="Preview size">
-              <button class="view-btn active" data-view="mobile">Mobile</button>
-              <button class="view-btn" data-view="desktop">Desktop</button>
-            </div>
-          </header>
-
-          <div class="preview-area" id="previewArea">
-            <div class="phone-wrap" id="phonePreview">
-              <div class="phone-top"><div class="notch"></div></div>
-              <div class="phone-screen"><iframe id="mobileFrame" title="Telikom mobile preview"></iframe></div>
-            </div>
-
-            <div class="desktop-wrap" id="desktopPreview" hidden>
-              <div class="desktop-top"><i></i><i></i><i></i></div>
-              <div class="desktop-viewport" id="desktopViewport">
-                <iframe id="desktopFrame" title="Telikom desktop preview"></iframe>
-              </div>
-            </div>
+      <article class="preview-shell">
+        <header class="preview-head">
+          <div>
+            <strong>Live homepage preview</strong><br />
+            <span>Select any option on the left to load it here.</span>
           </div>
+          <div class="browser-dots" aria-hidden="true"><i></i><i></i><i></i></div>
+        </header>
 
-          <footer class="workspace-foot">
-            <div class="foot-copy" id="footCopy"><strong>Mobile preview:</strong> the site is rendered inside a phone-sized viewport so the responsive layout can be reviewed directly.</div>
-            <a class="open-link" id="openFull" href="#" target="_blank" rel="noopener noreferrer">Open full design ↗</a>
-          </footer>
-        </article>
+        <iframe
+          class="desktop-frame"
+          name="desktopPreview"
+          src="https://htmlpreview.github.io/?https://raw.githubusercontent.com/hamooddevpng/UI-Ideas/main/42.html"
+          title="Telikom homepage desktop preview"
+        ></iframe>
 
-        <section class="context" aria-label="Review notes">
-          <div class="context-card"><b>Mobile-ready</b><span>The same website adapts to the smaller screen rather than being treated as a separate design.</span></div>
-          <div class="context-card"><b>Service-first</b><span>Core customer actions and Telikom services remain prominent as the layout adapts.</span></div>
-          <div class="context-card"><b>Current recommendation</b><span>Design 42 is the direction being developed further; 40 and 41 are shown only to preserve decision context.</span></div>
-        </section>
-      </div>
+        <footer class="preview-foot">Design 42 is loaded first by default. Each homepage remains fully scrollable inside the preview.</footer>
+      </article>
     </section>
   </main>
-
-  <script>
-    const owner = 'hamooddevpng';
-    const repo = 'UI-Ideas';
-    const branch = 'main';
-
-    const designs = {
-      42: {
-        label: 'Design 42 · Selected direction',
-        title: 'Current Telikom Homepage',
-        description: 'The selected design direction, shown first in its mobile experience.'
-      },
-      41: {
-        label: 'Design 41 · Earlier alternative',
-        title: 'Balanced Alternative',
-        description: 'An earlier final-stage option kept for comparison with the selected direction.'
-      },
-      40: {
-        label: 'Design 40 · Earlier alternative',
-        title: 'Minimal Alternative',
-        description: 'The simplest of the final-stage concepts, retained as decision history.'
-      }
-    };
-
-    const $ = (id) => document.getElementById(id);
-    const cacheToken = () => `${Date.now()}-${Math.random().toString(36).slice(2,8)}`;
-    const previewUrl = (n) => `https://htmlpreview.github.io/?https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${n}.html?ceo=${cacheToken()}`;
-
-    let currentDesign = 42;
-    let currentView = 'mobile';
-
-    function setFrameSources(n) {
-      const url = previewUrl(n);
-      $('mobileFrame').src = url;
-      $('desktopFrame').src = url;
-      $('openFull').href = url;
-    }
-
-    function renderDesign() {
-      const meta = designs[currentDesign];
-      $('designLabel').textContent = meta.label;
-      $('designTitle').textContent = meta.title;
-      $('designDescription').textContent = meta.description;
-      document.querySelectorAll('.design-card').forEach(btn => {
-        btn.classList.toggle('active', Number(btn.dataset.design) === currentDesign);
-      });
-      setFrameSources(currentDesign);
-    }
-
-    function fitDesktop() {
-      const wrap = $('desktopViewport');
-      if (!wrap || currentView !== 'desktop') return;
-      const width = wrap.clientWidth;
-      const scale = Math.min(1, width / 1440);
-      $('desktopFrame').style.transform = `scale(${scale})`;
-      wrap.style.height = `${900 * scale}px`;
-    }
-
-    function renderView() {
-      const isMobile = currentView === 'mobile';
-      $('phonePreview').hidden = !isMobile;
-      $('desktopPreview').hidden = isMobile;
-      document.querySelectorAll('.view-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.view === currentView);
-      });
-      $('footCopy').innerHTML = isMobile
-        ? '<strong>Mobile preview:</strong> the site is rendered inside a phone-sized viewport so the responsive layout can be reviewed directly.'
-        : '<strong>Desktop preview:</strong> the full 1440px desktop composition is scaled to fit the review window without changing the page layout.';
-      if (!isMobile) requestAnimationFrame(fitDesktop);
-    }
-
-    document.querySelectorAll('.design-card').forEach(btn => {
-      btn.addEventListener('click', () => {
-        currentDesign = Number(btn.dataset.design);
-        renderDesign();
-      });
-    });
-
-    document.querySelectorAll('.view-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        currentView = btn.dataset.view;
-        renderView();
-      });
-    });
-
-    window.addEventListener('resize', fitDesktop);
-    if ('ResizeObserver' in window) new ResizeObserver(fitDesktop).observe($('desktopViewport'));
-
-    renderDesign();
-    renderView();
-  </script>
 </body>
 </html>
