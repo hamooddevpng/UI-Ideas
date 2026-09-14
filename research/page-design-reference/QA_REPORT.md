@@ -12,13 +12,13 @@ Automated QA screen for the expanded Telikom Page Design visual research. This i
 | Contact (`contact`) | 21 | 16 | 1 | 4 | PASS |
 | PNG Business Context (`context-png-businesses`) | 21 | 17 | 0 | 4 | PASS |
 | PNG Government & Public Sector Context (`context-png-public-sector`) | 18 | 15 | 1 | 2 | PASS |
-| Devices (`devices`) | 23 | 12 | 3 | 8 | PASS after visual review |
+| Devices (`devices`) | 29 | 16 | 3 | 10 | PASS |
 | FAQs (`faqs`) | 21 | 19 | 0 | 2 | PASS |
 | Home Entertainment (`home-entertainment`) | 21 | 17 | 0 | 4 | PASS |
 | News & Media (`news-media`) | 23 | 16 | 1 | 6 | PASS |
 | Personal - Mobile (`personal-mobile`) | 21 | 15 | 2 | 4 | PASS |
 | Services Hub (`services-hub`) | 21 | 18 | 1 | 2 | PASS |
-| Special Home Passes (`special-home-passes`) | 21 | 13 | 2 | 6 | PASS after visual review |
+| Special Home Passes (`special-home-passes`) | 27 | 19 | 2 | 6 | PASS |
 | Store Locator (`store-locator`) | 22 | 17 | 0 | 5 | PASS |
 | U-TOKMoa (`u-tokmoa`) | 21 | 17 | 1 | 3 | PASS |
 
@@ -89,8 +89,10 @@ Automated QA screen for the expanded Telikom Page Design visual research. This i
 - `one-nz-phones` — blocked/error title: 404 - Page Not Found
 - `optus-phones` — capture status=partial
 - `samsung-smartphones` — capture status=partial
+- `sony-smartphones` — blocked/error title: Access Denied
 - `spark-phones` — blocked/error title: Radware Bot Manager Captcha; bot/security redirect
 - `vodafone-png-broadband-devices` — capture status=error; incomplete/failed local devices capture
+- `xiaomi-uk-mobile` — blocked/error title: Access Denied
 **Manual visual review required:**
 - `giffgaff-phones` — blank document title; visual confirmation required
 - `singtel-phones` — very small screenshot file; inspect for blank/partial render
