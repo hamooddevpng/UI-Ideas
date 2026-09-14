@@ -128,17 +128,48 @@ body{background:var(--ice);color:var(--ink)}
 .png-live{background:#092b2f}
 .png-story-wash{background:linear-gradient(90deg,rgba(3,23,28,.86) 0%,rgba(3,23,28,.62) 34%,rgba(3,23,28,.12) 66%,rgba(3,23,28,.24) 100%)}
 
-/* News and support return to the original cool-light canvases. */
+/* News and support stay on cool-light canvases. */
 .updates-console,.news-feature{background:#fff;border-color:rgba(16,43,60,.11)}
 .live-feed-card{background:#fff;border-color:rgba(16,43,60,.09)}
 .support,.support-orbit{background:linear-gradient(180deg,var(--sky),var(--ice))}
+
+/* Support keeps its radar interaction, but the primary card is now a light surface. */
 .support-orbit .support-stage{
   background:
-    radial-gradient(circle at 54% 35%,rgba(33,160,243,.18),transparent 27%),
-    linear-gradient(145deg,#061925,#0a3043);
+    radial-gradient(circle at 78% 48%,rgba(28,160,232,.11),transparent 31%),
+    radial-gradient(circle at 88% 58%,rgba(32,169,87,.055),transparent 28%),
+    linear-gradient(145deg,#fff 0%,var(--ice) 72%,#eef8fb 100%);
+  color:var(--ink);
+  border:2px solid var(--navy);
+  box-shadow:0 24px 64px rgba(6,25,37,.10),inset 0 1px 0 rgba(255,255,255,.92);
 }
-.support-orbit .support-link{background:rgba(255,255,255,.075);border-color:rgba(255,255,255,.18)}
-.support-orbit .support-link:hover{background:#fff;color:var(--navy);border-color:#fff}
+.support-orbit .support-copy h2{color:var(--navy)}
+.support-orbit .support-copy p{color:#4f7080}
+.support-orbit .support-search{
+  background:#fff;
+  border:1px solid rgba(6,25,37,.14);
+  box-shadow:0 10px 28px rgba(6,25,37,.07);
+}
+.support-orbit .support-search input{background:transparent;color:var(--ink)}
+.support-orbit .support-radar i{border-color:rgba(8,117,201,.14)}
+.support-orbit .support-radar span{background:linear-gradient(rgba(8,117,201,.42),rgba(8,117,201,0))}
+.support-orbit .support-stage.searching .support-radar i{border-color:rgba(8,117,201,.30)}
+.support-orbit .support-link{
+  background:rgba(255,255,255,.78);
+  color:var(--ink);
+  border-color:rgba(6,25,37,.16);
+  box-shadow:0 10px 24px rgba(6,25,37,.06);
+}
+.support-orbit .support-link small{color:#6d8794}
+.support-orbit .support-link:hover,
+.support-orbit .support-link:focus-visible{
+  background:#fff;
+  color:var(--navy);
+  border-color:rgba(8,117,201,.34);
+  box-shadow:0 16px 38px rgba(6,25,37,.12);
+}
+.support-orbit .support-link:hover small,
+.support-orbit .support-link:focus-visible small{color:#587887}
 .support-hint{color:#7195a6}
 
 /* Compact active elements use the same backup navy and primary blue. */
