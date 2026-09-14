@@ -26,4 +26,19 @@ for (const selector of ['.satellite{', '.dish-rig{', '.starlink-satellite-svg{']
   assert.ok(starlink.includes(selector), `Starlink refresh lost required selector ${selector}`);
 }
 
+const newsroom = section(
+  '/* Design 42: six-item live newsroom + vertically centred support copy */',
+  '/* Design 42: eight-action kinetic launchpad */'
+);
+
+assert.equal(
+  (newsroom.match(/!important/g) || []).length,
+  0,
+  'Live newsroom/support alignment must use the Core cascade, not !important.'
+);
+
+for (const selector of ['.live-news-stream{', '.live-feed-card{', '.updates-live .news-feature{']) {
+  assert.ok(newsroom.includes(selector), `Newsroom cleanup lost required selector ${selector}`);
+}
+
 console.log('Design 42 core specificity guardrails passed.');
