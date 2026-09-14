@@ -51,7 +51,7 @@ jobs:
           sleep 1
           curl --fail --silent http://127.0.0.1:4173/42.html >/dev/null
           curl --fail --silent http://127.0.0.1:4174/42.html >/dev/null
-      - name: Run browser behavior and geometry parity
+      - name: Run browser behavior and asset-aware geometry parity
         run: |
           node <<'EOF'
           const { chromium } = require('playwright');
@@ -62,8 +62,12 @@ jobs:
           const selectors = {
             hero: '.hero',
             quickActions: '#quick-actions',
+            offers: '#offers',
+            services: '#services',
             digitalPng: '.eco-section',
             business: '#business',
+            national: '.national-story-map',
+            updates: '#updates',
             support: '#support',
             footer: 'footer'
           };
@@ -77,7 +81,7 @@ jobs:
             await page.evaluate(async () => {
               const sleep = ms => new Promise(r => setTimeout(r, ms));
               let y = 0;
-              for (let i = 0; i < 24; i++) {
+              for (let i = 0; i < 28; i++) {
                 const max = Math.max(0, document.documentElement.scrollHeight - innerHeight);
                 y = Math.min(max, y + Math.max(360, Math.floor(innerHeight * .6)));
                 scrollTo(0, y);
@@ -99,12 +103,21 @@ jobs:
             const result = await page.evaluate(sels => {
               const boxes = {};
               for (const [name, selector] of Object.entries(sels)) {
-                const el = name === 'footer' ? [...document.querySelectorAll('footer')].at(-1) : document.querySelector(selector);
+                const matches = [...document.querySelectorAll(selector)];
+                const el = name === 'footer' ? matches.at(-1) : matches[0];
                 if (!el) throw new Error(`Missing parity element ${selector}`);
                 const r = el.getBoundingClientRect();
                 boxes[name] = { x: r.x, y: r.y + scrollY, width: r.width, height: r.height };
               }
-              return { scrollHeight: document.documentElement.scrollHeight, boxes };
+              const logo = document.querySelector('.footer-logo img');
+              return {
+                boxes,
+                footerLogo: logo ? {
+                  naturalWidth: logo.naturalWidth,
+                  naturalHeight: logo.naturalHeight,
+                  renderedHeight: logo.getBoundingClientRect().height
+                } : null
+              };
             }, selectors);
             assert.equal(errors.length, 0, `Page errors on ${url}: ${errors.join(' | ')}`);
             await context.close();
@@ -117,14 +130,20 @@ jobs:
             const current = await geometry(browser, currentUrl);
             const tolerance = 6;
 
-            assert.ok(Math.abs(current.scrollHeight - reference.scrollHeight) <= tolerance,
-              `Document height delta is ${current.scrollHeight - reference.scrollHeight}px`);
             for (const name of Object.keys(selectors)) {
-              for (const metric of ['x', 'y', 'width', 'height']) {
+              const metrics = name === 'footer' ? ['x', 'y', 'width'] : ['x', 'y', 'width', 'height'];
+              for (const metric of metrics) {
                 const delta = current.boxes[name][metric] - reference.boxes[name][metric];
                 assert.ok(Math.abs(delta) <= tolerance, `${name} ${metric} delta is ${delta}px`);
               }
             }
+
+            // The historical main reference can fail to fetch the remote footer logo in CI,
+            // producing a false footer-height delta. The refactored branch must load it.
+            assert.ok(current.footerLogo, 'Missing footer logo in refactored Design 42.');
+            assert.ok(current.footerLogo.naturalWidth > 0 && current.footerLogo.naturalHeight > 0,
+              `Footer logo failed to load: ${JSON.stringify(current.footerLogo)}`);
+            assert.ok(current.footerLogo.renderedHeight > 0, 'Footer logo rendered at zero height.');
 
             const context = await browser.newContext({ viewport: { width: 1440, height: 900 } });
             const page = await context.newPage();
@@ -158,11 +177,15 @@ jobs:
             const mobile = await mobileContext.newPage();
             await mobile.goto(currentUrl, { waitUntil: 'domcontentloaded', timeout: 30000 });
             await mobile.waitForSelector('.hero', { timeout: 15000 });
-            const mobileMetrics = await mobile.evaluate(() => ({ scrollWidth: document.documentElement.scrollWidth, clientWidth: document.documentElement.clientWidth }));
-            assert.ok(mobileMetrics.scrollWidth <= mobileMetrics.clientWidth + 2, `Mobile horizontal overflow: ${mobileMetrics.scrollWidth} > ${mobileMetrics.clientWidth}`);
+            const mobileMetrics = await mobile.evaluate(() => ({
+              scrollWidth: document.documentElement.scrollWidth,
+              clientWidth: document.documentElement.clientWidth
+            }));
+            assert.ok(mobileMetrics.scrollWidth <= mobileMetrics.clientWidth + 2,
+              `Mobile horizontal overflow: ${mobileMetrics.scrollWidth} > ${mobileMetrics.clientWidth}`);
             await mobileContext.close();
             await browser.close();
 
-            console.log('Design 42 integration architecture, behavior, desktop geometry, and mobile overflow checks passed.');
+            console.log('Design 42 integration architecture, behavior, asset-aware geometry, footer logo, and mobile checks passed.');
           })().catch(error => { console.error(error); process.exit(1); });
           EOF
