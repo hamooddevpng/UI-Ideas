@@ -1,0 +1,78 @@
+/*
+ * Design 42 ecosystem cleanup.
+ * Keeps the SVG artwork intact while moving service storytelling to the
+ * bottom strip. The original hotspot elements remain in the DOM only so the
+ * proven ecosystem state logic can be reused programmatically.
+ */
+
+/* Remove the floating letter controls and the duplicate top-right story card. */
+.eco-section .eco-hotspot,
+.eco-section .eco-detail{
+  display:none !important;
+}
+
+/* The SVG artwork itself is now the interaction surface. */
+.eco-section .eco-zone{
+  cursor:pointer;
+  pointer-events:bounding-box;
+}
+
+/* No extra instruction control is needed once the illustration is interactive. */
+.eco-section .eco-hint{
+  display:none !important;
+}
+
+/* Give the selected journey a clean, readable home beneath the illustration. */
+.eco-section .eco-bottom{
+  min-height:96px;
+  grid-template-columns:110px minmax(0,1fr);
+  gap:26px;
+  padding:16px 22px 17px;
+}
+
+.eco-section .eco-summary{
+  max-width:900px;
+  font-size:17px;
+  line-height:1.2;
+  transition:opacity .18s ease,transform .18s ease;
+}
+
+.eco-section .eco-summary span{
+  display:block;
+  max-width:820px;
+  margin-top:6px;
+  color:#718b96;
+  font-size:11px;
+  font-weight:550;
+  line-height:1.52;
+  letter-spacing:0;
+  text-transform:none;
+}
+
+.eco-section .eco-zone:focus-visible{
+  outline:none;
+  filter:saturate(1.08) drop-shadow(0 10px 12px rgba(17,83,103,.12));
+}
+
+@media (max-width:900px){
+  .eco-section .eco-bottom{
+    grid-template-columns:92px minmax(0,1fr);
+    gap:16px;
+  }
+}
+
+@media (max-width:560px){
+  .eco-section .eco-bottom{
+    grid-template-columns:1fr;
+    min-height:92px;
+    padding:15px 18px 16px;
+  }
+  .eco-section .eco-summary{
+    font-size:14px;
+  }
+  .eco-section .eco-summary span{
+    margin-top:5px;
+    font-size:10px;
+    line-height:1.45;
+  }
+}
