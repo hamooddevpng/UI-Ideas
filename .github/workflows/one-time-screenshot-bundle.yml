@@ -1,0 +1,124 @@
+name: One-time Homepage Screenshot Bundle
+
+on:
+  push:
+    paths:
+      - '.github/workflows/one-time-screenshot-bundle.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up screenshot runner
+        run: |
+          mkdir -p /tmp/capture-run
+          cd /tmp/capture-run
+          npm init -y >/dev/null 2>&1
+          npm install playwright@1.55.0 --no-save >/dev/null 2>&1
+
+      - name: Serve local designs
+        run: |
+          python3 -m http.server 8000 --directory "$GITHUB_WORKSPACE" >/tmp/ui-ideas-server.log 2>&1 &
+          echo $! > /tmp/ui-ideas-server.pid
+          sleep 2
+
+      - name: Capture full-page desktop and phone PNGs
+        env:
+          REPO_DIR: ${{ github.workspace }}
+        run: |
+          cat > /tmp/capture-run/capture.js <<'NODE'
+          const { chromium } = require('playwright');
+          const { execSync } = require('child_process');
+          const fs = require('fs');
+          const path = require('path');
+
+          const pages = [
+            ['design-42', 'http://127.0.0.1:8000/42.html'],
+            ['option-5-concise', 'https://telikom-frontend.vercel.app/concise-home'],
+            ['option-2', 'https://telikom-frontend.vercel.app/home-2'],
+            ['option-3', 'https://telikom-frontend.vercel.app/home-3'],
+            ['option-4', 'https://telikom-frontend.vercel.app/home-4'],
+          ];
+          const viewports = {
+            desktop: { width: 1440, height: 900, isMobile: false, hasTouch: false },
+            phone: { width: 390, height: 844, isMobile: true, hasTouch: true },
+          };
+
+          const candidates = ['google-chrome', 'google-chrome-stable', 'chromium', 'chromium-browser'];
+          let executablePath = null;
+          for (const candidate of candidates) {
+            try {
+              executablePath = execSync(`which ${candidate}`, { encoding: 'utf8' }).trim();
+              if (executablePath) break;
+            } catch (_) {}
+          }
+          if (!executablePath) throw new Error('No Chromium/Chrome executable found');
+
+          const outDir = path.join(process.env.REPO_DIR, 'screenshot-output');
+          fs.mkdirSync(outDir, { recursive: true });
+
+          (async () => {
+            const browser = await chromium.launch({ headless: true, executablePath, args: ['--no-sandbox', '--disable-dev-shm-usage'] });
+            try {
+              for (const [slug, url] of pages) {
+                for (const [kind, vp] of Object.entries(viewports)) {
+                  console.log(`Capturing ${slug} ${kind}`);
+                  const context = await browser.newContext({
+                    viewport: { width: vp.width, height: vp.height },
+                    isMobile: vp.isMobile,
+                    hasTouch: vp.hasTouch,
+                    deviceScaleFactor: 1,
+                  });
+                  const page = await context.newPage();
+                  await page.emulateMedia({ reducedMotion: 'reduce' });
+                  await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 60000 });
+                  try { await page.waitForLoadState('networkidle', { timeout: 10000 }); } catch (_) {}
+                  await page.evaluate(async () => {
+                    const sleep = ms => new Promise(r => setTimeout(r, ms));
+                    let lastHeight = 0;
+                    for (let pass = 0; pass < 3; pass += 1) {
+                      const height = Math.max(document.body?.scrollHeight || 0, document.documentElement.scrollHeight || 0);
+                      for (let y = 0; y < height; y += Math.max(500, innerHeight * 0.75)) {
+                        scrollTo(0, y);
+                        await sleep(90);
+                      }
+                      if (height === lastHeight) break;
+                      lastHeight = height;
+                    }
+                    scrollTo(0, 0);
+                    await sleep(900);
+                  });
+                  await page.addStyleTag({ content: '*{scroll-behavior:auto!important}*,*::before,*::after{animation-duration:0.001s!important;animation-delay:0s!important;transition-duration:0s!important}' });
+                  await page.screenshot({
+                    path: path.join(outDir, `${slug}-${kind}.png`),
+                    fullPage: true,
+                    type: 'png',
+                    animations: 'disabled',
+                    caret: 'hide',
+                  });
+                  await context.close();
+                }
+              }
+            } finally {
+              await browser.close();
+            }
+          })().catch(err => { console.error(err); process.exit(1); });
+          NODE
+          cd /tmp/capture-run
+          node capture.js
+
+      - name: List screenshots
+        run: ls -lh screenshot-output
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: telikom-homepage-screenshots
+          path: screenshot-output/*.png
+          if-no-files-found: error
+          compression-level: 6
