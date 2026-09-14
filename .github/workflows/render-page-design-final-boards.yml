@@ -1,0 +1,38 @@
+name: Render Final Page Design Research Boards
+
+on:
+  push:
+    paths:
+      - 'research/page-design-reference/FINAL_BOARD_TRIGGER.md'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: final-page-design-research-boards-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install Pillow
+        run: pip install pillow==11.3.0
+      - name: Render final research boards
+        run: python scripts/render_page_design_final_boards.py
+      - name: Commit final boards
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/page-design-reference/final-boards
+          if git diff --cached --quiet; then
+            echo "No final board changes to commit"
+            exit 0
+          fi
+          git commit -m "research: render final expanded page design boards"
+          git pull --rebase origin "$GITHUB_REF_NAME"
+          git push origin "HEAD:$GITHUB_REF_NAME"
