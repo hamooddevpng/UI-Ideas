@@ -1,0 +1,31 @@
+name: Package Flagged Page Design Visual QA
+
+on:
+  push:
+    paths:
+      - 'research/page-design-reference/FLAGGED_VISUAL_QA_TRIGGER.md'
+
+permissions:
+  contents: read
+
+group: page-design-flagged-visual-qa
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Stage flagged screenshots
+        run: |
+          mkdir -p /tmp/flagged-visual-qa/devices /tmp/flagged-visual-qa/special-home-passes
+          cp reference-screenshots/page-design/devices/desktop-1440/giffgaff-phones.png /tmp/flagged-visual-qa/devices/
+          cp reference-screenshots/page-design/devices/desktop-1440/singtel-phones.png /tmp/flagged-visual-qa/devices/
+          cp reference-screenshots/page-design/devices/desktop-1440/smart-devices.png /tmp/flagged-visual-qa/devices/
+          cp reference-screenshots/page-design/special-home-passes/desktop-1440/giffgaff-payg.png /tmp/flagged-visual-qa/special-home-passes/
+          cp reference-screenshots/page-design/special-home-passes/desktop-1440/smart-promos.png /tmp/flagged-visual-qa/special-home-passes/
+      - uses: actions/upload-artifact@v4
+        with:
+          name: flagged-page-design-visual-qa
+          path: /tmp/flagged-visual-qa
+          if-no-files-found: error
+          retention-days: 1
