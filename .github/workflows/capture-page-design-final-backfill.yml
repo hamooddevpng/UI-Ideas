@@ -1,0 +1,119 @@
+name: Capture Final Page Design Backfills
+
+on:
+  push:
+    paths:
+      - 'research/page-design-reference/FINAL_BACKFILL_TRIGGER.md'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: final-page-design-backfill-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install Playwright
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Capture only final weak-cohort backfills
+        run: |
+          node <<'EOF'
+          const { chromium } = require('playwright');
+          const fs = require('fs');
+          const path = require('path');
+          const S=(slug,name,url,category='telecom')=>({slug,name,url,category});
+          const sources = {
+            'devices': [
+              S('apple-buy-iphone','Apple Buy iPhone','https://www.apple.com/uk/shop/buy-iphone','adjacent-retail'),
+              S('google-store-phones','Google Store Phones','https://store.google.com/gb/category/phones?hl=en-GB','adjacent-retail'),
+              S('motorola-uk-smartphones','Motorola Smartphones','https://www.motorola.co.uk/smartphones','adjacent-retail'),
+              S('hmd-smartphones','HMD Smartphones','https://www.hmd.com/en_gb/smartphones','adjacent-retail'),
+              S('xiaomi-uk-mobile','Xiaomi UK Mobile','https://www.mi.com/uk/mobile/','adjacent-retail'),
+              S('sony-smartphones','Sony Smartphones','https://www.sony.co.uk/smartphones','adjacent-retail')
+            ],
+            'special-home-passes': [
+              S('voxi-plans','VOXI Plans','https://www.voxi.co.uk/plans'),
+              S('o2-payg','O2 Pay As You Go','https://www.o2.co.uk/shop/sim-cards/pay-as-you-go'),
+              S('tesco-mobile-payg','Tesco Mobile PAYG','https://www.tescomobile.com/shop/pay-as-you-go'),
+              S('id-mobile-sim-only','iD Mobile SIM Only','https://www.idmobile.co.uk/sim-only-deals'),
+              S('lyca-bundles','Lyca Mobile Bundles','https://www.lycamobile.co.uk/en/bundles/sim-only-deals/'),
+              S('asda-mobile-bundles','ASDA Mobile Bundles','https://mobile.asda.com/bundles')
+            ]
+          };
+          const base = path.join(process.cwd(),'reference-screenshots','page-design');
+          async function dismissCommonOverlays(page) {
+            const patterns=[/^accept all$/i,/^accept$/i,/^agree$/i,/^allow all$/i,/^i agree$/i,/^accept cookies$/i,/^got it$/i,/^continue$/i,/^close$/i,/^dismiss$/i,/^no thanks$/i];
+            for (const pattern of patterns) {
+              try {
+                const b=page.getByRole('button',{name:pattern}).first();
+                if(await b.isVisible({timeout:250})){await b.click({timeout:1000});await page.waitForTimeout(250);break;}
+              } catch {}
+            }
+          }
+          async function lazyLoad(page) {
+            try {
+              await page.evaluate(async()=>{await new Promise(resolve=>{let last=-1,stable=0;const t=setInterval(()=>{const h=Math.max(document.body.scrollHeight,document.documentElement.scrollHeight);window.scrollBy(0,900);const y=window.scrollY+window.innerHeight;if(h===last&&y>=h-5)stable++;else stable=0;last=h;if(stable>=2){clearInterval(t);resolve();}},90);setTimeout(()=>{clearInterval(t);resolve();},8000);});});
+              await page.waitForTimeout(400); await page.evaluate(()=>window.scrollTo(0,0)); await page.waitForTimeout(300);
+            } catch {}
+          }
+          (async()=>{
+            const browser=await chromium.launch({headless:true,args:['--disable-blink-features=AutomationControlled','--no-sandbox']});
+            const context=await browser.newContext({viewport:{width:1440,height:900},deviceScaleFactor:1,locale:'en-US',userAgent:'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36'});
+            for (const [cohort, refs] of Object.entries(sources)) {
+              const outDir=path.join(base,cohort,'desktop-1440'); fs.mkdirSync(outDir,{recursive:true});
+              const metaFile=path.join(outDir,'capture-results.json');
+              const payload=JSON.parse(fs.readFileSync(metaFile,'utf8'));
+              const existing=new Map((payload.results||[]).map(r=>[r.slug,r]));
+              let cursor=0; const captured=[];
+              async function worker(){
+                while(true){
+                  const i=cursor++; if(i>=refs.length)return; const source=refs[i];
+                  const page=await context.newPage(); const screenshotPath=path.join(outDir,`${source.slug}.png`);
+                  let status='ok',finalUrl=source.url,title='',error=null;
+                  try {
+                    console.log(`${cohort}: ${source.url}`);
+                    await page.goto(source.url,{waitUntil:'domcontentloaded',timeout:40000});
+                    await page.waitForTimeout(1600); await dismissCommonOverlays(page); await lazyLoad(page); await dismissCommonOverlays(page);
+                    finalUrl=page.url(); title=await page.title().catch(()=> '');
+                    await page.screenshot({path:screenshotPath,type:'png',fullPage:true,animations:'disabled',timeout:25000});
+                  } catch(e) {
+                    status='error'; error=e.message; console.warn(`${cohort}/${source.slug}: ${e.message}`);
+                    try {await page.screenshot({path:screenshotPath,type:'png',fullPage:true,animations:'disabled',timeout:8000}); status='partial';} catch {}
+                  } finally {
+                    captured.push({slug:source.slug,name:source.name,category:source.category,requestedUrl:source.url,finalUrl,title,status,error,researchFilename:`${source.slug}.png`});
+                    await page.close().catch(()=>{});
+                  }
+                }
+              }
+              await Promise.all([worker(),worker(),worker(),worker(),worker(),worker()]);
+              for(const r of captured) existing.set(r.slug,r);
+              payload.capturedAt=new Date().toISOString();
+              payload.researchStandard='final backfill merged; minimum 15 valid visual references after QA';
+              payload.results=[...existing.values()].sort((a,b)=>a.slug.localeCompare(b.slug));
+              fs.writeFileSync(metaFile,JSON.stringify(payload,null,2));
+            }
+            await browser.close();
+          })().catch(e=>{console.error(e);process.exit(1);});
+          EOF
+      - name: Commit final backfill captures
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reference-screenshots/page-design/devices reference-screenshots/page-design/special-home-passes
+          if git diff --cached --quiet; then
+            echo "No final backfill changes"
+            exit 0
+          fi
+          git commit -m "research: capture final device and pass backfills"
+          git pull --rebase origin "$GITHUB_REF_NAME"
+          git push origin "HEAD:$GITHUB_REF_NAME"
