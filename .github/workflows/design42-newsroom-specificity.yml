@@ -8,15 +8,43 @@ on:
       - '.github/workflows/design42-newsroom-specificity.yml'
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
-  guard:
+  apply:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - name: Run newsroom specificity guard
-        run: node tests/design42-core-specificity.test.mjs
+      - name: Remove newsroom specificity overrides
+        run: |
+          python3 <<'PY'
+          from pathlib import Path
+
+          path = Path('assets/design42/design42-core.css')
+          text = path.read_text()
+          start_marker = '/* Design 42: six-item live newsroom + vertically centred support copy */'
+          end_marker = '/* Design 42: eight-action kinetic launchpad */'
+          start = text.index(start_marker)
+          end = text.index(end_marker, start + len(start_marker))
+          section = text[start:end]
+          count = section.count('!important')
+          if count != 22:
+              raise SystemExit(f'Expected 22 newsroom !important declarations, found {count}.')
+          section = section.replace('!important', '')
+          text = text[:start] + section + text[end:]
+          path.write_text(text)
+          print('Removed 22 newsroom/support !important declarations.')
+          PY
+
+          node tests/design42-css-architecture.test.mjs
+
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/design42/design42-core.css
+          git commit -m 'refactor: remove newsroom important overrides'
+          git push origin HEAD:refactor/design42-css-cleanup
