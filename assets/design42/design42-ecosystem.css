@@ -21,7 +21,6 @@
 .eco-section button,.eco-section a{font:inherit}
 .eco-section{
   position:relative;
-  min-height:100vh;
   padding:clamp(28px,4vw,62px) clamp(20px,3vw,48px) 64px;
   overflow:hidden;
   background:
