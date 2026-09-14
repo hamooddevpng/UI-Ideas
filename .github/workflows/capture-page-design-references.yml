@@ -6,6 +6,7 @@ on:
     paths:
       - 'research/page-design-reference/targets.json'
       - 'research/page-design-reference/expanded-sources.js'
+      - 'research/page-design-reference/backfill-sources.js'
       - '.github/workflows/capture-page-design-references.yml'
 
 permissions:
@@ -38,14 +39,26 @@ jobs:
           const fs = require('fs');
           const path = require('path');
           const { pageExtras, contextCohorts } = require('./research/page-design-reference/expanded-sources.js');
+          const { pageBackfills, contextBackfills } = require('./research/page-design-reference/backfill-sources.js');
 
           const manifest = JSON.parse(fs.readFileSync('research/page-design-reference/targets.json', 'utf8'));
           for (const pageStudy of manifest.pages) {
             const existing = new Set(pageStudy.sources.map(s => s.slug));
             const extras = (pageExtras[pageStudy.id] || []).filter(s => !existing.has(s.slug));
-            pageStudy.sources = [...pageStudy.sources, ...extras];
-            if (pageStudy.sources.length < 15) {
-              throw new Error(`${pageStudy.id} has only ${pageStudy.sources.length} sources; research minimum is 15`);
+            for (const s of extras) existing.add(s.slug);
+            const backfills = (pageBackfills[pageStudy.id] || []).filter(s => !existing.has(s.slug));
+            pageStudy.sources = [...pageStudy.sources, ...extras, ...backfills];
+            if (pageStudy.sources.length < 20) {
+              throw new Error(`${pageStudy.id} has only ${pageStudy.sources.length} candidates; backfill target is 20+ so QA can still retain 15 valid references`);
+            }
+          }
+
+          for (const cohort of contextCohorts) {
+            const existing = new Set(cohort.sources.map(s => s.slug));
+            const backfills = (contextBackfills[cohort.id] || []).filter(s => !existing.has(s.slug));
+            cohort.sources = [...cohort.sources, ...backfills];
+            if (cohort.sources.length < 16) {
+              throw new Error(`${cohort.id} has only ${cohort.sources.length} candidates; context backfill target is 16+`);
             }
           }
           manifest.pages.push(...contextCohorts);
@@ -106,7 +119,7 @@ jobs:
           }
 
           (async () => {
-            console.log(`Expanded research: ${manifest.pages.length} cohorts, ${jobs.length} captures`);
+            console.log(`Expanded research with QA backfills: ${manifest.pages.length} cohorts, ${jobs.length} captures`);
             const browser = await chromium.launch({
               headless: true,
               args: ['--disable-blink-features=AutomationControlled', '--no-sandbox']
@@ -180,7 +193,7 @@ jobs:
               const outDir = path.join(base, pageStudy.id, 'desktop-1440');
               const payload = {
                 capturedAt: new Date().toISOString(),
-                researchStandard: pageStudy.id.startsWith('context-') ? 'context cohort' : 'minimum 15 references',
+                researchStandard: pageStudy.id.startsWith('context-') ? 'context cohort with QA backfills' : '20+ candidates; minimum 15 valid visual references after QA',
                 pageStudy: { id: pageStudy.id, name: pageStudy.name, task_title: pageStudy.task_title },
                 viewport: `${(manifest.viewport || {}).width || 1440}x${(manifest.viewport || {}).height || 900}`,
                 results: resultsByPage[pageStudy.id].sort((a,b) => a.slug.localeCompare(b.slug))
@@ -202,6 +215,6 @@ jobs:
             echo "No screenshot changes to commit"
             exit 0
           fi
-          git commit -m "research: capture expanded internal page references"
+          git commit -m "research: capture QA backfills for page design"
           git pull --rebase origin "$GITHUB_REF_NAME"
           git push origin "HEAD:$GITHUB_REF_NAME"
