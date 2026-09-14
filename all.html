@@ -1,5 +1,718 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Telikom design ideas shared by Hamood</title><style>
-:root{color-scheme:dark;--bg:#080b11;--panel:#111722;--text:#f8fafc;--muted:#9aa4b2;--border:#293241;--accent:#26a7e8;--selected:#20b486}*{box-sizing:border-box}body{margin:0;min-height:100vh;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--text);padding-bottom:96px}.page{padding:14px}.hero,.controls{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:9px}.title-group{display:flex;align-items:center;gap:10px;flex-wrap:wrap}h1{margin:0;font-size:clamp(22px,3vw,38px);letter-spacing:-.03em}.pill,.btn,.open-link{border:1px solid var(--border);background:var(--panel);color:#dce3ec;border-radius:9px}.pill{padding:7px 10px;font-size:12px;font-weight:800;color:var(--muted)}.control-group{display:flex;gap:7px}.btn,.open-link{min-height:34px;padding:0 11px;display:inline-flex;align-items:center;justify-content:center;font:inherit;font-size:12px;font-weight:800;cursor:pointer;text-decoration:none}.btn:hover,.open-link:hover{border-color:var(--accent);color:#fff}.browser{overflow:hidden;border:1px solid #364153;border-radius:14px;background:#fff}.chrome{min-height:42px;padding:6px 9px;background:#1c2430;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:10px}.dots{display:flex;gap:6px}.dots span{width:10px;height:10px;border-radius:50%;display:block}.dots span:nth-child(1){background:#ff5f57}.dots span:nth-child(2){background:#febc2e}.dots span:nth-child(3){background:#28c840}.address{height:29px;border:1px solid #343e4c;border-radius:999px;background:#10151d;color:#9ca7b5;display:flex;align-items:center;justify-content:center;font-size:11px}.browser-label{font-size:11px;font-weight:900;color:#c6cfda}.screen{position:relative;aspect-ratio:16/9;background:#fff}.screen iframe{position:absolute;inset:0;width:100%;height:100%;border:0}.info{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;margin-top:6px;padding:7px 10px;background:#0d131d;color:#f8fafc;border:1px solid #263140;border-radius:10px}.kicker{margin:0 0 1px;color:#4db8ef;font-size:8px;font-weight:900;text-transform:uppercase;letter-spacing:.06em}.title{margin:0;font-size:14px;line-height:1.2}.desc{margin:3px 0 0;color:#98a4b3;font-size:10px;line-height:1.35;max-width:980px}.info .btn{min-height:29px;padding:0 9px;font-size:10px}.jump-groups{display:grid;gap:8px;margin-top:9px}.jump-section{display:grid;grid-template-columns:118px 1fr;gap:8px;align-items:center;padding:7px;border:1px solid var(--border);border-radius:11px;background:var(--panel)}.jump-label{font-size:11px;font-weight:900}.jump-label small{display:block;color:var(--muted);font-size:9px;margin-top:2px}.jump-strip{display:flex;gap:6px;overflow-x:auto}.jump-btn{flex:0 0 auto;min-width:38px;height:31px;border:1px solid #344052;border-radius:7px;background:#151c27;color:#aeb8c5;cursor:pointer;font-size:11px;font-weight:900}.jump-btn.current{border-color:var(--accent);background:#0875c9;color:#fff}.jump-btn.selected:not(.current){border-color:var(--selected);color:#61d3ae}.shortlist{position:fixed;left:50%;bottom:10px;transform:translateX(-50%);width:min(1160px,calc(100% - 22px));z-index:50;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:10px;padding:9px 11px;border:1px solid #333d4d;border-radius:13px;background:rgba(14,19,28,.96)}.shortlist-items{display:flex;gap:6px;overflow-x:auto}.chip{flex:0 0 auto;padding:6px 9px;border-radius:999px;background:rgba(255,255,255,.08);font-size:11px}.chip button{border:0;background:transparent;color:#fff;cursor:pointer}.empty{font-size:11px;color:#8c98a8}.shortlist-btn.active{border-color:var(--selected);background:#0f7b60;color:#fff}@media(max-width:700px){.chrome{grid-template-columns:auto 1fr}.browser-label{display:none}.info{grid-template-columns:1fr;padding:7px 9px}.desc{font-size:9.5px}.jump-section{grid-template-columns:1fr}.shortlist{grid-template-columns:1fr auto}.shortlist-items{grid-column:1/-1}.openSelected{display:none}}
-</style></head><body><main class="page"><header class="hero"><div class="title-group"><h1>Telikom design ideas shared by Hamood</h1><span class="pill" id="collectionLabel">38 homepage concepts</span></div><span class="pill" id="positionCounter">1 / 38</span></header><section class="controls"><div class="control-group"><button class="btn" id="prevBtn">← Previous</button><button class="btn" id="nextBtn">Next →</button></div><div class="control-group"><button class="btn shortlist-btn" id="shortlistTop">♡ Shortlist</button><a class="open-link" id="openFull" href="#" target="_blank" rel="noopener noreferrer">Open full design ↗</a></div></section><section class="browser"><div class="chrome"><div class="dots"><span></span><span></span><span></span></div><div class="address" id="addressText">Telikom concept preview</div><div class="browser-label" id="browserLabel">Design 42</div></div><div class="screen"><iframe id="designFrame" title="Telikom design preview"></iframe></div></section><section class="info"><div><p class="kicker" id="designKicker">Design 42</p><h2 class="title" id="designTitle">Telikom Horizon</h2><p class="desc" id="designDescription"></p></div><button class="btn shortlist-btn" id="shortlistBottom">♡ Shortlist</button></section><section class="jump-groups"><div class="jump-section"><div class="jump-label">New designs<small>40 and above</small></div><nav class="jump-strip" id="newDesignsStrip"></nav></div><div class="jump-section"><div class="jump-label">Old designs<small>Designs 7 to 39</small></div><nav class="jump-strip" id="oldDesignsStrip"></nav></div><div class="jump-section"><div class="jump-label">Initial designs<small>Designs 1 to 6</small></div><nav class="jump-strip" id="initialDesignsStrip"></nav></div></section></main><aside class="shortlist"><strong>♥ Shortlist <span id="shortlistCount">0</span></strong><div class="shortlist-items" id="shortlistItems"></div><div class="control-group"><button class="btn openSelected" id="openSelected">Open selected</button><button class="btn" id="clearSelected">Clear</button></div></aside><script>
-const owner='hamooddevpng',repo='UI-Ideas',branch='main';const randomCache=()=>Math.random().toString(36).slice(2,10)+Date.now().toString(36);const fallbackDesigns=[42,...Array.from({length:37},(_,i)=>37-i)];let designs=[...fallbackDesigns];const shortlistKey='ui-ideas-shortlist-v1',currentKey='ui-ideas-carousel-current-design-v2';const designMeta={42:{title:'Telikom Horizon',description:'The advanced showcase concept. A user-controlled three-scene hero combines Pocket Telikom, remote connectivity and enterprise infrastructure with reactive motion, tactile utilities and a cinematic but stable homepage architecture.'},37:{title:'Direct Service Console',description:'A sharp task-first utility interface with selectable Mobile, Internet, Business and Help routes, a live service console and persistent command actions for Recharge, Pay Bill, Self Care, Coverage and Support.'},36:{title:'PNG Stories',description:'A photographic editorial direction with warm neutral tones, large story-led typography, rotating PNG, Mobile and Business narratives, and a compact vertical quick-action rail.'},35:{title:'Telikom Hub',description:'A service-first hub with Recharge, Pay Bill, Buy Data and My Telikom at the centre, a supporting service rail, campaign carousel, Mobile, Home Internet and Business and Government discovery, plus support and official links.'},34:{title:'Executive Telikom',description:'A restrained, boardroom-grade direction with disciplined typography, whitespace, clear audience pathways and strong service discovery.'},33:{title:'Infrastructure First',description:'An architectural, engineering-led concept that presents Telikom first as national telecommunications infrastructure.'},32:{title:'Swiss Telikom',description:'A rigorous International-style system built around grid discipline, numbered navigation, strong alignment and typography.'},31:{title:'PNG Modernism',description:'A distinctly Papua New Guinean modernist visual language using abstract geometry, repetition and rhythm.'},30:{title:'Cardless Corporate',description:'An ultra-refined corporate homepage that avoids the usual rounded-card layout.'},29:{title:'Network Observatory',description:'A premium, information-rich network concept.'},28:{title:'Nation Connected',description:'A PNG-first concept centred on Telikom’s national role.'},27:{title:'PNG Editorial',description:'A publication-inspired direction led by photography and storytelling.'},26:{title:'Service Exchange',description:'A service-discovery concept focused on clarity.'},25:{title:'Coverage First',description:'Coverage and service availability as the main entry point.'},24:{title:'Guided Connection',description:'A guided service-selection journey.'},23:{title:'Telikom OS',description:'An operating-system-inspired concept.'},22:{title:'People × Technology',description:'PNG human stories paired with technology.'},21:{title:'PNG Signal Map',description:'Papua New Guinea becomes the navigation surface.'},20:{title:'Telikom Command',description:'A task-first homepage where search and command are central.'},19:{title:'Choose Your World',description:'Distinct audience pathways.'},18:{title:'Signal Wave',description:'A continuous signal-line concept.'},17:{title:'Pocket Telikom',description:'A mobile-minded youthful concept.'},16:{title:'Telikom Buddy',description:'A conversational task chooser.'},15:{title:'Type Storm',description:'A typography-led experiment.'},14:{title:'Signal Quest',description:'A gamified exploration concept.'},13:{title:'Telikom Stories',description:'A youthful story-led direction.'},12:{title:'Neo-Brutal Telikom',description:'A bold neo-brutalist direction.'},11:{title:'Sticker Signal',description:'A playful expressive direction.'},10:{title:'Earlier Exploration 10',description:'Earlier homepage exploration.'},9:{title:'Earlier Exploration 9',description:'Earlier homepage experiment.'},8:{title:'Earlier Exploration 8',description:'Earlier alternate homepage direction.'},7:{title:'Earlier Exploration 7',description:'First-round homepage exploration.'},6:{title:'Earlier Exploration 6',description:'Original homepage mockup.'},5:{title:'Self-Service Focus',description:'An early self-service direction.'},4:{title:'PNG / Community Focus',description:'An early PNG and community direction.'},3:{title:'Balanced Homepage Direction',description:'An early balanced concept.'},2:{title:'Service-Led Exploration',description:'An early service-oriented direction.'},1:{title:'Navigation-First Exploration',description:'An early navigation-focused concept.'}};const $=id=>document.getElementById(id),meta=n=>designMeta[n]||{title:`Design ${n}`,description:'A Telikom homepage concept.'},src=n=>`https://github.com/${owner}/${repo}/blob/${branch}/${n}.html?cache=${randomCache()}`,preview=n=>`https://htmlpreview.github.io/?${src(n)}`;let currentIndex=0,selected=(()=>{try{return JSON.parse(localStorage.getItem(shortlistKey))||[]}catch{return[]}})();const frame=$('designFrame');function cur(){return designs[currentIndex]||42}function save(){localStorage.setItem(shortlistKey,JSON.stringify(selected))}function goto(i){currentIndex=Math.max(0,Math.min(designs.length-1,i));localStorage.setItem(currentKey,String(cur()));render()}function gotoDesign(n){const i=designs.indexOf(n);if(i>=0)goto(i)}function toggle(n){selected=selected.includes(n)?selected.filter(x=>x!==n):[...selected,n].sort((a,b)=>b-a);save();renderSelection()}function strip(el,vals){el.innerHTML='';vals.forEach(n=>{const b=document.createElement('button');b.className='jump-btn';b.dataset.design=n;b.textContent=n;b.onclick=()=>gotoDesign(n);el.appendChild(b)})}function renderStrips(){strip($('newDesignsStrip'),designs.filter(n=>n>=40).sort((a,b)=>b-a));strip($('oldDesignsStrip'),designs.filter(n=>n>=7&&n<=39).sort((a,b)=>b-a));strip($('initialDesignsStrip'),designs.filter(n=>n<=6).sort((a,b)=>b-a))}function render(){const n=cur(),m=meta(n),u=preview(n);frame.src=u;$('collectionLabel').textContent=`${designs.length} homepage concepts`;$('positionCounter').textContent=`${currentIndex+1} / ${designs.length}`;$('browserLabel').textContent=`Design ${n}`;$('addressText').textContent=`Telikom concept ${n}: ${m.title}`;$('designKicker').textContent=`Design ${n}`;$('designTitle').textContent=m.title;$('designDescription').textContent=m.description;$('openFull').href=u;$('prevBtn').disabled=currentIndex===0;$('nextBtn').disabled=currentIndex===designs.length-1;renderSelection()}function renderSelection(){const n=cur(),picked=selected.includes(n);[$('shortlistTop'),$('shortlistBottom')].forEach(b=>{b.classList.toggle('active',picked);b.textContent=picked?'✓ Shortlisted':'♡ Shortlist'});selected=selected.filter(x=>designs.includes(x));save();$('shortlistCount').textContent=selected.length;document.querySelectorAll('.jump-btn').forEach(b=>{const d=+b.dataset.design;b.classList.toggle('current',d===n);b.classList.toggle('selected',selected.includes(d))});const box=$('shortlistItems');box.innerHTML='';if(!selected.length){box.innerHTML='<span class="empty">Pick the designs you like most.</span>';return}selected.forEach(d=>{const c=document.createElement('span');c.className='chip';const v=document.createElement('button');v.textContent=`Design ${d}`;v.onclick=()=>gotoDesign(d);const x=document.createElement('button');x.textContent=' ×';x.onclick=()=>toggle(d);c.append(v,x);box.appendChild(c)})}async function discover(){try{const r=await fetch(`https://api.github.com/repos/${owner}/${repo}/contents?ref=${branch}`);if(!r.ok)throw 0;const f=await r.json();const d=f.map(x=>x.name.match(/^(\d+)\.html$/)).filter(Boolean).map(m=>+m[1]).sort((a,b)=>b-a);if(d.length)designs=d}catch{designs=[...fallbackDesigns]}const saved=+localStorage.getItem(currentKey),i=designs.indexOf(saved);currentIndex=i>=0?i:0;renderStrips();render()}$('prevBtn').onclick=()=>goto(currentIndex-1);$('nextBtn').onclick=()=>goto(currentIndex+1);$('shortlistTop').onclick=$('shortlistBottom').onclick=()=>toggle(cur());$('clearSelected').onclick=()=>{selected=[];save();renderSelection()};$('openSelected').onclick=()=>selected.forEach(n=>window.open(preview(n),'_blank','noopener,noreferrer'));document.addEventListener('keydown',e=>{if(e.key==='ArrowLeft')goto(currentIndex-1);if(e.key==='ArrowRight')goto(currentIndex+1)});renderStrips();render();discover();
-</script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#06131f" />
+  <title>Telikom Website — Executive Design Review</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #06101a;
+      --surface: #0b1724;
+      --surface-2: #101e2d;
+      --text: #f8fbff;
+      --muted: #9fb0c1;
+      --line: rgba(255,255,255,.10);
+      --blue: #18a7eb;
+      --blue-soft: rgba(24,167,235,.12);
+      --green: #35c58b;
+      --shadow: 0 24px 80px rgba(0,0,0,.35);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 12% 0%, rgba(24,167,235,.13), transparent 32rem),
+        radial-gradient(circle at 88% 18%, rgba(53,197,139,.08), transparent 28rem),
+        var(--bg);
+      color: var(--text);
+    }
+
+    button, a { font: inherit; }
+    button { color: inherit; }
+
+    .page {
+      width: min(1440px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 30px 0 54px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 6px 0 26px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 900;
+      letter-spacing: -.02em;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(145deg, #20b4f4, #0874c9);
+      box-shadow: 0 10px 30px rgba(24,167,235,.25);
+      font-size: 16px;
+    }
+
+    .top-label {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+    }
+
+    .intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(280px, .75fr);
+      gap: 28px;
+      align-items: end;
+      margin-bottom: 26px;
+      padding: 34px;
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      background: linear-gradient(145deg, rgba(255,255,255,.055), rgba(255,255,255,.018));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .intro::after {
+      content: "";
+      position: absolute;
+      width: 360px;
+      height: 360px;
+      border-radius: 50%;
+      right: -170px;
+      top: -220px;
+      background: rgba(24,167,235,.11);
+      filter: blur(2px);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      margin: 0 0 12px;
+      color: #73cef6;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 900px;
+      font-size: clamp(34px, 5.4vw, 74px);
+      line-height: .98;
+      letter-spacing: -.055em;
+    }
+
+    .intro-copy {
+      margin: 18px 0 0;
+      max-width: 760px;
+      color: #b8c6d3;
+      font-size: clamp(15px, 1.6vw, 19px);
+      line-height: 1.6;
+    }
+
+    .decision-card {
+      position: relative;
+      z-index: 1;
+      padding: 20px;
+      border: 1px solid rgba(53,197,139,.25);
+      border-radius: 20px;
+      background: rgba(5,26,26,.54);
+    }
+
+    .decision-card strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 15px;
+    }
+
+    .decision-card p {
+      margin: 0;
+      color: #afc2c4;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-bottom: 13px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(53,197,139,.12);
+      color: #79e6ba;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .status::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 4px rgba(53,197,139,.1);
+    }
+
+    .review-layout {
+      display: grid;
+      grid-template-columns: 270px minmax(0, 1fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .rail {
+      position: sticky;
+      top: 18px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .rail-title {
+      margin: 0 0 2px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+    }
+
+    .design-card {
+      width: 100%;
+      text-align: left;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--surface);
+      cursor: pointer;
+      transition: transform .2s ease, border-color .2s ease, background .2s ease;
+    }
+
+    .design-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(24,167,235,.45);
+    }
+
+    .design-card.active {
+      border-color: rgba(24,167,235,.72);
+      background: linear-gradient(145deg, rgba(24,167,235,.13), rgba(255,255,255,.025));
+      box-shadow: 0 12px 36px rgba(0,0,0,.22);
+    }
+
+    .design-card.selected-design::after {
+      content: "Selected";
+      display: inline-flex;
+      margin-top: 12px;
+      padding: 5px 8px;
+      border-radius: 999px;
+      background: rgba(53,197,139,.12);
+      color: #70dfb1;
+      font-size: 10px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .design-number {
+      display: block;
+      color: #6fcdf8;
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+    }
+
+    .design-name {
+      display: block;
+      margin-top: 6px;
+      font-size: 17px;
+      font-weight: 900;
+      letter-spacing: -.025em;
+    }
+
+    .design-note {
+      display: block;
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .workspace {
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      overflow: hidden;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .workspace-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 20px 22px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255,255,255,.015);
+    }
+
+    .workspace-title .small {
+      margin: 0 0 5px;
+      color: #70cdf7;
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+    }
+
+    .workspace-title h2 {
+      margin: 0;
+      font-size: clamp(22px, 2.8vw, 34px);
+      letter-spacing: -.04em;
+    }
+
+    .workspace-title p {
+      margin: 7px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+      max-width: 720px;
+    }
+
+    .view-controls {
+      flex: 0 0 auto;
+      display: inline-flex;
+      padding: 4px;
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      background: #07111c;
+    }
+
+    .view-btn {
+      min-height: 38px;
+      padding: 0 14px;
+      border: 0;
+      border-radius: 9px;
+      background: transparent;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .view-btn.active {
+      background: #173148;
+      color: #fff;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.07);
+    }
+
+    .preview-area {
+      min-height: 720px;
+      padding: 28px;
+      display: grid;
+      place-items: start center;
+      background:
+        linear-gradient(rgba(255,255,255,.023) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.023) 1px, transparent 1px),
+        #07111b;
+      background-size: 32px 32px;
+      overflow: hidden;
+    }
+
+    .phone-wrap {
+      width: min(410px, 100%);
+      padding: 10px;
+      border-radius: 36px;
+      background: #02070b;
+      border: 1px solid #263746;
+      box-shadow: 0 30px 90px rgba(0,0,0,.55);
+    }
+
+    .phone-top {
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .notch {
+      width: 96px;
+      height: 17px;
+      border-radius: 999px;
+      background: #0d141b;
+    }
+
+    .phone-screen {
+      position: relative;
+      height: min(780px, 72vh);
+      min-height: 600px;
+      overflow: hidden;
+      border-radius: 27px;
+      background: #fff;
+    }
+
+    .phone-screen iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      background: white;
+    }
+
+    .desktop-wrap {
+      width: 100%;
+      overflow: hidden;
+      border: 1px solid #314255;
+      border-radius: 18px;
+      background: #101922;
+      box-shadow: 0 24px 70px rgba(0,0,0,.4);
+    }
+
+    .desktop-top {
+      height: 42px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0 14px;
+      background: #141f2a;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+
+    .desktop-top i {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.22);
+    }
+
+    .desktop-viewport {
+      position: relative;
+      width: 100%;
+      height: 0;
+      overflow: hidden;
+      background: white;
+    }
+
+    .desktop-viewport iframe {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1440px;
+      height: 900px;
+      border: 0;
+      transform-origin: top left;
+      background: white;
+    }
+
+    .workspace-foot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      padding: 17px 22px;
+      border-top: 1px solid var(--line);
+      background: rgba(255,255,255,.015);
+    }
+
+    .foot-copy {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .open-link {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 40px;
+      padding: 0 15px;
+      border: 1px solid rgba(24,167,235,.32);
+      border-radius: 11px;
+      background: var(--blue-soft);
+      color: #a8e4ff;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .context {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .context-card {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 17px;
+      background: rgba(255,255,255,.025);
+    }
+
+    .context-card b {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 13px;
+    }
+
+    .context-card span {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .mobile-only-note {
+      display: none;
+      margin: 0 0 14px;
+      padding: 12px 14px;
+      border: 1px solid rgba(24,167,235,.22);
+      border-radius: 13px;
+      background: rgba(24,167,235,.07);
+      color: #acdff6;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 980px) {
+      .intro { grid-template-columns: 1fr; }
+      .review-layout { grid-template-columns: 1fr; }
+      .rail {
+        position: static;
+        grid-template-columns: repeat(3, minmax(0,1fr));
+      }
+      .rail-title { grid-column: 1 / -1; }
+      .context { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 700px) {
+      .page { width: min(100% - 20px, 1440px); padding-top: 15px; }
+      .topbar { padding-bottom: 16px; }
+      .top-label { display: none; }
+      .intro { padding: 22px; border-radius: 20px; }
+      h1 { font-size: clamp(38px, 13vw, 58px); }
+      .intro-copy { font-size: 15px; }
+      .rail {
+        display: flex;
+        overflow-x: auto;
+        padding-bottom: 3px;
+        scrollbar-width: none;
+      }
+      .rail::-webkit-scrollbar { display: none; }
+      .rail-title { display: none; }
+      .design-card { flex: 0 0 218px; }
+      .workspace { border-radius: 18px; }
+      .workspace-head {
+        display: grid;
+        padding: 18px;
+      }
+      .view-controls { width: 100%; }
+      .view-btn { flex: 1; }
+      .preview-area { min-height: 620px; padding: 15px 10px 22px; }
+      .phone-wrap { border-radius: 29px; }
+      .phone-screen { min-height: 540px; height: 68vh; border-radius: 22px; }
+      .workspace-foot { align-items: stretch; flex-direction: column; padding: 16px 18px; }
+      .open-link { width: 100%; }
+      .mobile-only-note { display: block; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark">T</span><span>Telikom Website</span></div>
+      <span class="top-label">Executive Design Review</span>
+    </header>
+
+    <section class="intro">
+      <div>
+        <p class="eyebrow">Current Website Direction</p>
+        <h1>Designed for Telikom.<br />Built to work everywhere.</h1>
+        <p class="intro-copy">This review presents the current homepage direction across desktop and mobile. Design 42 is the selected direction and has continued to be refined after the earlier design comparison.</p>
+      </div>
+      <aside class="decision-card">
+        <span class="status">Selected direction</span>
+        <strong>Design 42 is the current design.</strong>
+        <p>Designs 40 and 41 are retained below only as earlier final-stage alternatives for context. They are not being presented as equal recommendations.</p>
+      </aside>
+    </section>
+
+    <p class="mobile-only-note">You are viewing the executive review on a phone. The preview below starts in the mobile layout; use “Desktop” to inspect the full desktop composition.</p>
+
+    <section class="review-layout">
+      <nav class="rail" aria-label="Design directions">
+        <p class="rail-title">Design directions</p>
+        <button class="design-card active selected-design" data-design="42">
+          <span class="design-number">Design 42</span>
+          <span class="design-name">Current direction</span>
+          <span class="design-note">Selected and further refined. Premium, service-led and responsive.</span>
+        </button>
+        <button class="design-card" data-design="41">
+          <span class="design-number">Design 41</span>
+          <span class="design-name">Earlier alternative</span>
+          <span class="design-note">A balanced middle-ground direction retained for comparison.</span>
+        </button>
+        <button class="design-card" data-design="40">
+          <span class="design-number">Design 40</span>
+          <span class="design-name">Earlier alternative</span>
+          <span class="design-note">The simplest final-stage direction, retained for reference.</span>
+        </button>
+      </nav>
+
+      <div>
+        <article class="workspace">
+          <header class="workspace-head">
+            <div class="workspace-title">
+              <p class="small" id="designLabel">Design 42 · Selected direction</p>
+              <h2 id="designTitle">Current Telikom Homepage</h2>
+              <p id="designDescription">The selected design direction, shown first in its mobile experience.</p>
+            </div>
+            <div class="view-controls" role="group" aria-label="Preview size">
+              <button class="view-btn active" data-view="mobile">Mobile</button>
+              <button class="view-btn" data-view="desktop">Desktop</button>
+            </div>
+          </header>
+
+          <div class="preview-area" id="previewArea">
+            <div class="phone-wrap" id="phonePreview">
+              <div class="phone-top"><div class="notch"></div></div>
+              <div class="phone-screen"><iframe id="mobileFrame" title="Telikom mobile preview"></iframe></div>
+            </div>
+
+            <div class="desktop-wrap" id="desktopPreview" hidden>
+              <div class="desktop-top"><i></i><i></i><i></i></div>
+              <div class="desktop-viewport" id="desktopViewport">
+                <iframe id="desktopFrame" title="Telikom desktop preview"></iframe>
+              </div>
+            </div>
+          </div>
+
+          <footer class="workspace-foot">
+            <div class="foot-copy" id="footCopy"><strong>Mobile preview:</strong> the site is rendered inside a phone-sized viewport so the responsive layout can be reviewed directly.</div>
+            <a class="open-link" id="openFull" href="#" target="_blank" rel="noopener noreferrer">Open full design ↗</a>
+          </footer>
+        </article>
+
+        <section class="context" aria-label="Review notes">
+          <div class="context-card"><b>Mobile-ready</b><span>The same website adapts to the smaller screen rather than being treated as a separate design.</span></div>
+          <div class="context-card"><b>Service-first</b><span>Core customer actions and Telikom services remain prominent as the layout adapts.</span></div>
+          <div class="context-card"><b>Current recommendation</b><span>Design 42 is the direction being developed further; 40 and 41 are shown only to preserve decision context.</span></div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const owner = 'hamooddevpng';
+    const repo = 'UI-Ideas';
+    const branch = 'main';
+
+    const designs = {
+      42: {
+        label: 'Design 42 · Selected direction',
+        title: 'Current Telikom Homepage',
+        description: 'The selected design direction, shown first in its mobile experience.'
+      },
+      41: {
+        label: 'Design 41 · Earlier alternative',
+        title: 'Balanced Alternative',
+        description: 'An earlier final-stage option kept for comparison with the selected direction.'
+      },
+      40: {
+        label: 'Design 40 · Earlier alternative',
+        title: 'Minimal Alternative',
+        description: 'The simplest of the final-stage concepts, retained as decision history.'
+      }
+    };
+
+    const $ = (id) => document.getElementById(id);
+    const cacheToken = () => `${Date.now()}-${Math.random().toString(36).slice(2,8)}`;
+    const previewUrl = (n) => `https://htmlpreview.github.io/?https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${n}.html?ceo=${cacheToken()}`;
+
+    let currentDesign = 42;
+    let currentView = 'mobile';
+
+    function setFrameSources(n) {
+      const url = previewUrl(n);
+      $('mobileFrame').src = url;
+      $('desktopFrame').src = url;
+      $('openFull').href = url;
+    }
+
+    function renderDesign() {
+      const meta = designs[currentDesign];
+      $('designLabel').textContent = meta.label;
+      $('designTitle').textContent = meta.title;
+      $('designDescription').textContent = meta.description;
+      document.querySelectorAll('.design-card').forEach(btn => {
+        btn.classList.toggle('active', Number(btn.dataset.design) === currentDesign);
+      });
+      setFrameSources(currentDesign);
+    }
+
+    function fitDesktop() {
+      const wrap = $('desktopViewport');
+      if (!wrap || currentView !== 'desktop') return;
+      const width = wrap.clientWidth;
+      const scale = Math.min(1, width / 1440);
+      $('desktopFrame').style.transform = `scale(${scale})`;
+      wrap.style.height = `${900 * scale}px`;
+    }
+
+    function renderView() {
+      const isMobile = currentView === 'mobile';
+      $('phonePreview').hidden = !isMobile;
+      $('desktopPreview').hidden = isMobile;
+      document.querySelectorAll('.view-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.view === currentView);
+      });
+      $('footCopy').innerHTML = isMobile
+        ? '<strong>Mobile preview:</strong> the site is rendered inside a phone-sized viewport so the responsive layout can be reviewed directly.'
+        : '<strong>Desktop preview:</strong> the full 1440px desktop composition is scaled to fit the review window without changing the page layout.';
+      if (!isMobile) requestAnimationFrame(fitDesktop);
+    }
+
+    document.querySelectorAll('.design-card').forEach(btn => {
+      btn.addEventListener('click', () => {
+        currentDesign = Number(btn.dataset.design);
+        renderDesign();
+      });
+    });
+
+    document.querySelectorAll('.view-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        currentView = btn.dataset.view;
+        renderView();
+      });
+    });
+
+    window.addEventListener('resize', fitDesktop);
+    if ('ResizeObserver' in window) new ResizeObserver(fitDesktop).observe($('desktopViewport'));
+
+    renderDesign();
+    renderView();
+  </script>
+</body>
+</html>
