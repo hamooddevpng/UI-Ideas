@@ -1,6 +1,6 @@
 {
-  "capturedAt": "2026-09-14T00:32:21.805Z",
-  "researchStandard": "20+ candidates; minimum 15 valid visual references after QA",
+  "capturedAt": "2026-09-14T02:16:11.339Z",
+  "researchStandard": "final backfill merged; minimum 15 valid visual references after QA",
   "pageStudy": {
     "id": "special-home-passes",
     "name": "Special Home Passes",
@@ -18,6 +18,17 @@
       "status": "ok",
       "error": null,
       "researchFilename": "airtel-offers.png"
+    },
+    {
+      "slug": "asda-mobile-bundles",
+      "name": "ASDA Mobile Bundles",
+      "category": "telecom",
+      "requestedUrl": "https://mobile.asda.com/bundles",
+      "finalUrl": "https://mobile.asda.com/pay-monthly-sim-only",
+      "title": "SIM-Only Plans - Asda Mobile",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "asda-mobile-bundles.png"
     },
     {
       "slug": "att-deals",
@@ -75,6 +86,17 @@
       "researchFilename": "globe-promos.png"
     },
     {
+      "slug": "id-mobile-sim-only",
+      "name": "iD Mobile SIM Only",
+      "category": "telecom",
+      "requestedUrl": "https://www.idmobile.co.uk/sim-only-deals",
+      "finalUrl": "https://www.idmobile.co.uk/sim-only-deals",
+      "title": "SIM Only Deals & Contracts | No Annual Price Rises",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "id-mobile-sim-only.png"
+    },
+    {
       "slug": "lebara-mobile",
       "name": "Lebara UK",
       "category": "telecom",
@@ -84,6 +106,28 @@
       "status": "ok",
       "error": null,
       "researchFilename": "lebara-mobile.png"
+    },
+    {
+      "slug": "lyca-bundles",
+      "name": "Lyca Mobile Bundles",
+      "category": "telecom",
+      "requestedUrl": "https://www.lycamobile.co.uk/en/bundles/sim-only-deals/",
+      "finalUrl": "https://www.lycamobile.co.uk/en/bundles/pay-as-you-go-sim-deals/#30-day-plans",
+      "title": "Pay as you go SIM only Deals from £3.5 | No Contract PAYG SIMs",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "lyca-bundles.png"
+    },
+    {
+      "slug": "o2-payg",
+      "name": "O2 Pay As You Go",
+      "category": "telecom",
+      "requestedUrl": "https://www.o2.co.uk/shop/sim-cards/pay-as-you-go",
+      "finalUrl": "https://www.o2.co.uk/shop/sim-cards/pay-as-you-go#simtype=bigbundles",
+      "title": "No Contract SIM Cards | Pay As You Go SIMs",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "o2-payg.png"
     },
     {
       "slug": "one-nz-offers",
@@ -185,6 +229,17 @@
       "researchFilename": "telstra-deals.png"
     },
     {
+      "slug": "tesco-mobile-payg",
+      "name": "Tesco Mobile PAYG",
+      "category": "telecom",
+      "requestedUrl": "https://www.tescomobile.com/shop/pay-as-you-go",
+      "finalUrl": "https://www.tescomobile.com/shop/pay-as-you-go?page=2",
+      "title": "Cheap Pay As You Go Mobile Phone Deals | Tesco Mobile",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "tesco-mobile-payg.png"
+    },
+    {
       "slug": "three-data-packs",
       "name": "Three PAYG Data Packs",
       "category": "telecom",
@@ -238,6 +293,17 @@
       "status": "ok",
       "error": null,
       "researchFilename": "vodafone-png-specials.png"
+    },
+    {
+      "slug": "voxi-plans",
+      "name": "VOXI Plans",
+      "category": "telecom",
+      "requestedUrl": "https://www.voxi.co.uk/plans",
+      "finalUrl": "https://www.voxi.co.uk/sim-only-plans",
+      "title": "Best SIM Only Deals | 5G and Unlimited Plans | VOXI Mobile",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "voxi-plans.png"
     }
   ]
 }

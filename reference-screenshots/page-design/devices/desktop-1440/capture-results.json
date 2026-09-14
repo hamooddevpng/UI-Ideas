@@ -1,6 +1,6 @@
 {
-  "capturedAt": "2026-09-14T00:32:21.805Z",
-  "researchStandard": "20+ candidates; minimum 15 valid visual references after QA",
+  "capturedAt": "2026-09-14T02:15:51.526Z",
+  "researchStandard": "final backfill merged; minimum 15 valid visual references after QA",
   "pageStudy": {
     "id": "devices",
     "name": "Devices",
@@ -8,6 +8,17 @@
   },
   "viewport": "1440x900",
   "results": [
+    {
+      "slug": "apple-buy-iphone",
+      "name": "Apple Buy iPhone",
+      "category": "adjacent-retail",
+      "requestedUrl": "https://www.apple.com/uk/shop/buy-iphone",
+      "finalUrl": "https://www.apple.com/uk/shop/buy-iphone",
+      "title": "Buy iPhone - Apple (UK)",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "apple-buy-iphone.png"
+    },
     {
       "slug": "apple-iphone",
       "name": "Apple iPhone",
@@ -75,6 +86,28 @@
       "researchFilename": "globe-devices.png"
     },
     {
+      "slug": "google-store-phones",
+      "name": "Google Store Phones",
+      "category": "adjacent-retail",
+      "requestedUrl": "https://store.google.com/gb/category/phones?hl=en-GB",
+      "finalUrl": "https://store.google.com/gb/category/phones?hl=en-GB",
+      "title": "Explore the Google Pixel 11 phone family",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "google-store-phones.png"
+    },
+    {
+      "slug": "hmd-smartphones",
+      "name": "HMD Smartphones",
+      "category": "adjacent-retail",
+      "requestedUrl": "https://www.hmd.com/en_gb/smartphones",
+      "finalUrl": "https://www.hmd.com/en_gb/smartphones",
+      "title": "HMD phones: Smartphones with latest Android OS updates",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "hmd-smartphones.png"
+    },
+    {
       "slug": "jio-devices",
       "name": "Jio Devices",
       "category": "telecom",
@@ -84,6 +117,17 @@
       "status": "error",
       "error": "page.screenshot: Timeout 30000ms exceeded.\nCall log:\n  - taking page screenshot\n    - disabled all CSS animations\n  - waiting for fonts to load...\n  - fonts loaded\n",
       "researchFilename": "jio-devices.png"
+    },
+    {
+      "slug": "motorola-uk-smartphones",
+      "name": "Motorola Smartphones",
+      "category": "adjacent-retail",
+      "requestedUrl": "https://www.motorola.co.uk/smartphones",
+      "finalUrl": "https://www.motorola.com/gb/en/homepage",
+      "title": "5G-Enabled Android Flip Phones for Modern Users | motorola",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "motorola-uk-smartphones.png"
     },
     {
       "slug": "o2-phones",
@@ -161,6 +205,17 @@
       "status": "ok",
       "error": null,
       "researchFilename": "smart-devices.png"
+    },
+    {
+      "slug": "sony-smartphones",
+      "name": "Sony Smartphones",
+      "category": "adjacent-retail",
+      "requestedUrl": "https://www.sony.co.uk/smartphones",
+      "finalUrl": "https://www.sony.co.uk/smartphones",
+      "title": "Access Denied",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "sony-smartphones.png"
     },
     {
       "slug": "spark-phones",
@@ -260,6 +315,17 @@
       "status": "ok",
       "error": null,
       "researchFilename": "vodafone-uk-phones.png"
+    },
+    {
+      "slug": "xiaomi-uk-mobile",
+      "name": "Xiaomi UK Mobile",
+      "category": "adjacent-retail",
+      "requestedUrl": "https://www.mi.com/uk/mobile/",
+      "finalUrl": "https://www.mi.com/uk/mobile/",
+      "title": "Access Denied",
+      "status": "ok",
+      "error": null,
+      "researchFilename": "xiaomi-uk-mobile.png"
     }
   ]
 }
