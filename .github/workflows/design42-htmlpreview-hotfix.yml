@@ -1,0 +1,24 @@
+name: Design 42 HTMLPreview Hotfix
+
+on:
+  push:
+    branches:
+      - fix/design42-htmlpreview-assets
+    paths:
+      - '42.html'
+      - 'tests/design42-htmlpreview-source-root.test.mjs'
+      - '.github/workflows/design42-htmlpreview-hotfix.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Reproduce and verify HTMLPreview source-root handling
+        run: node tests/design42-htmlpreview-source-root.test.mjs
