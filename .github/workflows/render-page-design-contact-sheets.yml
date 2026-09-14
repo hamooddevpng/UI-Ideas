@@ -17,7 +17,7 @@ concurrency:
   cancel-in-progress: true
 
 # Regenerate visual QA boards and the capture QA report after expanded research captures.
-# Manual refresh marker: validate the post-backfill 15-reference gate.
+# Manual refresh marker: validate the targeted final backfill against the 15-reference gate.
 jobs:
   render:
     runs-on: ubuntu-latest
