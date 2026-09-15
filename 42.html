@@ -46,9 +46,55 @@ html,body{margin:0;min-height:100%;font-family:Manrope,Arial,sans-serif;backgrou
     style.textContent=css;
     page.head.appendChild(style);
   };
+  const syncQuickActions=(page)=>{
+    const deck=page.getElementById('quickDeck');
+    if(!deck)return;
+
+    deck.classList.remove('quick-deck-eight');
+    deck.classList.add('quick-deck-nine');
+
+    let cards=[...deck.querySelectorAll('.quick-card')];
+    const transferCard=cards.find(card=>card.querySelector('h3')?.textContent.trim()==='Transfer');
+    if(transferCard){
+      transferCard.querySelector('h3').textContent='T-Cash';
+    }
+
+    const hasPersonal=cards.some(card=>card.querySelector('h3')?.textContent.trim()==='Personal');
+    if(!hasPersonal){
+      const personal=page.createElement('a');
+      personal.className='quick-card';
+      personal.href='/personal/mobile';
+      personal.style.setProperty('--qrot','-1.1deg');
+      personal.innerHTML='<div class="q-top"><span class="q-num">06 / PERSONAL</span><span class="q-icon">◎</span></div><h3>Personal</h3><p>Mobile, home internet and devices for you.</p>';
+      if(transferCard?.parentNode)transferCard.parentNode.insertBefore(personal,transferCard.nextSibling);
+      else deck.appendChild(personal);
+    }
+
+    const categories={
+      'Top Up':'RECHARGE',
+      'Balance':'ACCOUNT',
+      'Pay Bill':'BILLING',
+      'Bundles':'BUNDLES',
+      'T-Cash':'T-CASH',
+      'Personal':'PERSONAL',
+      'Internet':'INTERNET',
+      'Business':'BUSINESS',
+      'Support':'HELP'
+    };
+    cards=[...deck.querySelectorAll('.quick-card')];
+    cards.forEach((card,index)=>{
+      card.dataset.quickIndex=String(index+1);
+      card.style.setProperty('--qdelay',`${index*55}ms`);
+      const title=card.querySelector('h3')?.textContent.trim();
+      const number=String(index+1).padStart(2,'0');
+      const label=categories[title];
+      const qnum=card.querySelector('.q-num');
+      if(qnum&&label)qnum.textContent=`${number} / ${label}`;
+    });
+  };
 
   try{
-    const [baseHtml,coreCss,ecosystemHtml,ecosystemCss,ecosystemCleanCss,ecosystemCleanJs,serviceScrollCss,serviceScrollJs,componentCss,themeCss,chatCss,shellCss,shellJs]=await Promise.all([
+    const [baseHtml,coreCss,ecosystemHtml,ecosystemCss,ecosystemCleanCss,ecosystemCleanJs,serviceScrollCss,serviceScrollJs,componentCss,themeCss,chatCss,shellCss,shellJs,actionsCss,actionsJs]=await Promise.all([
       fetchText(source('42-base.html')),
       fetchText(source('assets/design42/design42-core.css')),
       fetchText(source('design42-ecosystem-v2.html')).catch(error=>{console.warn('Digital PNG enhancement markup could not be loaded.',error);return ''}),
@@ -61,7 +107,9 @@ html,body{margin:0;min-height:100%;font-family:Manrope,Arial,sans-serif;backgrou
       fetchText(source('assets/design42/design42-theme.css')),
       fetchText(source('assets/design42/design42-chat.css')),
       fetchText(source('assets/design42/design42-shell-sync.css')).catch(error=>{console.warn('Concise shell sync styles could not be loaded.',error);return ''}),
-      fetchText(source('assets/design42/design42-shell-sync.js')).catch(error=>{console.warn('Concise shell sync behavior could not be loaded.',error);return ''})
+      fetchText(source('assets/design42/design42-shell-sync.js')).catch(error=>{console.warn('Concise shell sync behavior could not be loaded.',error);return ''}),
+      fetchText(source('assets/design42/design42-actions-sync.css')).catch(error=>{console.warn('Quick action sync styles could not be loaded.',error);return ''}),
+      fetchText(source('assets/design42/design42-actions-sync.js')).catch(error=>{console.warn('Self Care link sync could not be loaded.',error);return ''})
     ]);
 
     const parser=new DOMParser();
@@ -69,6 +117,7 @@ html,body{margin:0;min-height:100%;font-family:Manrope,Arial,sans-serif;backgrou
     const base=page.createElement('base');
     base.href=sourceRoot;
     page.head.prepend(base);
+    syncQuickActions(page);
 
     // 1. Core page/component structure and motion.
     addStyle(page,coreCss,'data-design42-core');
@@ -122,6 +171,14 @@ html,body{margin:0;min-height:100%;font-family:Manrope,Arial,sans-serif;backgrou
       shellScript.setAttribute('data-design42-shell-sync','');
       shellScript.textContent=shellJs;
       page.body.appendChild(shellScript);
+    }
+    // 9. Quick Actions layout and Self Care destinations are the final shell-level sync.
+    addStyle(page,actionsCss,'data-design42-actions-sync');
+    if(actionsJs){
+      const actionsScript=page.createElement('script');
+      actionsScript.setAttribute('data-design42-actions-sync','');
+      actionsScript.textContent=actionsJs;
+      page.body.appendChild(actionsScript);
     }
 
     document.open();
