@@ -39,9 +39,31 @@ html,body{margin:0;min-height:100%;font-family:Inter,ui-sans-serif,system-ui,-ap
     if(!response.ok)throw new Error(`${response.status} ${response.statusText}`);
 
     let html=await response.text();
-    html=html.replace('Stage 2 • Close the gaps','Stage 2 • Closing the gaps');
 
-    const cleanupScript=`<script data-scorecard-dedup>\n(()=>{\n  const groupOrder=['Experience & Service Journey','SEO & Discovery','Trust & Resilience'];\n\n  const regroup=(rootId,rowSelector)=>{\n    const root=document.getElementById(rootId);\n    if(!root)return;\n\n    const knownGroups=new Map(groupOrder.map(group=>[group,[]]));\n    const extraGroups=new Map();\n    const seenIds=new Set();\n    const seenLabels=new Set();\n\n    [...root.querySelectorAll(rowSelector)].forEach(row=>{\n      const label=row.querySelector('.metric-cell b')?.textContent.trim()||'';\n      const group=row.querySelector('.metric-cell small')?.textContent.trim()||'';\n      const id=(row.dataset.metric||label).trim().toLowerCase();\n      const labelKey=label.toLowerCase();\n\n      if(!label||!group||seenIds.has(id)||seenLabels.has(labelKey)){\n        row.remove();\n        return;\n      }\n\n      seenIds.add(id);\n      seenLabels.add(labelKey);\n      row.querySelector('.metric-cell small')?.remove();\n\n      if(knownGroups.has(group))knownGroups.get(group).push(row);\n      else{\n        if(!extraGroups.has(group))extraGroups.set(group,[]);\n        extraGroups.get(group).push(row);\n      }\n    });\n\n    root.replaceChildren();\n    const appendGroup=(group,rows)=>{\n      if(!rows?.length)return;\n      const heading=document.createElement('div');\n      heading.className='group-row';\n      heading.textContent=group;\n      root.appendChild(heading);\n      rows.forEach(row=>root.appendChild(row));\n    };\n\n    groupOrder.forEach(group=>appendGroup(group,knownGroups.get(group)));\n    extraGroups.forEach((rows,group)=>appendGroup(group,rows));\n  };\n\n  regroup('legacyTable','.legacy-row');\n  regroup('newTable','.new-row');\n})();\n<\/script>`;
+    const textReplacements=[
+      ['Stage 2 • Close the gaps','Stage 2 • Closing the gaps'],
+      ['Then, show exactly how the new website closes those gaps.','Then, show exactly how the Telikom New Website closes those gaps.'],
+      ['<div class="newcol">New Website</div>','<div class="newcol">Telikom New Website</div>'],
+      ['<b>31 Oct</b><span>delivery target</span>','<b>15 Nov</b><span>final deadline</span>'],
+      ['Target: 31 Oct 2026','Target: 15 Nov 2026'],
+      ['through planned completion.','through planned completion, Self Care integration and final testing.'],
+      ['The final two weeks are reserved for QA, production readiness, deployment and handover.','Post-completion plan: 1 week for Self Care integration finalisation, then 1 week of internal and external testing. Final deadline: 15 Nov 2026.'],
+      ['Programme scorecard • Tracker-based view • 20 Jul–31 Oct 2026','Programme scorecard • Tracker-based view • 20 Jul–15 Nov 2026']
+    ];
+    textReplacements.forEach(([from,to])=>{html=html.replace(from,to)});
+
+    html=html.replace('grid-template-columns:260px repeat(15,minmax(66px,1fr))','grid-template-columns:260px repeat(17,minmax(66px,1fr))');
+    html=html.replace(
+      "const weeks=['20 Jul','27 Jul','3 Aug','10 Aug','17 Aug','24 Aug','31 Aug','7 Sep','14 Sep','21 Sep','28 Sep','5 Oct','12 Oct','19 Oct','26 Oct'];",
+      "const weeks=['20 Jul','27 Jul','3 Aug','10 Aug','17 Aug','24 Aug','31 Aug','7 Sep','14 Sep','21 Sep','28 Sep','5 Oct','12 Oct','19 Oct','26 Oct','2 Nov','9 Nov'];"
+    );
+    html=html.replace(
+      "['Production readiness, deployment & handover','.............AA']\n];",
+      "['Production readiness, deployment & handover','.............AA'],\n['Self Care integration finalisation','...............A.'],\n['Internal & external testing period','................A']\n];"
+    );
+    html=html.replace('[...status].forEach(s=>root.insertAdjacentHTML', '[...status.padEnd(weeks.length,\'.\').slice(0,weeks.length)].forEach(s=>root.insertAdjacentHTML');
+
+    const cleanupScript=`<script data-scorecard-dedup>\n(()=>{\n  const groupOrder=['Experience & Service Journey','SEO & Discovery','Trust & Resilience'];\n\n  document.querySelectorAll('.newcol').forEach(el=>{\n    if(el.textContent.trim()==='New Website')el.textContent='Telikom New Website';\n  });\n\n  const regroup=(rootId,rowSelector)=>{\n    const root=document.getElementById(rootId);\n    if(!root)return;\n\n    const knownGroups=new Map(groupOrder.map(group=>[group,[]]));\n    const extraGroups=new Map();\n    const seenIds=new Set();\n    const seenLabels=new Set();\n\n    [...root.querySelectorAll(rowSelector)].forEach(row=>{\n      const label=row.querySelector('.metric-cell b')?.textContent.trim()||'';\n      const group=row.querySelector('.metric-cell small')?.textContent.trim()||'';\n      const id=(row.dataset.metric||label).trim().toLowerCase();\n      const labelKey=label.toLowerCase();\n\n      if(!label||!group||seenIds.has(id)||seenLabels.has(labelKey)){\n        row.remove();\n        return;\n      }\n\n      seenIds.add(id);\n      seenLabels.add(labelKey);\n      row.querySelector('.metric-cell small')?.remove();\n\n      if(knownGroups.has(group))knownGroups.get(group).push(row);\n      else{\n        if(!extraGroups.has(group))extraGroups.set(group,[]);\n        extraGroups.get(group).push(row);\n      }\n    });\n\n    root.replaceChildren();\n    const appendGroup=(group,rows)=>{\n      if(!rows?.length)return;\n      const heading=document.createElement('div');\n      heading.className='group-row';\n      heading.textContent=group;\n      root.appendChild(heading);\n      rows.forEach(row=>root.appendChild(row));\n    };\n\n    groupOrder.forEach(group=>appendGroup(group,knownGroups.get(group)));\n    extraGroups.forEach((rows,group)=>appendGroup(group,rows));\n  };\n\n  regroup('legacyTable','.legacy-row');\n  regroup('newTable','.new-row');\n})();\n<\/script>`;
 
     html=html.replace('</body>',cleanupScript+'\n</body>');
     document.open();
