@@ -1,0 +1,29 @@
+/* Design 42: Featured Devices & Routers */
+.d42-products{position:relative;padding:84px 0 92px;background:linear-gradient(180deg,#f7fbfd 0%,#eef8fb 100%);overflow:hidden}
+.d42-products:before{content:"";position:absolute;inset:auto -8% -180px auto;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(28,160,232,.12),transparent 68%);pointer-events:none}
+.d42-products-shell{position:relative;z-index:1;width:min(1180px,calc(100% - 48px));margin:0 auto}
+.d42-products-head{display:flex;align-items:flex-end;justify-content:space-between;gap:32px;margin-bottom:30px}
+.d42-products-head .eyebrow{margin-bottom:8px;color:#0875c9;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+.d42-products-head h2{margin:0;color:#102b3b;font-family:"Space Grotesk",Manrope,Arial,sans-serif;font-size:clamp(32px,4vw,54px);line-height:.98;letter-spacing:-.045em}
+.d42-products-head p{max-width:650px;margin:14px 0 0;color:#647f8c;font-size:14px;line-height:1.65}
+.d42-products-viewall{flex:0 0 auto;display:inline-flex;align-items:center;gap:8px;padding:11px 16px;border:1px solid rgba(8,117,201,.22);border-radius:999px;background:#fff;color:#0875c9;font-size:12px;font-weight:800;text-decoration:none;box-shadow:0 8px 24px rgba(19,63,84,.05);transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease}
+.d42-products-viewall:hover,.d42-products-viewall:focus-visible{transform:translateY(-2px);border-color:rgba(8,117,201,.5);box-shadow:0 12px 30px rgba(19,63,84,.1);outline:none}
+.d42-products-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+.d42-product-card{min-width:0;display:flex;flex-direction:column;overflow:hidden;border:1px solid rgba(16,43,60,.09);border-radius:22px;background:rgba(255,255,255,.94);box-shadow:0 10px 30px rgba(16,70,97,.055);transition:transform .28s cubic-bezier(.2,.8,.2,1),box-shadow .28s ease,border-color .28s ease}
+.d42-product-card:hover{transform:translateY(-7px);border-color:rgba(8,117,201,.3);box-shadow:0 24px 52px rgba(16,70,97,.12)}
+.d42-product-media{position:relative;height:176px;margin:10px 10px 0;border-radius:16px;overflow:hidden;background:linear-gradient(145deg,#eef8fc,#f9fcfd)}
+.d42-product-media:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 58%,rgba(7,35,49,.05));pointer-events:none}
+.d42-product-media img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+.d42-product-card:hover .d42-product-media img{transform:scale(1.055)}
+.d42-product-badge{position:absolute;z-index:2;top:10px;left:10px;padding:6px 9px;border-radius:999px;background:#0875c9;color:#fff;font-size:8px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;box-shadow:0 6px 16px rgba(8,117,201,.18)}
+.d42-product-copy{display:flex;flex:1;flex-direction:column;padding:16px 16px 17px}
+.d42-product-category{color:#0875c9;font-size:9px;font-weight:800;letter-spacing:.11em;text-transform:uppercase}
+.d42-product-copy h3{margin:7px 0 8px;color:#102b3b;font-size:15px;line-height:1.18;letter-spacing:-.025em}
+.d42-product-copy p{display:-webkit-box;margin:0;color:#708994;font-size:10.5px;line-height:1.48;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.d42-product-meta{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:auto;padding-top:18px}
+.d42-product-meta strong{color:#0875c9;font-size:17px;letter-spacing:-.03em}
+.d42-product-meta a{display:inline-flex;align-items:center;gap:5px;color:#17384a;font-size:10px;font-weight:800;text-decoration:none;white-space:nowrap}
+.d42-product-meta a:hover,.d42-product-meta a:focus-visible{color:#0875c9;outline:none}
+@media(max-width:1120px){.d42-products-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.d42-product-media{height:190px}}
+@media(max-width:760px){.d42-products{padding:62px 0 70px}.d42-products-shell{width:calc(100% - 28px)}.d42-products-head{align-items:flex-start;flex-direction:column;gap:18px;margin-bottom:22px}.d42-products-viewall{align-self:flex-start}.d42-products-grid{display:grid;grid-auto-flow:column;grid-template-columns:none;grid-auto-columns:minmax(245px,78vw);gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding:2px 1px 12px;scrollbar-width:none}.d42-products-grid::-webkit-scrollbar{display:none}.d42-product-card{scroll-snap-align:start}.d42-product-media{height:190px}}
+@media(prefers-reduced-motion:reduce){.d42-product-card,.d42-product-media img,.d42-products-viewall{transition:none!important}}
