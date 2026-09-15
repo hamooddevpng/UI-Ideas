@@ -1,0 +1,10 @@
+/* Design 42 quick actions: nine-item layout. */
+@media(min-width:1051px){
+  .quick-launchpad .quick-deck.quick-deck-nine{grid-template-columns:repeat(10,1fr)}
+  .quick-launchpad .quick-deck-nine .quick-card{grid-column:span 2}
+  .quick-launchpad .quick-deck-nine .quick-card[data-quick-index="6"]{grid-column:2/span 2}
+}
+@media(max-width:1050px) and (min-width:821px){
+  .quick-launchpad .quick-deck.quick-deck-nine{grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(3,106px)}
+  .quick-launchpad .quick-deck-nine .quick-card{height:106px!important}
+}
