@@ -5,28 +5,61 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/verify-screenshot-service.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   verify:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+
       - name: Capture phone PNG from hosted option
         run: |
           curl --fail --location --retry 2 --retry-delay 3 --max-time 120 \
             --output /tmp/phone.png \
             'https://telikom-website.onrender.com/api/screenshot?url=https%3A%2F%2Ftelikom-frontend.vercel.app%2Fconcise-home&viewport=phone'
+
       - name: Capture desktop PNG from Design 42
         run: |
           curl --fail --location --retry 2 --retry-delay 3 --max-time 120 \
             --output /tmp/desktop.png \
             'https://telikom-website.onrender.com/api/screenshot?url=https%3A%2F%2Fhtmlpreview.github.io%2F%3Fhttps%3A%2F%2Fraw.githubusercontent.com%2Fhamooddevpng%2FUI-Ideas%2Fmain%2F42.html&viewport=desktop'
+
+      - name: Capture legacy Telikom homepage
+        run: |
+          mkdir -p reference-screenshots/telikom-legacy
+          curl --fail --location --retry 2 --retry-delay 3 --max-time 120 \
+            --output reference-screenshots/telikom-legacy/homepage.png \
+            'https://telikom-website.onrender.com/api/screenshot?url=https%3A%2F%2Fwww.telikom.com.pg%2F&viewport=desktop'
+
       - name: Verify PNG responses
         run: |
           python - <<'PY'
           from pathlib import Path
-          for name in ('phone.png', 'desktop.png'):
-              data = Path('/tmp', name).read_bytes()
-              assert data.startswith(b'\x89PNG\r\n\x1a\n'), f'{name} is not a PNG'
-              assert len(data) > 10_000, f'{name} is unexpectedly small: {len(data)} bytes'
-              print(name, len(data), 'bytes')
+          paths = [
+              Path('/tmp/phone.png'),
+              Path('/tmp/desktop.png'),
+              Path('reference-screenshots/telikom-legacy/homepage.png'),
+          ]
+          for path in paths:
+              data = path.read_bytes()
+              assert data.startswith(b'\x89PNG\r\n\x1a\n'), f'{path} is not a PNG'
+              assert len(data) > 10_000, f'{path} is unexpectedly small: {len(data)} bytes'
+              print(path, len(data), 'bytes')
           PY
+
+      - name: Commit legacy capture
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reference-screenshots/telikom-legacy/homepage.png
+          if git diff --cached --quiet; then
+            echo "Legacy screenshot unchanged"
+            exit 0
+          fi
+          git commit -m "chore: capture legacy Telikom homepage"
+          git pull --rebase origin main
+          git push origin main
