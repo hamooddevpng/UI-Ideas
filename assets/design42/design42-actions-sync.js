@@ -2,6 +2,17 @@
 (()=>{
   const SELF_CARE_URL='https://selfcare.bmobile.com.pg/Care/Login';
 
+  const syncNavbarCleanup=()=>{
+    document.querySelectorAll('.shell-nav-item,.shell-mobile-item').forEach((item)=>{
+      const link=item.querySelector(':scope > .shell-nav-main > a,:scope > .shell-mobile-main > a');
+      if(link?.textContent.trim()==='Home')item.remove();
+    });
+
+    document.getElementById('searchOpen')?.remove();
+    document.getElementById('searchOverlay')?.remove();
+    document.querySelectorAll('#header [aria-label="Search"]').forEach(node=>node.remove());
+  };
+
   const syncSelfCareLinks=(root=document)=>{
     const anchors=[];
     if(root instanceof HTMLAnchorElement)anchors.push(root);
@@ -73,6 +84,7 @@
     });
   };
 
+  syncNavbarCleanup();
   syncSelfCareLinks();
   syncQuickActions();
 
