@@ -94,7 +94,7 @@ html,body{margin:0;min-height:100%;font-family:Manrope,Arial,sans-serif;backgrou
   };
 
   try{
-    const [baseHtml,coreCss,ecosystemHtml,ecosystemCss,ecosystemCleanCss,ecosystemCleanJs,serviceScrollCss,serviceScrollJs,componentCss,themeCss,chatCss,shellCss,shellJs,actionsCss,actionsJs]=await Promise.all([
+    const [baseHtml,coreCss,ecosystemHtml,ecosystemCss,ecosystemCleanCss,ecosystemCleanJs,serviceScrollCss,serviceScrollJs,componentCss,themeCss,chatCss,shellCss,shellJs,actionsCss,actionsJs,productsCss,productsJs]=await Promise.all([
       fetchText(source('42-base.html')),
       fetchText(source('assets/design42/design42-core.css')),
       fetchText(source('design42-ecosystem-v2.html')).catch(error=>{console.warn('Digital PNG enhancement markup could not be loaded.',error);return ''}),
@@ -109,7 +109,9 @@ html,body{margin:0;min-height:100%;font-family:Manrope,Arial,sans-serif;backgrou
       fetchText(source('assets/design42/design42-shell-sync.css')).catch(error=>{console.warn('Concise shell sync styles could not be loaded.',error);return ''}),
       fetchText(source('assets/design42/design42-shell-sync.js')).catch(error=>{console.warn('Concise shell sync behavior could not be loaded.',error);return ''}),
       fetchText(source('assets/design42/design42-actions-sync.css')).catch(error=>{console.warn('Quick action sync styles could not be loaded.',error);return ''}),
-      fetchText(source('assets/design42/design42-actions-sync.js')).catch(error=>{console.warn('Self Care link sync could not be loaded.',error);return ''})
+      fetchText(source('assets/design42/design42-actions-sync.js')).catch(error=>{console.warn('Self Care link sync could not be loaded.',error);return ''}),
+      fetchText(source('assets/design42/design42-products.css')).catch(error=>{console.warn('Featured products styles could not be loaded.',error);return ''}),
+      fetchText(source('assets/design42/design42-products.js')).catch(error=>{console.warn('Featured products behavior could not be loaded.',error);return ''})
     ]);
 
     const parser=new DOMParser();
@@ -169,7 +171,7 @@ html,body{margin:0;min-height:100%;font-family:Manrope,Arial,sans-serif;backgrou
     if(shellJs){
       const shellScript=page.createElement('script');
       shellScript.setAttribute('data-design42-shell-sync','');
-      shellScript.textContent=shellJs;
+      shellScript.textContent=shellJs.replace("document.querySelector('footer')","document.querySelector('main + footer')");
       page.body.appendChild(shellScript);
     }
     // 9. Quick Actions layout and Self Care destinations are the final shell-level sync.
@@ -179,6 +181,14 @@ html,body{margin:0;min-height:100%;font-family:Manrope,Arial,sans-serif;backgrou
       actionsScript.setAttribute('data-design42-actions-sync','');
       actionsScript.textContent=actionsJs;
       page.body.appendChild(actionsScript);
+    }
+    // 10. Featured devices are isolated from the core page and inserted before Support.
+    addStyle(page,productsCss,'data-design42-products');
+    if(productsJs){
+      const productsScript=page.createElement('script');
+      productsScript.setAttribute('data-design42-products','');
+      productsScript.textContent=productsJs;
+      page.body.appendChild(productsScript);
     }
 
     document.open();
