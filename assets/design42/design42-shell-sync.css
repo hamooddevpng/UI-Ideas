@@ -46,3 +46,8 @@
 @media(max-width:1180px){.shell-nav,.shell-desktop-action{display:none!important}.menu-btn{display:grid}.header-in{position:relative}.shell-mobile-panel{display:none}.shell-mobile-panel.open{display:block}}
 @media(min-width:1181px){.shell-mobile-panel,.menu-btn{display:none!important}}
 @media(max-width:640px){.shell-mobile-panel{left:12px;right:12px}.shell-legal-links{justify-content:center;gap:9px}.footer-bottom{align-items:center;text-align:center}}
+
+/* Use drawn chevrons instead of font glyphs so arrows stay centered across browsers/fonts. */
+.shell-nav-toggle,.shell-nav-subtoggle,.shell-mobile-main button,.shell-mobile-submain button{font-size:0;line-height:1}
+.shell-nav-toggle::before,.shell-mobile-main button::before,.shell-mobile-submain button::before{content:"";width:7px;height:7px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-2px) rotate(45deg);transform-origin:center}
+.shell-nav-subtoggle::before{content:"";width:7px;height:7px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateX(-2px) rotate(-45deg);transform-origin:center}
