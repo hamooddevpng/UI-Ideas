@@ -1,0 +1,353 @@
+/*
+ * Design 42 — Telikom Brand Guidelines override
+ * Source: Telikom Brand Guidelines, October 2024.
+ * Loaded last so the existing Design 42 structure, motion and behavior remain intact.
+ *
+ * Gibson is the approved primary typeface. This stylesheet requests Gibson first,
+ * then falls back to Helvetica Neue / Helvetica until an authorised Gibson webfont
+ * kit is supplied. No font files are bundled here.
+ */
+
+:root{
+  /* Official primary palette */
+  --brand-blue:#2A6BB1;
+  --brand-green:#00B05F;
+  --brand-sky:#2E94D0;
+  --brand-black:#000000;
+  --brand-white:#FEFEFE;
+
+  /* Official secondary palette — reserved for offer / bundle differentiation */
+  --brand-aqua:#B1DCDA;
+  --brand-orange:#F69636;
+  --brand-purple:#682A55;
+  --brand-yellow:#FFD54C;
+
+  /* Map legacy Design 42 tokens onto the approved Telikom system */
+  --blue:var(--brand-blue);
+  --cyan:var(--brand-sky);
+  --green:var(--brand-green);
+  --navy:var(--brand-black);
+  --navy2:var(--brand-blue);
+  --deep-bg:var(--brand-blue);
+  --ink:var(--brand-black);
+  --ice:var(--brand-white);
+  --sky:#EEF7FB;
+  --white:var(--brand-white);
+  --muted:rgba(0,0,0,.62);
+  --line:rgba(42,107,177,.18);
+}
+
+html{background:var(--brand-black)}
+body,
+button,
+input,
+select,
+textarea{
+  font-family:Gibson,"Helvetica Neue",Helvetica,Arial,sans-serif!important;
+}
+body{background:var(--brand-white);color:var(--brand-black)}
+
+/* Gibson usage: heavy headlines, light subheads, book/regular body copy. */
+h1,h2,h3,h4,h5,h6,
+.title,
+.hero-copy h1,
+.d42-products-head h2,
+.support-copy h2{
+  font-family:Gibson,"Helvetica Neue",Helvetica,Arial,sans-serif!important;
+  font-weight:800!important;
+}
+.lead,
+.hero-copy p,
+.d42-products-head p,
+.support-copy p,
+.service-caption p{
+  font-weight:300;
+}
+p,li,a,button,input,select,textarea{font-weight:400}
+.kicker,.eyebrow,.q-num,.d42-product-category{font-weight:600}
+
+/* Logo: preserve the full lock-up, clearspace and contrast. */
+.site-header .brand{
+  padding:8px 12px!important;
+  border-radius:12px;
+  background:var(--brand-white)!important;
+  box-shadow:0 10px 26px rgba(0,0,0,.12);
+}
+.site-header .brand img,
+.footer-logo img{
+  height:auto!important;
+  width:auto;
+  max-width:100%;
+  object-fit:contain;
+  transform:none!important;
+  filter:none!important;
+}
+.footer-logo{
+  display:inline-flex;
+  align-items:center;
+  padding:8px 10px;
+  border-radius:10px;
+  background:var(--brand-white);
+}
+
+/* Header remains transparent on the hero, then resolves to the approved light treatment. */
+.site-header{border-bottom-color:rgba(254,254,254,.18)}
+.site-header.scrolled{
+  background:rgba(254,254,254,.97)!important;
+  color:var(--brand-black)!important;
+  border-bottom-color:rgba(42,107,177,.16)!important;
+  box-shadow:0 10px 34px rgba(0,0,0,.08)!important;
+}
+.site-header.scrolled .shell-nav-link,
+.site-header.scrolled .shell-nav-toggle,
+.site-header.scrolled .shell-nav-main>a{color:var(--brand-black)!important}
+.site-header .selfcare,
+.site-header.scrolled .selfcare{
+  background:var(--brand-blue)!important;
+  color:var(--brand-white)!important;
+  box-shadow:0 8px 20px rgba(42,107,177,.22)!important;
+}
+.site-header .contact-btn,
+.site-header.scrolled .contact-btn{
+  background:var(--brand-green)!important;
+  color:var(--brand-white)!important;
+  border-color:var(--brand-green)!important;
+}
+.shell-nav-dropdown,.shell-nav-flyout,.shell-mobile-panel{
+  border-color:rgba(42,107,177,.15)!important;
+}
+.shell-nav-dropdown a:hover,.shell-nav-flyout a:hover,
+.shell-nav-dropdown a:focus-visible,.shell-nav-flyout a:focus-visible{
+  color:var(--brand-blue)!important;
+  background:rgba(46,148,208,.08)!important;
+}
+
+/* Hero: move away from the unofficial dark navy and onto Telikom blue. */
+.hero{
+  background:linear-gradient(135deg,var(--brand-blue) 0%,var(--brand-sky) 100%)!important;
+}
+.scene-phone{
+  background:
+    radial-gradient(circle at 77% 42%,rgba(254,254,254,.20),transparent 28%),
+    linear-gradient(120deg,var(--brand-blue) 0 52%,var(--brand-sky) 100%)!important;
+}
+.scene-phone:after{
+  background:linear-gradient(90deg,rgba(42,107,177,.72) 0%,rgba(42,107,177,.34) 48%,rgba(46,148,208,.06) 76%,transparent 100%)!important;
+}
+.scene-enterprise{
+  background:
+    radial-gradient(circle at 76% 50%,rgba(254,254,254,.17),transparent 26%),
+    linear-gradient(125deg,var(--brand-blue),var(--brand-sky))!important;
+}
+.scene-remote:after{
+  background:linear-gradient(90deg,rgba(42,107,177,.78) 0%,rgba(42,107,177,.48) 33%,rgba(42,107,177,.14) 58%,transparent 76%)!important;
+}
+.hero-copy h1,.hero-copy p,.hero .eyebrow{color:var(--brand-white)!important}
+.hero .btn.primary{background:var(--brand-white)!important;color:var(--brand-black)!important;border-color:var(--brand-white)!important}
+.hero .btn:not(.primary),
+.hero .btn.dark{background:var(--brand-green)!important;color:var(--brand-white)!important;border-color:var(--brand-green)!important}
+.scene-tabs,.float-pill,.news-live-badge{
+  background:rgba(0,0,0,.72)!important;
+  border-color:rgba(254,254,254,.20)!important;
+}
+
+/* Telikom headline graphic language: pointer at the start, wireless full-stop at the end. */
+.hero-copy h1::before,
+.title::before,
+.offers h2::before,
+.raffle-offers h2::before,
+.service-lab h2::before,
+.service-stories h2::before,
+.business-command h2::before,
+.business-dual h2::before,
+.eco-section h2::before,
+.png-live h2::before,
+.updates h2::before,
+.updates-live h2::before,
+.support-copy h2::before,
+.d42-products-head h2::before{
+  content:"";
+  display:inline-block;
+  width:.22em;
+  min-width:8px;
+  height:.58em;
+  margin-right:.18em;
+  vertical-align:.02em;
+  background:var(--brand-black);
+  clip-path:polygon(0 0,100% 50%,0 100%,34% 50%);
+}
+.hero-copy h1::after,
+.title::after,
+.offers h2::after,
+.raffle-offers h2::after,
+.service-lab h2::after,
+.service-stories h2::after,
+.business-command h2::after,
+.business-dual h2::after,
+.eco-section h2::after,
+.png-live h2::after,
+.updates h2::after,
+.updates-live h2::after,
+.support-copy h2::after,
+.d42-products-head h2::after{
+  content:")))";
+  display:inline-block;
+  margin-left:.12em;
+  color:var(--brand-sky);
+  font-family:Arial,sans-serif!important;
+  font-size:.34em;
+  line-height:1;
+  font-weight:700;
+  letter-spacing:-.23em;
+  transform:scaleX(.72);
+  transform-origin:left center;
+  vertical-align:.34em;
+}
+.hero-copy h1::before,
+.business-command h2::before,
+.png-live h2::before{background:var(--brand-white)}
+.hero-copy h1::after,
+.business-command h2::after,
+.png-live h2::after{color:var(--brand-white)}
+
+/* Quick Actions: white utility surface with approved blue / green accents. */
+.quick-launchpad .quick-deck{
+  background:
+    radial-gradient(420px circle at var(--deck-x) var(--deck-y),rgba(46,148,208,.12),transparent 62%),
+    var(--brand-white)!important;
+  border:1px solid rgba(42,107,177,.13);
+  box-shadow:0 24px 66px rgba(0,0,0,.11)!important;
+}
+.quick-launchpad .quick-deck:before{
+  background:conic-gradient(from 0deg,transparent 0 38%,rgba(46,148,208,.12) 44%,rgba(0,176,95,.17) 49%,transparent 55% 100%)!important;
+}
+.quick-circuit path{stroke:rgba(42,107,177,.22)!important}
+.quick-launchpad .q-num{color:var(--brand-blue)!important}
+.quick-launchpad .q-icon{
+  color:var(--brand-blue)!important;
+  background:rgba(46,148,208,.10)!important;
+}
+.quick-launchpad .quick-card:hover .q-icon,
+.quick-launchpad .quick-card:focus-visible .q-icon{
+  color:var(--brand-white)!important;
+  background:var(--brand-green)!important;
+}
+.quick-launchpad .quick-card:hover,
+.quick-launchpad .quick-card:focus-visible{border-color:rgba(0,176,95,.45)!important}
+
+/* Light content rhythm: clean white, blue tints and green calls to action. */
+.offers,.raffle-offers,.updates,.updates-live,.d42-products{background:var(--brand-white)!important}
+.services,.service-lab,.service-stories,.support,.support-orbit{background:#EEF7FB!important}
+.kicker,.d42-products-head .eyebrow,.d42-product-category{color:var(--brand-blue)!important}
+
+/* Product / retail treatment: blue identity, green price / action emphasis. */
+.d42-products{background:linear-gradient(180deg,var(--brand-white) 0%,#EEF7FB 100%)!important}
+.d42-product-card{border-color:rgba(42,107,177,.16)!important;background:var(--brand-white)!important}
+.d42-product-card:hover{border-color:rgba(0,176,95,.46)!important;box-shadow:0 24px 52px rgba(42,107,177,.14)!important}
+.d42-product-badge{background:var(--brand-blue)!important;color:var(--brand-white)!important}
+.d42-product-meta strong{color:var(--brand-green)!important}
+.d42-product-meta a,.d42-products-viewall{color:var(--brand-blue)!important}
+.d42-products-viewall{border-color:rgba(42,107,177,.28)!important;background:var(--brand-white)!important}
+.d42-products-viewall:hover,.d42-products-viewall:focus-visible{border-color:var(--brand-green)!important;color:var(--brand-green)!important}
+
+/* Service and business surfaces remain immersive, but now use official brand blue. */
+.service-portal,.service-stage,.service-art{
+  background:
+    radial-gradient(circle at 66% 34%,rgba(254,254,254,.16),transparent 30%),
+    linear-gradient(145deg,var(--brand-blue),var(--brand-sky))!important;
+}
+.business-command{
+  background:linear-gradient(135deg,var(--brand-blue),var(--brand-sky))!important;
+}
+.business-command .kicker{color:var(--brand-white)!important}
+.business-command .lead{color:rgba(254,254,254,.78)!important}
+.business-console{background:rgba(0,0,0,.72)!important;border-color:rgba(254,254,254,.16)!important}
+.business-dual{background:var(--brand-white)!important;color:var(--brand-black)!important}
+.business-dual .dual-world-copy>small{background:rgba(42,107,177,.08)!important;color:var(--brand-blue)!important}
+.business-dual .government-world .dual-world-copy>small{background:rgba(0,176,95,.08)!important;color:var(--brand-green)!important}
+.business-dual .dual-art-wrap{background:linear-gradient(145deg,#EEF7FB,#DDEEF8)!important}
+.business-dual .government-world .dual-art-wrap{background:linear-gradient(145deg,#EFFAF5,#E0F4EA)!important}
+
+/* Digital PNG: daylight with the national brand blue / green system. */
+.digital-ecosystem,.eco-section{background:linear-gradient(180deg,#F4FAFD 0%,var(--brand-white) 56%,#F1FAF6 100%)!important}
+.digital-ecosystem-board,.eco-board{background:rgba(254,254,254,.92)!important;border-color:rgba(42,107,177,.14)!important}
+.eco-map{background:linear-gradient(180deg,#EAF6FB 0 49%,#EDF8F2 49% 100%)!important}
+.eco-water{fill:#DDEFF6!important}.eco-land{fill:#E9F7EF!important}
+.eco-insight{background:rgba(254,254,254,.98)!important}
+
+/* National story: photography remains, but the overlay is unmistakably Telikom. */
+.png-live{background:var(--brand-black)!important}
+.png-story-wash{
+  background:linear-gradient(90deg,rgba(42,107,177,.88) 0%,rgba(42,107,177,.62) 36%,rgba(42,107,177,.16) 66%,rgba(0,0,0,.28) 100%)!important;
+}
+
+/* News / support: primary blue structure and green action points. */
+.updates-console,.news-feature,.live-feed-card{background:var(--brand-white)!important;border-color:rgba(42,107,177,.15)!important}
+.support-orbit .support-stage{
+  background:
+    radial-gradient(circle at 80% 48%,rgba(46,148,208,.10),transparent 31%),
+    radial-gradient(circle at 88% 58%,rgba(0,176,95,.07),transparent 28%),
+    var(--brand-white)!important;
+  color:var(--brand-black)!important;
+  border-color:var(--brand-blue)!important;
+}
+.support-orbit .support-copy h2{color:var(--brand-black)!important}
+.support-orbit .support-search{border-color:rgba(42,107,177,.18)!important;background:var(--brand-white)!important}
+.support-orbit .support-link{border-color:rgba(42,107,177,.18)!important;background:rgba(254,254,254,.88)!important}
+.support-orbit .support-link:hover,.support-orbit .support-link:focus-visible{border-color:var(--brand-green)!important}
+.support-orbit .support-radar i{border-color:rgba(46,148,208,.20)!important}
+.support-orbit .support-radar span{background:linear-gradient(rgba(0,176,95,.52),rgba(0,176,95,0))!important}
+
+/* Primary CTAs and active controls. */
+.btn.dark,.personal-offer-icon{background:var(--brand-green)!important;border-color:var(--brand-green)!important;color:var(--brand-white)!important}
+.offer-option:hover,.offer-option.active{background:var(--brand-blue)!important;color:var(--brand-white)!important}
+.offer-option:hover small,.offer-option.active small{color:rgba(254,254,254,.86)!important}
+
+/* Chat stays recognisably Telikom. */
+#chatLauncher,.chat-launcher,.telibot-launcher{background:var(--brand-blue)!important;color:var(--brand-white)!important}
+.chat-panel,.telibot-panel{border-color:rgba(42,107,177,.20)!important}
+
+/* Footer: approved black / white base with the positive logo on a white plate. */
+footer{background:var(--brand-black)!important;border-top:5px solid var(--brand-blue)}
+.footer-top{border-bottom-color:rgba(254,254,254,.18)!important}
+.footer-brand p,.footer-col a,.footer-bottom{color:rgba(254,254,254,.72)!important}
+.footer-col b{color:var(--brand-white)!important}
+.footer-col a:hover,.footer-col a:focus-visible{color:var(--brand-sky)!important}
+.footer-social-icon{background:rgba(254,254,254,.08)!important;border-color:rgba(254,254,254,.22)!important;color:var(--brand-white)!important}
+.footer-brand p::after{
+  content:"1555  •  telikom.com.pg";
+  display:block;
+  margin-top:12px;
+  color:var(--brand-white);
+  font-weight:600;
+  letter-spacing:.02em;
+}
+
+/* Secondary palette is intentionally restrained to promotional offer separation. */
+.offers [class*="offer"]:nth-child(4n+1){--offer-accent:var(--brand-aqua)}
+.offers [class*="offer"]:nth-child(4n+2){--offer-accent:var(--brand-orange)}
+.offers [class*="offer"]:nth-child(4n+3){--offer-accent:var(--brand-purple)}
+.offers [class*="offer"]:nth-child(4n+4){--offer-accent:var(--brand-yellow)}
+.offers [class*="offer"]{accent-color:var(--offer-accent,var(--brand-blue))}
+
+@media(max-width:820px){
+  .site-header .brand{padding:6px 9px!important}
+  .hero-copy h1::before,
+  .title::before,
+  .offers h2::before,
+  .raffle-offers h2::before,
+  .service-lab h2::before,
+  .service-stories h2::before,
+  .business-command h2::before,
+  .business-dual h2::before,
+  .eco-section h2::before,
+  .png-live h2::before,
+  .updates h2::before,
+  .updates-live h2::before,
+  .support-copy h2::before,
+  .d42-products-head h2::before{min-width:6px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .site-header,.site-header *{transition:none!important}
+}
