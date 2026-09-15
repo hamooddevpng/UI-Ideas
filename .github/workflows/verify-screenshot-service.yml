@@ -5,6 +5,8 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/verify-screenshot-service.yml'
+  issues:
+    types: [opened]
   workflow_dispatch:
 
 permissions:
@@ -12,6 +14,7 @@ permissions:
 
 jobs:
   verify:
+    if: github.event_name != 'issues' || github.event.issue.title == 'Capture legacy Telikom homepage'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
