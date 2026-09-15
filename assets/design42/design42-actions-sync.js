@@ -63,11 +63,6 @@
 
       if(item.selfcare){
         card.setAttribute('data-quick-selfcare',item.selfcare);
-        card.onclick=()=>{
-          const action=document.querySelector(`.overlay-action[data-action="${item.selfcare}"]`);
-          if(action){action.click();return;}
-          document.getElementById('heroPrimary')?.click();
-        };
       }else if(item.href){
         card.onclick=null;
         if(card instanceof HTMLAnchorElement)card.href=item.href;
