@@ -488,8 +488,8 @@
         14,
         15
       ],
-      "done": "20 Oct record lists 93 high package findings in monitoring images and an exception expiring 26 Oct.",
-      "pending": "Upgrade/rebuild/rescan affected images or renew a narrowly scoped risk acceptance with dated owner.",
+      "done": "An internal scan documented unresolved monitoring-container dependency advisories under a time-limited exception; the detailed scan stays in the private engineering repository.",
+      "pending": "Review the private advisory report, remediate the affected pinned packages or record a new dated, owner-approved exception, then rerun the scans.",
       "pass": "Current scan and approved disposition before staging handover.",
       "level": "Open exception"
     },
