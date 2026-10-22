@@ -102,7 +102,7 @@
       "pass": "Retail location acceptance sample with valid directions and mobile screenshots.",
       "level": "Code evidence",
       "timeline": {
-        "startWeek": 6,
+        "startWeek": 4,
         "milestoneWeek": 6,
         "milestoneDate": "2026-08-31",
         "verifiedForStaging": false,
@@ -120,7 +120,7 @@
       "pass": "Successful and rejected staging form submissions with backend/email results.",
       "level": "Code evidence",
       "timeline": {
-        "startWeek": 6,
+        "startWeek": 4,
         "milestoneWeek": 6,
         "milestoneDate": "2026-08-31",
         "verifiedForStaging": false,
@@ -138,7 +138,7 @@
       "pass": "Approved content/media matrix including alt text.",
       "level": "Code evidence",
       "timeline": {
-        "startWeek": 5,
+        "startWeek": 3,
         "milestoneWeek": 5,
         "milestoneDate": "2026-08-27",
         "verifiedForStaging": false,
@@ -174,7 +174,7 @@
       "pass": "Crawl report tied to the staging SHA, reviewed by SEO owner.",
       "level": "Code evidence",
       "timeline": {
-        "startWeek": 4,
+        "startWeek": 2,
         "milestoneWeek": 4,
         "milestoneDate": "2026-08-21",
         "verifiedForStaging": false,
@@ -562,6 +562,6 @@
       }
     }
   ],
-  "timeline_model": "Upper line: yellow planned/under-development from indicative start, green continuously from dated supporting commit or report through current week (not final staging signoff). Lower line: yellow staging validation from current week until accepted; for no evidenced milestone only upper line remains yellow. No production tasks.",
+  "timeline_model": "Upper line: yellow planned/under-development from indicative start, green continuously from dated supporting commit or report through current week (not final staging signoff). Lower line: yellow staging validation from current week until accepted; for no evidenced milestone only upper line remains yellow. No production tasks. Start weeks are indicative planning windows, not attested activity timestamps. Actual milestone dates are supported by the linked commits/reports.",
   "updated_on": "2026-10-22"
 }
