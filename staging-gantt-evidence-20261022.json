@@ -37,6 +37,11 @@
         "validationStartWeek": 13,
         "planningThroughWeek": 16,
         "preMilestoneIsIndicative": true
+      },
+      "stagingValidation": {
+        "status": "NOT VERIFIED",
+        "assessmentDate": "2026-10-26",
+        "accepted": false
       }
     },
     {
@@ -55,6 +60,11 @@
         "validationStartWeek": 13,
         "planningThroughWeek": 16,
         "preMilestoneIsIndicative": true
+      },
+      "stagingValidation": {
+        "status": "NOT VERIFIED",
+        "assessmentDate": "2026-10-26",
+        "accepted": false
       }
     },
     {
@@ -73,6 +83,11 @@
         "validationStartWeek": 13,
         "planningThroughWeek": 16,
         "preMilestoneIsIndicative": true
+      },
+      "stagingValidation": {
+        "status": "NOT VERIFIED",
+        "assessmentDate": "2026-10-26",
+        "accepted": false
       }
     },
     {
@@ -91,6 +106,11 @@
         "validationStartWeek": 13,
         "planningThroughWeek": 16,
         "preMilestoneIsIndicative": true
+      },
+      "stagingValidation": {
+        "status": "NOT VERIFIED",
+        "assessmentDate": "2026-10-26",
+        "accepted": false
       }
     },
     {
@@ -109,6 +129,11 @@
         "validationStartWeek": 13,
         "planningThroughWeek": 16,
         "preMilestoneIsIndicative": true
+      },
+      "stagingValidation": {
+        "status": "NOT VERIFIED",
+        "assessmentDate": "2026-10-26",
+        "accepted": false
       }
     },
     {
@@ -127,6 +152,11 @@
         "validationStartWeek": 13,
         "planningThroughWeek": 16,
         "preMilestoneIsIndicative": true
+      },
+      "stagingValidation": {
+        "status": "NOT VERIFIED",
+        "assessmentDate": "2026-10-26",
+        "accepted": false
       }
     },
     {
@@ -145,6 +175,11 @@
         "validationStartWeek": 13,
         "planningThroughWeek": 16,
         "preMilestoneIsIndicative": true
+      },
+      "stagingValidation": {
+        "status": "NOT VERIFIED",
+        "assessmentDate": "2026-10-26",
+        "accepted": false
       }
     },
     {
@@ -163,6 +198,11 @@
         "validationStartWeek": null,
         "planningThroughWeek": 16,
         "preMilestoneIsIndicative": true
+      },
+      "stagingValidation": {
+        "status": "NOT VERIFIED",
+        "assessmentDate": "2026-10-26",
+        "accepted": false
       }
     },
     {
@@ -181,6 +221,11 @@
         "validationStartWeek": 13,
         "planningThroughWeek": 16,
         "preMilestoneIsIndicative": true
+      },
+      "stagingValidation": {
+        "status": "NOT VERIFIED",
+        "assessmentDate": "2026-10-26",
+        "accepted": false
       }
     },
     {
@@ -199,6 +244,11 @@
         "validationStartWeek": 13,
         "planningThroughWeek": 16,
         "preMilestoneIsIndicative": true
+      },
+      "stagingValidation": {
+        "status": "NOT VERIFIED",
+        "assessmentDate": "2026-10-26",
+        "accepted": false
       }
     },
     {
@@ -217,6 +267,11 @@
         "validationStartWeek": 13,
         "planningThroughWeek": 16,
         "preMilestoneIsIndicative": true
+      },
+      "stagingValidation": {
+        "status": "NOT VERIFIED",
+        "assessmentDate": "2026-10-26",
+        "accepted": false
       }
     },
     {
@@ -235,14 +290,19 @@
         "validationStartWeek": 13,
         "planningThroughWeek": 16,
         "preMilestoneIsIndicative": true
+      },
+      "stagingValidation": {
+        "status": "NOT VERIFIED",
+        "assessmentDate": "2026-10-26",
+        "accepted": false
       }
     },
     {
       "category": "Backend, infrastructure and staging",
       "name": "CMS, backend APIs and admin permissions",
       "source": "https://github.com/hamooddevpng/telikom-frontend/commit/b77f04d83c",
-      "done": "Admin CRUD APIs and role/security regressions are present in repository and prior test results.",
-      "pending": "Verify CRUD/permission behaviour against disposable staging test users, including private uploads, admin sessions and unknown routes.",
+      "done": "23 Oct host-local staging check: unauthenticated admin API returned 401; historic CMS/API and security code exists.",
+      "pending": "Test authenticated CMS CRUD, role restrictions, uploads, session handling and API negative paths with approved staging test users.",
       "pass": "Approved staging API test matrix and audit-safe logs.",
       "level": "Code + earlier test evidence",
       "timeline": {
@@ -253,14 +313,20 @@
         "validationStartWeek": 13,
         "planningThroughWeek": 16,
         "preMilestoneIsIndicative": true
+      },
+      "stagingValidation": {
+        "status": "PARTIAL",
+        "assessmentDate": "2026-10-26",
+        "accepted": false,
+        "evidence": "https://github.com/hamooddevpng/telikom-frontend/blob/main/docs/operations/evidence/STAGING_VERIFICATION_2026-10-23.md"
       }
     },
     {
       "category": "Backend, infrastructure and staging",
       "name": "Isolated staging PostgreSQL",
       "source": "https://github.com/hamooddevpng/telikom-frontend/blob/main/docs/security/staging-wrap-up-20261021.json",
-      "done": "21 October staging evidence records independent local database, 75-table count checks and healthy DB.",
-      "pending": "Verify current migration SHA/permissions and complete isolated backup restoration with media and privacy safeguards.",
+      "done": "23 Oct: independent staging PostgreSQL database identity and TLS passed; active DB and package had 50 recorded migrations.",
+      "pending": "Source main has 51 migrations, one not on staging. Obtain DBA review, safe migration plan, schema evidence and isolated restore verification.",
       "pass": "Instance identity, migration and restore log accepted by engineer.",
       "level": "Live staging record",
       "timeline": {
@@ -271,14 +337,20 @@
         "validationStartWeek": 13,
         "planningThroughWeek": 16,
         "preMilestoneIsIndicative": true
+      },
+      "stagingValidation": {
+        "status": "PARTIAL",
+        "assessmentDate": "2026-10-26",
+        "accepted": false,
+        "evidence": "https://github.com/hamooddevpng/telikom-frontend/blob/main/docs/operations/evidence/STAGING_VERIFICATION_2026-10-23.md"
       }
     },
     {
       "category": "Backend, infrastructure and staging",
       "name": "Nginx and OWASP CRS WAF on staging",
       "source": "https://github.com/hamooddevpng/telikom-frontend/blob/main/docs/security/staging-wrap-up-20261021.json",
-      "done": "21 October check records Nginx validation and WAF enforcement enabled on staging.",
-      "pending": "Test good traffic versus attack blocks; inspect false positives for contact, CMS/editor, uploads, and API.",
+      "done": "23 Oct: Nginx syntax valid, ModSecurity enforcement enabled, local web and API health returned HTTP 200.",
+      "pending": "No active WAF attack/false-positive tests: verify normal requests, CMS/editor, uploads and bounded negative scenarios.",
       "pass": "WAF logs and normal-journey retest signed.",
       "level": "Live staging record",
       "timeline": {
@@ -289,14 +361,20 @@
         "validationStartWeek": 13,
         "planningThroughWeek": 16,
         "preMilestoneIsIndicative": true
+      },
+      "stagingValidation": {
+        "status": "PARTIAL",
+        "assessmentDate": "2026-10-26",
+        "accepted": false,
+        "evidence": "https://github.com/hamooddevpng/telikom-frontend/blob/main/docs/operations/evidence/STAGING_VERIFICATION_2026-10-23.md"
       }
     },
     {
       "category": "Backend, infrastructure and staging",
       "name": "VPN-only staging firewall restrictions",
       "source": "https://github.com/hamooddevpng/telikom-frontend/blob/main/docs/security/staging-wrap-up-20261021.json",
-      "done": "Live UFW record contains allowed Telikom source ranges and private SSH policy.",
-      "pending": "Prove all three domains block public Internet, work from approved VPN/LAN, and have no IPv6/port gaps.",
+      "done": "23 Oct: authorised VPN connected, verified staging host by SSH; staging web health from VPN responded HTTP 200.",
+      "pending": "Retest all three staging domains and negative access from unauthorised network; independently verify SSH fingerprint.",
       "pass": "Network-origin and negative-access test report with firewall rules.",
       "level": "Live staging record",
       "timeline": {
@@ -307,14 +385,20 @@
         "validationStartWeek": 13,
         "planningThroughWeek": 16,
         "preMilestoneIsIndicative": true
+      },
+      "stagingValidation": {
+        "status": "PARTIAL",
+        "assessmentDate": "2026-10-26",
+        "accepted": false,
+        "evidence": "https://github.com/hamooddevpng/telikom-frontend/blob/main/docs/operations/evidence/STAGING_VERIFICATION_2026-10-23.md"
       }
     },
     {
       "category": "Backend, infrastructure and staging",
       "name": "Staging DNS, routes and HTTPS accessibility",
       "source": "https://github.com/hamooddevpng/telikom-frontend/blob/main/docs/security/staging-wrap-up-20261021.md",
-      "done": "Working staging HTTPS and selected network health were recorded; old certificates remained valid.",
-      "pending": "Resolve internal DNS/VPN access reports for web/admin/API; test HTTPS and cert trust from all approved clients.",
+      "done": "23 Oct: staging web origin accessible via approved VPN and host-local routing configured.",
+      "pending": "Staging API and admin hostnames failed DNS resolution from Codex VPN client. ICT must fix, then verify HTTPS and intended network access.",
       "pass": "Successful and denied origin evidence, DNS lookup and FQDN HTTPS screenshots.",
       "level": "Partial staging record",
       "timeline": {
@@ -325,14 +409,20 @@
         "validationStartWeek": 13,
         "planningThroughWeek": 16,
         "preMilestoneIsIndicative": true
+      },
+      "stagingValidation": {
+        "status": "FAILED",
+        "assessmentDate": "2026-10-26",
+        "accepted": false,
+        "evidence": "https://github.com/hamooddevpng/telikom-frontend/blob/main/docs/operations/evidence/STAGING_VERIFICATION_2026-10-23.md"
       }
     },
     {
       "category": "Backend, infrastructure and staging",
       "name": "TLS issuance and certificate renewal",
       "source": "https://github.com/hamooddevpng/telikom-frontend/blob/main/docs/security/staging-wrap-up-20261021.md",
-      "done": "A staging renewal drill failed and was rolled back; working existing certificate remains.",
-      "pending": "Reconcile ACME challenges with restricted HTTP ingress, determine renewal owner and rerun successful dry-run.",
+      "done": "23 Oct: three configured staging TLS certificates present, valid to 27 December 2026; certbot.timer active.",
+      "pending": "No deployed-copy renewal test. Prove renewal, replacement and Nginx reload with ICT owner.",
       "pass": "Verified renewal procedure, expiry monitoring and owner acceptance.",
       "level": "Known open gap",
       "timeline": {
@@ -343,14 +433,20 @@
         "validationStartWeek": null,
         "planningThroughWeek": 16,
         "preMilestoneIsIndicative": true
+      },
+      "stagingValidation": {
+        "status": "PARTIAL",
+        "assessmentDate": "2026-10-26",
+        "accepted": false,
+        "evidence": "https://github.com/hamooddevpng/telikom-frontend/blob/main/docs/operations/evidence/STAGING_VERIFICATION_2026-10-23.md"
       }
     },
     {
       "category": "Backend, infrastructure and staging",
       "name": "Staging deployment, worker and rollback",
       "source": "https://github.com/hamooddevpng/telikom-frontend/blob/main/docs/security/staging-wrap-up-20261021.md",
-      "done": "Existing verified artifact staged 21 October with web/worker, service health and cutover rollback checks.",
-      "pending": "Build and deploy latest committed SHA (not reused artifact), check worker schema, fresh SSH, service restart and rollback.",
+      "done": "23 Oct: current staging release identified, Nginx/app/email-worker active; historical rollback transactions recorded.",
+      "pending": "No fresh build/deploy or rollback/reboot drill. Attest deployed app SHA, settle schema 50/51 gap, then validate current source under approval.",
       "pass": "Immutable SHA/manifest, successful deploy and rollback drill on staging.",
       "level": "Live staging record; latest SHA open",
       "timeline": {
@@ -361,14 +457,20 @@
         "validationStartWeek": 13,
         "planningThroughWeek": 16,
         "preMilestoneIsIndicative": true
+      },
+      "stagingValidation": {
+        "status": "PARTIAL",
+        "assessmentDate": "2026-10-26",
+        "accepted": false,
+        "evidence": "https://github.com/hamooddevpng/telikom-frontend/blob/main/docs/operations/evidence/STAGING_VERIFICATION_2026-10-23.md"
       }
     },
     {
       "category": "Backend, infrastructure and staging",
       "name": "Staging content, CMS data and uploads",
       "source": "https://github.com/hamooddevpng/telikom-frontend/blob/main/docs/security/staging-wrap-up-20261021.md",
-      "done": "Staging DB cutover compared table counts; media sync tools exist separately.",
-      "pending": "Compare real staging banners/news/catalogue/uploads with approved manifests; repair missing artwork without cloning private DB.",
+      "done": "23 Oct: public/static assets and upload folder exist; earlier DB table-count comparison was recorded.",
+      "pending": "No current media manifest parity, individual image checks or synthetic upload round-trip completed.",
       "pass": "Signed source/content checksum diff and visual media sample.",
       "level": "Partial staging record",
       "timeline": {
@@ -379,6 +481,12 @@
         "validationStartWeek": 13,
         "planningThroughWeek": 16,
         "preMilestoneIsIndicative": true
+      },
+      "stagingValidation": {
+        "status": "PARTIAL",
+        "assessmentDate": "2026-10-26",
+        "accepted": false,
+        "evidence": "https://github.com/hamooddevpng/telikom-frontend/blob/main/docs/operations/evidence/STAGING_VERIFICATION_2026-10-23.md"
       }
     },
     {
@@ -397,14 +505,19 @@
         "validationStartWeek": null,
         "planningThroughWeek": 16,
         "preMilestoneIsIndicative": true
+      },
+      "stagingValidation": {
+        "status": "NOT VERIFIED",
+        "assessmentDate": "2026-10-26",
+        "accepted": false
       }
     },
     {
       "category": "Security, operations and acceptance",
       "name": "Admin recovery, RBAC, CSRF and sessions",
       "source": "https://github.com/hamooddevpng/telikom-frontend/blob/main/docs/security/completion-20261020.md",
-      "done": "20 October records admin recovery, secure cookies, auth/CSRF checks and logout for earlier app release.",
-      "pending": "Repeat tests on the exact latest staged SHA, including temporary bootstrap cleanup, role isolation and token invalidation.",
+      "done": "23 Oct: anonymous admin API correctly rejected with HTTP 401 host-locally; previous auth implementation exists.",
+      "pending": "No live authenticated admin, roles, CSRF, login/logout or recovery test completed against current staged SHA.",
       "pass": "Fresh staging account/auth regression sign-off.",
       "level": "Earlier deployed security evidence",
       "timeline": {
@@ -415,6 +528,12 @@
         "validationStartWeek": 13,
         "planningThroughWeek": 16,
         "preMilestoneIsIndicative": true
+      },
+      "stagingValidation": {
+        "status": "PARTIAL",
+        "assessmentDate": "2026-10-26",
+        "accepted": false,
+        "evidence": "https://github.com/hamooddevpng/telikom-frontend/blob/main/docs/operations/evidence/STAGING_VERIFICATION_2026-10-23.md"
       }
     },
     {
@@ -433,14 +552,19 @@
         "validationStartWeek": 13,
         "planningThroughWeek": 16,
         "preMilestoneIsIndicative": true
+      },
+      "stagingValidation": {
+        "status": "NOT VERIFIED",
+        "assessmentDate": "2026-10-26",
+        "accepted": false
       }
     },
     {
       "category": "Security, operations and acceptance",
       "name": "SMTP and outbound notification routes",
       "source": "https://github.com/hamooddevpng/telikom-frontend/blob/main/docs/security/evidence-20261020/smtp-inbox-verification.json",
-      "done": "System.Alerts lifecycle test messages were inbox-verified on 20 October.",
-      "pending": "Verify actual careers/contact/newsletter flow, negative/retry cases and production-independent staging sender rules.",
+      "done": "23 Oct: systemd email worker was active with expected entry point; earlier isolated sender delivery evidence exists.",
+      "pending": "No authorised staging email send, queue reconciliation, inbox delivery, or failure/retry test in this inspection.",
       "pass": "Inbox and log evidence for each enabled template; bulk sending remains off.",
       "level": "Partial live email evidence",
       "timeline": {
@@ -451,14 +575,20 @@
         "validationStartWeek": 13,
         "planningThroughWeek": 16,
         "preMilestoneIsIndicative": true
+      },
+      "stagingValidation": {
+        "status": "PARTIAL",
+        "assessmentDate": "2026-10-26",
+        "accepted": false,
+        "evidence": "https://github.com/hamooddevpng/telikom-frontend/blob/main/docs/operations/evidence/STAGING_VERIFICATION_2026-10-23.md"
       }
     },
     {
       "category": "Security, operations and acceptance",
       "name": "Staging monitoring dashboards and alerts",
       "source": "https://github.com/hamooddevpng/telikom-frontend/blob/main/docs/security/staging-wrap-up-20261021.json",
-      "done": "Prometheus, Grafana and Alertmanager were ready; live staging targets appeared healthy on 21 Oct.",
-      "pending": "Prove test alert reaches on-call inbox; check alert recovery, access controls, logs and restart persistence.",
+      "done": "23 Oct: monitoring containers running; app/DB service health confirmed.",
+      "pending": "No alert receipt, recovery, dashboard permissions, log retention or restart persistence drill.",
       "pass": "Firing/resolved alerts and owner acknowledgement with screenshots.",
       "level": "Live staging record",
       "timeline": {
@@ -469,14 +599,20 @@
         "validationStartWeek": 13,
         "planningThroughWeek": 16,
         "preMilestoneIsIndicative": true
+      },
+      "stagingValidation": {
+        "status": "PARTIAL",
+        "assessmentDate": "2026-10-26",
+        "accepted": false,
+        "evidence": "https://github.com/hamooddevpng/telikom-frontend/blob/main/docs/operations/evidence/STAGING_VERIFICATION_2026-10-23.md"
       }
     },
     {
       "category": "Security, operations and acceptance",
       "name": "CI lint, build and security workflow",
       "source": "https://github.com/hamooddevpng/telikom-frontend/actions/runs/39629160375",
-      "done": "Configured workflows exist, but main run from 21 October failed in security-related jobs.",
-      "pending": "Diagnose actual failures (job logs could not be retrieved), repair and rerun full suite at staging release SHA.",
+      "done": "25 Oct current main GitHub Security checks workflow concluded failure; the exact causes remain unconfirmed.",
+      "pending": "Inspect failed jobs, fix, and obtain passing lint/build/test/security scans on the staged immutable release SHA.",
       "pass": "Passing app/build/tests/SAST/secrets/container jobs with links for exact SHA.",
       "level": "Known failing CI",
       "timeline": {
@@ -487,6 +623,12 @@
         "validationStartWeek": null,
         "planningThroughWeek": 16,
         "preMilestoneIsIndicative": true
+      },
+      "stagingValidation": {
+        "status": "FAILED",
+        "assessmentDate": "2026-10-26",
+        "accepted": false,
+        "evidence": "https://github.com/hamooddevpng/telikom-frontend/actions/runs/40235892850"
       }
     },
     {
@@ -505,6 +647,11 @@
         "validationStartWeek": 13,
         "planningThroughWeek": 16,
         "preMilestoneIsIndicative": true
+      },
+      "stagingValidation": {
+        "status": "NOT VERIFIED",
+        "assessmentDate": "2026-10-26",
+        "accepted": false
       }
     },
     {
@@ -523,6 +670,11 @@
         "validationStartWeek": null,
         "planningThroughWeek": 16,
         "preMilestoneIsIndicative": true
+      },
+      "stagingValidation": {
+        "status": "NOT VERIFIED",
+        "assessmentDate": "2026-10-26",
+        "accepted": false
       }
     },
     {
@@ -541,14 +693,19 @@
         "validationStartWeek": null,
         "planningThroughWeek": 16,
         "preMilestoneIsIndicative": true
+      },
+      "stagingValidation": {
+        "status": "NOT VERIFIED",
+        "assessmentDate": "2026-10-26",
+        "accepted": false
       }
     },
     {
       "category": "Security, operations and acceptance",
       "name": "Staging documentation and formal acceptance",
       "source": "https://github.com/hamooddevpng/telikom-frontend/blob/main/docs/security/staging-wrap-up-20261021.md",
-      "done": "21 October staging handover captures real services/firewall/WAF/DB and known exceptions.",
-      "pending": "Complete latest SHA deployment, CI, certificate renewal, restore, full QA, security retest, IT verification and owner approval.",
+      "done": "23 Oct: Codex delivered read-only VPN/SSH staging inspection and revised deployment runbooks.",
+      "pending": "Full 30-workstream end-to-end matrix, fresh deployment provenance, owner approvals and all remaining QA/security/backup checks absent.",
       "pass": "Signed STAGING-ONLY acceptance pack, scope and outstanding risk ownership.",
       "level": "Partial handover, sign-off open",
       "timeline": {
@@ -559,9 +716,17 @@
         "validationStartWeek": 13,
         "planningThroughWeek": 16,
         "preMilestoneIsIndicative": true
+      },
+      "stagingValidation": {
+        "status": "PARTIAL",
+        "assessmentDate": "2026-10-26",
+        "accepted": false,
+        "evidence": "https://github.com/hamooddevpng/telikom-frontend/blob/main/docs/operations/evidence/STAGING_VERIFICATION_2026-10-23.md"
       }
     }
   ],
   "timeline_model": "Upper line: yellow planned/under-development from indicative start, green continuously from dated supporting commit or report through current week (not final staging signoff). Lower line: yellow staging validation from current week until accepted; for no evidenced milestone only upper line remains yellow. No production tasks. Start weeks are indicative planning windows, not attested activity timestamps. Actual milestone dates are supported by the linked commits/reports.",
-  "updated_on": "2026-10-22"
+  "updated_on": "2026-10-26",
+  "reconciliationDoc": "https://github.com/hamooddevpng/telikom-frontend/blob/main/docs/operations/STAGING_VALIDATION_EVIDENCE_2026-10-26.md",
+  "validationRule": "Green build milestones persist; yellow staging CHECK rails remain yellow without current-SHA functional evidence and sign-off."
 }
